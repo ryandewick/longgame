@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Build data.js from the sources in datasrc/.
+"""Build the app for running locally: check the sources in datasrc/, then write build/.
 
-    python tools/build_data.py            build data.js and restitch longgame.html
+    python tools/build_data.py            write build/data.js, build/app.js and build/longgame.html
     python tools/build_data.py --check    validate the sources only
 
 Sources (all taken from the OSRS Wiki; each method carries the page it came from in `src`):
@@ -11,7 +11,7 @@ Sources (all taken from the OSRS Wiki; each method carries the page it came from
     datasrc/resets.json            timed runs and daily resets
     datasrc/wikisync_quests.json   quest names as WikiSync spells them, for checking requirements
 
-data.js is generated. Edit the sources and rebuild; do not edit data.js by hand.
+Everything in build/ is generated. Edit datasrc/ and src/ and rebuild; do not edit build/ by hand.
 """
 import datetime
 import io
@@ -22,6 +22,19 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'datasrc')
+BUILD = os.path.join(ROOT, 'build')
+
+# The app's scripts, in the order they are joined. They share one scope, so order matters only for start-up: main.js goes last.
+APP_FILES = [
+    'core.js', 'state.js', 'account.js', 'hiscores.js', 'session.js', 'ui.js', 'brand.js', 'motion.js', 'render.js', 'rack.js', 'share.js',
+    'views/setup.js', 'views/tonight.js', 'views/skills.js', 'views/quests.js', 'views/resets.js', 'views/history.js', 'views/settings.js',
+    'forms.js', 'footer.js', 'main.js',
+]
+
+
+def read(*parts):
+    with io.open(os.path.join(ROOT, *parts), encoding='utf-8') as f:
+        return f.read()
 
 SKILLS = [
     ('attack', 'Attack', 'combat'), ('defence', 'Defence', 'combat'), ('strength', 'Strength', 'combat'),
@@ -303,7 +316,7 @@ def main():
               "   requirements: 'q:Quest|Other quest;s:skill level,skill level;d:Region Tier;c:combat level' (empty string = none)",
               "   extra (optional): who 'main' (needs the Grand Exchange) or 'iron' (ironman route), run (a timed run), per (xp a run),",
               '   every (minutes between runs), supply (an ironman needs banked supplies), tick (needs tick-perfect play), start (quest-skip advice, never dealt),',
-              '   calc (rate worked out in app.js from the account\'s levels), est (that rate is an estimate), setup (per-trip setup),',
+              '   calc (rate worked out in src/js/account.js from the account\'s levels), est (that rate is an estimate), setup (per-trip setup),',
               '   bands ([level, xp/h] steps as the rate rises) */',
               'const METHODS={']
     for key in KEYS:
@@ -327,28 +340,31 @@ def main():
         lines.append(js(r) + (',' if i < len(resets) - 1 else ''))
     lines += ['];', '']
 
-    with io.open(os.path.join(ROOT, 'data.js'), 'w', encoding='utf-8', newline='\n') as f:
+    os.makedirs(BUILD, exist_ok=True)
+    with io.open(os.path.join(BUILD, 'data.js'), 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(lines))
 
     if '--data-only' in sys.argv:
-        print('wrote data.js')
+        print('wrote build/data.js')
         return
 
-    # Stitch the single page the server serves.
-    parts = []
-    # local_sync.js is a private add-on that only exists in one local copy; the published code does not have it
-    for name in ('head.html', None, 'data.js', 'local_sync.js', 'app.js'):
-        if name is None:
-            parts.append('<script>\n')
-            continue
-        if name == 'local_sync.js' and not os.path.isfile(os.path.join(ROOT, name)):
-            continue
-        with io.open(os.path.join(ROOT, name), encoding='utf-8', newline='') as f:
-            parts.append(f.read())
-    parts.append('</script>\n</body></html>\n')
-    with io.open(os.path.join(ROOT, 'longgame.html'), 'w', encoding='utf-8', newline='') as f:
-        f.write(''.join(parts))
-    print('wrote data.js and longgame.html')
+    # The app is plain scripts that share one scope. Join them in order inside a single function.
+    app = "(function(){\n'use strict';\n" + '\n'.join(read('src', 'js', *name.split('/')) for name in APP_FILES) + '})();\n'
+    with io.open(os.path.join(BUILD, 'app.js'), 'w', encoding='utf-8', newline='\n') as f:
+        f.write(app)
+
+    # The single page the local server serves: styles and scripts inlined into src/index.html.
+    # local/local_sync.js is a private add-on that only exists in one local copy; the published code does not have it.
+    scripts = [read('build', 'data.js')]
+    if os.path.isfile(os.path.join(ROOT, 'local', 'local_sync.js')):
+        scripts.append(read('local', 'local_sync.js'))
+    scripts.append(app)
+    page = read('src', 'index.html')
+    page = page.replace('<!-- build:styles -->', '<style>\n' + read('src', 'styles.css') + '</style>')
+    page = page.replace('<!-- build:scripts -->', '<script>\n' + '\n'.join(scripts) + '</script>')
+    with io.open(os.path.join(BUILD, 'longgame.html'), 'w', encoding='utf-8', newline='\n') as f:
+        f.write(page)
+    print('wrote build/data.js, build/app.js and build/longgame.html')
 
 
 if __name__ == '__main__':

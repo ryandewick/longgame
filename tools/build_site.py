@@ -170,9 +170,9 @@ def main():
     os.makedirs(SITE)
 
     # ---- what the pages share ----
-    head = read('head.html')
-    css = re.search(r'<style>(.*?)</style>', head, re.S).group(1).replace('url(assets/', 'url(/assets/') + EXTRA_CSS
-    fonts = '\n'.join(l for l in head.splitlines() if 'fonts.g' in l)
+    css = read('src', 'styles.css').replace('url(assets/', 'url(/assets/') + EXTRA_CSS
+    # the planner's page up to where its scripts go, with the styles inlined
+    head = read('src', 'index.html').split('<!-- build:scripts -->')[0].replace('<!-- build:styles -->', '<style>\n' + css + '</style>')
     icon = re.search(r'<link rel="icon"[^>]*>', head).group(0)
     skills = {}
     for path in sorted(glob.glob(os.path.join(ROOT, 'datasrc', 'methods', '*.json'))):
@@ -192,15 +192,15 @@ def main():
              '<meta name="twitter:card" content="summary_large_image">']
         if url:
             m += ['<link rel="canonical" href="%s">' % e(url), '<meta property="og:url" content="%s">' % e(url)]
-            if os.path.isfile(os.path.join(ROOT, 'web', 'og.png')):
+            if os.path.isfile(os.path.join(ROOT, 'src', 'social', 'og.png')):
                 m += ['<meta property="og:image" content="%s/og.png">' % e(base), '<meta property="og:image:width" content="1200">', '<meta property="og:image:height" content="630">']
         return '\n'.join(m)
 
     def page(title, desc, path, body, ld=None, nav='guides'):
-        return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n%s\n%s\n%s\n<style>%s</style>\n%s</head>\n<body>\n'
+        return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n%s\n%s\n<style>\n%s</style>\n%s</head>\n<body>\n'
                 '<header class="top"><div class="wrap">%s<nav class="nav" aria-label="Site"><a href="/"%s>Planner</a><a href="/guides/"%s>Training guides</a></nav></div></header>\n'
                 '<main class="wrap">%s</main>\n%s\n</body></html>\n') % (
-            meta(title, desc, path), icon, fonts, css, '<script type="application/ld+json">%s</script>\n' % json.dumps(ld, ensure_ascii=False) if ld else '',
+            meta(title, desc, path), icon, css, '<script type="application/ld+json">%s</script>\n' % json.dumps(ld, ensure_ascii=False) if ld else '',
             brand, ' class="on"' if nav == 'home' else '', ' class="on"' if nav == 'guides' else '', body, foot)
 
     def table(rows, with_skill=False):
@@ -284,12 +284,12 @@ def main():
         {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in FAQ]}]}
     stamp = {}
     for f in ('data.js', 'app.js'):
-        src = read(f)
+        src = read('build', f)
         stamp[f] = hashlib.sha1(src.encode('utf-8')).hexdigest()[:10]
         write(f, src)
-    index = head.replace('<title>Long Game</title>', meta(TITLE, DESC, '/')).replace('url(assets/', 'url(/assets/').replace('</style>', EXTRA_CSS + '</style>', 1)
+    index = head.replace('<title>Long Game</title>', meta(TITLE, DESC, '/'))
     index = index.replace('</head>', '<script type="application/ld+json">%s</script>\n</head>' % json.dumps(ld, ensure_ascii=False))
-    index += ('%s\n<script>window.LG=%s</script>\n<script src="data.js?v=%s"></script>\n<script src="app.js?v=%s"></script>\n<script>%s</script>\n</body></html>\n'
+    index = index.rstrip('\n') + ('\n%s\n<script>window.LG=%s</script>\n<script src="data.js?v=%s"></script>\n<script src="app.js?v=%s"></script>\n<script>%s</script>\n</body></html>\n'
               % (about, json.dumps({'hosted': True, 'api': '', 'repo': repo, 'url': base}), stamp['data.js'], stamp['app.js'], REVEAL_JS))
     write('index.html', index)
     write('404.html', page('Page not found | Long Game', 'That page does not exist.', '/404.html',
@@ -328,15 +328,15 @@ def main():
         shutil.copytree(os.path.join(ROOT, 'assets', 'osrs', d), os.path.join(SITE, 'assets', 'osrs', d))
     shutil.copytree(os.path.join(ROOT, 'assets', 'fonts'), os.path.join(SITE, 'assets', 'fonts'))
     shutil.copytree(os.path.join(ROOT, 'vendor'), os.path.join(SITE, 'vendor'))
-    if os.path.isfile(os.path.join(ROOT, 'web', 'og.png')):
-        shutil.copy(os.path.join(ROOT, 'web', 'og.png'), os.path.join(SITE, 'og.png'))
+    if os.path.isfile(os.path.join(ROOT, 'src', 'social', 'og.png')):
+        shutil.copy(os.path.join(ROOT, 'src', 'social', 'og.png'), os.path.join(SITE, 'og.png'))
     size = sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(SITE) for f in fs)
     print('wrote site/: %d pages, %d methods, %.1f MB' % (len(pages) + 1, total, size / 1e6))
     if not base:
         print('note: site.config.json has no "url" yet, so there are no canonical links and no sitemap')
 
 
-# each skillcape's colour, for the crest on a guide page (the same values as CAPE in app.js)
+# each skillcape's colour, for the crest on a guide page (the same values as CAPE in src/js/brand.js)
 CAPES = {'attack': '#6e1e16', 'defence': '#687bb7', 'strength': '#0b6944', 'hitpoints': '#a5a4a1', 'ranged': '#546a1f', 'prayer': '#cdc5c5', 'magic': '#988c78',
          'cooking': '#52245e', 'woodcutting': '#887143', 'fletching': '#194c4e', 'fishing': '#839fb8', 'firemaking': '#bb6b1a', 'crafting': '#775d46',
          'smithing': '#565546', 'mining': '#595847', 'herblore': '#0a600d', 'agility': '#34356e', 'thieving': '#6e445f', 'slayer': '#2a2526',

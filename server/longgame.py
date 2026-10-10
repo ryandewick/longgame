@@ -15,15 +15,16 @@ import urllib.request
 import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # the project folder, one up from server/
 DATA = os.path.join(ROOT, 'data')
 PORT = int(os.environ.get('LONGGAME_PORT', '8765'))
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/128.0 Safari/537.36')
 HISCORES = 'https://secure.runescape.com/m=hiscore_oldschool/index_lite.json?player='
 HISCORES_IRON = 'https://secure.runescape.com/m=hiscore_oldschool_ironman/index_lite.json?player='
+sys.path.insert(0, os.path.join(ROOT, 'local'))
 try:
-    import local_sync  # a private add-on for one local copy; not part of the published code
+    import local_sync  # a private add-on for one local copy (local/); not part of the published code
 except ImportError:
     local_sync = None
 STATIC_OK = {'.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
@@ -146,7 +147,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send_json(read_json(os.path.join(DATA, 'snapshots_%s.json' % safe_name(name)), []))
 
         # static
-        path = '/longgame.html' if u.path in ('/', '') else u.path
+        path = '/build/longgame.html' if u.path in ('/', '') else u.path
         full = os.path.normpath(os.path.join(ROOT, path.lstrip('/')))
         if not full.startswith(ROOT):
             return self.send_json({'error': 'nope'}, 403)

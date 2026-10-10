@@ -1,8 +1,7 @@
 # a player's own saves and XP history never go in the repository
 data/
 # private add-on for one local copy: the OSRS Wiki does not permit third-party use of WikiSync
-local_sync.js
-local_sync.py
+local/
 # built by tools/build_site.py
 site/
 # local tooling
@@ -23,5 +22,4 @@ assets/osrs/preview-capes.png
 assets/osrs/sheet.html
 assets/osrs/sheet.png
 # built by tools/build_data.py. The local page can contain the private add-on, so it is never committed.
-longgame.html
-data.js
+build/

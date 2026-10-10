@@ -266,7 +266,7 @@ A warm near-black room lit only by the capes, with one loud yellow that is the g
 - **Unfilled Ring** (`mark-unfilled`): the part of the icon's ring and tail that progress has not reached yet, drawn on the yellow tile.
 
 ### Secondary
-Colour outside the brand belongs to the skillcapes. Each skill has a cape colour and a trim colour, sampled from the game's cape art and held in the `CAPE` table in `app.js` (mirrored in `assets/osrs/capes.json`). That table is the source of truth; the values are listed here for reference.
+Colour outside the brand belongs to the skillcapes. Each skill has a cape colour and a trim colour, sampled from the game's cape art and held in the `CAPE` table in `src/js/` (mirrored in `assets/osrs/capes.json`). That table is the source of truth; the values are listed here for reference.
 
 | Skill | Cape | Trim | Skill | Cape | Trim |
 |---|---|---|---|---|---|
