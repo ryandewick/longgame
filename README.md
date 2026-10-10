@@ -64,6 +64,12 @@ Methods live in `datasrc/methods/<skill>.json`. Each one needs a level, a name, 
 
 The hiscores do not list quests, so players tick them by hand. The OSRS Wiki's WikiSync service is not used: the wiki does not permit third-party use of it.
 
+## How this was built
+
+Long Game was built with AI assistance. I'm a senior software engineer: I set the direction, made the product and design decisions, and used Claude Code to write most of the code. I review what goes in, and anything wrong with it is on me, not the tool.
+
+I'm saying so up front because I'd want to know if I were reading someone else's repository. If you spot something that looks off, open an issue.
+
 ## Credits and licences
 
 - **Game assets** (skill icons, skillcape images, the RuneScape font) belong to Jagex Limited and are used under Jagex's Fan Content Policy. They are not covered by any licence in this repository.
