@@ -1,0 +1,410 @@
+{
+  "skill": "runecraft",
+  "methods": [
+    {
+      "lv": 1,
+      "name": "Quests for the early levels",
+      "who": "both",
+      "int": "active",
+      "cost": "free",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Enter the Abyss, Temple of the Eye, The Eyes of Glouphrie and others skip to about 32. Temple of the Eye unlocks the Rift.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 1,
+      "name": "Fire talisman tiaras",
+      "who": "main",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 50800,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Talisman on the altar with a tiara, 1,450 an hour. Fastest start with no requirements but click-heavy. Lavas win from 50.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 1,
+      "name": "Arceuus Library books",
+      "who": "both",
+      "int": "active",
+      "cost": "free",
+      "xph": 750,
+      "bands": [
+        [
+          1,
+          750
+        ],
+        [
+          10,
+          7500
+        ],
+        [
+          20,
+          15000
+        ],
+        [
+          30,
+          22500
+        ],
+        [
+          40,
+          30000
+        ],
+        [
+          50,
+          37500
+        ],
+        [
+          60,
+          45000
+        ],
+        [
+          70,
+          52500
+        ],
+        [
+          80,
+          60000
+        ],
+        [
+          90,
+          67500
+        ],
+        [
+          99,
+          74250
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Each book gives 5x your level. Rate is 150 books an hour with a client plugin. Expect two thirds of that without one.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 1,
+      "name": "Ourania Altar",
+      "who": "both",
+      "int": "semi",
+      "cost": "profit",
+      "xph": 20423,
+      "bands": [
+        [
+          1,
+          20423
+        ],
+        [
+          10,
+          22881
+        ],
+        [
+          20,
+          24665
+        ],
+        [
+          25,
+          28797
+        ],
+        [
+          30,
+          31158
+        ],
+        [
+          40,
+          32758
+        ],
+        [
+          50,
+          42077
+        ],
+        [
+          60,
+          42577
+        ],
+        [
+          70,
+          45576
+        ],
+        [
+          75,
+          57270
+        ],
+        [
+          80,
+          58487
+        ],
+        [
+          85,
+          72526
+        ],
+        [
+          90,
+          74716
+        ],
+        [
+          99,
+          77121
+        ]
+      ],
+      "req": "q:Lunar Diplomacy;s:magic 71",
+      "run": false,
+      "supply": true,
+      "note": "Lower-effort than lavas and profitable. Ourania Teleport, all pouches, pay Eniola in runes to bank. Worlds 327 and 480.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 23,
+      "name": "Lava runes with Magic Imbue",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 43200,
+      "bands": [
+        [
+          23,
+          43200
+        ],
+        [
+          25,
+          51400
+        ],
+        [
+          50,
+          62900
+        ],
+        [
+          75,
+          77600
+        ],
+        [
+          85,
+          100800
+        ],
+        [
+          99,
+          102100
+        ]
+      ],
+      "req": "q:Lunar Diplomacy;s:magic 82",
+      "run": false,
+      "supply": true,
+      "note": "Fire Altar with earth runes, binding necklace and all pouches. Rates are for a competent player. Learners get 50 to 90 percent.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 23,
+      "name": "Lava runes with earth talismans",
+      "who": "main",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 42400,
+      "bands": [
+        [
+          23,
+          42400
+        ],
+        [
+          25,
+          47200
+        ],
+        [
+          50,
+          57300
+        ],
+        [
+          75,
+          64800
+        ],
+        [
+          85,
+          81100
+        ],
+        [
+          99,
+          96000
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Same route without the Lunar spellbook. One to three earth talismans a lap and pouch repairs at Cordelia or the Dark Mage.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 23,
+      "name": "Lavas or aethers with essence runners",
+      "who": "main",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 280000,
+      "bands": [
+        [
+          23,
+          280000
+        ],
+        [
+          90,
+          345000
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Four runners on lavas, six on aethers from 90. Runners cost about 12 to 15m an hour each. Duo lavas are about 162,000.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 27,
+      "name": "Guardians of the Rift",
+      "who": "both",
+      "int": "semi",
+      "cost": "profit",
+      "xph": 0,
+      "bands": [
+        [
+          27,
+          0
+        ],
+        [
+          40,
+          25000
+        ],
+        [
+          50,
+          40000
+        ],
+        [
+          75,
+          50000
+        ],
+        [
+          85,
+          65000
+        ],
+        [
+          99,
+          70000
+        ]
+      ],
+      "req": "q:Temple of the Eye",
+      "run": false,
+      "supply": false,
+      "note": "No essence needed. Passive Mining and Crafting XP plus the Raiments and colossal pouch. Rates from 85 assume a small team.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 50,
+      "name": "Royal Titans desiccated pages",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 20000,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Forfeit boss loot for pages worth 50 XP each. About 20,000 an hour each in a duo with high combat stats.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 77,
+      "name": "Arceuus blood runes, soul runes at 90",
+      "who": "both",
+      "int": "afk",
+      "cost": "profit",
+      "xph": 36000,
+      "bands": [
+        [
+          77,
+          36000
+        ],
+        [
+          90,
+          44000
+        ]
+      ],
+      "req": "s:mining 38,crafting 38",
+      "run": false,
+      "supply": false,
+      "note": "Mine dense essence, bless at the Dark Altar, chisel and craft. Low effort and profitable. Rates assume the Kourend medium diary.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 82,
+      "name": "Double astral runes",
+      "who": "main",
+      "int": "active",
+      "cost": "profit",
+      "xph": 42000,
+      "bands": [
+        [
+          82,
+          42000
+        ],
+        [
+          85,
+          53000
+        ],
+        [
+          99,
+          55000
+        ]
+      ],
+      "req": "q:Lunar Diplomacy",
+      "run": false,
+      "supply": true,
+      "note": "Tele Group Moonclan to the altar and bank at Castle Wars. Good profit with the Raiments. Up to 59,000 at 99.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 90,
+      "name": "Aether runes",
+      "who": "main",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 99000,
+      "bands": [
+        [
+          90,
+          99000
+        ],
+        [
+          99,
+          102000
+        ]
+      ],
+      "req": "q:Lunar Diplomacy;s:magic 82,agility 66",
+      "run": false,
+      "supply": true,
+      "note": "Soul runes on the Cosmic Altar with aether catalyst via the POH fairy ring. Only 70,000 without a colossal pouch.",
+      "src": "Pay-to-play Runecraft training"
+    },
+    {
+      "lv": 95,
+      "name": "Wrath runes",
+      "who": "both",
+      "int": "active",
+      "cost": "profit",
+      "xph": 42240,
+      "req": "q:Dragon Slayer II",
+      "run": false,
+      "supply": true,
+      "note": "Mythical cape to the Myths' Guild and run past the dragons with dragonfire protection. 75 to 85 runs an hour.",
+      "src": "Pay-to-play Runecraft training"
+    }
+  ],
+  "unverified": [
+    "Quests for the early levels: one-off quest XP, no hourly rate in the guide (xph 0)",
+    "Guardians of the Rift: neither guide gives a rate below level 40 (table starts at 40-50: 25,000), so xph at 27 is 0",
+    "Ourania Altar: the guide's XP/h cells are wiki formulas (xp per essence x essence per lap x seconds / 48). Bands are those formulas evaluated, not quoted numbers. 71 Magic is 'strongly recommended' rather than a hard requirement (tablets work)",
+    "Lava runes: the guide's XP/h cells are stored unrounded and displayed rounded to the nearest 100. Bands use the rounded figures. Below 85 the bands use the best non-colossal pouch set",
+    "Arceuus Library: bands use the guide's 150 books/hour column (needs client plugin). The 100 books/hour column is two thirds of each figure",
+    "Royal Titans desiccated pages: no combat or quest requirement is stated in the guide beyond 'high combat stats'",
+    "Aether runes: Lunar Diplomacy is inferred from the Magic Imbue requirement. The aether section itself only states 82 Magic and 66 Agility",
+    "Cost labels are a judgement: the guide's GP/XP columns are live Grand Exchange price templates with no fixed numbers"
+  ]
+}

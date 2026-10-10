@@ -1,0 +1,204 @@
+[
+ {
+  "k": "birdhouse",
+  "n": "Birdhouse run",
+  "every": 50,
+  "skill": "hunter",
+  "req": "q:Bone Voyage;s:hunter 5",
+  "note": "Four houses on Fossil Island. A minute or two of work for Hunter XP, nests and seeds.",
+  "src": "Bird house trapping"
+ },
+ {
+  "k": "herb",
+  "n": "Herb run",
+  "every": 80,
+  "skill": "farming",
+  "req": "s:farming 9",
+  "note": "Every herb patch you can reach. Ranarr, toadflax and snapdragon feed Herblore.",
+  "src": "Herb patch"
+ },
+ {
+  "k": "seaweed",
+  "n": "Giant seaweed",
+  "every": 40,
+  "skill": "farming",
+  "req": "q:Bone Voyage;s:farming 23",
+  "note": "Fossil Island, underwater. Ready about 40 minutes after planting.",
+  "src": "Giant seaweed"
+ },
+ {
+  "k": "tree",
+  "n": "Tree run",
+  "every": [
+   [
+    15,
+    200
+   ],
+   [
+    30,
+    240
+   ],
+   [
+    45,
+    320
+   ],
+   [
+    60,
+    400
+   ],
+   [
+    75,
+    480
+   ]
+  ],
+  "skill": "farming",
+  "req": "s:farming 15",
+  "note": "Every tree patch, with the best sapling you can plant. Ready again once that tree has grown.",
+  "src": "Farming training"
+ },
+ {
+  "k": "fruit",
+  "n": "Fruit tree run",
+  "every": 960,
+  "skill": "farming",
+  "req": "s:farming 27",
+  "note": "Fruit trees take 16 hours whatever the sapling, so one run a day.",
+  "src": "Fruit tree patch"
+ },
+ {
+  "k": "hardwood",
+  "n": "Hardwood trees",
+  "every": [
+   [
+    35,
+    4480
+   ],
+   [
+    55,
+    5120
+   ]
+  ],
+  "skill": "farming",
+  "req": "q:Bone Voyage;s:farming 35",
+  "note": "Teak at 35 takes 74 hours 40 minutes, mahogany at 55 takes 85 hours 20. A twice-a-week run.",
+  "src": "Farming training"
+ },
+ {
+  "k": "calquat",
+  "n": "Calquat",
+  "every": 1280,
+  "skill": "farming",
+  "req": "s:farming 72",
+  "note": "One sapling, about 12k Farming XP when you check it, 21 hours 20 minutes after planting.",
+  "src": "Calquat tree"
+ },
+ {
+  "k": "hespori",
+  "n": "Hespori",
+  "every": 1920,
+  "skill": "farming",
+  "req": "s:farming 65",
+  "note": "Farming Guild. The seed takes 32 hours to grow, then it is a short boss fight for a seed pack.",
+  "src": "Hespori"
+ },
+ {
+  "k": "tears",
+  "n": "Tears of Guthix",
+  "every": "weekly",
+  "skill": "",
+  "req": "q:Tears of Guthix",
+  "note": "Seven days after your last visit, once you have gained a quest point or 100k XP since. The XP goes to your lowest skill.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "kingdom",
+  "n": "Kingdom of Miscellania",
+  "every": "utc",
+  "skill": "",
+  "req": "q:Throne of Miscellania",
+  "note": "Top up the coffers and keep approval high. Resources arrive while you do something else.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "battlestaves",
+  "n": "Battlestaves from Zaff",
+  "every": "utc",
+  "skill": "",
+  "req": "",
+  "note": "Varrock. 5 a day at 7,000 each with no diary, then 15, 30, 60 and 120 with the easy to elite Varrock diary.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "sand",
+  "n": "Sand from Bert",
+  "every": "utc",
+  "skill": "",
+  "req": "q:The Hand in the Sand",
+  "note": "Yanille. 84 buckets of sand to your bank each day for glassblowing.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "essence",
+  "n": "Pure essence from Cromperty",
+  "every": "utc",
+  "skill": "",
+  "req": "d:Ardougne Medium",
+  "note": "100 free pure essence a day from Wizard Cromperty, 150 with the hard Ardougne diary and 250 with elite.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "bowstring",
+  "n": "Flax for bow string",
+  "every": "utc",
+  "skill": "",
+  "req": "d:Kandarin Easy",
+  "note": "The flax keeper swaps 30 noted flax for bow string each day, 60, 120 or 250 with the higher Kandarin diaries.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "runes",
+  "n": "Runes from Lundail",
+  "every": "utc",
+  "skill": "",
+  "req": "d:Wilderness Easy",
+  "note": "40 random runes a day from Lundail, 80, 120 or 200 with the higher Wilderness diaries.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "bonemeal",
+  "n": "Bonemeal from Robin",
+  "every": "utc",
+  "skill": "",
+  "req": "d:Morytania Medium",
+  "note": "Port Phasmatys. Robin turns 13 bones into bonemeal and slime each day, 26 or 39 with the higher Morytania diaries.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "ogrearrows",
+  "n": "Ogre arrows from Rantz",
+  "every": "utc",
+  "skill": "",
+  "req": "d:Western Provinces Easy",
+  "note": "25 free ogre arrows a day, 50, 100 or 150 with the higher Western Provinces diaries.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "dynamite",
+  "n": "Dynamite from Thirus",
+  "every": "utc",
+  "skill": "",
+  "req": "d:Kourend & Kebos Medium",
+  "note": "20 dynamite a day, 40 or 80 with the hard and elite Kourend and Kebos diaries.",
+  "src": "Repeatable events"
+ },
+ {
+  "k": "herbboxes",
+  "n": "Herb boxes from Nightmare Zone",
+  "every": "utc",
+  "skill": "",
+  "req": "",
+  "who": "main",
+  "note": "15 boxes a day at 9,500 Nightmare Zone points each. Not available to ironmen.",
+  "src": "Repeatable events"
+ }
+]

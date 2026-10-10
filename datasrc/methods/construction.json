@@ -1,0 +1,204 @@
+{
+  "skill": "construction",
+  "methods": [
+    {
+      "lv": 1,
+      "name": "Daddy's Home, then starter furniture",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Miniquest takes you to 8 and gives supplies. Then chairs, bookcases and larders, oak from 15, carved oak tables to 33.",
+      "src": "Construction training"
+    },
+    {
+      "lv": 1,
+      "name": "Mahogany Homes",
+      "who": "both",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 42500,
+      "bands": [
+        [
+          1,
+          42500
+        ],
+        [
+          20,
+          87500
+        ],
+        [
+          50,
+          140000
+        ],
+        [
+          70,
+          197500
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Contracts in four cities. Far more XP per plank and less clicking. A plank sack lifts expert contracts to about 260,000.",
+      "src": "Construction training"
+    },
+    {
+      "lv": 1,
+      "name": "Shipwright hull parts",
+      "who": "both",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 72500,
+      "bands": [
+        [
+          1,
+          72500
+        ],
+        [
+          8,
+          150000
+        ],
+        [
+          23,
+          225000
+        ],
+        [
+          41,
+          350000
+        ],
+        [
+          53,
+          400000
+        ],
+        [
+          75,
+          437500
+        ],
+        [
+          84,
+          475000
+        ]
+      ],
+      "req": "q:Pandemonium",
+      "run": false,
+      "supply": true,
+      "note": "Workbench by a bank, about 1,000 parts an hour. Half the XP per plank but the parts sell or feed Sailing. Relaxed pace.",
+      "src": "Construction training"
+    },
+    {
+      "lv": 30,
+      "name": "Fishing crane repair",
+      "who": "both",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 0,
+      "req": "s:crafting 30",
+      "run": false,
+      "supply": true,
+      "note": "Port Piscarilius. Each repair gives 4x your level in Construction and Crafting for 3 planks and nails. Slow but very cheap.",
+      "src": "Construction training"
+    },
+    {
+      "lv": 33,
+      "name": "Oak larders",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 0,
+      "bands": [
+        [
+          33,
+          0
+        ],
+        [
+          50,
+          485000
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Eight oak planks, 480 XP each. About 485,000 an hour from 50 with a demon butler. The cheap standard route to 74.",
+      "src": "Construction training"
+    },
+    {
+      "lv": 50,
+      "name": "Mounted mythical capes",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 365500,
+      "req": "q:Dragon Slayer II",
+      "run": false,
+      "supply": true,
+      "note": "Three teak planks and the cape for 370 XP. Best XP per teak plank. Up to 430,000 an hour at maximum efficiency.",
+      "src": "Construction training"
+    },
+    {
+      "lv": 52,
+      "name": "Mahogany tables",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 765000,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Six mahogany planks, 840 XP each with a demon butler. Up to about 900,000 an hour. Fastest until gnome benches at 77.",
+      "src": "Construction training"
+    },
+    {
+      "lv": 66,
+      "name": "Teak garden benches",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 550000,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Fastest use of teak planks, 540 XP each in the superior garden. Needs precise timing. 700,000 with perfect execution.",
+      "src": "Construction training"
+    },
+    {
+      "lv": 74,
+      "name": "Oak dungeon doors",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 500000,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Ten oak planks, 600 XP each. Cheaper and less click-intensive than mahogany or teak. Up to 550,000 at maximum efficiency.",
+      "src": "Construction training"
+    },
+    {
+      "lv": 77,
+      "name": "Gnome benches",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 935000,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Two adjacent hotspots in the superior garden with mahogany planks. Best rate in the game at just over 1,100,000 an hour.",
+      "src": "Construction training"
+    }
+  ],
+  "unverified": [
+    "Daddy's Home, then starter furniture: no hourly rate in either guide for levels 1-33 furniture (xph 0)",
+    "Oak larders: the guide gives no rate below level 50 (xph at 33 is 0). The band at 50 is the midpoint of the stated 480,000-490,000 'with some mistakes'",
+    "Fishing crane repair: the guide gives XP per repair (4 x level) and a 30-60 second break interval but no XP per hour (xph 0)",
+    "Mahogany Homes: bands are midpoints of the no-plank-sack ranges. Plank-sack ranges are 50-70k, 110-140k, 155-200k, 240-280k",
+    "Oak dungeon doors and gnome benches are not named in the Ironman Guide. Marked 'both' because that guide says ironman Construction is 'not very different' from normal training once planks are sourced",
+    "Shipwright hull parts: rates assume about 1,000 parts an hour at the Deepfin Point workbench. Camphor, ironwood and rosewood tiers need Sailing-era planks",
+    "Shipwright hull parts: the guide lists ironwood hull parts at level 77, but the Ironwood hull parts page (fetched live) says 75 since the 22 July 2026 update. Band uses 75",
+    "Daddy's Home: the main guide says 944 XP in total, the Ironman Guide says the reward is 544 XP",
+    "Mounted mythical capes: the main guide says level 50 (Dragon Slayer II needs 50 Construction), the Ironman Guide heading says 47. lv uses 50"
+  ]
+}

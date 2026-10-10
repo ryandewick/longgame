@@ -1,0 +1,349 @@
+{
+ "skill": "magic",
+ "methods": [
+  {
+   "lv": 1,
+   "name": "Quest skip to level 34",
+   "who": "both",
+   "int": "active",
+   "cost": "free",
+   "xph": 0,
+   "req": "",
+   "run": false,
+   "supply": false,
+   "note": "Witch's Potion and Imp Catcher give level 10. The Grand Tree, Watchtower and one more small quest reach 34. All fights can be safespotted.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "who": "both",
+   "int": "afk",
+   "cost": "cheap",
+   "xph": 0,
+   "run": false,
+   "supply": true,
+   "est": true,
+   "lv": 9,
+   "name": "Rock crabs with earth spells",
+   "req": "",
+   "calc": "rock-magic",
+   "src": "Pay-to-play Magic training",
+   "note": "Rellekka. Aggressive for 10 minutes, then walk off to reset. A 20% earth weakness. No requirements. Rate estimated from your best earth spell: the wiki gives none."
+  },
+  {
+   "who": "both",
+   "int": "afk",
+   "cost": "cheap",
+   "xph": 0,
+   "run": false,
+   "supply": true,
+   "est": true,
+   "lv": 13,
+   "name": "Frost crabs with fire spells",
+   "req": "q:The Heart of Darkness",
+   "calc": "frost-magic",
+   "src": "Pay-to-play Magic training",
+   "note": "Ruins of Tapoyauik in Varlamore. A 100% fire weakness doubles fire spell damage. Reset aggression every 10 minutes. Rate estimated: the wiki gives none."
+  },
+  {
+   "who": "both",
+   "int": "afk",
+   "cost": "cheap",
+   "xph": 0,
+   "run": false,
+   "supply": true,
+   "est": true,
+   "lv": 9,
+   "name": "Gemstone Crab with combat spells",
+   "req": "q:Children of the Sun",
+   "calc": "gem-magic",
+   "src": "Gemstone Crab/Strategies",
+   "note": "Never moves you, two clicks every 10 minutes. The wiki rates it below the other crabs for Magic: no weakness and 87.5% XP. Rate estimated."
+  },
+  {
+   "lv": 1,
+   "name": "Splashing",
+   "who": "both",
+   "int": "afk",
+   "cost": "cheap",
+   "xph": 6600,
+   "req": "",
+   "run": false,
+   "supply": false,
+   "note": "Wear -64 Magic attack and autocast on a weak monster, one click every 20 minutes. 6,600 is the lowest spell. Up to 75,750 with the highest spells.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "lv": 1,
+   "name": "Arceuus Library books",
+   "who": "both",
+   "int": "active",
+   "cost": "free",
+   "xph": 1800,
+   "bands": [
+    [
+     1,
+     1800
+    ],
+    [
+     10,
+     18000
+    ],
+    [
+     20,
+     36000
+    ],
+    [
+     30,
+     54000
+    ],
+    [
+     40,
+     72000
+    ],
+    [
+     50,
+     90000
+    ],
+    [
+     60,
+     108000
+    ],
+    [
+     70,
+     126000
+    ],
+    [
+     80,
+     144000
+    ],
+    [
+     90,
+     162000
+    ],
+    [
+     99,
+     178200
+    ]
+   ],
+   "req": "",
+   "run": false,
+   "supply": false,
+   "note": "Each book handed in gives 15 times your Magic level. 120 books an hour with the Kourend Library plugin, 150 with stamina. No runes needed.",
+   "src": "Ironman Guide/Magic"
+  },
+  {
+   "lv": 4,
+   "name": "Enchanting bolts",
+   "who": "main",
+   "int": "active",
+   "cost": "pricey",
+   "xph": 49500,
+   "bands": [
+    [
+     4,
+     49500
+    ],
+    [
+     7,
+     93500
+    ],
+    [
+     24,
+     159500
+    ],
+    [
+     27,
+     203500
+    ],
+    [
+     49,
+     324500
+    ],
+    [
+     57,
+     368500
+    ],
+    [
+     68,
+     429000
+    ],
+    [
+     87,
+     533500
+    ]
+   ],
+   "req": "",
+   "run": false,
+   "supply": false,
+   "note": "Enchant Crossbow Bolt clicked every tick, 5,500 casts an hour. Very expensive. Autocasting gives about a third. Can be done while running or questing.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "lv": 7,
+   "name": "Enchanting jewellery",
+   "who": "main",
+   "int": "semi",
+   "cost": "profit",
+   "xph": 28000,
+   "bands": [
+    [
+     7,
+     28000
+    ],
+    [
+     27,
+     59200
+    ],
+    [
+     49,
+     94400
+    ],
+    [
+     57,
+     111300
+    ],
+    [
+     68,
+     124800
+    ]
+   ],
+   "req": "",
+   "run": false,
+   "supply": false,
+   "note": "Lvl-1 to Lvl-5 Enchant on jewellery bought from the GE, about 1,600 casts an hour. Usually a small profit. Lvl-5 needs tens of millions in capital.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "lv": 33,
+   "name": "Mage Training Arena",
+   "who": "iron",
+   "int": "active",
+   "cost": "cheap",
+   "xph": 0,
+   "req": "",
+   "run": false,
+   "supply": false,
+   "note": "Up to 127,000 XP in total on the way to Bones to Peaches. From 68 the Enchanting Chamber with a mud battlestaff costs no runes overall.",
+   "src": "Ironman Guide/Magic"
+  },
+  {
+   "lv": 43,
+   "name": "Superheat Item",
+   "who": "both",
+   "int": "active",
+   "cost": "cheap",
+   "xph": 82450,
+   "req": "",
+   "run": false,
+   "supply": true,
+   "note": "53 XP a cast plus Smithing XP. Ironmen superheat their own iron or gold ore and the guide warns it eats nature runes. Only listed for 43 to 55.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "lv": 55,
+   "name": "High Level Alchemy",
+   "who": "both",
+   "int": "semi",
+   "cost": "profit",
+   "xph": 66300,
+   "req": "",
+   "run": false,
+   "supply": true,
+   "note": "65 XP a cast, 78k an hour at most standing still. Expect 20k to 50k when alching alongside other training. Ironmen alch Slayer drops and crafted items.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "lv": 68,
+   "name": "Blood bursting desert bandits",
+   "who": "main",
+   "int": "afk",
+   "cost": "pricey",
+   "xph": 127500,
+   "req": "q:Desert Treasure I",
+   "run": false,
+   "supply": false,
+   "note": "Big Heist Lodge in the Bandit Camp wearing a Saradomin or Zamorak item. Blood spells keep you healed. Up to 150k bursting or 230k barraging. Runes are not recouped.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "lv": 70,
+   "name": "Bursting maniacal monkeys",
+   "who": "main",
+   "int": "semi",
+   "cost": "pricey",
+   "xph": 263500,
+   "bands": [
+    [
+     70,
+     263500
+    ],
+    [
+     94,
+     340000
+    ]
+   ],
+   "req": "q:Desert Treasure I|Monkey Madness II",
+   "run": false,
+   "supply": false,
+   "note": "Ice Burst, then Ice Barrage at 94, in Kruk's Dungeon. Fastest viable Magic XP. On auto retaliate expect 250k bursting or 320k barraging.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "lv": 70,
+   "name": "Burst or barrage Slayer tasks",
+   "who": "both",
+   "int": "active",
+   "cost": "free",
+   "xph": 0,
+   "req": "q:Desert Treasure I;s:slayer 65",
+   "run": false,
+   "supply": false,
+   "note": "Dust devils, nechryaels, smoke devils and warped jellies on task. Usually breaks even or profits. The ironman route for most Magic XP at high level.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "lv": 71,
+   "name": "Cure Me on araxytes",
+   "who": "main",
+   "int": "active",
+   "cost": "pricey",
+   "xph": 351900,
+   "req": "q:Lunar Diplomacy",
+   "run": false,
+   "supply": false,
+   "note": "Tick-perfect. Cast Cure Me every tick while araxytes in the Morytania Spider Cave keep you venomed. Up to 414k at 6,000 casts an hour. Needs prayer potions.",
+   "src": "Pay-to-play Magic training"
+  },
+  {
+   "lv": 86,
+   "name": "Plank Make",
+   "who": "both",
+   "int": "afk",
+   "cost": "profit",
+   "xph": 90000,
+   "req": "q:Dream Mentor",
+   "run": false,
+   "supply": true,
+   "note": "Autocast on mahogany logs, about 90 seconds an inventory. Manual casting gives 166k. Small profit for mains. Ironmen need their own logs.",
+   "src": "Pay-to-play Magic training"
+  }
+ ],
+ "unverified": [
+  "Quest skip to level 34: one-off quest XP, so no hourly rate (xph 0); the main guide uses Fairytale I or The Grand Tree plus Watchtower and the Lumbridge Guide subquest, the Ironman Guide uses The Grand Tree, Watchtower and The Giant Dwarf",
+  "Crabs with combat spells: no rate in either guide (xph 0)",
+  "Splashing: the guide gives a range of 6,600-75,750 depending on the spell with no levels; the low end is used at lv 1",
+  "Arceuus Library books: rates are level x 15 x 120 books an hour from the Ironman Guide table; the main guide recommends it from 20 and quotes about 200,000 an hour at 75 when alching between books",
+  "Enchanting bolts: table rates assume 5,500 manual one-tick casts an hour; topaz bolts at 29 (181,500) are slower than emerald at 27 and left out of the bands",
+  "Enchanting jewellery: rates are from the profitable-methods table; the text elsewhere says 'up to around 32,000' for Lvl-1 Enchant",
+  "Mage Training Arena: the guide gives a total (up to 127,000 XP) rather than an hourly rate (xph 0)",
+  "Superheat Item: 82,450 is 85% of 'up to 97,000'",
+  "High Level Alchemy: 66,300 is 85% of 'up to 78,000'",
+  "Blood bursting desert bandits: 127,500 is 85% of 'can reach 150,000' with Blood Burst; the Blood Barrage level is not stated so no second band; needs Desert Treasure I for Ancient Magicks",
+  "Bursting maniacal monkeys: bands are 85% of 'up to around 310,000' (Ice Burst) and 'up to around 400,000' (Ice Barrage); only needs Monkey Madness II started; the guide suggests two alts to stack",
+  "Burst or barrage Slayer tasks: no Magic XP rate in either guide (xph 0); 65 Slayer is for dust devils",
+  "Cure Me on araxytes: 351,900 is 85% of 'up to 414,000 optimally', a one-tick method",
+  "Plank Make: the Ironman Guide only links to the Plank Make page and gives no rate",
+  "Not included to stay within 14 methods: Low Level Alchemy (up to 60,000 from 21), Camelot Teleport (about 80,000 from 45), tele-alching (up to 144,600 from 55), String Jewellery (up to 150,000 from 80), stun-alching (184,000 from 80), Wilderness bandits with Ice Barrage (up to 330,000, profitable)",
+  "2026-10-05: the three crab entries are computed in app.js (CALC rock-magic / frost-magic / gem-magic) from the spell pages (level, base XP, max hit; earth spells at their lower max hit) and Elemental weakness (+1% damage and accuracy per point); 1,200 casts an hour assumes 5-tick autocasting; 2 XP per damage plus base XP per cast; frost and rock crabs take a 10% allowance for resets and overkill, the Gemstone Crab its 87.5% XP"
+ ]
+}

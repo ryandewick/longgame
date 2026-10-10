@@ -1,0 +1,205 @@
+[
+ {
+  "name": "X Marks the Spot",
+  "rewards": "300, 1",
+  "restrictions": "'None'",
+  "requirements": "'None'",
+  "notes": null
+ },
+ {
+  "name": "Client of Kourend",
+  "rewards": "500, 2",
+  "restrictions": "'None'",
+  "requirements": "'None'",
+  "notes": null
+ },
+ {
+  "name": "The Ides of Milk",
+  "rewards": "1000, 1",
+  "restrictions": "'Attack Strength Defence Magic Ranged Hitpoints Prayer'",
+  "requirements": "'None'",
+  "notes": null
+ },
+ {
+  "name": "Fairytale II - Cure a Queen",
+  "rewards": "2500, 1",
+  "restrictions": "30",
+  "requirements": "string.format('%s, %s', SCP('Farming', '49'), SCP('Herblore', '57'))",
+  "notes": null
+ },
+ {
+  "name": "The Great Brain Robbery",
+  "rewards": "5000, 1",
+  "restrictions": "30",
+  "requirements": "string.format('%s, %s, %s', SCP('Crafting', '16'), SCP('Construction', '30'), SCP('Prayer', '50'))",
+  "notes": null
+ },
+ {
+  "name": "King\\'s Ransom",
+  "rewards": "5000, 1",
+  "restrictions": "50",
+  "requirements": "string.format('%s', SCP('Defence', '65'))",
+  "notes": null
+ },
+ {
+  "name": "A Tail of Two Cats",
+  "rewards": "2500, 2",
+  "restrictions": "30",
+  "requirements": "'None'",
+  "notes": null
+ },
+ {
+  "name": "Darkness of Hallowvale",
+  "rewards": "2000, 3",
+  "restrictions": "30",
+  "requirements": "string.format('%s, %s, %s, %s, %s, %s', SCP('Construction', '5'), SCP('Mining', '20'), SCP('Thieving', '22'), SCP('Crafting', '32'), SCP('Magic', '33'), SCP('Strength', '40'))",
+  "notes": null
+ },
+ {
+  "name": "A Taste of Hope",
+  "rewards": "2500, 3",
+  "restrictions": "35",
+  "requirements": "string.format('%s, %s, %s, %s, %s', SCP('Crafting', '48'), SCP('Herblore', '40'), SCP('Attack', '40'), SCP('Agility', '45'), SCP('Slayer', '38'))",
+  "notes": null
+ },
+ {
+  "name": "The Tourist Trap",
+  "rewards": "4650, 2",
+  "restrictions": "'Agility Fletching Smithing Thieving'",
+  "requirements": "string.format('%s, %s', SCP('Fletching', '10'), SCP('Smithing', '20'))",
+  "notes": null
+ },
+ {
+  "name": "Curse of the Empty Lord",
+  "rewards": "10000, 1",
+  "restrictions": "50",
+  "requirements": "string.format(\"Some players will need %s\", SCP('Prayer', '31'))",
+  "notes": null
+ },
+ {
+  "name": "In Search of Knowledge",
+  "rewards": "10000, 1",
+  "restrictions": "40",
+  "requirements": "'None'",
+  "notes": null
+ },
+ {
+  "name": "Shadow of the Storm",
+  "rewards": "10000, 1",
+  "restrictions": "'Attack Strength Defence Magic Ranged Hitpoints'",
+  "requirements": "string.format('%s', SCP('Crafting', '30'))",
+  "notes": null
+ },
+ {
+  "name": "Contact!",
+  "rewards": "7000, 2",
+  "restrictions": "'Attack Strength Defence Magic Ranged Hitpoints'",
+  "requirements": "'None'",
+  "notes": null
+ },
+ {
+  "name": "Dream Mentor",
+  "rewards": "15000, 1",
+  "restrictions": "'Strength Defence Magic Ranged Hitpoints'",
+  "requirements": "string.format('%s, %s, %s, %s, %s,<br/>%s, %s, %s, %s', SCP('Agility', '32'), SCP('Combat', '85'), SCP('Crafting', '61'), SCP('Defence', '40'), SCP('Firemaking', '49'), SCP('Herblore', '5'), SCP('Magic', '65'), SCP('Mining', '60'), SCP('Woodcutting', '55'))",
+  "notes": null
+ },
+ {
+  "name": "The Fremennik Isles",
+  "rewards": "10000, 2",
+  "restrictions": "'Attack Strength Defence Hitpoints'",
+  "requirements": "string.format('%s, %s', SCP('Construction', '20'), SCP('Agility', '40'))",
+  "notes": null
+ },
+ {
+  "name": "A Kingdom Divided",
+  "rewards": "10000, 2",
+  "restrictions": "40",
+  "requirements": "string.format('%s, %s, %s, %s, %s,<br/>%s, %s', SCP('Agility', '54'), SCP('Thieving', '52'), SCP('Woodcutting', '52'), SCP('Herblore', '50'), SCP('Mining', '42'), SCP('Crafting', '38'), SCP('Magic', '35'))",
+  "notes": null
+ },
+ {
+  "name": "One Small Favour",
+  "rewards": "10000, 2",
+  "restrictions": "30",
+  "requirements": "string.format('%s, %s, %s, %s', SCP('Agility', '36'), SCP('Crafting', '25'), SCP('Herblore', '18'), SCP('Smithing', '30'))",
+  "notes": null
+ },
+ {
+  "name": "Recipe for Disaster",
+  "rewards": "20000, 1",
+  "restrictions": "50",
+  "requirements": "string.format('%s, %s, %s, %s, %s,<br/>%s, %s, %s, %s, %s,<br/>%s, %s, %s, %s, %s', SCP('Quest', '175'), SCP('Cooking', '70'), SCP('Agility', '48'), SCP('Mining', '50'), SCP('Fishing', '53'), SCP('Thieving', '53'), SCP('Herblore', '25'), SCP('Magic', '59'), SCP('Smithing', '40'), SCP('Firemaking', '50'), SCP('Ranged', '40'), SCP('Crafting', '40'), SCP('Fletching', '10'), SCP('Slayer', '10'), SCP('Woodcutting', '36'))",
+  "notes": null
+ },
+ {
+  "name": "Into the Tombs",
+  "rewards": "50000, 1",
+  "restrictions": "'Attack Strength Defence Magic Ranged Hitpoints'",
+  "requirements": "string.format('%s recommended', SCP('Combat', '95'))",
+  "notes": null
+ },
+ {
+  "name": "The Final Dawn",
+  "rewards": "55000, 1",
+  "restrictions": "'Attack Strength Defence Magic Ranged Hitpoints Prayer'",
+  "requirements": "string.format('%s, %s, %s, %s recommended', SCP('Thieving', '66'), SCP('Runecraft', '52'), SCP('Fletching','52'), SCP('Combat', '85'))",
+  "notes": null
+ },
+ {
+  "name": "A Night at the Theatre",
+  "rewards": "20000, 4",
+  "restrictions": "'Attack Strength Defence Magic Ranged Hitpoints'",
+  "requirements": "string.format('%s recommended', SCP('Combat', '90'))",
+  "notes": "'The chosen skill must be at least level 50'"
+ },
+ {
+  "name": "Sins of the Father",
+  "rewards": "15000, 6",
+  "restrictions": "60",
+  "requirements": "string.format('%s, %s, %s, %s, %s, %s, %s', SCP('Woodcutting', '62'), SCP('Fletching', '60'), SCP('Crafting', '56'), SCP('Agility', '52'), SCP('Slayer', '50'), SCP('Attack', '50'), SCP('Magic', '49'))",
+  "notes": null
+ },
+ {
+  "name": "Dragon Slayer II",
+  "rewards": "25000, 4",
+  "restrictions": "'Attack Strength Defence Magic Ranged Hitpoints'",
+  "requirements": "string.format('%s, %s, %s, %s, %s,<br/>%s, %s, %s, %s', SCP('Quest', '200'), SCP('Magic', '75'), SCP('Smithing', '70'), SCP('Mining', '68'), SCP('Crafting', '62'), SCP('Agility', '60'), SCP('Thieving', '60'), SCP('Construction', '50'), SCP('Hitpoints', '50'))",
+  "notes": null
+ },
+ {
+  "name": "Monkey Madness II",
+  "rewards": "50000, 2",
+  "restrictions": "'Attack Strength Defence Magic Ranged Hitpoints'",
+  "requirements": "string.format('%s, %s, %s, %s, %s, %s', SCP('Slayer', '69'), SCP('Crafting', '70'), SCP('Hunter', '60'), SCP('Agility', '55'), SCP('Thieving', '55'), SCP('Firemaking', '60'))",
+  "notes": null
+ },
+ {
+  "name": "Monkey Madness I",
+  "rewards": "35000, 1, '& 20,000'",
+  "restrictions": "'Attack Strength Defence Hitpoints'",
+  "requirements": "'None'",
+  "notes": "'35,000 experience is granted to the chosen pair of skills, and 20,000 is granted to the pair of skills not chosen.'"
+ },
+ {
+  "name": "Legends\\' Quest",
+  "rewards": "30000, 4",
+  "restrictions": "'Attack Strength Defence Magic Hitpoints Prayer <br/> Woodcutting Crafting Smithing Herblore Agility Thieving'",
+  "requirements": "string.format('%s, %s, %s, %s, %s, %s,<br/>%s, %s, %s, %s, %s', SCP('Quest', '107'), SCP('Agility', '50'), SCP('Crafting', '50'), SCP('Herblore', '45'), SCP('Magic', '56'), SCP('Mining', '52'), SCP('Prayer', '42'), SCP('Smithing', '50'), SCP('Strength', '50'), SCP('Thieving', '50'), SCP('Woodcutting', '50'))",
+  "notes": null
+ },
+ {
+  "name": "The Blood Moon Rises",
+  "rewards": "30000, 6",
+  "restrictions": "70",
+  "requirements": "string.format('%s, %s, %s, %s, %s, %s, %s, %s, %s, %s', SCP('Slayer', '74'), SCP('Woodcutting', '74'), SCP('Smithing', '72'), SCP('Cooking', '72'), SCP('Fletching', '70'), SCP('Mining', '66'), SCP('Hunter', '65'), SCP('Crafting', '64'), SCP('Herblore', '64'), SCP('Magic', '57'))",
+  "notes": null
+ },
+ {
+  "name": "Desert Treasure II - The Fallen Empire",
+  "rewards": "100000, 3",
+  "restrictions": "'Attack Strength Defence Magic Ranged Hitpoints Prayer'",
+  "requirements": "string.format('%s, %s, %s, %s, %s, %s', SCP('Firemaking', '75'), SCP('Magic', '75'), SCP('Thieving', '70'), SCP('Herblore', '62'), SCP('Runecraft', '60'), SCP('Construction', '60'))",
+  "notes": null
+ }
+]

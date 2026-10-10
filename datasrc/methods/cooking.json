@@ -1,0 +1,281 @@
+{
+  "skill": "cooking",
+  "methods": [
+    {
+      "lv": 1,
+      "name": "Low-level fish (sardine to salmon)",
+      "who": "both",
+      "int": "afk",
+      "cost": "cheap",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Sardine, herring, mackerel, trout, pike then salmon on a range. Cook's Assistant, Gertrude's Cat and two RFD subquests skip to 18.",
+      "src": "Pay-to-play Cooking training"
+    },
+    {
+      "lv": 10,
+      "name": "Bake Pie spell",
+      "who": "main",
+      "int": "semi",
+      "cost": "pricey",
+      "xph": 147000,
+      "bands": [
+        [
+          10,
+          147000
+        ],
+        [
+          20,
+          207000
+        ],
+        [
+          29,
+          241000
+        ],
+        [
+          30,
+          245000
+        ],
+        [
+          34,
+          260000
+        ],
+        [
+          47,
+          309000
+        ],
+        [
+          52,
+          339000
+        ],
+        [
+          60,
+          377000
+        ],
+        [
+          70,
+          396000
+        ],
+        [
+          73,
+          415000
+        ],
+        [
+          85,
+          452000
+        ],
+        [
+          95,
+          490000
+        ]
+      ],
+      "req": "q:Lunar Diplomacy",
+      "run": false,
+      "supply": false,
+      "note": "Cast on bought uncooked pies, 3 ticks each and they never burn. About 113k Magic xp an hour on top. Pie supply is thin.",
+      "src": "Pay-to-play Cooking training"
+    },
+    {
+      "lv": 28,
+      "name": "Sweetcorn at Kastori",
+      "who": "iron",
+      "int": "semi",
+      "cost": "free",
+      "xph": 59500,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Pick raw sweetcorn in the Kastori fields and cook it on the ovens beside them. No supplies needed. Up to 70k an hour at 54.",
+      "src": "Ironman Guide/Cooking"
+    },
+    {
+      "lv": 30,
+      "name": "Karambwan (1-tick)",
+      "who": "main",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 464000,
+      "bands": [
+        [
+          30,
+          464000
+        ],
+        [
+          40,
+          534000
+        ],
+        [
+          50,
+          605000
+        ],
+        [
+          60,
+          672000
+        ],
+        [
+          70,
+          742000
+        ],
+        [
+          80,
+          813000
+        ],
+        [
+          90,
+          883000
+        ],
+        [
+          99,
+          950000
+        ]
+      ],
+      "req": "q:Tai Bwo Wannai Trio",
+      "run": false,
+      "supply": false,
+      "note": "Tick-perfect cooking at a fire next to a bank such as Rogues' Den, about 5,000 an hour. Fastest Cooking xp there is.",
+      "src": "Pay-to-play Cooking training"
+    },
+    {
+      "lv": 30,
+      "name": "Karambwan (normal speed)",
+      "who": "both",
+      "int": "afk",
+      "cost": "cheap",
+      "xph": 141000,
+      "bands": [
+        [
+          30,
+          141000
+        ],
+        [
+          40,
+          160000
+        ],
+        [
+          50,
+          180000
+        ],
+        [
+          60,
+          198000
+        ],
+        [
+          70,
+          218000
+        ],
+        [
+          80,
+          251000
+        ],
+        [
+          90,
+          263000
+        ],
+        [
+          99,
+          273000
+        ]
+      ],
+      "req": "q:Tai Bwo Wannai Trio",
+      "run": false,
+      "supply": true,
+      "note": "Hosidius kitchen until 96, then a fire next to a bank. Ironmen fish them at 65 Fishing or buy from Tiadeche's stall.",
+      "src": "Pay-to-play Cooking training"
+    },
+    {
+      "lv": 30,
+      "name": "Fish (tuna to anglerfish)",
+      "who": "both",
+      "int": "afk",
+      "cost": "cheap",
+      "xph": 92500,
+      "bands": [
+        [
+          30,
+          92500
+        ],
+        [
+          40,
+          142500
+        ],
+        [
+          68,
+          182500
+        ],
+        [
+          80,
+          280000
+        ],
+        [
+          84,
+          317500
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Tuna, lobster, swordfish or monkfish, shark, then anglerfish. Rates assume cooking gauntlets and the Hosidius kitchen range.",
+      "src": "Pay-to-play Cooking training"
+    },
+    {
+      "lv": 40,
+      "name": "Cakes from an oak larder",
+      "who": "iron",
+      "int": "active",
+      "cost": "free",
+      "xph": 50000,
+      "bands": [
+        [
+          40,
+          50000
+        ],
+        [
+          60,
+          70000
+        ]
+      ],
+      "req": "s:construction 33",
+      "run": false,
+      "supply": false,
+      "note": "Take cake ingredients from your own oak larder and bake on a range by the house portal. Unlimited supplies, very click intensive.",
+      "src": "Ironman Guide/Cooking"
+    },
+    {
+      "lv": 65,
+      "name": "Servery pineapple pizzas (Mess hall)",
+      "who": "iron",
+      "int": "active",
+      "cost": "free",
+      "xph": 175000,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Make pizzas from the free ingredients in the Hosidius Mess and hop worlds after each load. No supplies, very click intensive.",
+      "src": "Ironman Guide/Cooking"
+    },
+    {
+      "lv": 68,
+      "name": "Jugs of wine",
+      "who": "both",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 480000,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Grapes into jugs of water, 14 an inventory, never fails from 68. Ironmen get grapes from Zulrah, Vorkath or the Culinaromancer's Chest.",
+      "src": "Pay-to-play Cooking training"
+    }
+  ],
+  "unverified": [
+    "Low-level fish (sardine to salmon): neither guide gives an hourly rate for levels 1 to 30, so xph is 0",
+    "Sweetcorn at Kastori: the only figure is 'up to 70,000 at level 54'; 59,500 is 85% of that, not a level 28 rate",
+    "Fish (tuna to anglerfish): each band is the midpoint of the guide's range for that fish; rates assume cooking gauntlets (Family Crest) and the Hosidius kitchen (Kourend & Kebos easy diary, elite from 79), left out of req because they are not hard requirements",
+    "Karambwan (normal speed): rate assumes the Hosidius kitchen; ironmen need 65 Fishing to finish Tai Bwo Wannai Trio and the Ironman Guide gives no rate of its own",
+    "Jugs of wine and both karambwan entries: cost is a judgement call because the guide's profit figures are live GE price templates",
+    "Servery pineapple pizzas and Sweetcorn at Kastori: no access requirement is stated in the cached text",
+    "Omitted for lack of a Cooking level in the text: Frankie's Fishing Emporium bass and swordfish (~100,000/h), Flosi's fish shop, sacred eels (~20,000/h), Tempoross passive xp, poison karambwan 1-ticking for 1 to 30 (no rate)"
+  ]
+}

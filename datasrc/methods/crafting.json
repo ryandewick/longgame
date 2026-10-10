@@ -1,0 +1,382 @@
+{
+  "skill": "crafting",
+  "methods": [
+    {
+      "lv": 1,
+      "name": "Leather items",
+      "who": "main",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Needle and thread on bought leather, best item for your level, 215 leather to reach 20. Quests can skip these levels instead.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 1,
+      "name": "Glassblowing",
+      "who": "both",
+      "int": "afk",
+      "cost": "cheap",
+      "xph": 30625,
+      "bands": [
+        [
+          1,
+          30625
+        ],
+        [
+          4,
+          33250
+        ],
+        [
+          12,
+          43750
+        ],
+        [
+          33,
+          61250
+        ],
+        [
+          42,
+          74375
+        ],
+        [
+          46,
+          91875
+        ],
+        [
+          49,
+          96250
+        ],
+        [
+          87,
+          122500
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Blow molten glass into the best item for your level, 1,750 an hour, little attention. Ironmen make the glass from sand and soda ash.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 5,
+      "name": "Gold and gem jewellery",
+      "who": "both",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 24000,
+      "bands": [
+        [
+          5,
+          24000
+        ],
+        [
+          6,
+          32000
+        ],
+        [
+          7,
+          40000
+        ],
+        [
+          8,
+          48000
+        ],
+        [
+          20,
+          56000
+        ],
+        [
+          22,
+          77000
+        ],
+        [
+          23,
+          84000
+        ],
+        [
+          24,
+          91000
+        ],
+        [
+          31,
+          98000
+        ],
+        [
+          40,
+          105000
+        ],
+        [
+          42,
+          112000
+        ],
+        [
+          43,
+          119000
+        ],
+        [
+          55,
+          140000
+        ],
+        [
+          72,
+          147000
+        ],
+        [
+          74,
+          154000
+        ],
+        [
+          80,
+          210000
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Gold bars, with cut gems from 20, at a furnace close to a bank such as Edgeville. Ironmen alch the results for profit.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 12,
+      "name": "Spinning and weaving yarn",
+      "who": "main",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 28080,
+      "bands": [
+        [
+          12,
+          28080
+        ],
+        [
+          39,
+          105300
+        ],
+        [
+          73,
+          184680
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Spin flax, hemp or cotton into yarn, then weave bolts of fabric at the Fossil Island wheel and loom. Sometimes a small profit.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 20,
+      "name": "Cutting gems",
+      "who": "main",
+      "int": "semi",
+      "cost": "pricey",
+      "xph": 139000,
+      "bands": [
+        [
+          20,
+          139000
+        ],
+        [
+          27,
+          187650
+        ],
+        [
+          34,
+          236300
+        ],
+        [
+          43,
+          298850
+        ],
+        [
+          55,
+          382250
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Chisel on bought uncut gems, 2,780 an hour. Fastest xp up to 77, but dragonstones at 55 cost far more than diamonds.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 20,
+      "name": "Buying and cutting gems (Mor Ul Rek)",
+      "who": "iron",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 45000,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Sell chaos runes for Tokkul, buy uncut gems from the TzHaar gem store and cut them. Needs a fire cape and about 3.2M capital.",
+      "src": "Ironman Guide/Crafting"
+    },
+    {
+      "lv": 26,
+      "name": "Drift nets",
+      "who": "both",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 60000,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Weave two jute fibre a net at the Fossil Island loom, about 1,000 an hour. Beats glassblowing until 46. Ironmen farm the jute.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 54,
+      "name": "Battlestaves",
+      "who": "main",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 245000,
+      "bands": [
+        [
+          54,
+          245000
+        ],
+        [
+          58,
+          275625
+        ],
+        [
+          62,
+          306250
+        ],
+        [
+          66,
+          336875
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Attach bought orbs to battlestaves, 2,450 an hour. Usually cheaper than the other fast methods but needs a lot of capital.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 60,
+      "name": "Golem crafting",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 156600,
+      "req": "q:Fallen From Grace",
+      "run": false,
+      "supply": true,
+      "note": "On Wyrmscraig. Mine sunstone, carve golems and clothe them with hunter fur, about 58 an hour. Better fur gives more xp.",
+      "src": "Golem crafting"
+    },
+    {
+      "lv": 61,
+      "name": "Superglass Make",
+      "who": "both",
+      "int": "active",
+      "cost": "profit",
+      "xph": 130500,
+      "req": "q:Lunar Diplomacy;s:magic 77",
+      "run": false,
+      "supply": true,
+      "note": "Cast on 18 buckets of sand and 3 giant seaweed for 180 xp a cast, then blow the glass later for more. Good Magic xp too.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 61,
+      "name": "Charter ship glassblowing",
+      "who": "iron",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 67500,
+      "bands": [
+        [
+          61,
+          67500
+        ],
+        [
+          87,
+          87500
+        ]
+      ],
+      "req": "q:Lunar Diplomacy;s:magic 77",
+      "run": false,
+      "supply": false,
+      "note": "Buy sand and seaweed from charter crew, cast Superglass Make, blow it on the spot, then hop worlds. No banked supplies needed.",
+      "src": "Ironman Guide/Crafting"
+    },
+    {
+      "lv": 63,
+      "name": "D'hide bodies",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 313410,
+      "bands": [
+        [
+          63,
+          313410
+        ],
+        [
+          71,
+          353850
+        ],
+        [
+          77,
+          394290
+        ],
+        [
+          84,
+          434730
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Three dragon leathers a body with needle and thread. Fastest viable method from 77. Ironmen use hides from dragons and Vorkath.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 83,
+      "name": "Cutting amethyst",
+      "who": "main",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 165000,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Chisel amethyst into bolt tips, or arrowtips, javelin tips and dart tips at higher levels. A small loss or a profit.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 87,
+      "name": "Dorgesh-Kaan lamps (own light orbs)",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 110000,
+      "req": "q:The Lost Tribe;s:firemaking 52,thieving 44",
+      "run": false,
+      "supply": true,
+      "note": "Blow light orbs, add wire from the wire machine and fix lamps around the city. Most xp per molten glass, plus 65k to 90k Firemaking.",
+      "src": "Ironman Guide/Crafting"
+    }
+  ],
+  "unverified": [
+    "Leather items: the guide gives XP per item and a total crafting time (387 seconds for 215 items) but no hourly rate, so xph is 0",
+    "Golem crafting: the two guides disagree (main guide 'upwards of 180,000', Ironman Guide 'upwards of 140,000'); 156,600 is from the Golem crafting page (fetched): 58 golems an hour x (1,560 base + 1,140 dark kebbit fur, the fur it recommends for ironmen). Same page: 100,000 low intensity, 185,000+ high intensity, 160,080 with bought moonlight antelope fur, 141,520 with Wyrmscraig goat fur",
+    "Golem crafting: Fallen From Grace (fetched) needs 62 Sailing, 60 Crafting, 47 Runecraft, 53 Mining, which confirms the 62 Sailing lead; only the quest is in req",
+    "Buying and cutting gems (Mor Ul Rek): level 20 is the sapphire level from the main guide's gem table, the Ironman Guide states no level; the fire cape requirement cannot be expressed in req",
+    "Superglass Make: 130,500 is the midpoint of 108,000 to 153,000 for the casts alone (600 to 850 casts an hour), blowing the glass is extra and not included",
+    "Dorgesh-Kaan lamps (own light orbs): 110,000 is the midpoint of 90,000 (learning) and 130,000 (skilled); a main can do it from 52 Crafting with bought light orbs but no rate is given for that",
+    "Gold and gem jewellery: bands take the best item at each level from the main guide table (1,600 bar-only or 1,400 gem items an hour); the Ironman Guide quotes 35,000 to 42,500 for gold bracelets and 49,000 to 59,500 for gold tiaras",
+    "D'hide bodies: needle and thread column (1,685 an hour); the costume needle from Death on the Isle gives 1,705 an hour; the Ironman Guide gives no rate",
+    "Drift nets: 60,000 is the main guide rate; the Ironman Guide only gives 1,000 to 2,000 xp of jute per farm run",
+    "Glassblowing, Drift nets, Spinning and weaving yarn, Battlestaves, Cutting amethyst: cost is a judgement call because GP/XP columns are live GE price templates",
+    "Omitted for lack of a rate: ironman battlestaves (Zaff's daily stock and self-charged orbs), flax spinning, Guardians of the Rift passive xp (5,000 to 6,000/h), shooting star and gem rock gem sources"
+  ]
+}

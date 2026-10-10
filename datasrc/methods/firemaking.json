@@ -1,0 +1,253 @@
+{
+  "skill": "firemaking",
+  "methods": [
+    {
+      "lv": 1,
+      "name": "Burning logs",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 74250,
+      "bands": [
+        [
+          1,
+          74250
+        ],
+        [
+          30,
+          107000
+        ],
+        [
+          35,
+          138000
+        ],
+        [
+          42,
+          185625
+        ],
+        [
+          45,
+          200475
+        ],
+        [
+          50,
+          233887
+        ],
+        [
+          60,
+          300712
+        ],
+        [
+          75,
+          451143
+        ],
+        [
+          90,
+          519750
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Best logs for your level lit by a bank, coloured logs below 30. Rates assume 1,485 logs an hour, close to tick-perfect.",
+      "src": "Pay-to-play Firemaking training"
+    },
+    {
+      "lv": 1,
+      "name": "Cutting and burning your own logs",
+      "who": "iron",
+      "int": "active",
+      "cost": "free",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Chop the best tree you can and burn the logs where you stand. Oak from 15, teak from 39, mahogany from 50, yew from 60.",
+      "src": "Ironman Guide/Firemaking"
+    },
+    {
+      "lv": 1,
+      "name": "Pyre logs (1-tick)",
+      "who": "main",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 92000,
+      "req": "q:Shades of Mort'ton",
+      "run": false,
+      "supply": false,
+      "note": "Tick-perfect sacred oil on redwood or rosewood logs, fastest to 30. Only 29k an hour without tick manipulation.",
+      "src": "Pay-to-play Firemaking training"
+    },
+    {
+      "lv": 1,
+      "name": "Forester's campfire (automatic)",
+      "who": "main",
+      "int": "afk",
+      "cost": "cheap",
+      "xph": 26600,
+      "bands": [
+        [
+          1,
+          26600
+        ],
+        [
+          15,
+          39900
+        ],
+        [
+          30,
+          59850
+        ],
+        [
+          35,
+          69825
+        ],
+        [
+          42,
+          83125
+        ],
+        [
+          45,
+          89775
+        ],
+        [
+          50,
+          104737
+        ],
+        [
+          60,
+          134662
+        ],
+        [
+          75,
+          202027
+        ],
+        [
+          90,
+          232750
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Add logs to a campfire next to a bank and let them feed in. About 150 seconds an inventory, 665 logs an hour.",
+      "src": "Pay-to-play Firemaking training"
+    },
+    {
+      "lv": 1,
+      "name": "Forester's campfire (manual tending)",
+      "who": "main",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 33150,
+      "bands": [
+        [
+          1,
+          33150
+        ],
+        [
+          15,
+          49725
+        ],
+        [
+          30,
+          74588
+        ],
+        [
+          35,
+          87019
+        ],
+        [
+          42,
+          103594
+        ],
+        [
+          45,
+          111881
+        ],
+        [
+          50,
+          130528
+        ],
+        [
+          60,
+          167821
+        ],
+        [
+          75,
+          251774
+        ],
+        [
+          90,
+          290063
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Hold space and keep tending the campfire by a bank. The guide's ceiling is 975 logs an hour, rates here are 85% of that.",
+      "src": "Pay-to-play Firemaking training"
+    },
+    {
+      "lv": 50,
+      "name": "Wintertodt",
+      "who": "both",
+      "int": "semi",
+      "cost": "profit",
+      "xph": 161000,
+      "bands": [
+        [
+          50,
+          161000
+        ],
+        [
+          60,
+          193000
+        ],
+        [
+          70,
+          226000
+        ],
+        [
+          80,
+          258000
+        ],
+        [
+          90,
+          290000
+        ],
+        [
+          99,
+          320000
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Chop and burn bruma roots on an official world, about 4 minutes a game. Needs no supplies and pays out loot crates. Wear warm clothes.",
+      "src": "Pay-to-play Firemaking training"
+    },
+    {
+      "lv": 52,
+      "name": "Dorgesh-Kaan lamps",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 77500,
+      "req": "q:The Lost Tribe;s:crafting 87,thieving 44",
+      "run": false,
+      "supply": true,
+      "note": "Fix lamps with light orbs you blow and wire yourself. 90k to 130k Crafting xp an hour on top. A main can buy orbs at 52 Crafting.",
+      "src": "Ironman Guide/Crafting"
+    }
+  ],
+  "unverified": [
+    "Cutting and burning your own logs: the Ironman Guide gives no hourly rate (it defers to each tree's page), so xph is 0",
+    "Forester's campfire (manual tending): the guide's manual column is at 'up to 975 logs per hour'; bands are 85% of those figures per the up-to rule (table values run 39,000 at level 1 to 341,250 at 90)",
+    "Burning logs: the level 1 band (74,250) is for coloured logs with a firelighter, which never fail to light; 107,000 and 138,000 include time lost to failed lights; the alternative cheaper campfire progression uses ironwood logs at 80 (146,632 automatic)",
+    "Dorgesh-Kaan lamps: taken from the Crafting guides, not the Firemaking guides. 77,500 is the midpoint of the Ironman Guide's 65,000 (learning) and 90,000 (skilled); the main Crafting guide says 100,000 for skilled players. With bought light orbs a main only needs 52 Crafting, but no separate rate is given",
+    "Wintertodt: rates are from the main guide for mass worlds without fletching the roots; the Ironman Guide gives no numbers; r2_Wintertodt.txt has no hourly rates",
+    "Pyre logs (1-tick), Burning logs, both campfire entries: cost is a judgement call because GP/XP columns are live GE price templates",
+    "Omitted for lack of a rate: Shades of Mort'ton minigame (5+), solo Wintertodt, rosewood logs at 92 (the guide only says about four hours slower than redwood to 99)"
+  ]
+}

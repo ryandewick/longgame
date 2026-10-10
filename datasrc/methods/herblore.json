@@ -1,0 +1,337 @@
+{
+  "skill": "herblore",
+  "methods": [
+    {
+      "lv": 1,
+      "name": "Quests for the early levels",
+      "who": "both",
+      "int": "active",
+      "cost": "free",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Druidic Ritual unlocks the skill. Jungle Potion, Recruitment Drive and The Dig Site take you from 3 to 19.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 3,
+      "name": "Attack, strength, energy potions",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 62500,
+      "bands": [
+        [
+          3,
+          62500
+        ],
+        [
+          12,
+          125000
+        ],
+        [
+          26,
+          168750
+        ]
+      ],
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Attack potions at 3, strength at 12, energy at 26. About 2,500 potions an hour with quick banking.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 3,
+      "name": "Cleaning grimy herbs",
+      "who": "main",
+      "int": "active",
+      "cost": "profit",
+      "xph": 25000,
+      "bands": [
+        [
+          3,
+          25000
+        ],
+        [
+          5,
+          38000
+        ],
+        [
+          11,
+          50000
+        ],
+        [
+          20,
+          63000
+        ],
+        [
+          25,
+          75000
+        ],
+        [
+          30,
+          80000
+        ],
+        [
+          40,
+          88000
+        ],
+        [
+          48,
+          100000
+        ],
+        [
+          54,
+          113000
+        ],
+        [
+          58,
+          118000
+        ],
+        [
+          65,
+          125000
+        ],
+        [
+          67,
+          131000
+        ],
+        [
+          70,
+          138000
+        ],
+        [
+          75,
+          150000
+        ]
+      ],
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Buy grimy, sell clean. Rate assumes 10,000 herbs an hour by manual clicking. Auto-clean gives 30 percent of it.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 18,
+      "name": "Guthix rest",
+      "who": "main",
+      "int": "active",
+      "cost": "profit",
+      "xph": 82600,
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "About 1,400 teas an hour, five per inventory. Needs One Small Favour partly done. Profitable when decanted and sold.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 19,
+      "name": "Herb tar",
+      "who": "both",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 61000,
+      "bands": [
+        [
+          19,
+          61000
+        ],
+        [
+          31,
+          86000
+        ],
+        [
+          39,
+          110000
+        ],
+        [
+          44,
+          145000
+        ],
+        [
+          55,
+          170000
+        ]
+      ],
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Herb plus 15 swamp tar. Fewer clicks than potions. Swamp tar buy limit is 13,000 so stockpile first.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 38,
+      "name": "Prayer potions",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 218750,
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Ranarr and snape grass. You will use every one of them. Ironmen grow ranarrs and pick snape grass.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 45,
+      "name": "Super attack, strength, defence",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 250000,
+      "bands": [
+        [
+          45,
+          250000
+        ],
+        [
+          55,
+          312500
+        ],
+        [
+          66,
+          375000
+        ]
+      ],
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Super attack at 45, super strength at 55, super defence at 66. All three feed super combats at 90.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 60,
+      "name": "Mastering Mixology",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 0,
+      "bands": [
+        [
+          60,
+          0
+        ],
+        [
+          81,
+          89250
+        ]
+      ],
+      "req": "q:Druidic Ritual|Children of the Sun",
+      "run": false,
+      "supply": true,
+      "note": "Aldarin minigame. Uses herbs only and gives far more XP per herb. Up to 105k an hour at 81. Source of goggles and amulet.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 63,
+      "name": "Super restores",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 356000,
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Snapdragon and red spiders' eggs. Always useful for bossing and raids.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 69,
+      "name": "Antifire, ranging, magic potions",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 393750,
+      "bands": [
+        [
+          69,
+          393750
+        ],
+        [
+          72,
+          406250
+        ],
+        [
+          76,
+          431250
+        ]
+      ],
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Antifire at 69, ranging at 72, magic at 76. Lantadyme or dwarf weed with scale dust, wine of Zamorak or potato cactus.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 77,
+      "name": "Stamina potions",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 280500,
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Amylase crystals on super energy(4), 27 per inventory. Tick-manipulated rate is 535,500 at high intensity.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 81,
+      "name": "Saradomin brews",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 450000,
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Toadflax and crushed nests. Ironmen get nests from bird houses, Miscellania and mole parts.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 85,
+      "name": "Ancient brews, Armadyl brews at 89",
+      "who": "main",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 522500,
+      "bands": [
+        [
+          85,
+          522500
+        ],
+        [
+          89,
+          563750
+        ]
+      ],
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Fastest non-tick rates in the guide. Dwarf weed with nihil dust, then umbral potions with rainbow crab paste at 89.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 90,
+      "name": "Super combat potions",
+      "who": "main",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 324900,
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Torstol on super attack, strength and defence (4). About 2,166 an hour. Slower than brews but the potion everyone uses.",
+      "src": "Herblore training"
+    }
+  ],
+  "unverified": [
+    "Quests for the early levels: one-off quest XP, no hourly rate in the guide (xph 0)",
+    "Mastering Mixology: the guide gives no rate at level 60, only 'up to 105k xp/hour' at 81 (band at 81 is 85% of that)",
+    "Guthix rest: needs partial completion of One Small Favour, which the req syntax cannot express, so only Druidic Ritual is listed in req",
+    "Cleaning grimy herbs: rates are the guide's 10,000 herbs/hour manual-click assumption times XP per herb. The page renders them through a template, so the per-hour figures are computed, not quoted",
+    "Cost labels for potions are a judgement: the guide's cost columns are live Grand Exchange price templates with no fixed numbers",
+    "Herbiboar (Ironman Guide, 80 Hunter): described as giving 'a small amount of Herblore experience', no rate, so not included as a method"
+  ]
+}
