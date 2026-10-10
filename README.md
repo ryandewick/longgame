@@ -66,9 +66,7 @@ The hiscores do not list quests, so players tick them by hand. The OSRS Wiki's W
 
 ## How this was built
 
-Long Game was built with AI assistance. I'm a senior software engineer: I set the direction, made the product and design decisions, and used Claude Code to write most of the code. I review what goes in, and anything wrong with it is on me, not the tool.
-
-I'm saying so up front because I'd want to know if I were reading someone else's repository. If you spot something that looks off, open an issue.
+Long Game was built with AI assistance. I set the direction and made the product and design decisions, and used Claude Code to write most of the code, which I review. Other projects on my profile are written entirely by hand, so I'm noting the difference here.
 
 ## Credits and licences
 
