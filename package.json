@@ -3,8 +3,9 @@
   "private": true,
   "type": "module",
   "description": "A free maxing planner for Old School RuneScape",
+  "license": "MIT",
   "engines": {
-    "node": ">=22.18"
+    "node": ">=24.11"
   },
   "scripts": {
     "dev": "nuxt dev",

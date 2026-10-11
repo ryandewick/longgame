@@ -19,12 +19,13 @@ if errorlevel 1 (
   goto failed
 )
 
-rem The launcher is written in TypeScript, which Node runs as it is from version 22.18 on. An older Node would
+rem The launcher is written in TypeScript, which Node runs as it is from version 22.18 on, and the project is built
+rem and tested on Node 24.11 and newer, so that is the oldest it accepts. An older Node would
 rem stop on the first line with a syntax error, so the version is checked here, where it can be said in words.
-node -e "const [major, minor] = process.versions.node.split('.').map(Number); process.exit(major > 22 || (major === 22 && minor >= 18) ? 0 : 1)"
+node -e "const [major, minor] = process.versions.node.split('.').map(Number); process.exit(major > 24 || (major === 24 && minor >= 11) ? 0 : 1)"
 if errorlevel 1 (
   rem "for /f" is how a batch file reads a command's output: here, the version this computer has.
-  for /f "delims=" %%v in ('node -v') do echo Long Game needs Node.js 22.18 or newer. This computer has %%v.
+  for /f "delims=" %%v in ('node -v') do echo Long Game needs Node.js 24.11 or newer. This computer has %%v.
   echo Install the LTS version from https://nodejs.org/ and run this again.
   goto failed
 )

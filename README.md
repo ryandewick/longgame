@@ -69,7 +69,7 @@ Long Game is a [Nuxt 4](https://nuxt.com) app in strict TypeScript, tested with 
 
 ### Getting started
 
-Needs Node 22.18 or newer.
+Needs Node 24.11 or newer.
 
 ```
 npm install
@@ -130,7 +130,8 @@ Long Game was built with AI assistance. I set the direction and made the product
 
 ## Credits and licences
 
-- **Game assets** (skill icons, skillcape images, the RuneScape font) belong to Jagex Limited and are used under Jagex's Fan Content Policy. They are not covered by any licence in this repository.
+- **The code** is under the [MIT Licence](LICENSE). That covers the source code only, not the game assets or the training data below.
+- **Game assets** (skill icons, skillcape images, the RuneScape font) belong to Jagex Limited and are used under Jagex's Fan Content Policy. They are not covered by the MIT Licence or any other licence in this repository.
 - **Training data** in `datasrc/` is adapted from the [Old School RuneScape Wiki](https://oldschool.runescape.wiki/) and is licensed [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/), the same as the wiki. That includes which quests require which (`datasrc/quest_prerequisites.json`), from the wiki's [Module:Questreq/data](https://oldschool.runescape.wiki/w/Module:Questreq/data) and, for the quests that module does not list, from each quest's own page.
 - **GSAP** (the `gsap` package) is used under its own licence.
 - **Figtree and Poppins**, the two open fonts, are under the SIL Open Font Licence. The licence texts are in `public/assets/fonts`.
