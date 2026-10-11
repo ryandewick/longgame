@@ -251,7 +251,7 @@ Three looks were rejected before this one and the system is defined partly again
 - Three type voices with fixed jobs: Figtree for words, Poppins 800 for the wordmark only, the RuneScape font for the player's readouts only.
 - Flat, warm, tonal surfaces with 1px edges. Shadows appear only on overlays and on capes that come forward.
 - Game hints, not a game costume: icons, capes, the stat font, the parchment dialog. Nothing else is borrowed.
-- Motion marks five state changes and nothing else.
+- Motion marks six moments and a change of tab, and nothing else.
 
 **The Hints Not Costume Rule.** The game supplies icons, cape art, cape colours, the stat font and the parchment dialog. Panels, buttons, tabs, tables and inputs are never skinned as stone, scroll or the game's side panels.
 
@@ -266,7 +266,7 @@ A warm near-black room lit only by the capes, with one loud yellow that is the g
 - **Unfilled Ring** (`mark-unfilled`): the part of the icon's ring and tail that progress has not reached yet, drawn on the yellow tile.
 
 ### Secondary
-Colour outside the brand belongs to the skillcapes. Each skill has a cape colour and a trim colour, sampled from the game's cape art and held in the `CAPE` table in `src/js/` (mirrored in `assets/osrs/capes.json`). That table is the source of truth; the values are listed here for reference.
+Colour outside the brand belongs to the skillcapes. Each skill has a cape colour and a trim colour, sampled from the game's cape art and held in the `CAPE_COLOURS` table in `shared/domain/capes.ts`. That table is the source of truth; the values are listed here for reference.
 
 | Skill | Cape | Trim | Skill | Cape | Trim |
 |---|---|---|---|---|---|
@@ -289,7 +289,7 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 
 ### Tertiary
 - **Due Green** (`due`): the words "Due" and "Done" in the RuneScape font. It marks a reset that is ready or a block that is finished. It is a status, never decoration.
-- **Bad Red** (`bad`): what an account is missing ("Needs", "Short of"), a session planned over its time, the no-WikiSync warning, and the hover fill of the one destructive button.
+- **Bad Red** (`bad`): what an account is missing ("Needs", "Short of"), a session planned over its time, a suggestion the form refuses, and the hover fill of the one destructive button.
 - **Brass** (`brass`, `brass-light`, `brass-dark`): the rail the capes hang on, drawn as a three-stop vertical gradient, and the fallback trim. Brass is a material, not an accent. It never colours text or controls.
 
 ### Neutral
@@ -310,9 +310,9 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 - **Parchment** (`parchment`, `parchment-border`, `parchment-outline`, `dialog-blue`): the game's dialog box, used only for the level-up banner and the toast.
 
 ### Named Rules
-**The Stat Yellow Rule.** Stat yellow appears in these places and nowhere else: the two 9s of the wordmark; the icon tile and favicon; the player's readouts set in the RuneScape font; the 3px underline of the active tab; the one primary button in a group; the 2px outline of the live session slot and the small pointer under the live cape on the rack; the 3px time-progress line along the bottom of the live panel; today's bar in the history chart; text selection, the focus ring and the text caret. If a new use is not on this list, it is not yellow.
+**The Stat Yellow Rule.** Stat yellow appears in these places and nowhere else: the two 9s of the wordmark; the icon tile and favicon; the player's readouts set in the RuneScape font; the 3px underline of the active tab; the one primary button in a group; the 2px outline of the live session slot and the small pointer under the live cape on the rack; text selection, the focus ring and the text caret. If a new use is not on this list, it is not yellow.
 
-**The Capes Own Colour Rule.** Any colour that is not stat yellow, due green, bad red or brass comes from the `CAPE` table and is attached to its skill. There is no second accent, and no colour is ever assigned to a category, a mood or a view.
+**The Capes Own Colour Rule.** Any colour that is not stat yellow, due green, bad red or brass comes from the `CAPE_COLOURS` table and is attached to its skill. There is no second accent, and no colour is ever assigned to a category, a mood or a view.
 
 **The Shape Not Colour Rule.** How much attention a method takes is shown by an 11px circle: hollow, half filled, or filled. Never a colour, because colour belongs to the capes. A chosen option is bone on ink, never yellow.
 
@@ -321,7 +321,7 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 **Display Font:** Figtree 800 (with Segoe UI, system-ui)
 **Body Font:** Figtree 400 to 700 (with Segoe UI, system-ui)
 **Wordmark Font:** Poppins 800 (loaded with only the glyphs of "long9ame")
-**Readout Font:** RuneScape (`RS`) and RuneScape Bold (`RSB`), from `assets/osrs/fonts/`
+**Readout Font:** RuneScape (`RS`) and RuneScape Bold (`RSB`), from `public/assets/osrs/fonts/`
 
 **Character:** A plain, friendly grotesque does all the talking so that the pixel font can be loud. The RuneScape font is the player's own numbers looking exactly as they do in the game; it is the one place the interface is allowed to look like the game's.
 
@@ -413,7 +413,7 @@ Flat, plain and quick to read; the capes and the pixel numbers do the showing of
 ### The Rack
 The signature component. A full-width stage band with a heading row (the capes count in large stat type, "capes" in Figtree, one line of levels and hours left, and a level-up banner at the right when there is one), then the rail.
 - **Rail:** a 6px brass gradient bar with rounded ends and a hard 2px shadow, running behind the top of every cape and past both ends of the row.
-- **Capes:** one per skill, sorted lowest level first and by XP within a level. The grid has one column per skill plus four; each cape image is twice its column's width, so the capes overlap like clothes on a rack. Each uses the 320 by 622 WebP render from `assets/osrs/capes-md/`.
+- **Capes:** one per skill, sorted lowest level first and by XP within a level. The grid has one column per skill plus four; each cape image is twice its column's width, so the capes overlap like clothes on a rack. Each uses the 320 by 622 WebP render from `public/assets/osrs/capes-md/`.
 - **The fill:** every cape is drawn twice in the same box. The lower copy is greyed out (`brightness(.34) saturate(.12)`). The upper copy is in full colour and clipped from the top by `clip-path: inset(calc(100% - var(--p)) 0 0 0)`, so colour rises from the hem. `--p` is the level mapped linearly from 1 to 99 onto 0 to 100%.
 - **Level:** under each cape, in yellow stat type.
 - **Maxed:** a 99 cape switches to its trimmed render and gets the gold glow.
@@ -421,14 +421,14 @@ The signature component. A full-width stage band with a heading row (the capes c
 - **Hover:** a cape drops 5px in 160ms on `cubic-bezier(.16,1,.3,1)`, as if lifted off the rail.
 - **Now:** the cape of the live block (or the selected skill on Skills) comes forward: down 6px, scaled 1.1, above its neighbours, with a deep drop shadow, its level turned white and a small yellow pointer above the number.
 - **Each cape is a button** with the skill, level and XP to the next level as its label. On the setup screen the rack is a non-interactive sample, each cape a little fuller than the last.
-- **Phones:** two rows of twelve on a sixteen-column grid, the max cape at the end of the first row, a rail under each row.
+- **Phones:** two rows of twelve on a sixteen-column grid, the max cape at the end of the second row, a rail under each row.
 
 ### Live Panel
 The block to do now. A panel (4px corners, 1px edge, minimum 226px tall) in three columns: a 176px swatch, the text, and the clock.
 - **Swatch:** the skill's cape colour as a flat field with its trim as a 10px band down the right edge and the cape render hanging in it. A wildcard block shows the fallback colour and a 64px "?" in stat type.
 - **Text:** headline with the 32px skill icon, one fact line at weight 600, an optional note in ink 2, an XP bar to the next level with its readout in white stat type, then Start or Pause (primary), Done (default) and Swap (ghost).
 - **Clock:** right aligned, 64px stat type, with "of 32 min, running" in 13px Figtree and the block's XP target under it.
-- **Progress:** a 3px stat yellow line along the bottom edge, as wide as the share of the block's time used.
+- **Progress:** a 3px bone line along the bottom edge, as wide as the share of the block's time used.
 - **Deal and finish variants:** two columns, with three capes fanned 10 degrees apart in the swatch instead of one.
 
 ### Session Slots
@@ -466,7 +466,7 @@ The head of a skill's detail: a 206px block of the cape colour with the trim as 
 - **Pace:** the 11px circle (hollow, half, filled) with a 13px label.
 - **Status bar:** a panel-coloured strip with a 1px edge, a sentence and one small button. Its lead words turn bad red when something is missing.
 - **XP bar:** 16px tall and square, a near-black well framed in black then edge, filled in the skill's readable cape colour with a faint top highlight.
-- **History chart:** fourteen square bars in the strong edge on a 1px baseline, each with its gain above it in stat type. Today's bar is stat yellow and today's label is white.
+- **History chart:** fourteen square bars in the strong edge on a 1px baseline, each with its gain above it in stat type. Today's bar is bone and today's label is white.
 
 ### Level-up Banner and Toast
 Both borrow the game's dialog: parchment, a 2px near-black border, a 1px outer line, square corners.
@@ -477,23 +477,24 @@ Both borrow the game's dialog: parchment, a 2px near-black border, a 1px outer l
 A confirm sheet. Panel surface, strong 1px edge and a deep shadow over a warm dark scrim, up to 520px wide, 4px corners: a 24px title, one paragraph in ink 2, and Cancel then the primary action at the right. Escape and a click on the scrim cancel.
 
 ### Motion
-GSAP, and only for five state changes. The markup is final before any tween starts, so every screen is complete without it.
+GSAP, and only for the six moments below. The markup is final before any tween starts, so every screen is complete without it. A component announces a moment and the components that own the moving elements listen for it (`app/composables/useMotion.ts`).
 - **Load:** every cape fills from empty to its level (0.9s, 25ms apart).
 - **Deal:** the session slots rise in (0.35s, 60ms apart), then the first block goes live.
 - **A block goes live:** its cape comes forward on the rail with a small overshoot (0.45s), the cape drops into the panel's swatch (0.5s) and the panel's text settles (0.3s).
 - **Swap:** the swapped slot flips down from its top edge (0.4s).
 - **Tally:** gains count up (0.9s), each trained cape fills to its new level (1.2s), a white "+12,400 xp" rises off the cape and fades the way the game's XP drops do, and the level-up banner drops in.
+- **The first-visit page:** each block below the fold eases in as it is scrolled to (0.5s), and a feature's cape fills as it arrives (1.1s). A block already in view on load is left alone.
 
-Outside GSAP there are three small CSS transitions: buttons (120ms), the cape hover (160ms) and the time-progress line (1s linear between clock ticks).
+Outside GSAP: three small CSS transitions (buttons 120ms, the cape hover 160ms, the time-progress line 1s linear between clock ticks), and a change of tab, which uses the browser's View Transitions API: the header and the rack hold still, the page below crossfades and rises 8px, and the yellow line slides to the new tab (`app/assets/styles/view-transitions.scss`).
 
-**The Five Moments Rule.** Nothing loops, nothing animates on scroll, nothing animates on a tab change. If a new animation is not one of the five moments or the answer to a press or hover, it does not ship. Under reduced motion every tween is skipped and all CSS transitions are off.
+**The Six Moments Rule.** Nothing loops, and nothing in the planner animates on scroll. If a new animation is not one of the six moments, the tab change, or the answer to a press or hover, it does not ship. Under reduced motion every tween is skipped and all CSS transitions are off.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** let the rack carry the product. Any new overview of an account starts from capes on the rail, not from a chart.
-- **Do** give a skill its cape colour and trim from the `CAPE` table wherever it gets a surface, and its real icon wherever it gets a row.
-- **Do** run a cape colour through the readable-colour step (cape, else trim, lightened to 3:1) before using it as a thin fill on the ground.
+- **Do** give a skill its cape colour and trim from the `CAPE_COLOURS` table wherever it gets a surface, and its real icon wherever it gets a row.
+- **Do** run a cape colour through the readable-colour step before using it as a thin fill on the ground (`readableCapeColour` in `shared/domain/capes.ts`): the cape's own colour, mixed a tenth of the way to white at a time until it reaches 3:1 against the ground. Only a dark cape with almost no colour of its own (Slayer's black) starts from its trim instead.
 - **Do** set the player's levels, XP, clocks and targets in the RuneScape font at 16, 48 or 64 with the hard black shadow and smoothing off.
 - **Do** set every word in Figtree, in sentence case.
 - **Do** keep one primary button per group, and make it stat yellow.
@@ -502,7 +503,7 @@ Outside GSAP there are three small CSS transitions: buttons (120ms), the cape ho
 - **Do** keep the ground warm: every neutral leans brown, from the stage to bone.
 - **Do** show skill icons at their native size with pixelated rendering.
 - **Do** keep the parchment dialog for the game speaking (a level-up, a toast) and nothing else.
-- **Do** read Jagex's fan content rules before any public release. The icons, cape renders and fonts in `assets/osrs/` belong to Jagex and are approved by the owner for this build only.
+- **Do** read Jagex's fan content rules before any public release. The icons, cape renders and fonts in `public/assets/osrs/` belong to Jagex and are approved by the owner for this build only.
 
 ### Don't:
 - **Don't** build the tracker look: a navy ground, paper-coloured type and a condensed uppercase grotesque. It was built and rejected.
@@ -515,5 +516,5 @@ Outside GSAP there are three small CSS transitions: buttons (120ms), the cape ho
 - **Don't** set headings, labels, buttons or sentences in the RuneScape font, and don't use Poppins for anything but the wordmark.
 - **Don't** put a hard shadow on Figtree text or a soft glow on anything but a maxed cape.
 - **Don't** add pills, larger radii, rounded translucent cards or tracked-out uppercase labels.
-- **Don't** add motion beyond the five moments: no loops, no scroll effects, no view transitions.
+- **Don't** add motion beyond the six moments and the tab change: no loops, and no scroll effects in the planner.
 - **Don't** smooth, tint, recolour or redraw the game's icons and cape renders.

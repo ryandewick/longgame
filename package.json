@@ -1,0 +1,43 @@
+{
+  "name": "longgame",
+  "private": true,
+  "type": "module",
+  "description": "A free maxing planner for Old School RuneScape",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "nuxt dev",
+    "build:site": "nuxt build --preset cloudflare-module",
+    "preview:site": "wrangler dev",
+    "deploy": "npm run build:site && wrangler deploy",
+    "build:local": "node tools/local-copy/build.ts",
+    "start:local": "node tools/local-copy/start.ts",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "check": "npm run lint && npm run typecheck && npm run test"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^1.0.2",
+    "gsap": "^3.15.0",
+    "nuxt": "^4.6.1",
+    "pinia": "^4.0.3",
+    "vue": "^3.5.0",
+    "vue-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.17.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "prettier": "^3.3.3",
+    "sass-embedded": "^1.105.1",
+    "typescript": "^5.6.0",
+    "vitest": "^5.0.3",
+    "vue-tsc": "^3.0.0",
+    "wrangler": "~4.149.0"
+  }
+}

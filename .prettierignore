@@ -1,0 +1,9 @@
+.nuxt
+.output
+node_modules
+legacy
+datasrc
+public
+DESIGN.md
+tests/fixtures
+package-lock.json

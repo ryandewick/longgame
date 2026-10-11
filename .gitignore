@@ -1,25 +1,36 @@
-# a player's own saves and XP history never go in the repository
-data/
+# dependencies and build output
+node_modules/
+.nuxt/
+.output/
+.wrangler/
+dist/
+
+# a local copy's own build (npm run build:local)
+.nuxt-local/
+.output-local/
+
+# secrets for `npm run preview:site`
+.dev.vars
+
+# a player's own saves and XP history (the local server's storage) never go in the repository
+/.data/
+/data/
+
 # private add-on for one local copy: the OSRS Wiki does not permit third-party use of WikiSync
 local/
-# built by tools/build_site.py
-site/
-# local tooling
-.impeccable/hook.cache.json
-.wrangler/
-node_modules/
-__pycache__/
-# also private to the one local copy: quest names as that service spells them (the build works without it)
 datasrc/wikisync_quests.json
-# working files that are not part of the product: design mock-ups, drafts of private messages, source art not used by the app
+
+# working files that are not part of the product
 .impeccable/
 release/
 PRODUCT.md
-assets/osrs/capes/
-assets/osrs/capes-lg/
-assets/osrs/capes.json
-assets/osrs/preview-capes.png
-assets/osrs/sheet.html
-assets/osrs/sheet.png
-# built by tools/build_data.py. The local page can contain the private add-on, so it is never committed.
-build/
+*.log
+.env
+
+# Windows shortcuts and editor leftovers
+*.lnk
+Thumbs.db
+.DS_Store
+
+# reference screenshots and saves used while porting; never committed
+legacy/reference/
