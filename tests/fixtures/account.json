@@ -1,0 +1,1217 @@
+{
+ "now": 1791670000000,
+ "state": {
+  "v": 1,
+  "name": "Fixture",
+  "hs": {
+   "fetched": 1791669700000,
+   "skills": {
+    "attack": {
+     "n": "Attack",
+     "level": 70,
+     "xp": 739582
+    },
+    "defence": {
+     "n": "Defence",
+     "level": 73,
+     "xp": 993158
+    },
+    "strength": {
+     "n": "Strength",
+     "level": 80,
+     "xp": 2018902
+    },
+    "hitpoints": {
+     "n": "Hitpoints",
+     "level": 75,
+     "xp": 1316366
+    },
+    "ranged": {
+     "n": "Ranged",
+     "level": 59,
+     "xp": 265265
+    },
+    "prayer": {
+     "n": "Prayer",
+     "level": 52,
+     "xp": 131330
+    },
+    "magic": {
+     "n": "Magic",
+     "level": 71,
+     "xp": 898426
+    },
+    "cooking": {
+     "n": "Cooking",
+     "level": 75,
+     "xp": 1211327
+    },
+    "woodcutting": {
+     "n": "Woodcutting",
+     "level": 74,
+     "xp": 1161433
+    },
+    "fletching": {
+     "n": "Fletching",
+     "level": 67,
+     "xp": 567863
+    },
+    "fishing": {
+     "n": "Fishing",
+     "level": 85,
+     "xp": 3420723
+    },
+    "firemaking": {
+     "n": "Firemaking",
+     "level": 85,
+     "xp": 3303032
+    },
+    "crafting": {
+     "n": "Crafting",
+     "level": 67,
+     "xp": 553456
+    },
+    "smithing": {
+     "n": "Smithing",
+     "level": 60,
+     "xp": 296582
+    },
+    "mining": {
+     "n": "Mining",
+     "level": 63,
+     "xp": 372706
+    },
+    "herblore": {
+     "n": "Herblore",
+     "level": 59,
+     "xp": 253007
+    },
+    "agility": {
+     "n": "Agility",
+     "level": 75,
+     "xp": 1333696
+    },
+    "thieving": {
+     "n": "Thieving",
+     "level": 99,
+     "xp": 13080933
+    },
+    "slayer": {
+     "n": "Slayer",
+     "level": 70,
+     "xp": 738772
+    },
+    "farming": {
+     "n": "Farming",
+     "level": 55,
+     "xp": 173375
+    },
+    "runecraft": {
+     "n": "Runecraft",
+     "level": 85,
+     "xp": 3294628
+    },
+    "hunter": {
+     "n": "Hunter",
+     "level": 80,
+     "xp": 2114227
+    },
+    "construction": {
+     "n": "Construction",
+     "level": 54,
+     "xp": 155431
+    },
+    "sailing": {
+     "n": "Sailing",
+     "level": 1,
+     "xp": 0
+    }
+   },
+   "total": {
+    "level": 1634,
+    "xp": 38394220
+   }
+  },
+  "ws": null,
+  "wsError": null,
+  "manual": {
+   "quests": {
+    "A Soul's Bane": true,
+    "Animal Magnetism": true,
+    "Another Slice of H.A.M.": true,
+    "Between a Rock...": true,
+    "Big Chompy Bird Hunting": true,
+    "Biohazard": true,
+    "Bone Voyage": true,
+    "Cabin Fever": true,
+    "Children of the Sun": true,
+    "Client of Kourend": true,
+    "Cook's Assistant": true,
+    "Creature of Fenkenstrain": true,
+    "Daddy's Home": true,
+    "Death Plateau": true,
+    "Death to the Dorgeshuun": true,
+    "Desert Treasure I": true,
+    "Doric's Quest": true,
+    "Dragon Slayer I": true,
+    "Druidic Ritual": true,
+    "Dwarf Cannon": true,
+    "Eadgar's Ruse": true,
+    "Eagles' Peak": true,
+    "Elemental Workshop I": true,
+    "Elemental Workshop II": true,
+    "Enakhra's Lament": true,
+    "Enlightened Journey": true,
+    "Enter the Abyss": true,
+    "Fairytale I - Growing Pains": true,
+    "Family Crest": true,
+    "Fight Arena": true,
+    "Fishing Contest": true,
+    "Forgettable Tale...": true,
+    "Garden of Tranquillity": true,
+    "Gertrude's Cat": true,
+    "Ghosts Ahoy": true,
+    "Goblin Diplomacy": true,
+    "Hazeel Cult": true,
+    "Heroes' Quest": true,
+    "Holy Grail": true,
+    "Horror from the Deep": true,
+    "Icthlarin's Little Helper": true,
+    "Imp Catcher": true,
+    "In Search of the Myreque": true,
+    "Jungle Potion": true,
+    "Legends' Quest": true,
+    "Lost City": true,
+    "Monk's Friend": true,
+    "Monkey Madness I": true,
+    "Mountain Daughter": true,
+    "Murder Mystery": true,
+    "Nature Spirit": true,
+    "Observatory Quest": true,
+    "Olaf's Quest": true,
+    "One Small Favour": true,
+    "Plague City": true,
+    "Priest in Peril": true,
+    "Rag and Bone Man I": true,
+    "Recipe for Disaster": true,
+    "Recipe for Disaster - Evil Dave": true,
+    "Recipe for Disaster - King Awowogei": true,
+    "Recipe for Disaster - Lumbridge Guide": true,
+    "Recipe for Disaster - Mountain Dwarf": true,
+    "Recipe for Disaster - Pirate Pete": true,
+    "Recipe for Disaster - Sir Amik Varze": true,
+    "Recipe for Disaster - Skrach Uglogwee": true,
+    "Recipe for Disaster - Wartface & Bentnoze": true,
+    "Recruitment Drive": true,
+    "Regicide": true,
+    "Royal Trouble": true,
+    "Rum Deal": true,
+    "Sea Slug": true,
+    "Shades of Mort'ton": true,
+    "Shadow of the Storm": true,
+    "Sheep Shearer": true,
+    "Shilo Village": true,
+    "Spirits of the Elid": true,
+    "Swan Song": true,
+    "Tai Bwo Wannai Trio": true,
+    "Temple of Ikov": true,
+    "Temple of the Eye": true,
+    "The Dig Site": true,
+    "The Eyes of Glouphrie": true,
+    "The Feud": true,
+    "The Fremennik Trials": true,
+    "The Giant Dwarf": true,
+    "The Golem": true,
+    "The Grand Tree": true,
+    "The Hand in the Sand": true,
+    "The Knight's Sword": true,
+    "The Lost Tribe": true,
+    "The Restless Ghost": true,
+    "The Tourist Trap": true,
+    "Throne of Miscellania": true,
+    "Tower of Life": true,
+    "Tree Gnome Village": true,
+    "Tribal Totem": true,
+    "Underground Pass": true,
+    "Vale Totems": true,
+    "Vampyre Slayer": true,
+    "Wanted!": true,
+    "Watchtower": true,
+    "Waterfall Quest": true,
+    "Witch's House": true,
+    "Witch's Potion": true,
+    "X Marks the Spot": true,
+    "Zogre Flesh Eaters": true
+   },
+   "diaries": {
+    "Ardougne Easy": true,
+    "Ardougne Medium": true,
+    "Desert Easy": true,
+    "Desert Medium": true,
+    "Falador Easy": true,
+    "Fremennik Easy": true,
+    "Kandarin Easy": true,
+    "Kandarin Medium": true,
+    "Karamja Easy": true,
+    "Kourend & Kebos Easy": true,
+    "Lumbridge & Draynor Easy": true,
+    "Lumbridge & Draynor Medium": true,
+    "Varrock Easy": true,
+    "Varrock Medium": true,
+    "Western Provinces Easy": true,
+    "Western Provinces Medium": true
+   },
+   "allQuests": false,
+   "allDiaries": false
+  },
+  "prefs": {
+   "mood": "afk",
+   "minutes": 60,
+   "budget": "any",
+   "exclude": {},
+   "dailies": true,
+   "wildcard": true,
+   "sort": "hours",
+   "account": "iron"
+  },
+  "session": null,
+  "resets": {
+   "birdhouse": 1791553023847,
+   "herb": 1791553700632,
+   "seaweed": 1790953342127,
+   "tree": 1791199327825
+  },
+  "history": [
+   {
+    "t": 1791663156621,
+    "minutes": 60,
+    "elapsed": 0,
+    "gains": {
+     "ranged": 20000,
+     "woodcutting": 36214,
+     "crafting": 120000
+    },
+    "total": 176214,
+    "levels": {
+     "ranged": 1,
+     "crafting": 3
+    },
+    "blocks": [
+     {
+      "kind": "reset",
+      "k": "birdhouse",
+      "title": "Birdhouse run",
+      "done": true
+     },
+     {
+      "kind": "reset",
+      "k": "herb",
+      "title": "Herb run",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "crafting",
+      "title": "Glassblowing",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "ranged",
+      "title": "Gemstone Crab",
+      "done": true
+     }
+    ]
+   },
+   {
+    "t": 1791557850864,
+    "minutes": 60,
+    "elapsed": 3832689,
+    "gains": {
+     "hitpoints": 7355,
+     "ranged": 22172,
+     "magic": 166,
+     "crafting": 180,
+     "herblore": 942,
+     "farming": 2299,
+     "hunter": 2448
+    },
+    "total": 35562,
+    "levels": {
+     "ranged": 1
+    },
+    "blocks": [
+     {
+      "kind": "reset",
+      "k": "birdhouse",
+      "title": "Birdhouse run",
+      "done": true
+     },
+     {
+      "kind": "reset",
+      "k": "herb",
+      "title": "Herb run",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "ranged",
+      "title": "Gemstone Crab",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "runecraft",
+      "title": "Arceuus blood runes, soul runes at 90",
+      "done": false
+     }
+    ]
+   },
+   {
+    "t": 1791384364467,
+    "minutes": 60,
+    "elapsed": 5231828,
+    "gains": {
+     "defence": 35354,
+     "hitpoints": 11752,
+     "magic": 333,
+     "crafting": 180,
+     "mining": 14464,
+     "herblore": 361,
+     "farming": 2462,
+     "hunter": 2448
+    },
+    "total": 67354,
+    "levels": {
+     "defence": 1,
+     "mining": 1
+    },
+    "blocks": [
+     {
+      "kind": "reset",
+      "k": "birdhouse",
+      "title": "Birdhouse run",
+      "done": true
+     },
+     {
+      "kind": "reset",
+      "k": "herb",
+      "title": "Herb run",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "mining",
+      "title": "Crashed stars",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "strength",
+      "title": "Gemstone Crab",
+      "done": true
+     }
+    ]
+   },
+   {
+    "t": 1791299759850,
+    "minutes": 60,
+    "elapsed": 3486341,
+    "gains": {
+     "defence": 3765,
+     "hitpoints": 5076,
+     "magic": 21417,
+     "crafting": 1716,
+     "mining": 1152,
+     "herblore": 392,
+     "agility": 4,
+     "farming": 2311,
+     "runecraft": 9379,
+     "hunter": 2448
+    },
+    "total": 47660,
+    "levels": {
+     "farming": 1
+    },
+    "blocks": [
+     {
+      "kind": "reset",
+      "k": "birdhouse",
+      "title": "Birdhouse run",
+      "done": true
+     },
+     {
+      "kind": "reset",
+      "k": "herb",
+      "title": "Herb run",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "runecraft",
+      "title": "Arceuus blood runes, soul runes at 90",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "magic",
+      "title": "Rock crabs with earth spells",
+      "done": true
+     }
+    ]
+   },
+   {
+    "t": 1791216845357,
+    "minutes": 60,
+    "elapsed": 2540067,
+    "gains": {
+     "defence": 5563,
+     "strength": 6951,
+     "hitpoints": 5454,
+     "ranged": 3849,
+     "prayer": 15,
+     "magic": 677,
+     "woodcutting": 125,
+     "crafting": 180,
+     "hunter": 37642
+    },
+    "total": 60456,
+    "levels": {},
+    "blocks": [
+     {
+      "kind": "reset",
+      "k": "birdhouse",
+      "title": "Birdhouse run",
+      "done": true
+     },
+     {
+      "kind": "reset",
+      "k": "seaweed",
+      "title": "Giant seaweed",
+      "done": false
+     },
+     {
+      "kind": "skill",
+      "k": "hunter",
+      "title": "Hunters' Rumours",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "defence",
+      "title": "Scurrius",
+      "done": true
+     }
+    ]
+   },
+   {
+    "t": 1791212978690,
+    "minutes": 60,
+    "elapsed": 4188100,
+    "gains": {
+     "hitpoints": 4811,
+     "ranged": 14507,
+     "magic": 181,
+     "crafting": 2180,
+     "mining": 1500,
+     "herblore": 1030,
+     "agility": 19,
+     "farming": 3249,
+     "runecraft": 12212,
+     "hunter": 2448
+    },
+    "total": 42137,
+    "levels": {},
+    "blocks": [
+     {
+      "kind": "reset",
+      "k": "birdhouse",
+      "title": "Birdhouse run",
+      "done": true
+     },
+     {
+      "kind": "reset",
+      "k": "herb",
+      "title": "Herb run",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "runecraft",
+      "title": "Arceuus blood runes, soul runes at 90",
+      "done": true
+     },
+     {
+      "kind": "skill",
+      "k": "ranged",
+      "title": "Gemstone Crab with Dorgeshuun crossbow",
+      "done": true
+     }
+    ]
+   }
+  ],
+  "rotation": []
+ },
+ "snapshots": [
+  {
+   "t": 1790848008930,
+   "skills": {
+    "attack": 739538,
+    "defence": 872420,
+    "strength": 1986219,
+    "hitpoints": 1243816,
+    "ranged": 212037,
+    "prayer": 131296,
+    "magic": 872692,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 547700,
+    "smithing": 296582,
+    "mining": 333158,
+    "herblore": 247728,
+    "agility": 1282084,
+    "thieving": 13080933,
+    "slayer": 715957,
+    "farming": 134115,
+    "runecraft": 3273037,
+    "hunter": 2049209,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37704558
+  },
+  {
+   "t": 1790859682967,
+   "skills": {
+    "attack": 739538,
+    "defence": 898484,
+    "strength": 1986219,
+    "hitpoints": 1256698,
+    "ranged": 224737,
+    "prayer": 131296,
+    "magic": 872860,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 547760,
+    "smithing": 296582,
+    "mining": 333158,
+    "herblore": 247754,
+    "agility": 1282084,
+    "thieving": 13080933,
+    "slayer": 725152,
+    "farming": 134115,
+    "runecraft": 3273037,
+    "hunter": 2051657,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37768101
+  },
+  {
+   "t": 1790871213897,
+   "skills": {
+    "attack": 739538,
+    "defence": 898484,
+    "strength": 1986219,
+    "hitpoints": 1256698,
+    "ranged": 224737,
+    "prayer": 131296,
+    "magic": 873075,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 547940,
+    "smithing": 296582,
+    "mining": 333158,
+    "herblore": 248114,
+    "agility": 1282084,
+    "thieving": 13080933,
+    "slayer": 725152,
+    "farming": 145594,
+    "runecraft": 3273037,
+    "hunter": 2052105,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37780783
+  },
+  {
+   "t": 1790940780595,
+   "skills": {
+    "attack": 739538,
+    "defence": 898484,
+    "strength": 1986219,
+    "hitpoints": 1256698,
+    "ranged": 224737,
+    "prayer": 131296,
+    "magic": 873075,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 547940,
+    "smithing": 296582,
+    "mining": 333158,
+    "herblore": 248114,
+    "agility": 1282084,
+    "thieving": 13080933,
+    "slayer": 725152,
+    "farming": 145594,
+    "runecraft": 3273037,
+    "hunter": 2052105,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37780783
+  },
+  {
+   "t": 1790945935332,
+   "skills": {
+    "attack": 739538,
+    "defence": 924632,
+    "strength": 2011951,
+    "hitpoints": 1273972,
+    "ranged": 224737,
+    "prayer": 131315,
+    "magic": 873437,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 548120,
+    "smithing": 296582,
+    "mining": 333158,
+    "herblore": 248536,
+    "agility": 1282084,
+    "thieving": 13080933,
+    "slayer": 731662,
+    "farming": 147900,
+    "runecraft": 3273037,
+    "hunter": 2054553,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37862184
+  },
+  {
+   "t": 1790955788974,
+   "skills": {
+    "attack": 739538,
+    "defence": 924632,
+    "strength": 2011951,
+    "hitpoints": 1273972,
+    "ranged": 224737,
+    "prayer": 131315,
+    "magic": 873694,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 548480,
+    "smithing": 296582,
+    "mining": 344870,
+    "herblore": 248928,
+    "agility": 1299754,
+    "thieving": 13080933,
+    "slayer": 731662,
+    "farming": 150577,
+    "runecraft": 3273037,
+    "hunter": 2059449,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37900148
+  },
+  {
+   "t": 1790959526923,
+   "skills": {
+    "attack": 739538,
+    "defence": 924632,
+    "strength": 2011951,
+    "hitpoints": 1273972,
+    "ranged": 224737,
+    "prayer": 131315,
+    "magic": 873742,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 548480,
+    "smithing": 296582,
+    "mining": 344870,
+    "herblore": 248928,
+    "agility": 1299754,
+    "thieving": 13080933,
+    "slayer": 731662,
+    "farming": 150577,
+    "runecraft": 3273037,
+    "hunter": 2059449,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37900196
+  },
+  {
+   "t": 1791055154412,
+   "skills": {
+    "attack": 739538,
+    "defence": 924632,
+    "strength": 2011951,
+    "hitpoints": 1273972,
+    "ranged": 224737,
+    "prayer": 131315,
+    "magic": 873742,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 548480,
+    "smithing": 296582,
+    "mining": 344870,
+    "herblore": 248928,
+    "agility": 1299754,
+    "thieving": 13080933,
+    "slayer": 731662,
+    "farming": 150577,
+    "runecraft": 3273037,
+    "hunter": 2059449,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37900196
+  },
+  {
+   "t": 1791059484453,
+   "skills": {
+    "attack": 739538,
+    "defence": 924632,
+    "strength": 2011951,
+    "hitpoints": 1273972,
+    "ranged": 224737,
+    "prayer": 131315,
+    "magic": 874178,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 548660,
+    "smithing": 296582,
+    "mining": 355590,
+    "herblore": 249232,
+    "agility": 1316919,
+    "thieving": 13080933,
+    "slayer": 731662,
+    "farming": 152464,
+    "runecraft": 3273037,
+    "hunter": 2061897,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37933336
+  },
+  {
+   "t": 1791130211166,
+   "skills": {
+    "attack": 739538,
+    "defence": 924632,
+    "strength": 2011951,
+    "hitpoints": 1273972,
+    "ranged": 224737,
+    "prayer": 131315,
+    "magic": 874226,
+    "cooking": 1211327,
+    "woodcutting": 1096301,
+    "fletching": 499473,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 548660,
+    "smithing": 296582,
+    "mining": 355590,
+    "herblore": 249232,
+    "agility": 1316919,
+    "thieving": 13080933,
+    "slayer": 731662,
+    "farming": 152464,
+    "runecraft": 3273037,
+    "hunter": 2061897,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 37933384
+  },
+  {
+   "t": 1791140839857,
+   "skills": {
+    "attack": 739582,
+    "defence": 948476,
+    "strength": 2011951,
+    "hitpoints": 1281918,
+    "ranged": 224737,
+    "prayer": 131315,
+    "magic": 874999,
+    "cooking": 1211327,
+    "woodcutting": 1120372,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 548840,
+    "smithing": 296582,
+    "mining": 355590,
+    "herblore": 249591,
+    "agility": 1316919,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 154961,
+    "runecraft": 3273037,
+    "hunter": 2064345,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 38071046
+  },
+  {
+   "t": 1791198814060,
+   "skills": {
+    "attack": 739582,
+    "defence": 948476,
+    "strength": 2011951,
+    "hitpoints": 1281918,
+    "ranged": 224737,
+    "prayer": 131315,
+    "magic": 874999,
+    "cooking": 1211327,
+    "woodcutting": 1120372,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 548840,
+    "smithing": 296582,
+    "mining": 355590,
+    "herblore": 249602,
+    "agility": 1316919,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 154961,
+    "runecraft": 3273037,
+    "hunter": 2064345,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 38071057
+  },
+  {
+   "t": 1791208211019,
+   "skills": {
+    "attack": 739582,
+    "defence": 948476,
+    "strength": 2011951,
+    "hitpoints": 1281918,
+    "ranged": 224737,
+    "prayer": 131315,
+    "magic": 875521,
+    "cooking": 1211327,
+    "woodcutting": 1161308,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 549020,
+    "smithing": 296582,
+    "mining": 355590,
+    "herblore": 250282,
+    "agility": 1333673,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 163054,
+    "runecraft": 3273037,
+    "hunter": 2066793,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 38140670
+  },
+  {
+   "t": 1791212978677,
+   "skills": {
+    "attack": 739582,
+    "defence": 948476,
+    "strength": 2011951,
+    "hitpoints": 1286729,
+    "ranged": 239244,
+    "prayer": 131315,
+    "magic": 875702,
+    "cooking": 1211327,
+    "woodcutting": 1161308,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 551200,
+    "smithing": 296582,
+    "mining": 357090,
+    "herblore": 251312,
+    "agility": 1333692,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 166303,
+    "runecraft": 3285249,
+    "hunter": 2069241,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 38182807
+  },
+  {
+   "t": 1791216845343,
+   "skills": {
+    "attack": 739582,
+    "defence": 954039,
+    "strength": 2018902,
+    "hitpoints": 1292183,
+    "ranged": 243093,
+    "prayer": 131330,
+    "magic": 876379,
+    "cooking": 1211327,
+    "woodcutting": 1161433,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 551380,
+    "smithing": 296582,
+    "mining": 357090,
+    "herblore": 251312,
+    "agility": 1333692,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 166303,
+    "runecraft": 3285249,
+    "hunter": 2106883,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 38243263
+  },
+  {
+   "t": 1791294485395,
+   "skills": {
+    "attack": 739582,
+    "defence": 954039,
+    "strength": 2018902,
+    "hitpoints": 1292183,
+    "ranged": 243093,
+    "prayer": 131330,
+    "magic": 876379,
+    "cooking": 1211327,
+    "woodcutting": 1161433,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 551380,
+    "smithing": 296582,
+    "mining": 357090,
+    "herblore": 251312,
+    "agility": 1333692,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 166303,
+    "runecraft": 3285249,
+    "hunter": 2106883,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 38243263
+  },
+  {
+   "t": 1791299759838,
+   "skills": {
+    "attack": 739582,
+    "defence": 957804,
+    "strength": 2018902,
+    "hitpoints": 1297259,
+    "ranged": 243093,
+    "prayer": 131330,
+    "magic": 897796,
+    "cooking": 1211327,
+    "woodcutting": 1161433,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 553096,
+    "smithing": 296582,
+    "mining": 358242,
+    "herblore": 251704,
+    "agility": 1333696,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 168614,
+    "runecraft": 3294628,
+    "hunter": 2109331,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 38290923
+  },
+  {
+   "t": 1791376780850,
+   "skills": {
+    "attack": 739582,
+    "defence": 957804,
+    "strength": 2018902,
+    "hitpoints": 1297259,
+    "ranged": 243093,
+    "prayer": 131330,
+    "magic": 897796,
+    "cooking": 1211327,
+    "woodcutting": 1161433,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 553096,
+    "smithing": 296582,
+    "mining": 358242,
+    "herblore": 251704,
+    "agility": 1333696,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 168614,
+    "runecraft": 3294628,
+    "hunter": 2109331,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 38290923
+  },
+  {
+   "t": 1791384364454,
+   "skills": {
+    "attack": 739582,
+    "defence": 993158,
+    "strength": 2018902,
+    "hitpoints": 1309011,
+    "ranged": 243093,
+    "prayer": 131330,
+    "magic": 898129,
+    "cooking": 1211327,
+    "woodcutting": 1161433,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 553276,
+    "smithing": 296582,
+    "mining": 372706,
+    "herblore": 252065,
+    "agility": 1333696,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 171076,
+    "runecraft": 3294628,
+    "hunter": 2111779,
+    "construction": 155181,
+    "sailing": 0
+   },
+   "total": 38358277
+  },
+  {
+   "t": 1791552816325,
+   "skills": {
+    "attack": 739582,
+    "defence": 993158,
+    "strength": 2018902,
+    "hitpoints": 1309011,
+    "ranged": 243093,
+    "prayer": 131330,
+    "magic": 898260,
+    "cooking": 1211327,
+    "woodcutting": 1161433,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 553276,
+    "smithing": 296582,
+    "mining": 372706,
+    "herblore": 252065,
+    "agility": 1333696,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 171076,
+    "runecraft": 3294628,
+    "hunter": 2111779,
+    "construction": 155431,
+    "sailing": 0
+   },
+   "total": 38358658
+  },
+  {
+   "t": 1791557850852,
+   "skills": {
+    "attack": 739582,
+    "defence": 993158,
+    "strength": 2018902,
+    "hitpoints": 1316366,
+    "ranged": 265265,
+    "prayer": 131330,
+    "magic": 898426,
+    "cooking": 1211327,
+    "woodcutting": 1161433,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 553456,
+    "smithing": 296582,
+    "mining": 372706,
+    "herblore": 253007,
+    "agility": 1333696,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 173375,
+    "runecraft": 3294628,
+    "hunter": 2114227,
+    "construction": 155431,
+    "sailing": 0
+   },
+   "total": 38394220
+  },
+  {
+   "t": 1791663156607,
+   "skills": {
+    "attack": 739582,
+    "defence": 993158,
+    "strength": 2018902,
+    "hitpoints": 1316366,
+    "ranged": 265265,
+    "prayer": 131330,
+    "magic": 898426,
+    "cooking": 1211327,
+    "woodcutting": 1161433,
+    "fletching": 567863,
+    "fishing": 3420723,
+    "firemaking": 3303032,
+    "crafting": 553456,
+    "smithing": 296582,
+    "mining": 372706,
+    "herblore": 253007,
+    "agility": 1333696,
+    "thieving": 13080933,
+    "slayer": 738772,
+    "farming": 173375,
+    "runecraft": 3294628,
+    "hunter": 2114227,
+    "construction": 155431,
+    "sailing": 0
+   },
+   "total": 38394220
+  }
+ ]
+}
