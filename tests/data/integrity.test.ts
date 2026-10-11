@@ -229,8 +229,6 @@ describe('datasrc/methods', () => {
       'farming iron 1-8',
       'hunter main 1-4',
       'hunter iron 1-4',
-      'sailing main 1-14',
-      'sailing iron 1-14',
     ])
   })
 })
@@ -465,6 +463,7 @@ describe('quest prerequisites', () => {
       'Lunar Diplomacy',
       'Priest in Peril',
       'Shilo Village',
+      'The Fremennik Trials',
     ])
   })
 })

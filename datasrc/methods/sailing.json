@@ -12,7 +12,7 @@
       "req": "q:Pandemonium",
       "run": false,
       "supply": false,
-      "note": "One-off charting tasks from the captain's log, the best early XP. Prying Times at 12 and Current Affairs at 22 unlock more. All tasks need 78.",
+      "note": "One-off tasks from the captain's log: 358 in all, worth 691,270 XP. Prying Times at 12 and Current Affairs at 22 add tools. Completing every task needs 78 Sailing.",
       "src": "Sailing training"
     },
     {
@@ -21,12 +21,12 @@
       "who": "both",
       "int": "semi",
       "cost": "free",
-      "xph": 0,
+      "xph": 3000,
       "req": "q:Pandemonium",
       "run": false,
       "supply": false,
-      "note": "Carry cargo between Port Sarim, The Pandemonium and, from 10, Musa Point. Two tasks at once from 7 and three from 28. Chart the seas on the way.",
-      "src": "Sailing training"
+      "note": "Port Sarim to The Pandemonium pays 78 XP one way or 155 as a round trip. Musa Point opens at 10. Two tasks at once from 7, three from 28. Chart seas on the way.",
+      "src": "Courier tasks"
     },
     {
       "lv": 15,
@@ -35,12 +35,12 @@
       "int": "afk",
       "cost": "profit",
       "xph": 2400,
-      "bands": [[15, 2400], [21, 3100], [27, 5250], [35, 10250], [44, 13500], [53, 19000]],
+      "bands": [[15, 2400], [21, 3100], [27, 5250], [35, 10250], [44, 14500], [53, 22000]],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Skiff with a salvaging hook and cargo hold. Better wrecks at 26, 35 and 53, better hooks at 21, 27 and 44. A salvaging station from 42 sorts at sea.",
-      "src": "Sailing training"
+      "note": "Skiff with one hook and a cargo hold. Wrecks at 15, 26, 35 and 53; hooks at 21, 27 and 44, fitted by a shipwright for a fee. Sorting at sea from 42 needs 34 Construction.",
+      "src": "Shipwreck salvaging"
     },
     {
       "lv": 30,
@@ -49,10 +49,10 @@
       "int": "active",
       "cost": "free",
       "xph": 24519,
-      "req": "s:construction 14,crafting 12",
+      "req": "",
       "run": false,
       "supply": false,
-      "note": "First Barracuda Trial. Skiff needs an iron helm and an oak mast with linen sails. Rate is the Marlin rank finished at its target time.",
+      "note": "First Barracuda Trial, skiff only. A shipwright fits the iron helm (1,400 coins) and oak mast (920) from your materials; ironmen weave the linen at 12 Crafting.",
       "src": "Sailing training"
     },
     {
@@ -65,7 +65,7 @@
       "req": "q:Troubled Tortugans",
       "run": false,
       "supply": false,
-      "note": "Take Musa Point, Port Sarim or Pandemonium tasks at The Summer Shore and deliver them back, about nine trips an hour. Skiff with oak sails.",
+      "note": "Take Musa Point, Port Sarim or Pandemonium tasks at The Summer Shore, 2,001 to 2,616 XP each, and sail them back. About nine trips an hour; boat recovery costs coins.",
       "src": "Sailing training"
     },
     {
@@ -74,12 +74,12 @@
       "who": "both",
       "int": "afk",
       "cost": "profit",
-      "xph": 17000,
-      "bands": [[50, 17000], [53, 25000], [59, 27500], [64, 45500], [73, 57500], [74, 67500], [80, 75000], [87, 80000]],
-      "req": "s:construction 30",
+      "xph": 16000,
+      "bands": [[50, 16000], [53, 25000], [59, 27500], [64, 38000], [73, 64000], [74, 67500], [80, 75000], [87, 80000]],
+      "req": "s:construction 34",
       "run": false,
       "supply": false,
-      "note": "Sloop with two hooks, one worked by a crewmate, and a salvaging station. Pirate wrecks at 64, mercenary 73, Fremennik 80, merchant 87. Very low input.",
+      "note": "Sloop: you work one hook, a crewmate the other, sorting at sea. Crew on both hooks gives under half. Mercenary wrecks (73) need an adamant helm, Fremennik (80) a brazier.",
       "src": "Sailing training"
     },
     {
@@ -88,12 +88,12 @@
       "who": "both",
       "int": "active",
       "cost": "free",
-      "xph": 88923,
-      "req": "s:construction 47",
+      "xph": 85000,
+      "req": "s:construction 37",
       "run": false,
       "supply": false,
-      "note": "Second Barracuda Trial. Skiff needs a mithril helm and an inoculation station, which uses Relicym's balm. Rate is the Marlin rank at its target time.",
-      "src": "Sailing training"
+      "note": "Second Barracuda Trial. A shipwright fits the mithril helm for 50,000 coins; the inoculation station needs Relicym's balm. Marlin rank with a teak or mahogany hull.",
+      "src": "The Jubbly Jive"
     },
     {
       "lv": 56,
@@ -101,13 +101,13 @@
       "who": "both",
       "int": "active",
       "cost": "profit",
-      "xph": 8500,
-      "bands": [[56, 8500], [65, 16000], [84, 43000]],
-      "req": "s:fishing 69",
+      "xph": 15500,
+      "bands": [[56, 15500], [65, 21500], [76, 26500], [84, 43000]],
+      "req": "s:fishing 69,construction 45",
       "run": false,
       "supply": false,
-      "note": "Sloop with two trawling nets on giant krill shoals, trains Fishing too. Halibut at 83 Fishing or bluefin at 87 give 57,000 to 60,000 from 84 Sailing.",
-      "src": "Sailing training"
+      "note": "Sloop on giant krill shoals, you on one net and a crewmate on the other; trains Fishing too. Sailing XP a roll: rope 7, linen (65) 9, hemp (76) 11, cotton (84) 15.",
+      "src": "Deep sea trawling"
     },
     {
       "lv": 62,
@@ -116,11 +116,10 @@
       "int": "semi",
       "cost": "cheap",
       "xph": 66000,
-      "bands": [[62, 66000], [65, 99000]],
-      "req": "",
+      "req": "q:The Fremennik Trials|Children of the Sun;s:magic 56,construction 49",
       "run": false,
       "supply": false,
-      "note": "Take Rellekka tasks, teleport to Aldarin, summon the boat and deliver north along the coast. Etceteria at 65 adds tasks. Depends on the notice board.",
+      "note": "Take Rellekka tasks, teleport to Aldarin, cast Summon Boat (needs a teleport focus on the boat) and deliver north. Etceteria adds tasks at 65 with Royal Trouble.",
       "src": "Sailing training"
     },
     {
@@ -130,10 +129,10 @@
       "int": "semi",
       "cost": "cheap",
       "xph": 74000,
-      "req": "q:Song of the Elves",
+      "req": "q:Song of the Elves|Children of the Sun;s:construction 62,magic 56",
       "run": false,
       "supply": false,
-      "note": "Take tasks at Prifddinas, Port Tyras, Deepfin Point and Aldarin, summon the boat to Aldarin and deliver back towards Prifddinas.",
+      "note": "Tasks from Prifddinas, Port Tyras, Deepfin Point and Aldarin: cast Summon Boat at Aldarin and deliver back. Tirannwn's waters need an adamant keel. Board dependent.",
       "src": "Sailing training"
     },
     {
@@ -144,23 +143,23 @@
       "cost": "free",
       "xph": 184369,
       "bands": [[72, 184369], [73, 198119]],
-      "req": "q:Regicide;s:construction 62,smithing 74",
+      "req": "q:Regicide;s:construction 62",
       "run": false,
       "supply": false,
-      "note": "Third Barracuda Trial and the fastest Sailing XP. Skiff needs an adamant keel. Marlin rank at its target time, with a crystal extractor from 73.",
+      "note": "Third Barracuda Trial, the fastest Sailing XP. Needs an adamant keel (ironmen smith its parts at 74) and a wind catcher. Marlin at its 6:09 target; extractor from 73.",
       "src": "Sailing training"
     },
     {
-      "lv": 76,
+      "lv": 84,
       "name": "Courier tasks Lunar Isle route",
       "who": "both",
       "int": "semi",
       "cost": "cheap",
-      "xph": 145000,
-      "req": "",
+      "xph": 130000,
+      "req": "q:Lunar Diplomacy|Children of the Sun;s:magic 56,construction 49",
       "run": false,
       "supply": false,
-      "note": "Stack round-trip tasks to Lunar Isle from Aldarin, Deepfin Point and Civitas illa Fortis, then fill spare slots on the way. Five tasks at once from 84.",
+      "note": "Stack round trips to Lunar Isle from Aldarin, Deepfin Point and Civitas illa Fortis, using Summon Boat. You can dock from 76; the rate is for five task slots at 84.",
       "src": "Sailing training"
     }
   ],
@@ -174,19 +173,21 @@
     {"name": "Fallen From Grace", "xp": 12500, "lv": 62}
   ],
   "unverified": [
-    "All Sailing methods: the Sailing training page is flagged obsolete ('various Sailing updates have left parts of the guide out of date'); the Ironman Guide states no hourly rates for any Sailing method, so nothing could be cross-checked against it",
-    "Sea charting: no hourly rate is given below level 22 (xph 0); 'around 10,000 an hour at level 22' is the only figure, and charting XP is one-off, not repeatable",
-    "Courier tasks between early ports: no hourly rate is given (xph 0); the Ironman Guide only says small-wreck salvaging gives 'similar experience per hour to port tasks'",
-    "Shipwreck salvaging with one hook: midpoints of the table; many hook and wreck pairs are 'Unknown'; the table assumes a deckhandiness 4 crewmate, who cannot be hired before 60 Sailing; 5,250 at 27 is the fisherman's wreck (26) with a steel hook (27); steel and mithril hooks need Construction 18 and 30",
-    "Shipwreck salvaging with two hooks: midpoints of the table; bands assume mithril hooks at 50, adamant at 59 (Construction 52) and rune at 74 (Construction 66); dragon hooks give 80,000-95,000 at merchant wrecks; the Ironman Guide says mercenary wrecks need an adamant helm; tick manipulation (2 to 2.5 times) is left out",
-    "The Tempor Tantrum: computed from the page's formula (Marlin 1,907 XP per 270 s target plus 10 s; Swordfish gives 19,342 and Shark 21,938 an hour); the ranks unlock in order",
-    "The Jubbly Jive: computed from the page's formula (Marlin 8,176 XP per 321 s target plus 10 s; Swordfish gives 64,746 and Shark 80,905 an hour); the inoculation station needs partial completion of Zogre Flesh Eaters, which the q: syntax cannot express",
-    "The Gwenith Glide: computed from the page's formula (Marlin 19,410 XP per 369 s target plus 10 s; Swordfish gives 113,538 and Shark 144,543 an hour); the 73 band adds the page's crystal extractor term of 13,750, and the extractor also needs 67 Construction; the page says a rosewood hull at 93 pushes this to 200,000 or more",
-    "Courier tasks Summer Shore, Rellekka, Prifddinas and Lunar Isle routes: the page calls these rough estimates extrapolated from tests made before courier XP rose 10% on 3 June 2026, not yet retested",
-    "Courier tasks Rellekka route: 99,000 at 65 is for 'favourable routes' and depends heavily on the tasks offered",
-    "Courier tasks Lunar Isle route: midpoint of 130,000-160,000, which may include crystal extractor XP; the page states no quest requirement for reaching Lunar Isle",
-    "Deep sea trawling: the page's estimates are undated and it cannot say whether they include the May 2026 doubling of trawling Sailing XP; krill rows used (8,500 is the midpoint for rope nets, baited and unbaited not separated); the 57,000-60,000 halibut and bluefin figures include crystal extractor XP; no estimate exists for hemp nets, yellowfin or marlin; Construction levels for the nets are not given",
-    "Bounty tasks and the crystal extractor (about 10,000 an hour on top of any method from 73) are described on the page without a usable hourly rate and are not listed as methods",
-    "Quests: Pandemonium has no Sailing requirement ('-' on the training page, 1 on the Sailing page)"
+    "All Sailing methods: the Sailing training page still carries the Obsolete banner (revision of 4 October 2026); TempleOSRS has no Sailing rates table and Wise Old Man gives mains and ironmen the same Sailing rates, so there is one ceiling to check against, not two; the Ironman Guide still states no hourly rates",
+    "Sea charting: 10,000 an hour at level 22 is the guide's only figure and equals the Wise Old Man rate for port tasks, charting and quests together below level 30; no rate exists below 22 (first band 0); charting is one-off XP (691,270 in all), so the rate cannot run to 99",
+    "Courier tasks between early ports: 3,000 an hour is derived, not measured (78 XP for a one-way Port Sarim to Pandemonium task, about 214 tiles at 1.5 tiles a tick plus loading, about 32 legs an hour, plus sail trimming); two task slots from level 7 can raise it and no tested rate has been published; this fills the level 1 to 14 stretch the tests pin as unrated",
+    "Shipwreck salvaging with one hook: the guide's one-hook figures date from before the 3 December 2025 success-rate increase (11 to 16%); up to 35 they are kept because the money making guides (sorting at a port: 2,170 at 15, about 4,360 at 27, 10,230 at 35) and a model built from the wreck pages' success values (dropping the salvage: 3,060, 6,000, 10,950) sit either side of them, and the Small shipwreck page says about 1,600 at 15; 14,500 at 44 and 22,000 at 53 are derived (guide figure raised by the stated increase, checked against the model) and nobody has published a one-hook test since",
+    "Shipwreck salvaging with two hooks: the bands at 53, 59, 80 and 87 are guide ranges measured after December 2025 and sit within 10% of the model; 50, 64 and 73 are derived because those guide cells predate the December 2025 changes (the guide's 44,000 to 47,000 for pirate wrecks with adamant hooks is one, against its own later mithril figure of 35,000 to 38,000); the rates assume adamant hooks at 59 (Construction 52) and rune at 74 (Construction 66), an adamant helm for mercenary wrecks (Construction 59) and an eternal brazier for Fremennik wrecks (Construction 72), which req cannot state band by band; with crew on both hooks Jagex measured 35,000 to 40,000 an hour at 97, against 85,000 with the player on a hook, and the money making guides, which have crew pull half to two thirds of the salvage, give 17,900 at large wrecks, 26,800 at pirate, 49,300 at mercenary, 51,700 at Fremennik and 60,200 at merchant; tick manipulation is left out; the 74 band (67,500) is a guide cell from before the December 2025 changes and has not been retested",
+    "The Tempor Tantrum: the guide's formula (1,907 XP per 270 s target plus 10 s) gives 24,519; the trial page gives 1,790 XP a lap and 23,800 an hour and Wise Old Man 25,000; the 4:30 target may be out of reach at level 30 before a teak hull at 31; a shipwright's fee covers the build but not the materials, so an ironman needs 12 Crafting for five bolts of linen, which req cannot state for one account type only",
+    "The Jubbly Jive: 85,000 is the trial page's figure for a teak or mahogany hull (written in November 2025; the trial's XP has not changed since) and equals the Wise Old Man rate, so ordinary play may be a little lower; the guide's formula gives 88,923 using the trim XP of sails that need 68 Sailing; ironmen need part of Zogre Flesh Eaters to make Relicym's balm, which req cannot express; 37 Construction for the station is boostable",
+    "The Gwenith Glide: the guide's formula (19,410 XP per 369 s target plus 10 s) gives 184,369 and its 73 band adds 13,750 for the crystal extractor, which needs 67 Construction and the trial's Shark rank; the trial page's own hourly cell (177,170) still uses the old 14,800 completion XP; a wind catcher (Jubbly Jive Shark rank, 47 Construction) is needed to make the times and ironmen need 74 Smithing for keel parts, neither of which req can express; a rosewood hull at 93 (Construction 84) lifts it to 200,000 or more and is not banded",
+    "Courier tasks Summer Shore, Rellekka, Prifddinas and Lunar Isle routes: the guide still calls these rough estimates extrapolated from tests made before courier XP rose 10% on 3 June 2026 and not retested; the task XP list was re-based after the rise and checked against 80 tasks in game, but no route has a published post-rise test, and notice boards only refresh after eight completed tasks",
+    "Courier tasks Summer Shore route: the guide said 33,000 until 30 August 2026, when one editor cut it to 20,000 citing a round-trip nerf that no official post records; 20,000 fits one 2,001 to 2,616 XP task a trip at about nine trips an hour",
+    "Courier tasks Rellekka route: 66,000 is the guide's rough estimate with only Rellekka unlocked and has not been retested; its 99,000 from 65 is for favourable routes with Etceteria and beats the Wise Old Man rate of 85,000 at that level, so no band is given for it; the route is written around Summon Boat (56 Magic, a teleport focus needing 49 Construction and a magic stone), and paying a shipwright to recover the boat each lap is the costly alternative",
+    "Courier tasks Lunar Isle route: the guide's 130,000 to 160,000 is for five task slots at 84 (it read 120,000 to 145,000 for 84 before courier XP rose 10%) and varies with crystal extractor use, so the entry starts at 84 on the bottom of the range; the route can be sailed from 76 with four slots, but its largest task (Aldarin to Lunar Isle, 12,671 XP) needs 80 and nobody has published a rate for 76 to 83; the guide's version also calls at Prifddinas (Song of the Elves, adamant keel), which req leaves out",
+    "Deep sea trawling: no post-change test exists for rope or hemp nets, so those bands are derived: 2,000 rolls an hour for the player's net and 1,200 for a crewmate's, at the XP a roll each net gives, with the crewmate at 70% of it (the page's figure for deckhandiness 4; lower deckhandiness is not published, and rope uses 50%) and 85% of the hour on the shoal; that model gives 21,700 for linen against tests of 21,000 to 23,500 on haddock and halibut shoals but 16,000 on krill, and 42,600 for cotton against tests of 43,000 and 44,000; the guide's 7,000 to 10,000 for rope predates the 20 May 2026 change; nets need Construction 45, 61, 65 and 73, which req cannot state band by band",
+    "Courier tasks Prifddinas route: 74,000 is the middle of the guide's 71,000 to 77,000, a rough estimate not retested since courier XP rose; Port Tyras and the waters off Prifddinas need an adamant keel (66 Sailing, 62 Construction), and an ironman also needs 74 Smithing for its parts",
+    "Bounty tasks, tick-manipulated salvaging and the crystal extractor (13,250 an hour on top of any method from 73) are described on the wiki without a usable hourly rate and are not listed as methods",
+    "Quests: Pandemonium gives 100 more Sailing XP when the cargo is delivered (400 in all) and the list has 300; The Graveyard (65 Sailing, 35,000 Sailing XP proposed) is not in the game yet"
   ]
 }

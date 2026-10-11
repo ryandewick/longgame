@@ -182,10 +182,10 @@ describe('planQuestions: what can be asked about', () => {
   })
 
   it('counts the open requirements it does not ask about', () => {
-    // 39 quests and 11 diary tiers gate something; with nothing ticked 34 are worth a question
-    expect(gatingQuests().length + gatingDiaries().length).toBe(50)
+    // 40 quests and 11 diary tiers gate something; with nothing ticked 34 are worth a question
+    expect(gatingQuests().length + gatingDiaries().length).toBe(51)
     expect(questions).toHaveLength(34)
-    expect(setAsideCount).toBe(16)
+    expect(setAsideCount).toBe(17)
   })
 
   it('does not ask about what is ticked', () => {
@@ -207,7 +207,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan))).not.toContain('Tears of Guthix')
     expect(namesAsked(everyQuestion(plan))).not.toContain('Kandarin Easy')
     // an answer is not something set aside
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(48)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(49)
   })
 
   it('does not ask about a quest that requires one answered "not yet"', () => {
@@ -224,7 +224,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan)).filter((name) => dependants.includes(name))).toEqual([])
     // ruled out is not set aside either: the count is of quests that could still become questions
     const ruledOut = gatingQuests().filter((name) => dependants.includes(name))
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(50 - 1 - ruledOut.length)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(51 - 1 - ruledOut.length)
   })
 
   it('asks about nothing a shortcut already covers', () => {
@@ -676,9 +676,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,388 hours to 1,956 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,446 hours to 2,015 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2388)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2446)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -688,16 +688,16 @@ describe('planQuestions: a whole run of answers', () => {
       'Druidic Ritual 291 yes',
       'Children of the Sun 74 yes',
       'Sins of the Father 61 no',
+      'Lunar Diplomacy 58 no',
       'Bone Voyage 45 yes',
       'Perilous Moons 32 no',
-      'Lunar Diplomacy 17 no',
       'Creature of Fenkenstrain 11 yes',
       'Vale Totems 5 yes',
       'Family Crest 3 yes',
       'Temple of the Eye 3 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(1956)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2015)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
