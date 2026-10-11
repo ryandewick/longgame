@@ -52,8 +52,8 @@ describe('the finding the question flow rests on', () => {
 
     expect(asked).toEqual([
       'Druidic Ritual',
-      'Monkey Madness II',
       'The Blood Moon Rises',
+      'Monkey Madness II',
       'Children of the Sun',
       'Sins of the Father',
       'Lunar Diplomacy',

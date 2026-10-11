@@ -39,21 +39,84 @@
    "req": "",
    "run": false,
    "supply": false,
-   "note": "Sand crabs in Hosidius need nothing, ammonite crabs need Bone Voyage. Aggressive for 10 minutes, then reset. Slower than the Gemstone Crab. Attack style picks the stat.",
-   "src": "Ironman Guide/Melee"
+   "note": "Sand crabs in Hosidius need nothing, ammonite crabs need Bone Voyage. Aggressive for 10 minutes, then reset. Estimated: near the Gemstone Crab rate, less at high levels.",
+   "src": "Ironman Guide/Melee",
+   "calc": "crab-melee",
+   "est": true
   },
   {
-   "lv": 1,
+   "lv": 20,
+   "name": "Brutus",
+   "who": "both",
+   "int": "active",
+   "cost": "free",
+   "xph": 17500,
+   "bands": [
+    [
+     20,
+     17500
+    ],
+    [
+     30,
+     24500
+    ],
+    [
+     40,
+     33500
+    ],
+    [
+     50,
+     39000
+    ],
+    [
+     60,
+     52500
+    ],
+    [
+     70,
+     59500
+    ]
+   ],
+   "req": "q:The Ides of Milk",
+   "run": false,
+   "supply": false,
+   "note": "Cow boss in the Lumbridge cow field, free-to-play. Gives double combat XP and is back in 8 seconds once you ring the cowbell amulet. Dodge his charge and stomp.",
+   "src": "Brutus"
+  },
+  {
+   "lv": 50,
    "name": "Vyrewatch Sentinels",
    "who": "iron",
    "int": "afk",
    "cost": "profit",
-   "xph": 45900,
-   "req": "q:Sins of the Father",
+   "xph": 17000,
+   "req": "q:Sins of the Father;s:prayer 43,attack 50",
    "run": false,
    "supply": false,
-   "note": "Darkmeyer with the blisterwood flail. AFK, about 130k gp an hour in alchs plus vampyre dust and blood shards. Guide says up to 54k combat XP an hour.",
-   "src": "Ironman Guide/Melee"
+   "note": "Darkmeyer with the blisterwood flail, praying melee. Guide says up to 54k and about 130k gp an hour in alchs. After The Blood Moon Rises carry a garlic cocktail.",
+   "src": "Ironman Guide/Melee",
+   "bands": [
+    [
+     50,
+     17000
+    ],
+    [
+     60,
+     24000
+    ],
+    [
+     70,
+     34000
+    ],
+    [
+     80,
+     39000
+    ],
+    [
+     90,
+     47000
+    ]
+   ]
   },
   {
    "lv": 55,
@@ -72,24 +135,34 @@
      110000
     ]
    ],
-   "req": "q:Perilous Moons;s:slayer 48,prayer 43,attack 55",
+   "req": "q:Perilous Moons;s:slayer 48,prayer 43,herblore 38,attack 55",
    "run": false,
    "supply": false,
-   "note": "Neypotzli, praying melee. Two-hit weapons: dual macuahuitl, glacial temotli or sulphur blades. Moonlight potions made on site. Ironman guide says 140k with Piety.",
+   "note": "Neypotzli: Perilous Moons started is enough. Pray melee on moonlight potions made on site (38 Herblore). Glacial temotli or sulphur blades, dual macuahuitl from 75.",
    "src": "Pay-to-play Melee training"
   },
   {
-   "lv": 70,
+   "lv": 55,
    "name": "Scurrius",
    "who": "both",
    "int": "active",
    "cost": "free",
-   "xph": 100000,
-   "req": "s:prayer 40",
+   "xph": 79000,
+   "req": "s:prayer 40,attack 50",
    "run": false,
    "supply": false,
-   "note": "Varrock Sewers rat boss. Solo the group version with a bone mace for 100k or more at base 70 stats. Listed from 55. Takes focus and drops only cover supplies.",
-   "src": "Pay-to-play Melee training"
+   "note": "Varrock Sewers rat boss. Solo the public-room version with a bone mace for 100k or more at base 70 stats. The mace needs a 1 in 33 spine drop. Takes focus.",
+   "src": "Pay-to-play Melee training",
+   "bands": [
+    [
+     55,
+     79000
+    ],
+    [
+     70,
+     100000
+    ]
+   ]
   },
   {
    "lv": 70,
@@ -101,9 +174,23 @@
    "req": "",
    "run": false,
    "supply": false,
-   "note": "North of Yanille. Normal rumble with absorptions, one click per 20 minutes. Needs 5 eligible quests and a coin fee. 85k is possible. Main guide lists it from 60.",
+   "note": "North of Yanille. Normal rumble on absorption potions: one click every 20 minutes. Overloads add XP but need a sip every 5. Needs 5 eligible quests and a 22,000 coin fee.",
    "src": "Ironman Guide/Melee",
-   "setup": true
+   "setup": true,
+   "bands": [
+    [
+     70,
+     70000
+    ],
+    [
+     80,
+     78000
+    ],
+    [
+     90,
+     86000
+    ]
+   ]
   },
   {
    "lv": 70,
@@ -121,14 +208,27 @@
   {
    "lv": 75,
    "name": "Maniacal monkeys with Hallowfell",
-   "who": "both",
-   "int": "semi",
+   "who": "main",
+   "int": "active",
    "cost": "free",
-   "xph": 200000,
-   "req": "q:Monkey Madness II;s:attack 75",
+   "xph": 170000,
+   "req": "q:Monkey Madness II;s:prayer 43,attack 75",
    "run": false,
    "supply": false,
-   "note": "Kruk's Dungeon on Ape Atoll, MM2 started. Hallowfell needs 75 Attack and hits stacked monkeys. 200k or more, 300k with top gear. Works on auto retaliate.",
+   "note": "Kruk's Dungeon: Monkey Madness II started is enough, and bring a light source. Hallowfell hits up to three stacked monkeys. Auto retaliate alone gives less.",
+   "src": "Pay-to-play Melee training"
+  },
+  {
+   "lv": 75,
+   "name": "Maniacal monkeys with a Hallowfell drop",
+   "who": "iron",
+   "int": "active",
+   "cost": "free",
+   "xph": 170000,
+   "req": "q:Monkey Madness II|Fallen From Grace;s:prayer 43,attack 75",
+   "run": false,
+   "supply": false,
+   "note": "Kruk's Dungeon: Monkey Madness II started is enough, and bring a light source. Hallowfell is a rare drop from the Mad Angel, fought after Fallen From Grace.",
    "src": "Pay-to-play Melee training"
   },
   {
@@ -137,26 +237,27 @@
    "who": "both",
    "int": "semi",
    "cost": "profit",
-   "xph": 0,
+   "xph": 60000,
    "req": "q:Priest in Peril;s:slayer 75",
    "run": false,
    "supply": false,
-   "note": "Slayer Tower with a rock hammer. Upwards of 700k gp an hour, mostly alchable drops. The guide says XP is well below other options and gives no figure.",
-   "src": "Pay-to-play Melee training"
+   "note": "Slayer Tower with a rock hammer. Upwards of 700k gp an hour in alchable drops. Rate is for a whip or scimitar; a granite hammer at 230 kills an hour gives about 97k.",
+   "src": "Money making guide/Killing gargoyles"
   }
  ],
  "unverified": [
   "Quest skip: one-off quest XP, so no hourly rate (xph 0)",
-  "Gemstone Crab: neither melee guide nor the Gemstone Crab and Gemstone Crab/Strategies pages (fetched) give a melee XP rate (xph 0); main guide slots it in from level 30 after the quests, set to lv 1 because the strategy page says all levels can take part",
-  "Ammonite or sand crabs: no rate in either guide (xph 0)",
-  "Sulphur naguas: the 75,000 figure is quoted at 60 Strength, no figure at 55; 110,000 at 75 is the Ironman Guide no-Piety figure and equals 85% of the main guide's 'up to 130k'; Perilous Moons only needs partial completion",
-  "Scurrius: guide header says levels 55-75 but the only rate (100k+) is for base 70 stats, so lv is set to 70",
-  "Nightmare Zone: rate is the Ironman Guide figure for base 70 stats in mid-game gear; the main guide lists NMZ from 60 with no rate; the 5-quest requirement cannot be expressed in req",
-  "Maniacal monkeys with Hallowfell: only needs Monkey Madness II started (chapter II), req lists the quest as if complete; 200k assumes good stacking and crystal halberd specials; not mentioned in the Ironman Guide; the cached changelog says Hallowfell is a drop from the repeatable Wyrmscraig boss (62 Sailing), so an ironman needs that drop first",
-  "Gargoyles: no XP rate in the guide (xph 0)",
-  "Slayer tasks with melee: no melee XP rate in either guide (xph 0); lv 70 taken from the Ironman Slayer guide's recommended 70+ melee stats",
-  "Vyrewatch Sentinels: 45,900 is 85% of 'up to 54,000 combat XP per hour' and the guide does not say whether that includes Hitpoints XP; no level stated, gated only by the quest",
+  "Gemstone Crab: no wiki page gives a melee XP rate (checked 11 October 2026); the rate is computed in shared/domain/rates.ts (calc crab-melee), which checked against the wiki damage formula is within 8% from level 10 to 70, about 13% low from 80 and 38% high at level 1",
+  "Ammonite or sand crabs: no rate on any page; uses the Gemstone Crab estimate (calc crab-melee), which a model puts within 5% of ammonite crabs up to level 70 and too high at 80+",
+  "Vyrewatch Sentinels: the only stated figure is 'up to 54,000 combat XP per hour' with no level or gear; the bands are a damage-formula model (flail, super combat, 85% uptime) that reaches it at 99; lv 50 is the flail's Attack requirement",
+  "Sulphur naguas: Perilous Moons only needs starting, which req cannot say, so req asks for the whole quest and is stricter than the game; the guide says to expect 75k at 60 Strength and up to 130k at 75 with Blood Moon armour and Piety, so the 55 band is the 60 figure and 110,000 is 85% of the 130k; no figure exists above 75; making moonlight potions takes 38 Herblore; attention is kept as AFK though a money making guide calls the activity moderate",
+  "Scurrius: the guide heads the section levels 55 to 75 and gives one rate, 100k or more at base 70 stats with a bone mace against the public-room version; 79,000 at 55 is a damage model with a super combat potion (97,900 at 70 by the same model), and the first few dozen kills before the 1 in 33 spine drop are slower",
+  "Nightmare Zone: 70,000 is the Ironman Guide figure for base 70 stats; the 80 and 90 bands add the 800 XP a level from Nightmare Zone/Strategies; the main guide lists NMZ from 60 with no rate; the 5-quest requirement cannot be expressed in req",
+  "Slayer tasks with melee: no melee XP rate on any page (xph 0), the Slayer guides rate tasks in Slayer XP only; lv 70 is the Ironman Slayer guide's recommended 70+ melee stats",
+  "Maniacal monkeys with Hallowfell (both entries): the guide gives one figure, 200k or more with good stacking, targeting and crystal halberd specials, and no level; 170,000 is 85% of it; the ironman efficiency table (186,400 for Attack) predates the sword; Monkey Madness II only needs starting, which req cannot say; Kruk's Dungeon needs a light source, an item req cannot state",
+  "Gargoyles: 60,000 is a model for a whip, scaled to the money making guide's 230 kills an hour with a granite hammer (96,600 XP)",
+  "Brutus: no page gives an hourly rate; the bands are a damage model (a scimitar for the level, amulet of strength, no potions, cowbell rung each kill: 21.8k at 20, 42.1k at 40, 65.4k at 60, 74.1k at 70) less a fifth for dodging; the double XP, the 58 Hitpoints and the 7.8 second respawn are from his page, and the free-to-play melee guide lists him for levels 20 to 99",
   "All rates: melee XP per hour depends mainly on Strength level and gear, the guides do not give separate rates per skill, so the same figure is used in attack, strength and defence",
-  "2026-10-05: Gemstone Crab (melee) rate is computed in app.js (CALC['crab-melee']) from the damage formula, not taken from the wiki; Nightmare Zone is flagged 'setup' (dream fee, potions, five quests) so AFK blocks weigh it at 75%"
+  "Not included: Pest Control points (neither melee guide lists it, its figures were the Ranged guide's, and nothing supported offering it to ironmen only); Soul Wars zeal, which would qualify on the same reward-formula reasoning as Pest Control"
  ]
 }
