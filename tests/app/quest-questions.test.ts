@@ -320,8 +320,14 @@ describe('what else an action changed', () => {
 
 describe('the card’s smaller lines', () => {
   it('count the questions', () => {
-    expect(stepLabel(5, 13)).toBe('Question 5 of 13')
-    expect(progressLabel(4, 8)).toBe('4 answered, 8 still to come after this one')
+    expect(stepLabel(5, 13)).toBe('Question 5 of at most 13')
+    expect(progressLabel(4, 8)).toBe('4 answered, at most 8 still to come after this one')
+  })
+
+  it('give the count plainly on the last question of a round, when nothing can change it', () => {
+    expect(stepLabel(13, 13)).toBe('Question 13 of 13')
+    expect(stepLabel(1, 1)).toBe('Question 1 of 1')
+    expect(progressLabel(12, 0)).toBe('12 answered, none still to come after this one')
   })
 
   it('say how many other open quests and tiers are not asked about, with the real number', () => {
@@ -338,7 +344,7 @@ describe('the card’s smaller lines', () => {
 describe('questionsPrompt', () => {
   it('says how many questions are waiting and why they matter, in the singular and the plural', () => {
     expect(questionsPrompt(3)).toBe(
-      '3 quick questions about your quests would sharpen tonight’s plan.',
+      'Up to 3 quick questions about your quests would sharpen tonight’s plan.',
     )
     expect(questionsPrompt(1)).toBe(
       '1 quick question about your quests would sharpen tonight’s plan.',
@@ -458,7 +464,7 @@ describe('answerAnnouncement', () => {
         total: 31,
       }),
     ).toBe(
-      'Bone Voyage: done. Also ticked: Druidic Ritual. Question 2 of 31. Have you finished Perilous Moons?',
+      'Bone Voyage: done. Also ticked: Druidic Ritual. Question 2 of at most 31. Have you finished Perilous Moons?',
     )
   })
 
@@ -471,7 +477,7 @@ describe('answerAnnouncement', () => {
   it('says a question by itself, for the start of the second round', () => {
     expect(
       questionAnnouncement({ question: question(quest('Tears of Guthix'), 0), step: 1, total: 16 }),
-    ).toBe('Question 1 of 16. Have you finished Tears of Guthix?')
+    ).toBe('Question 1 of at most 16. Have you finished Tears of Guthix?')
   })
 
   it('says a "not yet" and that nothing is left to ask', () => {

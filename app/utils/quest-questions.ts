@@ -228,14 +228,21 @@ export function smallerRoundNote(count: number): SmallerRoundNote | null {
       }
 }
 
-/** The line over the progress marks: 'Question 5 of 13'. */
+/**
+ * The line over the progress marks: 'Question 5 of at most 13'. The total is a ceiling, not a
+ * promise: a yes ticks the quests that one requires and a "not yet" rules out the quests that
+ * require it, so an answer can settle questions that were still waiting. Only the last question
+ * of a round knows the count: 'Question 13 of 13'.
+ */
 export function stepLabel(step: number, total: number): string {
-  return `Question ${step} of ${total}`
+  return step >= total ? `Question ${step} of ${total}` : `Question ${step} of at most ${total}`
 }
 
-/** What the progress marks show, in words: '4 answered, 8 still to come after this one'. */
+/** What the progress marks show, in words: '4 answered, at most 8 still to come after this one'. */
 export function progressLabel(answered: number, toCome: number): string {
-  return `${answered} answered, ${toCome} still to come after this one`
+  return toCome > 0
+    ? `${answered} answered, at most ${toCome} still to come after this one`
+    : `${answered} answered, none still to come after this one`
 }
 
 /**
@@ -259,9 +266,12 @@ export function setAsideNote(
       }
 }
 
-/** The sentence of the prompt on Tonight: '3 quick questions about your quests would sharpen tonight’s plan.' */
+/**
+ * The sentence of the prompt on Tonight: 'Up to 3 quick questions about your quests would sharpen
+ * tonight’s plan.' Up to, because one answer can settle several (see `stepLabel`).
+ */
 export function questionsPrompt(count: number): string {
-  const questions = count === 1 ? '1 quick question' : `${count} quick questions`
+  const questions = count === 1 ? '1 quick question' : `Up to ${count} quick questions`
   return `${questions} about your quests would sharpen tonight’s plan.`
 }
 
@@ -373,7 +383,7 @@ export interface QuestionInTurn {
  */
 export type AfterAnswer = QuestionInTurn | { readonly smallerLeft: number } | null
 
-/** A question as a screen reader hears it: 'Question 2 of 10. Have you finished Bone Voyage?' */
+/** A question as a screen reader hears it: 'Question 2 of at most 10. Have you finished Bone Voyage?' */
 export function questionAnnouncement({ question, step, total }: QuestionInTurn): string {
   return `${stepLabel(step, total)}. ${questionSentence(question.requirement)}`
 }

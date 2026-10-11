@@ -102,6 +102,29 @@ function answerTruthfully(isWorthAsking?: (effect: RequirementEffect) => boolean
   }
 }
 
+/**
+ * Answers every question of one round the way `says` does, and returns what the counter over the
+ * card showed as its total at each one: the answers given so far plus the questions waiting.
+ */
+function totalsShown(
+  round: 'savingHours' | 'smaller',
+  says: (requirement: PlanRequirement) => boolean,
+  from: QuestTicks = NOTHING_TICKED,
+): { totals: number[]; ticks: QuestTicks } {
+  let ticks = from
+  const totals: number[] = []
+  for (;;) {
+    const waiting = planQuestions(withTicks(ticks), ticks)[round]
+    const [question] = waiting
+    if (!question) return { totals, ticks }
+    totals.push(totals.length + waiting.length)
+    const { kind, name } = question.requirement
+    const yes = says(question.requirement)
+    if (kind === 'quest') ticks = yes ? tickQuest(ticks, name).ticks : declineQuest(ticks, name)
+    else ticks = yes ? tickDiary(ticks, name) : declineDiary(ticks, name)
+  }
+}
+
 const effectWith = (overrides: Partial<RequirementEffect> = {}): RequirementEffect => ({
   hoursSaved: 0,
   skillsChanged: [],
@@ -762,5 +785,32 @@ describe('gatedActivities', () => {
     expect(gatedActivities(unticked, diary('Ardougne Medium')).names).toEqual([
       'Pure essence from Cromperty',
     ])
+  })
+})
+
+describe('the count of questions over the card', () => {
+  const asTheFixtureDid = ({ kind, name }: PlanRequirement): boolean =>
+    kind === 'quest' ? truth.completedQuests.has(name) : truth.completedDiaries.has(name)
+  const neverGrows = (totals: readonly number[]): boolean =>
+    totals.every((total, index) => index === 0 || total <= (totals[index - 1] ?? 0))
+
+  // 'Question 1 of at most 23' is only true if the total can fall but not rise
+  it.each([
+    ['answered as the fixture did', asTheFixtureDid],
+    ['all answered yes', () => true],
+    ['all answered not yet', () => false],
+  ])('is a ceiling in both rounds: %s', (_, says) => {
+    const hours = totalsShown('savingHours', says)
+    const smaller = totalsShown('smaller', says, hours.ticks)
+    expect(neverGrows(hours.totals)).toBe(true)
+    expect(neverGrows(smaller.totals)).toBe(true)
+    expect(hours.totals.at(-1)).toBe(hours.totals.length)
+    expect(smaller.totals.at(-1)).toBe(smaller.totals.length)
+  })
+
+  it('starts well above what is asked, which is why it says at most', () => {
+    const { totals } = totalsShown('savingHours', asTheFixtureDid)
+    expect(totals[0]).toBe(23)
+    expect(totals).toHaveLength(11)
   })
 })
