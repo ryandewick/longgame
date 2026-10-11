@@ -69,7 +69,7 @@ Long Game is a [Nuxt 4](https://nuxt.com) app in strict TypeScript, tested with 
 
 ### Getting started
 
-Needs Node 24.11 or newer.
+Needs Node 24.11 or newer. With nvm, `nvm use` picks the version up from `.nvmrc`.
 
 ```
 npm install
