@@ -108,7 +108,7 @@ describe('buildHomeStructuredData', () => {
         acceptedAnswer: { '@type': 'Answer', text: answer },
       })),
     })
-    expect(QUESTIONS).toHaveLength(9)
+    expect(QUESTIONS).toHaveLength(10)
   })
 
   it('claims no ratings or reviews', () => {

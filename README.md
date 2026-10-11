@@ -26,7 +26,7 @@ I kept logging in to Old School RuneScape, standing at the bank, doing nothing, 
 Go to [longgame.tools](https://longgame.tools) and type your display name. There is nothing to install and no account to create.
 
 - **It only needs your name.** It looks you up on the public hiscores. It never asks for a password and cannot touch your account.
-- **Your data stays with you.** Sessions, ticks and XP history are kept in your own browser. You can export them from Settings.
+- **Your data stays with you.** Sessions, ticks and XP history are kept in your own browser. You can export them from Settings. The website counts visits with Cloudflare Web Analytics, which sets no cookies and does not follow you to other sites.
 - **It is free.** No adverts, no donations, no paid features.
 
 If you would rather keep your saves on your own machine, you can [run a local copy](#run-a-local-copy).

@@ -84,6 +84,11 @@ export const QUESTIONS: readonly Question[] = [
       'In your own browser. Your sessions, ticks and XP history are not sent anywhere. You can export them to a file from Settings.',
   },
   {
+    question: 'Does Long Game track me?',
+    answer:
+      'It counts visits and nothing more. The website uses Cloudflare Web Analytics, which sets no cookies and does not follow you to other sites. It shows how many people visit and which pages they open, not who they are.',
+  },
+  {
     question: 'Is this made by Jagex?',
     answer: 'No. Long Game is not endorsed by or affiliated with Jagex.',
   },

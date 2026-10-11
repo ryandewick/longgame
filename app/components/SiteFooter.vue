@@ -2,9 +2,10 @@
 /**
  * The footer: the credit Jagex's Fan Content Policy asks for, word for word, and the licence the
  * wiki's data is used under. The repository link shows when `runtimeConfig.public.githubRepo`
- * names one.
+ * names one. The website also says how its visits are counted; a local copy counts none.
  */
 const { githubRepo } = useRuntimeConfig().public
+const isWebsite = useAppMode() === 'hosted'
 </script>
 
 <template>
@@ -32,6 +33,10 @@ const { githubRepo } = useRuntimeConfig().public
           >GitHub</a
         >.
       </template>
+    </p>
+    <p v-if="isWebsite" class="site-footer__line">
+      Visits are counted with Cloudflare Web Analytics, which sets no cookies and does not follow
+      you to other sites.
     </p>
   </footer>
 </template>
