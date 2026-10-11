@@ -1,68 +1,124 @@
 # Long Game
 
-A free maxing planner for Old School RuneScape. Type your display name and it reads your levels from the public hiscores, hangs all 24 skillcapes on one rail, shows how far each is from 99, and deals training sessions from the methods your account has unlocked. Mains and ironmen are planned separately.
+**A free maxing planner for Old School RuneScape.** Type your display name and see all 24 skillcapes on one rail, how far each is from 99, and a training session built for your account tonight.
 
-Live at [longgame.tools](https://longgame.tools).
+**[longgame.tools](https://longgame.tools)**
+
+![Every skillcape on one rail, filling toward 99](public/og.png)
 
 Created using intellectual property belonging to Jagex Limited under the terms of Jagex's Fan Content Policy. This content is not endorsed by or affiliated with Jagex.
 
-## What is in here
+## Why I built it
 
-| Path | What it is |
-|---|---|
-| `src/index.html`, `src/styles.css` | The page shell and every style |
-| `src/js/` | The app, one file per job: `account.js` (what the account can do), `session.js` (dealing sessions), `rack.js`, `share.js`, `views/` (one file per screen), and so on. `main.js` starts it |
-| `datasrc/` | The training methods, quests and resets, one JSON file per skill, each method with its wiki source |
-| `tools/build_data.py` | Checks `datasrc/`, then writes the local build into `build/` |
-| `tools/build_site.py` | Builds the public website into `site/`: the planner, a guide page per skill, the sitemap and the data export |
-| `tools/dev_site.mjs` | Runs the website on your machine with the real relay code |
-| `relay/worker.js`, `wrangler.toml` | The Cloudflare Worker that serves the site, looks players up on the hiscores and files method suggestions |
-| `server/longgame.py`, `Long Game.bat` | A small local server for running it on your own machine |
-| `assets/` | Skill icons, skillcape images and the RuneScape font (Jagex's property, see below), and the two open fonts |
-| `DESIGN.md` | The design system: colours, type, components and the rules behind them |
+I kept logging in to Old School RuneScape, standing at the bank, doing nothing, and logging off again. Not because there was nothing to do, but because deciding what to do was the hard part. Long Game makes that decision before I log in: it looks at what my account can do and tells me what tonight's session is.
+
+## What it does
+
+- **Shows the whole grind at once.** Every skill is a cape that fills with colour as you level, with the levels and hours left to max.
+- **Deals you a session.** Say how long you have and how much attention you can spare, and it deals timed blocks from AFK, semi-AFK or active methods your account has actually unlocked, plus any farm or birdhouse runs that are due.
+- **Plans for mains and ironmen separately.** It tells them apart from the hiscores. Ironmen get ironman routes, with no method that needs the Grand Exchange.
+- **Asks only what it needs to.** The hiscores do not list quests or diaries, so it asks a few yes or no questions about the ones that would change your plan.
+- **Tracks what you gained.** Finish a session and it tallies the XP, keeps a 14-day history and counts your streak.
+- **Has a guide for every skill.** [Every training method](https://longgame.tools/guides/), with levels, XP rates and requirements.
+
+## Using it
+
+Go to [longgame.tools](https://longgame.tools) and type your display name. There is nothing to install and no account to create.
+
+- **It only needs your name.** It looks you up on the public hiscores. It never asks for a password and cannot touch your account.
+- **Your data stays with you.** Sessions, ticks and XP history are kept in your own browser. You can export them from Settings.
+- **It is free.** No adverts, no donations, no paid features.
+
+If you would rather keep your saves on your own machine, you can [run a local copy](#run-a-local-copy).
+
+## Missing a method, or found a mistake?
+
+Use "Suggest a method" on the Methods page of the site, or [open an issue](https://github.com/ryandewick/longgame/issues). Every method is checked against the Old School RuneScape Wiki before it goes in, so a link to the wiki page helps.
+
+---
+
+## For developers
+
+Long Game is a [Nuxt 4](https://nuxt.com) app in strict TypeScript, tested with Vitest and deployed as a Cloudflare Worker.
 
 ### How the code is put together
 
-There is no framework and no bundler. The files in `src/js/` are plain scripts that share one scope; the build joins them in a fixed order (listed in `tools/build_data.py`) inside a single function. A few names are used everywhere: `state` is the saved account, `k` is a skill key such as `'mining'`, `stat(k)` is that skill's level and XP, and a method is a row of `[level, name, xp/h, intensity, cost, requirements, note, extra]`. Code is formatted with Prettier (`npx prettier --write src relay tools/dev_site.mjs`).
+- **The rules of the game are pure functions** in `shared/domain`. They are handed the account, the time and the random source, so they are unit tested without a browser.
+- **Three Pinia stores** (`account`, `session`, `history`) hold the state and ask the domain for everything derived from it.
+- **Components only draw.** Each owns one BEM block named after the component and takes its colours and spacing from the tokens in `app/assets/styles/tokens.scss`.
+- **Server routes are thin**, with their checks in `server/utils` as tested functions.
+- **One codebase runs two ways:** the public website on Cloudflare, and a local copy on Node that keeps saves on disk.
 
-## Run it on your own machine
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) has the details, and [DESIGN.md](DESIGN.md) is the design system.
 
-Needs Python 3.
+### What is in here
+
+| Path                                 | What it is                                                                                      |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| `app/`                               | The Nuxt app: pages, components, stores, composables and styles                                 |
+| `shared/domain/`                     | The rules: what an account can do, how long a skill will take, how a session is dealt           |
+| `shared/data/`, `shared/types/`      | The training data as typed objects, built from `datasrc/`, and the types everything shares      |
+| `server/`                            | The API routes (hiscores, account type, suggestions) and the sitemap, robots.txt and llms files |
+| `datasrc/`                           | The training methods, quests and resets as JSON, each method with its wiki source               |
+| `tests/`                             | The rules, the data, the text each screen shows, and the server's checks                        |
+| `public/assets/`                     | Skill icons, skillcape images and the RuneScape font (Jagex's property), and the two open fonts |
+| `modules/`, `wrangler.jsonc`         | The Cloudflare setup                                                                            |
+| `tools/local-copy/`, `Long Game.bat` | Running a copy on your own machine                                                              |
+
+### Getting started
+
+Needs Node 22.18 or newer.
 
 ```
-python tools/build_data.py
-python server/longgame.py --open
+npm install
+npm run dev
 ```
 
-Everything is saved in a `data/` folder at the top of the project. On Windows you can double-click `Long Game.bat` instead.
+Then open the address it prints. Saves are kept in the browser, as on the live site.
 
-## Build and preview the website
-
-Needs Python 3 and Node 18 or newer.
+### Checks
 
 ```
-python tools/build_site.py
-node tools/dev_site.mjs
+npm run check
 ```
 
-Then open http://127.0.0.1:8793. The address and repository the site uses are set in `site.config.json`.
+That runs ESLint, the type check and every test. `npm run format` formats the code with Prettier.
 
-## Deploy
+### Build and deploy
+
+The website is one Cloudflare Worker. Cloudflare serves the prerendered pages and static files, and the Worker answers `/api/*` and draws any page that was not prerendered.
 
 ```
-python tools/build_site.py
-npx wrangler deploy
+npm run build:site      build with Nitro's cloudflare-module preset
+npm run preview:site    run that build under Cloudflare's runtime on this machine (no login needed)
+npm run deploy          build, then publish with wrangler
 ```
 
-The suggestion form needs two settings on the Worker: `GITHUB_REPO` in `wrangler.toml`, and a `GITHUB_TOKEN` secret (a fine-grained token with Issues: write on that one repository), stored with `npx wrangler secret put GITHUB_TOKEN`.
+The suggestion form needs one secret on the Worker, `NUXT_GITHUB_TOKEN`: a fine-grained GitHub token with Issues: write on the repository that receives suggestions. Store it with `npx wrangler secret put NUXT_GITHUB_TOKEN`. Until it is set, the form answers that suggestions are not switched on.
 
-## Adding or correcting a method
+### Run a local copy
 
-Methods live in `datasrc/methods/<skill>.json`. Each one needs a level, a name, an XP rate where the wiki gives one, how much attention it takes, what it requires, and the wiki page it comes from. Run `python tools/build_data.py --check` to validate. Suggestions sent from the site arrive as issues labelled `method suggestion`; check each against the wiki before adding it.
+A local copy is the same app on your own machine, with your sessions and XP history saved to disk.
 
-## Quests and diaries
+On Windows, double-click `Long Game.bat`. The first run installs what it needs and builds, which takes a few minutes. After that it starts straight away and rebuilds by itself when the code has changed. It opens http://localhost:8765/ in your browser.
 
-The hiscores do not list quests, so players tick them by hand. The OSRS Wiki's WikiSync service is not used: the wiki does not permit third-party use of it.
+On anything else:
+
+```
+npm install
+npm run build:local
+npm run start:local
+```
+
+Saves are in the `.data` folder at the top of the project. To use another port, set `LONGGAME_PORT` first.
+
+### Adding or correcting a method
+
+Methods live in `datasrc/methods/<skill>.json`. Each one needs a level, a name, an XP rate where the wiki gives one, how much attention it takes, what it requires, and the wiki page it comes from. `npm run test` validates them and lists everything wrong with a file. Suggestions sent from the site arrive as GitHub issues labelled `method suggestion`.
+
+### Quests and diaries
+
+The hiscores do not list quests or diaries, and the OSRS Wiki does not permit other tools to use its service that reads them from the game. So there is no syncing: the app asks the player about the quests and diaries that would change their plan, and keeps a full tick list for the rest.
 
 ## How this was built
 
@@ -72,6 +128,7 @@ Long Game was built with AI assistance. I set the direction and made the product
 
 - **Game assets** (skill icons, skillcape images, the RuneScape font) belong to Jagex Limited and are used under Jagex's Fan Content Policy. They are not covered by any licence in this repository.
 - **Training data** in `datasrc/` is adapted from the [Old School RuneScape Wiki](https://oldschool.runescape.wiki/) and is licensed [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/), the same as the wiki.
-- **GSAP** (`vendor/gsap.min.js`) is used under its own licence.
+- **GSAP** (the `gsap` package) is used under its own licence.
+- **Figtree and Poppins**, the two open fonts, are under the SIL Open Font Licence. The licence texts are in `public/assets/fonts`.
 
 Long Game is free and has no adverts, donations or paid features.
