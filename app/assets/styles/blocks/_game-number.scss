@@ -1,0 +1,41 @@
+// game-number: the player's own numbers (levels, XP, clocks), set the way the game sets them:
+// the RuneScape font in stat yellow with a hard black shadow.
+// Sizes are multiples of 16px so the font's pixels stay square.
+.game-number {
+  color: var(--color-stat);
+  font-family: var(--font-game);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: 1px 1px 0 var(--color-black);
+  white-space: nowrap;
+  -webkit-font-smoothing: none;
+
+  &--white {
+    color: var(--color-text-strong);
+  }
+
+  &--due {
+    color: var(--color-due);
+  }
+
+  &--headline {
+    font-family: var(--font-game-bold);
+    font-size: 48px;
+    text-shadow: 3px 3px 0 var(--color-black);
+  }
+
+  &--clock {
+    font-size: 64px;
+    text-shadow: 3px 3px 0 var(--color-black);
+  }
+
+  // a two-word label that may break where space is tight ("Max cape" under the rack on a phone)
+  &--wrapping {
+    @media (max-width: 760px) {
+      line-height: 0.9;
+      white-space: normal;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+// chip-group and chip: a small set of choices where one (or several) can be on.
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-slot);
+  box-shadow: inset 0 0 0 1px var(--color-edge);
+  color: var(--color-text-muted);
+  font: 600 14px/1.2 var(--font-text);
+  // a chip can be a link: the tabs of a page's parts
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: inset 0 0 0 1px var(--color-edge-strong);
+    color: var(--color-text-strong);
+  }
+
+  // Selected is bone, not yellow: yellow is reserved (see tokens.scss).
+  &--selected,
+  &--selected:hover {
+    background: var(--color-text);
+    box-shadow: none;
+    color: var(--color-ink);
+  }
+}

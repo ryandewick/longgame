@@ -1,0 +1,443 @@
+import { readFileSync } from 'node:fs'
+import { createPinia, setActivePinia } from 'pinia'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import type { XpSnapshot } from '#shared/types/snapshot'
+import { SKILL_KEYS } from '#shared/data/skills'
+import { hoursLeft, maxProgress } from '#shared/domain/estimates'
+import { fastestMethod, methodOptions } from '#shared/domain/methods'
+import {
+  accountFromSave,
+  blankSave,
+  migrateLegacySnapshots,
+  readSave,
+  type LegacySnapshot,
+  type SavedState,
+} from '#shared/domain/save'
+import { useSavedState } from '~~/app/composables/useSavedState'
+import { useAccountStore } from '~~/app/stores/account'
+import { useHistoryStore } from '~~/app/stores/history'
+import { useSessionStore } from '~~/app/stores/session'
+
+/** The saved account the parity tests use: a version 1 save, its snapshots and the moment it was taken. */
+const fixture = JSON.parse(
+  readFileSync(new URL('../fixtures/account.json', import.meta.url), 'utf8'),
+) as { now: number; state: unknown; snapshots: LegacySnapshot[] }
+
+function fixtureSave(): SavedState {
+  const save = readSave(fixture.state)
+  if (!save) throw new Error('tests/fixtures/account.json is not a save')
+  return save
+}
+
+const fixtureSnapshots = (): XpSnapshot[] => migrateLegacySnapshots(fixture.snapshots)
+
+/** The three stores with the fixture account loaded. */
+function loadedStores() {
+  const { savedState, restore } = useSavedState()
+  restore(fixtureSave())
+  const history = useHistoryStore()
+  history.setSnapshots(fixtureSnapshots())
+  return { account: useAccountStore(), session: useSessionStore(), history, savedState, restore }
+}
+
+beforeEach(() => {
+  setActivePinia(createPinia())
+  vi.useFakeTimers()
+  vi.setSystemTime(fixture.now)
+})
+
+afterEach(() => {
+  vi.useRealTimers()
+})
+
+describe('the save', () => {
+  it('is blank before anything is loaded', () => {
+    expect(useSavedState().savedState.value).toEqual(blankSave())
+  })
+
+  it('comes back out of the stores exactly as it went in', () => {
+    const { savedState } = loadedStores()
+    expect(savedState.value).toEqual(fixtureSave())
+  })
+
+  it('survives a trip through JSON, which is how it is stored', () => {
+    const { savedState, restore } = loadedStores()
+    const stored: unknown = JSON.parse(JSON.stringify(savedState.value))
+    setActivePinia(createPinia())
+    const again = readSave(stored)
+    expect(again).not.toBeNull()
+    if (again) restore(again)
+    expect(useSavedState().savedState.value).toEqual(fixtureSave())
+  })
+})
+
+describe('the account store', () => {
+  it('has no account until there is a name and stats', () => {
+    const account = useAccountStore()
+    expect(account.hasAccount).toBe(false)
+    account.setName('Zezima')
+    expect(account.hasAccount).toBe(false)
+    account.applyHiscores(fixtureSave().hiscores ?? raise('the fixture has no hiscores'))
+    expect(account.hasAccount).toBe(true)
+  })
+
+  it('gives the rules the account the save describes', () => {
+    const { account } = loadedStores()
+    expect(account.account).toEqual(accountFromSave(fixtureSave()))
+    expect(account.isIronman).toBe(account.account.type === 'iron')
+  })
+
+  it("answers for every skill with the domain's own figures", () => {
+    const { account } = loadedStores()
+    const rules = accountFromSave(fixtureSave())
+    for (const skill of SKILL_KEYS) {
+      const insight = account.skillInsights[skill]
+      expect(insight.skill).toBe(skill)
+      expect(insight.stat).toEqual(rules.skills[skill])
+      expect(insight.methods).toEqual(methodOptions(rules, skill))
+      expect(insight.hoursLeft).toBe(hoursLeft(rules, skill))
+      expect(insight.fastestMethod).toEqual(fastestMethod(rules, skill))
+    }
+    expect(account.maxProgress).toEqual(maxProgress(rules))
+    expect(account.hasRoughEstimate).toBe(
+      SKILL_KEYS.some((skill) => account.skillInsights[skill].isRough),
+    )
+  })
+
+  it('hangs the rack lowest level first', () => {
+    const { account } = loadedStores()
+    const levels = account.rackOrder.map((skill) => account.account.skills[skill].level)
+    expect(levels).toEqual([...levels].sort((first, second) => first - second))
+    expect(account.rackOrder).toHaveLength(SKILL_KEYS.length)
+  })
+
+  it('does not work the estimates out again when an unrelated preference changes', () => {
+    const { account } = loadedStores()
+    const before = account.skillInsights
+    account.setPreference('mood', 'afk')
+    account.setPreference('minutes', 180)
+    account.setPreference('skillSort', 'name')
+    expect(account.skillInsights).toBe(before)
+    account.setPreference('tickPerfect', !account.preferences.tickPerfect)
+    expect(account.skillInsights).not.toBe(before)
+  })
+
+  it('ticks what a quest-progress add-on reports, keeping every tick already there', () => {
+    const account = useAccountStore()
+    account.toggleQuest('Dragon Slayer I')
+    account.toggleDiary('Ardougne Medium')
+    account.recordCompleted(
+      ["Cook's Assistant", 'Dragon Slayer I', "Cook's Assistant"],
+      ['Kourend & Kebos Easy'],
+    )
+    expect(account.completedQuests).toEqual(['Dragon Slayer I', "Cook's Assistant"])
+    expect(account.completedDiaries).toEqual(['Ardougne Medium', 'Kourend & Kebos Easy'])
+    expect(account.account.completedQuests.has("Cook's Assistant")).toBe(true)
+  })
+
+  it('leaves the ticks untouched when a report holds nothing new', () => {
+    const account = useAccountStore()
+    account.toggleQuest('Dragon Slayer I')
+    const { completedQuests, completedDiaries } = account
+    account.recordCompleted(['Dragon Slayer I'], [])
+    // the same lists, so nothing is saved again
+    expect(account.completedQuests).toBe(completedQuests)
+    expect(account.completedDiaries).toBe(completedDiaries)
+  })
+
+  it('ticks and unticks quests and diaries', () => {
+    const account = useAccountStore()
+    account.toggleQuest('Dragon Slayer I')
+    account.toggleDiary('Ardougne Medium')
+    expect(account.account.completedQuests.has('Dragon Slayer I')).toBe(true)
+    expect(account.account.completedDiaries.has('Ardougne Medium')).toBe(true)
+    account.toggleQuest('Dragon Slayer I')
+    account.toggleDiary('Ardougne Medium')
+    expect(account.completedQuests).toEqual([])
+    expect(account.completedDiaries).toEqual([])
+  })
+
+  it('ticks the quests a quest requires with it, and says which', () => {
+    const account = useAccountStore()
+    expect(account.toggleQuest('Underground Pass')).toEqual({
+      ticked: true,
+      alsoChanged: ['Biohazard', 'Plague City'],
+    })
+    expect(account.completedQuests).toEqual(['Underground Pass', 'Biohazard', 'Plague City'])
+    expect(account.account.completedQuests.has('Plague City')).toBe(true)
+  })
+
+  it('unticks the quests that require a quest with it, and says which', () => {
+    const account = useAccountStore()
+    account.toggleQuest('Underground Pass')
+    expect(account.toggleQuest('Plague City')).toEqual({
+      ticked: false,
+      alsoChanged: ['Biohazard', 'Underground Pass'],
+    })
+    expect(account.completedQuests).toEqual([])
+    expect(account.declinedQuests).toEqual([])
+  })
+
+  it('takes a "done" answer in as a tick and a "not yet" as something not to ask again', () => {
+    const account = useAccountStore()
+    expect(account.answerQuestion({ kind: 'quest', name: 'Biohazard' }, true)).toEqual([
+      'Plague City',
+    ])
+    expect(account.answerQuestion({ kind: 'quest', name: 'Bone Voyage' }, false)).toEqual([])
+    expect(account.answerQuestion({ kind: 'diary', name: 'Desert Hard' }, false)).toEqual([])
+    expect(account.answerQuestion({ kind: 'diary', name: 'Kandarin Easy' }, true)).toEqual([])
+
+    expect(account.completedQuests).toEqual(['Biohazard', 'Plague City'])
+    expect(account.completedDiaries).toEqual(['Kandarin Easy'])
+    expect(account.declinedQuests).toEqual(['Bone Voyage'])
+    expect(account.declinedDiaries).toEqual(['Desert Hard'])
+    expect(useSavedState().savedState.value).toMatchObject({
+      declinedQuests: ['Bone Voyage'],
+      declinedDiaries: ['Desert Hard'],
+    })
+  })
+
+  it('forgets a "not yet" when the quest or the tier is ticked later, wherever that happens', () => {
+    const account = useAccountStore()
+    account.answerQuestion({ kind: 'quest', name: 'Plague City' }, false)
+    account.answerQuestion({ kind: 'quest', name: 'Bone Voyage' }, false)
+    account.answerQuestion({ kind: 'diary', name: 'Desert Hard' }, false)
+
+    // ticking a quest that requires it settles Plague City too
+    account.toggleQuest('Biohazard')
+    account.toggleDiary('Desert Hard')
+    expect(account.declinedQuests).toEqual(['Bone Voyage'])
+    expect(account.declinedDiaries).toEqual([])
+
+    account.recordCompleted(['Bone Voyage'], [])
+    expect(account.declinedQuests).toEqual([])
+  })
+
+  it('asks the questions the rules say are worth asking, and fewer after each answer', () => {
+    const { account } = loadedStores()
+    const before = account.planQuestions
+    const [first] = before.savingHours
+    expect(first?.requirement).toEqual({ kind: 'quest', name: 'Sins of the Father' })
+    if (!first) return
+
+    account.answerQuestion(first.requirement, false)
+    const after = account.planQuestions
+    expect(after.savingHours.map((question) => question.requirement.name)).not.toContain(
+      'Sins of the Father',
+    )
+    expect(after.savingHours.length).toBeLessThan(before.savingHours.length)
+    // the smaller questions are a round of their own, and this answer was not one of them
+    expect(after.smaller.length).toBeGreaterThan(0)
+    expect(after.smaller).toEqual(before.smaller)
+    // an answer changes no hours unless it is a yes
+    expect(account.maxProgress.hoursLeft).toBe(maxProgress(account.account).hoursLeft)
+  })
+
+  it('takes the hours a yes saves off the hours to max, to the figure the question gave', () => {
+    const { account } = loadedStores()
+    const [first] = account.planQuestions.savingHours
+    if (!first) throw new Error('the fixture account has nothing to ask')
+    const hoursBefore = account.maxProgress.hoursLeft
+
+    account.answerQuestion(first.requirement, true)
+    expect(hoursBefore - account.maxProgress.hoursLeft).toBeCloseTo(first.hoursSaved, 6)
+  })
+
+  it('has the two all-done shortcuts', () => {
+    const account = useAccountStore()
+    account.setAllQuests(true)
+    account.setAllDiaries(true)
+    expect(account.account.allQuests).toBe(true)
+    expect(account.account.allDiaries).toBe(true)
+    account.setAllQuests(false)
+    expect(account.account.allQuests).toBe(false)
+  })
+
+  it('keeps a skill out of deals, once, and lets it back in', () => {
+    const account = useAccountStore()
+    account.setSkillExcluded('agility', true)
+    account.setSkillExcluded('agility', true)
+    expect(account.preferences.excludedSkills).toEqual(['agility'])
+    expect(account.account.preferences.excludedSkills.has('agility')).toBe(true)
+    account.setSkillExcluded('agility', false)
+    expect(account.preferences.excludedSkills).toEqual([])
+  })
+
+  it('logs a reset as done now', () => {
+    const account = useAccountStore()
+    account.markResetDone('herb')
+    expect(account.resetLog).toEqual({ herb: fixture.now })
+  })
+
+  it('starts a new account when the name changes, keeping ticks and preferences', () => {
+    const { account, session, history } = loadedStores()
+    account.toggleQuest('Dragon Slayer I')
+    account.setPreference('mood', 'afk')
+    session.deal()
+    const quests = account.completedQuests
+
+    expect(account.setName('  Someone Else ')).toBe(true)
+
+    expect(account.name).toBe('Someone Else')
+    expect(account.hiscores).toBeNull()
+    expect(account.accountType).toBeNull()
+    expect(session.session).toBeNull()
+    expect(session.recentSkills).toEqual([])
+    expect(history.entries).toEqual([])
+    expect(history.snapshots).toEqual([])
+    expect(account.completedQuests).toBe(quests)
+    expect(account.preferences.mood).toBe('afk')
+  })
+
+  it('changes nothing when the name is the one it has', () => {
+    const { account, history } = loadedStores()
+    expect(account.setName(` ${account.name} `)).toBe(false)
+    expect(account.hiscores).not.toBeNull()
+    expect(history.snapshots).toHaveLength(fixture.snapshots.length)
+  })
+
+  it('forgets everything', () => {
+    const { account, session, savedState } = loadedStores()
+    session.deal()
+    account.forget()
+    expect(savedState.value).toEqual(blankSave())
+    expect(useHistoryStore().snapshots).toEqual([])
+  })
+})
+
+describe('the session store', () => {
+  it('has nothing live before a deal', () => {
+    const { session } = loadedStores()
+    expect(session.session).toBeNull()
+    expect(session.liveBlockIndex).toBeNull()
+    expect(session.liveSkill).toBeNull()
+    expect(session.isFinished).toBe(false)
+  })
+
+  it('deals a session of the length asked for and remembers the skills it dealt', () => {
+    const { account, session } = loadedStores()
+    account.setPreference('minutes', 120)
+    session.deal()
+    expect(session.session?.minutes).toBe(120)
+    expect(session.session?.startedAt).toBe(fixture.now)
+    expect(session.session?.blocks.length).toBeGreaterThan(0)
+    const dealtSkills = session.session?.blocks.flatMap((block) =>
+      block.kind === 'skill' ? [block.skill] : [],
+    )
+    expect(session.recentSkills.slice(-(dealtSkills?.length ?? 0))).toEqual(dealtSkills)
+    expect(session.liveBlockIndex).toBe(0)
+  })
+
+  it('times one block at a time, and the running block is the live one', () => {
+    const { session } = loadedStores()
+    session.deal()
+    session.toggleBlock(1)
+    expect(session.liveBlockIndex).toBe(1)
+    vi.advanceTimersByTime(60_000)
+    session.toggleBlock(0)
+    expect(session.session?.blocks[1]?.runningSince).toBeNull()
+    expect(session.session?.blocks[1]?.elapsed).toBe(60_000)
+    expect(session.liveBlockIndex).toBe(0)
+  })
+
+  it('moves on to the next block when one is done, and logs a finished reset', () => {
+    const { account, session } = loadedStores()
+    account.setPreference('includeResets', true)
+    session.deal()
+    const first = session.session?.blocks[0]
+    session.completeBlock(0)
+    expect(session.session?.blocks[0]?.done).toBe(true)
+    expect(session.liveBlockIndex).toBe(1)
+    if (first?.kind === 'reset') expect(account.resetLog[first.resetKey]).toBe(fixture.now)
+  })
+
+  it('swaps a skill block for another skill, and says when it cannot', () => {
+    const { account, session } = loadedStores()
+    account.setPreference('includeResets', false)
+    account.setPreference('includeWildcard', false)
+    session.deal()
+    const before = session.session?.blocks[0]
+    expect(session.swapBlock(0)).toBe(true)
+    const after = session.session?.blocks[0]
+    expect(after?.kind).toBe('skill')
+    expect(after).not.toEqual(before)
+    // there is no block 99 to swap
+    expect(session.swapBlock(99)).toBe(false)
+  })
+
+  it('finishes: stops the clocks, tallies the gains and files the session in the history', () => {
+    const { account, session, history } = loadedStores()
+    const sessionsBefore = history.entries.length
+    session.deal()
+    session.toggleBlock(0)
+    vi.advanceTimersByTime(10 * 60_000)
+    session.pauseAll()
+    expect(session.session?.blocks[0]?.elapsed).toBe(10 * 60_000)
+
+    // the player logs out and the hiscores catch up: 5,000 more Mining XP
+    const stats = account.hiscores ?? raise('the fixture has no hiscores')
+    const mining = stats.skills.mining
+    account.applyHiscores({
+      ...stats,
+      skills: { ...stats.skills, mining: { ...mining, xp: mining.xp + 5000 } },
+    })
+    const entry = session.finish()
+
+    expect(entry?.gains).toEqual({ mining: 5000 })
+    expect(entry?.totalXp).toBe(5000)
+    expect(entry?.elapsed).toBe(10 * 60_000)
+    expect(session.isFinished).toBe(true)
+    expect(session.session?.tally).toEqual({ gains: { mining: 5000 }, totalXp: 5000, levels: {} })
+    expect(session.liveBlockIndex).toBeNull()
+    expect(history.entries).toHaveLength(sessionsBefore + 1)
+    expect(history.entries[0]).toEqual(entry)
+    // a finished session cannot be finished twice
+    expect(session.finish()).toBeNull()
+    expect(history.entries).toHaveLength(sessionsBefore + 1)
+  })
+
+  it('lists the skills that gained a level in the finished session', () => {
+    const { session, restore } = loadedStores()
+    session.deal()
+    const dealt = session.session ?? raise('nothing was dealt')
+    restore({
+      ...fixtureSave(),
+      session: {
+        ...dealt,
+        endedAt: fixture.now,
+        tally: { gains: { ranged: 20_000, magic: 9000 }, totalXp: 29_000, levels: { ranged: 1 } },
+      },
+    })
+    expect(session.levelledSkills).toEqual(['ranged'])
+  })
+})
+
+describe('the history store', () => {
+  it("reads pace, daily gains and the streak from the domain's rules", () => {
+    const { history } = loadedStores()
+    const gains = history.dailyGains(14, fixture.now)
+    expect(gains).toHaveLength(14)
+    expect(gains.at(-1)?.day).toBe(history.dailyGains(1, fixture.now)[0]?.day)
+    expect(history.pace(7, undefined, fixture.now).xpPerDay).toBeGreaterThan(0)
+    expect(history.pace(7, 'mining', fixture.now).xpPerDay).toBeLessThanOrEqual(
+      history.pace(7, undefined, fixture.now).xpPerDay,
+    )
+    expect(history.dayStreak(fixture.now)).toBeGreaterThanOrEqual(0)
+  })
+
+  it('takes the time to be now when it is not given', () => {
+    const { history } = loadedStores()
+    expect(history.dailyGains(14)).toEqual(history.dailyGains(14, fixture.now))
+    expect(history.dayStreak()).toBe(history.dayStreak(fixture.now))
+  })
+
+  it('has no pace without snapshots', () => {
+    const history = useHistoryStore()
+    expect(history.pace(7)).toEqual({ xpPerDay: 0, days: 0 })
+    expect(history.dayStreak()).toBe(0)
+  })
+})
+
+function raise(message: string): never {
+  throw new Error(message)
+}

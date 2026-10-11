@@ -1,0 +1,83 @@
+// Design tokens. Every colour, font and radius used by a component comes from here.
+// The one exception is a skill's cape colour, which a component receives as an inline custom property.
+:root {
+  // surfaces, darkest to lightest
+  --color-black: #000;
+  // the empty track of an XP bar
+  --color-well: #0b0907;
+  // the dark line around a session slot
+  --color-slot-edge: #0c0a08;
+  --color-stage: #100d0b;
+  --color-ground: #191411;
+  --color-slot: #1f1915;
+  --color-panel: #241d18;
+  --color-raised: #2e2620;
+  --color-selected: #3a3027;
+  --color-control: #40352c;
+  --color-control-hover: #524438;
+  --color-edge: #3b3129;
+  --color-edge-strong: #57493c;
+
+  // the band the rack hangs in: a glow from above that falls off to the stage colour
+  --color-stage-glow: #3a2a1f;
+  --color-stage-falloff: #1b1411;
+  // the dimmed page behind a dialog
+  --color-scrim: rgb(10 8 6 / 78%);
+
+  // text
+  --color-text-strong: #fff;
+  --color-text: #f0e2c4;
+  --color-text-muted: #b9ab92;
+  --color-text-faint: #9a8d78;
+  --color-ink: #16120f;
+
+  // Stat yellow is the brand's one colour: the yellow the game writes levels in.
+  // Reserved for the wordmark's 9s, the icon tile, the player's numbers, the active tab,
+  // the one primary action and the live slot. See DESIGN.md before using it anywhere else.
+  --color-stat: #ffff00;
+  --color-stat-hover: #ffff66;
+  --color-stat-edge: #c2bd00;
+  // the part of the icon's ring that progress to max has not reached yet
+  --color-stat-unfilled: #7d7a0a;
+
+  // status
+  --color-due: #3bd14a;
+  --color-warning: #ff8b7a;
+
+  // borrowed from the game: the brass rail and the parchment dialog
+  --color-brass-light: #d9b56a;
+  --color-brass: #b08a45;
+  --color-brass-dark: #6f5425;
+  --color-parchment: #d8ccb4;
+  --color-parchment-ink: #00007f;
+  --color-parchment-edge: #0e0c09;
+  --color-parchment-outline: #5d5444;
+  // what a block with no skill wears where a skill would wear its cape colour
+  --color-cape-plain: #2c241d;
+  // the one glow in the system: a cape at 99
+  --color-cape-glow: rgb(255 214 90 / 60%);
+
+  // shadows belong to capes and overlays only; a surface at rest has an edge instead
+  --shadow-rail: 0 2px 0 rgb(0 0 0 / 60%);
+  --shadow-cape-hanging: 0 8px 10px rgb(0 0 0 / 45%);
+  --shadow-cape-forward: 0 10px 14px rgb(0 0 0 / 70%);
+  --shadow-dialog: 0 24px 60px rgb(0 0 0 / 60%);
+  --shadow-toast: 0 12px 32px rgb(0 0 0 / 50%);
+
+  // type: words in Figtree, the player's numbers in the RuneScape font, the wordmark in Poppins
+  --font-text: Figtree, 'Segoe UI', system-ui, sans-serif;
+  --font-wordmark: Poppins, var(--font-text);
+  --font-game: RS, var(--font-text);
+  --font-game-bold: RSB, RS, var(--font-text);
+
+  --radius: 4px;
+  --page-width: 1320px;
+  --page-gutter: 32px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 760px) {
+  :root {
+    --page-gutter: 16px;
+  }
+}

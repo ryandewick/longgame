@@ -1,0 +1,13 @@
+// Global styles, in order: tokens, fonts, page defaults, then the shared blocks.
+// Component blocks live in their own .vue files.
+@use 'tokens';
+@use 'fonts';
+@use 'base';
+@use 'view-transitions';
+@use 'blocks/layout';
+@use 'blocks/button';
+@use 'blocks/chip';
+@use 'blocks/game-number';
+@use 'blocks/field';
+@use 'blocks/data-table';
+@use 'blocks/text';

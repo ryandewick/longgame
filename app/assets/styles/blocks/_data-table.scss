@@ -1,0 +1,114 @@
+// data-table: one rule under the head, banded rows, no hairline under every row.
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+
+  &__scroller {
+    overflow-x: auto;
+  }
+
+  &__heading {
+    padding: 0 12px 9px;
+    border-bottom: 1px solid var(--color-edge-strong);
+    color: var(--color-text-faint);
+    font: 600 13px/1.2 var(--font-text);
+    text-align: left;
+    vertical-align: bottom;
+    white-space: nowrap;
+
+    &--number {
+      text-align: right;
+    }
+  }
+
+  &__cell {
+    padding: 10px 12px;
+    vertical-align: middle;
+
+    &:first-child {
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+
+    &:last-child {
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    &--top {
+      vertical-align: top;
+    }
+
+    &--number {
+      font-weight: 600;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    &--actions {
+      width: 1%;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    &--icon {
+      width: 1%;
+      padding-right: 0;
+    }
+
+    &--nowrap {
+      white-space: nowrap;
+    }
+  }
+
+  // Row states colour the row's cells. The row modifier is set in the template, so the
+  // descendant selector here stays inside this one block.
+  &__row--banded &__cell {
+    background: var(--color-slot);
+  }
+
+  &__row--selected &__cell {
+    background: var(--color-selected);
+  }
+
+  &__row--locked &__cell,
+  &__row--locked &__title {
+    color: var(--color-text-faint);
+  }
+
+  // a row's main line, and the smaller line under it
+  &__title {
+    color: var(--color-text-strong);
+    font: 700 16px/1.25 var(--font-text);
+  }
+
+  &__detail {
+    display: block;
+    max-width: 72ch;
+    margin-top: 2px;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  &__needs {
+    color: var(--color-warning);
+    font-style: normal;
+  }
+
+  @media (max-width: 760px) {
+    &__heading,
+    &__cell {
+      padding-inline: 8px;
+    }
+
+    // an icon still sits tight against the cell after it
+    &__cell--icon {
+      padding-right: 0;
+    }
+
+    &__cell--nowrap {
+      white-space: normal;
+    }
+  }
+}

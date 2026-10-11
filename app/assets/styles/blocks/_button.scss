@@ -1,0 +1,73 @@
+// button: every pressable action. At most one primary button per screen (it is stat yellow).
+.button {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-control);
+  color: var(--color-text);
+  font: 700 14px/1.2 var(--font-text);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    color 0.12s,
+    transform 0.08s;
+
+  &:hover {
+    background: var(--color-control-hover);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background: var(--color-stat);
+    box-shadow: inset 0 -3px 0 var(--color-stat-edge);
+    color: var(--color-ink);
+
+    &:hover {
+      background: var(--color-stat-hover);
+    }
+  }
+
+  &--small {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  &--ghost {
+    padding-inline: 8px;
+    background: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      background: none;
+      color: var(--color-text-strong);
+    }
+  }
+
+  &--danger:hover {
+    background: var(--color-warning);
+    color: var(--color-ink);
+  }
+}
+
+// action-row: a line of buttons with any help text beside them.
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+
+  &--end {
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,49 @@
+// field: a labelled control with optional help text. input: the text box itself.
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__label {
+    color: var(--color-text-strong);
+    font: 700 15px/1.2 var(--font-text);
+  }
+
+  &__help {
+    color: var(--color-text-faint);
+    font-size: 13px;
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.input {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-stage);
+  box-shadow: inset 0 0 0 1px var(--color-edge-strong);
+  color: var(--color-text-strong);
+  font: 16px/1.3 var(--font-text);
+
+  &::placeholder {
+    color: var(--color-text-faint);
+  }
+
+  &--wide {
+    max-width: none;
+  }
+
+  &--multiline {
+    font-size: 15px;
+    line-height: 1.4;
+    resize: vertical;
+  }
+}

@@ -1,0 +1,68 @@
+// section-heading: a title with a quieter aside on the same line.
+.section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin: 26px 0 10px;
+
+  &--first {
+    margin-top: 0;
+  }
+
+  &__title {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0;
+
+    &--page {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  &__aside {
+    color: var(--color-text-faint);
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+// tag: a small label on a row ("Best now", "Run", "Locked").
+.tag {
+  display: inline-block;
+  padding: 4px 7px;
+  border-radius: var(--radius);
+  background: var(--color-raised);
+  color: var(--color-text);
+  font: 700 12px/1 var(--font-text);
+  white-space: nowrap;
+
+  // a state that is settled or current ("Done", "Asking now"): bone, like a ticked box
+  &--filled {
+    background: var(--color-text);
+    color: var(--color-ink);
+  }
+}
+
+// note: explanatory text under or beside the main content.
+.note {
+  max-width: 72ch;
+  color: var(--color-text-faint);
+  font-size: 13px;
+
+  &--lead {
+    max-width: 74ch;
+    color: var(--color-text);
+    font: 600 16px/1.45 var(--font-text);
+  }
+
+  &__strong {
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+}

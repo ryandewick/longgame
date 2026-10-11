@@ -1,0 +1,78 @@
+// Page-level defaults. Nothing here is a component.
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  background: var(--color-ground);
+  scrollbar-color: var(--color-edge-strong) var(--color-stage);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-ground);
+  color: var(--color-text);
+  font: 15px/1.5 var(--font-text);
+  caret-color: var(--color-stat);
+  -webkit-font-smoothing: antialiased;
+}
+
+// A maximised window on a 1440p monitor: scale the whole page rather than leave it small in the middle.
+@media (min-width: 2000px) {
+  body {
+    min-height: calc(100vh / 1.25);
+    zoom: 1.25;
+  }
+}
+
+::selection {
+  background: var(--color-stat);
+  color: var(--color-ink);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--color-text-strong);
+  font-family: var(--font-text);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--color-text);
+  text-underline-offset: 3px;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-stat);
+  outline-offset: 2px;
+}
+
+// The one sanctioned use of !important: an accessibility preference has to beat every component.
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
