@@ -16,6 +16,10 @@
   // The Worker's name. Deploying under this name replaces the Worker that serves longgame.tools.
   "name": "longgame",
 
+  // The address the Worker answers at. A custom domain is the whole hostname: Cloudflare makes the DNS record and
+  // the certificate for it when this is deployed. The zone longgame.tools has to be on the same Cloudflare account.
+  "routes": [{ "pattern": "longgame.tools", "custom_domain": true }],
+
   // Left to the build:
   //   compatibility_date   taken from `compatibilityDate` in nuxt.config.ts, so the date is written in one place.
   //   compatibility_flags  none. The Worker uses nothing from Node, so `nodejs_compat` stays off (nuxt.config.ts).
