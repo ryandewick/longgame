@@ -1,0 +1,44 @@
+// Long Game on Cloudflare: one Worker with static assets. Cloudflare serves the files in .output/public itself
+// (the pages written out by the build, /assets, /_nuxt). Any other address runs the Worker, which answers /api/*
+// and draws the pages that are not written out, the "not found" page among them.
+//
+//   npm run build:site      builds .output with Nitro's cloudflare-module preset
+//   npm run preview:site    runs that build under Cloudflare's own runtime on this machine; no login needed
+//   npm run deploy          builds, then publishes
+//
+// This file holds only the settings that are ours. The build adds the ones it knows better (`main`, `assets`,
+// `compatibility_date`, `compatibility_flags`) and writes the whole configuration to .output/server/wrangler.json.
+// Wrangler is sent there by .wrangler/deploy/config.json, which the build also writes, so every wrangler command is
+// run from the top of the project and prints "Using redirected Wrangler configuration".
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  // The Worker's name. Deploying under this name replaces the Worker that serves longgame.tools.
+  "name": "longgame",
+
+  // Left to the build:
+  //   compatibility_date   taken from `compatibilityDate` in nuxt.config.ts, so the date is written in one place.
+  //   compatibility_flags  none. The Worker uses nothing from Node, so `nodejs_compat` stays off (nuxt.config.ts).
+  //   assets               the folder and the binding name. Do not add `"not_found_handling": "404-page"` here.
+  //                        With it, Cloudflare answers every browser navigation that matches no file with
+  //                        404.html and never runs the Worker, which turns /skills/mining and /methods/mining
+  //                        into "not found". Without it those reach the Worker, and so does a wrong address,
+  //                        for which the Worker draws the same "not found" page with status 404.
+
+  // Settings that are not secret. Nitro reads a variable named NUXT_... into the runtimeConfig value of the same
+  // name (nuxt.config.ts). A deploy replaces any variables set by hand in the Cloudflare dashboard with these.
+  "vars": {
+    // the site's own address: it goes in the User-Agent sent to Jagex and GitHub
+    "NUXT_PUBLIC_SITE_URL": "https://longgame.tools",
+    // the repository that receives method suggestions as issues
+    "NUXT_PUBLIC_GITHUB_REPO": "ryandewick/longgame",
+  },
+
+  // One secret, which is never written in a file that is committed:
+  //   NUXT_GITHUB_TOKEN   a fine-grained GitHub token with "Issues: Read and write" on the repository above.
+  //                       Store it once with:   npx wrangler secret put NUXT_GITHUB_TOKEN
+  //                       A deploy leaves secrets alone. Until it is set, the suggestion form answers
+  //                       "Suggestions are not switched on yet."
+  // To try the form under `npm run preview:site`, put a line NUXT_GITHUB_TOKEN=... in a file named .dev.vars at
+  // the top of the project. Git ignores that file.
+}
