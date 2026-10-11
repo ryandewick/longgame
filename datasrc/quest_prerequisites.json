@@ -1,0 +1,1400 @@
+{
+ "Animal Magnetism": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Ernest the Chicken",
+   "Priest in Peril",
+   "The Restless Ghost"
+  ]
+ },
+ "Another Slice of H.A.M.": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Death to the Dorgeshuun",
+   "The Dig Site",
+   "The Giant Dwarf"
+  ]
+ },
+ "The Ascent of Arceuus": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "At First Light": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Children of the Sun",
+   "Eagles' Peak"
+  ]
+ },
+ "Below Ice Mountain": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Between a Rock...": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Dwarf Cannon",
+   "Fishing Contest"
+  ]
+ },
+ "Big Chompy Bird Hunting": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Biohazard": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Plague City"
+  ]
+ },
+ "Black Knights' Fortress": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Bone Voyage": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Dig Site"
+  ]
+ },
+ "Cabin Fever": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Pirate's Treasure",
+   "Rum Deal"
+  ]
+ },
+ "Children of the Sun": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Client of Kourend": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "X Marks the Spot"
+  ]
+ },
+ "Clock Tower": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Cold War": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Contact!": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Prince Ali Rescue",
+   "Icthlarin's Little Helper"
+  ]
+ },
+ "Cook's Assistant": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Corsair Curse": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Creature of Fenkenstrain": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Priest in Peril",
+   "The Restless Ghost"
+  ]
+ },
+ "The Curse of Arrav": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Defender of Varrock",
+   "Troll Romance"
+  ]
+ },
+ "Darkness of Hallowvale": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "In Aid of the Myreque"
+  ]
+ },
+ "Death on the Isle": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Death Plateau": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Death to the Dorgeshuun": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Lost Tribe"
+  ]
+ },
+ "Defender of Varrock": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Shield of Arrav",
+   "Temple of Ikov",
+   "Below Ice Mountain",
+   "Family Crest",
+   "Garden of Tranquillity",
+   "What Lies Below",
+   "Romeo & Juliet",
+   "Demon Slayer"
+  ]
+ },
+ "Demon Slayer": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Depths of Despair": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "Desert Treasure I": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Dig Site",
+   "Temple of Ikov",
+   "The Tourist Trap",
+   "Troll Stronghold",
+   "Priest in Peril",
+   "Waterfall Quest"
+  ]
+ },
+ "Desert Treasure II - The Fallen Empire": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Desert Treasure I",
+   "Secrets of the North",
+   "Enakhra's Lament",
+   "Temple of the Eye",
+   "The Garden of Death",
+   "Below Ice Mountain",
+   "His Faithful Servants"
+  ]
+ },
+ "Devious Minds": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Doric's Quest",
+   "Enter the Abyss",
+   "Troll Stronghold",
+   "Wanted!"
+  ]
+ },
+ "The Dig Site": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Druidic Ritual"
+  ]
+ },
+ "Doric's Quest": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Dragon Slayer I": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Dragon Slayer II": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Animal Magnetism",
+   "Barbarian Firemaking",
+   "Bone Voyage",
+   "Client of Kourend",
+   "Dream Mentor",
+   "Ghosts Ahoy",
+   "Legends' Quest",
+   "A Tail of Two Cats"
+  ]
+ },
+ "Dream Mentor": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Eadgar's Ruse",
+   "Lunar Diplomacy"
+  ]
+ },
+ "Druidic Ritual": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Dwarf Cannon": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Eadgar's Ruse": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Druidic Ritual",
+   "Troll Stronghold"
+  ]
+ },
+ "Eagles' Peak": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Elemental Workshop I": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Elemental Workshop II": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Elemental Workshop I"
+  ]
+ },
+ "Enakhra's Lament": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Enlightened Journey": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Ernest the Chicken": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Ethically Acquired Antiquities": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Children of the Sun",
+   "Shield of Arrav"
+  ]
+ },
+ "The Eyes of Glouphrie": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Grand Tree"
+  ]
+ },
+ "Fairytale I - Growing Pains": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Lost City",
+   "Nature Spirit"
+  ]
+ },
+ "Fairytale II - Cure a Queen": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Druidic Ritual",
+   "Fairytale I - Growing Pains"
+  ]
+ },
+ "Family Crest": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Feud": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Fight Arena": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Fishing Contest": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Forgettable Tale...": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Giant Dwarf",
+   "Fishing Contest"
+  ]
+ },
+ "The Forsaken Tower": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "The Fremennik Exiles": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Fremennik Isles",
+   "Lunar Diplomacy",
+   "Mountain Daughter",
+   "Heroes' Quest"
+  ]
+ },
+ "The Fremennik Isles": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Fremennik Trials"
+  ]
+ },
+ "The Fremennik Trials": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Garden of Death": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Garden of Tranquillity": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Creature of Fenkenstrain"
+  ]
+ },
+ "Gertrude's Cat": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Getting Ahead": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Ghosts Ahoy": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Priest in Peril",
+   "The Restless Ghost"
+  ]
+ },
+ "The Giant Dwarf": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Goblin Diplomacy": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Golem": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Grand Tree": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Great Brain Robbery": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Cabin Fever",
+   "Creature of Fenkenstrain",
+   "Recipe for Disaster/Freeing Pirate Pete"
+  ]
+ },
+ "Grim Tales": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Druidic Ritual",
+   "Witch's House"
+  ]
+ },
+ "The Hand in the Sand": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Haunted Mine": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Priest in Peril"
+  ]
+ },
+ "Hazeel Cult": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Heart of Darkness": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Twilight's Promise"
+  ]
+ },
+ "Heroes' Quest": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Dragon Slayer I",
+   "Druidic Ritual",
+   "Lost City",
+   "Merlin's Crystal",
+   "Shield of Arrav"
+  ]
+ },
+ "Holy Grail": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Merlin's Crystal"
+  ]
+ },
+ "Horror from the Deep": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Alfred Grimhand's Barcrawl"
+  ]
+ },
+ "Icthlarin's Little Helper": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Gertrude's Cat"
+  ]
+ },
+ "Imp Catcher": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "In Aid of the Myreque": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "In Search of the Myreque"
+  ]
+ },
+ "In Search of the Myreque": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Nature Spirit"
+  ]
+ },
+ "Jungle Potion": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Druidic Ritual"
+  ]
+ },
+ "King's Ransom": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Black Knights' Fortress",
+   "Holy Grail",
+   "Murder Mystery",
+   "One Small Favour"
+  ]
+ },
+ "A Kingdom Divided": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Architectural Alliance",
+   "The Ascent of Arceuus",
+   "The Depths of Despair",
+   "Druidic Ritual",
+   "The Forsaken Tower",
+   "The Queen of Thieves",
+   "Tale of the Righteous"
+  ]
+ },
+ "The Knight's Sword": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Legends' Quest": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Family Crest",
+   "Heroes' Quest",
+   "Shilo Village",
+   "Underground Pass",
+   "Waterfall Quest"
+  ]
+ },
+ "Lost City": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Lost Tribe": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Goblin Diplomacy",
+   "Rune Mysteries"
+  ]
+ },
+ "Lunar Diplomacy": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Fremennik Trials",
+   "Lost City",
+   "Rune Mysteries",
+   "Shilo Village"
+  ]
+ },
+ "Making Friends with My Arm": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Cold War",
+   "My Arm's Big Adventure",
+   "Romeo & Juliet",
+   "Swan Song"
+  ]
+ },
+ "Making History": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Priest in Peril",
+   "The Restless Ghost"
+  ]
+ },
+ "Meat and Greet": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Merlin's Crystal": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Misthalin Mystery": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Monk's Friend": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Monkey Madness I": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Grand Tree",
+   "Tree Gnome Village"
+  ]
+ },
+ "Monkey Madness II": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Enlightened Journey",
+   "The Eyes of Glouphrie",
+   "Recipe for Disaster/Freeing King Awowogei",
+   "Troll Stronghold",
+   "Watchtower"
+  ]
+ },
+ "Mountain Daughter": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Mourning's End Part I": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Big Chompy Bird Hunting",
+   "Roving Elves",
+   "Sheep Herder"
+  ]
+ },
+ "Mourning's End Part II": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Mourning's End Part I"
+  ]
+ },
+ "Murder Mystery": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "My Arm's Big Adventure": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Eadgar's Ruse",
+   "The Feud",
+   "Jungle Potion"
+  ]
+ },
+ "Nature Spirit": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Priest in Peril",
+   "The Restless Ghost"
+  ]
+ },
+ "A Night at the Theatre": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "A Taste of Hope"
+  ]
+ },
+ "Observatory Quest": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Olaf's Quest": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Fremennik Trials"
+  ]
+ },
+ "One Small Favour": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Rune Mysteries",
+   "Shilo Village"
+  ]
+ },
+ "The Path of Glouphrie": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Eyes of Glouphrie",
+   "Waterfall Quest",
+   "Tree Gnome Village"
+  ]
+ },
+ "Perilous Moons": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Twilight's Promise"
+  ]
+ },
+ "Pirate's Treasure": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Plague City": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "A Porcine of Interest": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Priest in Peril": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Prince Ali Rescue": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Queen of Thieves": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "Rag and Bone Man I": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Rag and Bone Man II": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Fremennik Trials",
+   "Horror from the Deep",
+   "Rag and Bone Man I",
+   "Skippy and the Mogres",
+   "Started:Creature of Fenkenstrain",
+   "Started:Waterfall Quest",
+   "Started:Zogre Flesh Eaters"
+  ]
+ },
+ "Ratcatchers": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Icthlarin's Little Helper",
+   "Started:The Giant Dwarf"
+  ]
+ },
+ "Recipe for Disaster": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Recipe for Disaster/Defeating the Culinaromancer"
+  ]
+ },
+ "Recipe for Disaster/Another Cook's Quest": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Cook's Assistant"
+  ]
+ },
+ "Recipe for Disaster/Freeing the Mountain Dwarf": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Fishing Contest",
+   "Recipe for Disaster/Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster/Freeing the Goblin generals": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Goblin Diplomacy",
+   "Recipe for Disaster/Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster/Freeing Pirate Pete": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Recipe for Disaster/Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster/Freeing the Lumbridge Guide": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Big Chompy Bird Hunting",
+   "Biohazard",
+   "Demon Slayer",
+   "Murder Mystery",
+   "Nature Spirit",
+   "Recipe for Disaster/Another Cook's Quest",
+   "Witch's House"
+  ]
+ },
+ "Recipe for Disaster/Freeing Evil Dave": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Gertrude's Cat",
+   "Recipe for Disaster/Another Cook's Quest",
+   "Shadow of the Storm"
+  ]
+ },
+ "Recipe for Disaster/Freeing Skrach Uglogwee": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Big Chompy Bird Hunting",
+   "Recipe for Disaster/Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster/Freeing Sir Amik Varze": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Recipe for Disaster/Another Cook's Quest",
+   "Started:Legends' Quest"
+  ]
+ },
+ "Recipe for Disaster/Freeing King Awowogei": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Monkey Madness I",
+   "Recipe for Disaster/Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster/Defeating the Culinaromancer": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Desert Treasure I",
+   "Horror from the Deep",
+   "Recipe for Disaster/Freeing the Mountain Dwarf",
+   "Recipe for Disaster/Freeing the Goblin generals",
+   "Recipe for Disaster/Freeing Pirate Pete",
+   "Recipe for Disaster/Freeing the Lumbridge Guide",
+   "Recipe for Disaster/Freeing Evil Dave",
+   "Recipe for Disaster/Freeing Skrach Uglogwee",
+   "Recipe for Disaster/Freeing Sir Amik Varze",
+   "Recipe for Disaster/Freeing King Awowogei"
+  ]
+ },
+ "Recruitment Drive": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Black Knights' Fortress",
+   "Druidic Ritual"
+  ]
+ },
+ "Regicide": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Underground Pass"
+  ]
+ },
+ "The Restless Ghost": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Ribbiting Tale of a Lily Pad Labour Dispute": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Romeo & Juliet": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Roving Elves": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Regicide",
+   "Waterfall Quest"
+  ]
+ },
+ "Royal Trouble": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Throne of Miscellania"
+  ]
+ },
+ "Rum Deal": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Priest in Peril",
+   "Zogre Flesh Eaters"
+  ]
+ },
+ "Rune Mysteries": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Scorpion Catcher": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Alfred Grimhand's Barcrawl"
+  ]
+ },
+ "Sea Slug": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Secrets of the North": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Making Friends with My Arm",
+   "The General's Shadow",
+   "Devious Minds",
+   "Hazeel Cult"
+  ]
+ },
+ "Shades of Mort'ton": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Druidic Ritual",
+   "Priest in Peril"
+  ]
+ },
+ "Shadow of the Storm": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Demon Slayer",
+   "The Golem"
+  ]
+ },
+ "Sheep Herder": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Sheep Shearer": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Shield of Arrav": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Shilo Village": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Jungle Potion"
+  ]
+ },
+ "Sins of the Father": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "A Taste of Hope",
+   "Vampyre Slayer"
+  ]
+ },
+ "The Slug Menace": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Sea Slug",
+   "Wanted!"
+  ]
+ },
+ "Song of the Elves": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Druidic Ritual",
+   "Making History",
+   "Mourning's End Part II"
+  ]
+ },
+ "A Soul's Bane": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Spirits of the Elid": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Swan Song": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Garden of Tranquillity",
+   "One Small Favour"
+  ]
+ },
+ "Tai Bwo Wannai Trio": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Jungle Potion"
+  ]
+ },
+ "A Tail of Two Cats": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Icthlarin's Little Helper"
+  ]
+ },
+ "Tale of the Righteous": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "A Taste of Hope": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Darkness of Hallowvale",
+   "Druidic Ritual"
+  ]
+ },
+ "Tears of Guthix": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Temple of Ikov": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Temple of the Eye": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Enter the Abyss"
+  ]
+ },
+ "Throne of Miscellania": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Fremennik Trials",
+   "Heroes' Quest"
+  ]
+ },
+ "The Tourist Trap": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Tower of Life": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Tree Gnome Village": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Tribal Totem": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Troll Romance": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Troll Stronghold"
+  ]
+ },
+ "Troll Stronghold": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Death Plateau"
+  ]
+ },
+ "Twilight's Promise": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Underground Pass": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Biohazard"
+  ]
+ },
+ "Vampyre Slayer": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Wanted!": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Lost Tribe",
+   "Priest in Peril",
+   "Recruitment Drive",
+   "Started:Enter the Abyss"
+  ]
+ },
+ "Watchtower": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Druidic Ritual"
+  ]
+ },
+ "Waterfall Quest": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "What Lies Below": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Rune Mysteries"
+  ]
+ },
+ "While Guthix Sleeps": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Defender of Varrock",
+   "The Path of Glouphrie",
+   "Fight Arena",
+   "Dream Mentor",
+   "The Hand in the Sand",
+   "Wanted!",
+   "Temple of the Eye",
+   "Tears of Guthix",
+   "Nature Spirit",
+   "A Tail of Two Cats"
+  ]
+ },
+ "Witch's Potion": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Witch's House": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "X Marks the Spot": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Zogre Flesh Eaters": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Big Chompy Bird Hunting",
+   "Jungle Potion"
+  ]
+ },
+ "Alfred Grimhand's Barcrawl": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Barbarian Training": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Barbarian Firemaking",
+   "Barbarian Fishing",
+   "Barbarian Herblore",
+   "Barbarian Smithing",
+   "Barbarian Farming"
+  ]
+ },
+ "Bear Your Soul": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Curse of the Empty Lord": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Desert Treasure I",
+   "The Restless Ghost"
+  ]
+ },
+ "Daddy's Home": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "The Enchanted Key": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Making History"
+  ]
+ },
+ "Enter the Abyss": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Rune Mysteries"
+  ]
+ },
+ "Family Pest": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Family Crest"
+  ]
+ },
+ "The Frozen Door": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Desert Treasure I"
+  ]
+ },
+ "The General's Shadow": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Curse of the Empty Lord",
+   "Fight Arena"
+  ]
+ },
+ "His Faithful Servants": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Priest in Peril"
+  ]
+ },
+ "Hopespear's Will": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Started:The Restless Ghost",
+   "Desert Treasure I",
+   "Fairytale II - Cure a Queen",
+   "Land of the Goblins"
+  ]
+ },
+ "In Search of Knowledge": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Into the Tombs": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Beneath Cursed Sands"
+  ]
+ },
+ "Lair of Tarn Razorlor": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Haunted Mine"
+  ]
+ },
+ "Mage Arena I": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Mage Arena II": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Mage Arena I"
+  ]
+ },
+ "Skippy and the Mogres": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Barbarian Firemaking": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Barbarian Farming": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Barbarian Fishing": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Barbarian Herblore": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Druidic Ritual"
+  ]
+ },
+ "Barbarian Smithing": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Tai Bwo Wannai Trio",
+   "Barbarian Firemaking",
+   "Barbarian Fishing"
+  ]
+ },
+ "Knight Waves Training Grounds": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "King's Ransom"
+  ]
+ },
+ "Natural History Quiz": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Rogue Trader": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "The Feud",
+   "Rune Mysteries",
+   "Icthlarin's Little Helper"
+  ]
+ },
+ "Sacred Bone Burner restoration": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Tutorial Island": {
+  "src": "Module:Questreq/data",
+  "requires": []
+ },
+ "Easy Ardougne Diary": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Biohazard",
+   "Rune Mysteries"
+  ]
+ },
+ "Medium Ardougne Diary": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Enlightened Journey",
+   "The Hand in the Sand",
+   "Tower of Life",
+   "Underground Pass",
+   "Started:Fairytale II - Cure a Queen",
+   "Started:Sea Slug",
+   "Started:Watchtower"
+  ]
+ },
+ "Hard Ardougne Diary": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Legends' Quest",
+   "Monkey Madness I",
+   "Mourning's End Part II",
+   "Watchtower "
+  ]
+ },
+ "Elite Ardougne Diary": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Desert Treasure I",
+   "Haunted Mine"
+  ]
+ },
+ "Easy Kandarin Diary": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Started:Elemental Workshop I"
+  ]
+ },
+ "Medium Kandarin Diary": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Easy Kandarin Diary",
+   "Alfred Grimhand's Barcrawl",
+   "Elemental Workshop II",
+   "Started:Fairytale II - Cure a Queen",
+   "Started:Waterfall Quest"
+  ]
+ },
+ "Hard Kandarin Diary": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Medium Kandarin Diary",
+   "Barbarian Firemaking",
+   "Barbarian Fishing",
+   "Barbarian Smithing",
+   "Knight Waves Training Grounds",
+   "Tai Bwo Wannai Trio",
+   "Started:Desert Treasure I"
+  ]
+ },
+ "Elite Kandarin Diary": {
+  "src": "Module:Questreq/data",
+  "requires": [
+   "Hard Kandarin Diary",
+   "Barbarian Training",
+   "Family Crest",
+   "Lunar Diplomacy",
+   "Tai Bwo Wannai Trio"
+  ]
+ },
+ "A Ruff Situation": {
+  "src": "A Ruff Situation",
+  "requires": []
+ },
+ "Beneath Cursed Sands": {
+  "src": "Beneath Cursed Sands",
+  "requires": [
+   "Contact!"
+  ]
+ },
+ "Crab Quest": {
+  "src": "Crab Quest",
+  "requires": []
+ },
+ "Current Affairs": {
+  "src": "Current Affairs",
+  "requires": [
+   "Pandemonium"
+  ]
+ },
+ "Fallen From Grace": {
+  "src": "Fallen From Grace",
+  "requires": [
+   "Pandemonium"
+  ]
+ },
+ "Land of the Goblins": {
+  "src": "Land of the Goblins",
+  "requires": [
+   "Another Slice of H.A.M.",
+   "Fishing Contest"
+  ]
+ },
+ "Pandemonium": {
+  "src": "Pandemonium",
+  "requires": []
+ },
+ "Prying Times": {
+  "src": "Prying Times",
+  "requires": [
+   "Pandemonium",
+   "The Knight's Sword"
+  ]
+ },
+ "Scrambled!": {
+  "src": "Scrambled!",
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Shadows of Custodia": {
+  "src": "Shadows of Custodia",
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Sleeping Giants": {
+  "src": "Sleeping Giants",
+  "requires": []
+ },
+ "The Blood Moon Rises": {
+  "src": "The Blood Moon Rises",
+  "requires": [
+   "A Night at the Theatre",
+   "Sins of the Father"
+  ]
+ },
+ "The Final Dawn": {
+  "src": "The Final Dawn",
+  "requires": [
+   "The Heart of Darkness",
+   "Perilous Moons"
+  ]
+ },
+ "The Ides of Milk": {
+  "src": "The Ides of Milk",
+  "requires": []
+ },
+ "The Red Reef": {
+  "src": "The Red Reef",
+  "requires": [
+   "Troubled Tortugans"
+  ]
+ },
+ "Troubled Tortugans": {
+  "src": "Troubled Tortugans",
+  "requires": [
+   "Pandemonium"
+  ]
+ },
+ "Vale Totems (miniquest)": {
+  "src": "Vale Totems (miniquest)",
+  "requires": [
+   "Children of the Sun"
+  ]
+ }
+}
