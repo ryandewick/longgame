@@ -21,7 +21,6 @@ import {
 } from '#shared/domain/planner'
 import type { DealRequest } from '#shared/domain/planner'
 import { dueResets } from '#shared/domain/resets'
-import { MAX_XP } from '#shared/domain/xp'
 import { accountWith, seededRandom } from './helpers'
 
 vi.mock('#shared/data/methods', () => import('./sample-methods'))
@@ -235,7 +234,8 @@ describe('skillWeight', () => {
   it('puts an unrated method in the middle', () => {
     const account = accountWith()
     const turael = optionNamed(account, 'slayer', 'Turael')
-    const expected = Math.pow(MAX_XP / 40_000 + 1, 0.8) * 0.5
+    // Slayer's hours come from its own fallback bands, not the flat rate
+    const expected = Math.pow(hoursLeft(account, 'slayer') + 1, 0.8) * 0.5
     expect(skillWeight(account, 'slayer', turael, 40, [])).toBeCloseTo(expected, 8)
   })
 

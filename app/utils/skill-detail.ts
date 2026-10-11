@@ -73,9 +73,11 @@ export function bestNowSentence(
   }
 
   const { method } = best
-  // a rate worked out from the account's own levels is an estimate; the rest are the wiki's
-  const rate =
-    (method.computedRate ? 'an estimated ' : '≈') + `${formatShortNumber(best.xpPerHour)}/h`
+  // a rate worked out from the account's own levels is an estimate; the rest are the wiki's.
+  // A method with no rate at all says nothing here: the caveat below owns up to the rough figure.
+  const rate = best.xpPerHour
+    ? ` at ${method.computedRate ? 'an estimated ' : '≈'}${formatShortNumber(best.xpPerHour)}/h`
+    : ''
   const timeLeft = insight.daysLeft
     ? `${Math.round(insight.daysLeft)} days at one of each run a day`
     : formatHours(insight.hoursLeft)
@@ -90,7 +92,7 @@ export function bestNowSentence(
     plain('Best now: '),
     strong(method.name),
     plain(
-      ` at ${rate}${method.timedRun ? ' of time spent on the runs' : ''}, ` +
+      `${rate}${method.timedRun ? ' of time spent on the runs' : ''}, ` +
         `about ${timeLeft} to ${MAX_LEVEL}.${caveats}${pace}`,
     ),
   ]

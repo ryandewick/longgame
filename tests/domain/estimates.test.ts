@@ -1,10 +1,11 @@
 import { describe, expect, it, vi } from 'vitest'
 import type { Account } from '#shared/types/account'
+import { FALLBACK_RATE_BANDS, FALLBACK_XP_PER_HOUR } from '#shared/data/fallback-rates'
 import { SKILL_KEYS } from '#shared/data/skills'
 import {
-  FALLBACK_XP_PER_HOUR,
   dailyRunXpAt,
   daysLeft,
+  fallbackXpPerHour,
   hoursLeft,
   isRoughEstimate,
   maxProgress,
@@ -13,6 +14,27 @@ import { MAX_XP, xpForLevel } from '#shared/domain/xp'
 import { accountWith } from './helpers'
 
 vi.mock('#shared/data/methods', () => import('./sample-methods'))
+
+describe('fallbackXpPerHour', () => {
+  it('is the flat figure for a skill with no bands of its own, whatever the level', () => {
+    expect(fallbackXpPerHour('mining', 1)).toBe(FALLBACK_XP_PER_HOUR)
+    expect(fallbackXpPerHour('mining', 98)).toBe(FALLBACK_XP_PER_HOUR)
+  })
+
+  it('takes Slayer from its own bands, each holding until the next begins', () => {
+    expect(fallbackXpPerHour('slayer', 1)).toBe(5_000)
+    expect(fallbackXpPerHour('slayer', 49)).toBe(5_000)
+    expect(fallbackXpPerHour('slayer', 50)).toBe(16_000)
+    expect(fallbackXpPerHour('slayer', 79)).toBe(24_200)
+    expect(fallbackXpPerHour('slayer', 98)).toBe(28_500)
+  })
+
+  it('never puts a Slayer level above the flat figure, and never lets the rate fall as levels rise', () => {
+    const rates = Array.from({ length: 98 }, (_, index) => fallbackXpPerHour('slayer', index + 1))
+    expect(rates.every((rate) => rate > 0 && rate < FALLBACK_XP_PER_HOUR)).toBe(true)
+    expect(rates.every((rate, index) => index === 0 || rate >= (rates[index - 1] ?? 0))).toBe(true)
+  })
+})
 
 describe('hoursLeft', () => {
   it('takes each level at the best rate usable at that level', () => {
@@ -41,9 +63,25 @@ describe('hoursLeft', () => {
   })
 
   it('uses the fallback rate for levels where nothing usable has a rate', () => {
-    expect(hoursLeft(accountWith(), 'slayer')).toBeCloseTo(MAX_XP / FALLBACK_XP_PER_HOUR, 8)
+    expect(hoursLeft(accountWith(), 'thieving')).toBeCloseTo(MAX_XP / FALLBACK_XP_PER_HOUR, 8)
     const expected = xpForLevel(58) / FALLBACK_XP_PER_HOUR + (MAX_XP - xpForLevel(58)) / 60_000
     expect(hoursLeft(accountWith(), 'fishing')).toBeCloseTo(expected, 8)
+  })
+
+  it('gives Slayer a fallback of its own that rises with level', () => {
+    // nothing in the sample data trains Slayer, so the whole estimate is the fallback
+    const bands = FALLBACK_RATE_BANDS.slayer ?? []
+    const expected = bands.reduce((hours, { fromLevel, xpPerHour }, index) => {
+      const nextLevel = bands[index + 1]?.fromLevel ?? 99
+      return hours + (xpForLevel(nextLevel) - xpForLevel(fromLevel)) / xpPerHour
+    }, 0)
+    expect(hoursLeft(accountWith(), 'slayer')).toBeCloseTo(expected, 8)
+    // level 1 to 50 is a matter of hours on end, not the two and a half the flat rate made it
+    const toFifty =
+      hoursLeft(accountWith(), 'slayer') -
+      hoursLeft(accountWith({ levels: { slayer: 50 } }), 'slayer')
+    expect(toFifty).toBeCloseTo(xpForLevel(50) / 5_000, 8)
+    expect(toFifty).toBeGreaterThan(20)
   })
 
   it('is zero for a maxed skill and for a passive one', () => {

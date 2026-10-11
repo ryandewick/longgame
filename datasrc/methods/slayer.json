@@ -3,7 +3,7 @@
   "methods": [
     {
       "lv": 1,
-      "name": "Turael",
+      "name": "Natural History Quiz",
       "who": "both",
       "int": "active",
       "cost": "free",
@@ -11,8 +11,8 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Burthorpe. Easy, fast tasks but poor XP and no points. Used to start out, to boost points between milestone tasks and to swap out a bad task.",
-      "src": "Slayer training"
+      "note": "Quiz in the Varrock Museum basement. A one-off 1,000 XP takes you from level 1 to 9 with no requirements. Krystilia turns away a level 1 slayer.",
+      "src": "Natural history quiz"
     },
     {
       "lv": 1,
@@ -24,7 +24,20 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Edgeville. Wilderness-only tasks worth 25 points each, the most of any master. Any combat level but can assign hard tasks. Only risk gear you can lose.",
+      "note": "Edgeville. Wilderness-only tasks worth 25 points each. Any combat level, so she can assign hard tasks, but not to a level 1 slayer. Only risk gear you can lose.",
+      "src": "Krystilia"
+    },
+    {
+      "lv": 1,
+      "name": "Turael",
+      "who": "both",
+      "int": "active",
+      "cost": "free",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Burthorpe. Easy, fast tasks but poor XP and no points. Used to start out, to boost points between milestone tasks and to swap out a bad task.",
       "src": "Slayer training"
     },
     {
@@ -76,7 +89,7 @@
       "req": "c:75",
       "run": false,
       "supply": false,
-      "note": "Mount Karuulm. 18 points a task and each task is tied to one location. Use her for milestone tasks. The only master who assigns hydras.",
+      "note": "Mount Karuulm. 18 points a task and each task is tied to one location. Use her for milestone tasks. Assigns hydras, as does Mortimer.",
       "src": "Slayer training"
     },
     {
@@ -98,11 +111,26 @@
       "who": "both",
       "int": "active",
       "cost": "profit",
-      "xph": 0,
+      "xph": 16000,
       "req": "q:Shilo Village;c:100",
       "run": false,
       "supply": false,
-      "note": "Shilo Village. Best master for XP. Tasks the guide says to do run from 30k to 150k an hour with cannon and barrage. 15 points a task.",
+      "note": "Shilo Village. Best master, 15 points a task. Our estimate with no cannon and every task done: burst dust devils, nechryael and smoke devils, melee the rest.",
+      "src": "Ironman Guide/Slayer",
+      "bands": [[50, 16000], [60, 21000], [65, 24500], [80, 27000], [93, 28500]]
+    },
+    {
+      "lv": 65,
+      "name": "Duradel with cannon and barrage",
+      "who": "main",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 33000,
+      "bands": [[65, 33000], [93, 36000]],
+      "req": "q:Shilo Village|Dwarf Cannon|Desert Treasure I;s:magic 70;c:100",
+      "run": false,
+      "supply": false,
+      "note": "Our estimate from the guide: cannon, venator bow and barrage, six tasks blocked, every other task done. Skipping all but its best tasks nears 75k but costs points.",
       "src": "Slayer training"
     },
     {
@@ -115,18 +143,16 @@
       "req": "q:Fallen From Grace;s:sailing 62;c:100",
       "run": false,
       "supply": false,
-      "note": "Wyrmscraig Cavern. Offers a choice of tasks, all with superior variants, plus modifiers. No points unless a modifier gives them. Skips cost 100 points.",
+      "note": "Wyrmscraig Cavern, reached part-way through Fallen From Grace. Choose from two tasks, three after 50. No points without a modifier. Jagex puts his XP close to Duradel.",
       "src": "Mortimer"
     }
   ],
   "unverified": [
-    "All masters: neither Slayer training nor Ironman Guide/Slayer gives a Slayer XP rate per master, only per task for Duradel's list, so every xph is 0",
-    "Duradel: per-task rates in the guide's task summary (cannon, venator bow or barrage) for tasks marked Do are ankou 55,000, araxytes 100,000, bloodveld 80,000-100,000, black dragons 30,000, dagannoth 85,000, dark beasts 42,000, dust devils 100,000-110,000, kalphites 75,000, nechryael 100,000, smoke devils 150,000, suqah 55,000, trolls 50,000, TzHaar 100,000",
-    "Duradel: the Ironman Guide (no cannon) gives lower task rates, for example smoke devils 75,000-80,000, greater nechryael 75,000-95,000, dust devils 65,000-85,000, dagannoth 30,000 melee, dark beasts about 30,000",
-    "Every master except Turael and Krystilia can also be used at 99 Slayer regardless of combat level, which req cannot express",
-    "Krystilia: requirement is 'any level (done at least 1 task)'",
-    "Mortimer: only partial completion of Fallen From Grace is needed; 62 Sailing is the Wyrmscraig requirement mentioned in the guide's wyrm rows, not on Mortimer's own page; the Mortimer page (fetched) gives no XP rate",
-    "Nieve or Steve: points rise to Duradel's 15 with the elite Western Provinces diary; Konar's rise to 20 with the elite Kourend and Kebos diary",
-    "Not included: Spria (same tier as Turael, needs A Porcine of Interest) and Temple Trekking (5,800-7,800 Slayer XP an hour from reward tomes)"
+    "Krystilia: the training guide says 'Any level (Done at least 1 task)', her own page says she refuses players still at level 1 Slayer, and the wiki's dialogue transcript is incomplete, so the exact rule is not confirmed",
+    "The order of the level 1 masters matters: with no rated method unlocked the app deals the last unlocked entry, so they run from Krystilia and Turael up to Nieve or Steve",
+    "Not included: Spria (same list as Turael plus sourhogs, needs A Porcine of Interest, cannot swap tasks) and Temple Trekking (5,800 to 7,800 Slayer XP an hour from reward tomes, needs In Aid of the Myreque; as the only rated low-level method it would drag every estimate down)",
+    "Duradel (both entries): no source gives XP an hour for any master; the bands are our own model, weighting the guides' per-task rates over his task list with six tasks blocked and none skipped, and allowing about five minutes between tasks; without a cannon that gives 16,000 at 50 rising to 28,500 at 93, at or under the ironman efficiency table's all-in rates (16,000, 21,000, 23,500, 24,200, 27,000, then 33,800 from 85); with cannon and barrage 33,000 from 65 and 36,000 from 93; a player who skips slow tasks does far better (62,000 to 87,000 by the same model, 74,250 to 93,000 in the main efficiency table), and the app assumes the player who does not",
+    "Every other master has no rate (xph 0): the app gives Slayer a stand-in rate by level in shared/data/fallback-rates.ts, taken from the same ironman efficiency table (5,000 an hour to level 49, then 16,000 to 28,500) and held at or under the Duradel figures; the main table's 12,000 at levels 40 to 49 is not used, so a main is estimated a little slow there",
+    "Mortimer: Fallen From Grace only has to be part done, which req cannot say, so req asks for the whole quest and is stricter than the game"
   ]
 }

@@ -146,7 +146,7 @@ describe('skillRow', () => {
       bestNow: 'Sulliusceps',
     })
     expect(fixtureRow('slayer')).toMatchObject({
-      timeLeft: '307 h, rough',
+      timeLeft: '450 h, rough',
       bestNow: 'Nieve or Steve',
     })
     expect(fixtureRow('ranged')).toMatchObject({

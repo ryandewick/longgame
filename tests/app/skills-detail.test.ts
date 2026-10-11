@@ -111,6 +111,17 @@ describe('bestNowSentence', () => {
     )
   })
 
+  it('leaves the rate out when the best method has none', () => {
+    const insight = insightWith({
+      isRough: true,
+      fastestMethod: optionWith({ name: 'Nieve or Steve' }, { xpPerHour: 0 }),
+    })
+    expect(read(bestNowSentence(insight, false, 0))).toBe(
+      'Best now: [Nieve or Steve], about 100 h to 99. ' +
+        'The wiki gives no hourly rate for part of that, so it is a rough figure.',
+    )
+  })
+
   it('warns an ironman, and only an ironman, when the rate runs on their own supplies', () => {
     const insight = insightWith({
       fastestMethod: optionWith({ name: 'Mine', usesOwnSupplies: true }),

@@ -1,18 +1,22 @@
 import type { Account } from '../types/account'
 import type { SkillKey } from '../types/skill'
+import { FALLBACK_RATE_BANDS, FALLBACK_XP_PER_HOUR } from '../data/fallback-rates'
 import { METHODS } from '../data/methods'
 import { SKILL_KEYS, skillDefinition } from '../data/skills'
 import { bestRateAt, isUsableAt } from './methods'
 import { xpPerRunAt } from './rates'
 import { MAX_LEVEL, MAX_XP, stretchesToMax } from './xp'
 
-/**
- * Stands in for a level where no usable method has a rate, so the hours still add up to
- * something. Any estimate built on it is flagged as rough.
- */
-export const FALLBACK_XP_PER_HOUR = 40_000
-
 const MINUTES_PER_DAY = 1440
+
+/**
+ * The rate that stands in at a level where no usable method has one: the same for every level,
+ * except for a skill that has bands of its own (see data/fallback-rates.ts).
+ */
+export function fallbackXpPerHour(skill: SkillKey, level: number): number {
+  const band = FALLBACK_RATE_BANDS[skill]?.findLast(({ fromLevel }) => fromLevel <= level)
+  return band?.xpPerHour ?? FALLBACK_XP_PER_HOUR
+}
 
 /**
  * How many hours of grinding until the skill is 99? Each level is taken at the best rate the
@@ -23,7 +27,7 @@ export function hoursLeft(account: Account, skill: SkillKey): number {
   if (skillDefinition(skill).passive) return 0
   let hours = 0
   for (const { level, xp } of stretchesToMax(account.skills[skill])) {
-    hours += xp / (bestRateAt(account, skill, level) || FALLBACK_XP_PER_HOUR)
+    hours += xp / (bestRateAt(account, skill, level) || fallbackXpPerHour(skill, level))
   }
   return hours
 }
