@@ -99,14 +99,15 @@ export default defineNuxtConfig({
     // NUXT_GITHUB_TOKEN: a fine-grained token with Issues: write on `githubRepo`. Private: it must never move
     // under `public`. While it is empty the suggestion form answers "not switched on yet".
     githubToken: '',
+    // NUXT_GITHUB_REPO: the repository that receives method suggestions, as 'owner/name'. Private, so the pages
+    // do not carry it: only the server needs to know where an issue is filed.
+    githubRepo: 'ryandewick/longgame',
     public: {
       // NUXT_PUBLIC_MODE: 'hosted' is the website; 'local' is a copy on a player's own machine that saves to disk.
       // A local build keeps the mode it was built with, so its server needs no variable to start as a local copy.
       mode: isLocalBuild ? 'local' : 'hosted',
       // NUXT_PUBLIC_SITE_URL: sent to Jagex and GitHub in the User-Agent, so they can see who is calling
       siteUrl: 'https://longgame.tools',
-      // NUXT_PUBLIC_GITHUB_REPO: the repository that receives method suggestions
-      githubRepo: 'ryandewick/longgame',
       // questProgressProvider: whether this copy has an add-on that answers /api/quest-progress. The published code
       // has none, so it is false. An add-on in local/ sets it to true in its own nuxt.config.ts; a value written
       // here would win over the add-on's, so the default is only given when there is no add-on to give one. It

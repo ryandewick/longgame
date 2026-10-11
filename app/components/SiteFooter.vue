@@ -1,10 +1,9 @@
 <script setup lang="ts">
 /**
  * The footer: the credit Jagex's Fan Content Policy asks for, word for word, and the licence the
- * wiki's data is used under. The repository link shows when `runtimeConfig.public.githubRepo`
- * names one. The website also says how its visits are counted; a local copy counts none.
+ * wiki's data is used under. The website also says how its visits are counted; a local copy
+ * counts none.
  */
-const { githubRepo } = useRuntimeConfig().public
 const isWebsite = useAppMode() === 'hosted'
 </script>
 
@@ -27,12 +26,6 @@ const isWebsite = useAppMode() === 'hosted'
         >CC BY-NC-SA 3.0</a
       >. The <a class="site-footer__link" href="/data/methods.json">method data</a> is published
       under the same licence.
-      <template v-if="githubRepo">
-        The code and the data are on
-        <a class="site-footer__link" :href="`https://github.com/${githubRepo}`" rel="noopener"
-          >GitHub</a
-        >.
-      </template>
     </p>
     <p v-if="isWebsite" class="site-footer__line">
       Visits are counted with Cloudflare Web Analytics, which sets no cookies and does not follow

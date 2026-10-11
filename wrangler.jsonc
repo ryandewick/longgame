@@ -35,7 +35,7 @@
     // the site's own address: it goes in the User-Agent sent to Jagex and GitHub
     "NUXT_PUBLIC_SITE_URL": "https://longgame.tools",
     // the repository that receives method suggestions as issues
-    "NUXT_PUBLIC_GITHUB_REPO": "ryandewick/longgame",
+    "NUXT_GITHUB_REPO": "ryandewick/longgame",
   },
 
   // One secret, which is never written in a file that is committed:

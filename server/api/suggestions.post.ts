@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
   requireMode(event, 'hosted')
   requireSameOrigin(event)
   const config = useRuntimeConfig(event)
-  const target = { repository: config.public.githubRepo, token: config.githubToken }
+  const target = { repository: config.githubRepo, token: config.githubToken }
   if (!target.repository || !target.token) {
     throw apiError(503, 'Suggestions are not switched on yet.')
   }
