@@ -33,7 +33,9 @@ If you would rather keep your saves on your own machine, you can [run a local co
 
 ## Missing a method, or found a mistake?
 
-Use "Suggest a method" on the Methods page of the site, or [open an issue](https://github.com/ryandewick/longgame/issues). Every method is checked against the Old School RuneScape Wiki before it goes in, so a link to the wiki page helps.
+The list of methods is not complete. Every method in it was checked against the Old School RuneScape Wiki, and there will be good ones I have missed. Rates are the wiki's and assume its setups, so your own will vary.
+
+If you know a method that should be there, use "Suggest a method" on the Methods page or any guide page of the site, or [open an issue](https://github.com/ryandewick/longgame/issues). I check each one against the wiki before adding it, so a link to the wiki page helps.
 
 ---
 
