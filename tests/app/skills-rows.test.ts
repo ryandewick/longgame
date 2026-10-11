@@ -34,7 +34,7 @@ describe('sortSkillInsights', () => {
 
   it('puts the most work first and the finished skills last', () => {
     const skills = order('hours')
-    // the order of the reference screenshot of Skills
+    // the order the fixture account's Skills table is in
     expect(skills.slice(0, 5)).toEqual(['slayer', 'agility', 'mining', 'runecraft', 'woodcutting'])
     expect(skills.slice(-3)).toEqual(['farming', 'hitpoints', 'thieving'])
   })
@@ -135,7 +135,7 @@ describe('skillBestNowText', () => {
 })
 
 describe('skillRow', () => {
-  it('writes the rows of the reference screenshot', () => {
+  it('writes the rows for the fixture account', () => {
     expect(fixtureRow('woodcutting')).toMatchObject({
       name: 'Woodcutting',
       level: 74,

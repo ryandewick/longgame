@@ -60,7 +60,7 @@ describe('methodNeedsText', () => {
     expect(methodNeedsText(option)).toBe('Needs Monkey Madness II, the Grand Exchange.')
   })
 
-  it('writes what the reference screenshot of Methods says for Ranged', () => {
+  it('writes the Methods rows for Ranged on the fixture account', () => {
     const needs = Object.fromEntries(
       insightFor(fixtureAccount(), 'ranged').methods.map((option) => [
         option.method.name,

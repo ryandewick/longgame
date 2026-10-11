@@ -4,8 +4,8 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
   {
-    // the previous app (reference only until the port is finished), generated fixtures and static files
-    ignores: ['legacy/**', 'tests/fixtures/**', 'public/**', 'datasrc/**'],
+    // a fixture account, static files and the training data
+    ignores: ['tests/fixtures/**', 'public/**', 'datasrc/**'],
   },
   {
     rules: {

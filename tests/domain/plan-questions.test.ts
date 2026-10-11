@@ -29,7 +29,7 @@ import { accountFromSave, migrateLegacySave, type LegacySaveV1 } from '#shared/d
 import { xpForLevel } from '#shared/domain/xp'
 
 /*
- * These run on the account the parity tests use (tests/fixtures/account.json), as an ironman.
+ * These run on the fixture account (tests/fixtures/account.json), as an ironman.
  * Its own ticks are taken as the truth about what it has done; the questions are put to the
  * same account with nothing ticked, the way a new player's account arrives from the hiscores.
  */

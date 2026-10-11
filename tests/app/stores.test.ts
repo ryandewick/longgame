@@ -18,7 +18,7 @@ import { useAccountStore } from '~~/app/stores/account'
 import { useHistoryStore } from '~~/app/stores/history'
 import { useSessionStore } from '~~/app/stores/session'
 
-/** The saved account the parity tests use: a version 1 save, its snapshots and the moment it was taken. */
+/** The fixture account: a version 1 save, its snapshots and the moment it was taken. */
 const fixture = JSON.parse(
   readFileSync(new URL('../fixtures/account.json', import.meta.url), 'utf8'),
 ) as { now: number; state: unknown; snapshots: LegacySnapshot[] }

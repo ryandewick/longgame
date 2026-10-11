@@ -254,7 +254,7 @@ describe('questsOwingSentence', () => {
 })
 
 describe('skillDetailParagraphs', () => {
-  it('writes what the reference screenshot of Skills says about Woodcutting', () => {
+  it('writes the Skills detail for Woodcutting on the fixture account', () => {
     expect(fixtureParagraphs('woodcutting')).toEqual([
       '1,161,433 xp. 11,872,998 to 99, 49k to 75.',
       'Best now: [Sulliusceps] at ≈86k/h, about 125 h to 99. Your 7-day pace is 11k a day.',
@@ -264,7 +264,7 @@ describe('skillDetailParagraphs', () => {
     ])
   })
 
-  it('writes what the reference screenshot of Methods says about Ranged', () => {
+  it('writes the Methods detail for Ranged on the fixture account', () => {
     expect(fixtureParagraphs('ranged')).toEqual([
       '265,265 xp. 12,769,166 to 99, 8k to 60.',
       'Best now: [Gemstone Crab] at an estimated 47k/h, about 121 h to 99. ' +

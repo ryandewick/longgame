@@ -124,17 +124,4 @@ export default defineNuxtConfig({
     // The hiscores route replaces this header on success with a one minute lifetime.
     '/api/**': { headers: { 'cache-control': NEVER_CACHE } },
   },
-  // Development only, so none of this is in a production build. /dev/load?save=<name> loads one of the reference
-  // saves in legacy/reference, to check a screen against its reference screenshot. Delete together with legacy/.
-  $development: {
-    hooks: {
-      'pages:extend'(pages) {
-        pages.push({
-          name: 'dev-load-reference-save',
-          path: '/dev/load',
-          file: '~/dev/LoadReferenceSave.vue',
-        })
-      },
-    },
-  },
 })

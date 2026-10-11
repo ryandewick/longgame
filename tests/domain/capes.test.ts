@@ -85,9 +85,9 @@ describe('readableCapeColour', () => {
     expect(readableCapeColour(null)).toBe(PLAIN_CAPE.trim)
   })
 
-  // the colours the vanilla app drew, from `bright` in legacy/src/js/brand.js
-  it('matches the app this replaced for every skill', () => {
-    const legacy: Record<SkillKey, string> = {
+  // pinned so that a change to the lightening is seen for every cape, not found by eye
+  it('gives every skill its readable colour', () => {
+    const expected: Record<SkillKey, string> = {
       attack: '#965b55',
       defence: '#687bb7',
       strength: '#237857',
@@ -113,7 +113,7 @@ describe('readableCapeColour', () => {
       construction: '#948a77',
       sailing: '#416a88',
     }
-    expect(forEverySkill(readableCapeColour)).toEqual(legacy)
+    expect(forEverySkill(readableCapeColour)).toEqual(expected)
   })
 })
 

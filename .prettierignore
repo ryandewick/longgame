@@ -1,7 +1,6 @@
 .nuxt
 .output
 node_modules
-legacy
 datasrc
 public
 DESIGN.md

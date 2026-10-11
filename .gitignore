@@ -32,5 +32,3 @@ PRODUCT.md
 Thumbs.db
 .DS_Store
 
-# reference screenshots and saves used while porting; never committed
-legacy/reference/

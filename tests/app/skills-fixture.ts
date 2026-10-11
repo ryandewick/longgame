@@ -12,7 +12,7 @@ import {
 } from '#shared/domain/save'
 import type { SkillInsight } from '~~/app/stores/account'
 
-/** The saved account the parity tests use, which is also the account in the reference screenshots. */
+/** The fixture account the tests share. */
 const fixture = JSON.parse(
   readFileSync(new URL('../fixtures/account.json', import.meta.url), 'utf8'),
 ) as { now: number; state: unknown; snapshots: LegacySnapshot[] }

@@ -19,7 +19,6 @@ app/
   composables/       useStatsRefresh, useSavedState, useSaveReady, useAppMode, useQuestProgressProvider, useToast,
                      useConfirm, useMotion, useReveal, useNow, usePageSeo, useRouteSkill, useShareRack, useSuggestMethod,
                      useQuestionRun, useQuestToggle
-  dev/               a page that exists in `nuxt dev` only (see `$development` in nuxt.config.ts)
   layouts/           default.vue (planner), guide.vue (training guides and the error page)
   pages/             index (Tonight), skills/[[skill]], methods/[[skill]], quests, resets, history, settings,
                      guides/ (index, afk, [skill])
@@ -39,8 +38,7 @@ server/
 modules/             cloudflare-headers.ts: writes the website's `_headers` file at build time
 tools/local-copy/    the launcher's steps: install, build and start a local copy
 tools/social/        og.html, which public/og.png is rendered from by hand
-tests/               Vitest: domain rules, data integrity, app text builders and stores, server rules, the launcher,
-                     and parity with the app this replaced
+tests/               Vitest: domain rules, data integrity, app text builders and stores, server rules, the launcher
 datasrc/             training methods, quests, quest prerequisites and resets as JSON, each entry with its wiki source
 public/assets/       skill icons, skillcape images, fonts
 public/og.png        the link preview image
@@ -114,7 +112,7 @@ Names are full words: `hoursLeft`, `isIronman`, `skillStat`, never `hrs`, `iron`
 
 `quest_prerequisites.json` is the wiki's `Module:Questreq/data` entry for entry (quests, miniquests, activities and diaries alike, under the wiki's names), plus an entry read from the quest's own page for each of the app's quests that module does not list. Every entry records which of the two it came from. The builder keeps only the chains between quests the app knows: a requirement that only has to be started is dropped, names are made to match the app's, and an entry the app does not track is passed through, so that what it requires still reaches the quest that required it. `tests/data/integrity.test.ts` pins which quests were read from their own pages, so a refresh of the module shows what it has caught up with.
 
-`tests/data` checks the builders (`build.test.ts`), the built data itself (`integrity.test.ts`) and that it still matches the data the previous app was built with (`parity.test.ts`).
+`tests/data` checks the builders (`build.test.ts`) and the built data itself (`integrity.test.ts`).
 
 ## State (`app/stores`)
 
@@ -272,13 +270,13 @@ npx vitest            the same, watching for changes
 npx vitest run tests/domain/planner.test.ts     one file
 ```
 
-| Folder         | What it tests                                                                                |
-| -------------- | -------------------------------------------------------------------------------------------- |
-| `tests/domain` | the rules in `shared/domain`, and parity with the previous app's answers for a fixed account |
-| `tests/data`   | the data builders, the built data, and parity with the previous app's data                   |
-| `tests/app`    | the text builders in `app/utils` and the three stores                                        |
-| `tests/server` | the rules in `server/utils`                                                                  |
-| `tests/tools`  | the launcher's decisions                                                                     |
+| Folder         | What it tests                                         |
+| -------------- | ----------------------------------------------------- |
+| `tests/domain` | the rules in `shared/domain`                          |
+| `tests/data`   | the data builders and the built data                  |
+| `tests/app`    | the text builders in `app/utils` and the three stores |
+| `tests/server` | the rules in `server/utils`                           |
+| `tests/tools`  | the launcher's decisions                              |
 
 The tests run in Node without Nuxt. Code under test imports what it needs by name; where a server util uses one of Nitro's auto-imports (`useStorage`), the test stands in for it.
 

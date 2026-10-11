@@ -25,7 +25,7 @@ const snapshots: XpSnapshot[] = [
   { takenAt: 2 * DAY, skills: { mining: 300 }, totalXp: 300 },
 ]
 
-/** The saved account the parity tests use: a version 1 save and its snapshots, as the vanilla app kept them. */
+/** The fixture account: a version 1 save and its snapshots, as the first version of the app kept them. */
 const fixture = JSON.parse(
   readFileSync(new URL('../fixtures/account.json', import.meta.url), 'utf8'),
 ) as { state: LegacySaveV1; snapshots: LegacySnapshot[] }
