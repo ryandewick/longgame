@@ -83,7 +83,7 @@ describe('slotPreferences', () => {
 describe('activityOf', () => {
   it('drops the style a method is done in', () => {
     expect(activityOf('Gemstone Crab with Dorgeshuun crossbow')).toBe('Gemstone Crab')
-    expect(activityOf('Rock crabs with earth spells')).toBe('Rock crabs')
+    expect(activityOf('Rock crabs with combat spells')).toBe('Rock crabs')
   })
 
   it('leaves other names alone', () => {

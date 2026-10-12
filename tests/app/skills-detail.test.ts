@@ -278,7 +278,7 @@ describe('skillDetailParagraphs', () => {
   it('writes the Methods detail for Ranged on the fixture account', () => {
     expect(fixtureParagraphs('ranged')).toEqual([
       '265,265 xp. 12,769,166 to 99, 8k to 60.',
-      'Best now: [Gemstone Crab] at an estimated 47k/h, about 192 h to 99. ' +
+      'Best now: [Gemstone Crab] at an estimated 48k/h, about 192 h to 99. ' +
         'That rate only holds while your own supplies last. Your 7-day pace is 7k a day.',
       'Next unlock: [Brutus], needs The Ides of Milk.',
     ])

@@ -24,7 +24,7 @@
    "req": "q:Children of the Sun",
    "run": false,
    "supply": false,
-   "note": "Tlati Rainforest. No defence, infinite HP, no food, two clicks every 10 minutes and gems. The wiki gives no rate, so this one is estimated from your Strength level.",
+   "note": "Tlati Rainforest. No defence, infinite HP, no food, two clicks every 10 minutes and gems. No rate on the wiki, so it is estimated from your Attack and Strength levels.",
    "src": "Pay-to-play Melee training",
    "calc": "crab-melee",
    "est": true
@@ -247,8 +247,8 @@
  ],
  "unverified": [
   "Quest skip: one-off quest XP, so no hourly rate (xph 0)",
-  "Gemstone Crab: no wiki page gives a melee XP rate (checked 11 October 2026); the rate is computed in shared/domain/rates.ts (calc crab-melee), which checked against the wiki damage formula is within 8% from level 10 to 70, about 13% low from 80 and 38% high at level 1",
-  "Ammonite or sand crabs: no rate on any page; uses the Gemstone Crab estimate (calc crab-melee), which a model puts within 5% of ammonite crabs up to level 70 and too high at 80+",
+  "Gemstone Crab: no wiki page gives a melee XP rate (checked 11 October 2026); the rate is the wiki's damage formula in shared/domain/rates.ts (calc crab-melee, rewritten 12 October 2026): the scimitar the Attack level allows (dragon from 60, which needs Monkey Madness I), an amulet of strength, a combat bracelet, climbing boots and a berserker helm from 40, and Barrows gloves, a dragon defender, dragon boots and a fighter torso from 70, taken from the lower of Attack and Strength; no potion or prayer; the gear is an assumption, and 10 strength bonus either way moves the rate about 6% from 70",
+  "Ammonite or sand crabs: no rate on any page; uses the Gemstone Crab estimate (calc crab-melee); a kill-by-kill simulation on 11 October 2026 put ammonite crabs with three spawns at 85 to 102% of the estimate as it then was up to level 80 and sand crabs 10 to 33% below it from 80; the estimate has since risen 6 to 14% between 60 and 80, so it runs high for sand crabs from about 60",
   "Vyrewatch Sentinels: the only stated figure is 'up to 54,000 combat XP per hour' with no level or gear; the bands are a damage-formula model (flail, super combat, 85% uptime) that reaches it at 99; lv 50 is the flail's Attack requirement",
   "Sulphur naguas: Perilous Moons only needs starting, which req cannot say, so req asks for the whole quest and is stricter than the game; the guide says to expect 75k at 60 Strength and up to 130k at 75 with Blood Moon armour and Piety, so the 55 band is the 60 figure and 110,000 is 85% of the 130k; no figure exists above 75; making moonlight potions takes 38 Herblore; attention is kept as AFK though a money making guide calls the activity moderate",
   "Scurrius: the guide heads the section levels 55 to 75 and gives one rate, 100k or more at base 70 stats with a bone mace against the public-room version; 79,000 at 55 is a damage model with a super combat potion (97,900 at 70 by the same model), and the first few dozen kills before the 1 in 33 spine drop are slower",

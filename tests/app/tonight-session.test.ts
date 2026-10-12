@@ -168,7 +168,7 @@ describe('blockFact', () => {
   it('says which level an estimated rate was worked out from', () => {
     const estimate = { rateIsEstimate: true, xpPerHour: 48_400, targetXp: 10 }
     expect(blockFact(skillBlock({ ...estimate, skill: 'attack', intensity: 'afk' }), account)).toBe(
-      'Attack 1, AFK. About 48k xp an hour, worked out from your Strength level.',
+      'Attack 1, AFK. About 48k xp an hour, worked out from your Attack and Strength levels.',
     )
     expect(blockFact(skillBlock({ ...estimate, skill: 'ranged' }), account)).toBe(
       'Ranged 59, Active. About 48k xp an hour, worked out from your Ranged level.',

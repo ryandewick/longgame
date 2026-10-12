@@ -45,9 +45,11 @@ export function blockTimeShare(block: SessionBlock, elapsed: number): number {
   return Math.min(1, Math.max(0, elapsed / (block.minutes * MINUTE)))
 }
 
-/** Does this method's rate come from one of the account's combat levels? The fact line names which. */
+/** Which of the account's combat levels is an estimated rate worked out from? The fact line names them. */
 function estimatedFrom(skill: SkillKey): string {
-  return skill === 'magic' || skill === 'ranged' ? skillName(skill) : 'Strength'
+  return skill === 'magic' || skill === 'ranged'
+    ? `${skillName(skill)} level`
+    : 'Attack and Strength levels'
 }
 
 /** What a skill block's rate is, as a sentence. */
@@ -55,7 +57,7 @@ function rateSentence(block: SkillBlock): string {
   if (block.xpPerHour <= 0) return 'The wiki gives no hourly rate for this one.'
   const rate = formatShortNumber(block.xpPerHour)
   return block.rateIsEstimate
-    ? `About ${rate} xp an hour, worked out from your ${estimatedFrom(block.skill)} level.`
+    ? `About ${rate} xp an hour, worked out from your ${estimatedFrom(block.skill)}.`
     : `≈ ${rate} xp an hour.`
 }
 

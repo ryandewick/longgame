@@ -321,11 +321,11 @@
    "supply": true,
    "est": true,
    "lv": 9,
-   "name": "Rock crabs with earth spells",
+   "name": "Rock crabs with combat spells",
    "req": "",
    "calc": "rock-magic",
    "src": "Pay-to-play Magic training",
-   "note": "Rellekka. Aggressive for 10 minutes, then walk off to reset. A 20% earth weakness. No requirements. Rate estimated from your best earth spell: the wiki gives none."
+   "note": "Rellekka. Aggressive for 10 minutes, then walk off to reset. Earth spells hit 20% harder there. No requirements. Rate estimated from your best spell: the wiki gives none."
   },
   {
    "who": "both",
@@ -530,7 +530,7 @@
   "Blood bursting desert bandits and Barraging Wilderness bandits: 85% of the guide's 'can reach' figures (150,000 and 230,000; 220,000 idle), which no second source gives; the Wilderness bandits are only rated for Ice Barrage at 94, with no figure for Ice Burst from 70; the guide's 330,000 for stacking Wilderness bandits is more than nine 150 HP bandits on their respawn can give and is not used",
   "Bursting maniacal monkeys: the bands are the strategy page's measured table for auto retaliate at ordinary gear (221,000 at a max hit of 25, about 298,000 barraging at 34); the guide's 250,000 and 320,000 need max hits of 29 and 37; Monkey Madness II only has to be started, which req cannot say, so req asks for the whole quest and is stricter than the game",
   "Burst or barrage Slayer tasks: no wiki page gives a Magic XP rate (xph 0); a third-party guide quotes 200,000 to 320,000 an hour for barraging dust devils, nechryaels and smoke devils in best gear at 94",
-  "Crab entries: computed in shared/domain/rates.ts; a model built from the wiki's accuracy and damage formulas agrees within about 10%, but the code uses the lower earth max hits past the levels where they rise, a flat 95% hit chance, and takes 12.5% off the Gemstone Crab's cast XP as well as its damage XP, which no page confirms",
+  "Crab entries: worked out in shared/domain/rates.ts from the wiki's accuracy and damage formulas (rewritten 12 October 2026): an elemental staff (+10 Magic attack), no damage gear, no potion or prayer, each tier's spells sharing the max hit of the best one unlocked; rock and frost crabs lose a tenth of the hour to resetting aggression; the Gemstone Crab's 12.5% is taken off the cast XP as well as the damage XP, which no page confirms; rock crabs and the Gemstone Crab cast the best spell of any element (on rock crabs earth keeps its 20%); frost crabs cast fire alone, which is the best there but for levels 29 to 34, where Earth Bolt would give 12% more than Fire Strike; the rock crab entry was named 'Rock crabs with earth spells' until 12 October 2026; both it and the Gemstone Crab entry open at 9, though the code rates them from Wind Strike at level 1",
   "Splashing: Earth Surge is 48.2 XP on its own page and 48.5 in the splashing guide's table; the band at 90 uses 48.2",
   "Quest skip to level 34: the Ironman Guide's route (The Grand Tree, Watchtower, The Giant Dwarf) totals 20,100 XP, 124 short of level 34; Watchtower needs 14 Magic on its own page and 15 in the quest rewards table",
   "Not included: Camelot Teleport (about 80,000 from 45), tele-alching (up to 144,600 from 55), stun-alching (184,000 from 80), Spin Flax, Superglass Make, Bake Pie (carried in Cooking), zombie pirates (no rate), Kraken (task only)",
