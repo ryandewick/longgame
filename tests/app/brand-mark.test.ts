@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import {
   BRAND_MARK_RESTING_PROGRESS,
@@ -56,5 +57,16 @@ describe('brandMarkFaviconUrl', () => {
 
   it('draws no filled arc for an account that has barely started', () => {
     expect(svgOf(0).match(/<path/g)).toHaveLength(1)
+  })
+})
+
+describe('public/favicon.svg', () => {
+  it('is the mark at rest, as a file a search engine can fetch', () => {
+    // written by tools/social/icons.mjs: run it again when the mark changes
+    const file = readFileSync(new URL('../../public/favicon.svg', import.meta.url), 'utf8').trim()
+    const drawn = decodeURIComponent(
+      brandMarkFaviconUrl(BRAND_MARK_RESTING_PROGRESS).slice('data:image/svg+xml,'.length),
+    )
+    expect(file).toBe(drawn)
   })
 })

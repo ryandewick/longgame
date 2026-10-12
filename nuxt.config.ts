@@ -45,6 +45,15 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'en' },
       // the colour a phone's browser draws its own bars in: the ground, --color-ground in tokens.scss
       meta: [{ name: 'theme-color', content: '#191411' }],
+      // The mark as files, for anything that asks for an icon by address: a search engine, a bookmark bar, a
+      // phone's home screen (written by tools/social/icons.mjs). Once a player's account is loaded the page swaps
+      // the SVG for their own (BrandMark.vue), which is why that link carries the key the swap uses.
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
+        { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96x96.png' },
+        { key: 'favicon', rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+      ],
       // Runs before the page is first painted: a returning player's document is marked, so the first-visit screen
       // the server sent is never shown to them (see app/utils/returning-player.ts).
       script: [{ key: 'returning-player', innerHTML: RETURNING_PLAYER_SCRIPT }],

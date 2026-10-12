@@ -148,13 +148,21 @@ export function buildSkillGuideStructuredData(
 }
 
 /**
- * Structured data for the home page: the planner as a free web application, and the questions
- * with their answers exactly as the page shows them. No ratings or reviews: there are none.
+ * Structured data for the home page: the site and its name, the planner as a free web
+ * application, and the questions with their answers exactly as the page shows them. No ratings
+ * or reviews: there are none.
  */
 export function buildHomeStructuredData(siteUrl: string): StructuredData {
   return {
     '@context': 'https://schema.org',
     '@graph': [
+      // what a search engine reads the site's name from, to show it in place of the domain
+      {
+        '@type': 'WebSite',
+        name: SITE_NAME,
+        alternateName: ['Long Game OSRS', 'longgame.tools'],
+        url: absoluteUrl(siteUrl, '/'),
+      },
       {
         '@type': 'WebApplication',
         name: SITE_NAME,

@@ -84,9 +84,18 @@ describe('buildHomeStructuredData', () => {
   const data = buildHomeStructuredData(SITE)
   const graph = data['@graph'] as Record<string, unknown>[]
 
+  it('names the site, so a search result can show the name in place of the domain', () => {
+    expect(graph[0]).toEqual({
+      '@type': 'WebSite',
+      name: 'Long Game',
+      alternateName: ['Long Game OSRS', 'longgame.tools'],
+      url: `${SITE}/`,
+    })
+  })
+
   it('describes the planner as a free web application', () => {
     expect(data['@context']).toBe('https://schema.org')
-    expect(graph[0]).toEqual({
+    expect(graph[1]).toEqual({
       '@type': 'WebApplication',
       name: 'Long Game',
       description: HOME_DESCRIPTION,
@@ -100,7 +109,7 @@ describe('buildHomeStructuredData', () => {
   })
 
   it('gives every question on the page with its answer, word for word', () => {
-    expect(graph[1]).toEqual({
+    expect(graph[2]).toEqual({
       '@type': 'FAQPage',
       mainEntity: QUESTIONS.map(({ question, answer }) => ({
         '@type': 'Question',

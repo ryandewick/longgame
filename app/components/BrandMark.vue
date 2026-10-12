@@ -6,23 +6,29 @@
  *
  * It is decoration: whatever holds it (a link, a labelled span) gives it its name.
  */
-const { progress = BRAND_MARK_RESTING_PROGRESS } = defineProps<{
+const { progress = undefined } = defineProps<{
   /** Progress to max, 0 to 1. Left out, the mark rests at three quarters. */
   progress?: number
 }>()
 
-const fillPath = computed(() => brandMarkFillPath(progress))
-const isComplete = computed(() => isBrandMarkComplete(progress))
+const shownProgress = computed(() => progress ?? BRAND_MARK_RESTING_PROGRESS)
+const fillPath = computed(() => brandMarkFillPath(shownProgress.value))
+const isComplete = computed(() => isBrandMarkComplete(shownProgress.value))
 
+// With no account loaded the icon stays the file every page links to (nuxt.config.ts), which is
+// the one a search engine can fetch. A player's own icon is a data URL and replaces it.
 useHead({
-  link: [
-    {
-      key: 'favicon',
-      rel: 'icon',
-      type: 'image/svg+xml',
-      href: () => brandMarkFaviconUrl(progress),
-    },
-  ],
+  link: () =>
+    progress === undefined
+      ? []
+      : [
+          {
+            key: 'favicon',
+            rel: 'icon',
+            type: 'image/svg+xml',
+            href: brandMarkFaviconUrl(progress),
+          },
+        ],
 })
 </script>
 
