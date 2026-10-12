@@ -182,10 +182,10 @@ describe('planQuestions: what can be asked about', () => {
   })
 
   it('counts the open requirements it does not ask about', () => {
-    // 41 quests and 11 diary tiers gate something; with nothing ticked 34 are worth a question
+    // 41 quests and 11 diary tiers gate something; with nothing ticked 36 are worth a question
     expect(gatingQuests().length + gatingDiaries().length).toBe(52)
-    expect(questions).toHaveLength(34)
-    expect(setAsideCount).toBe(18)
+    expect(questions).toHaveLength(36)
+    expect(setAsideCount).toBe(16)
   })
 
   it('does not ask about what is ticked', () => {
@@ -514,8 +514,8 @@ describe('planQuestions: the two rounds', () => {
   it('asks the questions that save hours first, and keeps the smaller ones for a second round', () => {
     expect(plan.savingHours.every(savesHours)).toBe(true)
     expect(plan.smaller.some(savesHours)).toBe(false)
-    expect(plan.savingHours).toHaveLength(23)
-    expect(plan.smaller).toHaveLength(11)
+    expect(plan.savingHours).toHaveLength(22)
+    expect(plan.smaller).toHaveLength(14)
   })
 
   it('makes every smaller question one that adds a reset or changes a block, with no question in both rounds', () => {
@@ -560,18 +560,17 @@ describe('planQuestions: the order', () => {
       'Lunar Diplomacy 308',
       'Dream Mentor 308',
       'Swan Song 302',
-      "Shades of Mort'ton 301",
       'Desert Treasure I 291',
+      "Shades of Mort'ton 291",
       'Tai Bwo Wannai Trio 291',
       'Throne of Miscellania 291',
       'A Kingdom Divided 291',
       // and Children of the Sun is behind the three that follow it
-      'Children of the Sun 74',
-      'Perilous Moons 106',
-      'Vale Totems 79',
-      'The Heart of Darkness 74',
+      'Children of the Sun 57',
+      'Perilous Moons 89',
+      'Vale Totems 62',
+      'The Heart of Darkness 57',
       'Creature of Fenkenstrain 11',
-      'Dwarf Cannon 8',
       'Fremennik Hard 6',
       'Family Crest 3',
       'Temple of the Eye 3',
@@ -583,6 +582,8 @@ describe('planQuestions: the order', () => {
   it('asks the smaller questions in this order', () => {
     expect(namesAsked(plan.smaller)).toEqual([
       'Sleeping Giants',
+      'Priest in Peril',
+      'Dwarf Cannon',
       'The Tourist Trap',
       'Ardougne Medium',
       'Kandarin Easy',
@@ -591,6 +592,7 @@ describe('planQuestions: the order', () => {
       'Morytania Medium',
       'Tears of Guthix',
       'The Hand in the Sand',
+      'The Ides of Milk',
       'Western Provinces Easy',
       'Wilderness Easy',
     ])
@@ -629,12 +631,7 @@ describe('planQuestions: the order', () => {
       afterRitual.savingHours
         .slice(0, 4)
         .map((question) => `${question.requirement.name} ${Math.round(question.hoursSaved)}`),
-    ).toEqual([
-      'Children of the Sun 74',
-      'Perilous Moons 106',
-      'Vale Totems 79',
-      'The Heart of Darkness 74',
-    ])
+    ).toEqual(['Children of the Sun 57', 'Perilous Moons 89', 'Bone Voyage 74', 'Vale Totems 62'])
     // Bone Voyage showed 365 hours while the 291 of Druidic Ritual were counted in it
     expect(Math.round(questionAbout(account, 'Bone Voyage').hoursSaved)).toBe(74)
   })
@@ -676,9 +673,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,589 hours to 2,157 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,643 hours to 2,228 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2589)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2643)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -686,7 +683,7 @@ describe('planQuestions: a whole run of answers', () => {
       ),
     ).toEqual([
       'Druidic Ritual 291 yes',
-      'Children of the Sun 74 yes',
+      'Children of the Sun 57 yes',
       'Sins of the Father 61 no',
       'Lunar Diplomacy 58 no',
       'Bone Voyage 45 yes',
@@ -697,7 +694,7 @@ describe('planQuestions: a whole run of answers', () => {
       'Temple of the Eye 3 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2157)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2228)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
@@ -810,7 +807,7 @@ describe('the count of questions over the card', () => {
 
   it('starts well above what is asked, which is why it says at most', () => {
     const { totals } = totalsShown('savingHours', asTheFixtureDid)
-    expect(totals[0]).toBe(23)
+    expect(totals[0]).toBe(22)
     expect(totals).toHaveLength(11)
   })
 })

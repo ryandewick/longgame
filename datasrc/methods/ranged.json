@@ -11,7 +11,7 @@
    "req": "",
    "run": false,
    "supply": false,
-   "note": "Shadow of the Storm put on Ranged, Death to the Dorgeshuun and Horror from the Deep give 16,662 XP. Temple of Ikov adds 10,500 for level 36.",
+   "note": "Shadow of the Storm put on Ranged, Death to the Dorgeshuun and Horror from the Deep reach 32. Temple of Ikov and The Ides of Milk lamp make it 37.",
    "src": "Pay-to-play Ranged training"
   },
   {
@@ -24,11 +24,11 @@
    "req": "q:Dwarf Cannon",
    "run": false,
    "supply": true,
-   "note": "Ogres east of Castle Wars, about 40k from the cannon alone. Fastest to 45 but pricey. The ironman guide only rates it for 40 to 70 with self-made cannonballs.",
+   "note": "Ogres east of Castle Wars, about 40k an hour from the cannon alone. It hits with your own accuracy, so low-level accounts get less. About 2,000 cannonballs an hour.",
    "src": "Pay-to-play Ranged training"
   },
   {
-   "lv": 5,
+   "lv": 1,
    "name": "Gemstone Crab",
    "who": "both",
    "int": "afk",
@@ -43,6 +43,120 @@
    "est": true
   },
   {
+   "lv": 1,
+   "name": "Ammonite or sand crabs",
+   "who": "both",
+   "int": "afk",
+   "cost": "cheap",
+   "xph": 4500,
+   "bands": [
+    [
+     1,
+     4500
+    ],
+    [
+     7,
+     9000
+    ],
+    [
+     16,
+     14000
+    ],
+    [
+     23,
+     19500
+    ],
+    [
+     32,
+     24500
+    ],
+    [
+     41,
+     30000
+    ],
+    [
+     46,
+     34500
+    ],
+    [
+     52,
+     39500
+    ],
+    [
+     60,
+     45000
+    ],
+    [
+     65,
+     50000
+    ],
+    [
+     70,
+     55000
+    ],
+    [
+     77,
+     60500
+    ],
+    [
+     84,
+     65500
+    ],
+    [
+     92,
+     70500
+    ],
+    [
+     99,
+     75500
+    ]
+   ],
+   "req": "",
+   "run": false,
+   "supply": true,
+   "note": "Sand crabs on the Hosidius coast need nothing; ammonite crabs are on Fossil Island. Darts on rapid, and reset their aggression every 10 minutes. Rate estimated.",
+   "src": "Sand Crab"
+  },
+  {
+   "lv": 15,
+   "name": "Brutus",
+   "who": "both",
+   "int": "active",
+   "cost": "cheap",
+   "xph": 14000,
+   "bands": [
+    [
+     15,
+     14000
+    ],
+    [
+     20,
+     19000
+    ],
+    [
+     30,
+     26500
+    ],
+    [
+     40,
+     30000
+    ],
+    [
+     50,
+     35500
+    ],
+    [
+     60,
+     38000
+    ]
+   ],
+   "req": "q:The Ides of Milk",
+   "run": false,
+   "supply": false,
+   "note": "Cow boss in the Lumbridge cow field, double combat XP. Safespot him between the troughs with a shortbow, ring the cowbell amulet after each kill and pick up your arrows.",
+   "src": "Free-to-play Ranged training"
+  },
+  {
    "lv": 28,
    "name": "Gemstone Crab with Dorgeshuun crossbow",
    "who": "iron",
@@ -55,7 +169,23 @@
      14500
     ],
     [
-     55,
+     30,
+     17000
+    ],
+    [
+     35,
+     19500
+    ],
+    [
+     41,
+     22000
+    ],
+    [
+     46,
+     24500
+    ],
+    [
+     52,
      27000
     ]
    ],
@@ -72,10 +202,10 @@
    "int": "semi",
    "cost": "cheap",
    "xph": 42500,
-   "req": "q:Shades of Mort'ton",
+   "req": "q:Priest in Peril",
    "run": false,
    "supply": false,
-   "note": "Mort'ton. Bronze knives, green d'hide and Ava's attractor. Their flat armour of -3 suits fast thrown weapons. Up to 50k an hour. Listed for 40 to 55.",
+   "note": "Mort'ton, open after Priest in Peril. Bronze knives, green d'hide and Ava's attractor. Flat armour of -3 suits fast thrown weapons. Shades of Mort'ton adds a teleport.",
    "src": "Ironman Guide/Ranged"
   },
   {
@@ -97,42 +227,42 @@
    "who": "main",
    "int": "active",
    "cost": "pricey",
-   "xph": 290000,
+   "xph": 269100,
    "bands": [
     [
      45,
-     290000
+     269100
     ],
     [
      55,
-     360000
+     340100
     ],
     [
      65,
-     470000
+     376800
     ],
     [
      75,
-     570000
+     447700
     ],
     [
      85,
-     640000
+     484200
     ],
     [
      95,
-     710000
+     555500
     ],
     [
      99,
-     740000
+     556000
     ]
    ],
-   "req": "q:Monkey Madness II",
+   "req": "q:Monkey Madness II;s:prayer 43",
    "run": false,
    "supply": false,
-   "note": "Kruk's Dungeon, MM2 started. Wiki rates assume best gear, Rigour, divine potions and two alts stacking the monkeys. About 1,970 chins an hour.",
-   "src": "Pay-to-play Ranged training"
+   "note": "Kruk's Dungeon: Monkey Madness II started is enough; bring a light source. Rates are for stacking the monkeys yourself with Eagle Eye, about 1,870 chins an hour.",
+   "src": "Maniacal monkey/Strategies"
   },
   {
    "lv": 55,
@@ -140,38 +270,38 @@
    "who": "both",
    "int": "active",
    "cost": "pricey",
-   "xph": 430000,
+   "xph": 411600,
    "bands": [
     [
      55,
-     430000
+     411600
     ],
     [
      65,
-     540000
+     483100
     ],
     [
      75,
-     670000
+     554500
     ],
     [
      85,
-     740000
+     591300
     ],
     [
      95,
-     810000
+     663000
     ],
     [
      99,
-     840000
+     698400
     ]
    ],
-   "req": "q:Monkey Madness II",
+   "req": "q:Monkey Madness II;s:prayer 43",
    "run": false,
    "supply": true,
-   "note": "Ironmen hunt their own red chins, best at the Gwenith or the hard Western Provinces diary hunting grounds. Rates assume best gear, Rigour and alts stacking.",
-   "src": "Pay-to-play Ranged training"
+   "note": "Ironmen catch their own from 63 Hunter, best at the Gwenith or hard Western Provinces diary hunting grounds. Monkey Madness II started is enough; bring a light source.",
+   "src": "Maniacal monkey/Strategies"
   },
   {
    "lv": 65,
@@ -179,34 +309,34 @@
    "who": "both",
    "int": "active",
    "cost": "pricey",
-   "xph": 690000,
+   "xph": 553400,
    "bands": [
     [
      65,
-     690000
+     553400
     ],
     [
      75,
-     830000
+     625100
     ],
     [
      85,
-     930000
+     731800
     ],
     [
      95,
-     1000000
+     803800
     ],
     [
      99,
-     1030000
+     839400
     ]
    ],
-   "req": "q:Monkey Madness II",
+   "req": "q:Monkey Madness II;s:prayer 43",
    "run": false,
    "supply": true,
-   "note": "Fastest Ranged XP in the game. Black chins are caught in the Wilderness, so ironmen risk PKers for them. Rates assume best gear, Rigour and alts stacking.",
-   "src": "Pay-to-play Ranged training"
+   "note": "Fastest Ranged XP in the game. Black chins are caught in the Wilderness from 73 Hunter, so ironmen risk PKers for them. Rigour and two alts stacking add about a quarter.",
+   "src": "Maniacal monkey/Strategies"
   },
   {
    "lv": 70,
@@ -275,46 +405,90 @@
   {
    "lv": 80,
    "name": "Nightmare Zone with venator bow",
-   "who": "both",
+   "who": "main",
    "int": "afk",
    "cost": "cheap",
-   "xph": 123000,
+   "xph": 103000,
+   "bands": [
+    [
+     80,
+     103000
+    ],
+    [
+     85,
+     109000
+    ],
+    [
+     90,
+     116000
+    ],
+    [
+     95,
+     121000
+    ],
+    [
+     99,
+     123000
+    ]
+   ],
    "req": "",
    "run": false,
    "supply": false,
-   "note": "Normal rumble with absorptions and super ranging, one click per 20 minutes. Rate is quoted at 99. Magic shortbow (i) or darts are cheaper and slower.",
+   "note": "Normal rumble on absorptions and super ranging: one click every 20 minutes. Needs 5 eligible quests and a 22,000 coin fee. The bow costs tens of millions to buy.",
    "src": "Pay-to-play Ranged training",
    "setup": true
   },
   {
    "lv": 80,
    "name": "Maniacal monkeys with venator bow",
-   "who": "both",
+   "who": "main",
    "int": "semi",
    "cost": "cheap",
-   "xph": 185000,
-   "req": "q:Monkey Madness II",
+   "xph": 140000,
+   "bands": [
+    [
+     80,
+     140000
+    ],
+    [
+     85,
+     155000
+    ],
+    [
+     90,
+     170000
+    ],
+    [
+     95,
+     187000
+    ],
+    [
+     99,
+     204000
+    ]
+   ],
+   "req": "q:Monkey Madness II;s:prayer 43",
    "run": false,
    "supply": false,
-   "note": "Cheaper, slower alternative to chinning with amethyst arrows. 140k to 230k an hour, 240k near 99. Prayer potion drops let you stay until 99.",
+   "note": "Kruk's Dungeon: Monkey Madness II started is enough; bring a light source. Each amethyst arrow bounces to two more monkeys, and their prayer potion drops keep you going.",
    "src": "Pay-to-play Ranged training"
   }
  ],
  "unverified": [
-  "Quest skip to level 32: one-off quest XP, so no hourly rate (xph 0)",
-  "Dwarf multicannon on ogres: 40,000 is 'from the cannon alone' and no rate by level is given; the Ironman Guide intro says it does not recommend the cannon but still lists it for 40-70",
-  "Gemstone Crab: no XP rate for darts, blowpipe or ruby bolts in either guide or on Gemstone Crab/Strategies (xph 0)",
-  "Gemstone Crab with Dorgeshuun crossbow: the guide says 'between 14,500 and 27,000' over levels 28-55; treated as the rate at 28 and at 55",
-  "Loar shades with knives: 42,500 is 85% of 'up to 50,000'",
-  "Jungle spiders with knives or darts: 34,000 is 85% of 'up to 40,000'",
-  "Chinning maniacal monkeys (all three): table rates assume best gear, Rigour, divine ranging potions and two alt accounts stacking the monkeys; Eagle Eye is 5-7% lower; only needs Monkey Madness II started, req lists the quest as if complete",
-  "Chinning maniacal monkeys (red chins): the Ironman Guide starts chinning at 55 with self-caught red chins and gives no rate of its own",
-  "Pest Control points: bands are the no-combat-achievement column (5 points a game); combat level 100 is 'recommended' for the veteran boat and is what the rates assume",
+  "Quest skip to level 32: one-off quest XP, so no hourly rate (xph 0); the guide's heading stops at 36 and does not count the 1,000 XP lamp of The Ides of Milk, which makes 28,162 XP and level 37",
+  "Dwarf multicannon on ogres: 40,000 is the guide's 'from the cannon alone' with no level given; the cannon rolls the player's own ranged or melee accuracy against the ogre's Defence of 43, which is 9% at level 1 Ranged with nothing worn and about 70% at 40 Attack or 40 Ranged, so a new account gets far less than 40,000; about 2,000 cannonballs an hour is 40,000 over the 20 XP a ball that the ironman guide's 35,000 balls for 40 to 70 works out at",
+  "Gemstone Crab: no page gives a Ranged rate; it is worked out in shared/domain/rates.ts (crab-ranged) and was checked against the wiki's damage formula on 12 October 2026: within 4% from level 19 up, 13 to 23% low at levels 3 to 7 and 9% low at 15; it assumes no potion or prayer (a ranging potion adds 7 to 18% from level 46), mithril darts up to 45 (adamant from 30 would add 15 to 21%) and adamant darts in the rosewood blowpipe (rune darts, allowed since 22 July 2026, add 7 to 15%)",
+  "Ammonite or sand crabs: no page gives a Ranged rate; the bands are the wiki's damage formula with darts (steel, mithril from 20, adamant from 46, a rosewood blowpipe from 65), no potion or prayer, full XP, and 85% of the hour spent hitting a crab, which is an assumption; ruby bolts (e) are left out because their effect is a fifth of the target's current Hitpoints; Fossil Island is taken to need Bone Voyage as elsewhere in the data",
+  "Brutus: the only figure is the free-to-play guide's observed 45,000 to 50,000 at level 63 with a maple shortbow and adamant arrows; the bands are the damage formula with shop shortbows and arrows, fitted to the middle of that figure, less 15% for ordinary play; darts on rapid would be faster but nothing on the wiki measures them",
+  "Gemstone Crab with Dorgeshuun crossbow: 14,500 and 27,000 are the guide's (the formula gives 15,350 at 28 and 28,300 at 55); the bands between follow the max hit and take 6.75 hours from 28 to 55 against the guide's 'around 7'; nothing is published above 55",
+  "Loar shades with knives: 42,500 is 85% of 'up to 50,000' (the formula gives 52,300 at level 40 with the guide's gear at full uptime); the guide's Shades of Mort'ton is for the minigame teleport, and req asks only for Priest in Peril, which opens Mort'ton",
+  "Jungle spiders with knives or darts: 34,000 is 85% of 'up to 40,000'; the formula gives 34,600 at 40 and 47,900 at 55 at full uptime, so the figure is generous at 40 and cautious at 55",
+  "Chinning maniacal monkeys (all three): the bands are the Maniacal monkey/Strategies table (Eagle Eye, ranging potions, a necklace of anguish, 99 Prayer, stacking by hand, 1,866 chins an hour), which the wiki extrapolates from red chin runs at levels 80 to 90; without the necklace it is about 10% less; the training guide's table (Rigour, divine potions, two alts stacking, 1,970 chins) is 4 to 33% higher and beats the ironman efficiency table at 65, so it is not used; Monkey Madness II only needs starting, which req cannot say; the light source is an item",
+  "Chinning maniacal monkeys (red and black chins): ironmen catch their own (63 and 73 Hunter after Eagles' Peak), which req cannot ask of ironmen alone, and the hours spent catching them are not counted",
+  "Pest Control points: the table is 26 games an hour x 5 points x the reward formula (floor(level squared / 600) x 32, plus 10% for spending 100 points at once) plus 40,000 from fighting pests; the games an hour and the 40,000 are the guide's own assumptions, and the Pest Control page allows 2 minutes a game at best",
   "Slayer tasks and bosses with Ranged: no rate in either guide (xph 0)",
-  "Nightmare Zone with venator bow: 123,000 is 85% of the midpoint of 'up to 140,000-150,000', which is quoted at level 99, not at 80; hard mode is 180,000-190,000; the Ironman Guide lists NMZ from 55 with no rate; the 5-quest requirement cannot be expressed in req",
-  "Maniacal monkeys with venator bow: midpoint of 140,000-230,000; the guide says a realistic maximum is 240,000 near 99",
-  "Not included: chinning skeletal monkeys (no rate, only for players without MM2) and the eclipse atlatl (a weapon choice, no rate)",
-  "2026-10-05: Gemstone Crab (melee) rate is computed in app.js (CALC['crab-melee']) from the damage formula, not taken from the wiki; Nightmare Zone is flagged 'setup' (dream fee, potions, five quests) so AFK blocks weigh it at 75%",
-  "2026-10-05: Gemstone Crab (ranged) rate is computed in app.js (CALC['crab-ranged']) from the weapon progression on Gemstone Crab/Strategies and the item pages (steel dart +3, mithril +9, adamant +17 ranged strength, speed 3; adamant crossbow speed 6; ruby bolts (e) +103 and about 60 damage every ~20 attacks; rosewood blowpipe +6, speed 3 in PvM, 65 Ranged); rapid style, no potions or prayer, 97% hit chance on the zero-defence crab, 87.5% XP"
+  "Nightmare Zone with venator bow: 123,000 at 99 is 85% of the 145,000 both the training guide and Nightmare Zone/Strategies give; the lower bands scale it by the bow's damage with a super ranging potion; the five quests it needs cannot be expressed in req; offered to mains only, because an ironman's only way to the bow is five 1 in 100 shards from the Phantom Muspah (Secrets of the North)",
+  "Maniacal monkeys with venator bow: the guide gives 140,000 to 230,000 and a realistic maximum of 240,000 near 99; 140,000 opens the bands, 204,000 at 99 is 85% of that maximum and the steps between are even; the formula gives 238,000 at 99 with void, a necklace of anguish and Eagle Eye when every shot bounces twice; the guide's figures were not revised after the bow's bounce targeting was improved on 19 August 2026, so they may now be low",
+  "Not included: chinning skeletal monkeys (no rate, only for players who cannot enter Kruk's Dungeon); the eclipse atlatl and the toxic blowpipe (weapon choices, no rate); Nightmare Zone with a magic shortbow (i), a crossbow or a blowpipe (70,000, 60,000 to 65,000 and 90,000 to 95,000 at best, so no better than the Gemstone Crab short of the blowpipe); cannoning ogres in the Combat Training Camp (the same method behind Biohazard) and ice trolls (no rate); the 2 to 4 million Ranged XP the cannon gives on the way to 99 Slayer (not a method to deal); Soul Wars zeal; free-to-play monsters other than Brutus"
  ]
 }

@@ -25,7 +25,7 @@ const fixture = JSON.parse(
 const truth: Account = { ...accountFromSave(migrateLegacySave(fixture.state)), type: 'iron' }
 
 describe('the finding the question flow rests on', () => {
-  it('takes the fixture account from 2,589 hours to 2,157 in 13 questions, asked biggest saving first', () => {
+  it('takes the fixture account from 2,643 hours to 2,228 in 13 questions, asked biggest saving first', () => {
     let ticks: QuestTicks = {
       completedQuests: [],
       completedDiaries: [],
@@ -37,7 +37,7 @@ describe('the finding the question flow rests on', () => {
       completedQuests: new Set(ticks.completedQuests),
       completedDiaries: new Set(),
     })
-    expect(Math.round(maxProgress(account()).hoursLeft)).toBe(2589)
+    expect(Math.round(maxProgress(account()).hoursLeft)).toBe(2643)
 
     const asked: string[] = []
     for (;;) {
@@ -52,20 +52,20 @@ describe('the finding the question flow rests on', () => {
 
     expect(asked).toEqual([
       'Druidic Ritual',
-      'The Blood Moon Rises',
       'Monkey Madness II',
-      'Children of the Sun',
-      'Sins of the Father',
-      'Lunar Diplomacy',
+      'The Blood Moon Rises',
       'Bone Voyage',
+      'Sins of the Father',
       'Perilous Moons',
+      'Children of the Sun',
+      'Lunar Diplomacy',
       'Creature of Fenkenstrain',
       'Vale Totems',
       'Family Crest',
       'Temple of the Eye',
       'Pandemonium',
     ])
-    expect(Math.round(maxProgress(account()).hoursLeft)).toBe(2157)
+    expect(Math.round(maxProgress(account()).hoursLeft)).toBe(2228)
     // exactly what ticking every quest and diary tier the account has done gives
     expect(maxProgress(account()).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })

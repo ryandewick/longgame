@@ -35,7 +35,7 @@ describe('sortSkillInsights', () => {
   it('puts the most work first and the finished skills last', () => {
     const skills = order('hours')
     // the order the fixture account's Skills table is in
-    expect(skills.slice(0, 5)).toEqual(['slayer', 'agility', 'mining', 'sailing', 'runecraft'])
+    expect(skills.slice(0, 5)).toEqual(['slayer', 'ranged', 'agility', 'mining', 'sailing'])
     expect(skills.slice(-3)).toEqual(['farming', 'hitpoints', 'thieving'])
   })
 
@@ -150,7 +150,7 @@ describe('skillRow', () => {
       bestNow: 'Nieve or Steve',
     })
     expect(fixtureRow('ranged')).toMatchObject({
-      timeLeft: '121 h, if supplied',
+      timeLeft: '192 h, if supplied',
       bestNow: 'Gemstone Crab',
     })
     expect(fixtureRow('farming')).toMatchObject({
