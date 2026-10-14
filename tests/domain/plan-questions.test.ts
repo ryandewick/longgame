@@ -566,11 +566,11 @@ describe('planQuestions: the order', () => {
       'Throne of Miscellania 291',
       'A Kingdom Divided 291',
       // and Children of the Sun is behind the four that follow it
-      'Children of the Sun 57',
-      'Perilous Moons 89',
-      'Vale Totems 62',
-      'The Ribbiting Tale of a Lily Pad Labour Dispute 58',
-      'The Heart of Darkness 57',
+      'Children of the Sun 51',
+      'Perilous Moons 82',
+      'Vale Totems 56',
+      'The Ribbiting Tale of a Lily Pad Labour Dispute 52',
+      'The Heart of Darkness 51',
       'Creature of Fenkenstrain 11',
       'Fremennik Hard 6',
       'Family Crest 3',
@@ -632,7 +632,12 @@ describe('planQuestions: the order', () => {
       afterRitual.savingHours
         .slice(0, 4)
         .map((question) => `${question.requirement.name} ${Math.round(question.hoursSaved)}`),
-    ).toEqual(['Children of the Sun 57', 'Perilous Moons 89', 'Bone Voyage 74', 'Vale Totems 62'])
+    ).toEqual([
+      'Children of the Sun 51',
+      'Perilous Moons 82',
+      'Bone Voyage 74',
+      'Sins of the Father 61',
+    ])
     // Bone Voyage showed 365 hours while the 291 of Druidic Ritual were counted in it
     expect(Math.round(questionAbout(account, 'Bone Voyage').hoursSaved)).toBe(74)
   })
@@ -674,9 +679,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,643 hours to 2,228 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,647 hours to 2,239 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2643)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2647)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -684,7 +689,7 @@ describe('planQuestions: a whole run of answers', () => {
       ),
     ).toEqual([
       'Druidic Ritual 291 yes',
-      'Children of the Sun 57 yes',
+      'Children of the Sun 51 yes',
       'Sins of the Father 61 no',
       'Lunar Diplomacy 58 no',
       'Bone Voyage 45 yes',
@@ -695,7 +700,7 @@ describe('planQuestions: a whole run of answers', () => {
       'Temple of the Eye 3 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2228)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2239)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })

@@ -11,7 +11,7 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "The Restless Ghost, Priest in Peril, Recruitment Drive and Holy Grail give 14,531 XP for level 30. The ironman guide's nine-quest list reaches 37.",
+      "note": "The Restless Ghost, Priest in Peril, Recruitment Drive and Holy Grail give 14,531 XP for 30, or 31 with The Ides of Milk lamp. The ironman guide's nine quests reach 37.",
       "src": "Pay-to-play Prayer training"
     },
     {
@@ -24,7 +24,7 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Both burners lit for 350% XP, 2,550 bones an hour clicking each bone. Your own altar needs 75 Construction, or use a host's house at Rimmington.",
+      "note": "Both burners lit for 350% XP, about 2,550 bones an hour clicking each bone. Use a host's altar at Rimmington and unnote at Phials, or your own at 75 Construction.",
       "src": "Pay-to-play Prayer training"
     },
     {
@@ -37,7 +37,7 @@
       "req": "s:construction 75",
       "run": false,
       "supply": true,
-      "note": "Ironmen cannot use other players' altars. Rate is for dragon bones with both burners lit. Bank at the Camelot chest on a PvP world or use Phials.",
+      "note": "Ironmen cannot use other players' altars. Dragon bones with both burners lit give 252 XP each, half the chaos altar's. Bank at the Camelot chest on a PvP world.",
       "src": "Ironman Guide/Prayer"
     },
     {
@@ -46,24 +46,24 @@
       "who": "both",
       "int": "active",
       "cost": "cheap",
-      "xph": 500000,
+      "xph": 428400,
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Level 38 Wilderness. 350% XP and half the bones are saved, so double the XP per bone. Rate is one inventory a trip, then dying. 860k with noted bones.",
+      "note": "Level 38 Wilderness. 350% XP and half the bones spared, so 504 XP a dragon bone, the most of any method. Rate is one inventory a trip, then dying. Noted bones go faster.",
       "src": "Pay-to-play Prayer training"
     },
     {
       "lv": 1,
-      "name": "Ensouled bloodveld heads",
+      "name": "Ensouled hellhound heads",
       "who": "both",
       "int": "semi",
       "cost": "cheap",
-      "xph": 228800,
+      "xph": 224400,
       "req": "s:magic 72",
       "run": false,
       "supply": true,
-      "note": "Expert Reanimation at the Dark Altar, 220 heads an hour. Demon and hellhound heads in the same tier give up to 264k. Ironmen save heads from Slayer.",
+      "note": "Expert Reanimation at the Dark Altar, about 190 heads an hour. Hellhound heads need no Slayer level; bloodveld heads give 1,040 and need 50 Slayer. Heads trade thinly.",
       "src": "Pay-to-play Prayer training"
     },
     {
@@ -72,11 +72,11 @@
       "who": "both",
       "int": "semi",
       "cost": "cheap",
-      "xph": 343200,
+      "xph": 291720,
       "req": "s:magic 90",
       "run": false,
       "supply": true,
-      "note": "Reanimate and kill them by the Dark Altar, 220 heads an hour with high combat stats. Less effort than an altar and no Wilderness. Buy heads in advance.",
+      "note": "Master Reanimation by the Dark Altar, about 190 heads an hour with good combat stats. Bring dragonfire protection. Less effort than an altar and no Wilderness.",
       "src": "Pay-to-play Prayer training"
     },
     {
@@ -84,12 +84,12 @@
       "name": "Ectofuntus",
       "who": "both",
       "int": "active",
-      "cost": "cheap",
-      "xph": 0,
+      "cost": "pricey",
+      "xph": 51840,
       "req": "q:Priest in Peril",
       "run": false,
       "supply": true,
-      "note": "400% XP per bone but slow: grind the bones, collect slime, worship. The safe choice for hardcore ironmen before a gilded altar. No rate in either guide.",
+      "note": "400% XP per bone but slow: grind the bones, fill slime, worship, about 180 an hour teleporting to bank. The ectophial from Ghosts Ahoy helps. Safe for hardcore ironmen.",
       "src": "Ironman Guide/Prayer"
     },
     {
@@ -102,7 +102,7 @@
       "req": "q:A Kingdom Divided;s:magic 92",
       "run": false,
       "supply": true,
-      "note": "Arceuus spell that offers three bones a cast for 300% XP with no banking. One blood and one wrath rune a cast. Also 108k Magic XP an hour. Late game for ironmen.",
+      "note": "Arceuus spell offering three bones a cast for 300% XP, a cast every 5.4 seconds, and 108k Magic XP an hour. A blood and a wrath rune a cast; ironmen need 95 Runecraft.",
       "src": "Pay-to-play Prayer training"
     },
     {
@@ -110,64 +110,156 @@
       "name": "Cremating urium remains",
       "who": "main",
       "int": "active",
-      "cost": "profit",
+      "cost": "pricey",
       "xph": 35000,
-      "req": "s:firemaking 95",
+      "req": "q:Shades of Mort'ton;s:firemaking 95",
       "run": false,
       "supply": false,
-      "note": "Shades of Mort'ton with redwood pyre logs. Slow XP but usually profitable and the fastest way to zealot's robes. 57k with the hard Morytania diary.",
+      "note": "Shades of Mort'ton with redwood pyre logs, about 300 an hour. A loss at current prices, but the fastest way to zealot's robes. Up to 57k with the hard Morytania diary.",
       "src": "Pay-to-play Prayer training"
     },
     {
+      "lv": 1,
+      "name": "Gilded altar, dagannoth bones",
+      "who": "main",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 1115600,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "The fastest bones until superior dragon bones at 70: 437.5 XP each with both burners lit, about 2,550 an hour clicking each bone. Twice the coins an XP of dragon bones.",
+      "src": "Pay-to-play Prayer training"
+    },
+    {
+      "lv": 1,
+      "name": "Gilded altar, dragon bones with auto-offering",
+      "who": "main",
+      "int": "semi",
+      "cost": "pricey",
+      "xph": 270000,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Use one bone on the altar and it offers the rest by itself, about 1,070 bones an hour. Under half the XP of clicking each bone, for far less clicking.",
+      "src": "Pay-to-play Prayer training"
+    },
+    {
+      "lv": 25,
+      "name": "Pest Control points",
+      "who": "iron",
+      "int": "active",
+      "cost": "free",
+      "xph": 2376,
+      "bands": [
+        [
+          25,
+          2376
+        ],
+        [
+          35,
+          4752
+        ],
+        [
+          43,
+          7128
+        ],
+        [
+          49,
+          9504
+        ],
+        [
+          55,
+          11880
+        ],
+        [
+          60,
+          14256
+        ],
+        [
+          65,
+          16632
+        ],
+        [
+          70,
+          19008
+        ],
+        [
+          74,
+          21384
+        ],
+        [
+          78,
+          23760
+        ],
+        [
+          82,
+          26136
+        ],
+        [
+          85,
+          28512
+        ],
+        [
+          89,
+          30888
+        ],
+        [
+          92,
+          33264
+        ],
+        [
+          95,
+          35640
+        ],
+        [
+          98,
+          38016
+        ]
+      ],
+      "req": "c:100",
+      "run": false,
+      "supply": false,
+      "note": "Spend commendation points 100 at a time on Prayer XP: about 24 veteran games an hour at 5 points. Each combat achievement tier up to hard adds a point a game.",
+      "src": "Ironman Guide/Prayer"
+    },
+    {
       "lv": 30,
-      "name": "Libation bowl, banked bone shards",
+      "name": "Libation bowl, dragon bones to shards",
       "who": "both",
       "int": "active",
-      "cost": "cheap",
-      "xph": 809000,
+      "cost": "pricey",
+      "xph": 455000,
       "bands": [
         [
           30,
-          809000
+          455000
         ],
         [
           34,
-          889000
+          481000
         ],
         [
           40,
-          980000
+          511000
         ],
         [
           48,
-          1100000
+          545000
         ],
         [
           62,
-          1124000
+          591600
         ],
         [
           88,
-          1370000
+          637000
         ]
       ],
       "req": "q:Children of the Sun",
       "run": false,
       "supply": true,
-      "note": "The Teomat. Offer shards you already hold with blessed sunfire wine. Shards also come from Moons of Peril, rumours and calcified rocks. Shard making not counted.",
-      "src": "Pay-to-play Prayer training"
-    },
-    {
-      "lv": 62,
-      "name": "Libation bowl, dragon bones to shards",
-      "who": "both",
-      "int": "active",
-      "cost": "pricey",
-      "xph": 591600,
-      "req": "q:Children of the Sun",
-      "run": false,
-      "supply": true,
-      "note": "Unnote, bless and chisel dragon bones, then offer with sunfire wine. 1,700 bones an hour all in. More XP per bone than a gilded altar. Usable from 30, slower.",
+      "note": "The Teomat. Bless and chisel dragon bones, then offer the shards with sunfire wine: about 1,700 bones an hour all in, 348 XP a bone. Other shards go twice as fast.",
       "src": "Pay-to-play Prayer training"
     },
     {
@@ -189,40 +281,29 @@
       "who": "main",
       "int": "active",
       "cost": "pricey",
-      "xph": 1050000,
+      "xph": 892500,
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Same altar with superior dragon bones. 1.05m dying after each inventory, up to 1.8m bringing noted bones and risking them to PKers.",
+      "note": "Same altar with superior dragon bones, 1,050 XP a bone on average. Rate is one inventory a trip, then dying. Up to 1.8m bringing noted bones, risking them to PKers.",
       "src": "Pay-to-play Prayer training"
-    },
-    {
-      "lv": 80,
-      "name": "Pest Control points",
-      "who": "iron",
-      "int": "active",
-      "cost": "free",
-      "xph": 40000,
-      "req": "c:100",
-      "run": false,
-      "supply": false,
-      "note": "Spend commendation points on Prayer XP. About 40k at level 80 with 8 points a game from hard combat achievements. Usable from 25 but far slower.",
-      "src": "Ironman Guide/Prayer"
     }
   ],
   "unverified": [
-    "Quest skip to level 30: one-off quest XP, so no hourly rate (xph 0)",
-    "Gilded altar, dragon bones: 643,000 assumes 2,550 bones an hour with manual clicking (1,070 an hour if not); a main without 75 Construction needs a host's altar, which req cannot express",
-    "Gilded altar, your own bones: the Ironman Guide gives no rate, the main guide's dragon bone figure is used; lighting burners also needs 30 Firemaking",
-    "Chaos altar, dragon bones: 500,000 is the suicide-per-inventory figure and the Ironman Guide's 'around 500,000'; 'up to 860,000' with noted bones; the comparison table says 504,000",
-    "Ensouled heads (both): table rates assume 220 heads an hour, described as 'up to 220' with high combat stats; the Ironman Guide calls the method slow and unpredictable and gives no rate",
-    "Ectofuntus: no rate in either guide (xph 0)",
-    "Sinister Offering, dragon bones: 388,800 is the table formula 216 x 600 casts x 3 bones; no Prayer level is needed for dragon bones, the Ironman Guide places offering spells at 70-99 because wrath runes need 95 Runecraft",
-    "Cremating urium remains: 95 Firemaking is the level the guide quotes for urium remains; the Shades of Mort'ton quest requirement is not stated in the guide",
-    "Libation bowl, banked bone shards: bands are the sunfire wine column for offering ready-made shards only (blessed wine is 670,000 at 30 up to about 1,114,000 at 88); 1,370,000 at 88 is the midpoint of 1,320,000-1,420,000; the guide calls these estimates",
-    "Libation bowl, dragon bones to shards: 591,600 is the comparison-table all-in rate, which assumes 62+ Prayer; the method works from 30 but no all-in rate is given below 62, so lv is set to 62",
-    "Gilded altar and Chaos altar, superior dragon bones: superior dragon bones need 70 Prayer; text and table differ slightly (1,340,000 vs 1,338,750)",
-    "Pest Control points: the guide only gives 'around 40k' at about level 80 with 8 points a game; usable from 25 but no rate, so lv is set to 80",
-    "Not included: calcified rocks (2,200 shards an hour, 11,000-13,200 banked Prayer XP, 41 Mining) and Demonic Offering on ashes (abyssal ashes 459,000 an hour by the table formula, 84 Magic)"
+    "Quest skip to level 30: one-off quest XP, so no hourly rate (xph 0); the four quests give 14,531.5 XP (Recruitment Drive pays 1,000.5), level 30, and 31 with the 1,000 XP lamp of The Ides of Milk; His Faithful Servants (20,000, all six Barrows brothers) would take the four to 39",
+    "Gilded altar, dragon, dagannoth and superior dragon bones: 2,550 bones an hour is the guide's figure 'with good banking and accurate clicks', which it sets below 'up to 3,500' with alts, so 85% was not applied; at a tick a bone by hand that leaves about 20 seconds a trip for teleports and banking, where Jagex's 2017 blog implies about 40 seconds for an average player, so ordinary play may be nearer 1,700 to 2,000 bones; a main without 75 Construction uses a host's altar, which req cannot express",
+    "Gilded altar, dagannoth bones: 1,115,625 is the guide's comparison table (2,550 bones of 437.5 XP); it is here because the app counts a main on any budget as buying superior dragon bones at 40 coins an XP from 70, and dagannoth bones (30 coins an XP, dragon bones 15) are the fastest bones that trade in quantity before 70, as in Wise Old Man's main table; hydra and frost dragon bones (981,750 and 892,500) sit between the two at about 20 coins an XP; ourg bones (140 XP) trade in tens a day",
+    "Gilded altar, dragon bones with auto-offering: the guide's 'only up to 1,070 bones per hour' and Jagex's 2017 'around 270k' for 40 trips an hour agree within 1%, so 85% was not applied",
+    "Gilded altar, your own bones: the ironman guide gives no rate, so the main guide's dragon bone figure is used; the guide says lighting a burner needs 30 Firemaking, but no other page (the burner, the chapel, marrentill, the Firemaking level table) gives a level, so req does not ask for it; 75 Construction can be met from 69 with a crystal saw and tea",
+    "Chaos altar, dragon bones and superior dragon bones: 428,400 and 892,500 are 85% of the guide's 'up to around 2,000 bones an hour' suiciding after each inventory (500,000 and 1,050,000), because the guide gives 2,000 as a top figure and the ironman guide only says 500,000 'should be possible'; 2,000 needs a quick teleport in and a respawn point near a bank (Ferox Enclave or Edgeville at 5 million coins each, or a PvP world); the Ultimate Ironman guide's slower deathpile routine manages about 1,260 offerings an hour; noted bones give up to 860,000 and 1,800,000 at more risk, and the guide's gravestone warping (12 October 2026) lets a player risk one stack at a time",
+    "Libation bowl, dragon bones to shards: 591,600 from 62 is the guide's comparison table (1,700 bones an hour blessed, chiselled and offered with sunfire wine); the guide's own cycle times give 643,000 there, 8% more; the other bands follow those cycle times scaled to the table and agree with the guide's 'about half' of the offering-only rate within 12%; without sunfire wine every figure is a sixth less; the guide's offering-only table is internally inconsistent from 62 (its XP figures do not follow its seconds per run); the 65 seconds the guide allows for each wine trip assume quick travel back to the Teomat (a quetzal after Twilight's Promise, a ring of dueling with Colosseum Hero status, or the rare pendant of Ates), so an account with only Children of the Sun is somewhat slower",
+    "Ensouled heads (both): 187 heads an hour is 85% of the guide's 'up to 220' with high combat stats; the Expert entry was 'Ensouled bloodveld heads' and is renamed to hellhound heads (1,200 XP against 1,040, the same spell, no Slayer level where reanimated bloodveld need 50, about the same coins an XP and trade); ensouled dragon heads trade in the low tens of thousands a day and the Expert heads in the low thousands, so a main may have to buy over several days",
+    "Ironmen are short of bones rather than time: a dragon bone gives 504 XP at the chaos altar, 348 at the libation bowl with sunfire wine (290 without), 288 at the Ectofuntus, 252 at a gilded altar and 216 by Sinister Offering, but the app ranks methods by XP an hour, so from 30 an ironman with Children of the Sun is pointed at the libation bowl; weighing a method by XP a supply would need a new field across every skill, so the notes give XP a bone instead",
+    "Ectofuntus: 51,840 is the Ectofuntus page's 'approximately 180' worships an hour with teleports to bank, at 288 XP a dragon bone; no guide gives a rate; it assumes the ectophial, a Ghosts Ahoy reward, which req does not ask for because the Ectofuntus only needs Morytania",
+    "Sinister Offering, dragon bones: 388,800 is the guide's 600 casts an hour, 90% of the 666 the 9-tick cooldown allows; 85% of the cap would be 367,200; ironmen need wrath runes, which in practice means 95 Runecraft, and req cannot ask that of ironmen alone",
+    "Cremating urium remains: the minigame needs the quest Shades of Mort'ton; 35,000 is the guide's figure (the money making guide's 300 cremations an hour gives 36,150); the money making guide showed a loss of 882,923 coins an hour on 14 October 2026, which is 24 coins a Prayer XP, so the guide's 'typically profitable' is out of date",
+    "Pest Control points: bands are the reward formula (floor(level squared / 600) x 18, plus 10% for 100 points at once) at 5 points a veteran game and the Ultimate Ironman guide's 24 games an hour; the hard combat achievement tier makes it 8 points (38,016 at 78, the ironman guide's 'around 40k' at 80), which req cannot express; points are worth most spent at a high level",
+    "Efficiency ceilings (Wise Old Man, 14 October 2026): main 1,670,000 from 0 (dagannoth bones at the chaos altar) and 2,000,000 from 70 (superior dragon bones), above every main rate here; the ironman table's 175,900 counts killing the dragons for the bones, so it is not a ceiling for offering rates, which the app shows to ironmen as 'if supplied'",
+    "Not included: hydra or frost dragon bones at a gilded altar (between dragon and dagannoth bones in speed and cost); Demonic Offering (84 Magic, A Kingdom Divided; 594,000 with infernal ashes at 9.7 coins an XP, never faster than a gilded altar for a main); the libation bowl with offering-only rates (shards are untradeable, so making them is part of the training); lower ensouled heads (troll heads 145,860 at 41 Magic); the sacred bone burner (300%, unpopular); burying bones in free-to-play; bonecrusher, ash sanctifier and other by-products (Camdozaal, calcified rocks, Hunters' Rumours, Moons of Peril, bird's eggs, vampyre dust)"
   ]
 }
