@@ -154,7 +154,7 @@ describe('skillRow', () => {
       bestNow: 'Gemstone Crab',
     })
     expect(fixtureRow('farming')).toMatchObject({
-      timeLeft: '50 days of runs',
+      timeLeft: '52 days of runs',
       bestNow: 'Hardwood tree runs',
     })
     expect(fixtureRow('hitpoints')).toMatchObject({

@@ -182,10 +182,10 @@ describe('planQuestions: what can be asked about', () => {
   })
 
   it('counts the open requirements it does not ask about', () => {
-    // 41 quests and 11 diary tiers gate something; with nothing ticked 36 are worth a question
-    expect(gatingQuests().length + gatingDiaries().length).toBe(52)
-    expect(questions).toHaveLength(36)
-    expect(setAsideCount).toBe(16)
+    // 43 quests and 11 diary tiers gate something; with nothing ticked 37 are worth a question
+    expect(gatingQuests().length + gatingDiaries().length).toBe(54)
+    expect(questions).toHaveLength(37)
+    expect(setAsideCount).toBe(17)
   })
 
   it('does not ask about what is ticked', () => {
@@ -207,7 +207,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan))).not.toContain('Tears of Guthix')
     expect(namesAsked(everyQuestion(plan))).not.toContain('Kandarin Easy')
     // an answer is not something set aside
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(50)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(52)
   })
 
   it('does not ask about a quest that requires one answered "not yet"', () => {
@@ -224,7 +224,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan)).filter((name) => dependants.includes(name))).toEqual([])
     // ruled out is not set aside either: the count is of quests that could still become questions
     const ruledOut = gatingQuests().filter((name) => dependants.includes(name))
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(52 - 1 - ruledOut.length)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(54 - 1 - ruledOut.length)
   })
 
   it('asks about nothing a shortcut already covers', () => {
@@ -514,7 +514,7 @@ describe('planQuestions: the two rounds', () => {
   it('asks the questions that save hours first, and keeps the smaller ones for a second round', () => {
     expect(plan.savingHours.every(savesHours)).toBe(true)
     expect(plan.smaller.some(savesHours)).toBe(false)
-    expect(plan.savingHours).toHaveLength(22)
+    expect(plan.savingHours).toHaveLength(23)
     expect(plan.smaller).toHaveLength(14)
   })
 
@@ -565,10 +565,11 @@ describe('planQuestions: the order', () => {
       'Tai Bwo Wannai Trio 291',
       'Throne of Miscellania 291',
       'A Kingdom Divided 291',
-      // and Children of the Sun is behind the three that follow it
+      // and Children of the Sun is behind the four that follow it
       'Children of the Sun 57',
       'Perilous Moons 89',
       'Vale Totems 62',
+      'The Ribbiting Tale of a Lily Pad Labour Dispute 58',
       'The Heart of Darkness 57',
       'Creature of Fenkenstrain 11',
       'Fremennik Hard 6',
@@ -807,7 +808,7 @@ describe('the count of questions over the card', () => {
 
   it('starts well above what is asked, which is why it says at most', () => {
     const { totals } = totalsShown('savingHours', asTheFixtureDid)
-    expect(totals[0]).toBe(22)
+    expect(totals[0]).toBe(23)
     expect(totals).toHaveLength(11)
   })
 })
