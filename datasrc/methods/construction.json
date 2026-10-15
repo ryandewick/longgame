@@ -11,7 +11,7 @@
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Miniquest takes you to 8 and gives supplies. Then chairs, bookcases and larders, oak from 15, carved oak tables to 33.",
+      "note": "The miniquest gives 942 XP for level 8, a house and a crate of supplies. Then chairs, bookcases and larders, oak planks from 15, carved oak tables to 33.",
       "src": "Construction training"
     },
     {
@@ -20,11 +20,11 @@
       "who": "both",
       "int": "semi",
       "cost": "cheap",
-      "xph": 42500,
+      "xph": 38000,
       "bands": [
         [
           1,
-          42500
+          38000
         ],
         [
           20,
@@ -42,7 +42,7 @@
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Contracts in four cities. Far more XP per plank and less clicking. A plank sack lifts expert contracts to about 260,000.",
+      "note": "Contracts in four cities, far more XP a plank than furniture and less clicking. A plank sack (350 carpenter points) lifts expert contracts to about 260,000.",
       "src": "Construction training"
     },
     {
@@ -50,42 +50,42 @@
       "name": "Shipwright hull parts",
       "who": "both",
       "int": "semi",
-      "cost": "cheap",
-      "xph": 72500,
+      "cost": "pricey",
+      "xph": 61600,
       "bands": [
         [
           1,
-          72500
+          61600
         ],
         [
           8,
-          150000
+          127500
         ],
         [
           23,
-          225000
+          191300
         ],
         [
           41,
-          350000
+          297500
         ],
         [
           53,
-          400000
+          340000
         ],
         [
           75,
-          437500
+          371900
         ],
         [
           84,
-          475000
+          403800
         ]
       ],
       "req": "q:Pandemonium",
       "run": false,
       "supply": true,
-      "note": "Workbench by a bank, about 1,000 parts an hour. Half the XP per plank but the parts sell or feed Sailing. Relaxed pace.",
+      "note": "Shipwrights' workbench at Port Khazard, 5 tiles from a bank chest: about 850 parts an hour. Half the XP a plank of furniture, and the parts hardly sell.",
       "src": "Construction training"
     },
     {
@@ -98,7 +98,7 @@
       "req": "s:crafting 30",
       "run": false,
       "supply": true,
-      "note": "Port Piscarilius. Each repair gives 4x your level in Construction and Crafting for 3 planks and nails. Slow but very cheap.",
+      "note": "At Port Piscarilius each repair gives 4x your level in Construction and Crafting for 3 planks and 9 nails; cranes break again 30 to 60 seconds later. Slow but cheap.",
       "src": "Construction training"
     },
     {
@@ -107,21 +107,25 @@
       "who": "both",
       "int": "active",
       "cost": "cheap",
-      "xph": 0,
+      "xph": 170000,
       "bands": [
         [
           33,
-          0
+          170000
+        ],
+        [
+          40,
+          278000
         ],
         [
           50,
-          485000
+          425000
         ]
       ],
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Eight oak planks, 480 XP each. About 485,000 an hour from 50 with a demon butler. The cheap standard route to 74.",
+      "note": "Eight oak planks for 480 XP, unnoted at Phials in Rimmington to 40, then fetched by a butler; a demon butler from 50 gives about 425,000 an hour. The cheap route to 74.",
       "src": "Construction training"
     },
     {
@@ -134,7 +138,7 @@
       "req": "q:Dragon Slayer II",
       "run": false,
       "supply": true,
-      "note": "Three teak planks and the cape for 370 XP. Best XP per teak plank. Up to 430,000 an hour at maximum efficiency.",
+      "note": "Three teak planks and the cape for 370 XP, the most XP a teak plank, up to 430,000 an hour. Dragon Slayer II needs 50 Construction that cannot be boosted.",
       "src": "Construction training"
     },
     {
@@ -147,7 +151,7 @@
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Six mahogany planks, 840 XP each with a demon butler. Up to about 900,000 an hour. Fastest until gnome benches at 77.",
+      "note": "Six mahogany planks for 840 XP, with a demon butler fetching more, up to about 900,000 an hour. The fastest method until gnome benches at 77.",
       "src": "Construction training"
     },
     {
@@ -160,7 +164,7 @@
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Fastest use of teak planks, 540 XP each in the superior garden. Needs precise timing. 700,000 with perfect execution.",
+      "note": "Six teak planks, 540 XP, alternating the two seats of a superior garden. Needs precise timing; most players see 500,000 to 600,000, up to 700,000.",
       "src": "Construction training"
     },
     {
@@ -169,11 +173,11 @@
       "who": "both",
       "int": "active",
       "cost": "cheap",
-      "xph": 500000,
+      "xph": 467500,
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Ten oak planks, 600 XP each. Cheaper and less click-intensive than mahogany or teak. Up to 550,000 at maximum efficiency.",
+      "note": "Ten oak planks for 600 XP, building two doors while the demon butler fetches more. Cheaper and less clicking than mahogany, up to 550,000 an hour at best.",
       "src": "Construction training"
     },
     {
@@ -191,14 +195,19 @@
     }
   ],
   "unverified": [
-    "Daddy's Home, then starter furniture: no hourly rate in either guide for levels 1-33 furniture (xph 0)",
-    "Oak larders: the guide gives no rate below level 50 (xph at 33 is 0). The band at 50 is the midpoint of the stated 480,000-490,000 'with some mistakes'",
-    "Fishing crane repair: the guide gives XP per repair (4 x level) and a 30-60 second break interval but no XP per hour (xph 0)",
-    "Mahogany Homes: bands are midpoints of the no-plank-sack ranges. Plank-sack ranges are 50-70k, 110-140k, 155-200k, 240-280k",
-    "Oak dungeon doors and gnome benches are not named in the Ironman Guide. Marked 'both' because that guide says ironman Construction is 'not very different' from normal training once planks are sourced",
-    "Shipwright hull parts: rates assume about 1,000 parts an hour at the Deepfin Point workbench. Camphor, ironwood and rosewood tiers need Sailing-era planks",
-    "Shipwright hull parts: the guide lists ironwood hull parts at level 77, but the Ironwood hull parts page (fetched live) says 75 since the 22 July 2026 update. Band uses 75",
-    "Daddy's Home: the main guide says 944 XP in total, the Ironman Guide says the reward is 544 XP",
-    "Mounted mythical capes: the main guide says level 50 (Dragon Slayer II needs 50 Construction), the Ironman Guide heading says 47. lv uses 50"
+    "Daddy's Home, then starter furniture: one-off XP and early furniture, so no hourly rate (xph 0); the miniquest gives 942 XP (400 as the reward and 542 for building), level 8, where the main guide says 944 and the ironman guide 544; no page rates levels 1 to 33 of furniture by the hour, and Wise Old Man's main table gives 54,700 for them",
+    "Mahogany Homes: the training guide's ranges without a plank sack (35,000-50,000, 80,000-95,000, 130,000-150,000, 185,000-210,000) were raised on 24 September 2024 after the contract and tea changes of Poll 82; the Mahogany Homes page keeps the older beginner, novice and expert rows (30,000-35,000, 65,000-75,000, 165,000-190,000), and its adept row was retested and raised to the guide's on 20 March 2026; the page's XP a contract (879.3, 1,894.1, 3,260.2, 4,378.8) at that adept pace of 42.9 contracts an hour gives 37,800, 81,300, 140,000 and 188,000, so the novice, adept and expert bands are the guide's midpoints and beginner is 38,000 (the midpoint, 42,500, is 13% above); with a plank sack the guide gives 50,000-70,000, 110,000-140,000, 155,000-200,000 and 240,000-280,000",
+    "Shipwright hull parts: 850 parts an hour is 85% of the guide's 'around 1,000 with high efficiency' at Deepfin Point (67 Sailing, 4 tiles from a bank), which a 30-tick cycle at Port Khazard (5 tiles, no Sailing level) reproduces; Red Rock is 2 tiles but needs 52 Sailing and part of The Red Reef; the guide's table still lists ironwood hull parts at 77, the item pages say 75 since 22 July 2026; the parts trade 20 to 2,121 a day with a buy limit of 100, so a main pays 9 to 53 coins an XP with nothing sold; the carpenter's outfit (2.5% more since 26 November 2025) and a plank sack are not counted",
+    "Shipwright hull parts from 8 and Mahogany Homes novice contracts beat Wise Old Man's 54,700 for levels 1 to 33, which is one figure for low-level furniture over a 20-minute stretch (0.33 hours to 33, against 0.28 on Mahogany Homes); it is not used as a ceiling there",
+    "Fishing crane repair: no hourly rate (xph 0); each repair gives 4x the Construction level and 4x the Crafting level, five cranes in Port Piscarilius break again 30 to 60 seconds after a repair (Mod Kieren, 2016), and another player's repair counts for everyone trying the same crane, so repairs an hour depend on how many cranes one player covers; no estimate is given",
+    "Oak larders: no guide rates them below 50. From 33 with Phials, 170,000 is 85% of TempleOSRS's efficient 200,000, and three larders a load with the Prayer guide's Phials trip (19.5 seconds at its 2,550 bones an hour) give 182,000. From 40 the butler (20 planks a 20-tick trip) limits oak planks to 327,000 and 278,000 is 85% of that; the oak door page's 350,000-360,000 with the butler and the same 20 planks a trip agrees within 10%. Both lower bands are estimates",
+    "Oak larders from 50: 425,000 is 85% of the guide's 'up to 500,000 with perfect clicks' (it said 'up to around 480,000' until 9 September 2026); its '480,000-490,000 with some mistakes' beats Wise Old Man's 450,000 for oak larders and needs a load of 18 ticks against 17 at best (two larders while the demon butler fetches 24 planks, one after, the call sharing ticks with a remove); 425,000 is a load of about 20 ticks",
+    "Oak dungeon doors: 467,500 is 85% of the guide's 'up to around 550,000'; its 'upwards of 500,000 even when making occasional mistakes' with 20 planks a trip, added in July 2025, is 91% of that maximum; the guide's own tick table (the demon butler away 12 ticks after a call) allows that variant 514,000 to 554,000 at best, and the Butler page says building two doors before the demon butler returns takes tick-perfect clicking ('some players may have difficulty' since 2020, 'tick-perfect' since 10 October 2026), so 500,000 would be near perfect play; the lower figure is taken, as for oak larders",
+    "Mahogany tables 765,000, gnome benches 935,000 and mounted mythical capes 365,500 are 85% of the guide's maxima (900,000, 1,100,000, 430,000), which the build cycles reproduce (916,000 at 22 ticks for four tables, 1,120,000 at 18 ticks for four benches, 404,000 to 444,000 for capes); teak garden benches 550,000 is the guide's 'most players 500,000 to 600,000', where the same 18-tick cycle gives 720,000 at best",
+    "Mounted mythical capes: the cape mounts at 47, but Dragon Slayer II needs 50 Construction that cannot be boosted, so any account with the quest has 50; lv stays 50",
+    "Costs are the planks alone at 15 October 2026 prices against the 9.1 coins an XP line: oak 8.38 (cheap), mythical capes 6.66 (cheap), teak benches 9.12 (pricey, by a hair), mahogany 13.85 (pricey), Mahogany Homes 1.80 to 5.76 (cheap); the line was drawn on planks alone, midway between oak larders and teak benches; a servant's wage adds 0.4 to 0.9 coins an XP (oak 9.2, mythical capes 7.1, teak benches 9.7), and a line drawn the same way on that basis, about 9.5, grades every method the same",
+    "The ironman guide names no oak doors or gnome benches and gives no rates; every method is 'both' because ironmen are shown rates as if supplied; it recommends Mahogany Homes and mounted mythical capes for their XP a plank (about 346 and 123 against 90 to 140 in furniture), which the app cannot weigh",
+    "Efficiency ceilings (Wise Old Man, 15 October 2026): main 54,700 to 33, 450,000 oak larders to 52, 950,000 mahogany tables to 77, 1,070,000 benches after; every rate here is below them from 33; the ironman table (20,000 to 279,100) counts gathering the planks, so it is not a ceiling for rates shown as if supplied",
+    "Not included: repair kits at the workbench (44,000 to 337,000 at 85% of the guide's 1,200 actions an hour, below hull parts at every tier; only teak kits are cheap, 8.1 coins an XP if 2,000 an hour sell into about 32,000 traded a day, and adept Mahogany Homes matches their 137,700 from 50 at about a third of the cost); mahogany bookcases from 40 (no guide rate; TempleOSRS 290,000 against 472,000 at best with a butler); teak tables and crafting tables (ironman guide, no rate); mahogany table flatpacks (the same cycle as tables); passive XP from Wintertodt, Tempoross, Fishing Trawler, Vale Totems and Barlak"
   ]
 }
