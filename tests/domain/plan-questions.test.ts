@@ -314,7 +314,7 @@ describe('planQuestions: what a question carries', () => {
       'Bone Voyage',
     ).hoursSaved
     expect(alone).toBeCloseTo(290.6, 1)
-    expect(withChain).toBeCloseTo(364.6, 1)
+    expect(withChain).toBeCloseTo(386.4, 1)
     expect(onItsOwn).toBeLessThan(withChain - alone + 1)
     expect(questionAbout(unticked, 'Bone Voyage').skillsChanged).toContain('herblore')
   })
@@ -554,7 +554,7 @@ describe('planQuestions: the order', () => {
     ).toEqual([
       // Druidic Ritual opens Herblore: it is behind every 291 here, so it is asked before them
       'Druidic Ritual 291',
-      'Bone Voyage 365',
+      'Bone Voyage 386',
       'Sins of the Father 351',
       'Shilo Village 291',
       'Lunar Diplomacy 308',
@@ -633,13 +633,13 @@ describe('planQuestions: the order', () => {
         .slice(0, 4)
         .map((question) => `${question.requirement.name} ${Math.round(question.hoursSaved)}`),
     ).toEqual([
+      'Bone Voyage 96',
       'Children of the Sun 51',
       'Perilous Moons 82',
-      'Bone Voyage 74',
       'Sins of the Father 61',
     ])
-    // Bone Voyage showed 365 hours while the 291 of Druidic Ritual were counted in it
-    expect(Math.round(questionAbout(account, 'Bone Voyage').hoursSaved)).toBe(74)
+    // Bone Voyage showed 386 hours while the 291 of Druidic Ritual were counted in it
+    expect(Math.round(questionAbout(account, 'Bone Voyage').hoursSaved)).toBe(96)
   })
 
   it('still rules out every quest behind a "not yet", wherever the order put it', () => {
@@ -679,9 +679,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,647 hours to 2,239 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,669 hours to 2,239 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2647)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2669)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -689,11 +689,11 @@ describe('planQuestions: a whole run of answers', () => {
       ),
     ).toEqual([
       'Druidic Ritual 291 yes',
-      'Children of the Sun 51 yes',
+      'Bone Voyage 96 yes',
       'Sins of the Father 61 no',
+      'Perilous Moons 54 no',
+      'Children of the Sun 22 yes',
       'Lunar Diplomacy 58 no',
-      'Bone Voyage 45 yes',
-      'Perilous Moons 32 no',
       'Creature of Fenkenstrain 11 yes',
       'Vale Totems 5 yes',
       'Family Crest 3 yes',
