@@ -384,8 +384,8 @@ describe('quest prerequisites', () => {
     ])
   })
 
-  it('knows what 120 of the 189 quests require, and that the other 69 require none the app tracks', () => {
-    expect(known).toHaveLength(189)
+  it('knows what 120 of the 190 quests require, and that the other 70 require none the app tracks', () => {
+    expect(known).toHaveLength(190)
     expect(requires.size).toBe(120)
   })
 
@@ -457,6 +457,7 @@ describe('quest prerequisites', () => {
       'Dream Mentor',
       'Druidic Ritual',
       'Family Crest',
+      "Icthlarin's Little Helper",
       'Lost City',
       'Lunar Diplomacy',
       'Priest in Peril',

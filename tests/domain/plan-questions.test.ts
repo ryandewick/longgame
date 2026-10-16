@@ -182,10 +182,10 @@ describe('planQuestions: what can be asked about', () => {
   })
 
   it('counts the open requirements it does not ask about', () => {
-    // 43 quests and 11 diary tiers gate something; with nothing ticked 37 are worth a question
-    expect(gatingQuests().length + gatingDiaries().length).toBe(54)
+    // 46 quests and 11 diary tiers gate something; with nothing ticked 37 are worth a question
+    expect(gatingQuests().length + gatingDiaries().length).toBe(57)
     expect(questions).toHaveLength(37)
-    expect(setAsideCount).toBe(17)
+    expect(setAsideCount).toBe(20)
   })
 
   it('does not ask about what is ticked', () => {
@@ -207,7 +207,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan))).not.toContain('Tears of Guthix')
     expect(namesAsked(everyQuestion(plan))).not.toContain('Kandarin Easy')
     // an answer is not something set aside
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(52)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(55)
   })
 
   it('does not ask about a quest that requires one answered "not yet"', () => {
@@ -224,7 +224,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan)).filter((name) => dependants.includes(name))).toEqual([])
     // ruled out is not set aside either: the count is of quests that could still become questions
     const ruledOut = gatingQuests().filter((name) => dependants.includes(name))
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(54 - 1 - ruledOut.length)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(57 - 1 - ruledOut.length)
   })
 
   it('asks about nothing a shortcut already covers', () => {
@@ -786,6 +786,7 @@ describe('gatedActivities', () => {
 
   it('covers diary tiers too', () => {
     expect(gatedActivities(unticked, diary('Ardougne Medium')).names).toEqual([
+      'Knights of Ardougne',
       'Pure essence from Cromperty',
     ])
   })
