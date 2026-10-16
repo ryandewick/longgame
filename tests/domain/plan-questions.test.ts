@@ -314,7 +314,7 @@ describe('planQuestions: what a question carries', () => {
       'Bone Voyage',
     ).hoursSaved
     expect(alone).toBeCloseTo(290.6, 1)
-    expect(withChain).toBeCloseTo(386.4, 1)
+    expect(withChain).toBeCloseTo(366.4, 1)
     expect(onItsOwn).toBeLessThan(withChain - alone + 1)
     expect(questionAbout(unticked, 'Bone Voyage').skillsChanged).toContain('herblore')
   })
@@ -554,7 +554,7 @@ describe('planQuestions: the order', () => {
     ).toEqual([
       // Druidic Ritual opens Herblore: it is behind every 291 here, so it is asked before them
       'Druidic Ritual 291',
-      'Bone Voyage 386',
+      'Bone Voyage 366',
       'Sins of the Father 351',
       'Shilo Village 291',
       'Lunar Diplomacy 308',
@@ -566,11 +566,11 @@ describe('planQuestions: the order', () => {
       'Throne of Miscellania 291',
       'A Kingdom Divided 291',
       // and Children of the Sun is behind the four that follow it
-      'Children of the Sun 51',
-      'Perilous Moons 82',
-      'Vale Totems 56',
-      'The Ribbiting Tale of a Lily Pad Labour Dispute 52',
-      'The Heart of Darkness 51',
+      'Children of the Sun 34',
+      'Perilous Moons 66',
+      'Vale Totems 39',
+      'The Ribbiting Tale of a Lily Pad Labour Dispute 35',
+      'The Heart of Darkness 34',
       'Creature of Fenkenstrain 11',
       'Fremennik Hard 6',
       'Family Crest 3',
@@ -633,13 +633,13 @@ describe('planQuestions: the order', () => {
         .slice(0, 4)
         .map((question) => `${question.requirement.name} ${Math.round(question.hoursSaved)}`),
     ).toEqual([
-      'Bone Voyage 96',
-      'Children of the Sun 51',
-      'Perilous Moons 82',
+      'Bone Voyage 76',
+      'Children of the Sun 34',
+      'Perilous Moons 66',
       'Sins of the Father 61',
     ])
-    // Bone Voyage showed 386 hours while the 291 of Druidic Ritual were counted in it
-    expect(Math.round(questionAbout(account, 'Bone Voyage').hoursSaved)).toBe(96)
+    // Bone Voyage showed 366 hours while the 291 of Druidic Ritual were counted in it
+    expect(Math.round(questionAbout(account, 'Bone Voyage').hoursSaved)).toBe(76)
   })
 
   it('still rules out every quest behind a "not yet", wherever the order put it', () => {
@@ -679,9 +679,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,669 hours to 2,239 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,656 hours to 2,242 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2669)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2656)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -689,10 +689,10 @@ describe('planQuestions: a whole run of answers', () => {
       ),
     ).toEqual([
       'Druidic Ritual 291 yes',
-      'Bone Voyage 96 yes',
+      'Bone Voyage 76 yes',
       'Sins of the Father 61 no',
-      'Perilous Moons 54 no',
-      'Children of the Sun 22 yes',
+      'Perilous Moons 57 no',
+      'Children of the Sun 26 yes',
       'Lunar Diplomacy 58 no',
       'Creature of Fenkenstrain 11 yes',
       'Vale Totems 5 yes',
@@ -700,7 +700,7 @@ describe('planQuestions: a whole run of answers', () => {
       'Temple of the Eye 3 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2239)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2242)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
