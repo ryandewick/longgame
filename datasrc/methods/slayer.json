@@ -24,6 +24,7 @@
       "req": "",
       "run": false,
       "supply": false,
+      "wild": true,
       "note": "Edgeville. Wilderness-only tasks worth 25 points each. Any combat level, so she can assign hard tasks, but not to a level 1 slayer. Only risk gear you can lose.",
       "src": "Krystilia"
     },

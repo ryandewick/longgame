@@ -184,6 +184,21 @@ describe('datasrc/methods', () => {
     ).toEqual([])
   })
 
+  it('marks the methods done in the Wilderness, so every place that names one can say so', () => {
+    // `wild` in a source entry: the tables tag the method, the skill page and a dealt block say it.
+    // A method that only mentions the Wilderness (chins caught there, an altar "without Wilderness
+    // risk") is not done in it. A new one here should be a decision, not an accident.
+    expect(allMethods.filter((method) => method.inWilderness).map(whereIs)).toEqual([
+      'prayer / Chaos altar, dragon bones',
+      'prayer / Chaos altar, superior dragon bones',
+      'magic / Barraging Wilderness bandits',
+      'agility / Wilderness Agility Course',
+      "thieving / Rogues' Castle chests",
+      'slayer / Krystilia (Wilderness)',
+      'hunter / Black salamanders',
+    ])
+  })
+
   it('has a rated method at every level, apart from the stretches the wiki does not rate', () => {
     // Ignoring quest gates. Each stretch below is one where the wiki gives no hourly rate; the
     // app covers it with the fallback rate and shows the estimate as rough. A new gap should be

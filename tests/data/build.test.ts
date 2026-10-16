@@ -65,6 +65,7 @@ describe('buildMethods', () => {
         tickPerfect: false,
         questSkip: false,
         perTripSetup: false,
+        inWilderness: false,
       },
     ])
   })
@@ -76,11 +77,19 @@ describe('buildMethods', () => {
   })
 
   it('carries the flags across', () => {
-    const [method] = build({ who: 'iron', supply: true, setup: true, calc: 'crab-melee', xph: 0 })
+    const [method] = build({
+      who: 'iron',
+      supply: true,
+      setup: true,
+      wild: true,
+      calc: 'crab-melee',
+      xph: 0,
+    })
     expect(method).toMatchObject({
       audience: 'iron',
       usesOwnSupplies: true,
       perTripSetup: true,
+      inWilderness: true,
       computedRate: 'crab-melee',
     })
   })

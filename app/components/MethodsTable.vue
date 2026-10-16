@@ -51,6 +51,9 @@ const isBest = (option: MethodOption): boolean => option.method === bestMethod?.
             <span v-if="option.method.tickPerfect" class="tag methods-table__tag">
               Tick-perfect
             </span>
+            <span v-if="option.method.inWilderness" class="tag methods-table__tag">
+              Wilderness
+            </span>
             <span class="data-table__detail">
               {{ option.method.note }}
               <em v-if="option.missing.length" class="data-table__needs">

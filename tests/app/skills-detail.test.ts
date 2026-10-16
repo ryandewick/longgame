@@ -135,6 +135,17 @@ describe('bestNowSentence', () => {
     )
   })
 
+  it('says when the best method is done in the Wilderness, to every account', () => {
+    const insight = insightWith({
+      fastestMethod: optionWith({ name: 'Black salamanders', inWilderness: true }),
+    })
+    const expected =
+      'Best now: [Black salamanders] at ≈10k/h, about 100 h to 99. ' +
+      'It is done in the Wilderness, where other players can attack.'
+    expect(read(bestNowSentence(insight, false, 0))).toBe(expected)
+    expect(read(bestNowSentence(insight, true, 0))).toBe(expected)
+  })
+
   it('gives every caveat in turn, then the pace', () => {
     const insight = insightWith({
       isRough: true,

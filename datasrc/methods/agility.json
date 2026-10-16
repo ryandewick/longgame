@@ -106,6 +106,7 @@
       "req": "",
       "run": false,
       "supply": false,
+      "wild": true,
       "note": "Deep Wilderness with player killers, so risk little. Boostable from 47 with summer pies. Tickets give alchables, blighted items and medium clues.",
       "src": "Agility training"
     },

@@ -87,7 +87,8 @@ export function bestNowSentence(
       : '') +
     (isIronman && method.usesOwnSupplies
       ? ' That rate only holds while your own supplies last.'
-      : '')
+      : '') +
+    (method.inWilderness ? ' It is done in the Wilderness, where other players can attack.' : '')
   return [
     plain('Best now: '),
     strong(method.name),

@@ -200,6 +200,7 @@
       "req": "s:prayer 43",
       "run": false,
       "supply": false,
+      "wild": true,
       "note": "Level 50 Wilderness, multi-combat: search for traps and pray melee. The loot needs the medium Wilderness Diary since January 2026; the XP does not.",
       "src": "Thieving training"
     },

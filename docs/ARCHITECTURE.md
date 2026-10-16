@@ -73,6 +73,7 @@ interface Method {                        // one way to train a skill
   audience: 'both' | 'main' | 'iron'
   timedRun?: { xpPerRun: number; everyMinutes: number }
   usesOwnSupplies: boolean; tickPerfect: boolean; questSkip: boolean; perTripSetup: boolean
+  inWilderness: boolean                   // tagged in the tables, said on the skill page and a dealt block
   rateBands?: Array<{ fromLevel: number; xpPerHour: number }>
   computedRate?: 'crab-melee' | 'crab-ranged' | 'rock-magic' | 'frost-magic' | 'gem-magic'
 }

@@ -51,6 +51,8 @@ export interface Method {
   readonly questSkip: boolean
   /** Each trip needs setting up (a fee, potions, a quest list), so AFK blocks prefer others. */
   readonly perTripSetup: boolean
+  /** It is done in the Wilderness, where other players can attack: every place that names it says so. */
+  readonly inWilderness: boolean
   /** The rate at each step as it rises with level; only present when there are several steps. */
   readonly rateBands?: readonly RateBand[]
   /** The rate is an estimate worked out from the account's levels; `xpPerHour` is then 0. */

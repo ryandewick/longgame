@@ -51,6 +51,9 @@ defineProps<{
           >
             <span class="data-table__title">{{ method.name }}</span>
             <span v-if="method.isTimedRun" class="tag guide-methods-table__tag">Timed run</span>
+            <span v-if="method.isInWilderness" class="tag guide-methods-table__tag">
+              Wilderness
+            </span>
             <span class="data-table__detail">
               {{ method.note }}
               <span v-if="method.needs" class="guide-methods-table__needs">

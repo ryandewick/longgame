@@ -59,6 +59,7 @@ export function methodWith(overrides: Partial<Method> = {}): Method {
     tickPerfect: false,
     questSkip: false,
     perTripSetup: false,
+    inWilderness: false,
     ...overrides,
   }
 }

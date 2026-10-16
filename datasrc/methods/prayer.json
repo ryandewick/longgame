@@ -50,6 +50,7 @@
       "req": "",
       "run": false,
       "supply": true,
+      "wild": true,
       "note": "Level 38 Wilderness. 350% XP and half the bones spared, so 504 XP a dragon bone, the most of any method. Rate is one inventory a trip, then dying. Noted bones go faster.",
       "src": "Pay-to-play Prayer training"
     },
@@ -285,6 +286,7 @@
       "req": "",
       "run": false,
       "supply": false,
+      "wild": true,
       "note": "Same altar with superior dragon bones, 1,050 XP a bone on average. Rate is one inventory a trip, then dying. Up to 1.8m bringing noted bones, risking them to PKers.",
       "src": "Pay-to-play Prayer training"
     }

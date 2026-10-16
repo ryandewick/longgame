@@ -1,4 +1,5 @@
 import type { Account } from '#shared/types/account'
+import type { Method } from '#shared/types/method'
 import type { BlockTimer, Session, SessionBlock, SkillBlock } from '#shared/types/session'
 import type { SkillKey, SkillStat } from '#shared/types/skill'
 import { METHODS } from '#shared/data/methods'
@@ -61,12 +62,17 @@ function rateSentence(block: SkillBlock): string {
     : `≈ ${rate} xp an hour.`
 }
 
+/**
+ * The method a block was dealt. A block remembers it by name, so a method renamed since the deal
+ * is not found, and then the block simply says nothing about it.
+ */
+function dealtMethod(block: SkillBlock): Method | undefined {
+  return METHODS[block.skill].find((candidate) => candidate.name === block.title)
+}
+
 /** Does the block's method leave an ironman gathering its supplies first? */
 function usesOwnSupplies(block: SkillBlock, account: Account): boolean {
-  if (!isIronman(account)) return false
-  // a block remembers its method by name; a method renamed since the deal simply says nothing
-  const method = METHODS[block.skill].find((candidate) => candidate.name === block.title)
-  return method?.usesOwnSupplies ?? false
+  return isIronman(account) && (dealtMethod(block)?.usesOwnSupplies ?? false)
 }
 
 /**
@@ -83,6 +89,7 @@ export function blockFact(block: SessionBlock, account: Account): string {
     `${skillName(block.skill)} ${stat.level}, ${INTENSITY_LABELS[block.intensity]}.`,
     rateSentence(block),
   ]
+  if (dealtMethod(block)?.inWilderness) sentences.push('In the Wilderness.')
   if (usesOwnSupplies(block, account)) sentences.push('Uses your own supplies.')
   const levelWithinReach =
     stat.level < MAX_LEVEL && block.xpPerHour > 0 && xpToNextLevel(stat) <= block.targetXp

@@ -55,6 +55,8 @@ export interface GuideMethod {
   readonly note: string
   /** Done on a timer (a herb run) rather than ground by the hour. */
   readonly isTimedRun: boolean
+  /** Done in the Wilderness, where other players can attack. */
+  readonly isInWilderness: boolean
   /** '≈ 34k to 93k an hour', '≈ 12k a run', 'depends on your levels' or 'no hourly rate'. */
   readonly rate: string
   /** 'Bone Voyage, 35 Farming'; empty when the method needs nothing. */
@@ -159,6 +161,7 @@ export function guideMethod(method: Method): GuideMethod {
     name: method.name,
     note: method.note,
     isTimedRun: method.timedRun !== undefined,
+    isInWilderness: method.inWilderness,
     rate: describeRate(method),
     needs: describeRequirements(method.requirements),
     intensity: method.intensity,

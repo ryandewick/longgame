@@ -517,6 +517,7 @@
    "req": "q:Desert Treasure I",
    "run": false,
    "supply": false,
+   "wild": true,
    "note": "Lava bridge by the Bandit Camp in level 19 Wilderness, so risk little. Ice Barrage on auto retaliate from a staff that autocasts it. Ice sacks replace runes. Profitable.",
    "src": "Pay-to-play Magic training"
   }

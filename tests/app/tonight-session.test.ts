@@ -201,6 +201,18 @@ describe('blockFact', () => {
     )
   })
 
+  it('says when the method is done in the Wilderness', () => {
+    const method = METHODS.hunter.find((candidate) => candidate.inWilderness)
+    if (!method) throw new Error('Hunter has no method in the Wilderness')
+    const block = skillBlock({ skill: 'hunter', title: method.name, targetXp: 10 })
+    const main = accountWith({ type: 'main', levels: { hunter: 80 } })
+    expect(blockFact(block, main)).toBe('Hunter 80, Active. ≈ 126k xp an hour. In the Wilderness.')
+    // and a method that is not in the Wilderness says nothing of it
+    expect(blockFact({ ...block, title: 'Herbiboar' }, main)).toBe(
+      'Hunter 80, Active. ≈ 126k xp an hour.',
+    )
+  })
+
   it('describes a reset and a wildcard by their length', () => {
     expect(blockFact(resetBlock(), account)).toBe('Timed run, about 5 minutes.')
     expect(blockFact(wildcardBlock(), account)).toBe(

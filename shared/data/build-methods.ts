@@ -107,6 +107,7 @@ function buildMethod(skill: SkillKey, source: MethodSource, problems: string[]):
       TICK_METHOD_NAME.test(source.name) || source.note.toLowerCase().startsWith('tick-perfect'),
     questSkip: level === 1 && QUEST_SKIP_NAME.test(source.name),
     perTripSetup: source.setup === true,
+    inWilderness: source.wild === true,
     // one band says nothing the flat rate does not
     ...(bands.length > 1 && { rateBands: bands }),
     ...(source.calc !== undefined && { computedRate: source.calc }),

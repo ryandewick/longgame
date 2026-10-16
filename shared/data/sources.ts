@@ -33,6 +33,8 @@ export interface MethodSource {
   est?: boolean
   /** Each trip needs setting up. */
   setup?: boolean
+  /** It is done in the Wilderness, where other players can attack. */
+  wild?: boolean
   per?: number
   every?: number
 }

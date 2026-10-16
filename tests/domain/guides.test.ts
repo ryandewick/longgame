@@ -121,11 +121,17 @@ describe('guideMethod', () => {
       name: 'Herb runs',
       note: 'Ranarrs or better.',
       isTimedRun: true,
+      isInWilderness: false,
       rate: '≈ 10k a run',
       needs: 'My Arm’s Big Adventure',
       intensity: 'semi',
       audience: 'Ironmen',
     })
+  })
+
+  it('says when a method is done in the Wilderness', () => {
+    expect(guideMethod(methodWith({ inWilderness: true })).isInWilderness).toBe(true)
+    expect(guideMethod(methodWith()).isInWilderness).toBe(false)
   })
 
   it('names who a method is for', () => {
