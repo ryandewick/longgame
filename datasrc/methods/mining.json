@@ -3,7 +3,7 @@
   "methods": [
     {
       "lv": 1,
-      "name": "Early quests, then copper and tin",
+      "name": "Quest skip to level 37",
       "who": "both",
       "int": "active",
       "cost": "free",
@@ -11,8 +11,22 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Doric's Quest, The Dig Site, Plague City and three more give 27,525 XP, level 1 to 37. Otherwise mine copper or tin to 15.",
-      "src": "Pay-to-play Mining training"
+      "note": "Doric's Quest, The Dig Site, Plague City, The Giant Dwarf, The Lost Tribe and Another Slice of H.A.M. give 27,525 XP, level 1 to 37; Plague City alone reaches 15.",
+      "src": "Quest experience rewards"
+    },
+    {
+      "lv": 1,
+      "name": "Copper and tin",
+      "who": "both",
+      "int": "active",
+      "cost": "free",
+      "xph": 4400,
+      "bands": [[1, 4400], [6, 6600], [10, 7200]],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Copper or tin at Lumbridge Swamp with a bronze pickaxe, steel from 6, dropping each ore. About 140 ores reach 15, where iron is faster.",
+      "src": "Copper rocks"
     },
     {
       "lv": 15,
@@ -20,13 +34,13 @@
       "who": "both",
       "int": "active",
       "cost": "free",
-      "xph": 50000,
-      "bands": [[15, 50000], [60, 75000]],
+      "xph": 15500,
+      "bands": [[15, 15500], [21, 20800], [31, 29400], [41, 38900], [45, 40100], [50, 41500], [55, 42900], [60, 59500], [61, 63000]],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Stand in a three-rock triangle and drop the ore. From 60 use the Mining Guild, where rocks respawn twice as fast.",
-      "src": "Pay-to-play Mining training"
+      "note": "A three-rock triangle, dropping each ore: steel pickaxe to 20, then mithril, adamant and rune. From 60 the members' Mining Guild, dragon pickaxe from 61.",
+      "src": "Iron rocks"
     },
     {
       "lv": 30,
@@ -34,13 +48,13 @@
       "who": "both",
       "int": "semi",
       "cost": "profit",
-      "xph": 0,
-      "bands": [[30, 0], [90, 62000]],
+      "xph": 11100,
+      "bands": [[30, 11100], [40, 22100], [50, 28100], [61, 38300], [70, 40800], [80, 44200], [90, 50200], [99, 54400]],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Mine pay-dirt, wash it and bank the ore. Low effort, profitable, and the source of the prospector kit. Rate assumes all upgrades.",
-      "src": "Pay-to-play Mining training"
+      "note": "Mine pay-dirt, wash it and bank the ore: low effort and profitable. Rates assume the upper level from 57, a dragon pickaxe and the prospector kit bought with nuggets.",
+      "src": "Motherlode Mine"
     },
     {
       "lv": 35,
@@ -52,7 +66,7 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Ironmen mine sandstone and trade it in for buckets of sand, which feeds Crafting training.",
+      "note": "Ironmen mine sandstone at the desert quarry and grind it into buckets of sand for Crafting. No guide rates it for Mining XP without tick manipulation.",
       "src": "Ironman Guide/Mining"
     },
     {
@@ -61,12 +75,12 @@
       "who": "both",
       "int": "active",
       "cost": "profit",
-      "xph": 40000,
-      "bands": [[40, 40000], [50, 46000], [60, 52000], [70, 58000], [80, 66000], [90, 70000], [99, 75000]],
-      "req": "d:Karamja Medium",
+      "xph": 33200,
+      "bands": [[40, 33200], [50, 38100], [60, 43100], [70, 48100], [80, 54700], [90, 58000], [99, 62200]],
+      "req": "q:Shilo Village;d:Karamja Medium",
       "run": false,
       "supply": false,
-      "note": "Underground Shilo Village mine with a charged glory and a gem bag. Ironmen come for opals, jades and red topaz. Best rock golem odds.",
+      "note": "Underground Shilo Village mine with a charged amulet of glory, which triples the chance; a gem sack saves banking. Ironmen come for opals, jades and red topaz.",
       "src": "Pay-to-play Mining training"
     },
     {
@@ -75,12 +89,12 @@
       "who": "both",
       "int": "semi",
       "cost": "free",
-      "xph": 23500,
-      "bands": [[41, 23500], [60, 27000], [70, 34000], [80, 39000], [90, 44000], [99, 49000]],
+      "xph": 20000,
+      "bands": [[41, 20000], [60, 23000], [70, 28900], [80, 33200], [90, 37400], [99, 41700]],
       "req": "q:Perilous Moons",
       "run": false,
       "supply": false,
-      "note": "Cam Torum mine, only needs Perilous Moons started. Low effort and yields blessed bone shards for Prayer XP.",
+      "note": "Cam Torum mine; Perilous Moons started is enough. Low effort, and the blessed bone shards train Prayer, but no mining enhancer gives extra here.",
       "src": "Pay-to-play Mining training"
     },
     {
@@ -94,7 +108,7 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Tick-perfect 3-tick cycle at the desert quarry or Cape Conch. Fastest Mining XP in the game but very click-intensive. About 63,000 without it.",
+      "note": "Tick-perfect 3-tick cycle at the desert quarry, with heat protection, or Cape Conch: the fastest Mining XP in the game. Very click-intensive; about 63,000 without it.",
       "src": "Pay-to-play Mining training"
     },
     {
@@ -103,13 +117,13 @@
       "who": "both",
       "int": "semi",
       "cost": "profit",
-      "xph": 39000,
-      "bands": [[48, 39000], [99, 64000]],
+      "xph": 36600,
+      "bands": [[48, 36600], [61, 39500], [72, 43700], [80, 47900], [90, 49300], [97, 53600]],
       "req": "s:sailing 60",
       "run": false,
       "supply": false,
-      "note": "Charred Dungeon on Charred Island, past red and black dragons, so bring antifire. Splinters stack, no banking. Low effort profit.",
-      "src": "Pay-to-play Mining training"
+      "note": "Charred Dungeon, past red and black dragons, so bring antifire. Splinters stack, two a success from 72, so there is no banking: low effort profit.",
+      "src": "Rubium rocks"
     },
     {
       "lv": 60,
@@ -117,13 +131,13 @@
       "who": "both",
       "int": "afk",
       "cost": "free",
-      "xph": 24900,
-      "bands": [[60, 24900], [70, 26100], [80, 27500], [90, 28600], [99, 29800]],
+      "xph": 21300,
+      "bands": [[60, 21300], [61, 22700], [70, 23600], [80, 24500], [90, 25700], [99, 26600]],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Find a crashed star and mine it, one click every seven minutes. Stardust buys the celestial ring. Lower star tiers work from level 10.",
-      "src": "Pay-to-play Mining training"
+      "note": "Find a crashed star and mine it, one click every seven minutes; stardust buys the celestial ring. Lower star tiers work from level 10.",
+      "src": "Crashed Star"
     },
     {
       "lv": 60,
@@ -131,12 +145,13 @@
       "who": "both",
       "int": "active",
       "cost": "free",
-      "xph": 81000,
+      "xph": 57300,
+      "bands": [[60, 57300], [61, 61200], [65, 63000], [70, 65500], [75, 67800], [80, 70400], [86, 72900]],
       "req": "s:sailing 67",
       "run": false,
       "supply": false,
-      "note": "Deepfin Mine. Superior or expert mining gloves stop the rocks depleting, so you powermine nonstop with no tick manipulation.",
-      "src": "Pay-to-play Mining training"
+      "note": "Deepfin Mine triangle, dropping each ore. Superior mining gloves (60 Mining, 100 minerals) make each rock give three ores, so mining never waits.",
+      "src": "Lead rocks"
     },
     {
       "lv": 70,
@@ -149,7 +164,7 @@
       "req": "q:Bone Voyage",
       "run": false,
       "supply": false,
-      "note": "Fossil Island team minigame, best with 3 to 5 players. Bring food and numulite. Fast XP with no tick manipulation. Dragon pickaxe rates.",
+      "note": "Fossil Island team minigame, best with 3 to 5 players; bring food and numulite. Dragon pickaxe rates for a steady team; a crystal pickaxe adds about 12%.",
       "src": "Pay-to-play Mining training"
     },
     {
@@ -158,13 +173,12 @@
       "who": "both",
       "int": "active",
       "cost": "free",
-      "xph": 0,
-      "bands": [[70, 0], [99, 71000]],
+      "xph": 52800,
       "req": "q:Song of the Elves",
       "run": false,
       "supply": false,
-      "note": "Skilling boss under Prifddinas. Toggle resource rewards off at Rhiannon for more XP. Rates swing with team size and kills per hour.",
-      "src": "Pay-to-play Mining training"
+      "note": "Skilling boss under Prifddinas in XP mode (ask Rhiannon): about 1,100 Mining XP a kill at 48 kills an hour on a busy world. Team size and contribution swing it.",
+      "src": "Money making guide/Killing Zalcano (Experience)"
     },
     {
       "lv": 75,
@@ -172,13 +186,13 @@
       "who": "both",
       "int": "active",
       "cost": "profit",
-      "xph": 70500,
-      "bands": [[75, 70500], [99, 94000]],
+      "xph": 61000,
+      "bands": [[75, 61000], [80, 66800], [90, 74100], [99, 80400]],
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Solo minigame using dynamite, a chisel and a tinderbox, plus stamina. Profitable and fast from 75, when runite starts to drop.",
-      "src": "Pay-to-play Mining training"
+      "note": "Lovakengj solo activity with dynamite, a chisel and a tinderbox, about 330 dynamite an hour. Runite comes from 75; the elite Kourend & Kebos Diary means better ore.",
+      "src": "Blast mine"
     },
     {
       "lv": 92,
@@ -186,24 +200,32 @@
       "who": "both",
       "int": "afk",
       "cost": "profit",
-      "xph": 22500,
+      "xph": 18600,
+      "bands": [[92, 18600], [95, 20300], [99, 21900]],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Mining Guild amethyst crystals, 80 to 100 an hour. Very low effort and steady profit, but slow. Expert mining gloves help.",
-      "src": "Pay-to-play Mining training"
+      "note": "Mining Guild amethyst, about 75 to 90 an hour with the guild's invisible +7. Very low effort and steady profit; expert mining gloves and Varrock armour 4 help.",
+      "src": "Amethyst crystals"
     }
   ],
   "unverified": [
-    "Early quests, then copper and tin: no hourly rate is given for copper or tin, and quest XP is a one-off",
-    "Motherlode Mine: the only rate is about 62,000 at level 90 with every upgrade and a dragon pickaxe; the page's post-99 table says 54,000 to 60,000; nothing below 90",
-    "Sandstone: the Ironman Guide gives no rate",
-    "Calcified rocks: no rate below level 50, so the level 50 rate is used from 41; needs Perilous Moons started, not completed",
-    "Lead rocks: the page only says up to 90,000 to 100,000 with mining enhancers; 81,000 is 85% of the midpoint and there is no rate by level",
-    "Crashed stars: dragon pickaxe column without prospector kit; a dragon pickaxe needs 61, the rune pickaxe figure at 60 is 23,500",
-    "Zalcano: the section says no representative rate exists; 71,000 at 99 is the midpoint of the post-99 table's 50,000 to 92,000 for XP mode",
-    "Volcanic Mine: accessible at 50; main guide recommends it from 70, the Ironman Guide calls it viable from 85",
-    "Blast Mine: dynamite supply for ironmen is not described in either guide",
-    "Granite: desert heat protection or partial Troubled Tortugans (Cape Conch) is needed but cannot be expressed in req"
+    "Quest skip to level 37: Doric's Quest 1,300, The Dig Site 15,300, Plague City 2,425, The Giant Dwarf 2,500, The Lost Tribe 3,000 and Another Slice of H.A.M. 3,000 make 27,525, level 37 (Quest experience rewards); the app carries all 16 quests with Mining XP (245,600, with Fallen From Grace's 5,000 that the guide's table leaves out); no hourly rate, so never dealt",
+    "Copper and tin: no guide or efficiency table rates them; 85% of non-stop mining from the chart (100/350, 17.5 XP) with a bronze pickaxe to 5 and steel from 6 (8 and 6 ticks a roll): 4,400 at 1, 6,600 at 6, 7,200 at 10",
+    "Iron ore powermining: 85% of a simulated three-rock triangle (96/350, rocks back in 9 ticks) with the shop pickaxes, 15,500 at 15 to 42,900 at 55, where the triangle caps it near the Free-to-play guide's 52,500; from 60 the members' Mining Guild (+7 invisible, back in 4 ticks, 100% chance), 59,500 with rune and 63,000 with a dragon pickaxe, 85% of the 70,000 and 74,100 non-stop that the guide's 70,000 to 80,000 brackets; a black pickaxe at 11 would make 15 to 20 about 20% faster",
+    "Motherlode Mine: 85% of the Motherlode Mine page's table (upper level from 57, dragon pickaxe from 61, prospector kit when bought), which is 74 to 81% of mining without a break from 40 up by the pay-dirt chart and the cleaning bonus; the guide's 62,000 at 90 became 52,000 in an anonymous edit of 15 October 2026; the Ultimate Ironman Guide's 42,000 at 85 and 53,000 at 99 and Wise Old Man ironman's 45,200 at 85 to 87 sit with the bands from 80, but its 30,000 at 70 is 26% under the 70 band",
+    "Sandstone: still no Mining rate without tick manipulation on any guide; Wise Old Man ironman rates only 3-tick sandstone (70,600 at 37 to 53, 72,600 at 54 to 59, 90,200 at 97 to 98); left unrated as an ironman's route to buckets of sand",
+    "Gem rocks: 85% of the guide's rough estimates without the prospector kit's 2.5% (33,200 at 40 to 62,200 at 99); the Money making guide's 950 gems an hour (61,750) agrees within 1% at the top; both assume a charged amulet of glory (84/210 against 28/70), which req cannot say; Shilo Village is now in req because the village opens only after the quest",
+    "Calcified rocks: 85% of the guide's table (20,000 to 41,700); no row below 50, so the 50 row runs from 41; the Ultimate Ironman Guide's 45,000 at 99 is within 8% of the guide's 49,000; no success chart is published; Perilous Moons only has to be started, which req cannot say",
+    "Granite (3-tick): the guide's table as written; rebuilt from the granite cascade with a second roll on a failed first and the guide's gear, tick-perfect at 99 is 134,100 against its stated 134,498, and every row is 93.7% of it within 2%; under Wise Old Man main wherever it rates (106,540 at 63 to 74 up to 126,000 at 99); desert heat protection at the quarry, or Troubled Tortugans started for Cape Conch, cannot go in req",
+    "Rubium rocks: no success chart is published; Jagex put active dragon pickaxe mining at 96 at about 63,000 to 75,000 by enhancers (22 May 2026), and 85% of 63,000, 53,600, is used from 97; the page's table (39,000 at 48 to 57,000 at 97) is 9.5% under Jagex there and is scaled by the same ratio below; its 99 row counts the cape and Varrock armour; dragonfire protection cannot go in req",
+    "Crashed stars: 85% of non-stop mining from the chart (73/117, 32 XP), rune at 60 and dragon from 61 (21,300 to 26,600); the guide's table, scouting and idle included, is 93 to 96% of non-stop, the Shooting Stars page's 30,000 at 90+ is the non-stop rate, and the Ultimate Ironman Guide's 27,000 is 89% of it",
+    "Lead rocks: 85% of non-stop mining at the Deepfin triangle with superior mining gloves (112/278, Mod Ash 44% at 1 and 109% at 99; three ores a rock), 57,300 at 60 to 72,900 from 86; with Varrock armour and a charged ring non-stop is 102,900, the guide's up to 90,000 to 100,000, and the Deepfin money making guide's 1,800 ores an hour banking (72,900) matches; lead rocks also stand in the Pandemonium Cave by a bank, open after Pandemonium, but no page rates powermining there, so req keeps Deepfin Mine's 67 Sailing; the gloves cannot go in req",
+    "Volcanic Mine: the guide's dragon column as written (68,000 at 70 to 84,000 at 99, a steady 3 to 5 player team); the Volcanic Mine page repeats it, its 105,000 with boosting accounts is the maximum, and the Ultimate Ironman Guide's 65,000 to 90,000 sit at or above it; open from 50, recommended from 70",
+    "Zalcano: the guide gives no representative rate; the Money making guide's XP mode figure, 1,100 Mining XP a kill at 48 kills an hour on a 15 player world (52,800), is used flat from 70; a 2024 talk page note gives about 65,000 at 90 with Varrock armour and a celestial ring",
+    "Blast Mine: 85% of 385 dynamite an hour at 245.6 XP a dynamite, from the money making guide's record of 1,000 dynamite at 99 (1.58 ores a dynamite) at today's ore XP and 20 for the excavation: 80,400 at 99, and 61,000, 66,800 and 74,100 at 75, 80 and 90 by Jagex's own curve of January 2016; Jagex's rates plus the 10% of May 2024 are 4.5% under at every level; the guide's 65,000 and 87,000 add the elite Kourend & Kebos Diary's richer ore and the prospector kit; the 1,000 dynamite predate the 2024 rework, whose longer ore timer makes faster patterns possible",
+    "Amethyst: 85% of non-stop mining from the chart (-18/10) with the Mining Guild's invisible +7 carried past 99 on the same line, dragon pickaxe: 18,600 at 92 to 21,900 at 99 (77 to 91 an hour); the Ultimate Ironman Guide's 19,900 and 23,500 with Varrock armour 4 are 83% of non-stop with it",
+    "Pickaxes and enhancers: every rate from 61 assumes a dragon pickaxe (642,584 coins on 17 October 2026, a rare drop for ironmen), and a rune pickaxe is about 6% slower; no rate counts Varrock armour, a charged celestial ring or the Mining cape, which add 10%, 10% and 5% where they work",
+    "Not included: nickel rocks (74, Sailing islands, 2 to 16 ores a rock, no chart or rate anywhere); sunstone (53, Fallen From Grace, mined for golem crafting, no rate); infernal shale (78, A Kingdom Divided, rated only with tick manipulation, 67,000 to 80,000); 3-tick gem rocks (89,000 to 110,000, within 2 to 4% of 3-tick granite where both are open, behind Shilo Village, the medium Karamja Diary and a glory); 3-tick calcified rocks (40,000 to 94,000); rubium deposits (68, 5,000 to 11,000); daeyalt essence (60, about 8,900, mined for Runecraft); barronite (14, Below Ice Mountain, 18,000 to 20,000 at 75 with both charms); rune essence; runite golems"
   ]
 }
