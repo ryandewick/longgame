@@ -230,8 +230,6 @@ describe('datasrc/methods', () => {
     expect(gaps).toEqual([
       'cooking main 1-9',
       'cooking iron 1-27',
-      'fishing main 1-19',
-      'fishing iron 1-19',
       'mining main 1-14',
       'mining iron 1-14',
       'herblore main 1-2',
