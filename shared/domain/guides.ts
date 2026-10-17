@@ -55,6 +55,8 @@ export interface GuideMethod {
   readonly note: string
   /** Done on a timer (a herb run) rather than ground by the hour. */
   readonly isTimedRun: boolean
+  /** Needs tick manipulation, so its rate assumes a player who has practised it. */
+  readonly isTickPerfect: boolean
   /** Done in the Wilderness, where other players can attack. */
   readonly isInWilderness: boolean
   /** '≈ 34k to 93k an hour', '≈ 12k a run', 'depends on your levels' or 'no hourly rate'. */
@@ -89,7 +91,10 @@ export interface SkillGuide extends GuidePage {
   readonly skill: SkillKey
   /** The skill as the game writes it: 'Runecraft'. */
   readonly name: string
-  /** The fastest method and the best AFK one, as sentences; empty when neither can be named. */
+  /**
+   * The fastest method, any faster one that needs tick manipulation, and the best AFK one, as
+   * sentences; empty when none can be named.
+   */
   readonly highlights: string
   readonly methods: readonly GuideMethod[]
   readonly sources: readonly WikiSource[]
@@ -161,6 +166,7 @@ export function guideMethod(method: Method): GuideMethod {
     name: method.name,
     note: method.note,
     isTimedRun: method.timedRun !== undefined,
+    isTickPerfect: method.tickPerfect,
     isInWilderness: method.inWilderness,
     rate: describeRate(method),
     needs: describeRequirements(method.requirements),
@@ -194,14 +200,25 @@ function describePeak(method: Method): string {
 }
 
 /**
- * The fastest method and the best AFK one, as sentences. When the fastest is itself AFK it is
- * only named once; when the skill has no AFK method at all, the guide says so.
+ * The fastest method and the best AFK one, as sentences. The fastest named first needs no tick
+ * manipulation, which a reader may never have heard of; a method that needs it is named in a
+ * sentence of its own when it is faster still. When the fastest is itself AFK it is only named
+ * once; when the skill has no AFK method at all, the guide says so.
  */
 export function describeHighlights(methods: readonly Method[]): string {
   const sentences: string[] = []
-  const fastest = fastestListed(methods)
+  const fastest = fastestListed(methods, (method) => !method.tickPerfect)
+  const fastestTick = fastestListed(methods, (method) => method.tickPerfect)
   const fastestAfk = fastestListed(methods, (method) => method.intensity === 'afk')
-  if (fastest) sentences.push(`The fastest listed is ${describePeak(fastest)}`)
+  const tickIsFaster =
+    fastestTick !== null && (!fastest || peakXpPerHour(fastestTick) > peakXpPerHour(fastest))
+  if (fastest) {
+    const lead = tickIsFaster ? 'Without tick manipulation, the' : 'The'
+    sentences.push(`${lead} fastest listed is ${describePeak(fastest)}`)
+  }
+  if (tickIsFaster) {
+    sentences.push(`With tick manipulation, the fastest listed is ${describePeak(fastestTick)}`)
+  }
   if (fastestAfk && fastestAfk !== fastest) {
     sentences.push(`The best AFK option is ${describePeak(fastestAfk)}`)
   } else if (!methods.some((method) => method.intensity === 'afk')) {

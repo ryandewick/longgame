@@ -121,12 +121,18 @@ describe('guideMethod', () => {
       name: 'Herb runs',
       note: 'Ranarrs or better.',
       isTimedRun: true,
+      isTickPerfect: false,
       isInWilderness: false,
       rate: '≈ 10k a run',
       needs: 'My Arm’s Big Adventure',
       intensity: 'semi',
       audience: 'Ironmen',
     })
+  })
+
+  it('says when a method needs tick manipulation', () => {
+    expect(guideMethod(methodWith({ tickPerfect: true })).isTickPerfect).toBe(true)
+    expect(guideMethod(methodWith()).isTickPerfect).toBe(false)
   })
 
   it('says when a method is done in the Wilderness', () => {
@@ -217,6 +223,47 @@ describe('describeHighlights', () => {
   it('has nothing to say about methods with no rates at all', () => {
     expect(describeHighlights([methodWith({ xpPerHour: 0, intensity: 'afk' })])).toBe('')
   })
+
+  describe('with a method that needs tick manipulation', () => {
+    const tick = methodWith({
+      name: 'Teak trees (1.5-tick)',
+      level: 35,
+      xpPerHour: 203_000,
+      tickPerfect: true,
+    })
+
+    it('leads with the fastest that does not, then names the faster one in its own sentence', () => {
+      expect(describeHighlights([tick, active, afk])).toBe(
+        'Without tick manipulation, the fastest listed is Bloodwood trees at up to about 170k XP an hour, from level 77. ' +
+          'With tick manipulation, the fastest listed is Teak trees (1.5-tick) at up to about 203k XP an hour, from level 35. ' +
+          'The best AFK option is Rosewood trees at up to about 88k XP an hour, from level 92.',
+      )
+    })
+
+    it('does not mention it when it is no faster', () => {
+      const expected =
+        'The fastest listed is Bloodwood trees at up to about 170k XP an hour, from level 77. ' +
+        'The best AFK option is Rosewood trees at up to about 88k XP an hour, from level 92.'
+      const slower = { ...tick, xpPerHour: 93_000 }
+      const tied = { ...tick, xpPerHour: 170_000 }
+      expect(describeHighlights([slower, active, afk])).toBe(expected)
+      expect(describeHighlights([tied, active, afk])).toBe(expected)
+    })
+
+    it('still names an AFK method once when it is the fastest without tick manipulation', () => {
+      expect(describeHighlights([tick, afk])).toBe(
+        'Without tick manipulation, the fastest listed is Rosewood trees at up to about 88k XP an hour, from level 92. ' +
+          'With tick manipulation, the fastest listed is Teak trees (1.5-tick) at up to about 203k XP an hour, from level 35.',
+      )
+    })
+
+    it('names it alone when no other method has a rate', () => {
+      expect(describeHighlights([tick, methodWith({ xpPerHour: 0 })])).toBe(
+        'With tick manipulation, the fastest listed is Teak trees (1.5-tick) at up to about 203k XP an hour, from level 35. ' +
+          'None of them is fully AFK.',
+      )
+    })
+  })
 })
 
 describe('wikiSources', () => {
@@ -257,10 +304,12 @@ describe('the skills that have a guide', () => {
 })
 
 describe('a skill guide', () => {
-  // the fastest method when one can be named, then the best AFK one or the lack of any
+  // the fastest method when one can be named, with or without tick manipulation when the two
+  // differ, then the best AFK one or the lack of any
   const PEAK = String.raw`.+? at up to about [\d.]+[kM]? XP an hour, from level \d+\.`
+  const FASTEST = `The fastest listed is ${PEAK}|Without tick manipulation, the fastest listed is ${PEAK} With tick manipulation, the fastest listed is ${PEAK}`
   const HIGHLIGHTS = new RegExp(
-    `^(The fastest listed is ${PEAK})?( ?The best AFK option is ${PEAK}| ?None of them is fully AFK\\.)?$`,
+    `^(${FASTEST})?( ?The best AFK option is ${PEAK}| ?None of them is fully AFK\\.)?$`,
   )
 
   it('builds for every skill that has one', () => {
@@ -289,6 +338,26 @@ describe('a skill guide', () => {
       expect(guide.methods).toHaveLength(count)
       expect(guide.sources.length).toBeGreaterThan(0)
     }
+  })
+
+  it('never calls a method that needs tick manipulation the fastest without saying so', () => {
+    // a reader may never have heard of tick manipulation, so a method that needs it is named as such
+    const LEAD = /^(?:Without tick manipulation, the|The) fastest listed is (.+?) at up to about /
+    const TICK = /With tick manipulation, the fastest listed is (.+?) at up to about /
+    let tickSentences = 0
+    for (const guide of buildSkillGuides()) {
+      const isTickPerfect = (name: string): boolean | undefined =>
+        METHODS[guide.skill].find((method) => method.name === name)?.tickPerfect
+      const leadName = LEAD.exec(guide.highlights)?.[1]
+      const tickName = TICK.exec(guide.highlights)?.[1]
+      if (leadName) expect(isTickPerfect(leadName), `${guide.skill}: ${leadName}`).toBe(false)
+      if (tickName) {
+        expect(isTickPerfect(tickName), `${guide.skill}: ${tickName}`).toBe(true)
+        tickSentences += 1
+      }
+    }
+    // not an empty check: Cooking, Magic, Mining and Woodcutting each list one faster than the rest
+    expect(tickSentences).toBeGreaterThan(0)
   })
 
   it('keeps the methods in the order of the data: lowest level first', () => {

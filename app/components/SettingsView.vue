@@ -182,7 +182,12 @@ async function forgetAccount(): Promise<void> {
         <span class="field__help">
           The wildcard only appears in sessions of 90 minutes or more. Tick-perfect methods (3-tick
           fishing, 1-tick karambwans and the like) are left out of plans and estimates unless you
-          turn them on.
+          turn them on. They rely on tick manipulation, acting on exact game ticks so the skill
+          rolls more often, and their rates assume you have practised it. The wiki’s
+          <a href="https://oldschool.runescape.wiki/w/Tick_manipulation" rel="noopener"
+            >tick manipulation</a
+          >
+          page explains how it works.
         </span>
       </div>
 
