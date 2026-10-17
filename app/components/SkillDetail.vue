@@ -56,6 +56,7 @@ const paragraphs = computed(() =>
       :methods="insight.methods"
       :best-method="insight.fastestMethod"
       :is-ironman="account.isIronman"
+      :tick-methods-on="account.preferences.tickPerfect"
     />
   </section>
 </template>

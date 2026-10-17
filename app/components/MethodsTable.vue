@@ -4,7 +4,8 @@ import type { MethodOption } from '#shared/domain/methods'
 /**
  * Every method of one skill, lowest level first: what it is, what the account still needs for
  * it, its rate, how much attention it takes and what it costs to keep going. Methods the account
- * cannot use yet are dimmed; the one the lists call best is marked.
+ * cannot use yet are dimmed, and so are tick-perfect ones while the player has them off, with a
+ * line saying so; the one the lists call best is marked.
  */
 const { methods, bestMethod = null } = defineProps<{
   /** The skill's methods as the account sees them, in the order to list them. */
@@ -13,6 +14,8 @@ const { methods, bestMethod = null } = defineProps<{
   bestMethod?: MethodOption | null
   /** An ironman is told whose supplies a method runs on; a main is told what it costs. */
   isIronman?: boolean
+  /** Whether the player plans with tick-perfect methods, which the Tick-perfect tag says. */
+  tickMethodsOn?: boolean
 }>()
 
 const isBest = (option: MethodOption): boolean => option.method === bestMethod?.method
@@ -38,7 +41,7 @@ const isBest = (option: MethodOption): boolean => option.method === bestMethod?.
           :class="{
             'data-table__row--banded': index % 2 === 1,
             'data-table__row--selected': isBest(option),
-            'data-table__row--locked': !option.unlocked,
+            'data-table__row--locked': !option.unlocked || isOffBySetting(option, tickMethodsOn),
           }"
         >
           <td class="data-table__cell data-table__cell--top data-table__cell--number">
@@ -48,9 +51,14 @@ const isBest = (option: MethodOption): boolean => option.method === bestMethod?.
             <b class="data-table__title">{{ option.method.name }}</b>
             <span v-if="isBest(option)" class="tag methods-table__tag">Best now</span>
             <span v-if="option.method.timedRun" class="tag methods-table__tag">Run</span>
-            <span v-if="option.method.tickPerfect" class="tag methods-table__tag">
-              Tick-perfect
-            </span>
+            <a
+              v-if="option.method.tickPerfect"
+              class="tag tag--link methods-table__tag"
+              :href="TICK_MANIPULATION_PAGE"
+              :title="tickPerfectTagTitle(tickMethodsOn)"
+              rel="noopener"
+              >Tick-perfect</a
+            >
             <span v-if="option.method.inWilderness" class="tag methods-table__tag">
               Wilderness
             </span>
@@ -58,6 +66,10 @@ const isBest = (option: MethodOption): boolean => option.method === bestMethod?.
               {{ option.method.note }}
               <em v-if="option.missing.length" class="data-table__needs">
                 {{ methodNeedsText(option) }}
+              </em>
+              <em v-if="isOffBySetting(option, tickMethodsOn)" class="data-table__off">
+                Tick-perfect methods are off in <NuxtLink to="/settings">Settings</NuxtLink>, so
+                plans leave it out.
               </em>
             </span>
           </td>

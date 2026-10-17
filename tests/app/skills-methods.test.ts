@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import type { Method } from '#shared/types/method'
 import type { MethodOption } from '#shared/domain/methods'
-import { methodNeedsText, methodRateText, methodSuppliesText } from '~~/app/utils/method-rows'
+import {
+  TICK_MANIPULATION_PAGE,
+  isOffBySetting,
+  methodNeedsText,
+  methodRateText,
+  methodSuppliesText,
+  tickPerfectTagTitle,
+} from '~~/app/utils/method-rows'
 import { methodWith } from '../domain/helpers'
 import { fixtureAccount, insightFor } from './skills-fixture'
 
@@ -88,5 +95,33 @@ describe('methodSuppliesText', () => {
     const method = methodWith({ cost: 'pricey', usesOwnSupplies: true })
     expect(methodSuppliesText(method, true)).toBe('your own')
     expect(methodSuppliesText(methodWith({ cost: 'pricey' }), true)).toBe('none')
+  })
+})
+
+describe('the Tick-perfect tag', () => {
+  it('links to the wiki’s page on tick manipulation', () => {
+    expect(TICK_MANIPULATION_PAGE).toBe('https://oldschool.runescape.wiki/w/Tick_manipulation')
+  })
+
+  it('says what the method needs and where the link goes, on a guide and for a player who plans with it', () => {
+    const said =
+      'Needs tick manipulation: acting on exact game ticks so the skill rolls more often. Its rate assumes you have practised it. Opens the wiki’s page on tick manipulation.'
+    expect(tickPerfectTagTitle()).toBe(said)
+    expect(tickPerfectTagTitle(true)).toBe(said)
+  })
+
+  it('dims a tick-perfect method while the player has tick-perfect methods off, and nothing else', () => {
+    const tick = optionWith({ name: 'Granite (3-tick)', tickPerfect: true })
+    expect(isOffBySetting(tick, false)).toBe(true)
+    expect(isOffBySetting(tick, true)).toBe(false)
+    expect(isOffBySetting(optionWith({ name: 'Iron ore powermining' }), false)).toBe(false)
+    // a table that is not told the setting leaves the row as it is
+    expect(isOffBySetting(tick)).toBe(false)
+  })
+
+  it('tells a player with tick-perfect methods off that plans leave it out, and how to change that', () => {
+    expect(tickPerfectTagTitle(false)).toBe(
+      'Needs tick manipulation: acting on exact game ticks so the skill rolls more often. Its rate assumes you have practised it. Plans and estimates leave it out until you turn on tick-perfect methods in Settings. Opens the wiki’s page on tick manipulation.',
+    )
   })
 })

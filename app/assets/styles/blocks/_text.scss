@@ -47,6 +47,16 @@
     background: var(--color-text);
     color: var(--color-ink);
   }
+
+  // a tag that explains itself on hover and links to more ("Tick-perfect"): a dotted underline
+  &--link {
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+
+    &:hover {
+      text-decoration-style: solid;
+    }
+  }
 }
 
 // note: explanatory text under or beside the main content.

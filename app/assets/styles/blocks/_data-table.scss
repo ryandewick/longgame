@@ -96,6 +96,15 @@
     font-style: normal;
   }
 
+  // a line saying the player's own setting leaves the row out of plans: its own line, in plain
+  // text, as it is a choice and not something the account lacks
+  &__off {
+    display: block;
+    margin-top: 2px;
+    color: var(--color-text);
+    font-style: normal;
+  }
+
   @media (max-width: 760px) {
     &__heading,
     &__cell {

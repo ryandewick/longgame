@@ -51,9 +51,14 @@ defineProps<{
           >
             <span class="data-table__title">{{ method.name }}</span>
             <span v-if="method.isTimedRun" class="tag guide-methods-table__tag">Timed run</span>
-            <span v-if="method.isTickPerfect" class="tag guide-methods-table__tag">
-              Tick-perfect
-            </span>
+            <a
+              v-if="method.isTickPerfect"
+              class="tag tag--link guide-methods-table__tag"
+              :href="TICK_MANIPULATION_PAGE"
+              :title="tickPerfectTagTitle()"
+              rel="noopener"
+              >Tick-perfect</a
+            >
             <span v-if="method.isInWilderness" class="tag guide-methods-table__tag">
               Wilderness
             </span>

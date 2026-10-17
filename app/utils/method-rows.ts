@@ -23,6 +23,33 @@ export function methodNeedsText(option: MethodOption): string {
   return `Needs ${option.missing.map(describeMissingRequirement).join(', ')}.`
 }
 
+/** The wiki's page on tick manipulation: the Tick-perfect tag and the Settings help link to it. */
+export const TICK_MANIPULATION_PAGE = 'https://oldschool.runescape.wiki/w/Tick_manipulation'
+
+/**
+ * What the Tick-perfect tag says when pointed at: what the method needs, and where the link goes.
+ * The planner also says when the player's setting leaves the method out of plans; a guide, with
+ * no account behind it, leaves `tickMethodsOn` out.
+ */
+export function tickPerfectTagTitle(tickMethodsOn?: boolean): string {
+  const needs =
+    'Needs tick manipulation: acting on exact game ticks so the skill rolls more often. Its rate assumes you have practised it.'
+  const leftOut =
+    tickMethodsOn === false
+      ? ' Plans and estimates leave it out until you turn on tick-perfect methods in Settings.'
+      : ''
+  return `${needs}${leftOut} Opens the wiki’s page on tick manipulation.`
+}
+
+/**
+ * Is the method left out of plans by the player's own setting? A tick-perfect method is while
+ * tick-perfect methods are off: the table dims it and says so, as it does a method the account
+ * cannot use yet. False where the setting is not known.
+ */
+export function isOffBySetting(option: MethodOption, tickMethodsOn?: boolean): boolean {
+  return option.method.tickPerfect && tickMethodsOn === false
+}
+
 /**
  * What a method takes to keep going. A main pays for it, so it is a cost; an ironman cannot buy
  * anything, so what matters is whether the supplies are their own to gather.
