@@ -11,7 +11,7 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "The Tourist Trap with both rewards on Agility, Recruitment Drive, The Depths of Despair and The Grand Tree give 19,700 XP. Tourist Trap alone reaches 26.",
+      "note": "The Tourist Trap with both rewards on Agility reaches 26; Recruitment Drive, Depths of Despair and The Grand Tree make 19,700 XP, level 33. Death on the Isle adds 7,500.",
       "src": "Agility training"
     },
     {
@@ -20,12 +20,12 @@
       "who": "both",
       "int": "semi",
       "cost": "free",
-      "xph": 9500,
-      "bands": [[1, 9500], [20, 11500], [30, 12500], [40, 15500], [50, 31500], [60, 42000], [70, 49000], [80, 51500], [90, 68000]],
+      "xph": 8500,
+      "bands": [[1, 8500], [20, 10300], [30, 11800], [50, 29900], [60, 39800], [70, 44900], [80, 46800], [90, 59700]],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Draynor, Al Kharid, Varrock, Canifis, Falador, Seers, Pollnivneach, Rellekka, then Ardougne at 90. Rates assume no diaries. Marks of grace buy graceful.",
+      "note": "Draynor, Al Kharid, Varrock, Falador, Seers, Pollnivneach, Rellekka, then Ardougne at 90, with no diaries. Canifis at 40 is faster but needs Priest in Peril.",
       "src": "Agility training"
     },
     {
@@ -35,10 +35,11 @@
       "int": "semi",
       "cost": "cheap",
       "xph": 25500,
+      "bands": [[20, 25500], [50, 30600]],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Cross the floor spike trap by the arena entrance back and forth. 200 coins to enter. Bring food, you fail the trap now and then.",
+      "note": "Jump the floor spikes by the entrance back and forth, 24 XP every 4 ticks. It costs 200 coins to enter, and below 50 you fail now and then, so bring food.",
       "src": "Agility training"
     },
     {
@@ -48,12 +49,12 @@
       "int": "active",
       "cost": "profit",
       "xph": 25000,
-      "bands": [[30, 25000], [70, 44000]],
+      "bands": [[30, 25000], [55, 27500], [67, 34400], [75, 35800], [81, 36900], [88, 38100]],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Each pyramid top sells to Simon Templeton for 10,000 coins, about 130,000 an hour early and 260,000 from 70. Fails slow it at low levels.",
-      "src": "Agility training"
+      "note": "Each pyramid top sells to Simon Templeton for 10,000 coins. Falls drop you a level until 75, where 26 laps an hour is the most.",
+      "src": "Agility Pyramid"
     },
     {
       "lv": 40,
@@ -61,12 +62,13 @@
       "who": "both",
       "int": "active",
       "cost": "cheap",
-      "xph": 47500,
+      "xph": 44400,
+      "bands": [[40, 44400], [50, 45900], [60, 47400], [70, 49000], [80, 50500], [90, 52000]],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Tag the marked dispenser each minute, use the floor spikes in the downtime and trade tickets for XP. Karamja gloves 2 add 10 percent.",
-      "src": "Agility training"
+      "note": "Tag the marked dispenser each minute for XP and a ticket worth 345 XP, and jump the floor spikes in between. Karamja gloves 2 add 10 percent.",
+      "src": "Brimhaven Agility Arena"
     },
     {
       "lv": 50,
@@ -75,12 +77,12 @@
       "int": "semi",
       "cost": "free",
       "xph": 26350,
-      "bands": [[50, 26350], [62, 35700]],
-      "req": "",
+      "bands": [[50, 26350], [62, 36550]],
+      "req": "q:Children of the Sun",
       "run": false,
       "supply": false,
-      "note": "Varlamore course with long obstacles that cannot be failed and very few clicks. Advanced route at 62. Termites buy amylase, bone shards give Prayer XP.",
-      "src": "Agility training"
+      "note": "Varlamore course with long obstacles that cannot be failed and few clicks, advanced route at 62. Termites buy amylase, bone shards give Prayer XP.",
+      "src": "Colossal Wyrm Agility Course"
     },
     {
       "lv": 52,
@@ -88,13 +90,13 @@
       "who": "both",
       "int": "active",
       "cost": "cheap",
-      "xph": 45000,
-      "bands": [[52, 45000], [62, 56300], [72, 68900], [77, 79700], [87, 98500]],
+      "xph": 38900,
+      "bands": [[52, 38900], [62, 49200], [72, 62000], [77, 74800], [87, 92000]],
       "req": "q:Sins of the Father",
       "run": false,
       "supply": false,
-      "note": "Floors unlock at 52, 62, 72, 77 and 87. Rates skip every coffin but the Grand Coffin and assume good practice and a private instance. Bring staminas.",
-      "src": "Agility training"
+      "note": "Floors open at 52, 62, 72, 77 and 87, boostable. Rates loot no coffin and assume practice and a private instance, which costs 200 hallowed marks; bring staminas.",
+      "src": "Hallowed Sepulchre/Strategies"
     },
     {
       "lv": 52,
@@ -102,13 +104,14 @@
       "who": "both",
       "int": "active",
       "cost": "profit",
-      "xph": 55000,
+      "xph": 46900,
+      "bands": [[52, 46900], [62, 48700], [72, 50600], [82, 52500], [92, 54400]],
       "req": "",
       "run": false,
       "supply": false,
       "wild": true,
-      "note": "Deep Wilderness with player killers, so risk little. Boostable from 47 with summer pies. Tickets give alchables, blighted items and medium clues.",
-      "src": "Agility training"
+      "note": "Deep Wilderness with player killers, so risk little. Tag the dispenser each lap for a ticket worth 230 XP when 101 go in at once; obstacles can fail at any level.",
+      "src": "Wilderness Agility Course"
     },
     {
       "lv": 60,
@@ -116,12 +119,12 @@
       "who": "both",
       "int": "semi",
       "cost": "cheap",
-      "xph": 53000,
+      "xph": 47100,
       "req": "d:Kandarin Hard",
       "run": false,
       "supply": false,
-      "note": "The hard Kandarin Diary moves Camelot Teleport next to the course start, so teleport after every lap. 40,000 to 44,000 an hour without it.",
-      "src": "Agility training"
+      "note": "The hard Kandarin Diary moves Camelot Teleport next to the course start, so teleport after every lap. You stop failing at 79.",
+      "src": "Seers' Village Rooftop Course"
     },
     {
       "lv": 60,
@@ -129,13 +132,13 @@
       "who": "both",
       "int": "active",
       "cost": "free",
-      "xph": 52500,
-      "bands": [[60, 52500], [80, 67500]],
+      "xph": 51000,
+      "bands": [[60, 51000], [80, 58300]],
       "req": "q:Creature of Fenkenstrain",
       "run": false,
       "supply": false,
-      "note": "Needs the Ring of Charos. Gives 10 to 15 marks of grace an hour. The death slide stops failing at 80 Agility and Strength with weight under 2kg.",
-      "src": "Agility training"
+      "note": "Needs the Ring of Charos from the quest. The death slide stops failing at 80 Agility and 80 Strength under 2 kg, which the 80 band assumes.",
+      "src": "Werewolf Agility Course"
     },
     {
       "lv": 70,
@@ -143,12 +146,12 @@
       "who": "both",
       "int": "semi",
       "cost": "free",
-      "xph": 55500,
+      "xph": 51300,
       "req": "d:Desert Hard",
       "run": false,
       "supply": false,
-      "note": "The hard Desert Diary raises the course XP and speeds up marks of grace to 16 to 18 an hour. 47,000 to 51,000 an hour without it.",
-      "src": "Agility training"
+      "note": "The hard Desert Diary raises the drying line to 666 XP and speeds up marks of grace. You stop failing at 85.",
+      "src": "Pollnivneach Rooftop Course"
     },
     {
       "lv": 72,
@@ -156,12 +159,12 @@
       "who": "both",
       "int": "active",
       "cost": "profit",
-      "xph": 63000,
-      "bands": [[72, 63000], [77, 73000], [87, 90000]],
-      "req": "q:Sins of the Father",
+      "xph": 55600,
+      "bands": [[72, 55600], [77, 68400], [87, 83100]],
+      "req": "q:Sins of the Father;s:thieving 66",
       "run": false,
-      "supply": false,
-      "note": "Loot the worthwhile coffins from floor 3 up for hallowed marks and the ring of endurance. Grand Coffin needs 84 Thieving, or 66 at 92 Agility.",
+      "supply": true,
+      "note": "Loot the worthwhile coffins from floor 3 for hallowed marks, bringing planks, nails, vampyre dust and cosmic runes. The Grand Coffin needs 84 Thieving or 92 Agility.",
       "src": "Ironman Guide/Agility"
     },
     {
@@ -170,13 +173,13 @@
       "who": "both",
       "int": "semi",
       "cost": "free",
-      "xph": 51000,
-      "bands": [[75, 51000], [90, 55250]],
+      "xph": 45900,
+      "bands": [[75, 45900], [80, 49300], [85, 52700], [90, 55700]],
       "req": "q:Song of the Elves",
       "run": false,
       "supply": false,
-      "note": "Rooftop-style course in Prifddinas. Portal shortcuts give about 45 crystal shards an hour instead of marks of grace.",
-      "src": "Agility training"
+      "note": "Rooftop-style course in Prifddinas; you stop failing at 91. Portals give about 45 crystal shards an hour instead of marks of grace.",
+      "src": "Prifddinas Agility Course"
     },
     {
       "lv": 80,
@@ -184,25 +187,29 @@
       "who": "both",
       "int": "semi",
       "cost": "free",
-      "xph": 61000,
+      "xph": 55200,
       "req": "d:Fremennik Hard",
       "run": false,
       "supply": false,
-      "note": "The hard Fremennik Diary raises the course XP and speeds up marks of grace to 16 to 19.5 an hour. 50,000 to 53,000 an hour without it.",
-      "src": "Agility training"
+      "note": "The hard Fremennik Diary raises the pile of fish to 615 XP and speeds up marks of grace. You stop failing at 85.",
+      "src": "Rellekka Rooftop Course"
     }
   ],
   "unverified": [
-    "Quest skip to level 33: one-off quest XP, so no hourly rate (xph 0)",
-    "Rooftop courses: bands are midpoints of the no-diary, no-teleport ranges; the guide states no quest requirement for Canifis",
-    "Brimhaven Arena floor spikes: 25,500 is 85% of the stated 'up to 30,000'; the page also gives about 36,000 an hour for the single-click version without saying at what level; the Ironman Guide says the arena is not worth it at level 20",
-    "Brimhaven Arena ticket pillars: main guide says 45,000-50,000 at level 40 (and 28,000 at 40, 35,000 at 80, up to 67,000 at 99 from tickets alone); Ironman Guide says 50,000-60,000 for levels 40-60; no usable rate by level above 40",
-    "Agility Pyramid: 25,000 is stated for levels 30-50 and 44,000 for 70-99; nothing is stated for 50-70",
-    "Colossal Wyrm course: main guide says 'up to' 31,000 and 42,000 (85% used); Ironman Guide says 'upwards of' 31,181 and 42,834; the course was lengthened on 12 August 2026 with XP per hour said to stay roughly the same, and the guides still describe the old 60-second lap; neither guide states an access requirement",
-    "Hallowed Sepulchre: the Ironman Guide's 'realistic no looting' column differs from the main guide (40,000 / 50,000 / 71,700 / 81,000 / 98,500 against 45,000 / 56,300 / 68,900 / 79,700 / 98,500); the main guide figures are used and assume a private instance",
-    "Hallowed Sepulchre looting coffins: Ironman Guide 'realistic looting' column used; the main guide's floor 4-5 looting column gives 75,000 at 77 and 85,800 at 87; the Grand Coffin requirement is quoted from the main guide, while the 12 August 2026 changelog words it as 84 Thieving or 92 Agility",
-    "Wilderness Agility Course: level 52 is the entry level; the main guide starts it at 47 with summer pie boosts (49 for the pipe)",
-    "Werewolf Agility Course: the page says 67,000-68,000 'at higher levels' without naming a level; the band is placed at 80, where the death slide stops failing",
-    "Prifddinas Agility Course: 85% of the main guide's 'up to' 60,000 at 75 and 65,000 from 90; the Ironman Guide says 59,000 and 66,000"
+    "Quest skip to level 33: The Tourist Trap (2 x 4,650; 10 Fletching, 20 Smithing), Recruitment Drive (1,000.5), The Depths of Despair (1,500; 18 Agility) and The Grand Tree (7,900; 25 Agility) give 19,700.5 XP, level 33; Death on the Isle (7,500; 32 Agility, 34 Thieving, Children of the Sun) brings it to 36, as the Ironman Guide says; one-off XP, so never dealt",
+    "Rooftop courses: 85% of each course's perfect lap (XP a lap over the seconds a lap on its page), which agree with Jagex's own table of 8 May 2024 within 1%; the guide's no-diary ranges sit at 85 to 100% of the same maxima; failing slows the first levels of Seers' (to 79), Pollnivneach and Rellekka (to 85) and Ardougne (to 95); Canifis (40; 240 XP a 43.8 s lap, 16,800 at 85%) is out of the bands because it needs Priest in Peril, which req cannot ask of one band",
+    "Brimhaven Arena floor spikes: 85% of the guide's up to 30,000 from 20, where you still fail, and of 36,000 from 50 (24 XP every 4 ticks); Karamja gloves 2 make a crossing 26.4 XP; single-clicking one tile is low attention but a click every 2.4 seconds",
+    "Agility Pyramid: no rate exists below 75 but the guide's about 13 laps and 25,000 for 30 to 50 and the page's player samples (25,000 to 30,000 at 55 to 60; 33,000 to 37,000 at 67 to 70, held to 85% of a no-fail hour); from 75, 85% of 26 laps of 722 XP plus the 300 + 8 a level bonus (42,172 at 75, 44,772 from 88; Jagex 44,750)",
+    "Brimhaven Arena ticket pillars: 85% of a maximum rebuilt from the arena: 60 tags an hour (30 XP each 10 levels), tickets of 345 XP, and the floor spikes for the 67.6% of the hour that the arena page's up to 68,000 at 99 leaves; a timed hour at 40 gave 47,324 (91% of that maximum, guide edit of 1 February 2025); Karamja gloves 2 (medium Karamja Diary) add 10% and are not counted",
+    "Colossal Wyrm course: 85% of the course page's 31,000 (49 laps of 633 XP) and 43,000 (41 laps of 1,053.6), timed in game on 12 August 2026 when the laps were lengthened; the page still carries an obsolete banner and its basic obstacle table adds to 601.6 XP, not 633 (25,800 at 85%); Varlamore needs Children of the Sun",
+    "Hallowed Sepulchre: 85% of a maximum rebuilt from the strategy page's tick-perfect floor times (each floor's entrances averaged) and the guide's downtimes: 45,800, 57,900, 73,000, 87,900 and 108,300; the guide's 45,000 to 98,500 are 91 to 98% of those, and the Ultimate Ironman Guide's 39,000 to 85,000 agree within 8%; no coffin is looted, so no Thieving is needed, but the private instance the rates assume costs 200 hallowed marks, which only looting (66 Thieving) gives; Wise Old Man's rows still break at 82 and 92",
+    "Wilderness Agility Course: estimated; laps an hour from the obstacles' success charts (rope swing and log 88.7%, stepping stones 84.8% at 52, all 98% at 99) with an assumed 60 ticks lost to a fall into the pit and 8 to a stepping stone, calibrated to the page's 83 laps at high levels; no page times a fall, and falls of 25 to 100 ticks would make 52 anything from 52,200 to 42,000; nothing is counted for player killers; tickets of 230 XP counted; Wise Old Man's 35,000 at 47 to 51 is close to the course XP alone (33,400 at 52)",
+    "Seers' rooftop with Camelot teleport: 85% of 570 XP a lap at the course page's about 37 seconds with the teleport (55,459; the page rounds to 56,000); the Agility page says up to 58,900; the hard Kandarin Diary asks 56 Magic, above the spell's 45",
+    "Werewolf Agility Course: 85% of the page's tick-perfect 68,600 from 80 (94 laps of 730 XP), which the guide's 67,000 to 68,000 confirms; below 80, 85% of the page's up to 60,000, where the guide says up to 50,000 to 55,000 (44,600 at 85%); the 80 band also needs 80 Strength and under 2 kg, which req cannot ask of one band",
+    "Pollnivneach rooftop with hard diary: 85% of 1,016 XP every 101 ticks (60,356; Jagex 60,000)",
+    "Hallowed Sepulchre looting coffins: the mean of three practised looting figures (money making guides 58,400, 73,000 and 88,100; Ironman Guide 63,000, 73,000 and 90,000; Wise Old Man ironman 64,000, 72,600 and 89,000) scaled by the no-loot entry's ordinary to practised ratio (0.90, 0.94, 0.93); 66 Thieving opens any coffin; bridges need 56 Construction, braziers 54 Prayer and pillars 62 Ranged; the Grand Coffin needs 84 Thieving or 66 with 92 Agility, which the 87 band assumes",
+    "Prifddinas Agility Course: 85% of the course page's table (54,000 at 75 to 66,000 at 90), with 90 at 85% of the guide's tick-perfect 65,481; the guide's up to around 60,000 at 75 is 11% above the page's table",
+    "Rellekka rooftop with hard diary: 85% of 920 XP every 85 ticks (64,941; Jagex 65,000)",
+    "Not included: Ape Atoll (48, Monkey Madness I half done and a ninja greegree; 55,100 at most from 75, 46,800 at 85%, level with the rooftops); Dorgesh-Kaan (70, Death to the Dorgeshuun; 63,000 for a 2:36 lap without falls, but falls at every level and on no guide); Shayzien advanced (45, a crossbow and mith grapple, 30,000); the Penguin course (30, Cold War and a clockwork suit, 30,000); Barbarian Outpost (35, the Barcrawl, 18,400); Gnome Stronghold (10,000, as Draynor); the Edgeville Dungeon monkey bars (15, Wilderness, 13,200); Barbarian Fishing (Agility as a side effect of Fishing, Wise Old Man ironman's 45 to 73); the Vampyrium rockslide (550 XP every 7.5 minutes, 4,400 an hour beside other things); Underwater Agility and Thieving (38,800 at 99 in both); Wintertodt pillars (21,000); the Blast Furnace belt (6,000)"
   ]
 }

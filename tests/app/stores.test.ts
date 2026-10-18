@@ -217,13 +217,13 @@ describe('the account store', () => {
     const { account } = loadedStores()
     const before = account.planQuestions
     const [first] = before.savingHours
-    expect(first?.requirement).toEqual({ kind: 'quest', name: 'Lunar Diplomacy' })
+    expect(first?.requirement).toEqual({ kind: 'quest', name: 'Sins of the Father' })
     if (!first) return
 
     account.answerQuestion(first.requirement, false)
     const after = account.planQuestions
     expect(after.savingHours.map((question) => question.requirement.name)).not.toContain(
-      'Lunar Diplomacy',
+      'Sins of the Father',
     )
     expect(after.savingHours.length).toBeLessThan(before.savingHours.length)
     // the smaller questions are a round of their own, and this answer was not one of them

@@ -514,8 +514,8 @@ describe('planQuestions: the two rounds', () => {
   it('asks the questions that save hours first, and keeps the smaller ones for a second round', () => {
     expect(plan.savingHours.every(savesHours)).toBe(true)
     expect(plan.smaller.some(savesHours)).toBe(false)
-    expect(plan.savingHours).toHaveLength(23)
-    expect(plan.smaller).toHaveLength(15)
+    expect(plan.savingHours).toHaveLength(22)
+    expect(plan.smaller).toHaveLength(16)
   })
 
   it('makes every smaller question one that adds a reset or changes a block, with no question in both rounds', () => {
@@ -555,11 +555,11 @@ describe('planQuestions: the order', () => {
       // Druidic Ritual opens Herblore: it is behind every 291 here, so it is asked before them
       'Druidic Ritual 291',
       'Bone Voyage 376',
-      'Sins of the Father 351',
+      'Sins of the Father 362',
       'Shilo Village 291',
       'Lunar Diplomacy 308',
       'Dream Mentor 308',
-      'Swan Song 302',
+      'Swan Song 297',
       'Desert Treasure I 291',
       "Shades of Mort'ton 291",
       'Tai Bwo Wannai Trio 291',
@@ -571,18 +571,18 @@ describe('planQuestions: the order', () => {
       'Vale Totems 39',
       'The Ribbiting Tale of a Lily Pad Labour Dispute 35',
       'The Heart of Darkness 34',
-      'Creature of Fenkenstrain 11',
-      'Fremennik Hard 6',
+      'Creature of Fenkenstrain 7',
+      'Fremennik Hard 3',
       'Family Crest 3',
       'Temple of the Eye 3',
       'Pandemonium 1',
-      'Desert Hard 1',
     ])
   })
 
   it('asks the smaller questions in this order', () => {
     expect(namesAsked(plan.smaller)).toEqual([
       'Sleeping Giants',
+      'Desert Hard',
       'Priest in Peril',
       'Dwarf Cannon',
       'The Tourist Trap',
@@ -635,9 +635,9 @@ describe('planQuestions: the order', () => {
         .map((question) => `${question.requirement.name} ${Math.round(question.hoursSaved)}`),
     ).toEqual([
       'Bone Voyage 85',
+      'Sins of the Father 72',
       'Children of the Sun 34',
       'Perilous Moons 66',
-      'Sins of the Father 61',
     ])
     // Bone Voyage showed 376 hours while the 291 of Druidic Ritual were counted in it
     expect(Math.round(questionAbout(account, 'Bone Voyage').hoursSaved)).toBe(85)
@@ -680,9 +680,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,683 hours to 2,260 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,703 hours to 2,284 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2683)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2703)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -691,17 +691,17 @@ describe('planQuestions: a whole run of answers', () => {
     ).toEqual([
       'Druidic Ritual 291 yes',
       'Bone Voyage 85 yes',
-      'Sins of the Father 61 no',
+      'Sins of the Father 72 no',
       'Perilous Moons 57 no',
       'Children of the Sun 26 yes',
       'Lunar Diplomacy 58 no',
-      'Creature of Fenkenstrain 11 yes',
+      'Creature of Fenkenstrain 7 yes',
       'Vale Totems 5 yes',
       'Family Crest 3 yes',
       'Temple of the Eye 3 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2260)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2284)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
@@ -801,7 +801,7 @@ describe('the count of questions over the card', () => {
   const neverGrows = (totals: readonly number[]): boolean =>
     totals.every((total, index) => index === 0 || total <= (totals[index - 1] ?? 0))
 
-  // 'Question 1 of at most 23' is only true if the total can fall but not rise
+  // 'Question 1 of at most 22' is only true if the total can fall but not rise
   it.each([
     ['answered as the fixture did', asTheFixtureDid],
     ['all answered yes', () => true],
@@ -817,7 +817,7 @@ describe('the count of questions over the card', () => {
 
   it('starts well above what is asked, which is why it says at most', () => {
     const { totals } = totalsShown('savingHours', asTheFixtureDid)
-    expect(totals[0]).toBe(23)
+    expect(totals[0]).toBe(22)
     expect(totals).toHaveLength(11)
   })
 })
