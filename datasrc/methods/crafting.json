@@ -3,15 +3,54 @@
   "methods": [
     {
       "lv": 1,
-      "name": "Leather items",
-      "who": "main",
-      "int": "semi",
-      "cost": "cheap",
+      "name": "Quest skip to level 35",
+      "who": "both",
+      "int": "active",
+      "cost": "free",
       "xph": 0,
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Needle and thread on bought leather, best item for your level, 215 leather to reach 20. Quests can skip these levels instead.",
+      "note": "Seven quests with no skill requirement give 6,356 XP, level 23. Death on the Isle and Elemental Workshop I and II bring it to 23,856 XP, level 35.",
+      "src": "Quest experience rewards"
+    },
+    {
+      "lv": 1,
+      "name": "Leather items",
+      "who": "main",
+      "int": "afk",
+      "cost": "cheap",
+      "xph": 22300,
+      "bands": [
+        [
+          1,
+          22300
+        ],
+        [
+          7,
+          26400
+        ],
+        [
+          9,
+          29900
+        ],
+        [
+          11,
+          35600
+        ],
+        [
+          14,
+          40400
+        ],
+        [
+          18,
+          43700
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Needle and thread on bought leather, the best item for your level, 26 a load: 215 leather reach 20. Quests can skip these levels instead.",
       "src": "Pay-to-play Crafting training"
     },
     {
@@ -20,45 +59,45 @@
       "who": "both",
       "int": "afk",
       "cost": "cheap",
-      "xph": 30625,
+      "xph": 28400,
       "bands": [
         [
           1,
-          30625
+          28400
         ],
         [
           4,
-          33250
+          30800
         ],
         [
           12,
-          43750
+          40500
         ],
         [
           33,
-          61250
+          56700
         ],
         [
           42,
-          74375
+          68900
         ],
         [
           46,
-          91875
+          85100
         ],
         [
           49,
-          96250
+          89100
         ],
         [
           87,
-          122500
+          113400
         ]
       ],
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Blow molten glass into the best item for your level, 1,750 an hour, little attention. Ironmen make the glass from sand and soda ash.",
+      "note": "Blow molten glass into the best item for your level, 27 a load, with little attention. Ironmen make the glass from sand and soda ash or with Superglass Make.",
       "src": "Pay-to-play Crafting training"
     },
     {
@@ -66,78 +105,78 @@
       "name": "Gold and gem jewellery",
       "who": "both",
       "int": "semi",
-      "cost": "cheap",
-      "xph": 24000,
+      "cost": "profit",
+      "xph": 20400,
       "bands": [
         [
           5,
-          24000
+          20400
         ],
         [
           6,
-          32000
+          27200
         ],
         [
           7,
-          40000
+          34000
         ],
         [
           8,
-          48000
+          40800
         ],
         [
           20,
-          56000
+          47600
         ],
         [
           22,
-          77000
+          65500
         ],
         [
           23,
-          84000
+          71400
         ],
         [
           24,
-          91000
+          77400
         ],
         [
           31,
-          98000
+          83300
         ],
         [
           40,
-          105000
+          89300
         ],
         [
           42,
-          112000
+          95200
         ],
         [
           43,
-          119000
+          101200
         ],
         [
           55,
-          140000
+          119000
         ],
         [
           72,
-          147000
+          125000
         ],
         [
           74,
-          154000
+          130900
         ],
         [
           80,
-          210000
+          178500
         ]
       ],
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Gold bars, with cut gems from 20, at a furnace close to a bank such as Edgeville. Ironmen alch the results for profit.",
+      "note": "Gold bars, with cut gems from 20, at the Edgeville furnace 14 tiles from the bank. Most pieces sell for more than the bar and gem; ironmen alch them.",
       "src": "Pay-to-play Crafting training"
     },
     {
@@ -146,25 +185,25 @@
       "who": "main",
       "int": "semi",
       "cost": "cheap",
-      "xph": 28080,
+      "xph": 23900,
       "bands": [
         [
           12,
-          28080
+          23900
         ],
         [
           39,
-          105300
+          89500
         ],
         [
           73,
-          184680
+          157000
         ]
       ],
-      "req": "",
+      "req": "q:Bone Voyage;s:construction 29",
       "run": false,
       "supply": false,
-      "note": "Spin flax, hemp or cotton into yarn, then weave bolts of fabric at the Fossil Island wheel and loom. Sometimes a small profit.",
+      "note": "Spin flax, hemp or cotton and weave the yarn into bolts at the Museum Camp wheel and loom, built with 28 and 29 Construction. A small loss or profit.",
       "src": "Pay-to-play Crafting training"
     },
     {
@@ -172,47 +211,43 @@
       "name": "Cutting gems",
       "who": "main",
       "int": "semi",
-      "cost": "pricey",
-      "xph": 139000,
+      "cost": "cheap",
+      "xph": 118700,
       "bands": [
         [
           20,
-          139000
+          118700
         ],
         [
           27,
-          187650
+          160200
         ],
         [
           34,
-          236300
+          201800
         ],
         [
           43,
-          298850
-        ],
-        [
-          55,
-          382250
+          255200
         ]
       ],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Chisel on bought uncut gems, 2,780 an hour. Fastest xp up to 77, but dragonstones at 55 cost far more than diamonds.",
+      "note": "Chisel bought uncut gems, 27 a load: sapphires, emeralds, rubies, then diamonds. Cut gems sell for a little less than uncut; a jeweller's chisel adds about 10%.",
       "src": "Pay-to-play Crafting training"
     },
     {
       "lv": 20,
       "name": "Buying and cutting gems (Mor Ul Rek)",
       "who": "iron",
-      "int": "semi",
+      "int": "active",
       "cost": "cheap",
       "xph": 45000,
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Sell chaos runes for Tokkul, buy uncut gems from the TzHaar gem store and cut them. Needs a fire cape and about 3.2M capital.",
+      "note": "Sell chaos runes for Tokkul, buy uncut gems at the TzHaar gem store while hopping worlds, then cut them and make bracelets. Needs a fire cape.",
       "src": "Ironman Guide/Crafting"
     },
     {
@@ -220,43 +255,56 @@
       "name": "Drift nets",
       "who": "both",
       "int": "semi",
-      "cost": "cheap",
-      "xph": 60000,
-      "req": "",
+      "cost": "profit",
+      "xph": 51400,
+      "req": "q:Bone Voyage;s:construction 29",
       "run": false,
       "supply": true,
-      "note": "Weave two jute fibre a net at the Fossil Island loom, about 1,000 an hour. Beats glassblowing until 46. Ironmen farm the jute.",
-      "src": "Pay-to-play Crafting training"
+      "note": "Weave two jute fibres into a net at the Museum Camp loom by its bank chest. The nets sell for more than the jute; ironmen farm their own.",
+      "src": "Money making guide/Crafting drift nets"
     },
     {
       "lv": 54,
       "name": "Battlestaves",
       "who": "main",
-      "int": "semi",
+      "int": "active",
       "cost": "cheap",
-      "xph": 245000,
+      "xph": 223100,
       "bands": [
         [
           54,
-          245000
+          223100
         ],
         [
           58,
-          275625
+          251000
         ],
         [
           62,
-          306250
+          278900
         ],
         [
           66,
-          336875
+          306800
         ]
       ],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Attach bought orbs to battlestaves, 2,450 an hour. Usually cheaper than the other fast methods but needs a lot of capital.",
+      "note": "Attach bought orbs to battlestaves, 14 a load, a bank trip every 20 seconds. Close to break even, and alching the staves makes a profit.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 55,
+      "name": "Cutting dragonstones",
+      "who": "main",
+      "int": "semi",
+      "cost": "pricey",
+      "xph": 326400,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Chisel bought uncut dragonstones, 27 a load: the fastest Crafting XP from 55 until red d'hide bodies at 77, but far dearer an XP than diamonds.",
       "src": "Pay-to-play Crafting training"
     },
     {
@@ -264,12 +312,12 @@
       "name": "Golem crafting",
       "who": "both",
       "int": "active",
-      "cost": "cheap",
+      "cost": "profit",
       "xph": 156600,
       "req": "q:Fallen From Grace",
       "run": false,
       "supply": true,
-      "note": "On Wyrmscraig. Mine sunstone, carve golems and clothe them with hunter fur, about 58 an hour. Better fur gives more xp.",
+      "note": "On Wyrmscraig: mine sunstone, shape golems and clothe them in hunter fur, about 58 an hour at a high Mining level. Each gives an uncut gem worth more than the fur.",
       "src": "Golem crafting"
     },
     {
@@ -278,11 +326,11 @@
       "who": "both",
       "int": "active",
       "cost": "profit",
-      "xph": 130500,
+      "xph": 108000,
       "req": "q:Lunar Diplomacy;s:magic 77",
       "run": false,
       "supply": true,
-      "note": "Cast on 18 buckets of sand and 3 giant seaweed for 180 xp a cast, then blow the glass later for more. Good Magic xp too.",
+      "note": "Cast on 18 buckets of sand and 3 giant seaweed for 180 XP and about 26 glass, 600 casts an hour, then sell the glass or blow it later. Good Magic XP too.",
       "src": "Pay-to-play Crafting training"
     },
     {
@@ -313,30 +361,26 @@
       "name": "D'hide bodies",
       "who": "both",
       "int": "active",
-      "cost": "pricey",
-      "xph": 313410,
+      "cost": "cheap",
+      "xph": 281000,
       "bands": [
         [
           63,
-          313410
+          281000
         ],
         [
           71,
-          353850
+          317300
         ],
         [
           77,
-          394290
-        ],
-        [
-          84,
-          434730
+          353600
         ]
       ],
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Three dragon leathers a body with needle and thread. Fastest viable method from 77. Ironmen use hides from dragons and Vorkath.",
+      "note": "Three dragon leathers a body with needle and thread, 8 a load: green, blue, then red at 77, the fastest from there. Ironmen use hides from dragons and Vorkath.",
       "src": "Pay-to-play Crafting training"
     },
     {
@@ -345,11 +389,24 @@
       "who": "main",
       "int": "semi",
       "cost": "cheap",
-      "xph": 165000,
+      "xph": 142400,
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Chisel amethyst into bolt tips, or arrowtips, javelin tips and dart tips at higher levels. A small loss or a profit.",
+      "note": "Chisel amethyst into bolt tips, then arrowtips, javelin tips and dart tips at higher levels, 27 a load. Close to break even from arrowtips at 85.",
+      "src": "Pay-to-play Crafting training"
+    },
+    {
+      "lv": 84,
+      "name": "Black d'hide bodies",
+      "who": "both",
+      "int": "active",
+      "cost": "pricey",
+      "xph": 389800,
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Three black dragon leathers a body, the fastest Crafting XP from 84 at about twice the cost an XP of red. Ironmen use hides from black dragons.",
       "src": "Pay-to-play Crafting training"
     },
     {
@@ -358,25 +415,30 @@
       "who": "both",
       "int": "active",
       "cost": "cheap",
-      "xph": 110000,
-      "req": "q:The Lost Tribe;s:firemaking 52,thieving 44",
+      "xph": 110500,
+      "req": "q:Death to the Dorgeshuun;s:firemaking 52,thieving 44",
       "run": false,
       "supply": true,
-      "note": "Blow light orbs, add wire from the wire machine and fix lamps around the city. Most xp per molten glass, plus 65k to 90k Firemaking.",
+      "note": "Blow light orbs, wire them at the wire machine and fix lamps around the city: 724 Crafting XP a lamp, plus Firemaking. About 150 an hour, 180 once skilled.",
       "src": "Ironman Guide/Crafting"
     }
   ],
   "unverified": [
-    "Leather items: the guide gives XP per item and a total crafting time (387 seconds for 215 items) but no hourly rate, so xph is 0",
-    "Golem crafting: the two guides disagree (main guide 'upwards of 180,000', Ironman Guide 'upwards of 140,000'); 156,600 is from the Golem crafting page (fetched): 58 golems an hour x (1,560 base + 1,140 dark kebbit fur, the fur it recommends for ironmen). Same page: 100,000 low intensity, 185,000+ high intensity, 160,080 with bought moonlight antelope fur, 141,520 with Wyrmscraig goat fur",
-    "Golem crafting: Fallen From Grace (fetched) needs 62 Sailing, 60 Crafting, 47 Runecraft, 53 Mining, which confirms the 62 Sailing lead; only the quest is in req",
-    "Buying and cutting gems (Mor Ul Rek): level 20 is the sapphire level from the main guide's gem table, the Ironman Guide states no level; the fire cape requirement cannot be expressed in req",
-    "Superglass Make: 130,500 is the midpoint of 108,000 to 153,000 for the casts alone (600 to 850 casts an hour), blowing the glass is extra and not included",
-    "Dorgesh-Kaan lamps (own light orbs): 110,000 is the midpoint of 90,000 (learning) and 130,000 (skilled); a main can do it from 52 Crafting with bought light orbs but no rate is given for that",
-    "Gold and gem jewellery: bands take the best item at each level from the main guide table (1,600 bar-only or 1,400 gem items an hour); the Ironman Guide quotes 35,000 to 42,500 for gold bracelets and 49,000 to 59,500 for gold tiaras",
-    "D'hide bodies: needle and thread column (1,685 an hour); the costume needle from Death on the Isle gives 1,705 an hour; the Ironman Guide gives no rate",
-    "Drift nets: 60,000 is the main guide rate; the Ironman Guide only gives 1,000 to 2,000 xp of jute per farm run",
-    "Glassblowing, Drift nets, Spinning and weaving yarn, Battlestaves, Cutting amethyst: cost is a judgement call because GP/XP columns are live GE price templates",
-    "Omitted for lack of a rate: ironman battlestaves (Zaff's daily stock and self-charged orbs), flax spinning, Guardians of the Rift passive xp (5,000 to 6,000/h), shooting star and gem rock gem sources"
+    "Quest skip to level 35: the Ironman Guide's ten quests give 23,856 XP (Sheep Shearer 150, Goblin Diplomacy 200, Misthalin Mystery 600, Dwarf Cannon 750, the Goblin generals 1,000, Murder Mystery 1,406, Observatory Quest 2,250, Death on the Isle 5,000, Elemental Workshop I 5,000 and II 7,500); the seven without a requirement reach 23; the app carries all 36 quests with Crafting XP (151,143.4, A Ruff Situation and Fallen From Grace included); no hourly rate, so never dealt",
+    "Leather items: no guide rates them by the hour; 85% of the rebuilt maximum (26 a load at 3 ticks, 1,902 an hour), the same basis as glassblowing; the free-to-play guide's table implies about 1,400 but its hardleather row (2,600 an hour) is above the maximum; Wise Old Man main's 37,000 for 1 to 20 is one average (about 1,779 an hour), and the same average here is 33,600, though the bands from 14 pass 37,000; leather boots give 16.3 XP on their page, 16.2 in the guide",
+    "Glassblowing: 85% of the rebuilt maximum (27 a load at 3 ticks, 4 ticks of banking: 1,905 an hour), 1,620 an hour, below the guide's assumed 1,750; a reader measured 101,000 an hour on lantern lenses (1,836 an hour, Talk:Pay-to-play Crafting training, 24 September 2026), near the maximum; ironmen making their own glass at a furnace get 20 XP a glass more but blow less of the hour",
+    "Gold and gem jewellery: 85% of the guide's 1,400 (bar and gem) and 1,600 (bar only) at Edgeville, 1,190 and 1,360 an hour; the money making guides' 1,200 an hour and the Ironman Guide's 1,400 to 1,700 bars an hour agree, the free-to-play guide's 1,050 for bar and gem is 12% lower; the Wyrmscraig furnace (Fallen From Grace) and Prifddinas (Song of the Elves) are closer to a bank; dragonstone rings, necklaces and amulets trade 535 to 1,775 a day, so most are alched; cost graded profit at 18 October 2026 prices, gold bars 66",
+    "Spinning and weaving yarn: 85% of the guide's 540 bolts an hour at the Museum Camp (spin two, weave one), taken as the maximum because the walk that rebuilds it also matches the money making guide's up to 1,100 for weaving alone; Bone Voyage and 29 Construction (the loom; the wheel needs 28) are in req because the rates assume that camp; spinning alone (1,430 an hour) and weaving alone are slower an hour; bolts of cotton trade 389 a day",
+    "Cutting gems and Cutting dragonstones: 85% of the guide's tick-perfect 2,793 an hour (58 ticks a load), 2,374; Wise Old Man main uses 2,780; the jeweller's chisel's 10% double cut (275 more gems an hour, XP for both) is a 1 in 300 golem crafting drop and is not counted; cut gems sold below uncut on 18 October 2026 (sapphires 0.1, diamonds 6.9, dragonstones 26.8 coins an XP)",
+    "Buying and cutting gems (Mor Ul Rek): the Ironman Guide's 40,000 to 50,000 alone (midpoint 45,000); the store sells 16 sapphires, 12 emeralds, 8 rubies and 6 diamonds a world, 5,885 XP cut and made into bracelets, so 7 to 8 worlds an hour; the fire cape and Karamja gloves cannot go in req; level 20 is the sapphire",
+    "Drift nets: 85% of the money making guide's up to 1,100 an hour (935, 51,400 XP); the guide says about 1,000 and 60,000, which do not agree (1,000 nets are 55,000); its claim of beating glassblowing until 46 fails at its own rates from vials at 33; Bone Voyage and 29 Construction in req for the Museum Camp loom and bank chest; the Ironman Guide gives 1,000 to 2,000 XP of jute a farm run",
+    "Battlestaves: 85% of the guide's up to 2,625 an hour with perfect banking (2,231); the guide's 2,450 is 93% of it; the staves sell at about what the staff and orb cost and alch for 9,300, a profit; ironmen get 15 to 120 staves a day from Zaff (the battlestaves reset)",
+    "Golem crafting: the page's 58 golems an hour with dark kebbit fur (2,700 XP a golem), which assumes a high Mining level (momentum is certain from 80; at the quest's 53 the mining slows it to about 51 an hour); 85% of the page's 65 to 70+ and of the main guide's 180,000 agree within 3%; the Ironman Guide's 140,000 is goat fur at 58; the Ultimate Ironman Guide's 100,000 to 125,000 includes hunting the fur; Fallen From Grace needs 62 Sailing, 60 Crafting, 47 Runecraft and 53 Mining; cost graded profit because the golem's gem (about 400 coins) beats the fur",
+    "Superglass Make: the guide's and money making guide's 600 casts an hour (108,000, casting only), below 85% of the guide's 850 peak (130,000); the spell's own page still says about 50,000 with regular effort, which is 385 casts by its Magic figure, the older seaweed method; blowing the glass afterwards is a separate block (Glassblowing)",
+    "Charter ship glassblowing: the Ironman Guide's midpoints (67,500 lenses, 87,500 empty light orbs); the Ultimate Ironman Guide's 75,000 and 93,000 at 92 worlds an hour use two clients; stock is 10 sand and 20 seaweed a crewmember, so busy ports run dry",
+    "D'hide bodies and Black d'hide bodies: 85% of the tick-perfect 1,778 bodies an hour with needle and thread (1,511), the figure the guide removed from its comments on 19 March 2026; the costume needle (Death on the Isle) gives 9 a load and 1,800 tick-perfect, not counted; black is an entry of its own because it cost 15.4 coins an XP on 18 October 2026, red 7.9; bodies alch for more than they sell",
+    "Cutting amethyst: 85% of the tick-perfect 2,793 an hour, as for gems (the same 2-tick cut, 27 a load); the guide's 165,000 is 2,750 an hour, 98.5% of it; bolt tips lose 8.5 coins an XP at 83 and 84, arrowtips and later break even",
+    "Dorgesh-Kaan lamps (own light orbs): 85% of the skilled 130,000 (180 lamps an hour at 724 XP); the Light orb page says the elite Lumbridge & Draynor Diary's double wire speeds it up, but the Ironman Guide's 4,000 Thieving an hour is one wire a grab, so the skilled figure does not need it; fixing lamps with bought orbs from 52 Crafting has no rate on any page and light orbs trade about 150 a day; req corrected to Death to the Dorgeshuun, which opens the city",
+    "Not included: Spin Flax with the bow string spool (Vale Totems; 80,000 an hour, 90,000 at most, after Lunar Diplomacy and 76 Magic, slower than glassblowing at those levels); Blast Furnace pipe repair (44,000 to 45,000, Ultimate Ironman Guide); Shades of Mort'ton temple repair (15,000 to 20,000); Guardians of the Rift (5,000 to 6,000 a side effect of Runecraft); ironman battlestaves (Zaff's daily stock, a reset); tarnished Vampyrium drops (60 Crafting, a drop not a supply); spinning flax into bow strings and pottery (no hourly rate); gems from gem rocks, stars, the Gauntlet and Zalcano (supply, cut inside the methods above)"
   ]
 }

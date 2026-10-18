@@ -679,9 +679,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,680 hours to 2,257 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,683 hours to 2,260 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2680)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2683)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -700,7 +700,7 @@ describe('planQuestions: a whole run of answers', () => {
       'Temple of the Eye 3 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2257)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2260)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
@@ -743,6 +743,7 @@ describe('gatedActivities', () => {
       'Teak trees (1.5-tick)',
       'Sulliusceps',
       'Drift net fishing',
+      'Drift nets',
       'Volcanic Mine',
       'Hardwood tree runs',
       'Bird house runs',
@@ -760,6 +761,7 @@ describe('gatedActivities', () => {
     expect(gatedActivities(unticked, quest('Bone Voyage')).skills).toEqual([
       'woodcutting',
       'fishing',
+      'crafting',
       'mining',
       'farming',
       'hunter',

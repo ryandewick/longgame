@@ -520,9 +520,9 @@ describe('the tick list’s rows', () => {
       {
         name: 'Bone Voyage',
         done: true,
-        opens: 'Teak trees (1.5-tick), Sulliusceps and 8 more',
-        skills: ['woodcutting', 'fishing', 'mining', 'farming'],
-        moreSkills: 1,
+        opens: 'Teak trees (1.5-tick), Sulliusceps and 9 more',
+        skills: ['woodcutting', 'fishing', 'crafting', 'mining'],
+        moreSkills: 2,
       },
       {
         name: 'Temple of the Eye',
