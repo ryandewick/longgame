@@ -182,9 +182,9 @@ describe('planQuestions: what can be asked about', () => {
   })
 
   it('counts the open requirements it does not ask about', () => {
-    // 46 quests and 11 diary tiers gate something; with nothing ticked 37 are worth a question
-    expect(gatingQuests().length + gatingDiaries().length).toBe(57)
-    expect(questions).toHaveLength(37)
+    // 46 quests and 12 diary tiers gate something; with nothing ticked 38 are worth a question
+    expect(gatingQuests().length + gatingDiaries().length).toBe(58)
+    expect(questions).toHaveLength(38)
     expect(setAsideCount).toBe(20)
   })
 
@@ -207,7 +207,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan))).not.toContain('Tears of Guthix')
     expect(namesAsked(everyQuestion(plan))).not.toContain('Kandarin Easy')
     // an answer is not something set aside
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(55)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(56)
   })
 
   it('does not ask about a quest that requires one answered "not yet"', () => {
@@ -224,7 +224,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan)).filter((name) => dependants.includes(name))).toEqual([])
     // ruled out is not set aside either: the count is of quests that could still become questions
     const ruledOut = gatingQuests().filter((name) => dependants.includes(name))
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(57 - 1 - ruledOut.length)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(58 - 1 - ruledOut.length)
   })
 
   it('asks about nothing a shortcut already covers', () => {
@@ -515,7 +515,7 @@ describe('planQuestions: the two rounds', () => {
     expect(plan.savingHours.every(savesHours)).toBe(true)
     expect(plan.smaller.some(savesHours)).toBe(false)
     expect(plan.savingHours).toHaveLength(23)
-    expect(plan.smaller).toHaveLength(14)
+    expect(plan.smaller).toHaveLength(15)
   })
 
   it('makes every smaller question one that adds a reset or changes a block, with no question in both rounds', () => {
@@ -594,6 +594,7 @@ describe('planQuestions: the order', () => {
       'Tears of Guthix',
       'The Hand in the Sand',
       'The Ides of Milk',
+      'Varrock Easy',
       'Western Provinces Easy',
       'Wilderness Easy',
     ])
@@ -705,9 +706,9 @@ describe('planQuestions: a whole run of answers', () => {
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
 
-  it('asks 27 questions if the player goes on through the second round: 11, then 16 smaller ones', () => {
+  it('asks 28 questions if the player goes on through the second round: 11, then 17 smaller ones', () => {
     const { asked, account } = answerTruthfully()
-    expect(asked).toHaveLength(27)
+    expect(asked).toHaveLength(28)
     expect(asked.filter(savesHours)).toHaveLength(11)
     // the first round is over before the second starts
     expect(asked.slice(0, 11).every(savesHours)).toBe(true)

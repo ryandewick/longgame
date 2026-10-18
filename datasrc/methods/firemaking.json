@@ -234,7 +234,7 @@
       "int": "active",
       "cost": "cheap",
       "xph": 77500,
-      "req": "q:The Lost Tribe;s:crafting 87,thieving 44",
+      "req": "q:Death to the Dorgeshuun;s:crafting 87,thieving 44",
       "run": false,
       "supply": true,
       "note": "Fix lamps with light orbs you blow and wire yourself. 90k to 130k Crafting xp an hour on top. A main can buy orbs at 52 Crafting.",

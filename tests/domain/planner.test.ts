@@ -409,9 +409,9 @@ describe('dealSession: block lengths', () => {
   })
 
   it('never deals a skill block shorter than 20 minutes, even if the session then overruns', () => {
-    // 20 minutes less two five-minute resets leaves 10, but the block still gets 20
+    // 20 minutes less a five-minute reset leaves 15, but the block still gets 20
     const { session } = deal({ minutes: 20, includeResets: true })
-    expect(session.blocks.map((block) => block.minutes)).toEqual([5, 5, 20])
+    expect(session.blocks.map((block) => block.minutes)).toEqual([5, 20])
   })
 
   it('sets each block a target from its rate and length', () => {

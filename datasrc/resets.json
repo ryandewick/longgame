@@ -124,9 +124,9 @@
   "n": "Battlestaves from Zaff",
   "every": "utc",
   "skill": "",
-  "req": "",
-  "note": "Varrock. 5 a day at 7,000 each with no diary, then 15, 30, 60 and 120 with the easy to elite Varrock diary.",
-  "src": "Repeatable events"
+  "req": "d:Varrock Easy",
+  "note": "Varrock. The barrel in Zaff's shop sells 15 noted battlestaves a day at 7,000 each with the easy Varrock diary, and 30, 60 or 120 with the medium, hard or elite.",
+  "src": "Zaff"
  },
  {
   "k": "sand",
