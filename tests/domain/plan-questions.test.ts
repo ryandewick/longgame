@@ -182,10 +182,10 @@ describe('planQuestions: what can be asked about', () => {
   })
 
   it('counts the open requirements it does not ask about', () => {
-    // 46 quests and 12 diary tiers gate something; with nothing ticked 38 are worth a question
+    // 46 quests and 12 diary tiers gate something; with nothing ticked 37 are worth a question
     expect(gatingQuests().length + gatingDiaries().length).toBe(58)
-    expect(questions).toHaveLength(38)
-    expect(setAsideCount).toBe(20)
+    expect(questions).toHaveLength(37)
+    expect(setAsideCount).toBe(21)
   })
 
   it('does not ask about what is ticked', () => {
@@ -514,8 +514,8 @@ describe('planQuestions: the two rounds', () => {
   it('asks the questions that save hours first, and keeps the smaller ones for a second round', () => {
     expect(plan.savingHours.every(savesHours)).toBe(true)
     expect(plan.smaller.some(savesHours)).toBe(false)
-    expect(plan.savingHours).toHaveLength(22)
-    expect(plan.smaller).toHaveLength(16)
+    expect(plan.savingHours).toHaveLength(23)
+    expect(plan.smaller).toHaveLength(14)
   })
 
   it('makes every smaller question one that adds a reset or changes a block, with no question in both rounds', () => {
@@ -565,6 +565,8 @@ describe('planQuestions: the order', () => {
       'Tai Bwo Wannai Trio 291',
       'Throne of Miscellania 291',
       'A Kingdom Divided 291',
+      'Family Crest 82',
+      'Sleeping Giants 75',
       // and Children of the Sun is behind the four that follow it
       'Children of the Sun 34',
       'Perilous Moons 66',
@@ -573,7 +575,6 @@ describe('planQuestions: the order', () => {
       'The Heart of Darkness 34',
       'Creature of Fenkenstrain 7',
       'Fremennik Hard 3',
-      'Family Crest 3',
       'Temple of the Eye 3',
       'Pandemonium 1',
     ])
@@ -581,11 +582,8 @@ describe('planQuestions: the order', () => {
 
   it('asks the smaller questions in this order', () => {
     expect(namesAsked(plan.smaller)).toEqual([
-      'Sleeping Giants',
       'Desert Hard',
       'Priest in Peril',
-      'Dwarf Cannon',
-      'The Tourist Trap',
       'Ardougne Medium',
       'Kandarin Easy',
       'Kandarin Hard',
@@ -594,6 +592,7 @@ describe('planQuestions: the order', () => {
       'Tears of Guthix',
       'The Hand in the Sand',
       'The Ides of Milk',
+      'The Tourist Trap',
       'Varrock Easy',
       'Western Provinces Easy',
       'Wilderness Easy',
@@ -633,12 +632,7 @@ describe('planQuestions: the order', () => {
       afterRitual.savingHours
         .slice(0, 4)
         .map((question) => `${question.requirement.name} ${Math.round(question.hoursSaved)}`),
-    ).toEqual([
-      'Bone Voyage 85',
-      'Sins of the Father 72',
-      'Children of the Sun 34',
-      'Perilous Moons 66',
-    ])
+    ).toEqual(['Bone Voyage 85', 'Family Crest 82', 'Sleeping Giants 75', 'Sins of the Father 72'])
     // Bone Voyage showed 376 hours while the 291 of Druidic Ritual were counted in it
     expect(Math.round(questionAbout(account, 'Bone Voyage').hoursSaved)).toBe(85)
   })
@@ -655,7 +649,7 @@ describe('planQuestions: the order', () => {
     ]) {
       expect(asked, dependant).not.toContain(dependant)
     }
-    expect(asked[0]).toBe('Children of the Sun')
+    expect(asked[0]).toBe('Family Crest')
   })
 
   it('orders questions that save the same by how much of the plan they change, then by name', () => {
@@ -680,9 +674,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,725 hours to 2,291 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,806 hours to 2,292 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2725)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2806)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -691,24 +685,24 @@ describe('planQuestions: a whole run of answers', () => {
     ).toEqual([
       'Druidic Ritual 291 yes',
       'Bone Voyage 85 yes',
+      'Family Crest 82 yes',
       'Sins of the Father 72 no',
       'Perilous Moons 57 no',
       'Children of the Sun 26 yes',
       'Lunar Diplomacy 58 no',
       'Vale Totems 21 yes',
       'Creature of Fenkenstrain 7 yes',
-      'Family Crest 3 yes',
       'Temple of the Eye 3 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2291)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2292)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
 
-  it('asks 28 questions if the player goes on through the second round: 11, then 17 smaller ones', () => {
+  it('asks 27 questions if the player goes on through the second round: 11, then 16 smaller ones', () => {
     const { asked, account } = answerTruthfully()
-    expect(asked).toHaveLength(28)
+    expect(asked).toHaveLength(27)
     expect(asked.filter(savesHours)).toHaveLength(11)
     // the first round is over before the second starts
     expect(asked.slice(0, 11).every(savesHours)).toBe(true)
@@ -801,7 +795,7 @@ describe('the count of questions over the card', () => {
   const neverGrows = (totals: readonly number[]): boolean =>
     totals.every((total, index) => index === 0 || total <= (totals[index - 1] ?? 0))
 
-  // 'Question 1 of at most 22' is only true if the total can fall but not rise
+  // 'Question 1 of at most 23' is only true if the total can fall but not rise
   it.each([
     ['answered as the fixture did', asTheFixtureDid],
     ['all answered yes', () => true],
@@ -817,7 +811,7 @@ describe('the count of questions over the card', () => {
 
   it('starts well above what is asked, which is why it says at most', () => {
     const { totals } = totalsShown('savingHours', asTheFixtureDid)
-    expect(totals[0]).toBe(22)
+    expect(totals[0]).toBe(23)
     expect(totals).toHaveLength(11)
   })
 })

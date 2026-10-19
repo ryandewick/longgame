@@ -3,45 +3,58 @@
   "methods": [
     {
       "lv": 1,
-      "name": "Anvil smithing (bronze to steel)",
+      "name": "Quest skip to level 40",
       "who": "both",
+      "int": "active",
+      "cost": "free",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Knight's Sword, Giant Dwarf, Heroes' Quest, Pirate Pete, Forsaken Tower: 19,000 XP, level 33, needing no Smithing. Sleeping Giants and both Elemental Workshops reach 40.",
+      "src": "Quest experience rewards"
+    },
+    {
+      "lv": 1,
+      "name": "Anvil smithing (bronze to steel)",
+      "who": "main",
       "int": "semi",
       "cost": "cheap",
-      "xph": 13900,
+      "xph": 11600,
       "bands": [
         [
           1,
-          13900
+          11600
         ],
         [
           5,
-          25700
+          21200
         ],
         [
           9,
-          36200
+          29700
         ],
         [
           18,
-          52100
+          41900
         ],
         [
           24,
-          72300
+          59400
         ],
         [
           33,
-          104200
+          83900
         ],
         [
           39,
-          108500
+          89000
         ]
       ],
       "req": "",
       "run": false,
-      "supply": true,
-      "note": "Best item for your level at the Varrock west anvil. The Knight's Sword and other quests can skip most of 1 to 39 instead.",
+      "supply": false,
+      "note": "The best item for your level at the Varrock west anvil, from daggers to warhammers and platebodies. The quest skip covers most of 1 to 40 instead.",
       "src": "Pay-to-play Smithing training"
     },
     {
@@ -49,39 +62,66 @@
       "name": "Dart tips and nails",
       "who": "both",
       "int": "afk",
-      "cost": "profit",
-      "xph": 13250,
+      "cost": "cheap",
+      "xph": 11600,
       "bands": [
         [
           4,
-          13250
+          11600
         ],
         [
           19,
-          26500
+          23300
         ],
         [
           34,
-          39750
+          34900
         ],
         [
           54,
-          53000
+          46500
         ],
         [
           74,
-          66250
+          58200
         ],
         [
           89,
-          79500
+          69800
         ]
       ],
-      "req": "q:The Tourist Trap",
+      "req": "",
       "run": false,
       "supply": true,
-      "note": "Slow but low attention, 81 seconds an inventory, and usually breaks even or better. About 23% faster in the Smiths' Uniform.",
+      "note": "One bar an item at the Varrock west anvil, 81 seconds a load, so it runs itself. Dart tips need The Tourist Trap; nails need nothing and give the same XP.",
       "src": "Pay-to-play Smithing training"
+    },
+    {
+      "lv": 10,
+      "name": "Keel parts",
+      "who": "main",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 41900,
+      "bands": [
+        [
+          10,
+          41900
+        ],
+        [
+          22,
+          83900
+        ],
+        [
+          38,
+          125800
+        ]
+      ],
+      "req": "q:Pandemonium",
+      "run": false,
+      "supply": false,
+      "note": "Bronze, iron, then steel keel parts: five bars each, so a platebody's XP well before the platebody. Mithril and up sell for less than the bars or hardly trade.",
+      "src": "Smithing"
     },
     {
       "lv": 15,
@@ -89,34 +129,42 @@
       "who": "both",
       "int": "semi",
       "cost": "cheap",
-      "xph": 85690,
+      "xph": 55300,
       "bands": [
         [
           15,
-          85690
+          55300
         ],
         [
           30,
-          118850
+          81800
         ],
         [
           50,
-          154840
+          114200
+        ],
+        [
+          60,
+          122200
         ],
         [
           70,
-          183470
+          172300
+        ],
+        [
+          80,
+          181900
         ],
         [
           85,
-          208700
+          216900
         ]
       ],
       "req": "q:Sleeping Giants",
       "run": false,
       "supply": false,
-      "note": "Forge two-metal alloy swords for Kovac. Rates use the best moulds. Ironmen buy shop warhammers or Blast Furnace ore for the metal.",
-      "src": "Ironman Guide/Smithing"
+      "note": "Two-metal swords for Kovac: bronze and iron, iron and steel, steel and mithril, then 18 mithril to 10 adamant from 70 and adamant and rune from 85. Moulds unlock from 48.",
+      "src": "Giants' Foundry/Strategies"
     },
     {
       "lv": 15,
@@ -124,26 +172,39 @@
       "who": "main",
       "int": "active",
       "cost": "profit",
-      "xph": 75000,
+      "xph": 72800,
       "bands": [
         [
           15,
-          75000
+          72800
         ],
         [
           30,
-          94500
+          81100
         ],
         [
           50,
-          108000
+          94400
         ]
       ],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Iron, steel then mithril bars with a coal bag and ice gloves. Slow xp but decent profit. Adamant and runite give no more xp.",
-      "src": "Pay-to-play Smithing training"
+      "note": "Iron, then steel and mithril bars with a coal bag and ice gloves on a Blast Furnace world, for a profit. Keldagrim needs The Giant Dwarf started.",
+      "src": "Blast Furnace/Strategies"
+    },
+    {
+      "lv": 35,
+      "name": "Ancient Furnace steel cannonballs",
+      "who": "both",
+      "int": "semi",
+      "cost": "profit",
+      "xph": 46800,
+      "req": "q:Dwarf Cannon|Sleeping Giants;s:sailing 87,construction 72",
+      "run": false,
+      "supply": true,
+      "note": "Double ammo mould at Grimstone's furnace, twice as fast, with Isles un-noting bars beside it for 100 coins. Sailing there needs an eternal brazier; only steel pays.",
+      "src": "Ancient Furnace"
     },
     {
       "lv": 35,
@@ -151,88 +212,120 @@
       "who": "both",
       "int": "afk",
       "cost": "profit",
-      "xph": 13824,
+      "xph": 12400,
       "req": "q:Dwarf Cannon",
       "run": false,
       "supply": true,
-      "note": "Steel bars at a furnace, 160 seconds an inventory. A double ammo mould from Giants' Foundry doubles it to 27,648 an hour.",
-      "src": "Pay-to-play Smithing training"
+      "note": "Steel bars into cannonballs at the Edgeville furnace, about 3 minutes a load, for a profit. The double ammo mould from Giants' Foundry nearly doubles it.",
+      "src": "Steel cannonball"
     },
     {
       "lv": 40,
       "name": "Blast Furnace gold bars",
       "who": "main",
       "int": "active",
-      "cost": "pricey",
-      "xph": 380000,
+      "cost": "cheap",
+      "xph": 315300,
       "req": "q:Family Crest",
       "run": false,
       "supply": false,
-      "note": "Goldsmith gauntlets for the xp, ice gloves to grab the bars, stamina potions. Only 164k an hour without the gauntlets.",
-      "src": "Pay-to-play Smithing training"
+      "note": "Goldsmith gauntlets for 56.2 XP a bar, ice gloves and stamina potions; Keldagrim needs The Giant Dwarf started. About 131,000 an hour without the gauntlets.",
+      "src": "Blast Furnace"
     },
     {
       "lv": 40,
       "name": "Blast Furnace gold (Ordan's ore)",
       "who": "iron",
       "int": "active",
-      "cost": "pricey",
+      "cost": "cheap",
       "xph": 230000,
       "req": "q:Family Crest",
       "run": false,
       "supply": false,
-      "note": "Buy gold ore from Ordan, hopping worlds for stock, and smelt in goldsmith gauntlets. About 4 gp per xp. Over 300k if you drop the bars.",
+      "note": "Ordan's gold ore at 225, hopping worlds for stock, in goldsmith gauntlets: 4 coins an XP. Keldagrim needs The Giant Dwarf started; dropping bars nears 300,000.",
       "src": "Ironman Guide/Smithing"
     },
     {
       "lv": 48,
       "name": "Platebodies",
-      "who": "both",
+      "who": "main",
       "int": "semi",
       "cost": "cheap",
-      "xph": 144000,
+      "xph": 125800,
       "bands": [
         [
           48,
-          144000
+          125800
         ],
         [
           68,
-          200000
+          167800
         ],
         [
           88,
-          240000
+          209700
         ]
       ],
       "req": "",
       "run": false,
-      "supply": true,
-      "note": "Steel, mithril then adamant platebodies at an anvil by a bank. High alch them to claw back cost. 300k at 88 in the Smiths' Uniform.",
+      "supply": false,
+      "note": "Steel, mithril, then adamant platebodies at the Varrock west anvil, alched for most of the cost back. Adamant platebodies alch for more than their bars.",
       "src": "Pay-to-play Smithing training"
     },
     {
-      "lv": 95,
+      "lv": 60,
+      "name": "Blast Furnace platebodies (Ordan's ore)",
+      "who": "iron",
+      "int": "active",
+      "cost": "profit",
+      "xph": 63800,
+      "bands": [
+        [
+          60,
+          63800
+        ],
+        [
+          68,
+          93500
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Buy ore and coal from Ordan, smelt, smith platebodies at the furnace's anvils and alch them: steel, then mithril from 68. Needs The Giant Dwarf started.",
+      "src": "Ultimate Ironman Guide/Smithing"
+    },
+    {
+      "lv": 98,
       "name": "Rune platelegs, skirts or 2h swords",
       "who": "main",
       "int": "semi",
       "cost": "profit",
-      "xph": 210000,
+      "xph": 178100,
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Needs 99, so boost with Kovac's grog from 95 or dwarven stout from 98. Three runite bars each, profitable sold or alched.",
-      "src": "Pay-to-play Smithing training"
+      "note": "Needs 99, so from 98 drink a dwarven stout every minute; Kovac's grog boosts from 95 but sells for about 81,000. Sold or alched, the items make a profit.",
+      "src": "Money making guide/Smithing rune items"
     }
   ],
   "unverified": [
-    "Giants' Foundry: the guides disagree. Bands are the Ironman Guide 'Best Moulds' rows (no Smiths' Uniform). The main guide table, which assumes optimal moulds and optimal play at 81 Smithing, gives 97,920 / 133,920 / 164,640 / 198,000 / 253,110 for the same alloys; the Ironman Guide default-mould rows give 56,290 / 84,430 / 116,980 / 145,860 / 172,520",
-    "Platebodies: the main guide gives 144,000 / 200,000 / 240,000; the Ironman Guide gives 150,000 / 200,000 / 250,000 at a flat 4,000 bars an hour. 300,000 at 88 needs the Smiths' Uniform at the Prifddinas anvil",
-    "Blast Furnace bars: rates come from Template:Blast Furnace MMG Table (fetched, not in the cache); adamantite at 70 (101,250) and runite at 85 (107,500) are left out of bands because they give no more xp than mithril",
-    "Blast Furnace gold bars: needs The Giant Dwarf started (not completed) for Keldagrim, and ice gloves need 50 Mining (boostable); neither is in req. 390,000 with 0-tick banking, 410,000 with the Smithing cape",
-    "Blast Furnace gold (Ordan's ore): the Ironman Guide says 'more than 230,000' banking the bars and 'more than 300,000' dropping them, both dependent on shop stock",
-    "Dart tips and nails: bands use 1,060 bars an hour without the Smiths' Uniform (1,300 with it); the Tourist Trap is only needed for the dart tips, not the nails; the section heading says levels 20 to 99 but the table starts with bronze dart tips at 4",
-    "Anvil smithing (bronze to steel): marked both because the Ironman Guide smiths its own early bars, but it gives no rates of its own",
-    "Omitted for lack of a rate: ironman iron dart tips from mined ore (15 to 40), hastae at Otto's Grotto (75/90+), Zalcano (about 3,000 xp an hour plus banked ore)"
+    "Quest skip to level 40: The Knight's Sword 12,725, The Giant Dwarf 2,500, Heroes' Quest 2,275 (its own page and Quest experience rewards; the three guides say 2,257), Pirate Pete 1,000 and The Forsaken Tower 500 need no Smithing level, 19,000 XP, level 33; Sleeping Giants (15), Elemental Workshop I (20) and II (30) bring 37,500, level 40, where Wise Old Man's main table ends its quests row; Prying Times and Scrambled! add 6,000 more; no hourly rate, so never dealt",
+    "Anvil smithing, keel parts, platebodies and rune items: 85% of a rebuild from 5 ticks an item and 13 ticks of banking at the Varrock west anvil (10 tiles from the bank); the guide's tables are the Prifddinas maximum (8 tiles, 11 ticks, Song of the Elves); the free-to-play guide's Varrock figures sit within 3% of the Varrock maximum; the Smiths' Uniform (15,000 Foundry Reputation) makes anvil items 4 ticks, about 15% faster for 5-bar items and 22% for dart tips, and is not counted",
+    "Keel parts (Pandemonium): 5 bars each at 10, 22, 38, 56, 74 and 86, a band of levels before the platebody of the same metal; bronze and iron sell for more than their bars and steel for 2.1 coins an XP less, but only 32, 457 and 2,140 trade a day; mithril keel parts sell for 1,712 against 4,590 of bars (11.6 coins an XP), adamant would need 10,526 sold against 1,613 a day and rune 25,164 against 170, so the entry stops at steel; alched they would cost 13 to 130 coins an XP",
+    "Dart tips and nails: 85% of 1,095 bars an hour (27 bars at 5 ticks, 13 ticks of banking at Varrock west); the money making guides' 950 an hour at Varrock West Bank is 2% over, the main guide's 1,060 (1,300 in the uniform) 97% of the maximum; The Tourist Trap gates only the dart tips, nails give the same XP, so req no longer asks for it; rune dart tips lose 19.9 coins an XP and rune nails 7.1 at 19 October 2026 prices; an ironman's rune band needs runite bars at 930 an hour",
+    "Giants' Foundry: XP a sword from the quality formula, mould scores worked out commission by commission from the mould list (12 commissions; default 37.7 on average, all moulds 59.0, the page's 38 and 59), the strategy page's swords an hour (16 at four sections, 14 at five, 12 at six, 11 at seven) at 85%; this reproduces the strategy table within 2% and the Ironman Guide's default-mould rows within 1%; Jagex's launch figures were one sword an hour more at every tier; moulds (48 to 81 Smithing, 300 to 450 reputation each) are assumed bought on reaching their level; the small XP for each tool use is not counted; no Smiths' Uniform (about 15% more)",
+    "Giants' Foundry alloys: 9 bronze to 19 iron at 15, 14 iron to 14 steel at 30, 14 steel to 14 mithril at 50, 18 mithril to 10 adamant from 70 (the strategy page's choice for 70 to 85: 82% of the best alloy, against 76% for 14 to 14), 14 adamant to 14 rune from 85 (19 to 9 is 3% slower and a quarter cheaper); 19 steel to 9 mithril (score 59, four sections) may be about 5% faster from 50 to 69 but no page times it; the Ironman Guide's 208,700 at 85 (9 swords an hour) is 4% under the 85 band; an ironman buying shop armour gets about 11.7 swords an hour (Ultimate Ironman Guide)",
+    "Blast Furnace gold bars: 85% of the page's generally fast trip (24 ticks, 27 ores, times 0.98), 370,900, as for the bars; the tick-perfect trip (22 ticks) gives 405,600, and 85% of that, 344,700, would leave an ordinary player only about 4 ticks of slack a trip against about 7 on an anvil load; the guide's 380,000 (390,000 with 0-tick banking) is 102.5% of the generally fast figure, and the Gold ore page says players average 250,000 to 350,000; Wise Old Man's 475,000 and TempleOSRS's 490,000 are ceilings; graded cheap at 1.6 coins an XP (gold ore 146, bars 72 after tax, the coffer and 36 stamina doses)",
+    "Blast Furnace bars: 85% of the strategies page's generally fast figures (no tick-perfect trip with coal is stated); the old money making table's 200 trips an hour agree within 3% for steel and mithril and its iron 75,000 caps iron; a reader in 2019 measured 2,100 to 2,200 adamantite bars an hour, 77% of the page's 2,800",
+    "Blast Furnace, every entry: Keldagrim needs The Giant Dwarf started, which req cannot say; with the whole quest in req beside Family Crest, answering The Giant Dwarf makes Family Crest newly worth asking and the count of questions over the card grows, which a test pins as impossible, so req leaves it out (as before) and every note names it; below 60 Smithing the foreman charges 2,500 every 10 minutes; ice gloves (50 Mining, the Ice Queen) and the coal bag (100 golden nuggets) cannot go in req",
+    "Blast Furnace gold (Ordan's ore): the Ironman Guide's 'more than 230,000' banking the bars, kept; the Ultimate Ironman Guide's 'up to around 300,000' from 60 dropping them is 255,000 at 85% and its casual effort 150,000 to 200,000; Wise Old Man's 350,000 is two clients; stock varies by world (a miner restocks one ore type by 20 to 40 every 45 ticks); Ordan's 225 a gold ore is 4.0 coins an XP, 4.3 with the coffer, so cheap on the line",
+    "Blast Furnace platebodies (Ordan's ore): the Ultimate Ironman Guide's up to 75,000 (steel, 60 to 67) and 110,000 (mithril, 68 and up) at 85%; the two imply the same cycle of about 110 ticks for 25 bars, smelting, smithing and alching, but no second page rates it: single source; alching needs 55 Magic, which the rate assumes; adamant from noted ore (about 120,000) and runite (72,000 to 108,000) depend on drops and are left out",
+    "Ancient Furnace steel cannonballs: the page's about 2,150 bars an hour with Isles, rebuilt as 24 bars a cycle at 4 then 5 ticks and 5 to 9 ticks to un-note (2,118 to 2,250); it needs 87 Sailing and an eternal brazier (78 Sailing and 72 Construction, boostable, its schematic from Buccaneers' Haven at 76 Sailing) to reach Grimstone, the double ammo mould (2,000 Foundry Reputation) and 100 coins a bar for Isles; req asks for 72 Construction, stricter than a boosted build; mithril, adamant and rune cannonballs give more XP a bar but lose 14 to 189 coins an XP",
+    "Steel cannonballs: 85% of 568 bars an hour at the Edgeville furnace (8 then 10 ticks a bar with Make-X, 17 ticks of banking from 14 tiles); the guides' 540 bars (13,824) is 95% of it; the double ammo mould (Sleeping Giants, 2,000 reputation) makes it about 22,700; a profit of 16.8 coins an XP at 19 October 2026 prices",
+    "Platebodies: the main guide's 144,000 / 200,000 / 240,000 are 92 to 96% of the Prifddinas maximum and the Ironman Guide's 4,000 bars an hour 96%; rated at Varrock west; alched, steel lose 8.3 coins an XP and mithril 6.4 while adamant make 2.4 at 19 October 2026 prices (XP-weighted 0.6, cheap); for mains only: an ironman's bars come from smelting, which the Blast Furnace platebodies entry counts",
+    "Rune platelegs, skirts or 2h swords: 85% of 931 items an hour at Varrock; the guide's 963 is the Prifddinas maximum and the money making guide's 900 93% of it; from 98 a dwarven stout a minute keeps 99 (0.04 coins an XP, but only 155 trade a day), while Kovac's grog from 95 needs 60 an hour at 81,034 each (27 coins an XP), so the entry opens at 98; adamant platebodies are faster from 88 and also profit when alched",
+    "Ironmen with no quests: the anvil methods on bought bars are for mains now; without Sleeping Giants or Family Crest an ironman trains on dart tips and cannonballs from their own bars until 60, then on Blast Furnace platebodies from Ordan's ore, and levels 1 to 3 have no rated method (both ironman guides send ironmen to quests first)",
+    "Not included: Blast Furnace gold with runners (530,000 and 680,000, paying 7,000,000 an hour a runner); gold without the gauntlets (131,000, in the gold note); hybrid gold with mithril, adamantite or runite (191,800 to 284,200, below gold alone); Superheat Item (up to 80,000 on gold, a Magic method); crystal singing (about 2,000,000 coins an item); hastae at Otto's Grotto (150 XP a rune hasta with a magic log; no page rates it); Zalcano (about 3,000 an hour, a Mining method); barronite crushing (30 XP a deposit beside Mining); lead and cupronickel bars at the Blast Furnace (45,000 to 71,400); chainshot and incendiary cannonballs (XP cut on 27 May 2026 to 5 to 48 a set; the cannonballs hardly trade, 0 to 800 a day, so unsold they cost 23 to 275 coins an XP); smelting gold or silver while crafting jewellery (16,400 to 27,000)"
   ]
 }
