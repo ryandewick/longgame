@@ -412,22 +412,57 @@ describe('buildQuests', () => {
       const [quest] = buildQuests(fixed(), [lamp({ name: "King\\'s Ransom" })])
       expect(quest?.name).toBe("King's Ransom")
     })
+  })
 
-    it('reads the skill levels a quest needs out of the wiki’s Lua', () => {
-      const [quest] = buildQuests(fixed(), [
-        lamp({
-          requirements: "string.format('%s, %s', SCP('Farming', '49'), SCP('Herblore', '57'))",
+  describe('skill levels', () => {
+    it('takes a quest’s levels from need, under the XP table’s name', () => {
+      const name = 'Recipe for Disaster/Freeing Skrach Uglogwee'
+      const [quest] = buildQuests(
+        fixed({
+          xp: { [name]: { cooking: 1500 } },
+          need: { [name]: { cooking: 41, firemaking: 20 } },
         }),
-      ])
-      expect(quest?.skillLevelsNeeded).toEqual({ farming: 49, herblore: 57 })
+        [],
+      )
+      expect(quest?.skillLevelsNeeded).toEqual({ cooking: 41, firemaking: 20 })
     })
 
-    it('keeps the higher level when both sources name one', () => {
-      const need = { 'X Marks the Spot': { farming: 60, herblore: 10 } }
-      const [quest] = buildQuests(fixed({ xp: { 'X Marks the Spot': {} }, need }), [
-        lamp({ requirements: "SCP('Farming', '49'), SCP('Herblore', '57')" }),
+    it('takes the levels of a quest that only pays lamps under the lamp table’s name', () => {
+      const [quest] = buildQuests(fixed({ need: { "Legends' Quest": { magic: 56 } } }), [
+        lamp({ name: "Legends\\' Quest" }),
       ])
-      expect(quest?.skillLevelsNeeded).toEqual({ farming: 60, herblore: 57 })
+      expect(quest?.skillLevelsNeeded).toEqual({ magic: 56 })
+    })
+
+    it('does not read the levels in the lamp table’s Lua', () => {
+      const requirements = "string.format('%s, %s', SCP('Farming', '49'), SCP('Herblore', '57'))"
+      const quests = buildQuests(
+        fixed({ xp: { 'X Marks the Spot': {} }, need: { 'X Marks the Spot': { farming: 30 } } }),
+        [lamp({ requirements }), lamp({ name: 'Client of Kourend', requirements })],
+      )
+      expect(quests.map((quest) => [quest.name, quest.skillLevelsNeeded])).toEqual([
+        ['Client of Kourend', {}],
+        ['X Marks the Spot', { farming: 30 }],
+      ])
+    })
+
+    it('refuses levels under a name neither table has, or in a skill it does not know', () => {
+      const problems = problemsOf(() =>
+        buildQuests(
+          fixed({
+            xp: { 'Recipe for Disaster/Freeing Evil Dave': { cooking: 7000 } },
+            need: {
+              'Recipe for Disaster - Evil Dave': { cooking: 25 },
+              'Recipe for Disaster/Freeing Evil Dave': { dancing: 5 },
+            },
+          }),
+          [],
+        ),
+      )
+      expect(problems).toEqual([
+        'quest Recipe for Disaster - Evil Dave: levels, but no XP or lamps under that name',
+        "quest Recipe for Disaster/Freeing Evil Dave: needs unknown skill 'dancing'",
+      ])
     })
   })
 })

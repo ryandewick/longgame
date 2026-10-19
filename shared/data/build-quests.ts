@@ -30,9 +30,6 @@ const MONKEY_MADNESS: LampReward = {
   totalXp: 110_000,
 }
 
-/** A skill level named in the wiki's Lua: SCP('Farming', '49'). */
-const LUA_SKILL_LEVEL = /SCP\('(\w+)',\s*'(\d+)'\)/g
-
 const withThousands = (value: number): string => value.toLocaleString('en-US')
 
 const stripQuotes = (text: string): string => text.replace(/^'+|'+$/g, '')
@@ -91,12 +88,16 @@ interface QuestDraft {
 }
 
 /**
- * Merges the two quest sources, fixed XP and skill-choice lamps, into one list in name order.
+ * Merges the two quest sources, fixed XP and skill-choice lamps, into one list in name order. A
+ * quest's skill levels are its entry in `need` alone. The lamp table lists levels too, but as a
+ * summary for readers: it counts the levels of the quests a quest requires, and optional ones.
  * Throws a DataSourceError listing everything wrong with the sources.
  */
 export function buildQuests(fixed: FixedQuestXpSource, lamps: readonly LampSource[]): Quest[] {
   const problems: string[] = []
   const quests = new Map<string, QuestDraft>()
+  // `need` names a quest as its own table does: the XP table's name, or the lamp table's
+  const bySourceName = new Map<string, QuestDraft>()
   const draft = (name: string): QuestDraft => {
     let quest = quests.get(name)
     if (!quest) {
@@ -108,34 +109,33 @@ export function buildQuests(fixed: FixedQuestXpSource, lamps: readonly LampSourc
 
   for (const [sourceName, xpBySkill] of Object.entries(fixed.xp)) {
     const quest = draft(QUEST_LIST_NAMES[sourceName] ?? sourceName)
+    bySourceName.set(sourceName, quest)
     for (const [skill, xp] of Object.entries(xpBySkill)) {
       if (isSkillKey(skill)) quest.fixedXp[skill] = roundHalfToEven(xp)
       else problems.push(`quest ${sourceName}: unknown skill '${skill}'`)
-    }
-    for (const [skill, level] of Object.entries(fixed.need[sourceName] ?? {})) {
-      if (isSkillKey(skill)) quest.skillLevelsNeeded[skill] = level
-      else problems.push(`quest ${sourceName}: needs unknown skill '${skill}'`)
     }
     if (fixed.mini.includes(sourceName)) quest.miniquest = true
   }
 
   for (const source of lamps) {
-    const quest = draft(lampQuestName(source))
+    const name = lampQuestName(source)
+    const quest = draft(name)
+    bySourceName.set(name, quest)
     quest.lamps = buildLampReward(source)
     if (!Number.isFinite(quest.lamps.totalXp)) {
       problems.push(`quest ${quest.name}: lamp rewards '${source.rewards}'`)
     }
-    for (const [, skillName = '', levelText = ''] of (source.requirements ?? '').matchAll(
-      LUA_SKILL_LEVEL,
-    )) {
-      const skill = skillName.toLowerCase()
-      // the two sources can both name a level for the same skill: the higher one is the real bar
-      if (isSkillKey(skill)) {
-        quest.skillLevelsNeeded[skill] = Math.max(
-          Number(levelText),
-          quest.skillLevelsNeeded[skill] ?? 0,
-        )
-      }
+  }
+
+  for (const [sourceName, levels] of Object.entries(fixed.need)) {
+    const quest = bySourceName.get(sourceName)
+    if (!quest) {
+      problems.push(`quest ${sourceName}: levels, but no XP or lamps under that name`)
+      continue
+    }
+    for (const [skill, level] of Object.entries(levels)) {
+      if (isSkillKey(skill)) quest.skillLevelsNeeded[skill] = level
+      else problems.push(`quest ${sourceName}: needs unknown skill '${skill}'`)
     }
   }
 

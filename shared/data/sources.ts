@@ -45,11 +45,17 @@ export interface MethodSourceFile {
   methods: MethodSource[]
 }
 
-/** datasrc/quests_set.json: fixed quest XP parsed from the wiki's "Quest experience rewards". */
+/**
+ * datasrc/quests_set.json: fixed quest XP parsed from the wiki's "Quest experience rewards", and
+ * the skill levels every quest needs.
+ */
 export interface FixedQuestXpSource {
   /** Quest name to XP by skill. */
   xp: Record<string, Record<string, number>>
-  /** Quest name to the skill levels it needs. */
+  /**
+   * Quest name to the skill levels its own wiki page lists, for every quest that has any: those
+   * in `xp` under that name, and those that only pay lamps under the lamp table's.
+   */
   need: Record<string, Record<string, number>>
   /** The names in `xp` that are miniquests. */
   mini: string[]
@@ -62,7 +68,10 @@ export interface LampSource {
   rewards: string
   /** A minimum level, a quoted list of skills, or 'None' in quotes. */
   restrictions: string
-  /** Lua source naming the skill levels the quest needs. */
+  /**
+   * Lua source naming skill levels. Not read: it also counts the levels of the quests a quest
+   * requires, and optional ones. `need` holds a quest's own.
+   */
   requirements: string | null
   notes: string | null
 }
