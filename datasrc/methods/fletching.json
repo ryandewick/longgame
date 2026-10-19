@@ -3,15 +3,28 @@
   "methods": [
     {
       "lv": 1,
+      "name": "Quest skip to level 30",
+      "who": "both",
+      "int": "active",
+      "cost": "free",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Animal Magnetism, The Fremennik Trials and Temple of Ikov give 11,812 XP, level 28, with no Fletching level. Big Chompy Bird Hunting, then Zogre Flesh Eaters, reach 30.",
+      "src": "Quest experience rewards"
+    },
+    {
+      "lv": 1,
       "name": "Headless arrows",
       "who": "both",
       "int": "semi",
       "cost": "profit",
-      "xph": 45000,
+      "xph": 38300,
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Feathers on arrow shafts, both stackable and sold in shops, so it trains anywhere. Quests can skip to 18 or 30. Feeds later arrows.",
+      "note": "Feathers on arrow shafts, 15 a set and all stackable, so it trains anywhere. Sells at a profit; ironmen buy shafts in the Ranging Guild and feather packs.",
       "src": "Ironman Guide/Fletching"
     },
     {
@@ -20,29 +33,29 @@
       "who": "both",
       "int": "semi",
       "cost": "cheap",
-      "xph": 58500,
+      "xph": 44000,
       "bands": [
         [
           1,
-          58500
+          44000
         ],
         [
           15,
-          112500
+          66900
         ],
         [
           30,
-          225000
+          114800
         ],
         [
           45,
-          337500
+          162600
         ]
       ],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Arrowtips on headless arrows, 15 an action. Ironmen buy the tips from shops. Rates assume the headless arrows are already made.",
+      "note": "Make headless arrows from shafts and feathers, then tip them; the rate counts both steps. Mains who buy headless arrows get nearly twice this.",
       "src": "Ironman Guide/Fletching"
     },
     {
@@ -51,124 +64,124 @@
       "who": "both",
       "int": "afk",
       "cost": "cheap",
-      "xph": 9000,
+      "xph": 8100,
       "bands": [
         [
           5,
-          9000
+          8100
         ],
         [
           10,
-          18000
+          16200
         ],
         [
           20,
-          29700
+          26700
         ],
         [
           25,
-          45000
+          40500
         ],
         [
           35,
-          59940
+          53900
         ],
         [
           40,
-          74700
+          67200
         ],
         [
           50,
-          90000
+          81000
         ],
         [
           55,
-          104940
+          94400
         ],
         [
           65,
-          121500
+          109400
         ],
         [
           70,
-          135000
+          121500
         ],
         [
           80,
-          149940
+          134900
         ],
         [
           85,
-          164700
+          148200
         ]
       ],
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Knife on logs, best bow for your level, 1,800 an hour. A fletching knife from Vale Totems makes it 2,700 an hour for 50% more xp.",
+      "note": "Knife on logs, the best bow for your level, 27 a load. A fletching knife from Vale Totems adds about 40%; ironmen can take maple logs from Miscellania.",
       "src": "Fletching training"
     },
     {
       "lv": 5,
       "name": "Stringing bows",
       "who": "main",
-      "int": "semi",
-      "cost": "cheap",
-      "xph": 12250,
+      "int": "active",
+      "cost": "profit",
+      "xph": 11200,
       "bands": [
         [
           5,
-          12250
+          11200
         ],
         [
           10,
-          24500
+          22300
         ],
         [
           20,
-          40425
+          36800
         ],
         [
           25,
-          61250
+          55800
         ],
         [
           35,
-          81585
+          74300
         ],
         [
           40,
-          101675
+          92600
         ],
         [
           50,
-          122500
+          111600
         ],
         [
           55,
-          142835
+          130100
         ],
         [
           65,
-          165375
+          150600
         ],
         [
           70,
-          183750
+          167300
         ],
         [
           80,
-          203350
+          185900
         ],
         [
           85,
-          224175
+          204200
         ]
       ],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Bow strings on bought unstrung bows, 14 an inventory, 2,450 an hour. Usually cheap or profitable. A bow string spool adds about 3%.",
+      "note": "Bow strings on bought unstrung bows, 14 a load, a bank trip every 20 seconds. From maple longbows at 55 the bows sell for more than they cost.",
       "src": "Fletching training"
     },
     {
@@ -215,8 +228,8 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Feathers on bought dart tips, two clicks a set, done while running or during other training. Mithril, adamant and amethyst are usual.",
-      "src": "Fletching training"
+      "note": "Feathers on bought dart tips, rated at a relaxed set of ten every two seconds; quick clicking makes far more. Tips can be bought 11,000 to 20,000 every four hours.",
+      "src": "Ironman Guide/Fletching"
     },
     {
       "lv": 20,
@@ -224,54 +237,54 @@
       "who": "both",
       "int": "active",
       "cost": "cheap",
-      "xph": 34240,
+      "xph": 32200,
       "bands": [
         [
           20,
-          34240
+          32200
         ],
         [
           25,
-          37867
+          35600
         ],
         [
           35,
-          81195
+          77100
         ],
         [
           40,
-          84693
+          80300
         ],
         [
           50,
-          128853
+          121200
         ],
         [
           55,
-          132395
+          124500
         ],
         [
           65,
-          202880
+          191300
         ],
         [
           70,
-          206080
+          194300
         ],
         [
           80,
-          366592
+          345000
         ],
         [
-          90,
-          408448
+          85,
+          348300
         ]
       ],
       "req": "q:Vale Totems (miniquest)",
       "run": false,
       "supply": true,
-      "note": "Carve and decorate eight totems in Auburn Valley with bows fletched on the run. Rates need a log basket. Far more xp per log than bows.",
-      "src": "Fletching training"
+      "note": "Build and decorate all eight totems with unstrung bows fletched on the way, about 12.5 loops an hour. Redwood totems outlast a loop, so redwood gains little on magic.",
+      "src": "Vale Totems/Strategies"
     },
     {
       "lv": 22,
@@ -279,11 +292,11 @@
       "who": "iron",
       "int": "active",
       "cost": "cheap",
-      "xph": 68000,
+      "xph": 68400,
       "req": "q:The Tourist Trap;s:smithing 19",
       "run": false,
       "supply": true,
-      "note": "Smith iron bars into dart tips and feather them. Trains Mining, Smithing and Fletching together until broad arrows at 52.",
+      "note": "Smith iron bars into dart tips (19 Smithing) and feather them, rated at a relaxed set every two seconds. Trains Mining, Smithing and Fletching together.",
       "src": "Ironman Guide/Fletching"
     },
     {
@@ -291,12 +304,12 @@
       "name": "Battlestaves from celastrus bark",
       "who": "main",
       "int": "afk",
-      "cost": "pricey",
-      "xph": 110000,
+      "cost": "cheap",
+      "xph": 98400,
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Knife on celastrus bark for 80 xp each. Beats bows from 40 to 80 but can cost more. 143k an hour with a fletching knife.",
+      "note": "Knife on celastrus bark, 80 XP a staff, 27 a load. Beats unstrung bows until 65 and costs little more than the staves sell for; a fletching knife adds 30%.",
       "src": "Fletching training"
     },
     {
@@ -304,25 +317,12 @@
       "name": "Broad arrows",
       "who": "both",
       "int": "semi",
-      "cost": "pricey",
-      "xph": 247500,
+      "cost": "cheap",
+      "xph": 210400,
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Needs the Broader Fletching unlock, 300 Slayer points. Arrowheads from any Slayer master. 450k an hour if headless arrows are premade.",
-      "src": "Ironman Guide/Fletching"
-    },
-    {
-      "lv": 55,
-      "name": "Maple longbows (u), Miscellania logs",
-      "who": "iron",
-      "int": "afk",
-      "cost": "cheap",
-      "xph": 100000,
-      "req": "q:Throne of Miscellania",
-      "run": false,
-      "supply": true,
-      "note": "Maple logs from Managing Miscellania cut into longbows. About 150k an hour with a fletching knife. Strung, they alch for 384 each.",
+      "note": "Needs Broader Fletching, 300 Slayer points. Rated making the headless arrows too; with headless arrows in hand it is 382,500, and the arrowheads cost 55 each.",
       "src": "Ironman Guide/Fletching"
     },
     {
@@ -331,29 +331,38 @@
       "who": "main",
       "int": "semi",
       "cost": "cheap",
-      "xph": 450000,
+      "xph": 382500,
       "bands": [
         [
           60,
-          450000
-        ],
-        [
-          75,
-          562500
+          382500
         ],
         [
           82,
-          607500
+          516400
         ],
         [
           90,
-          675000
+          573800
         ]
       ],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Bought arrowtips on headless arrows, 3,000 actions an hour, done between other activities. Assumes headless arrows are already made.",
+      "note": "Bought tips on bought headless arrows, 15 a set: adamant, amethyst from 82, dragon from 90, at 4 to 10 coins an XP. Tips can be bought 10,000 every four hours.",
+      "src": "Fletching training"
+    },
+    {
+      "lv": 75,
+      "name": "Arrows (rune tips)",
+      "who": "main",
+      "int": "semi",
+      "cost": "pricey",
+      "xph": 478100,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Rune tips on bought headless arrows, 15 a set, faster than adamant from 75 until amethyst at 82. About 17 coins an XP; tips can be bought 10,000 every four hours.",
       "src": "Fletching training"
     },
     {
@@ -362,24 +371,25 @@
       "who": "both",
       "int": "afk",
       "cost": "cheap",
-      "xph": 168000,
+      "xph": 150700,
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Two redwood logs a shield for 216 xp, minimal attention. 193k an hour with a fletching knife.",
+      "note": "Two redwood logs a shield for 216 XP, 13 a load, with little attention. A fletching knife adds about 15%; the shields hardly sell.",
       "src": "Fletching training"
     }
   ],
   "unverified": [
-    "Darts: the main guide gives XP per dart (Template:Table/Fletching/Darts, fetched) but no hourly rate; bands are XP per dart x 18,000 darts an hour, the realistic figure in the Ironman Guide, so they are derived not quoted",
-    "Vale Totems: bands are computed from the guide's own formulas for a full eight-totem loop with a plain knife and unstrung bows (270 s loop); the guide says yew and above are lower in practice because of totem reset downtime; partial loops without a log basket are about 20% lower",
-    "Vale Totems: the Ironman Guide gives different averaged figures with a log basket (oak 29,000, willow 71,000, maple 120,000, yew 225,000, magic 340,000, redwood 420,000)",
-    "Vale Totems: the magic longbow (u) row at 85 has an inconsistent XP/h formula in the wikitext (works out lower than magic shortbow), so no band was added at 85",
-    "Vale Totems: req uses the miniquest page title 'Vale Totems (miniquest)'; a quest tracker may list it under a different key",
-    "Broad arrows: needs the Broader Fletching Slayer unlock (300 points), which the req syntax cannot express; 247,500 is the guide's rate including making the headless arrows, 450,000 if they are premade",
-    "Arrows (both entries): rates assume 3,000 actions an hour with headless arrows already made",
-    "Maple longbows (u), Miscellania logs: the Throne of Miscellania requirement comes from the Managing Miscellania page, not the fletching guide",
-    "Arrows (adamant to dragon tips), Stringing bows, Unstrung bows, Redwood shields: cost is a judgement call because GP/XP columns are live GE price templates",
-    "Omitted: bolts and tipped bolts (zero-time alternatives the guide rates below darts), Wintertodt kindling passive xp (210 to 21,000/h, not a training method), Trouble Brewing (marked obsolete)"
+    "Quest skip to level 30: Animal Magnetism 1,000, The Fremennik Trials 2,812.4 and Temple of Ikov 8,000 need no Fletching level (11,812.4 XP, level 28); Big Chompy Bird Hunting (5 Fletching, 262) and Zogre Flesh Eaters (which requires it, 2,000) bring it to 14,074.4, level 30; the guide's 3,262 for its first three is level 17, not 18; the app carries all seven quests with Fletching XP (44,074.4); no hourly rate, so never dealt",
+    "Headless arrows and every arrow entry: 85% of 3,000 sets an hour (2 ticks a set, the Make-X maximum); the headless arrows money making guide's 2,857 and the broad arrows page's 42,800 an hour are both 95% of it",
+    "Arrows (bronze to mithril tips) and Broad arrows: both are for mains and ironmen, and an ironman cannot buy headless arrows, so the rates count making them (two 2-tick actions a set); a main who buys headless arrows (12 coins, 11,000 every four hours) gets 49,700 to 286,900 and 382,500; an ironman's time buying shafts, feathers, arrowheads and tips is not counted (Hickton's shop stocks 1,000 bronze to 400 mithril tips a world, Dargaud's 1,000 shafts); Broader Fletching (300 Slayer points) cannot go in req",
+    "Arrows (adamant to dragon tips) and Arrows (rune tips): headless arrows and tips bought on the Grand Exchange, 85% of 3,000 sets; tips buy 10,000 and headless arrows 11,000 every four hours, about 15 minutes of fletching, so long sessions need stock bought over days; rune is split off because it costs about 17 coins an XP on the wiki's prices of 19 October 2026 and 16.3 on 180 days of real-time trades, where adamant (8.3 and 8.5), amethyst (5.5 and 4.0) and dragon (10.3 and 6.9) average 8.8 and 6.4 over their levels; adamant and dragon each cross the 9.1 line on about 40 of those 180 days",
+    "Unstrung bows and Stringing bows: 85% of the rebuilt maximum with 4 ticks of banking (1,905 and 2,625 an hour); the guide's assumed 1,800 and 2,450 are 93 to 94% of those, and the maple and yew longbow money making guides say up to 1,500 cut an hour; the fletching knife (2 ticks after the first, +44%) and bow string spool (27 a load) are Vale Totems rewards req cannot ask for",
+    "Darts and Iron darts: the only hourly figure is the Ironman Guide's 18,000 darts an hour, a set every two seconds, which its own sentence (3 sets a tick, 180,000) contradicts; the broad bolts money making guide gives 3 to 4 sets a tick for focused manual clicking; no page times a set made with the Make-X setting; graded single source",
+    "Vale Totems: 85% of a timed near tick-perfect lap (14.76 loops an hour, one reader, 9 March 2026) is 12.55 loops; the strategy page's 13, the main guide's 13.33 and a reader's timed 13.56 agree within 8%; the route rebuilt from Map:Vale Totems gives at least 218 s a loop, 11% under the timed lap; ent trails (+15% on four actions) are not counted; without a log basket the strategy page banks at Nemus Retreat mid-loop, about 5% slower (a reader timed 12.9 loops with maples); Jagex's launch post gave 'rough estimates' 25 to 35% lower (yew 130,000 to 150,000, magic 245,000 to 285,000), which every timed figure since has beaten and the strategy talk page calls far too low",
+    "Vale Totems redwood: totems last 7 ent visits and outlast a loop, which the guides' 398,000 to 420,000 do not count; how often an ent visits is not stated outright: the page's 'every 80 ticks (48 seconds)' gives 328,200 with hiking staves, and the strategy page's notes on which totems last a loop fit 40 to 46 s, 342,500 to 384,400; with redwood shields about 351,800; against magic longbows (u) at 348,300 there is no clear gain, so no band from 90",
+    "Battlestaves from celastrus bark: 85% of the rebuilt 1,446 an hour (4 ticks, 27 a load); the guide's 1,375 is 95% of it; the wiki's volume module says 1,212 bark trade a day but the real-time prices API's daily series has a median near 21,000 over 180 days; graded cheap at 2.9 coins an XP on 19 October 2026",
+    "Redwood shields: 85% of the rebuilt 821 an hour (7 ticks, 13 a load); the Ironman Guide's 'over 150,000' agrees; the shields hardly trade, so the cost is the logs (6.6 coins an XP)",
+    "Not included: javelins (the same XP a set as arrows at equal or higher levels; the table's 3-tick and 1-tick columns restart the action, a tick method that would use a four-hour buy limit of tips in under ten minutes); bolts and tipped bolts (slower than arrows at every level; barbed bolts need archery tickets); cutting gem bolt tips (10,800 an hour at most, 28,400 with the jeweller's chisel); camphor, ironwood and rosewood blowpipes (a squid beak costs about 1,050,000 coins and 11 trade a day); atlatl darts (30 XP per 20 darts since an editor corrected the recipe from the XP drop on 22 July 2026, where Jagex's launch post and the skill page's table say 9.5 a dart; 76,500 an hour); seeking arrow shafts (5 XP a sap-treated log); magic shields (127,700, under magic longbows (u)); arrow shafts from logs (2 ticks a log: 59,400 to 83,100 an hour from yew to redwood logs, about 60% of bows at the same levels); Wintertodt kindling (210 to 21,000 an hour beside Firemaking); Trouble Brewing (marked obsolete); the Ironman Guide's Miscellania maple longbows (now in Unstrung bows); The Graveyard (54 Fletching, 10,000 XP) and Quest Month's darts, not live"
   ]
 }

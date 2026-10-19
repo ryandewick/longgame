@@ -568,7 +568,7 @@ describe('planQuestions: the order', () => {
       // and Children of the Sun is behind the four that follow it
       'Children of the Sun 34',
       'Perilous Moons 66',
-      'Vale Totems 39',
+      'Vale Totems 55',
       'The Ribbiting Tale of a Lily Pad Labour Dispute 35',
       'The Heart of Darkness 34',
       'Creature of Fenkenstrain 7',
@@ -680,9 +680,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,703 hours to 2,284 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,725 hours to 2,291 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2703)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2725)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -695,13 +695,13 @@ describe('planQuestions: a whole run of answers', () => {
       'Perilous Moons 57 no',
       'Children of the Sun 26 yes',
       'Lunar Diplomacy 58 no',
+      'Vale Totems 21 yes',
       'Creature of Fenkenstrain 7 yes',
-      'Vale Totems 5 yes',
       'Family Crest 3 yes',
       'Temple of the Eye 3 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2284)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2291)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
