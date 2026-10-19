@@ -13,7 +13,12 @@ import { QUESTS } from '#shared/data/quests'
 import { RESETS } from '#shared/data/resets'
 import { SKILL_KEYS, SKILLS, isSkillKey } from '#shared/data/skills'
 import { QUEST_PREREQUISITE_MODULE } from '#shared/data/sources'
-import type { MethodSourceFile, QuestPrerequisiteSource, ResetSource } from '#shared/data/sources'
+import type {
+  LampSource,
+  MethodSourceFile,
+  QuestPrerequisiteSource,
+  ResetSource,
+} from '#shared/data/sources'
 import { WILDCARDS } from '#shared/data/wildcards'
 import { questDependants, questPrerequisites } from '#shared/domain/quest-chains'
 import { gatingQuests, knownQuests } from '#shared/domain/quests'
@@ -344,6 +349,22 @@ describe('quests', () => {
         expect(level >= 1 && level <= 99, `${quest.name}: ${skill} ${level}`).toBe(true)
       }
     }
+  })
+
+  it('has levels in need for every lamp quest whose table lists some', () => {
+    // The lamp table's levels are not read, so a quest it brings in has none until need lists the
+    // ones its own page gives. Dream Mentor's page lists none: the table's eight are those of the
+    // quests it requires, Lunar Diplomacy and Shilo Village.
+    const levelsOf = new Map(QUESTS.map((quest) => [quest.name, quest.skillLevelsNeeded]))
+    const listsLevels = (lamp: LampSource): boolean =>
+      [...(lamp.requirements ?? '').matchAll(/SCP\('(\w+)',\s*'\d+'\)/g)].some(([, skill = '']) =>
+        isSkillKey(skill.toLowerCase()),
+      )
+    const withoutLevels = readSource<LampSource[]>('quests_lamps.json')
+      .filter(listsLevels)
+      .map((lamp) => lamp.name.replaceAll("\\'", "'"))
+      .filter((name) => Object.keys(levelsOf.get(name) ?? {}).length === 0)
+    expect(withoutLevels).toEqual(['Dream Mentor'])
   })
 })
 
