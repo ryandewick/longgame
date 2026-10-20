@@ -3,7 +3,7 @@
   "methods": [
     {
       "lv": 1,
-      "name": "Quests for the early levels",
+      "name": "Quest skip to level 34",
       "who": "both",
       "int": "active",
       "cost": "free",
@@ -11,20 +11,20 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Enter the Abyss, Temple of the Eye, The Eyes of Glouphrie and others skip to about 32. Temple of the Eye unlocks the Rift.",
+      "note": "Client of Kourend's two lamps, The Ascent of Arceuus, Enter the Abyss, Temple of the Eye and The Eyes of Glouphrie reach 32. The Slug Menace makes 34.",
       "src": "Pay-to-play Runecraft training"
     },
     {
       "lv": 1,
-      "name": "Fire talisman tiaras",
+      "name": "Earth talisman tiaras",
       "who": "main",
       "int": "active",
       "cost": "pricey",
-      "xph": 50800,
+      "xph": 42800,
       "req": "",
       "run": false,
-      "supply": true,
-      "note": "Talisman on the altar with a tiara, 1,450 an hour. Fastest start with no requirements but click-heavy. Lavas win from 50.",
+      "supply": false,
+      "note": "An earth talisman used on the Earth Altar with a tiara, about 1,300 an hour with the ring of the elements. Only earth talismans sell in bulk; lavas are faster from 25.",
       "src": "Pay-to-play Runecraft training"
     },
     {
@@ -33,57 +33,405 @@
       "who": "both",
       "int": "active",
       "cost": "free",
-      "xph": 750,
+      "xph": 680,
       "bands": [
         [
           1,
-          750
+          680
+        ],
+        [
+          2,
+          1360
+        ],
+        [
+          3,
+          2040
+        ],
+        [
+          4,
+          2720
+        ],
+        [
+          5,
+          3400
+        ],
+        [
+          6,
+          4080
+        ],
+        [
+          7,
+          4760
+        ],
+        [
+          8,
+          5440
+        ],
+        [
+          9,
+          6120
         ],
         [
           10,
-          7500
+          6800
+        ],
+        [
+          11,
+          7480
+        ],
+        [
+          12,
+          8160
+        ],
+        [
+          13,
+          8840
+        ],
+        [
+          14,
+          9520
+        ],
+        [
+          15,
+          10200
+        ],
+        [
+          16,
+          10880
+        ],
+        [
+          17,
+          11560
+        ],
+        [
+          18,
+          12240
+        ],
+        [
+          19,
+          12920
         ],
         [
           20,
-          15000
+          13600
+        ],
+        [
+          21,
+          14280
+        ],
+        [
+          22,
+          14960
+        ],
+        [
+          23,
+          15640
+        ],
+        [
+          24,
+          16320
+        ],
+        [
+          25,
+          17000
+        ],
+        [
+          26,
+          17680
+        ],
+        [
+          27,
+          18360
+        ],
+        [
+          28,
+          19040
+        ],
+        [
+          29,
+          19720
         ],
         [
           30,
-          22500
+          20400
+        ],
+        [
+          31,
+          21080
+        ],
+        [
+          32,
+          21760
+        ],
+        [
+          33,
+          22440
+        ],
+        [
+          34,
+          23120
+        ],
+        [
+          35,
+          23800
+        ],
+        [
+          36,
+          24480
+        ],
+        [
+          37,
+          25160
+        ],
+        [
+          38,
+          25840
+        ],
+        [
+          39,
+          26520
         ],
         [
           40,
-          30000
+          27200
+        ],
+        [
+          41,
+          27880
+        ],
+        [
+          42,
+          28560
+        ],
+        [
+          43,
+          29240
+        ],
+        [
+          44,
+          29920
+        ],
+        [
+          45,
+          30600
+        ],
+        [
+          46,
+          31280
+        ],
+        [
+          47,
+          31960
+        ],
+        [
+          48,
+          32640
+        ],
+        [
+          49,
+          33320
         ],
         [
           50,
-          37500
+          34000
+        ],
+        [
+          51,
+          34680
+        ],
+        [
+          52,
+          35360
+        ],
+        [
+          53,
+          36040
+        ],
+        [
+          54,
+          36720
+        ],
+        [
+          55,
+          37400
+        ],
+        [
+          56,
+          38080
+        ],
+        [
+          57,
+          38760
+        ],
+        [
+          58,
+          39440
+        ],
+        [
+          59,
+          40120
         ],
         [
           60,
-          45000
+          40800
+        ],
+        [
+          61,
+          41480
+        ],
+        [
+          62,
+          42160
+        ],
+        [
+          63,
+          42840
+        ],
+        [
+          64,
+          43520
+        ],
+        [
+          65,
+          44200
+        ],
+        [
+          66,
+          44880
+        ],
+        [
+          67,
+          45560
+        ],
+        [
+          68,
+          46240
+        ],
+        [
+          69,
+          46920
         ],
         [
           70,
-          52500
+          47600
+        ],
+        [
+          71,
+          48280
+        ],
+        [
+          72,
+          48960
+        ],
+        [
+          73,
+          49640
+        ],
+        [
+          74,
+          50320
+        ],
+        [
+          75,
+          51000
+        ],
+        [
+          76,
+          51680
+        ],
+        [
+          77,
+          52360
+        ],
+        [
+          78,
+          53040
+        ],
+        [
+          79,
+          53720
         ],
         [
           80,
-          60000
+          54400
+        ],
+        [
+          81,
+          55080
+        ],
+        [
+          82,
+          55760
+        ],
+        [
+          83,
+          56440
+        ],
+        [
+          84,
+          57120
+        ],
+        [
+          85,
+          57800
+        ],
+        [
+          86,
+          58480
+        ],
+        [
+          87,
+          59160
+        ],
+        [
+          88,
+          59840
+        ],
+        [
+          89,
+          60520
         ],
         [
           90,
-          67500
+          61200
         ],
         [
-          99,
-          74250
+          91,
+          61880
+        ],
+        [
+          92,
+          62560
+        ],
+        [
+          93,
+          63240
+        ],
+        [
+          94,
+          63920
+        ],
+        [
+          95,
+          64600
+        ],
+        [
+          96,
+          65280
+        ],
+        [
+          97,
+          65960
+        ],
+        [
+          98,
+          66640
         ]
       ],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Each book gives 5x your level. Rate is 150 books an hour with a client plugin. Expect two thirds of that without one.",
+      "note": "Each book handed in gives 5 times your Runecraft level, about 136 books an hour with a library plugin and stamina potions. No essence needed.",
       "src": "Pay-to-play Runecraft training"
     },
     {
@@ -92,108 +440,100 @@
       "who": "both",
       "int": "semi",
       "cost": "profit",
-      "xph": 20423,
+      "xph": 18200,
       "bands": [
         [
           1,
-          20423
+          18200
         ],
         [
           10,
-          22881
+          20400
         ],
         [
           20,
-          24665
+          22000
         ],
         [
           25,
-          28797
+          25700
         ],
         [
           30,
-          31158
+          27800
         ],
         [
           40,
-          32758
+          29200
         ],
         [
           50,
-          42077
+          37600
         ],
         [
           60,
-          42577
+          38000
         ],
         [
           70,
-          45576
+          40700
         ],
         [
           75,
-          57270
+          51100
         ],
         [
           80,
-          58487
+          51900
         ],
         [
           85,
-          72526
+          64400
         ],
         [
           90,
-          74716
-        ],
-        [
-          99,
-          77121
+          66700
         ]
       ],
       "req": "q:Lunar Diplomacy;s:magic 71",
       "run": false,
       "supply": true,
-      "note": "Lower-effort than lavas and profitable. Ourania Teleport, all pouches, pay Eniola in runes to bank. Worlds 327 and 480.",
-      "src": "Pay-to-play Runecraft training"
+      "note": "Ourania Teleport and every pouch, repaired by Astral Contact after Enter the Abyss; about 48 seconds a lap. Profitable, and daeyalt essence gives 50% more XP.",
+      "src": "Ourania Altar"
     },
     {
       "lv": 23,
       "name": "Lava runes with Magic Imbue",
       "who": "both",
       "int": "active",
-      "cost": "cheap",
-      "xph": 43200,
+      "cost": "profit",
+      "xph": 40300,
       "bands": [
         [
           23,
-          43200
+          40300
         ],
         [
           25,
-          51400
+          48900
         ],
         [
           50,
-          62900
+          61500
         ],
         [
           75,
-          77600
+          74100
         ],
         [
           85,
-          100800
-        ],
-        [
-          99,
-          102100
+          93100
         ]
       ],
       "req": "q:Lunar Diplomacy;s:magic 82",
       "run": false,
       "supply": true,
-      "note": "Fire Altar with earth runes, binding necklace and all pouches. Rates are for a competent player. Learners get 50 to 90 percent.",
+      "note": "Earth runes on the Fire Altar after Magic Imbue, a binding necklace and every pouch (the colossal from 85); repairs need Enter the Abyss. A small profit.",
       "src": "Pay-to-play Runecraft training"
     },
     {
@@ -202,60 +542,33 @@
       "who": "main",
       "int": "active",
       "cost": "cheap",
-      "xph": 42400,
+      "xph": 40300,
       "bands": [
         [
           23,
-          42400
+          40300
         ],
         [
           25,
-          47200
+          45700
         ],
         [
           50,
-          57300
+          56700
         ],
         [
           75,
-          64800
+          62500
         ],
         [
           85,
-          81100
-        ],
-        [
-          99,
-          96000
+          75800
         ]
       ],
       "req": "",
       "run": false,
-      "supply": true,
-      "note": "Same route without the Lunar spellbook. One to three earth talismans a lap and pouch repairs at Cordelia or the Dark Mage.",
-      "src": "Pay-to-play Runecraft training"
-    },
-    {
-      "lv": 23,
-      "name": "Lavas or aethers with essence runners",
-      "who": "main",
-      "int": "active",
-      "cost": "pricey",
-      "xph": 280000,
-      "bands": [
-        [
-          23,
-          280000
-        ],
-        [
-          90,
-          345000
-        ]
-      ],
-      "req": "",
-      "run": false,
-      "supply": true,
-      "note": "Four runners on lavas, six on aethers from 90. Runners cost about 12 to 15m an hour each. Duo lavas are about 162,000.",
+      "supply": false,
+      "note": "The same laps without Lunar spells: one to three earth talismans a lap, pouches repaired by Cordelia or the Dark Mage after Enter the Abyss. About 2 coins an XP.",
       "src": "Pay-to-play Runecraft training"
     },
     {
@@ -264,19 +577,15 @@
       "who": "both",
       "int": "semi",
       "cost": "profit",
-      "xph": 0,
+      "xph": 28900,
       "bands": [
         [
           27,
-          0
-        ],
-        [
-          40,
-          25000
+          28900
         ],
         [
           50,
-          40000
+          38200
         ],
         [
           75,
@@ -284,31 +593,27 @@
         ],
         [
           85,
-          65000
-        ],
-        [
-          99,
-          70000
+          55200
         ]
       ],
       "req": "q:Temple of the Eye",
       "run": false,
       "supply": false,
-      "note": "No essence needed. Passive Mining and Crafting XP plus the Raiments and colossal pouch. Rates from 85 assume a small team.",
-      "src": "Pay-to-play Runecraft training"
+      "note": "No essence needed: mine fragments, craft at the open altars and get 45 XP a level each time the rift closes. The colossal pouch's 40 essence from 85 lifts the rate.",
+      "src": "Guide:Solo GOTR guide - 100%* win rate and 10+ points per game on average"
     },
     {
       "lv": 50,
       "name": "Royal Titans desiccated pages",
       "who": "both",
       "int": "active",
-      "cost": "cheap",
-      "xph": 20000,
+      "cost": "profit",
+      "xph": 17400,
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Forfeit boss loot for pages worth 50 XP each. About 20,000 an hour each in a duo with high combat stats.",
-      "src": "Pay-to-play Runecraft training"
+      "note": "Take pages instead of loot from the Royal Titans and imbue them at a plinth for 50 XP each. About 17,000 an hour in a duo with high combat stats; the pages sell.",
+      "src": "Royal Titans"
     },
     {
       "lv": 77,
@@ -330,7 +635,7 @@
       "req": "s:mining 38,crafting 38",
       "run": false,
       "supply": false,
-      "note": "Mine dense essence, bless at the Dark Altar, chisel and craft. Low effort and profitable. Rates assume the Kourend medium diary.",
+      "note": "Mine dense essence, bless it at the Dark Altar, chisel and craft. Rates assume the medium Kourend & Kebos Diary and running between, about 7.5 trips an hour.",
       "src": "Pay-to-play Runecraft training"
     },
     {
@@ -339,25 +644,21 @@
       "who": "main",
       "int": "active",
       "cost": "profit",
-      "xph": 42000,
+      "xph": 38300,
       "bands": [
         [
           82,
-          42000
+          38300
         ],
         [
           85,
-          53000
-        ],
-        [
-          99,
-          55000
+          48300
         ]
       ],
       "req": "q:Lunar Diplomacy",
       "run": false,
-      "supply": true,
-      "note": "Tele Group Moonclan to the altar and bank at Castle Wars. Good profit with the Raiments. Up to 59,000 at 99.",
+      "supply": false,
+      "note": "Tele Group Moonclan to the altar and a ring of dueling to Castle Wars, with every pouch; repairs need Enter the Abyss. Profitable; Teleport to Boat is faster.",
       "src": "Pay-to-play Runecraft training"
     },
     {
@@ -365,22 +666,12 @@
       "name": "Aether runes",
       "who": "main",
       "int": "active",
-      "cost": "cheap",
-      "xph": 99000,
-      "bands": [
-        [
-          90,
-          99000
-        ],
-        [
-          99,
-          102000
-        ]
-      ],
-      "req": "q:Lunar Diplomacy;s:magic 82,agility 66",
+      "cost": "profit",
+      "xph": 85800,
+      "req": "q:Fairytale II - Cure a Queen|Lunar Diplomacy;s:magic 82,agility 66",
       "run": false,
-      "supply": true,
-      "note": "Soul runes on the Cosmic Altar with aether catalyst via the POH fairy ring. Only 70,000 without a colossal pouch.",
+      "supply": false,
+      "note": "Soul runes on the Cosmic Altar after Magic Imbue, with aether catalysts, the colossal pouch and a fairy ring to Zanaris. Fairytale II started is enough.",
       "src": "Pay-to-play Runecraft training"
     },
     {
@@ -389,22 +680,27 @@
       "who": "both",
       "int": "active",
       "cost": "profit",
-      "xph": 42240,
+      "xph": 38100,
       "req": "q:Dragon Slayer II",
       "run": false,
       "supply": true,
-      "note": "Mythical cape to the Myths' Guild and run past the dragons with dragonfire protection. 75 to 85 runs an hour.",
+      "note": "Mythical cape to the Myths' Guild and past the dragons with dragonfire protection, about 72 trips of 66 essence an hour. Profitable.",
       "src": "Pay-to-play Runecraft training"
     }
   ],
   "unverified": [
-    "Quests for the early levels: one-off quest XP, no hourly rate in the guide (xph 0)",
-    "Guardians of the Rift: neither guide gives a rate below level 40 (table starts at 40-50: 25,000), so xph at 27 is 0",
-    "Ourania Altar: the guide's XP/h cells are wiki formulas (xp per essence x essence per lap x seconds / 48). Bands are those formulas evaluated, not quoted numbers. 71 Magic is 'strongly recommended' rather than a hard requirement (tablets work)",
-    "Lava runes: the guide's XP/h cells are stored unrounded and displayed rounded to the nearest 100. Bands use the rounded figures. Below 85 the bands use the best non-colossal pouch set",
-    "Arceuus Library: bands use the guide's 150 books/hour column (needs client plugin). The 100 books/hour column is two thirds of each figure",
-    "Royal Titans desiccated pages: no combat or quest requirement is stated in the guide beyond 'high combat stats'",
-    "Aether runes: Lunar Diplomacy is inferred from the Magic Imbue requirement. The aether section itself only states 82 Magic and 66 Agility",
-    "Cost labels are a judgement: the guide's GP/XP columns are live Grand Exchange price templates with no fixed numbers"
+    "Quest skip to level 34: Client of Kourend's two 500 XP lamps, The Ascent of Arceuus 500, Enter the Abyss 1,000, Temple of the Eye 9,210 in all (5,000 on completion and 4,210 during the quest), The Eyes of Glouphrie 6,000 reach 17,710, level 32; The Slug Menace (30 Runecraft) adds 3,500, level 34; X Marks the Spot's 300 lamp is spare; What Lies Below (8,000) needs 35; the app's quest data counts Temple of the Eye as 5,000; no hourly rate, so never dealt",
+    "Earth talisman tiaras: 85% of the guide's 'up to around 1,550' tiaras an hour at 32.5 XP; the guide's 1,450 is the practised figure and no other page times the method (single source); fire talismans cost 4,456 and 176 trade a day, earth 620 and 16,058; 21.7 coins an XP at 20 October 2026 prices",
+    "Arceuus Library: 85% of the 160 books an hour the Ironman Guide gives with stamina potions (the main guide 150 to 160 with client plugins, 90 to 100 without; the Ultimate Ironman Guide 150 and 100); Magic's library entry uses 120 books an hour for the same activity (Ironman Guide/Magic: 120 with the plugin, 150 with stamina), so the two skills differ for the same hour",
+    "Ourania Altar: 85% of 1.05 x the altar page's formula (XP an essence from the rune distribution, the pouch essence of each level, 48 s a lap, Astral Contact time); the page calls tick-perfect play about 5% higher (its comment says 3%); 80-89 uses the distribution's 14.82 XP an essence where the page's table says 14.90; 71 Magic is for Ourania Teleport, and tablets (Lunar Diplomacy too) avoid it at the cost of a slot; daeyalt essence for an ironman: 1.5 / (1 + essence used / shards mined) of the pure rate, 0.71 at 4,867 essence and 4,400 shards an hour",
+    "Lava runes (both entries): 85% of the guide's model's maximum (best lap + 0.87 ticks, the table's essence), which the guide puts 9 to 12% above its practical table; with equipped teleports the guide gives 112,981 at 85 (85% would be 96,000); bands below 85 use the best set of separate pouches, 85 assumes the colossal pouch (Temple of the Eye, 56 Crafting and the abyssal needle, 750 abyssal pearls); lava runes make a small profit at 25 coins a rune and break even at about 16.5 (85, the colossal pouch, seven stamina doses an hour)",
+    "Guardians of the Rift: 85% of the solo guide's timed games from 27 (34,000 over 2.5 hours) and from 85 (65,000 over 87 minutes); 85% of Wise Old Man's efficient 45,000 from 50; the guide's 50,000 from 75, which the game's XP a game at 6.5 games an hour also gives; the guide's table dates from May 2022 and predates the rework of 13 November 2024; a reader measured about 30,000 at 75 and 34,000 at 80 (November 2024), 40% under the 75 band; mass worlds scale the Great Guardian by players, so game length varies",
+    "Royal Titans desiccated pages: 48 kills an hour in a duo (the money making guide) x 7.25 pages x 50 XP = 17,400; the guide says about 20,000 (single source); the kill rate needs high combat stats and gear, which req cannot state, and the fight is meant for two players of 90 combat or more",
+    "Arceuus blood and soul runes: the guide's 36,000 and 44,000 (7.5 trips an hour 'at average speeds' in the money making guides) are under 85% of a rebuild from 9 ticks a block and the map distances (39,300 and 46,700), so they stand; they assume the medium Kourend & Kebos Diary (5% double blocks) and 73 Agility for the rock shortcut, neither in req; the elite diary, the blisterwood lantern and blood essence add runes, not XP",
+    "Double astral runes: 85% of the guide's 59,000 at 99, scaled to 82 and 85 by its own table; the money making guide's 76 trips banking on Lunar Isle give 43,600 at 85 (9.7% under 48,300); Moonclan Teleport needs 69 Magic and Tele Group Moonclan 70, which req does not ask (tablets serve a main)",
+    "Aether runes: 85% of the guide's 104,000 at 99 scaled to 99,000/102,000 before 99; an anonymous reader puts tick-perfect play before 99 at 85,000-86,000, which would make 85% about 73,000; the rate assumes the colossal pouch (the guide gives 70,000 without it); Fairytale II only has to be started, which req cannot say, so req asks for the whole quest; profit is slim (about 43 coins a rune)",
+    "Wrath runes: 85% of the guide's 'up to around 44,880' (85 runs of 66 essence); the cape makes 90 to 96 trips possible (money making guide); the colossal pouch's 66 essence assumes Temple of the Eye, which req does not ask",
+    "Enter the Abyss is not in req for the methods that rate essence pouches (Ourania, both lava entries, astral, aether, wrath), though no pouch can be repaired without it (the Dark Mage answers Astral Contact only after it, and Cordelia needs Temple of the Eye): beside Lunar Diplomacy it makes the count of questions over the card grow, which a test pins as impossible, so the notes name it as Smithing's do The Giant Dwarf; an account without it is rated with pouches it cannot keep from 25",
+    "Not included: essence runners (280,000 with four at about 12,000,000 coins an hour each, 171 coins an XP; duo 162,000; aethers 345,000 with six); mud, steam, smoke and mist runes (up to 3.9% under lava runes at the same laps, profitable); double nature runes (31,680 at 91; 69,120 with the achievement diary cape, which needs every diary); double law runes (37,620 to 50,160 from 95, Teleport to Boat and 75 Sailing); double cosmic runes (15,480 to 32,160); the true Blood Altar (49,245, Sins of the Father); sunfire runes (9 XP an essence, each needing sunfire splinters from the Colosseum, and twisted extracts to make a profit); sulphurous essence and elemental amulets (by-products)"
   ]
 }
