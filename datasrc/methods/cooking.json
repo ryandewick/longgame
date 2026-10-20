@@ -3,79 +3,445 @@
   "methods": [
     {
       "lv": 1,
+      "name": "Quest skip to level 29",
+      "who": "both",
+      "int": "active",
+      "cost": "free",
+      "xph": 0,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Cook's Assistant, Gertrude's Cat and the Mountain Dwarf and Goblin generals parts of Recipe for Disaster reach 18. Meat and Greet's 8,000 makes 29.",
+      "src": "Quest experience rewards"
+    },
+    {
+      "lv": 1,
       "name": "Low-level fish (sardine to salmon)",
       "who": "both",
       "int": "afk",
       "cost": "cheap",
-      "xph": 0,
-      "req": "",
-      "run": false,
-      "supply": true,
-      "note": "Sardine, herring, mackerel, trout, pike then salmon on a range. Cook's Assistant, Gertrude's Cat and two RFD subquests skip to 18.",
-      "src": "Pay-to-play Cooking training"
-    },
-    {
-      "lv": 10,
-      "name": "Bake Pie spell",
-      "who": "main",
-      "int": "semi",
-      "cost": "pricey",
-      "xph": 147000,
+      "xph": 22700,
       "bands": [
         [
+          1,
+          22700
+        ],
+        [
+          2,
+          23500
+        ],
+        [
+          3,
+          24200
+        ],
+        [
+          4,
+          24800
+        ],
+        [
+          5,
+          29600
+        ],
+        [
+          6,
+          30500
+        ],
+        [
+          7,
+          31200
+        ],
+        [
+          8,
+          32200
+        ],
+        [
+          9,
+          33100
+        ],
+        [
           10,
-          147000
+          37800
+        ],
+        [
+          11,
+          38600
+        ],
+        [
+          12,
+          39800
+        ],
+        [
+          13,
+          40600
+        ],
+        [
+          14,
+          41800
+        ],
+        [
+          15,
+          46100
+        ],
+        [
+          16,
+          47400
+        ],
+        [
+          17,
+          48400
+        ],
+        [
+          18,
+          49700
+        ],
+        [
+          19,
+          50700
         ],
         [
           20,
-          207000
+          54900
+        ],
+        [
+          21,
+          56100
+        ],
+        [
+          22,
+          57600
+        ],
+        [
+          23,
+          58700
+        ],
+        [
+          24,
+          59900
+        ],
+        [
+          25,
+          63500
+        ],
+        [
+          26,
+          65200
+        ],
+        [
+          27,
+          66500
+        ],
+        [
+          28,
+          67800
         ],
         [
           29,
-          241000
+          69500
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Sardines, then herring, mackerel, trout, pike and salmon as each opens, on the Rogues' Den fire beside the bank. About 1,220 an hour; ironmen can buy sardines in shops.",
+      "src": "Pay-to-play Cooking training"
+    },
+    {
+      "lv": 1,
+      "name": "Poison karambwan (1-tick)",
+      "who": "main",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 103200,
+      "bands": [
+        [
+          1,
+          103200
+        ],
+        [
+          2,
+          106100
+        ],
+        [
+          3,
+          109000
+        ],
+        [
+          4,
+          111900
+        ],
+        [
+          5,
+          114800
+        ],
+        [
+          6,
+          116200
+        ],
+        [
+          7,
+          119100
+        ],
+        [
+          8,
+          122000
+        ],
+        [
+          9,
+          125000
+        ],
+        [
+          10,
+          127900
+        ],
+        [
+          11,
+          130800
+        ],
+        [
+          12,
+          133700
+        ],
+        [
+          13,
+          136600
+        ],
+        [
+          14,
+          139500
+        ],
+        [
+          15,
+          140900
+        ],
+        [
+          16,
+          143800
+        ],
+        [
+          17,
+          146700
+        ],
+        [
+          18,
+          149700
+        ],
+        [
+          19,
+          152600
+        ],
+        [
+          20,
+          155500
+        ],
+        [
+          21,
+          158400
+        ],
+        [
+          22,
+          161300
+        ],
+        [
+          23,
+          164200
+        ],
+        [
+          24,
+          165600
+        ],
+        [
+          25,
+          168500
+        ],
+        [
+          26,
+          171500
+        ],
+        [
+          27,
+          174400
+        ],
+        [
+          28,
+          177300
+        ],
+        [
+          29,
+          180200
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Tick-perfect: use raw karambwan on the Rogues' Den fire every tick, about 4,650 an hour. Needs no quest; about 400 raw karambwan reach 30.",
+      "src": "Pay-to-play Cooking training"
+    },
+    {
+      "lv": 13,
+      "name": "T-bone steaks",
+      "who": "main",
+      "int": "afk",
+      "cost": "cheap",
+      "xph": 57500,
+      "bands": [
+        [
+          13,
+          57500
+        ],
+        [
+          14,
+          58800
+        ],
+        [
+          15,
+          60100
+        ],
+        [
+          16,
+          61800
+        ],
+        [
+          17,
+          63100
+        ],
+        [
+          18,
+          64400
+        ],
+        [
+          19,
+          66100
+        ],
+        [
+          20,
+          67400
+        ],
+        [
+          21,
+          69100
+        ],
+        [
+          22,
+          70400
+        ],
+        [
+          23,
+          71700
+        ],
+        [
+          24,
+          73400
+        ],
+        [
+          25,
+          74700
+        ],
+        [
+          26,
+          75900
+        ],
+        [
+          27,
+          77700
+        ],
+        [
+          28,
+          79000
+        ],
+        [
+          29,
+          80700
         ],
         [
           30,
-          245000
+          82000
+        ],
+        [
+          31,
+          83200
+        ],
+        [
+          32,
+          85000
+        ],
+        [
+          33,
+          86200
         ],
         [
           34,
-          260000
+          87500
+        ],
+        [
+          35,
+          89200
+        ],
+        [
+          36,
+          90500
+        ],
+        [
+          37,
+          92300
+        ],
+        [
+          38,
+          93500
+        ],
+        [
+          39,
+          94800
+        ],
+        [
+          40,
+          96500
+        ],
+        [
+          41,
+          97800
+        ],
+        [
+          42,
+          99100
+        ],
+        [
+          43,
+          100800
+        ],
+        [
+          44,
+          102100
+        ],
+        [
+          45,
+          103800
+        ],
+        [
+          46,
+          105100
         ],
         [
           47,
-          309000
+          106400
         ],
         [
-          52,
-          339000
+          48,
+          108100
         ],
         [
-          60,
-          377000
+          49,
+          109400
         ],
         [
-          70,
-          396000
-        ],
-        [
-          73,
-          415000
-        ],
-        [
-          85,
-          452000
-        ],
-        [
-          95,
-          490000
+          50,
+          109800
         ]
       ],
-      "req": "q:Lunar Diplomacy",
+      "req": "",
       "run": false,
       "supply": false,
-      "note": "Cast on bought uncooked pies, 3 ticks each and they never burn. About 113k Magic xp an hour on top. Pie supply is thin.",
-      "src": "Pay-to-play Cooking training"
+      "note": "Raw t-bone steaks from Brutus, bought and cooked on the Rogues' Den fire beside the bank. 90 XP each from 13, and they stop burning at 50.",
+      "src": "Cooked t-bone steak"
     },
     {
       "lv": 28,
@@ -83,11 +449,117 @@
       "who": "iron",
       "int": "semi",
       "cost": "free",
-      "xph": 59500,
-      "req": "",
+      "xph": 39700,
+      "bands": [
+        [
+          28,
+          39700
+        ],
+        [
+          29,
+          40400
+        ],
+        [
+          30,
+          41400
+        ],
+        [
+          31,
+          42100
+        ],
+        [
+          32,
+          43000
+        ],
+        [
+          33,
+          43700
+        ],
+        [
+          34,
+          44400
+        ],
+        [
+          35,
+          45300
+        ],
+        [
+          36,
+          46000
+        ],
+        [
+          37,
+          46900
+        ],
+        [
+          38,
+          47600
+        ],
+        [
+          39,
+          48600
+        ],
+        [
+          40,
+          49300
+        ],
+        [
+          41,
+          50000
+        ],
+        [
+          42,
+          50900
+        ],
+        [
+          43,
+          51600
+        ],
+        [
+          44,
+          52500
+        ],
+        [
+          45,
+          53200
+        ],
+        [
+          46,
+          53900
+        ],
+        [
+          47,
+          54900
+        ],
+        [
+          48,
+          55500
+        ],
+        [
+          49,
+          56500
+        ],
+        [
+          50,
+          57200
+        ],
+        [
+          51,
+          57900
+        ],
+        [
+          52,
+          58800
+        ],
+        [
+          53,
+          59500
+        ]
+      ],
+      "req": "q:Children of the Sun",
       "run": false,
       "supply": false,
-      "note": "Pick raw sweetcorn in the Kastori fields and cook it on the ovens beside them. No supplies needed. Up to 70k an hour at 54.",
+      "note": "Pick raw sweetcorn in the Kastori fields and cook it on the ovens beside them, no supplies needed. It stops burning at 53.",
       "src": "Ironman Guide/Cooking"
     },
     {
@@ -95,46 +567,294 @@
       "name": "Karambwan (1-tick)",
       "who": "main",
       "int": "active",
-      "cost": "cheap",
-      "xph": 464000,
+      "cost": "profit",
+      "xph": 434800,
       "bands": [
         [
           30,
-          464000
+          434800
+        ],
+        [
+          31,
+          441700
+        ],
+        [
+          32,
+          448600
+        ],
+        [
+          33,
+          452100
+        ],
+        [
+          34,
+          459000
+        ],
+        [
+          35,
+          465900
+        ],
+        [
+          36,
+          472800
+        ],
+        [
+          37,
+          479700
+        ],
+        [
+          38,
+          486600
+        ],
+        [
+          39,
+          493500
         ],
         [
           40,
-          534000
+          500400
+        ],
+        [
+          41,
+          507300
+        ],
+        [
+          42,
+          510700
+        ],
+        [
+          43,
+          517600
+        ],
+        [
+          44,
+          524500
+        ],
+        [
+          45,
+          531400
+        ],
+        [
+          46,
+          538300
+        ],
+        [
+          47,
+          545200
+        ],
+        [
+          48,
+          552100
+        ],
+        [
+          49,
+          559000
         ],
         [
           50,
-          605000
+          565900
+        ],
+        [
+          51,
+          569400
+        ],
+        [
+          52,
+          576300
+        ],
+        [
+          53,
+          583200
+        ],
+        [
+          54,
+          590100
+        ],
+        [
+          55,
+          597000
+        ],
+        [
+          56,
+          603900
+        ],
+        [
+          57,
+          610800
+        ],
+        [
+          58,
+          617700
+        ],
+        [
+          59,
+          621100
         ],
         [
           60,
-          672000
+          628000
+        ],
+        [
+          61,
+          634900
+        ],
+        [
+          62,
+          641800
+        ],
+        [
+          63,
+          648800
+        ],
+        [
+          64,
+          655700
+        ],
+        [
+          65,
+          662600
+        ],
+        [
+          66,
+          669500
+        ],
+        [
+          67,
+          676400
+        ],
+        [
+          68,
+          679800
+        ],
+        [
+          69,
+          686700
         ],
         [
           70,
-          742000
+          693600
+        ],
+        [
+          71,
+          700500
+        ],
+        [
+          72,
+          707400
+        ],
+        [
+          73,
+          714300
+        ],
+        [
+          74,
+          721200
+        ],
+        [
+          75,
+          728100
+        ],
+        [
+          76,
+          735000
+        ],
+        [
+          77,
+          738500
+        ],
+        [
+          78,
+          745400
+        ],
+        [
+          79,
+          752300
         ],
         [
           80,
-          813000
+          759200
+        ],
+        [
+          81,
+          766100
+        ],
+        [
+          82,
+          773000
+        ],
+        [
+          83,
+          779900
+        ],
+        [
+          84,
+          786800
+        ],
+        [
+          85,
+          793700
+        ],
+        [
+          86,
+          797100
+        ],
+        [
+          87,
+          804000
+        ],
+        [
+          88,
+          810900
+        ],
+        [
+          89,
+          817800
         ],
         [
           90,
-          883000
+          824700
+        ],
+        [
+          91,
+          831600
+        ],
+        [
+          92,
+          838500
+        ],
+        [
+          93,
+          845400
+        ],
+        [
+          94,
+          852300
+        ],
+        [
+          95,
+          855800
+        ],
+        [
+          96,
+          862700
+        ],
+        [
+          97,
+          869600
+        ],
+        [
+          98,
+          876500
         ],
         [
           99,
-          950000
+          883400
         ]
       ],
       "req": "q:Tai Bwo Wannai Trio",
       "run": false,
       "supply": false,
-      "note": "Tick-perfect cooking at a fire next to a bank such as Rogues' Den, about 5,000 an hour. Fastest Cooking xp there is.",
+      "note": "Tick-perfect cooking on the Rogues' Den fire beside the bank, about 4,650 an hour. The fastest Cooking there is; karambwan pay for themselves from about 50.",
       "src": "Pay-to-play Cooking training"
     },
     {
@@ -142,46 +862,294 @@
       "name": "Karambwan (normal speed)",
       "who": "both",
       "int": "afk",
-      "cost": "cheap",
-      "xph": 141000,
+      "cost": "profit",
+      "xph": 114100,
       "bands": [
         [
           30,
-          141000
+          114100
+        ],
+        [
+          31,
+          115900
+        ],
+        [
+          32,
+          117800
+        ],
+        [
+          33,
+          118700
+        ],
+        [
+          34,
+          120500
+        ],
+        [
+          35,
+          122300
+        ],
+        [
+          36,
+          124100
+        ],
+        [
+          37,
+          125900
+        ],
+        [
+          38,
+          127700
+        ],
+        [
+          39,
+          129500
         ],
         [
           40,
-          160000
+          131300
+        ],
+        [
+          41,
+          133200
+        ],
+        [
+          42,
+          134100
+        ],
+        [
+          43,
+          135900
+        ],
+        [
+          44,
+          137700
+        ],
+        [
+          45,
+          139500
+        ],
+        [
+          46,
+          141300
+        ],
+        [
+          47,
+          143100
+        ],
+        [
+          48,
+          144900
+        ],
+        [
+          49,
+          146700
         ],
         [
           50,
-          180000
+          148600
+        ],
+        [
+          51,
+          149500
+        ],
+        [
+          52,
+          151300
+        ],
+        [
+          53,
+          153100
+        ],
+        [
+          54,
+          154900
+        ],
+        [
+          55,
+          156700
+        ],
+        [
+          56,
+          158500
+        ],
+        [
+          57,
+          160300
+        ],
+        [
+          58,
+          162100
+        ],
+        [
+          59,
+          163100
         ],
         [
           60,
-          198000
+          164900
+        ],
+        [
+          61,
+          166700
+        ],
+        [
+          62,
+          168500
+        ],
+        [
+          63,
+          170300
+        ],
+        [
+          64,
+          172100
+        ],
+        [
+          65,
+          173900
+        ],
+        [
+          66,
+          175700
+        ],
+        [
+          67,
+          177500
+        ],
+        [
+          68,
+          178500
+        ],
+        [
+          69,
+          180300
         ],
         [
           70,
-          218000
+          182100
+        ],
+        [
+          71,
+          183900
+        ],
+        [
+          72,
+          185700
+        ],
+        [
+          73,
+          187500
+        ],
+        [
+          74,
+          189300
+        ],
+        [
+          75,
+          191100
+        ],
+        [
+          76,
+          192900
+        ],
+        [
+          77,
+          193900
+        ],
+        [
+          78,
+          195700
+        ],
+        [
+          79,
+          197500
         ],
         [
           80,
-          251000
+          199300
+        ],
+        [
+          81,
+          201100
+        ],
+        [
+          82,
+          202900
+        ],
+        [
+          83,
+          204700
+        ],
+        [
+          84,
+          206500
+        ],
+        [
+          85,
+          208300
+        ],
+        [
+          86,
+          209300
+        ],
+        [
+          87,
+          211100
+        ],
+        [
+          88,
+          212900
+        ],
+        [
+          89,
+          214700
         ],
         [
           90,
-          263000
+          216500
+        ],
+        [
+          91,
+          218300
+        ],
+        [
+          92,
+          220100
+        ],
+        [
+          93,
+          221900
+        ],
+        [
+          94,
+          223700
+        ],
+        [
+          95,
+          224700
+        ],
+        [
+          96,
+          226500
+        ],
+        [
+          97,
+          228300
+        ],
+        [
+          98,
+          230100
         ],
         [
           99,
-          273000
+          231900
         ]
       ],
       "req": "q:Tai Bwo Wannai Trio",
       "run": false,
       "supply": true,
-      "note": "Hosidius kitchen until 96, then a fire next to a bank. Ironmen fish them at 65 Fishing or buy from Tiadeche's stall.",
+      "note": "About 1,220 an hour on the Rogues' Den fire beside the bank, no diary needed. Ironmen fish them at 65 or buy them from Tiadeche.",
       "src": "Pay-to-play Cooking training"
     },
     {
@@ -190,33 +1158,754 @@
       "who": "both",
       "int": "afk",
       "cost": "cheap",
-      "xph": 92500,
+      "xph": 72500,
       "bands": [
         [
           30,
-          92500
+          72500
+        ],
+        [
+          31,
+          73900
+        ],
+        [
+          32,
+          75300
+        ],
+        [
+          33,
+          77200
+        ],
+        [
+          34,
+          78700
+        ],
+        [
+          35,
+          80100
+        ],
+        [
+          36,
+          81500
+        ],
+        [
+          37,
+          83000
+        ],
+        [
+          38,
+          84900
+        ],
+        [
+          39,
+          86300
         ],
         [
           40,
-          142500
+          89200
+        ],
+        [
+          41,
+          91000
+        ],
+        [
+          42,
+          92700
+        ],
+        [
+          43,
+          95400
+        ],
+        [
+          44,
+          96700
+        ],
+        [
+          45,
+          98500
+        ],
+        [
+          46,
+          100400
+        ],
+        [
+          47,
+          102300
+        ],
+        [
+          48,
+          104100
+        ],
+        [
+          49,
+          106000
+        ],
+        [
+          50,
+          107800
+        ],
+        [
+          51,
+          109100
+        ],
+        [
+          52,
+          110900
+        ],
+        [
+          53,
+          112800
+        ],
+        [
+          54,
+          114700
+        ],
+        [
+          55,
+          116500
+        ],
+        [
+          56,
+          118400
+        ],
+        [
+          57,
+          119600
+        ],
+        [
+          58,
+          121500
+        ],
+        [
+          59,
+          123300
+        ],
+        [
+          60,
+          125200
+        ],
+        [
+          61,
+          127100
+        ],
+        [
+          62,
+          128900
+        ],
+        [
+          63,
+          130800
+        ],
+        [
+          64,
+          132000
+        ],
+        [
+          65,
+          133900
+        ],
+        [
+          66,
+          135700
+        ],
+        [
+          67,
+          137600
         ],
         [
           68,
-          182500
+          139500
+        ],
+        [
+          69,
+          141300
+        ],
+        [
+          70,
+          142600
+        ],
+        [
+          71,
+          144400
+        ],
+        [
+          72,
+          146300
+        ],
+        [
+          73,
+          148100
+        ],
+        [
+          74,
+          150000
+        ],
+        [
+          75,
+          151800
+        ],
+        [
+          76,
+          153700
+        ],
+        [
+          77,
+          155200
+        ],
+        [
+          78,
+          156800
+        ],
+        [
+          79,
+          158800
         ],
         [
           80,
-          280000
+          164200
+        ],
+        [
+          81,
+          166200
+        ],
+        [
+          82,
+          168200
+        ],
+        [
+          83,
+          170200
         ],
         [
           84,
-          317500
+          187500
+        ],
+        [
+          85,
+          189700
+        ],
+        [
+          86,
+          191900
+        ],
+        [
+          87,
+          194100
+        ],
+        [
+          88,
+          196300
+        ],
+        [
+          89,
+          198500
+        ],
+        [
+          90,
+          200700
+        ],
+        [
+          91,
+          202900
+        ],
+        [
+          92,
+          205100
+        ],
+        [
+          93,
+          207200
+        ],
+        [
+          94,
+          209400
+        ],
+        [
+          95,
+          211600
+        ],
+        [
+          96,
+          213800
+        ],
+        [
+          97,
+          216000
+        ],
+        [
+          98,
+          218200
+        ],
+        [
+          99,
+          220400
         ]
       ],
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Tuna, lobster, swordfish or monkfish, shark, then anglerfish. Rates assume cooking gauntlets and the Hosidius kitchen range.",
+      "note": "Tuna, lobster, then bass until 80, shark and anglerfish on the Rogues' Den fire, about 1,220 an hour. Without gauntlets sharks and anglerfish often burn.",
+      "src": "Pay-to-play Cooking training"
+    },
+    {
+      "lv": 30,
+      "name": "Fish (tuna to anglerfish) with cooking gauntlets",
+      "who": "both",
+      "int": "afk",
+      "cost": "profit",
+      "xph": 72500,
+      "bands": [
+        [
+          30,
+          72500
+        ],
+        [
+          31,
+          73900
+        ],
+        [
+          32,
+          75300
+        ],
+        [
+          33,
+          77200
+        ],
+        [
+          34,
+          78700
+        ],
+        [
+          35,
+          80100
+        ],
+        [
+          36,
+          81500
+        ],
+        [
+          37,
+          83000
+        ],
+        [
+          38,
+          84900
+        ],
+        [
+          39,
+          86300
+        ],
+        [
+          40,
+          103600
+        ],
+        [
+          41,
+          105300
+        ],
+        [
+          42,
+          107000
+        ],
+        [
+          43,
+          108700
+        ],
+        [
+          44,
+          110400
+        ],
+        [
+          45,
+          112700
+        ],
+        [
+          46,
+          114400
+        ],
+        [
+          47,
+          116100
+        ],
+        [
+          48,
+          117900
+        ],
+        [
+          49,
+          119600
+        ],
+        [
+          50,
+          121900
+        ],
+        [
+          51,
+          123600
+        ],
+        [
+          52,
+          125300
+        ],
+        [
+          53,
+          127000
+        ],
+        [
+          54,
+          128700
+        ],
+        [
+          55,
+          130400
+        ],
+        [
+          56,
+          132700
+        ],
+        [
+          57,
+          134400
+        ],
+        [
+          58,
+          136200
+        ],
+        [
+          59,
+          137900
+        ],
+        [
+          60,
+          139600
+        ],
+        [
+          61,
+          141900
+        ],
+        [
+          62,
+          143600
+        ],
+        [
+          63,
+          145300
+        ],
+        [
+          64,
+          146500
+        ],
+        [
+          67,
+          146800
+        ],
+        [
+          68,
+          148200
+        ],
+        [
+          69,
+          150200
+        ],
+        [
+          70,
+          152200
+        ],
+        [
+          71,
+          154200
+        ],
+        [
+          72,
+          156200
+        ],
+        [
+          73,
+          158200
+        ],
+        [
+          74,
+          160200
+        ],
+        [
+          75,
+          161600
+        ],
+        [
+          76,
+          163800
+        ],
+        [
+          77,
+          165500
+        ],
+        [
+          78,
+          167500
+        ],
+        [
+          79,
+          169500
+        ],
+        [
+          80,
+          222300
+        ],
+        [
+          81,
+          224300
+        ],
+        [
+          82,
+          227300
+        ],
+        [
+          83,
+          229300
+        ],
+        [
+          84,
+          244500
+        ],
+        [
+          85,
+          247800
+        ],
+        [
+          86,
+          250000
+        ],
+        [
+          87,
+          253300
+        ],
+        [
+          88,
+          255500
+        ],
+        [
+          89,
+          258800
+        ],
+        [
+          90,
+          261000
+        ],
+        [
+          91,
+          264300
+        ],
+        [
+          92,
+          266500
+        ],
+        [
+          93,
+          269800
+        ],
+        [
+          94,
+          271900
+        ],
+        [
+          95,
+          275200
+        ],
+        [
+          96,
+          277400
+        ],
+        [
+          97,
+          280700
+        ]
+      ],
+      "req": "q:Family Crest",
+      "run": false,
+      "supply": true,
+      "note": "The same fish wearing the cooking gauntlets from Family Crest, which cut burns on lobster, swordfish, monkfish, shark and anglerfish. Anglerfish stop burning at 97.",
+      "src": "Cooking gauntlets"
+    },
+    {
+      "lv": 30,
+      "name": "Bake Pie spell",
+      "who": "main",
+      "int": "semi",
+      "cost": "cheap",
+      "xph": 208200,
+      "bands": [
+        [
+          30,
+          208200
+        ],
+        [
+          70,
+          336200
+        ],
+        [
+          73,
+          352300
+        ],
+        [
+          95,
+          416300
+        ]
+      ],
+      "req": "q:Lunar Diplomacy;s:magic 65",
+      "run": false,
+      "supply": false,
+      "note": "Cast on bought uncooked pies, 3 ticks each, and they never burn; about 96k Magic XP an hour on top. Only apple, admiral, dragonfruit and summer pies trade in bulk.",
+      "src": "Pay-to-play Cooking training"
+    },
+    {
+      "lv": 35,
+      "name": "Jugs of wine",
+      "who": "both",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 186000,
+      "bands": [
+        [
+          35,
+          186000
+        ],
+        [
+          36,
+          194400
+        ],
+        [
+          37,
+          201900
+        ],
+        [
+          38,
+          209400
+        ],
+        [
+          39,
+          216800
+        ],
+        [
+          40,
+          224200
+        ],
+        [
+          41,
+          231600
+        ],
+        [
+          42,
+          238900
+        ],
+        [
+          43,
+          246200
+        ],
+        [
+          44,
+          253400
+        ],
+        [
+          45,
+          260600
+        ],
+        [
+          46,
+          268900
+        ],
+        [
+          47,
+          275900
+        ],
+        [
+          48,
+          282900
+        ],
+        [
+          49,
+          289800
+        ],
+        [
+          50,
+          296600
+        ],
+        [
+          51,
+          303300
+        ],
+        [
+          52,
+          309900
+        ],
+        [
+          53,
+          316400
+        ],
+        [
+          54,
+          322900
+        ],
+        [
+          55,
+          330700
+        ],
+        [
+          56,
+          337000
+        ],
+        [
+          57,
+          343200
+        ],
+        [
+          58,
+          349400
+        ],
+        [
+          59,
+          355500
+        ],
+        [
+          60,
+          361500
+        ],
+        [
+          61,
+          367500
+        ],
+        [
+          62,
+          373400
+        ],
+        [
+          63,
+          379200
+        ],
+        [
+          64,
+          385000
+        ],
+        [
+          65,
+          392200
+        ],
+        [
+          66,
+          397900
+        ],
+        [
+          67,
+          403500
+        ],
+        [
+          68,
+          416500
+        ]
+      ],
+      "req": "",
+      "run": false,
+      "supply": true,
+      "note": "Grapes into jugs of water, 14 a load every 20 seconds; ironmen grow or loot the grapes. Below 68 some turn bad, so ferment each level's worth before making more.",
       "src": "Pay-to-play Cooking training"
     },
     {
@@ -225,21 +1914,153 @@
       "who": "iron",
       "int": "active",
       "cost": "free",
-      "xph": 50000,
+      "xph": 50300,
       "bands": [
         [
           40,
-          50000
+          50300
+        ],
+        [
+          41,
+          51200
+        ],
+        [
+          42,
+          52200
+        ],
+        [
+          43,
+          53200
+        ],
+        [
+          44,
+          54100
+        ],
+        [
+          45,
+          55100
+        ],
+        [
+          46,
+          56100
+        ],
+        [
+          47,
+          57000
+        ],
+        [
+          48,
+          58000
+        ],
+        [
+          49,
+          59000
+        ],
+        [
+          50,
+          59900
+        ],
+        [
+          51,
+          60900
+        ],
+        [
+          52,
+          61900
+        ],
+        [
+          53,
+          62800
+        ],
+        [
+          54,
+          63800
+        ],
+        [
+          55,
+          64800
+        ],
+        [
+          56,
+          65700
+        ],
+        [
+          57,
+          66700
+        ],
+        [
+          58,
+          67700
+        ],
+        [
+          59,
+          68600
         ],
         [
           60,
-          70000
+          69600
+        ],
+        [
+          61,
+          70600
+        ],
+        [
+          62,
+          71500
+        ],
+        [
+          63,
+          72500
+        ],
+        [
+          64,
+          73500
+        ],
+        [
+          65,
+          74400
+        ],
+        [
+          66,
+          75400
+        ],
+        [
+          67,
+          76400
+        ],
+        [
+          68,
+          77400
+        ],
+        [
+          69,
+          78300
+        ],
+        [
+          70,
+          79300
+        ],
+        [
+          71,
+          80300
+        ],
+        [
+          72,
+          81200
+        ],
+        [
+          73,
+          82200
+        ],
+        [
+          74,
+          82500
         ]
       ],
       "req": "s:construction 33",
       "run": false,
       "supply": false,
-      "note": "Take cake ingredients from your own oak larder and bake on a range by the house portal. Unlimited supplies, very click intensive.",
+      "note": "Take cake ingredients from your own oak larder and bake on a range in your house, about 460 an hour. Unlimited supplies, very click intensive.",
       "src": "Ironman Guide/Cooking"
     },
     {
@@ -248,34 +2069,45 @@
       "who": "iron",
       "int": "active",
       "cost": "free",
-      "xph": 175000,
+      "xph": 164700,
+      "bands": [
+        [
+          65,
+          164700
+        ],
+        [
+          66,
+          166700
+        ],
+        [
+          67,
+          168700
+        ],
+        [
+          68,
+          170000
+        ]
+      ],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Make pizzas from the free ingredients in the Hosidius Mess and hop worlds after each load. No supplies, very click intensive.",
-      "src": "Ironman Guide/Cooking"
-    },
-    {
-      "lv": 68,
-      "name": "Jugs of wine",
-      "who": "both",
-      "int": "semi",
-      "cost": "cheap",
-      "xph": 480000,
-      "req": "",
-      "run": false,
-      "supply": true,
-      "note": "Grapes into jugs of water, 14 an inventory, never fails from 68. Ironmen get grapes from Zulrah, Vorkath or the Culinaromancer's Chest.",
-      "src": "Pay-to-play Cooking training"
+      "note": "Make pizzas from the free ingredients in the Hosidius Mess, serve them and hop worlds after each load. No supplies, very click intensive.",
+      "src": "Mess"
     }
   ],
   "unverified": [
-    "Low-level fish (sardine to salmon): neither guide gives an hourly rate for levels 1 to 30, so xph is 0",
-    "Sweetcorn at Kastori: the only figure is 'up to 70,000 at level 54'; 59,500 is 85% of that, not a level 28 rate",
-    "Fish (tuna to anglerfish): each band is the midpoint of the guide's range for that fish; rates assume cooking gauntlets (Family Crest) and the Hosidius kitchen (Kourend & Kebos easy diary, elite from 79), left out of req because they are not hard requirements",
-    "Karambwan (normal speed): rate assumes the Hosidius kitchen; ironmen need 65 Fishing to finish Tai Bwo Wannai Trio and the Ironman Guide gives no rate of its own",
-    "Jugs of wine and both karambwan entries: cost is a judgement call because the guide's profit figures are live GE price templates",
-    "Servery pineapple pizzas and Sweetcorn at Kastori: no access requirement is stated in the cached text",
-    "Omitted for lack of a Cooking level in the text: Frankie's Fishing Emporium bass and swordfish (~100,000/h), Flosi's fish shop, sacred eels (~20,000/h), Tempoross passive xp, poison karambwan 1-ticking for 1 to 30 (no rate)"
+    "Quest skip to level 29: Cook's Assistant 300, Gertrude's Cat 1,525 and the Mountain Dwarf and Goblin generals parts of Recipe for Disaster 1,000 each reach 18 (the ironman guides' set); Rag and Bone Man I's 500 makes 19 and Meat and Greet's 8,000 (Children of the Sun) 29; Evil Dave's 7,000 reaches 33 and Sir Amik Varze's 4,000 (107 quest points) 35; no hourly rate, so never dealt",
+    "Low-level fish (sardine to salmon): each fish page's chart on a fire at 85% of the guide's 1,435.9 fish an hour beside a bank (1,220; the money making guides cook roughly 1,300); the Lumbridge range's better chances do not repay its walk (1,208 an hour); an ironman buys sardines and lower fish in Port Sarim or Port Piscarilius, or cooks what they catch, which is slower",
+    "Poison karambwan (1-tick): 85% of the guide's 'up to 5,470' karambwan an hour (4,650), inside the karambwan money making guide's 'realistically 4,000-4,800'; Wise Old Man main's 172,800 for 1 to 30 is a band average, above the 155,700 these bands average; poison karambwan cannot be sold, so about 7 coins an XP",
+    "T-bone steaks: no page rates it; the chart (92/423, a fire or range) at the same 1,220 an hour as fish (estimated); the steaks drop one a kill from Brutus (three more 10 times in 81 for members) and trade about 1,341 a day on the wiki's module but about 19,700 on the real-time series; 1-tick t-bone steaks would take 13 to 30 in under 3 minutes and are not an entry",
+    "Karambwan (1-tick): 85% of the guide's 'up to 5,470' an hour; the guide's table uses 5,000 (91% of it) and the money making guide says realistically 4,000 to 4,800 of a 5,000 maximum; Wise Old Man main is about 5,200 an hour; fire and range share one chart, and cooking gauntlets do not help",
+    "Karambwan (normal speed): 85% of the guide's 1,435.9 an hour at a fire beside a bank, against the money making guide's 'typically 1,200'; the guide's own column assumes 1,385 an hour in the Hosidius kitchen (its location table says 1,365) and the elite Kourend & Kebos Diary from 79, which gives up to 6% more there; karambwan lose a little below about 50 and pay above it at 20 October prices",
+    "Fish (both entries): the best of tuna, lobster, bass, swordfish, monkfish, shark and anglerfish at each level by the fish pages' charts at 85% of 1,435.9 an hour on a fire beside a bank; the Hosidius kitchen (easy Kourend & Kebos Diary) is within 1% with gauntlets until 96 and up to 16% better without them (sharks at 80 and 81, anglerfish about 10%), which req cannot weigh; the guide's table assumes gauntlets, the Hosidius kitchen and the elite diary from 79; bass is not in the guide's table but is the best fish without gauntlets from 43 to 78",
+    "Bake Pie spell: 85% of 1,883.7 pies an hour (27 casts of 3 ticks and 5 ticks of banking, which the guide rounds to 1,885); bands only for apple, admiral, dragonfruit and summer pies, the tiers that trade in bulk on the real-time series (180-day medians 15,702 to 73,160 a day); summer pies at 95 come within 0.05% of wine at 13 times its cost; the Magic XP (60 a cast) is not counted in Cooking",
+    "Jugs of wine: 85% of the guide's 'up to 490,000' (a 494,100 rebuild with 5 ticks of banking) from 68, and below 68 times the chance of a good wine (48/352) with a 12-second pause to ferment each level, as the guide advises; the guide starts it at 35 but both ironman guides only at 68, and an ironman is rated as if supplied with grapes, which come from the Vinery, Zulrah, Vorkath and Venators (the Culinaromancer's Chest sells 10 a world); above Wise Old Man's ironman table, which counts its shop-hopping karambwan method's supplies and so is no ceiling for supplied rates",
+    "Sweetcorn at Kastori: 85% of the Ironman Guide's 'up to 70,000 experience per hour at level 54', one player's figure from April 2024; no page times the picking, so below 53 it is scaled by the chart (estimated)",
+    "Cakes from an oak larder: the Ironman Guide's 50,000 at 40 and 70,000 at 60 (about 458 attempts an hour, its '500 cakes'), carried to other levels by the chart; a tick count allows about 627 an hour; a bottomless milk bucket (a Brutus drop) lets 9 cakes be made an inventory instead of 7, not counted",
+    "Servery pineapple pizzas: 85% of the Mess page's 'above 200,000' with perfect clicks, inside its 'expect 165,000-180,000'; the Ironman Guide says 150,000 to 200,000 and a rough tick count of the 13-pizza loop allows 155,000 to 196,000; XP a pizza depends on the soldiers' appreciation, hence the world hops",
+    "Not included: Sailing fish and squid (haddock to marlin burn most of the time at their levels, marlin 30% at 91 on a range); hunter meats (sunlight antelope 68, dashing kebbit 82, moonlight antelope 92: they need 50 Hunters' Rumours, which req cannot express, and sit under fish with gauntlets); sea turtle, dark crab and manta ray (thin trade or under anglerfish); servery meat pies and stews (48,000 to 72,000 at 20 and 25, a stretch the fish cover); Frankie's and Flosi's fish shops (ironman supply, slower than the Mess); Wise Old Man ironman's shop-hop 1-tick karambwan (needs a second account); 2-tick cooking; sacred eels (about 20,000); cheese with a bottomless milk bucket (about 15,000, AFK); forester's rations, pizzas, curries and stews (assembled by hand, no rate); brewing and gnome cooking; Cooking XP from Tempoross, barbarian fishing, leechfin and aerial fishing (by-products of Fishing)"
   ]
 }
