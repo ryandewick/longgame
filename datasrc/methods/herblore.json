@@ -11,34 +11,34 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Druidic Ritual unlocks the skill. Jungle Potion, Recruitment Drive and The Dig Site take you from 3 to 19.",
+      "note": "Druidic Ritual opens the skill at 3. Jungle Potion, Recruitment Drive and The Dig Site take you to 19, and Shades of Mort'ton and Zogre Flesh Eaters to 25.",
       "src": "Herblore training"
     },
     {
       "lv": 3,
       "name": "Attack, strength, energy potions",
-      "who": "both",
+      "who": "main",
       "int": "active",
-      "cost": "pricey",
-      "xph": 62500,
+      "cost": "cheap",
+      "xph": 55800,
       "bands": [
         [
           3,
-          62500
+          55800
         ],
         [
           12,
-          125000
+          111600
         ],
         [
           26,
-          168750
+          150600
         ]
       ],
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Attack potions at 3, strength at 12, energy at 26. About 2,500 potions an hour with quick banking.",
+      "note": "Add secondaries to bought unfinished potions, about 2,230 an hour: attack at 3, strength at 12, energy at 26. The quests skip most of these levels.",
       "src": "Herblore training"
     },
     {
@@ -47,70 +47,196 @@
       "who": "main",
       "int": "active",
       "cost": "profit",
-      "xph": 25000,
+      "xph": 21200,
       "bands": [
         [
           3,
-          25000
+          21200
         ],
         [
           5,
-          38000
+          32300
         ],
         [
           11,
-          50000
+          42500
         ],
         [
           20,
-          63000
+          53600
         ],
         [
           25,
-          75000
+          63800
         ],
         [
           30,
-          80000
+          68000
         ],
         [
           40,
-          88000
+          74800
         ],
         [
           48,
-          100000
+          85000
         ],
         [
           54,
-          113000
+          96000
         ],
         [
           58,
-          118000
+          100300
         ],
         [
           65,
-          125000
+          106200
         ],
         [
           67,
-          131000
+          111400
         ],
         [
           70,
-          138000
+          117300
         ],
         [
           75,
-          150000
+          127500
         ]
       ],
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Buy grimy, sell clean. Rate assumes 10,000 herbs an hour by manual clicking. Auto-clean gives 30 percent of it.",
+      "note": "Buy grimy herbs and clean them by hand, about 8,500 an hour, for a small profit. Auto-cleaning takes 2 ticks a herb, about a third as fast.",
       "src": "Herblore training"
+    },
+    {
+      "lv": 3,
+      "name": "Potions from your own herbs",
+      "who": "iron",
+      "int": "active",
+      "cost": "free",
+      "xph": 35700,
+      "bands": [
+        [
+          3,
+          35700
+        ],
+        [
+          26,
+          96400
+        ],
+        [
+          38,
+          125000
+        ],
+        [
+          45,
+          142800
+        ],
+        [
+          52,
+          167800
+        ],
+        [
+          55,
+          178500
+        ],
+        [
+          63,
+          203500
+        ],
+        [
+          66,
+          214200
+        ],
+        [
+          69,
+          224900
+        ],
+        [
+          72,
+          232000
+        ],
+        [
+          76,
+          246300
+        ],
+        [
+          81,
+          257000
+        ]
+      ],
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Make the unfinished potions first, then add your secondaries: about 1,430 an hour. The Ironman Guide's potions, from attack at 3 to Saradomin brews at 81.",
+      "src": "Ironman Guide/Herblore"
+    },
+    {
+      "lv": 3,
+      "name": "Potions from your own herbs with Zahur",
+      "who": "iron",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 55800,
+      "bands": [
+        [
+          3,
+          55800
+        ],
+        [
+          26,
+          150600
+        ],
+        [
+          38,
+          195200
+        ],
+        [
+          45,
+          223100
+        ],
+        [
+          52,
+          262200
+        ],
+        [
+          55,
+          278900
+        ],
+        [
+          63,
+          318000
+        ],
+        [
+          66,
+          334700
+        ],
+        [
+          69,
+          351400
+        ],
+        [
+          72,
+          362600
+        ],
+        [
+          76,
+          384900
+        ],
+        [
+          81,
+          401600
+        ]
+      ],
+      "req": "q:Druidic Ritual;d:Desert Hard",
+      "run": false,
+      "supply": true,
+      "note": "With the hard Desert Diary, Zahur in Nardah turns noted clean herbs into unfinished potions for 200 coins each. Then only the secondaries remain: about 2,230 an hour.",
+      "src": "Zahur"
     },
     {
       "lv": 18,
@@ -119,10 +245,10 @@
       "int": "active",
       "cost": "profit",
       "xph": 82600,
-      "req": "q:Druidic Ritual",
+      "req": "q:Druidic Ritual|One Small Favour",
       "run": false,
       "supply": true,
-      "note": "About 1,400 teas an hour, five per inventory. Needs One Small Favour partly done. Profitable when decanted and sold.",
+      "note": "A cup of hot water, two guam, a marrentill and a harralander, about 1,400 an hour. Opens partway through One Small Favour and sells at a profit.",
       "src": "Herblore training"
     },
     {
@@ -131,73 +257,69 @@
       "who": "both",
       "int": "semi",
       "cost": "cheap",
-      "xph": 61000,
+      "xph": 48500,
       "bands": [
         [
           19,
-          61000
+          48500
         ],
         [
           31,
-          86000
+          68700
         ],
         [
           39,
-          110000
+          88900
         ],
         [
           44,
-          145000
-        ],
-        [
-          55,
-          170000
+          117200
         ]
       ],
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Herb plus 15 swamp tar. Fewer clicks than potions. Swamp tar buy limit is 13,000 so stockpile first.",
+      "note": "With a pestle and mortar, each herb and 15 swamp tar make 15 tar, 3 ticks a herb: guam at 19 to harralander at 44. Swamp tar's buy limit lasts about half an hour.",
       "src": "Herblore training"
     },
     {
       "lv": 38,
       "name": "Prayer potions",
-      "who": "both",
+      "who": "main",
       "int": "active",
-      "cost": "pricey",
-      "xph": 218750,
+      "cost": "cheap",
+      "xph": 195200,
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Ranarr and snape grass. You will use every one of them. Ironmen grow ranarrs and pick snape grass.",
+      "note": "Ranarr unfinished potions and snape grass, about 2,230 an hour. Prayer potions sell for close to what they cost to make.",
       "src": "Herblore training"
     },
     {
       "lv": 45,
       "name": "Super attack, strength, defence",
-      "who": "both",
+      "who": "main",
       "int": "active",
-      "cost": "pricey",
-      "xph": 250000,
+      "cost": "cheap",
+      "xph": 223100,
       "bands": [
         [
           45,
-          250000
+          223100
         ],
         [
           55,
-          312500
+          278900
         ],
         [
           66,
-          375000
+          334700
         ]
       ],
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Super attack at 45, super strength at 55, super defence at 66. All three feed super combats at 90.",
+      "note": "Super attack at 45, super strength at 55, super defence at 66, about 2,230 an hour from bought unfinished potions. All three go into super combats at 90.",
       "src": "Herblore training"
     },
     {
@@ -205,62 +327,86 @@
       "name": "Mastering Mixology",
       "who": "both",
       "int": "active",
-      "cost": "cheap",
-      "xph": 0,
+      "cost": "profit",
+      "xph": 52000,
       "bands": [
         [
           60,
-          0
+          52000
+        ],
+        [
+          63,
+          53400
+        ],
+        [
+          66,
+          55400
+        ],
+        [
+          69,
+          57700
+        ],
+        [
+          72,
+          60200
+        ],
+        [
+          75,
+          62900
+        ],
+        [
+          78,
+          65700
         ],
         [
           81,
-          89250
+          67900
         ]
       ],
       "req": "q:Druidic Ritual|Children of the Sun",
       "run": false,
       "supply": true,
-      "note": "Aldarin minigame. Uses herbs only and gives far more XP per herb. Up to 105k an hour at 81. Source of goggles and amulet.",
-      "src": "Herblore training"
+      "note": "Refine herbs into paste and fill potion orders in Aldarin, about 68k an hour at 81 with every speed-up. Aldarium bought with the resin sells for a large profit.",
+      "src": "Mastering Mixology"
     },
     {
       "lv": 63,
       "name": "Super restores",
-      "who": "both",
+      "who": "main",
       "int": "active",
-      "cost": "pricey",
-      "xph": 356000,
+      "cost": "cheap",
+      "xph": 318000,
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Snapdragon and red spiders' eggs. Always useful for bossing and raids.",
+      "note": "Snapdragon unfinished potions and red spiders' eggs, about 2,230 an hour. Always in demand for bossing and raids.",
       "src": "Herblore training"
     },
     {
       "lv": 69,
       "name": "Antifire, ranging, magic potions",
-      "who": "both",
+      "who": "main",
       "int": "active",
-      "cost": "pricey",
-      "xph": 393750,
+      "cost": "cheap",
+      "xph": 351400,
       "bands": [
         [
           69,
-          393750
+          351400
         ],
         [
           72,
-          406250
+          362600
         ],
         [
           76,
-          431250
+          384900
         ]
       ],
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Antifire at 69, ranging at 72, magic at 76. Lantadyme or dwarf weed with scale dust, wine of Zamorak or potato cactus.",
+      "note": "Antifire at 69, ranging at 72, magic at 76, about 2,230 an hour. Lantadyme or dwarf weed with dragon scale dust, wine of Zamorak or potato cactus.",
       "src": "Herblore training"
     },
     {
@@ -268,25 +414,52 @@
       "name": "Stamina potions",
       "who": "both",
       "int": "active",
-      "cost": "pricey",
-      "xph": 280500,
+      "cost": "cheap",
+      "xph": 242200,
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Amylase crystals on super energy(4), 27 per inventory. Tick-manipulated rate is 535,500 at high intensity.",
+      "note": "Four amylase crystals into each 4-dose super energy, 27 a load at 2 ticks: about 2,370 an hour. Slower than magic potions unless you tick manipulate it.",
+      "src": "Herblore training"
+    },
+    {
+      "lv": 77,
+      "name": "Stamina, extended antifire, anti-venom (1-tick)",
+      "who": "main",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 453100,
+      "bands": [
+        [
+          77,
+          453100
+        ],
+        [
+          84,
+          488600
+        ],
+        [
+          87,
+          533000
+        ]
+      ],
+      "req": "q:Druidic Ritual",
+      "run": false,
+      "supply": true,
+      "note": "Tick-perfect: hold space and add a stacking secondary every tick, about 4,440 an hour. Staminas at 77, extended antifires at 84, anti-venoms at 87.",
       "src": "Herblore training"
     },
     {
       "lv": 81,
       "name": "Saradomin brews",
-      "who": "both",
+      "who": "main",
       "int": "active",
-      "cost": "pricey",
-      "xph": 450000,
+      "cost": "cheap",
+      "xph": 401600,
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Toadflax and crushed nests. Ironmen get nests from bird houses, Miscellania and mole parts.",
+      "note": "Toadflax unfinished potions and crushed nests, about 2,230 an hour. Brews sell for a little less than they cost to make.",
       "src": "Herblore training"
     },
     {
@@ -295,21 +468,21 @@
       "who": "main",
       "int": "active",
       "cost": "pricey",
-      "xph": 522500,
+      "xph": 423900,
       "bands": [
         [
           85,
-          522500
+          423900
         ],
         [
           89,
-          563750
+          457400
         ]
       ],
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Fastest non-tick rates in the guide. Dwarf weed with nihil dust, then umbral potions with rainbow crab paste at 89.",
+      "note": "Dwarf weed with nihil dust at 85, then umbral potions with rainbow crab paste at 89, about 2,230 an hour. The fastest without tick manipulation, at a cost.",
       "src": "Herblore training"
     },
     {
@@ -317,21 +490,25 @@
       "name": "Super combat potions",
       "who": "main",
       "int": "active",
-      "cost": "pricey",
-      "xph": 324900,
+      "cost": "profit",
+      "xph": 297500,
       "req": "q:Druidic Ritual",
       "run": false,
       "supply": true,
-      "note": "Torstol on super attack, strength and defence (4). About 2,166 an hour. Slower than brews but the potion everyone uses.",
+      "note": "A 4-dose super attack, strength and defence with a torstol, 7 a load: about 1,980 an hour. Slower than brews, but they sell at a profit.",
       "src": "Herblore training"
     }
   ],
   "unverified": [
-    "Quests for the early levels: one-off quest XP, no hourly rate in the guide (xph 0)",
-    "Mastering Mixology: the guide gives no rate at level 60, only 'up to 105k xp/hour' at 81 (band at 81 is 85% of that)",
-    "Guthix rest: needs partial completion of One Small Favour, which the req syntax cannot express, so only Druidic Ritual is listed in req",
-    "Cleaning grimy herbs: rates are the guide's 10,000 herbs/hour manual-click assumption times XP per herb. The page renders them through a template, so the per-hour figures are computed, not quoted",
-    "Cost labels for potions are a judgement: the guide's cost columns are live Grand Exchange price templates with no fixed numbers",
-    "Herbiboar (Ironman Guide, 80 Hunter): described as giving 'a small amount of Herblore experience', no rate, so not included as a method"
+    "Bought potions: 85% of the rebuilt 2,625 an hour (14 potions at 2 ticks and 4 ticks of banking, the battlestaff and bow stringing basis of Crafting and Fletching); the guide's 2,500 is 95% of it and Wise Old Man's main table uses 2,500 as written; the Armadyl brew money making guide says about 2,100",
+    "Potions from your own herbs: 85% of a rebuilt 1,680 an hour (the unfinished potion at 1 tick a herb, then the potion, each load banked in 4 ticks); herbs are taken as cleaned on herb runs, so the cleaning XP is not counted; an ironman is rated as if supplied with herbs, vials of water and secondaries",
+    "Potions from your own herbs with Zahur: her 200 coins a potion and the hard Desert Diary; she also cleans noted grimy herbs for 200 with the diary, which gives no XP; the trip to Nardah for each batch is not counted",
+    "Cleaning grimy herbs: 85% of the guide's 10,000 an hour by hand; the cleaning money making guide gives 10 to 20 seconds a load (5,000 to 10,000 an hour); the game takes at most 10 clicks a tick; grimy herbs have a buy limit of 13,000 every four hours",
+    "Guthix rest: the guide's 1,400 an hour with moderate concentration, which its money making guide repeats (one source); the recipe lists 1 tick, which would allow far more; cups of hot water trade about 2,400 a day (October median), under two hours of teas",
+    "Herb tar: 3 ticks a herb from the recipe; the guide's 78 loads an hour (2,028 herbs) is more than 3 ticks allow even with no banking; irit tar from 55 is left out (85 XP, 17% more than harralander tar, at 10.6 coins an XP against 5.1)",
+    "Mastering Mixology: the minigame page's 70,000 an hour at 81 with every speed-up, less about 3 minutes of refining an hour; below 81 scaled by the mean XP of the orders, though processing is also slower at lower levels, so those bands may be a little high; the strategy page's batch method gives up to 105k (85%: 89,250) with no control of the resin; about 45k without speed-ups",
+    "Costs at 21 October prices, coins an XP: attack potions 21.3, strength 9.9, energy 6.8, prayer 0.6, super attack 1.6, super strength 3.1, super restore 4.8, super defence 4.1, antifire 6.1, ranging 5.2, magic 7.7, Saradomin brew 5.2, ancient brew 29.6, Armadyl brew 13.8; potion margins move with herb prices",
+    "Stamina, extended antifire, anti-venom (1-tick): 85% of 27 a load at 1 tick with 4 ticks of banking (5,226; the guide's column uses 5,250 and its text says an average of 4,583); antifire potions and anti-venoms trade about 14,000 a day (October medians), about three hours of either",
+    "Not included: serum 207 (needs Shades of Mort'ton started; one a tick, 198,300 at 85%, Wise Old Man main's row from 25 to 52, saves a tick player minutes); super energy at 52 (3 levels, about 2 minutes); antipoison, restore, defence, agility and combat potions (under a minute each; defence and agility pricey); goading and prayer regeneration potions (aldarium, 79 and 97 coins an XP); super fishing and super hunter potions (pricey, thin trade); Zamorak brews (1.4% over magic potions, 19.2 coins an XP); bastion, battlemage and surge potions (slower or untradeable); menaphite remedies (one level, 5% over ancient brews); extended super antifires (Dragon Slayer II, thin trade); super antifires, anti-venom+, extended anti-venom+, extended staminas and forgotten brews (slower than brews); haemostatic dressings (two steps, about 141,700); barbarian mixes; Degrime (a Magic spell, half the cleaning XP); herbiboars (a Hunter method); Armadyl brews for ironmen (77 Farming and 77 Hunter with Sailing for the coral and crabs)"
   ]
 }

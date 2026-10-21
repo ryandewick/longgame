@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 import type { Account } from '#shared/types/account'
 import { maxProgress } from '#shared/domain/estimates'
 import { planQuestions, savesHours } from '#shared/domain/plan-questions'
-import { declineQuest, tickQuest, type QuestTicks } from '#shared/domain/quest-ticks'
+import { declineDiary, declineQuest, tickQuest, type QuestTicks } from '#shared/domain/quest-ticks'
 import { accountFromSave, migrateLegacySave, type LegacySaveV1 } from '#shared/domain/save'
 
 /*
@@ -25,7 +25,7 @@ const fixture = JSON.parse(
 const truth: Account = { ...accountFromSave(migrateLegacySave(fixture.state)), type: 'iron' }
 
 describe('the finding the question flow rests on', () => {
-  it('takes the fixture account from 2,819 hours to 2,308 in 12 questions, asked biggest saving first', () => {
+  it('takes the fixture account from 2,819 hours to 2,330 in 13 questions, asked biggest saving first', () => {
     let ticks: QuestTicks = {
       completedQuests: [],
       completedDiaries: [],
@@ -43,11 +43,14 @@ describe('the finding the question flow rests on', () => {
     for (;;) {
       const [question] = planQuestions(account(), ticks, savesHours).savingHours
       if (!question) break
-      const { name } = question.requirement
+      const { kind, name } = question.requirement
       asked.push(name)
-      ticks = truth.completedQuests.has(name)
-        ? tickQuest(ticks, name).ticks
-        : declineQuest(ticks, name)
+      // the account here has no diary tiers, so a diary that saves hours is not done yet
+      if (kind === 'diary') ticks = declineDiary(ticks, name)
+      else
+        ticks = truth.completedQuests.has(name)
+          ? tickQuest(ticks, name).ticks
+          : declineQuest(ticks, name)
     }
 
     expect(asked).toEqual([
@@ -61,10 +64,11 @@ describe('the finding the question flow rests on', () => {
       'Children of the Sun',
       'Lunar Diplomacy',
       'Vale Totems',
+      'Desert Hard',
       'Creature of Fenkenstrain',
       'Pandemonium',
     ])
-    expect(Math.round(maxProgress(account()).hoursLeft)).toBe(2308)
+    expect(Math.round(maxProgress(account()).hoursLeft)).toBe(2330)
     // exactly what ticking every quest and diary tier the account has done gives
     expect(maxProgress(account()).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })

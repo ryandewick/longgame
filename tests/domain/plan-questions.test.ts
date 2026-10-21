@@ -182,9 +182,9 @@ describe('planQuestions: what can be asked about', () => {
   })
 
   it('counts the open requirements it does not ask about', () => {
-    // 47 quests and 12 diary tiers gate something; with nothing ticked 38 are worth a question
-    expect(gatingQuests().length + gatingDiaries().length).toBe(59)
-    expect(questions).toHaveLength(38)
+    // 48 quests and 12 diary tiers gate something; with nothing ticked 39 are worth a question
+    expect(gatingQuests().length + gatingDiaries().length).toBe(60)
+    expect(questions).toHaveLength(39)
     expect(setAsideCount).toBe(21)
   })
 
@@ -207,7 +207,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan))).not.toContain('Tears of Guthix')
     expect(namesAsked(everyQuestion(plan))).not.toContain('Kandarin Easy')
     // an answer is not something set aside
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(57)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(58)
   })
 
   it('does not ask about a quest that requires one answered "not yet"', () => {
@@ -224,7 +224,7 @@ describe('planQuestions: what can be asked about', () => {
     expect(namesAsked(everyQuestion(plan)).filter((name) => dependants.includes(name))).toEqual([])
     // ruled out is not set aside either: the count is of quests that could still become questions
     const ruledOut = gatingQuests().filter((name) => dependants.includes(name))
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(59 - 1 - ruledOut.length)
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(60 - 1 - ruledOut.length)
   })
 
   it('asks about nothing a shortcut already covers', () => {
@@ -313,8 +313,8 @@ describe('planQuestions: what a question carries', () => {
       withRequirementDone(unticked, quest('Druidic Ritual')),
       'Bone Voyage',
     ).hoursSaved
-    expect(alone).toBeCloseTo(290.6, 1)
-    expect(withChain).toBeCloseTo(375.6, 1)
+    expect(alone).toBeCloseTo(268.9, 1)
+    expect(withChain).toBeCloseTo(353.9, 1)
     expect(onItsOwn).toBeLessThan(withChain - alone + 1)
     expect(questionAbout(unticked, 'Bone Voyage').skillsChanged).toContain('herblore')
   })
@@ -518,7 +518,7 @@ describe('planQuestions: the two rounds', () => {
   it('asks the questions that save hours first, and keeps the smaller ones for a second round', () => {
     expect(plan.savingHours.every(savesHours)).toBe(true)
     expect(plan.smaller.some(savesHours)).toBe(false)
-    expect(plan.savingHours).toHaveLength(23)
+    expect(plan.savingHours).toHaveLength(24)
     expect(plan.smaller).toHaveLength(15)
   })
 
@@ -556,20 +556,21 @@ describe('planQuestions: the order', () => {
         (question) => `${question.requirement.name} ${Math.round(question.hoursSaved)}`,
       ),
     ).toEqual([
-      // Druidic Ritual opens Herblore: it is behind every 291 here, so it is asked before them
-      'Druidic Ritual 291',
-      'Bone Voyage 376',
-      'Sins of the Father 362',
-      'Shilo Village 291',
-      'Lunar Diplomacy 298',
-      'Dream Mentor 298',
-      'Swan Song 297',
-      'Desert Treasure I 291',
-      'Fairytale II - Cure a Queen 291',
-      "Shades of Mort'ton 291",
-      'Tai Bwo Wannai Trio 291',
-      'Throne of Miscellania 291',
-      'A Kingdom Divided 291',
+      // Druidic Ritual opens Herblore: it is behind every 269 here, so it is asked before them
+      'Druidic Ritual 269',
+      'Bone Voyage 354',
+      'Sins of the Father 341',
+      'Shilo Village 269',
+      'Lunar Diplomacy 276',
+      'Dream Mentor 276',
+      'One Small Favour 269',
+      'Swan Song 276',
+      'Desert Treasure I 269',
+      'Fairytale II - Cure a Queen 269',
+      "Shades of Mort'ton 269",
+      'Tai Bwo Wannai Trio 269',
+      'Throne of Miscellania 269',
+      'A Kingdom Divided 269',
       'Family Crest 82',
       'Sleeping Giants 75',
       // and Children of the Sun is behind the four that follow it
@@ -679,7 +680,7 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,819 hours to 2,308 in the 10 questions of the first round', () => {
+  it('takes the fixture account from 2,819 hours to 2,330 in the 11 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
     expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2819)
     expect(
@@ -688,7 +689,7 @@ describe('planQuestions: a whole run of answers', () => {
           `${requirement.name} ${Math.round(hoursSaved)} ${truth.completedQuests.has(requirement.name) ? 'yes' : 'no'}`,
       ),
     ).toEqual([
-      'Druidic Ritual 291 yes',
+      'Druidic Ritual 269 yes',
       'Bone Voyage 85 yes',
       'Family Crest 82 yes',
       'Sins of the Father 72 no',
@@ -696,20 +697,21 @@ describe('planQuestions: a whole run of answers', () => {
       'Children of the Sun 26 yes',
       'Lunar Diplomacy 48 no',
       'Vale Totems 21 yes',
+      'Desert Hard 19 no',
       'Creature of Fenkenstrain 7 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2308)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2330)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
 
-  it('asks 27 questions if the player goes on through the second round: 10, then 17 smaller ones', () => {
+  it('asks 27 questions if the player goes on through the second round: 11, then 16 smaller ones', () => {
     const { asked, account } = answerTruthfully()
     expect(asked).toHaveLength(27)
-    expect(asked.filter(savesHours)).toHaveLength(10)
+    expect(asked.filter(savesHours)).toHaveLength(11)
     // the first round is over before the second starts
-    expect(asked.slice(0, 10).every(savesHours)).toBe(true)
+    expect(asked.slice(0, 11).every(savesHours)).toBe(true)
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
 
@@ -803,7 +805,7 @@ describe('the count of questions over the card', () => {
   const neverGrows = (totals: readonly number[]): boolean =>
     totals.every((total, index) => index === 0 || total <= (totals[index - 1] ?? 0))
 
-  // 'Question 1 of at most 23' is only true if the total can fall but not rise
+  // 'Question 1 of at most 24' is only true if the total can fall but not rise
   it.each([
     ['answered as the fixture did', asTheFixtureDid],
     ['all answered yes', () => true],
@@ -819,7 +821,7 @@ describe('the count of questions over the card', () => {
 
   it('starts well above what is asked, which is why it says at most', () => {
     const { totals } = totalsShown('savingHours', asTheFixtureDid)
-    expect(totals[0]).toBe(23)
-    expect(totals).toHaveLength(10)
+    expect(totals[0]).toBe(24)
+    expect(totals).toHaveLength(11)
   })
 })
