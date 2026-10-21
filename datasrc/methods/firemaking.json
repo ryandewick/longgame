@@ -7,49 +7,218 @@
       "who": "both",
       "int": "active",
       "cost": "cheap",
-      "xph": 74250,
+      "xph": 12800,
       "bands": [
         [
           1,
-          74250
+          12800
+        ],
+        [
+          2,
+          13800
+        ],
+        [
+          3,
+          14600
+        ],
+        [
+          4,
+          15600
+        ],
+        [
+          5,
+          16400
+        ],
+        [
+          6,
+          17400
+        ],
+        [
+          7,
+          18100
+        ],
+        [
+          8,
+          19100
+        ],
+        [
+          9,
+          20100
+        ],
+        [
+          10,
+          20900
+        ],
+        [
+          11,
+          21900
+        ],
+        [
+          12,
+          22700
+        ],
+        [
+          13,
+          23700
+        ],
+        [
+          14,
+          24500
+        ],
+        [
+          15,
+          38200
+        ],
+        [
+          16,
+          39600
+        ],
+        [
+          17,
+          40800
+        ],
+        [
+          18,
+          42300
+        ],
+        [
+          19,
+          43500
+        ],
+        [
+          20,
+          45000
+        ],
+        [
+          21,
+          46200
+        ],
+        [
+          22,
+          47600
+        ],
+        [
+          23,
+          49100
+        ],
+        [
+          24,
+          50300
+        ],
+        [
+          25,
+          51800
+        ],
+        [
+          26,
+          53000
+        ],
+        [
+          27,
+          54400
+        ],
+        [
+          28,
+          55600
+        ],
+        [
+          29,
+          57100
         ],
         [
           30,
-          107000
+          87900
+        ],
+        [
+          31,
+          89600
+        ],
+        [
+          32,
+          91900
+        ],
+        [
+          33,
+          93600
+        ],
+        [
+          34,
+          95900
         ],
         [
           35,
-          138000
+          113900
+        ],
+        [
+          36,
+          116500
+        ],
+        [
+          37,
+          119100
+        ],
+        [
+          38,
+          121100
+        ],
+        [
+          39,
+          123700
+        ],
+        [
+          40,
+          125800
+        ],
+        [
+          41,
+          128400
         ],
         [
           42,
-          185625
+          155300
+        ],
+        [
+          43,
+          157800
         ],
         [
           45,
-          200475
+          170400
         ],
         [
           50,
-          233887
+          198800
         ],
         [
           60,
-          300712
+          255600
         ],
         [
           75,
-          451143
+          383500
         ],
         [
           90,
-          519750
+          441800
         ]
       ],
       "req": "",
       "run": false,
       "supply": true,
-      "note": "Best logs for your level lit by a bank, coloured logs below 30. Rates assume 1,485 logs an hour, close to tick-perfect.",
+      "note": "Light the best logs you can in a line by a bank, about 1,260 an hour; below 43 some lights fail. Oak at 15, willow 30, teak 35, maple 45, yew 60, magic 75, redwood 90.",
+      "src": "Pay-to-play Firemaking training"
+    },
+    {
+      "lv": 1,
+      "name": "Burning logs with firelighters",
+      "who": "main",
+      "int": "active",
+      "cost": "cheap",
+      "xph": 63100,
+      "req": "",
+      "run": false,
+      "supply": false,
+      "note": "Coat plain logs with gnomish firelighters from clues: 50 XP each and they always light, so they beat oak logs until 30. About 270 reach level 30.",
       "src": "Pay-to-play Firemaking training"
     },
     {
@@ -58,11 +227,185 @@
       "who": "iron",
       "int": "active",
       "cost": "free",
-      "xph": 0,
+      "xph": 6100,
+      "bands": [
+        [
+          1,
+          6100
+        ],
+        [
+          2,
+          6300
+        ],
+        [
+          3,
+          6400
+        ],
+        [
+          4,
+          6500
+        ],
+        [
+          5,
+          6700
+        ],
+        [
+          6,
+          6800
+        ],
+        [
+          7,
+          6900
+        ],
+        [
+          8,
+          7000
+        ],
+        [
+          9,
+          7100
+        ],
+        [
+          10,
+          7200
+        ],
+        [
+          11,
+          7300
+        ],
+        [
+          12,
+          7400
+        ],
+        [
+          14,
+          7500
+        ],
+        [
+          15,
+          13300
+        ],
+        [
+          16,
+          13400
+        ],
+        [
+          17,
+          13500
+        ],
+        [
+          18,
+          13700
+        ],
+        [
+          19,
+          13800
+        ],
+        [
+          20,
+          13900
+        ],
+        [
+          21,
+          17100
+        ],
+        [
+          22,
+          17300
+        ],
+        [
+          23,
+          17500
+        ],
+        [
+          24,
+          17600
+        ],
+        [
+          25,
+          17700
+        ],
+        [
+          26,
+          17900
+        ],
+        [
+          27,
+          18000
+        ],
+        [
+          28,
+          18100
+        ],
+        [
+          29,
+          18200
+        ],
+        [
+          30,
+          18400
+        ],
+        [
+          31,
+          22300
+        ],
+        [
+          32,
+          22500
+        ],
+        [
+          33,
+          22600
+        ],
+        [
+          34,
+          22800
+        ],
+        [
+          35,
+          29100
+        ],
+        [
+          36,
+          29200
+        ],
+        [
+          37,
+          29400
+        ],
+        [
+          38,
+          29500
+        ],
+        [
+          39,
+          29600
+        ],
+        [
+          40,
+          29700
+        ],
+        [
+          41,
+          34500
+        ],
+        [
+          42,
+          34600
+        ],
+        [
+          43,
+          34700
+        ],
+        [
+          50,
+          36900
+        ]
+      ],
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Chop the best tree you can and burn the logs where you stand. Oak from 15, teak from 39, mahogany from 50, yew from 60.",
+      "note": "Chop and burn each log where you stand: normal logs, oak at 15, teak at 35, Wintertodt from 50. Rates assume Woodcutting near your Firemaking level and the usual axes.",
       "src": "Ironman Guide/Firemaking"
     },
     {
@@ -70,122 +413,122 @@
       "name": "Pyre logs (1-tick)",
       "who": "main",
       "int": "active",
-      "cost": "cheap",
-      "xph": 92000,
+      "cost": "profit",
+      "xph": 78200,
       "req": "q:Shades of Mort'ton",
       "run": false,
       "supply": false,
-      "note": "Tick-perfect sacred oil on redwood or rosewood logs, fastest to 30. Only 29k an hour without tick manipulation.",
+      "note": "Tick-perfect: hold space and use sacred oil on redwood logs every tick, about 3,900 an hour at 20 XP each at any level. The pyre logs sell to players cremating shades.",
       "src": "Pay-to-play Firemaking training"
     },
     {
       "lv": 1,
       "name": "Forester's campfire (automatic)",
-      "who": "main",
+      "who": "both",
       "int": "afk",
       "cost": "cheap",
-      "xph": 26600,
+      "xph": 22600,
       "bands": [
         [
           1,
-          26600
+          22600
         ],
         [
           15,
-          39900
+          33900
         ],
         [
           30,
-          59850
+          50900
         ],
         [
           35,
-          69825
+          59400
         ],
         [
           42,
-          83125
+          70700
         ],
         [
           45,
-          89775
+          76300
         ],
         [
           50,
-          104737
+          89000
         ],
         [
           60,
-          134662
+          114500
         ],
         [
           75,
-          202027
+          171700
         ],
         [
           90,
-          232750
+          197800
         ]
       ],
       "req": "",
       "run": false,
-      "supply": false,
-      "note": "Add logs to a campfire next to a bank and let them feed in. About 150 seconds an inventory, 665 logs an hour.",
+      "supply": true,
+      "note": "Use logs on a fire beside a bank and it takes one every 9 ticks, about 150 seconds an inventory. The same XP a log as burning them, and none fail.",
       "src": "Pay-to-play Firemaking training"
     },
     {
       "lv": 1,
       "name": "Forester's campfire (manual tending)",
-      "who": "main",
+      "who": "both",
       "int": "semi",
       "cost": "cheap",
-      "xph": 33150,
+      "xph": 33200,
       "bands": [
         [
           1,
-          33150
+          33200
         ],
         [
           15,
-          49725
+          49700
         ],
         [
           30,
-          74588
+          74600
         ],
         [
           35,
-          87019
+          87000
         ],
         [
           42,
-          103594
+          103600
         ],
         [
           45,
-          111881
+          111900
         ],
         [
           50,
-          130528
+          130500
         ],
         [
           60,
-          167821
+          167800
         ],
         [
           75,
-          251774
+          251800
         ],
         [
           90,
-          290063
+          290100
         ]
       ],
       "req": "",
       "run": false,
-      "supply": false,
-      "note": "Hold space and keep tending the campfire by a bank. The guide's ceiling is 975 logs an hour, rates here are 85% of that.",
+      "supply": true,
+      "note": "Tend the campfire again at each XP drop with space held, up to 975 logs an hour against 665 left alone. The same XP a log as burning them.",
       "src": "Pay-to-play Firemaking training"
     },
     {
@@ -194,27 +537,203 @@
       "who": "both",
       "int": "semi",
       "cost": "profit",
-      "xph": 161000,
+      "xph": 161600,
       "bands": [
         [
           50,
-          161000
+          161600
+        ],
+        [
+          51,
+          164800
+        ],
+        [
+          52,
+          168100
+        ],
+        [
+          53,
+          171300
+        ],
+        [
+          54,
+          174500
+        ],
+        [
+          55,
+          177800
+        ],
+        [
+          56,
+          181000
+        ],
+        [
+          57,
+          184200
+        ],
+        [
+          58,
+          187500
+        ],
+        [
+          59,
+          190700
         ],
         [
           60,
-          193000
+          193900
+        ],
+        [
+          61,
+          197200
+        ],
+        [
+          62,
+          200400
+        ],
+        [
+          63,
+          203600
+        ],
+        [
+          64,
+          206900
+        ],
+        [
+          65,
+          210100
+        ],
+        [
+          66,
+          213300
+        ],
+        [
+          67,
+          216600
+        ],
+        [
+          68,
+          219800
+        ],
+        [
+          69,
+          223000
         ],
         [
           70,
-          226000
+          226300
+        ],
+        [
+          71,
+          229500
+        ],
+        [
+          72,
+          232700
+        ],
+        [
+          73,
+          236000
+        ],
+        [
+          74,
+          239200
+        ],
+        [
+          75,
+          242400
+        ],
+        [
+          76,
+          245700
+        ],
+        [
+          77,
+          248900
+        ],
+        [
+          78,
+          252100
+        ],
+        [
+          79,
+          255400
         ],
         [
           80,
-          258000
+          258600
+        ],
+        [
+          81,
+          261800
+        ],
+        [
+          82,
+          265100
+        ],
+        [
+          83,
+          268300
+        ],
+        [
+          84,
+          271500
+        ],
+        [
+          85,
+          274700
+        ],
+        [
+          86,
+          278000
+        ],
+        [
+          87,
+          281200
+        ],
+        [
+          88,
+          284400
+        ],
+        [
+          89,
+          287700
         ],
         [
           90,
-          290000
+          290900
+        ],
+        [
+          91,
+          294100
+        ],
+        [
+          92,
+          297400
+        ],
+        [
+          93,
+          300600
+        ],
+        [
+          94,
+          303800
+        ],
+        [
+          95,
+          307100
+        ],
+        [
+          96,
+          310300
+        ],
+        [
+          97,
+          313500
+        ],
+        [
+          98,
+          316800
         ],
         [
           99,
@@ -224,7 +743,7 @@
       "req": "",
       "run": false,
       "supply": false,
-      "note": "Chop and burn bruma roots on an official world, about 4 minutes a game. Needs no supplies and pays out loot crates. Wear warm clothes.",
+      "note": "Chop bruma roots and feed a brazier on an official world, about 5 minutes a game with the wait. Needs no supplies but four warm items, and pays out from the reward cart.",
       "src": "Pay-to-play Firemaking training"
     },
     {
@@ -233,21 +752,22 @@
       "who": "both",
       "int": "active",
       "cost": "cheap",
-      "xph": 77500,
+      "xph": 84200,
       "req": "q:Death to the Dorgeshuun;s:crafting 87,thieving 44",
       "run": false,
       "supply": true,
-      "note": "Fix lamps with light orbs you blow and wire yourself. 90k to 130k Crafting xp an hour on top. A main can buy orbs at 52 Crafting.",
+      "note": "Blow and wire your own light orbs and fix lamps around the city: 550 Firemaking and 724 Crafting XP a lamp, about 150 an hour. Bought orbs trade a few hundred a day.",
       "src": "Ironman Guide/Crafting"
     }
   ],
   "unverified": [
-    "Cutting and burning your own logs: the Ironman Guide gives no hourly rate (it defers to each tree's page), so xph is 0",
-    "Forester's campfire (manual tending): the guide's manual column is at 'up to 975 logs per hour'; bands are 85% of those figures per the up-to rule (table values run 39,000 at level 1 to 341,250 at 90)",
-    "Burning logs: the level 1 band (74,250) is for coloured logs with a firelighter, which never fail to light; 107,000 and 138,000 include time lost to failed lights; the alternative cheaper campfire progression uses ironwood logs at 80 (146,632 automatic)",
-    "Dorgesh-Kaan lamps: taken from the Crafting guides, not the Firemaking guides. 77,500 is the midpoint of the Ironman Guide's 65,000 (learning) and 90,000 (skilled); the main Crafting guide says 100,000 for skilled players. With bought light orbs a main only needs 52 Crafting, but no separate rate is given",
-    "Wintertodt: rates are from the main guide for mass worlds without fletching the roots; the Ironman Guide gives no numbers; r2_Wintertodt.txt has no hourly rates",
-    "Pyre logs (1-tick), Burning logs, both campfire entries: cost is a judgement call because GP/XP columns are live GE price templates",
-    "Omitted for lack of a rate: Shades of Mort'ton minigame (5+), solo Wintertodt, rosewood logs at 92 (the guide only says about four hours slower than redwood to 99)"
+    "Burning logs: 85% of the guides' 1,485 lights an hour (a light is 4 ticks, so 1,500 at most); the chance to light a plain log is the Firemaking page's crowdsourced chart (65/256 at 1, certain from 43, marked citation needed), and a failed light is taken as 4 more ticks, which rebuilds the guide's failure-inclusive willow and teak rows within 1% and 4%; by a rough tick count of my own (27 lights and about 30 ticks to teleport, bank and walk back) an easy Varrock row gives about 1,170 an hour, 7% under these rates",
+    "Burning logs with firelighters: gnomish firelighters are clue rewards that trade a median 3,100 to 4,100 a day per colour (30 days to 21 October), with a buy limit of 250 each; about 270 reach 30; coating each log is not timed",
+    "Cutting and burning your own logs: estimated from the Woodcutting file's tree rates at the same level plus the time to light each log; an ironman whose Woodcutting lags (the guide burns oak until Firemaking 39, when Woodcutting reaches 35) is slower; the guide starts with the logs that spawn on Lumbridge Castle's roof, which no page rates",
+    "Pyre logs (1-tick): 85% of the guide's 4,600 an hour, tested in March 2026; the guide's text of July 2024 put typical play at 55,000 and a sustainable cap at 80,000; a profit of about 11 coins an XP at 21 October prices with redwood, more with rosewood, but pyre log prices move; redwood pyre logs trade a median 10,000 a day (30 days to 21 October), from 717 to 127,199",
+    "Forester's campfire (manual tending): 975 an hour comes from one reader's report of June 2025 that the campfire page repeats; no page gives the mechanic behind it, and the Tend to option of 12 August 2026 may make it easier",
+    "Wintertodt: the main and Ultimate Ironman guides' table (320,000 x level / 99) dates from 2018, before the October 2024 rework; the Wintertodt strategy page's 350,000, set in March 2025 after testing, is 9% higher and would take 50 to 99 in 41.7 hours rather than 45.7; the pyromancer outfit's 2.5% is not counted",
+    "Dorgesh-Kaan lamps: one source, the Crafting guides' skilled 130,000 Crafting and 100,000 Firemaking an hour making your own orbs (180 lamps), taken at 85% as the Crafting file does; fixing lamps with bought orbs at 52 Crafting is faster but light orbs trade a median 377 a day (30 days to 21 October), a few hours of lamps",
+    "Not included: solo Wintertodt (310,000 at 99, slower Firemaking for more Construction and rolls); world-hopping Wintertodt (Wise Old Man ironman's 223,100 to 420,000, which the strategy page calls theoretical); fletching kindling at Wintertodt (290,000 at 99); Wise Old Man main's artefact thieving with burning (a Thieving method); cremating shades at Shades of Mort'ton (a Prayer method, in the Prayer file; 150,000 Firemaking at 95 by the money making guide's 300 an hour); creating pyre logs without tick manipulation (1,400 to 1,470 an hour, 29,400 XP); bow lighting (the same XP; the extra XP on Sailing logs was a bug fixed on 13 May 2026); barbarian pyre ships (chewed bones from the Ancient Cavern each); burning while collecting ashes (1,050 an hour, free-to-play); a quest skip (Heroes' Quest's 1,575 is the only Firemaking XP with no Firemaking level, enough for 12)"
   ]
 }

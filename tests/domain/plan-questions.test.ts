@@ -679,9 +679,9 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,816 hours to 2,305 in the 10 questions of the first round', () => {
+  it('takes the fixture account from 2,819 hours to 2,308 in the 10 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
-    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2816)
+    expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2819)
     expect(
       asked.map(
         ({ requirement, hoursSaved }) =>
@@ -699,7 +699,7 @@ describe('planQuestions: a whole run of answers', () => {
       'Creature of Fenkenstrain 7 yes',
       'Pandemonium 1 no',
     ])
-    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2305)
+    expect(Math.round(maxProgress(account).hoursLeft)).toBe(2308)
     // exactly what ticking everything the account has done gives
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
