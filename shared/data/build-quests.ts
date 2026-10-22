@@ -1,4 +1,4 @@
-import type { LampReward, Quest } from '../types/quest'
+import type { LampReward, Quest, QuestFacts } from '../types/quest'
 import type { SkillKey } from '../types/skill'
 import { isSkillKey } from './skills'
 import { DataSourceError } from './sources'
@@ -6,8 +6,7 @@ import type { FixedQuestXpSource, LampSource } from './sources'
 
 /**
  * The wiki's XP table titles some quests differently from the quest list the player ticks:
- * the Recipe for Disaster subquests above all. The app uses the quest list's names. The wiki's
- * prerequisite module uses the same titles (see build-quest-prerequisites.ts).
+ * the Recipe for Disaster subquests above all. The app uses the quest list's names.
  */
 export const QUEST_LIST_NAMES: Readonly<Record<string, string>> = {
   'Recipe for Disaster/Freeing King Awowogei': 'Recipe for Disaster - King Awowogei',
@@ -32,6 +31,13 @@ const MONKEY_MADNESS: LampReward = {
 
 const withThousands = (value: number): string => value.toLocaleString('en-US')
 
+/** How many lamps of what size, in words: 'A 300 xp lamp', 'Two 2,500 xp lamps'. */
+export function lampsInWords(count: number, xp: number): string {
+  return count === 1
+    ? `A ${withThousands(xp)} xp lamp`
+    : `${COUNT_WORDS[count] ?? withThousands(count)} ${withThousands(xp)} xp lamps`
+}
+
 const stripQuotes = (text: string): string => text.replace(/^'+|'+$/g, '')
 
 /**
@@ -55,10 +61,7 @@ function buildLampReward(source: LampSource): LampReward {
   const [xpText = '', countText = ''] = source.rewards.split(',').map((part) => part.trim())
   const xp = Number.parseInt(xpText, 10)
   const count = Number.parseInt(countText, 10)
-  let description =
-    count === 1
-      ? `A ${withThousands(xp)} xp lamp`
-      : `${COUNT_WORDS[count]} ${withThousands(xp)} xp lamps`
+  let description = lampsInWords(count, xp)
 
   const restrictions = source.restrictions.trim()
   if (/^\d+$/.test(restrictions)) {
@@ -78,30 +81,33 @@ function buildLampReward(source: LampSource): LampReward {
   return { description, totalXp: xp * count }
 }
 
-/** A quest while it is being put together from the two sources. */
+/** A quest while it is being put together from the sources. */
 interface QuestDraft {
   name: string
   fixedXp: Partial<Record<SkillKey, number>>
   lamps?: LampReward
-  skillLevelsNeeded: Partial<Record<SkillKey, number>>
-  miniquest: boolean
 }
 
 /**
- * Merges the two quest sources, fixed XP and skill-choice lamps, into one list in name order. A
- * quest's skill levels are its entry in `need` alone. The lamp table lists levels too, but as a
- * summary for readers: it counts the levels of the quests a quest requires, and optional ones.
+ * The quests that pay XP, in name order: the fixed XP of the XP table and the skill-choice lamps
+ * of the lamp table, with the lamps the quest facts add (the Varrock Museum's). Every one must be
+ * an entry of the quest facts, which give its kind and its skill levels. The lamp table lists
+ * levels too, but as a summary for readers: it counts the levels of the quests a quest requires,
+ * and optional ones, so they are not read.
+ *
  * Throws a DataSourceError listing everything wrong with the sources.
  */
-export function buildQuests(fixed: FixedQuestXpSource, lamps: readonly LampSource[]): Quest[] {
+export function buildQuests(
+  fixed: FixedQuestXpSource,
+  lamps: readonly LampSource[],
+  facts: readonly QuestFacts[],
+): Quest[] {
   const problems: string[] = []
   const quests = new Map<string, QuestDraft>()
-  // `need` names a quest as its own table does: the XP table's name, or the lamp table's
-  const bySourceName = new Map<string, QuestDraft>()
   const draft = (name: string): QuestDraft => {
     let quest = quests.get(name)
     if (!quest) {
-      quest = { name, fixedXp: {}, skillLevelsNeeded: {}, miniquest: false }
+      quest = { name, fixedXp: {} }
       quests.set(name, quest)
     }
     return quest
@@ -109,39 +115,42 @@ export function buildQuests(fixed: FixedQuestXpSource, lamps: readonly LampSourc
 
   for (const [sourceName, xpBySkill] of Object.entries(fixed.xp)) {
     const quest = draft(QUEST_LIST_NAMES[sourceName] ?? sourceName)
-    bySourceName.set(sourceName, quest)
     for (const [skill, xp] of Object.entries(xpBySkill)) {
       if (isSkillKey(skill)) quest.fixedXp[skill] = roundHalfToEven(xp)
       else problems.push(`quest ${sourceName}: unknown skill '${skill}'`)
     }
-    if (fixed.mini.includes(sourceName)) quest.miniquest = true
   }
 
   for (const source of lamps) {
-    const name = lampQuestName(source)
-    const quest = draft(name)
-    bySourceName.set(name, quest)
+    const quest = draft(lampQuestName(source))
     quest.lamps = buildLampReward(source)
     if (!Number.isFinite(quest.lamps.totalXp)) {
       problems.push(`quest ${quest.name}: lamp rewards '${source.rewards}'`)
     }
   }
 
-  for (const [sourceName, levels] of Object.entries(fixed.need)) {
-    const quest = bySourceName.get(sourceName)
-    if (!quest) {
-      problems.push(`quest ${sourceName}: levels, but no XP or lamps under that name`)
+  for (const entry of facts) {
+    if (!entry.lamps) continue
+    const quest = draft(entry.name)
+    if (quest.lamps)
+      problems.push(`quest ${entry.name}: lamps in both the lamp table and the facts`)
+    quest.lamps = entry.lamps
+  }
+
+  const factsByName = new Map(facts.map((entry) => [entry.name, entry]))
+  const built: Quest[] = []
+  for (const quest of quests.values()) {
+    const entry = factsByName.get(quest.name)
+    if (!entry) {
+      problems.push(`quest ${quest.name}: pays XP, but is not in the quest facts`)
       continue
     }
-    for (const [skill, level] of Object.entries(levels)) {
-      if (isSkillKey(skill)) quest.skillLevelsNeeded[skill] = level
-      else problems.push(`quest ${sourceName}: needs unknown skill '${skill}'`)
-    }
+    built.push({ ...quest, kind: entry.kind, skillLevelsNeeded: entry.levels })
   }
 
   if (problems.length) throw new DataSourceError(problems)
   // plain code-point order, not a locale's: the list must come out the same on every machine
-  return [...quests.values()].sort((first, second) =>
+  return built.sort((first, second) =>
     first.name < second.name ? -1 : first.name > second.name ? 1 : 0,
   )
 }

@@ -1,8 +1,9 @@
 import type { Account } from '../types/account'
-import type { Quest } from '../types/quest'
+import type { Quest, QuestFacts } from '../types/quest'
 import type { Requirements, SkillRequirement } from '../types/requirement'
 import type { SkillKey } from '../types/skill'
 import { METHODS } from '../data/methods'
+import { QUEST_FACTS } from '../data/quest-facts'
 import { QUESTS } from '../data/quests'
 import { RESETS } from '../data/resets'
 import { isSkillKey, SKILL_KEYS, skillName } from '../data/skills'
@@ -30,14 +31,31 @@ export function questTotalXp(quest: Quest): number {
   return fixed + (quest.lamps?.totalXp ?? 0)
 }
 
+const FACTS_BY_NAME: ReadonlyMap<string, QuestFacts> = new Map(
+  QUEST_FACTS.map((facts) => [facts.name, facts]),
+)
+
+/** What the data knows about a quest, miniquest or activity, by its name; undefined for a name it does not have. */
+export function questFacts(name: string): QuestFacts | undefined {
+  return FACTS_BY_NAME.get(name)
+}
+
+/** Which of these levels is the account still short of? In the order given. */
+export function levelsShort(
+  account: Account,
+  levels: Readonly<Partial<Record<SkillKey, number>>>,
+): SkillRequirement[] {
+  return skillEntries(levels)
+    .filter(([skill, level]) => account.skills[skill].level < level)
+    .map(([skill, level]) => ({ skill, level }))
+}
+
 /**
  * Which of the levels the wiki lists for a quest is the account still short of? In the order the
  * data lists them.
  */
 export function questLevelsShort(account: Account, quest: Quest): SkillRequirement[] {
-  return skillEntries(quest.skillLevelsNeeded)
-    .filter(([skill, level]) => account.skills[skill].level < level)
-    .map(([skill, level]) => ({ skill, level }))
+  return levelsShort(account, quest.skillLevelsNeeded)
 }
 
 /** A quest the account has not done, with what it pays and what the account still lacks for it. */
@@ -99,10 +117,11 @@ export function gatingDiaries(): string[] {
 }
 
 /**
- * Every quest the app knows by name: the ones that pay XP and the ones that gate something.
- * Each once, in plain code-point order. Not the game's whole quest list: a quest that does
- * neither changes nothing here.
+ * Every quest the app knows by name: the whole of the game's quest list (quests, Recipe for
+ * Disaster's parts, miniquests) and the two activities, from the quest facts. Each once, in plain
+ * code-point order. Every quest a requirement names is one of them: tests/data/integrity.test.ts
+ * holds the data to that.
  */
-export function knownQuests(quests: readonly Quest[] = QUESTS): string[] {
-  return [...new Set([...quests.map((quest) => quest.name), ...gatingQuests()])].sort()
+export function knownQuests(facts: readonly QuestFacts[] = QUEST_FACTS): string[] {
+  return facts.map((quest) => quest.name)
 }

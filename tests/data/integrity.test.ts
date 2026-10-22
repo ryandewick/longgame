@@ -6,19 +6,14 @@
 import { readFileSync, readdirSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import type { Method } from '#shared/types/method'
+import type { QuestFacts } from '#shared/types/quest'
 import type { Requirements } from '#shared/types/requirement'
 import { METHODS } from '#shared/data/methods'
-import { QUEST_PREREQUISITES } from '#shared/data/quest-prerequisites'
+import { QUEST_FACTS } from '#shared/data/quest-facts'
 import { QUESTS } from '#shared/data/quests'
 import { RESETS } from '#shared/data/resets'
 import { SKILL_KEYS, SKILLS, isSkillKey } from '#shared/data/skills'
-import { QUEST_PREREQUISITE_MODULE } from '#shared/data/sources'
-import type {
-  LampSource,
-  MethodSourceFile,
-  QuestPrerequisiteSource,
-  ResetSource,
-} from '#shared/data/sources'
+import type { LampSource, MethodSourceFile, ResetSource } from '#shared/data/sources'
 import { WILDCARDS } from '#shared/data/wildcards'
 import { questDependants, questPrerequisites } from '#shared/domain/quest-chains'
 import { gatingQuests, knownQuests } from '#shared/domain/quests'
@@ -349,9 +344,9 @@ describe('quests', () => {
     }
   })
 
-  it('has levels in need for every lamp quest whose table lists some', () => {
-    // The lamp table's levels are not read, so a quest it brings in has none until need lists the
-    // ones its own page gives. Dream Mentor's page lists none: the table's eight are those of the
+  it('has levels for every lamp quest whose table lists some', () => {
+    // The lamp table's levels are not read, so a quest it brings in has none until its facts list
+    // the ones its own page gives. Dream Mentor's page lists none: the table's eight are those of the
     // quests it requires, Lunar Diplomacy and Shilo Village.
     const levelsOf = new Map(QUESTS.map((quest) => [quest.name, quest.skillLevelsNeeded]))
     const listsLevels = (lamp: LampSource): boolean =>
@@ -366,113 +361,127 @@ describe('quests', () => {
   })
 })
 
-describe('quest prerequisites', () => {
-  const source = readSource<Record<string, QuestPrerequisiteSource>>('quest_prerequisites.json')
-  const { requires, fromOwnPage, unlisted } = QUEST_PREREQUISITES
+describe('quest facts', () => {
   const known = knownQuests()
+  const named = (quests: readonly QuestFacts[]) => quests.map((quest) => quest.name)
 
-  it('records where every entry came from: the wiki’s module, or the quest’s own page', () => {
-    const entries = Object.entries(source)
-    expect(entries.filter(([, entry]) => !entry.src.trim()).map(([name]) => name)).toEqual([])
-    const fromModule = entries.filter(([, entry]) => entry.src === QUEST_PREREQUISITE_MODULE)
-    expect(fromModule).toHaveLength(213)
-    // an entry read from a quest's page names that page
+  it('holds the game’s whole quest list and the two activities', () => {
+    // 184 quests, Recipe for Disaster's 10 parts and 20 miniquests: the game's list as RuneLite
+    // reads it from the game cache, and the wiki's lists, on 22 October 2026
+    const kinds = new Map<string, number>()
+    for (const quest of QUEST_FACTS) kinds.set(quest.kind, (kinds.get(quest.kind) ?? 0) + 1)
+    expect(Object.fromEntries(kinds)).toEqual({
+      quest: 184,
+      subquest: 10,
+      miniquest: 20,
+      activity: 2,
+    })
+    expect(named(QUEST_FACTS.filter((quest) => quest.kind === 'activity'))).toEqual([
+      'Knight Waves Training Grounds',
+      'Natural history quiz',
+    ])
+  })
+
+  it('names every entry as a tick is stored: straight apostrophes, each once, in code-point order', () => {
+    const names = named(QUEST_FACTS)
+    expect(duplicates(names)).toEqual([])
+    expect(names).toEqual([...names].sort())
+    expect(names.filter((name) => name.includes('’') || name !== name.trim())).toEqual([])
+  })
+
+  it('records the wiki page and the revision every entry was read from', () => {
     expect(
-      entries
-        .filter(([, entry]) => entry.src !== QUEST_PREREQUISITE_MODULE)
-        .filter(([name, entry]) => entry.src !== name)
-        .map(([name]) => name),
+      named(QUEST_FACTS.filter((quest) => !quest.page.trim() || !(quest.revision > 0))),
     ).toEqual([])
   })
 
-  it('has an entry for every quest the app knows', () => {
-    // A quest that turns up here is new to the app's data and in neither source yet: read what
-    // it requires from its wiki page and add it to datasrc/quest_prerequisites.json.
-    expect(unlisted).toEqual([])
+  it('has every quest that pays XP and every quest a method, a reset or a wildcard asks for', () => {
+    expect(QUESTS.map((quest) => quest.name).filter((name) => !known.includes(name))).toEqual([])
+    expect(gatingQuests().filter((name) => !known.includes(name))).toEqual([])
   })
 
-  it('reads these quests from their own pages, because the wiki’s module has no entry for them', () => {
-    // Pinned so that a refresh of the module shows what it has caught up with: a quest it now
-    // lists should drop its hand-read entry, and this list with it.
-    expect(fromOwnPage).toEqual([
-      'A Ruff Situation',
-      'Beneath Cursed Sands',
-      'Crab Quest',
-      'Current Affairs',
-      'Fallen From Grace',
-      'Land of the Goblins',
-      'Pandemonium',
-      'Prying Times',
-      'Scrambled!',
-      'Shadows of Custodia',
-      'Sleeping Giants',
-      'The Blood Moon Rises',
-      'The Final Dawn',
-      'The Ides of Milk',
-      'The Red Reef',
-      'Troubled Tortugans',
+  it('counts Learning the Ropes, and nothing else, as done by every account', () => {
+    expect(named(QUEST_FACTS.filter((quest) => quest.doneByEveryAccount))).toEqual([
+      'Learning the Ropes',
+    ])
+  })
+
+  it('marks as optional the 11 miniquests no quest and no diary task needs', () => {
+    const optional = QUEST_FACTS.filter((quest) => quest.optional)
+    expect(optional.every((quest) => quest.kind === 'miniquest')).toBe(true)
+    expect(named(optional)).toEqual([
+      'Bear Your Soul',
+      "Daddy's Home",
+      'Family Pest',
+      "Hopespear's Will",
+      'In Search of Knowledge',
+      'Into the Tombs',
+      'Mage Arena II',
+      'The Enchanted Key',
+      'The Fractured Archive',
+      'The Frozen Door',
       'Vale Totems',
     ])
   })
 
-  it('knows what 120 of the 190 quests require, and that the other 70 require none the app tracks', () => {
-    expect(known).toHaveLength(190)
-    expect(requires.size).toBe(120)
+  it('adds the Varrock Museum’s lamps to the four quests the lamp table has none for', () => {
+    expect(
+      QUEST_FACTS.filter((quest) => quest.lamps).map((quest) => [quest.name, quest.lamps?.totalXp]),
+    ).toEqual([
+      ['Defender of Varrock', 5000],
+      ['Making History', 1000],
+      ["Merlin's Crystal", 1000],
+      ['Shield of Arrav', 1000],
+    ])
   })
 
-  it('only ever names quests the app knows, each once, in name order', () => {
-    for (const [quest, required] of requires) {
-      expect(known, quest).toContain(quest)
-      expect(
-        required.filter((name) => !known.includes(name)),
-        quest,
-      ).toEqual([])
-      expect(duplicates(required), quest).toEqual([])
-      expect(required, quest).toEqual([...required].sort())
-      expect(required.length, quest).toBeGreaterThan(0)
-    }
+  it('chains every quest with a Herblore level to Druidic Ritual, which is what opens Herblore', () => {
+    expect(
+      named(
+        QUEST_FACTS.filter(
+          (quest) =>
+            quest.name !== 'Druidic Ritual' &&
+            quest.levels.herblore &&
+            !questPrerequisites(quest.name).includes('Druidic Ritual'),
+        ),
+      ),
+    ).toEqual([])
   })
 
   it('has no quest that requires itself, however long the chain', () => {
     expect(known.filter((quest) => questPrerequisites(quest).includes(quest))).toEqual([])
   })
 
-  it('keeps only full completions: nothing that is merely started, no template, no diary', () => {
-    const everyName = [...requires.keys(), ...[...requires.values()].flat()]
-    expect(
-      everyName.filter((name) => /^Started:|subquest|Name_of_quest|Diary$/.test(name)),
-    ).toEqual([])
-    // Rag and Bone Man II only needs these three started, so finishing it says nothing about them
-    expect(source['Rag and Bone Man II']?.requires).toContain('Started:Waterfall Quest')
-    expect(questPrerequisites('Rag and Bone Man II')).not.toContain('Waterfall Quest')
+  it('keeps the chains the research settled against Module:Questreq/data', () => {
+    // only started, so finishing the later quest says nothing about it
+    expect(questPrerequisites('Creature of Fenkenstrain')).not.toContain('The Restless Ghost')
+    expect(questPrerequisites('Curse of the Empty Lord')).toEqual([])
+    // finished, which the module had marked as only started
+    expect(questPrerequisites('Wanted!')).toContain('Enter the Abyss')
+    // no longer required since the page's edit of 8 August 2026
+    expect(questPrerequisites('Rag and Bone Man II')).not.toContain('Horror from the Deep')
+    expect(questPrerequisites('Rag and Bone Man II')).not.toContain('The Fremennik Trials')
+    // Architectural Alliance went with Kourend favour on 10 January 2024
+    expect(known).not.toContain('Architectural Alliance')
   })
 
-  it('reads the names the wiki writes differently', () => {
-    // an escaped apostrophe in the Lua, a stray space, and the Recipe for Disaster subquests
-    expect(requires.get("King's Ransom")).toEqual([
-      'Holy Grail',
-      'Murder Mystery',
-      'One Small Favour',
-    ])
-    expect(questDependants('Watchtower')).not.toEqual([])
-    expect(requires.get('Recipe for Disaster - King Awowogei')).toEqual([
-      "Cook's Assistant",
-      'Monkey Madness I',
-    ])
-  })
-
-  it('follows a chain through a quest the app does not track', () => {
-    // Desert Treasure I needs Troll Stronghold, which pays no XP and gates nothing; that needs Death Plateau
-    expect(known).not.toContain('Troll Stronghold')
-    expect(requires.get('Desert Treasure I')).toContain('Death Plateau')
-    // the whole of Recipe for Disaster is every subquest, through its last one
+  it('follows chains through quests that gate nothing, which the app now knows', () => {
+    // Desert Treasure I needs Troll Stronghold, which needs Death Plateau
+    expect(questPrerequisites('Desert Treasure I')).toEqual(
+      expect.arrayContaining(['Troll Stronghold', 'Death Plateau']),
+    )
+    // Enter the Abyss proves Rune Mysteries
+    expect(questPrerequisites('Enter the Abyss')).toEqual(['Rune Mysteries'])
+    // the whole of Recipe for Disaster is every part, through its last one
     expect(questPrerequisites('Recipe for Disaster')).toEqual(
       expect.arrayContaining([
-        'Recipe for Disaster - Evil Dave',
+        "Recipe for Disaster - Another Cook's Quest",
+        'Recipe for Disaster - Culinaromancer',
         'Desert Treasure I',
         'Death Plateau',
       ]),
     )
+    expect(questDependants('Watchtower')).not.toEqual([])
   })
 
   it('makes Dragon Slayer II the longest chain among the quests that gate something', () => {

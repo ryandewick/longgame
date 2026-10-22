@@ -1,9 +1,13 @@
-import { QUEST_PREREQUISITES } from '../data/quest-prerequisites'
+import { QUEST_FACTS } from '../data/quest-facts'
 
 /*
  * Quest chains. A quest that requires another cannot be finished before it, so one fact about a
  * quest settles others: finishing Underground Pass means Biohazard and Plague City are finished
  * too, and not having finished Plague City means neither of the other two can be.
+ *
+ * The chains are the quest facts' `requires`: what each quest's page says must be finished first,
+ * and Druidic Ritual behind a Herblore level. A quest that only has to be started is not part of a
+ * chain, since finishing the later quest says nothing about whether it was finished.
  *
  * Only quests are chained. Nothing is inferred between diary tiers, or between a diary and a quest.
  */
@@ -60,7 +64,14 @@ export function buildQuestChains(requires: ReadonlyMap<string, readonly string[]
   }
 }
 
-const CHAINS = buildQuestChains(QUEST_PREREQUISITES.requires)
+const CHAINS = buildQuestChains(
+  new Map(
+    QUEST_FACTS.filter((quest) => quest.requires.length).map((quest) => [
+      quest.name,
+      quest.requires,
+    ]),
+  ),
+)
 
 /** Every quest that must be finished before this one can be, in name order. */
 export function questPrerequisites(quest: string): readonly string[] {

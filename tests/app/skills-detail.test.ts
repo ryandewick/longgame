@@ -36,9 +36,9 @@ const optionWith = (
 
 const questWith = (name: string, fixedXp: Quest['fixedXp']): Quest => ({
   name,
+  kind: 'quest',
   fixedXp,
   skillLevelsNeeded: {},
-  miniquest: false,
 })
 
 const account = fixtureAccount()

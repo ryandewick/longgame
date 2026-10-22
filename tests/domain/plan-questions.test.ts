@@ -30,14 +30,23 @@ import { xpForLevel } from '#shared/domain/xp'
 
 /*
  * These run on the fixture account (tests/fixtures/account.json), as an ironman.
- * Its own ticks are taken as the truth about what it has done; the questions are put to the
- * same account with nothing ticked, the way a new player's account arrives from the hiscores.
+ * Its own ticks, with the quests they prove, are taken as the truth about what it has done; the
+ * questions are put to the same account with nothing ticked, the way a new player's account
+ * arrives from the hiscores. The proven quests are needed because the fixture was saved before the
+ * app knew Rune Mysteries and the other quests that gate nothing, so it could not tick them.
  */
 const fixture = JSON.parse(
   readFileSync(new URL('../fixtures/account.json', import.meta.url), 'utf8'),
 ) as { state: LegacySaveV1 }
 
-const truth: Account = { ...accountFromSave(migrateLegacySave(fixture.state)), type: 'iron' }
+const ticked = accountFromSave(migrateLegacySave(fixture.state))
+const truth: Account = {
+  ...ticked,
+  type: 'iron',
+  completedQuests: new Set(
+    [...ticked.completedQuests].flatMap((done) => [done, ...questPrerequisites(done)]),
+  ),
+}
 const unticked: Account = { ...truth, completedQuests: new Set(), completedDiaries: new Set() }
 
 const NOTHING_TICKED: QuestTicks = {

@@ -1,6 +1,17 @@
 import type { Account } from '../types/account'
 import type { SkillKey } from '../types/skill'
+import { QUEST_FACTS } from '../data/quest-facts'
 import { forEverySkill } from '../data/skills'
+
+/** The quests every account has done: Learning the Ropes, which every player finishes to reach the mainland. */
+const DONE_BY_EVERY_ACCOUNT: ReadonlySet<string> = new Set(
+  QUEST_FACTS.filter((quest) => quest.doneByEveryAccount).map((quest) => quest.name),
+)
+
+/** Has every account done this quest, whatever is ticked? */
+export function isDoneByEveryAccount(quest: string): boolean {
+  return DONE_BY_EVERY_ACCOUNT.has(quest)
+}
 
 /** An account that has not been looked up yet: level 1 everywhere, nothing ticked. */
 export function blankAccount(): Account {
@@ -22,7 +33,7 @@ export function isIronman(account: Account): boolean {
 
 /** Has the account finished this quest? */
 export function hasCompletedQuest(account: Account, quest: string): boolean {
-  return account.allQuests || account.completedQuests.has(quest)
+  return account.allQuests || isDoneByEveryAccount(quest) || account.completedQuests.has(quest)
 }
 
 /** Has the account finished this diary tier ('Ardougne Medium')? */

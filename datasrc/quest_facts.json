@@ -1,0 +1,2347 @@
+{
+ "A Kingdom Divided": {
+  "kind": "quest",
+  "page": "A Kingdom Divided",
+  "rev": 15369278,
+  "levels": {
+   "agility": 54,
+   "crafting": 38,
+   "herblore": 50,
+   "magic": 35,
+   "mining": 42,
+   "thieving": 52,
+   "woodcutting": 52
+  },
+  "requires": [
+   "Tale of the Righteous",
+   "The Ascent of Arceuus",
+   "The Depths of Despair",
+   "The Forsaken Tower",
+   "The Queen of Thieves"
+  ],
+  "implies": [
+   "Druidic Ritual"
+  ]
+ },
+ "A Night at the Theatre": {
+  "kind": "quest",
+  "page": "A Night at the Theatre",
+  "rev": 15367281,
+  "requires": [
+   "A Taste of Hope"
+  ]
+ },
+ "A Porcine of Interest": {
+  "kind": "quest",
+  "page": "A Porcine of Interest",
+  "rev": 15367468
+ },
+ "A Ruff Situation": {
+  "kind": "quest",
+  "page": "A Ruff Situation",
+  "rev": 15369893,
+  "levels": {
+   "crafting": 15
+  }
+ },
+ "A Soul's Bane": {
+  "kind": "quest",
+  "page": "A Soul's Bane",
+  "rev": 15359515
+ },
+ "A Tail of Two Cats": {
+  "kind": "quest",
+  "page": "A Tail of Two Cats",
+  "rev": 15364081,
+  "requires": [
+   "Icthlarin's Little Helper"
+  ]
+ },
+ "A Taste of Hope": {
+  "kind": "quest",
+  "page": "A Taste of Hope",
+  "rev": 15365042,
+  "levels": {
+   "agility": 45,
+   "attack": 40,
+   "crafting": 48,
+   "herblore": 40,
+   "slayer": 38
+  },
+  "requires": [
+   "Darkness of Hallowvale"
+  ],
+  "implies": [
+   "Druidic Ritual"
+  ]
+ },
+ "Alfred Grimhand's Barcrawl": {
+  "kind": "miniquest",
+  "page": "Alfred Grimhand's Barcrawl",
+  "rev": 15366023
+ },
+ "Animal Magnetism": {
+  "kind": "quest",
+  "page": "Animal Magnetism",
+  "rev": 15365722,
+  "levels": {
+   "crafting": 19,
+   "ranged": 30,
+   "slayer": 18,
+   "woodcutting": 35
+  },
+  "requires": [
+   "Ernest the Chicken",
+   "Priest in Peril",
+   "The Restless Ghost"
+  ]
+ },
+ "Another Slice of H.A.M.": {
+  "kind": "quest",
+  "page": "Another Slice of H.A.M.",
+  "rev": 15292360,
+  "levels": {
+   "attack": 15,
+   "prayer": 25
+  },
+  "requires": [
+   "Death to the Dorgeshuun",
+   "The Dig Site",
+   "The Giant Dwarf"
+  ]
+ },
+ "At First Light": {
+  "kind": "quest",
+  "page": "At First Light",
+  "rev": 15271675,
+  "levels": {
+   "construction": 27,
+   "herblore": 30,
+   "hunter": 46
+  },
+  "requires": [
+   "Children of the Sun",
+   "Eagles' Peak"
+  ],
+  "implies": [
+   "Druidic Ritual"
+  ]
+ },
+ "Barbarian Training": {
+  "kind": "miniquest",
+  "page": "Barbarian Training",
+  "rev": 15371361,
+  "levels": {
+   "agility": 15,
+   "crafting": 11,
+   "farming": 15,
+   "firemaking": 35,
+   "fishing": 55,
+   "herblore": 4,
+   "smithing": 5,
+   "strength": 35
+  },
+  "requires": [
+   "Druidic Ritual",
+   "Tai Bwo Wannai Trio"
+  ]
+ },
+ "Bear Your Soul": {
+  "kind": "miniquest",
+  "page": "Bear Your Soul",
+  "rev": 15311949,
+  "optional": true
+ },
+ "Below Ice Mountain": {
+  "kind": "quest",
+  "page": "Below Ice Mountain",
+  "rev": 15355831
+ },
+ "Beneath Cursed Sands": {
+  "kind": "quest",
+  "page": "Beneath Cursed Sands",
+  "rev": 15375048,
+  "levels": {
+   "agility": 62,
+   "crafting": 55,
+   "firemaking": 55
+  },
+  "requires": [
+   "Contact!"
+  ]
+ },
+ "Between a Rock...": {
+  "kind": "quest",
+  "page": "Between a Rock...",
+  "rev": 15342623,
+  "levels": {
+   "defence": 30,
+   "mining": 40,
+   "smithing": 50
+  },
+  "requires": [
+   "Dwarf Cannon",
+   "Fishing Contest"
+  ]
+ },
+ "Big Chompy Bird Hunting": {
+  "kind": "quest",
+  "page": "Big Chompy Bird Hunting",
+  "rev": 15367289,
+  "levels": {
+   "cooking": 30,
+   "fletching": 5,
+   "ranged": 30
+  }
+ },
+ "Biohazard": {
+  "kind": "quest",
+  "page": "Biohazard",
+  "rev": 15327977,
+  "requires": [
+   "Plague City"
+  ]
+ },
+ "Black Knights' Fortress": {
+  "kind": "quest",
+  "page": "Black Knights' Fortress",
+  "rev": 15367061
+ },
+ "Bone Voyage": {
+  "kind": "quest",
+  "page": "Bone Voyage",
+  "rev": 15364304,
+  "requires": [
+   "The Dig Site"
+  ]
+ },
+ "Cabin Fever": {
+  "kind": "quest",
+  "page": "Cabin Fever",
+  "rev": 15365342,
+  "levels": {
+   "agility": 42,
+   "crafting": 45,
+   "ranged": 40,
+   "smithing": 50
+  },
+  "requires": [
+   "Pirate's Treasure",
+   "Rum Deal"
+  ]
+ },
+ "Children of the Sun": {
+  "kind": "quest",
+  "page": "Children of the Sun",
+  "rev": 15241067
+ },
+ "Client of Kourend": {
+  "kind": "quest",
+  "page": "Client of Kourend",
+  "rev": 15315592,
+  "requires": [
+   "X Marks the Spot"
+  ]
+ },
+ "Clock Tower": {
+  "kind": "quest",
+  "page": "Clock Tower",
+  "rev": 15166584
+ },
+ "Cold War": {
+  "kind": "quest",
+  "page": "Cold War",
+  "rev": 15315223,
+  "levels": {
+   "agility": 30,
+   "construction": 34,
+   "crafting": 30,
+   "hunter": 10,
+   "thieving": 15
+  }
+ },
+ "Contact!": {
+  "kind": "quest",
+  "page": "Contact!",
+  "rev": 15327950,
+  "requires": [
+   "Icthlarin's Little Helper",
+   "Prince Ali Rescue"
+  ]
+ },
+ "Cook's Assistant": {
+  "kind": "quest",
+  "page": "Cook's Assistant",
+  "rev": 15375073
+ },
+ "Crab Quest": {
+  "kind": "quest",
+  "page": "Crab Quest",
+  "rev": 15375625,
+  "levels": {
+   "fishing": 30,
+   "sailing": 40
+  }
+ },
+ "Creature of Fenkenstrain": {
+  "kind": "quest",
+  "page": "Creature of Fenkenstrain",
+  "rev": 15343497,
+  "levels": {
+   "crafting": 20,
+   "thieving": 25
+  },
+  "requires": [
+   "Priest in Peril"
+  ]
+ },
+ "Current Affairs": {
+  "kind": "quest",
+  "page": "Current Affairs",
+  "rev": 15314499,
+  "levels": {
+   "fishing": 10,
+   "sailing": 22
+  },
+  "requires": [
+   "Pandemonium"
+  ]
+ },
+ "Curse of the Empty Lord": {
+  "kind": "miniquest",
+  "page": "Curse of the Empty Lord",
+  "rev": 15365488,
+  "levels": {
+   "prayer": 31
+  }
+ },
+ "Daddy's Home": {
+  "kind": "miniquest",
+  "page": "Daddy's Home",
+  "rev": 15337234,
+  "optional": true
+ },
+ "Darkness of Hallowvale": {
+  "kind": "quest",
+  "page": "Darkness of Hallowvale",
+  "rev": 15355656,
+  "levels": {
+   "agility": 26,
+   "construction": 5,
+   "crafting": 32,
+   "magic": 33,
+   "mining": 20,
+   "strength": 40,
+   "thieving": 22
+  },
+  "requires": [
+   "In Aid of the Myreque"
+  ]
+ },
+ "Death Plateau": {
+  "kind": "quest",
+  "page": "Death Plateau",
+  "rev": 15368733
+ },
+ "Death on the Isle": {
+  "kind": "quest",
+  "page": "Death on the Isle",
+  "rev": 15375163,
+  "levels": {
+   "agility": 32,
+   "thieving": 34
+  },
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Death to the Dorgeshuun": {
+  "kind": "quest",
+  "page": "Death to the Dorgeshuun",
+  "rev": 15373692,
+  "levels": {
+   "agility": 23,
+   "thieving": 23
+  },
+  "requires": [
+   "The Lost Tribe"
+  ]
+ },
+ "Defender of Varrock": {
+  "kind": "quest",
+  "page": "Defender of Varrock",
+  "rev": 15372163,
+  "levels": {
+   "hunter": 52,
+   "smithing": 55
+  },
+  "requires": [
+   "Below Ice Mountain",
+   "Demon Slayer",
+   "Family Crest",
+   "Garden of Tranquillity",
+   "Romeo & Juliet",
+   "Shield of Arrav",
+   "Temple of Ikov",
+   "What Lies Below"
+  ],
+  "lamps": [
+   {
+    "count": 1,
+    "xp": 5000,
+    "minLevel": 30,
+    "from": "Historian Minas"
+   }
+  ]
+ },
+ "Demon Slayer": {
+  "kind": "quest",
+  "page": "Demon Slayer",
+  "rev": 15369950
+ },
+ "Desert Treasure I": {
+  "kind": "quest",
+  "page": "Desert Treasure I",
+  "rev": 15374595,
+  "levels": {
+   "firemaking": 50,
+   "magic": 50,
+   "slayer": 10,
+   "thieving": 53
+  },
+  "requires": [
+   "Priest in Peril",
+   "Temple of Ikov",
+   "The Dig Site",
+   "The Tourist Trap",
+   "Troll Stronghold",
+   "Waterfall Quest"
+  ]
+ },
+ "Desert Treasure II - The Fallen Empire": {
+  "kind": "quest",
+  "page": "Desert Treasure II - The Fallen Empire",
+  "rev": 15374592,
+  "levels": {
+   "construction": 60,
+   "firemaking": 75,
+   "herblore": 62,
+   "magic": 75,
+   "runecraft": 60,
+   "thieving": 70
+  },
+  "requires": [
+   "Below Ice Mountain",
+   "Desert Treasure I",
+   "Enakhra's Lament",
+   "His Faithful Servants",
+   "Secrets of the North",
+   "Temple of the Eye",
+   "The Garden of Death"
+  ]
+ },
+ "Devious Minds": {
+  "kind": "quest",
+  "page": "Devious Minds",
+  "rev": 15292315,
+  "levels": {
+   "fletching": 50,
+   "runecraft": 50,
+   "smithing": 65
+  },
+  "requires": [
+   "Doric's Quest",
+   "Enter the Abyss",
+   "Troll Stronghold",
+   "Wanted!"
+  ]
+ },
+ "Doric's Quest": {
+  "kind": "quest",
+  "page": "Doric's Quest",
+  "rev": 15367060
+ },
+ "Dragon Slayer I": {
+  "kind": "quest",
+  "page": "Dragon Slayer I",
+  "rev": 15370020
+ },
+ "Dragon Slayer II": {
+  "kind": "quest",
+  "page": "Dragon Slayer II",
+  "rev": 15370491,
+  "levels": {
+   "agility": 60,
+   "construction": 50,
+   "crafting": 62,
+   "hitpoints": 50,
+   "magic": 75,
+   "mining": 68,
+   "smithing": 70,
+   "thieving": 60
+  },
+  "requires": [
+   "A Tail of Two Cats",
+   "Animal Magnetism",
+   "Bone Voyage",
+   "Client of Kourend",
+   "Dream Mentor",
+   "Ghosts Ahoy",
+   "Legends' Quest"
+  ]
+ },
+ "Dream Mentor": {
+  "kind": "quest",
+  "page": "Dream Mentor",
+  "rev": 15350904,
+  "requires": [
+   "Eadgar's Ruse",
+   "Lunar Diplomacy"
+  ]
+ },
+ "Druidic Ritual": {
+  "kind": "quest",
+  "page": "Druidic Ritual",
+  "rev": 15322674
+ },
+ "Dwarf Cannon": {
+  "kind": "quest",
+  "page": "Dwarf Cannon",
+  "rev": 15313000
+ },
+ "Eadgar's Ruse": {
+  "kind": "quest",
+  "page": "Eadgar's Ruse",
+  "rev": 15376618,
+  "levels": {
+   "herblore": 31
+  },
+  "requires": [
+   "Druidic Ritual",
+   "Troll Stronghold"
+  ]
+ },
+ "Eagles' Peak": {
+  "kind": "quest",
+  "page": "Eagles' Peak",
+  "rev": 15314504,
+  "levels": {
+   "hunter": 27
+  }
+ },
+ "Elemental Workshop I": {
+  "kind": "quest",
+  "page": "Elemental Workshop I",
+  "rev": 15360762,
+  "levels": {
+   "crafting": 20,
+   "mining": 20,
+   "smithing": 20
+  }
+ },
+ "Elemental Workshop II": {
+  "kind": "quest",
+  "page": "Elemental Workshop II",
+  "rev": 15271178,
+  "levels": {
+   "magic": 20,
+   "smithing": 30
+  },
+  "requires": [
+   "Elemental Workshop I"
+  ]
+ },
+ "Enakhra's Lament": {
+  "kind": "quest",
+  "page": "Enakhra's Lament",
+  "rev": 15365540,
+  "levels": {
+   "crafting": 50,
+   "firemaking": 45,
+   "magic": 39,
+   "prayer": 43
+  }
+ },
+ "Enlightened Journey": {
+  "kind": "quest",
+  "page": "Enlightened Journey",
+  "rev": 15375125,
+  "levels": {
+   "crafting": 36,
+   "farming": 30,
+   "firemaking": 20
+  }
+ },
+ "Enter the Abyss": {
+  "kind": "miniquest",
+  "page": "Enter the Abyss",
+  "rev": 15292255,
+  "requires": [
+   "Rune Mysteries"
+  ]
+ },
+ "Ernest the Chicken": {
+  "kind": "quest",
+  "page": "Ernest the Chicken",
+  "rev": 15367055
+ },
+ "Ethically Acquired Antiquities": {
+  "kind": "quest",
+  "page": "Ethically Acquired Antiquities",
+  "rev": 15377771,
+  "levels": {
+   "thieving": 25
+  },
+  "requires": [
+   "Children of the Sun",
+   "Shield of Arrav"
+  ]
+ },
+ "Fairytale I - Growing Pains": {
+  "kind": "quest",
+  "page": "Fairytale I - Growing Pains",
+  "rev": 15352251,
+  "requires": [
+   "Lost City",
+   "Nature Spirit"
+  ]
+ },
+ "Fairytale II - Cure a Queen": {
+  "kind": "quest",
+  "page": "Fairytale II - Cure a Queen",
+  "rev": 15372454,
+  "levels": {
+   "farming": 49,
+   "herblore": 57,
+   "thieving": 40
+  },
+  "requires": [
+   "Fairytale I - Growing Pains"
+  ],
+  "implies": [
+   "Druidic Ritual"
+  ]
+ },
+ "Fallen From Grace": {
+  "kind": "quest",
+  "page": "Fallen From Grace",
+  "rev": 15335348,
+  "levels": {
+   "crafting": 60,
+   "mining": 53,
+   "runecraft": 47,
+   "sailing": 62
+  },
+  "requires": [
+   "Pandemonium"
+  ]
+ },
+ "Family Crest": {
+  "kind": "quest",
+  "page": "Family Crest",
+  "rev": 15366119,
+  "levels": {
+   "crafting": 40,
+   "magic": 59,
+   "mining": 40,
+   "smithing": 40
+  }
+ },
+ "Family Pest": {
+  "kind": "miniquest",
+  "page": "Family Pest",
+  "rev": 15237154,
+  "requires": [
+   "Family Crest"
+  ],
+  "optional": true
+ },
+ "Fight Arena": {
+  "kind": "quest",
+  "page": "Fight Arena",
+  "rev": 15367399
+ },
+ "Fishing Contest": {
+  "kind": "quest",
+  "page": "Fishing Contest",
+  "rev": 15302643,
+  "levels": {
+   "fishing": 10
+  }
+ },
+ "Forgettable Tale...": {
+  "kind": "quest",
+  "page": "Forgettable Tale...",
+  "rev": 15374902,
+  "levels": {
+   "cooking": 22,
+   "farming": 17
+  },
+  "requires": [
+   "Fishing Contest",
+   "The Giant Dwarf"
+  ]
+ },
+ "Garden of Tranquillity": {
+  "kind": "quest",
+  "page": "Garden of Tranquillity",
+  "rev": 15379032,
+  "levels": {
+   "farming": 25
+  },
+  "requires": [
+   "Creature of Fenkenstrain"
+  ]
+ },
+ "Gertrude's Cat": {
+  "kind": "quest",
+  "page": "Gertrude's Cat",
+  "rev": 15374007
+ },
+ "Getting Ahead": {
+  "kind": "quest",
+  "page": "Getting Ahead",
+  "rev": 15367125,
+  "levels": {
+   "construction": 26,
+   "crafting": 30
+  }
+ },
+ "Ghosts Ahoy": {
+  "kind": "quest",
+  "page": "Ghosts Ahoy",
+  "rev": 15360836,
+  "levels": {
+   "agility": 25,
+   "cooking": 20
+  },
+  "requires": [
+   "Priest in Peril",
+   "The Restless Ghost"
+  ]
+ },
+ "Goblin Diplomacy": {
+  "kind": "quest",
+  "page": "Goblin Diplomacy",
+  "rev": 15367064
+ },
+ "Grim Tales": {
+  "kind": "quest",
+  "page": "Grim Tales",
+  "rev": 15363205,
+  "levels": {
+   "agility": 59,
+   "farming": 45,
+   "herblore": 52,
+   "thieving": 58,
+   "woodcutting": 71
+  },
+  "requires": [
+   "Witch's House"
+  ],
+  "implies": [
+   "Druidic Ritual"
+  ]
+ },
+ "Haunted Mine": {
+  "kind": "quest",
+  "page": "Haunted Mine",
+  "rev": 15366272,
+  "levels": {
+   "crafting": 35
+  },
+  "requires": [
+   "Priest in Peril"
+  ]
+ },
+ "Hazeel Cult": {
+  "kind": "quest",
+  "page": "Hazeel Cult",
+  "rev": 15328196
+ },
+ "Heroes' Quest": {
+  "kind": "quest",
+  "page": "Heroes' Quest",
+  "rev": 15374803,
+  "levels": {
+   "cooking": 53,
+   "fishing": 53,
+   "herblore": 25,
+   "mining": 50
+  },
+  "requires": [
+   "Dragon Slayer I",
+   "Lost City",
+   "Merlin's Crystal",
+   "Shield of Arrav"
+  ],
+  "implies": [
+   "Druidic Ritual"
+  ]
+ },
+ "His Faithful Servants": {
+  "kind": "miniquest",
+  "page": "His Faithful Servants",
+  "rev": 15167680,
+  "requires": [
+   "Priest in Peril"
+  ]
+ },
+ "Holy Grail": {
+  "kind": "quest",
+  "page": "Holy Grail",
+  "rev": 15359857,
+  "levels": {
+   "attack": 20
+  },
+  "requires": [
+   "Merlin's Crystal"
+  ]
+ },
+ "Hopespear's Will": {
+  "kind": "miniquest",
+  "page": "Hopespear's Will",
+  "rev": 15335611,
+  "levels": {
+   "prayer": 50
+  },
+  "requires": [
+   "Desert Treasure I",
+   "Fairytale II - Cure a Queen",
+   "Land of the Goblins"
+  ],
+  "optional": true
+ },
+ "Horror from the Deep": {
+  "kind": "quest",
+  "page": "Horror from the Deep",
+  "rev": 15375082,
+  "levels": {
+   "agility": 35
+  },
+  "requires": [
+   "Alfred Grimhand's Barcrawl"
+  ]
+ },
+ "Icthlarin's Little Helper": {
+  "kind": "quest",
+  "page": "Icthlarin's Little Helper",
+  "rev": 15365541,
+  "requires": [
+   "Gertrude's Cat"
+  ]
+ },
+ "Imp Catcher": {
+  "kind": "quest",
+  "page": "Imp Catcher",
+  "rev": 15375330
+ },
+ "In Aid of the Myreque": {
+  "kind": "quest",
+  "page": "In Aid of the Myreque",
+  "rev": 15364303,
+  "levels": {
+   "agility": 25,
+   "crafting": 25,
+   "magic": 7,
+   "mining": 15
+  },
+  "requires": [
+   "In Search of the Myreque"
+  ]
+ },
+ "In Search of Knowledge": {
+  "kind": "miniquest",
+  "page": "In Search of Knowledge",
+  "rev": 15378368,
+  "optional": true
+ },
+ "In Search of the Myreque": {
+  "kind": "quest",
+  "page": "In Search of the Myreque",
+  "rev": 15365477,
+  "levels": {
+   "agility": 25
+  },
+  "requires": [
+   "Nature Spirit"
+  ]
+ },
+ "Into the Tombs": {
+  "kind": "miniquest",
+  "page": "Into the Tombs",
+  "rev": 15218542,
+  "requires": [
+   "Beneath Cursed Sands"
+  ],
+  "optional": true
+ },
+ "Jungle Potion": {
+  "kind": "quest",
+  "page": "Jungle Potion",
+  "rev": 15281195,
+  "levels": {
+   "herblore": 3
+  },
+  "requires": [
+   "Druidic Ritual"
+  ]
+ },
+ "King's Ransom": {
+  "kind": "quest",
+  "page": "King's Ransom",
+  "rev": 15375027,
+  "levels": {
+   "defence": 65,
+   "magic": 45
+  },
+  "requires": [
+   "Black Knights' Fortress",
+   "Holy Grail",
+   "Murder Mystery",
+   "One Small Favour"
+  ]
+ },
+ "Knight Waves Training Grounds": {
+  "kind": "activity",
+  "page": "Knight Waves Training Ground",
+  "rev": 15376218,
+  "requires": [
+   "King's Ransom"
+  ]
+ },
+ "Lair of Tarn Razorlor": {
+  "kind": "miniquest",
+  "page": "Lair of Tarn Razorlor",
+  "rev": 15365600,
+  "levels": {
+   "slayer": 40
+  },
+  "requires": [
+   "Haunted Mine"
+  ]
+ },
+ "Land of the Goblins": {
+  "kind": "quest",
+  "page": "Land of the Goblins",
+  "rev": 15363325,
+  "levels": {
+   "agility": 38,
+   "fishing": 40,
+   "herblore": 48,
+   "thieving": 45
+  },
+  "requires": [
+   "Another Slice of H.A.M.",
+   "Fishing Contest"
+  ]
+ },
+ "Learning the Ropes": {
+  "kind": "quest",
+  "page": "Learning the Ropes",
+  "rev": 15364218,
+  "everyAccount": true
+ },
+ "Legends' Quest": {
+  "kind": "quest",
+  "page": "Legends' Quest",
+  "rev": 15369874,
+  "levels": {
+   "agility": 50,
+   "crafting": 50,
+   "herblore": 45,
+   "magic": 56,
+   "mining": 52,
+   "prayer": 42,
+   "smithing": 50,
+   "strength": 50,
+   "thieving": 50,
+   "woodcutting": 50
+  },
+  "requires": [
+   "Family Crest",
+   "Heroes' Quest",
+   "Shilo Village",
+   "Underground Pass",
+   "Waterfall Quest"
+  ]
+ },
+ "Lost City": {
+  "kind": "quest",
+  "page": "Lost City",
+  "rev": 15326723,
+  "levels": {
+   "crafting": 31,
+   "woodcutting": 36
+  }
+ },
+ "Lunar Diplomacy": {
+  "kind": "quest",
+  "page": "Lunar Diplomacy",
+  "rev": 15373056,
+  "levels": {
+   "crafting": 61,
+   "defence": 40,
+   "firemaking": 49,
+   "herblore": 5,
+   "magic": 65,
+   "mining": 60,
+   "woodcutting": 55
+  },
+  "requires": [
+   "Lost City",
+   "Rune Mysteries",
+   "Shilo Village",
+   "The Fremennik Trials"
+  ]
+ },
+ "Mage Arena I": {
+  "kind": "miniquest",
+  "page": "Mage Arena I",
+  "rev": 15237146,
+  "levels": {
+   "magic": 60
+  }
+ },
+ "Mage Arena II": {
+  "kind": "miniquest",
+  "page": "Mage Arena II",
+  "rev": 15368856,
+  "levels": {
+   "magic": 75
+  },
+  "requires": [
+   "Mage Arena I"
+  ],
+  "optional": true
+ },
+ "Making Friends with My Arm": {
+  "kind": "quest",
+  "page": "Making Friends with My Arm",
+  "rev": 15375040,
+  "levels": {
+   "agility": 68,
+   "construction": 35,
+   "firemaking": 66,
+   "mining": 72
+  },
+  "requires": [
+   "Cold War",
+   "My Arm's Big Adventure",
+   "Romeo & Juliet",
+   "Swan Song"
+  ]
+ },
+ "Making History": {
+  "kind": "quest",
+  "page": "Making History",
+  "rev": 15315243,
+  "requires": [
+   "Priest in Peril",
+   "The Restless Ghost"
+  ],
+  "lamps": [
+   {
+    "count": 1,
+    "xp": 1000,
+    "minLevel": 20,
+    "from": "Historian Minas"
+   }
+  ]
+ },
+ "Meat and Greet": {
+  "kind": "quest",
+  "page": "Meat and Greet",
+  "rev": 15355341,
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Merlin's Crystal": {
+  "kind": "quest",
+  "page": "Merlin's Crystal",
+  "rev": 15336338,
+  "lamps": [
+   {
+    "count": 1,
+    "xp": 1000,
+    "minLevel": 20,
+    "from": "Historian Minas"
+   }
+  ]
+ },
+ "Misthalin Mystery": {
+  "kind": "quest",
+  "page": "Misthalin Mystery",
+  "rev": 15367068
+ },
+ "Monk's Friend": {
+  "kind": "quest",
+  "page": "Monk's Friend",
+  "rev": 15240952
+ },
+ "Monkey Madness I": {
+  "kind": "quest",
+  "page": "Monkey Madness I",
+  "rev": 15374574,
+  "requires": [
+   "The Grand Tree",
+   "Tree Gnome Village"
+  ]
+ },
+ "Monkey Madness II": {
+  "kind": "quest",
+  "page": "Monkey Madness II",
+  "rev": 15374569,
+  "levels": {
+   "agility": 55,
+   "crafting": 70,
+   "firemaking": 60,
+   "hunter": 60,
+   "slayer": 69,
+   "thieving": 55
+  },
+  "requires": [
+   "Enlightened Journey",
+   "Recipe for Disaster - King Awowogei",
+   "The Eyes of Glouphrie",
+   "Troll Stronghold",
+   "Watchtower"
+  ]
+ },
+ "Mountain Daughter": {
+  "kind": "quest",
+  "page": "Mountain Daughter",
+  "rev": 15292291,
+  "levels": {
+   "agility": 20
+  }
+ },
+ "Mourning's End Part I": {
+  "kind": "quest",
+  "page": "Mourning's End Part I",
+  "rev": 15366066,
+  "levels": {
+   "ranged": 60,
+   "thieving": 50
+  },
+  "requires": [
+   "Big Chompy Bird Hunting",
+   "Roving Elves",
+   "Sheep Herder"
+  ]
+ },
+ "Mourning's End Part II": {
+  "kind": "quest",
+  "page": "Mourning's End Part II",
+  "rev": 15351344,
+  "requires": [
+   "Mourning's End Part I"
+  ]
+ },
+ "Murder Mystery": {
+  "kind": "quest",
+  "page": "Murder Mystery",
+  "rev": 15365419
+ },
+ "My Arm's Big Adventure": {
+  "kind": "quest",
+  "page": "My Arm's Big Adventure",
+  "rev": 15326710,
+  "levels": {
+   "farming": 29,
+   "woodcutting": 10
+  },
+  "requires": [
+   "Eadgar's Ruse",
+   "Jungle Potion",
+   "The Feud"
+  ]
+ },
+ "Natural history quiz": {
+  "kind": "activity",
+  "page": "Natural history quiz",
+  "rev": 15376362
+ },
+ "Nature Spirit": {
+  "kind": "quest",
+  "page": "Nature Spirit",
+  "rev": 15372142,
+  "requires": [
+   "Priest in Peril",
+   "The Restless Ghost"
+  ]
+ },
+ "Observatory Quest": {
+  "kind": "quest",
+  "page": "Observatory Quest",
+  "rev": 15326719
+ },
+ "Olaf's Quest": {
+  "kind": "quest",
+  "page": "Olaf's Quest",
+  "rev": 15355207,
+  "levels": {
+   "firemaking": 40,
+   "woodcutting": 50
+  },
+  "requires": [
+   "The Fremennik Trials"
+  ]
+ },
+ "One Small Favour": {
+  "kind": "quest",
+  "page": "One Small Favour",
+  "rev": 15364723,
+  "levels": {
+   "agility": 36,
+   "crafting": 25,
+   "herblore": 18,
+   "smithing": 30
+  },
+  "requires": [
+   "Rune Mysteries",
+   "Shilo Village"
+  ]
+ },
+ "Pandemonium": {
+  "kind": "quest",
+  "page": "Pandemonium",
+  "rev": 15373315
+ },
+ "Perilous Moons": {
+  "kind": "quest",
+  "page": "Perilous Moons",
+  "rev": 15358131,
+  "levels": {
+   "construction": 10,
+   "fishing": 20,
+   "hunter": 20,
+   "runecraft": 20,
+   "slayer": 48
+  },
+  "requires": [
+   "Twilight's Promise"
+  ]
+ },
+ "Pirate's Treasure": {
+  "kind": "quest",
+  "page": "Pirate's Treasure",
+  "rev": 15367065
+ },
+ "Plague City": {
+  "kind": "quest",
+  "page": "Plague City",
+  "rev": 15343824
+ },
+ "Priest in Peril": {
+  "kind": "quest",
+  "page": "Priest in Peril",
+  "rev": 15360755
+ },
+ "Prince Ali Rescue": {
+  "kind": "quest",
+  "page": "Prince Ali Rescue",
+  "rev": 15375277
+ },
+ "Prying Times": {
+  "kind": "quest",
+  "page": "Prying Times",
+  "rev": 15315235,
+  "levels": {
+   "sailing": 12,
+   "smithing": 30
+  },
+  "requires": [
+   "Pandemonium",
+   "The Knight's Sword"
+  ]
+ },
+ "Rag and Bone Man I": {
+  "kind": "quest",
+  "page": "Rag and Bone Man I",
+  "rev": 15292348
+ },
+ "Rag and Bone Man II": {
+  "kind": "quest",
+  "page": "Rag and Bone Man II",
+  "rev": 15376448,
+  "levels": {
+   "defence": 20,
+   "slayer": 40
+  },
+  "requires": [
+   "Rag and Bone Man I",
+   "Skippy and the Mogres"
+  ]
+ },
+ "Ratcatchers": {
+  "kind": "quest",
+  "page": "Ratcatchers",
+  "rev": 15351359,
+  "requires": [
+   "Icthlarin's Little Helper"
+  ]
+ },
+ "Recipe for Disaster": {
+  "kind": "quest",
+  "page": "Recipe for Disaster",
+  "rev": 15373729,
+  "levels": {
+   "agility": 48,
+   "cooking": 70,
+   "crafting": 40,
+   "firemaking": 50,
+   "fishing": 53,
+   "fletching": 10,
+   "herblore": 25,
+   "magic": 59,
+   "mining": 50,
+   "ranged": 40,
+   "smithing": 40,
+   "thieving": 53,
+   "woodcutting": 36
+  },
+  "requires": [
+   "Recipe for Disaster - Another Cook's Quest",
+   "Recipe for Disaster - Culinaromancer",
+   "Recipe for Disaster - Evil Dave",
+   "Recipe for Disaster - King Awowogei",
+   "Recipe for Disaster - Lumbridge Guide",
+   "Recipe for Disaster - Mountain Dwarf",
+   "Recipe for Disaster - Pirate Pete",
+   "Recipe for Disaster - Sir Amik Varze",
+   "Recipe for Disaster - Skrach Uglogwee",
+   "Recipe for Disaster - Wartface & Bentnoze"
+  ]
+ },
+ "Recipe for Disaster - Another Cook's Quest": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Another Cook's Quest",
+  "rev": 15302151,
+  "levels": {
+   "cooking": 10
+  },
+  "requires": [
+   "Cook's Assistant"
+  ]
+ },
+ "Recipe for Disaster - Culinaromancer": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Defeating the Culinaromancer",
+  "rev": 15361128,
+  "requires": [
+   "Desert Treasure I",
+   "Horror from the Deep",
+   "Recipe for Disaster - Evil Dave",
+   "Recipe for Disaster - King Awowogei",
+   "Recipe for Disaster - Lumbridge Guide",
+   "Recipe for Disaster - Mountain Dwarf",
+   "Recipe for Disaster - Pirate Pete",
+   "Recipe for Disaster - Sir Amik Varze",
+   "Recipe for Disaster - Skrach Uglogwee",
+   "Recipe for Disaster - Wartface & Bentnoze"
+  ]
+ },
+ "Recipe for Disaster - Evil Dave": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Freeing Evil Dave",
+  "rev": 15366289,
+  "requires": [
+   "Gertrude's Cat",
+   "Recipe for Disaster - Another Cook's Quest",
+   "Shadow of the Storm"
+  ]
+ },
+ "Recipe for Disaster - King Awowogei": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Freeing King Awowogei",
+  "rev": 15371864,
+  "levels": {
+   "agility": 48,
+   "cooking": 70
+  },
+  "requires": [
+   "Monkey Madness I",
+   "Recipe for Disaster - Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster - Lumbridge Guide": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Freeing the Lumbridge Guide",
+  "rev": 15375111,
+  "levels": {
+   "cooking": 40
+  },
+  "requires": [
+   "Big Chompy Bird Hunting",
+   "Biohazard",
+   "Demon Slayer",
+   "Murder Mystery",
+   "Nature Spirit",
+   "Recipe for Disaster - Another Cook's Quest",
+   "Witch's House"
+  ]
+ },
+ "Recipe for Disaster - Mountain Dwarf": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Freeing the Mountain Dwarf",
+  "rev": 15361102,
+  "requires": [
+   "Fishing Contest",
+   "Recipe for Disaster - Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster - Pirate Pete": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Freeing Pirate Pete",
+  "rev": 15361148,
+  "levels": {
+   "cooking": 31
+  },
+  "requires": [
+   "Recipe for Disaster - Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster - Sir Amik Varze": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Freeing Sir Amik Varze",
+  "rev": 15361142,
+  "requires": [
+   "Recipe for Disaster - Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster - Skrach Uglogwee": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Freeing Skrach Uglogwee",
+  "rev": 15373741,
+  "levels": {
+   "cooking": 41,
+   "firemaking": 20
+  },
+  "requires": [
+   "Big Chompy Bird Hunting",
+   "Recipe for Disaster - Another Cook's Quest"
+  ]
+ },
+ "Recipe for Disaster - Wartface & Bentnoze": {
+  "kind": "subquest",
+  "page": "Recipe for Disaster/Freeing the Goblin generals",
+  "rev": 15361105,
+  "requires": [
+   "Goblin Diplomacy",
+   "Recipe for Disaster - Another Cook's Quest"
+  ]
+ },
+ "Recruitment Drive": {
+  "kind": "quest",
+  "page": "Recruitment Drive",
+  "rev": 15372696,
+  "requires": [
+   "Black Knights' Fortress",
+   "Druidic Ritual"
+  ]
+ },
+ "Regicide": {
+  "kind": "quest",
+  "page": "Regicide",
+  "rev": 15375411,
+  "levels": {
+   "agility": 56,
+   "crafting": 10
+  },
+  "requires": [
+   "Underground Pass"
+  ]
+ },
+ "Romeo & Juliet": {
+  "kind": "quest",
+  "page": "Romeo & Juliet",
+  "rev": 15375169
+ },
+ "Roving Elves": {
+  "kind": "quest",
+  "page": "Roving Elves",
+  "rev": 15374498,
+  "levels": {
+   "agility": 56
+  },
+  "requires": [
+   "Regicide",
+   "Waterfall Quest"
+  ]
+ },
+ "Royal Trouble": {
+  "kind": "quest",
+  "page": "Royal Trouble",
+  "rev": 15375087,
+  "levels": {
+   "agility": 40,
+   "slayer": 40
+  },
+  "requires": [
+   "Throne of Miscellania"
+  ]
+ },
+ "Rum Deal": {
+  "kind": "quest",
+  "page": "Rum Deal",
+  "rev": 15375150,
+  "levels": {
+   "crafting": 42,
+   "farming": 40,
+   "fishing": 50,
+   "prayer": 47,
+   "slayer": 42
+  },
+  "requires": [
+   "Priest in Peril",
+   "Zogre Flesh Eaters"
+  ]
+ },
+ "Rune Mysteries": {
+  "kind": "quest",
+  "page": "Rune Mysteries",
+  "rev": 15374658
+ },
+ "Scorpion Catcher": {
+  "kind": "quest",
+  "page": "Scorpion Catcher",
+  "rev": 15363122,
+  "levels": {
+   "prayer": 31
+  },
+  "requires": [
+   "Alfred Grimhand's Barcrawl"
+  ]
+ },
+ "Scrambled!": {
+  "kind": "quest",
+  "page": "Scrambled!",
+  "rev": 15373706,
+  "levels": {
+   "construction": 38,
+   "cooking": 36,
+   "smithing": 35
+  },
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Sea Slug": {
+  "kind": "quest",
+  "page": "Sea Slug",
+  "rev": 15364120,
+  "levels": {
+   "firemaking": 30
+  }
+ },
+ "Secrets of the North": {
+  "kind": "quest",
+  "page": "Secrets of the North",
+  "rev": 15375062,
+  "levels": {
+   "agility": 69,
+   "hunter": 56,
+   "thieving": 64
+  },
+  "requires": [
+   "Devious Minds",
+   "Hazeel Cult",
+   "Making Friends with My Arm",
+   "The General's Shadow"
+  ]
+ },
+ "Shades of Mort'ton": {
+  "kind": "quest",
+  "page": "Shades of Mort'ton",
+  "rev": 15292280,
+  "levels": {
+   "crafting": 20,
+   "firemaking": 5,
+   "herblore": 15
+  },
+  "requires": [
+   "Priest in Peril"
+  ],
+  "implies": [
+   "Druidic Ritual"
+  ]
+ },
+ "Shadow of the Storm": {
+  "kind": "quest",
+  "page": "Shadow of the Storm",
+  "rev": 15375058,
+  "levels": {
+   "crafting": 30
+  },
+  "requires": [
+   "Demon Slayer",
+   "The Golem"
+  ]
+ },
+ "Shadows of Custodia": {
+  "kind": "quest",
+  "page": "Shadows of Custodia",
+  "rev": 15319376,
+  "levels": {
+   "construction": 41,
+   "fishing": 45,
+   "hunter": 36,
+   "slayer": 54
+  },
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Sheep Herder": {
+  "kind": "quest",
+  "page": "Sheep Herder",
+  "rev": 15282409
+ },
+ "Sheep Shearer": {
+  "kind": "quest",
+  "page": "Sheep Shearer",
+  "rev": 15367050
+ },
+ "Shield of Arrav": {
+  "kind": "quest",
+  "page": "Shield of Arrav",
+  "rev": 15367052,
+  "lamps": [
+   {
+    "count": 1,
+    "xp": 1000,
+    "minLevel": 20,
+    "from": "Historian Minas"
+   }
+  ]
+ },
+ "Shilo Village": {
+  "kind": "quest",
+  "page": "Shilo Village",
+  "rev": 15350305,
+  "levels": {
+   "agility": 32,
+   "crafting": 20
+  },
+  "requires": [
+   "Jungle Potion"
+  ]
+ },
+ "Sins of the Father": {
+  "kind": "quest",
+  "page": "Sins of the Father",
+  "rev": 15373670,
+  "levels": {
+   "agility": 52,
+   "attack": 50,
+   "crafting": 56,
+   "fletching": 60,
+   "magic": 49,
+   "slayer": 50,
+   "woodcutting": 62
+  },
+  "requires": [
+   "A Taste of Hope",
+   "Vampyre Slayer"
+  ]
+ },
+ "Skippy and the Mogres": {
+  "kind": "miniquest",
+  "page": "Skippy and the Mogres",
+  "rev": 15292393,
+  "levels": {
+   "cooking": 20
+  }
+ },
+ "Sleeping Giants": {
+  "kind": "quest",
+  "page": "Sleeping Giants",
+  "rev": 15241064,
+  "levels": {
+   "smithing": 15
+  }
+ },
+ "Song of the Elves": {
+  "kind": "quest",
+  "page": "Song of the Elves",
+  "rev": 15378352,
+  "levels": {
+   "agility": 70,
+   "construction": 70,
+   "farming": 70,
+   "herblore": 70,
+   "hunter": 70,
+   "mining": 70,
+   "smithing": 70,
+   "woodcutting": 70
+  },
+  "requires": [
+   "Druidic Ritual",
+   "Making History",
+   "Mourning's End Part II"
+  ]
+ },
+ "Spirits of the Elid": {
+  "kind": "quest",
+  "page": "Spirits of the Elid",
+  "rev": 15375049,
+  "levels": {
+   "magic": 33,
+   "mining": 37,
+   "ranged": 37,
+   "thieving": 37
+  }
+ },
+ "Swan Song": {
+  "kind": "quest",
+  "page": "Swan Song",
+  "rev": 15377580,
+  "levels": {
+   "cooking": 62,
+   "crafting": 40,
+   "firemaking": 42,
+   "fishing": 62,
+   "magic": 66,
+   "smithing": 45
+  },
+  "requires": [
+   "Garden of Tranquillity",
+   "One Small Favour"
+  ]
+ },
+ "Tai Bwo Wannai Trio": {
+  "kind": "quest",
+  "page": "Tai Bwo Wannai Trio",
+  "rev": 15376159,
+  "levels": {
+   "agility": 15,
+   "cooking": 30,
+   "fishing": 5
+  },
+  "requires": [
+   "Jungle Potion"
+  ]
+ },
+ "Tale of the Righteous": {
+  "kind": "quest",
+  "page": "Tale of the Righteous",
+  "rev": 15365017,
+  "levels": {
+   "mining": 10,
+   "strength": 16
+  },
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "Tears of Guthix": {
+  "kind": "quest",
+  "page": "Tears of Guthix",
+  "rev": 15292296,
+  "levels": {
+   "crafting": 20,
+   "firemaking": 49,
+   "mining": 20
+  }
+ },
+ "Temple of Ikov": {
+  "kind": "quest",
+  "page": "Temple of Ikov",
+  "rev": 15363124,
+  "levels": {
+   "thieving": 42
+  }
+ },
+ "Temple of the Eye": {
+  "kind": "quest",
+  "page": "Temple of the Eye",
+  "rev": 15304735,
+  "levels": {
+   "runecraft": 10
+  },
+  "requires": [
+   "Enter the Abyss"
+  ]
+ },
+ "The Ascent of Arceuus": {
+  "kind": "quest",
+  "page": "The Ascent of Arceuus",
+  "rev": 15366179,
+  "levels": {
+   "hunter": 12
+  },
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "The Blood Moon Rises": {
+  "kind": "quest",
+  "page": "The Blood Moon Rises",
+  "rev": 15370914,
+  "levels": {
+   "cooking": 72,
+   "crafting": 64,
+   "fletching": 70,
+   "herblore": 64,
+   "hunter": 65,
+   "magic": 57,
+   "mining": 66,
+   "slayer": 74,
+   "smithing": 72,
+   "woodcutting": 74
+  },
+  "requires": [
+   "A Night at the Theatre",
+   "Sins of the Father"
+  ]
+ },
+ "The Corsair Curse": {
+  "kind": "quest",
+  "page": "The Corsair Curse",
+  "rev": 15373740
+ },
+ "The Curse of Arrav": {
+  "kind": "quest",
+  "page": "The Curse of Arrav",
+  "rev": 15375033,
+  "levels": {
+   "agility": 61,
+   "mining": 64,
+   "ranged": 62,
+   "slayer": 37,
+   "strength": 58,
+   "thieving": 62
+  },
+  "requires": [
+   "Defender of Varrock",
+   "Troll Romance"
+  ]
+ },
+ "The Depths of Despair": {
+  "kind": "quest",
+  "page": "The Depths of Despair",
+  "rev": 15365598,
+  "levels": {
+   "agility": 18
+  },
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "The Dig Site": {
+  "kind": "quest",
+  "page": "The Dig Site",
+  "rev": 15368226,
+  "levels": {
+   "agility": 10,
+   "herblore": 10,
+   "thieving": 25
+  },
+  "implies": [
+   "Druidic Ritual"
+  ]
+ },
+ "The Enchanted Key": {
+  "kind": "miniquest",
+  "page": "The Enchanted Key",
+  "rev": 15336907,
+  "requires": [
+   "Making History"
+  ],
+  "optional": true
+ },
+ "The Eyes of Glouphrie": {
+  "kind": "quest",
+  "page": "The Eyes of Glouphrie",
+  "rev": 15292355,
+  "levels": {
+   "construction": 5,
+   "magic": 46
+  },
+  "requires": [
+   "The Grand Tree"
+  ]
+ },
+ "The Feud": {
+  "kind": "quest",
+  "page": "The Feud",
+  "rev": 15376145,
+  "levels": {
+   "thieving": 30
+  }
+ },
+ "The Final Dawn": {
+  "kind": "quest",
+  "page": "The Final Dawn",
+  "rev": 15379080,
+  "levels": {
+   "fletching": 52,
+   "runecraft": 52,
+   "thieving": 66
+  },
+  "requires": [
+   "Perilous Moons",
+   "The Heart of Darkness"
+  ]
+ },
+ "The Forsaken Tower": {
+  "kind": "quest",
+  "page": "The Forsaken Tower",
+  "rev": 15316647,
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "The Fractured Archive": {
+  "kind": "miniquest",
+  "page": "The Fractured Archive (miniquest)",
+  "rev": 15379009,
+  "requires": [
+   "While Guthix Sleeps"
+  ],
+  "optional": true
+ },
+ "The Fremennik Exiles": {
+  "kind": "quest",
+  "page": "The Fremennik Exiles",
+  "rev": 15374884,
+  "levels": {
+   "crafting": 65,
+   "fishing": 60,
+   "mining": 60,
+   "runecraft": 55,
+   "slayer": 60,
+   "smithing": 60
+  },
+  "requires": [
+   "Heroes' Quest",
+   "Lunar Diplomacy",
+   "Mountain Daughter",
+   "The Fremennik Isles"
+  ]
+ },
+ "The Fremennik Isles": {
+  "kind": "quest",
+  "page": "The Fremennik Isles",
+  "rev": 15371544,
+  "levels": {
+   "construction": 20
+  },
+  "requires": [
+   "The Fremennik Trials"
+  ]
+ },
+ "The Fremennik Trials": {
+  "kind": "quest",
+  "page": "The Fremennik Trials",
+  "rev": 15374585
+ },
+ "The Frozen Door": {
+  "kind": "miniquest",
+  "page": "The Frozen Door",
+  "rev": 15166745,
+  "levels": {
+   "agility": 70,
+   "hitpoints": 70,
+   "ranged": 70,
+   "strength": 70
+  },
+  "requires": [
+   "Desert Treasure I"
+  ],
+  "optional": true
+ },
+ "The Garden of Death": {
+  "kind": "quest",
+  "page": "The Garden of Death",
+  "rev": 15375335,
+  "levels": {
+   "farming": 20
+  }
+ },
+ "The General's Shadow": {
+  "kind": "miniquest",
+  "page": "The General's Shadow",
+  "rev": 15336893,
+  "requires": [
+   "Curse of the Empty Lord",
+   "Fight Arena"
+  ]
+ },
+ "The Giant Dwarf": {
+  "kind": "quest",
+  "page": "The Giant Dwarf",
+  "rev": 15375425,
+  "levels": {
+   "crafting": 12,
+   "firemaking": 16,
+   "magic": 33,
+   "thieving": 14
+  }
+ },
+ "The Golem": {
+  "kind": "quest",
+  "page": "The Golem",
+  "rev": 15321144,
+  "levels": {
+   "crafting": 20,
+   "thieving": 25
+  }
+ },
+ "The Grand Tree": {
+  "kind": "quest",
+  "page": "The Grand Tree",
+  "rev": 15343831,
+  "levels": {
+   "agility": 25
+  }
+ },
+ "The Great Brain Robbery": {
+  "kind": "quest",
+  "page": "The Great Brain Robbery",
+  "rev": 15364806,
+  "levels": {
+   "construction": 30,
+   "crafting": 16,
+   "prayer": 50
+  },
+  "requires": [
+   "Cabin Fever",
+   "Creature of Fenkenstrain",
+   "Recipe for Disaster - Pirate Pete"
+  ]
+ },
+ "The Hand in the Sand": {
+  "kind": "quest",
+  "page": "The Hand in the Sand",
+  "rev": 15355846,
+  "levels": {
+   "crafting": 49,
+   "thieving": 17
+  }
+ },
+ "The Heart of Darkness": {
+  "kind": "quest",
+  "page": "The Heart of Darkness",
+  "rev": 15318070,
+  "levels": {
+   "agility": 46,
+   "mining": 55,
+   "slayer": 48,
+   "thieving": 48
+  },
+  "requires": [
+   "Twilight's Promise"
+  ]
+ },
+ "The Ides of Milk": {
+  "kind": "quest",
+  "page": "The Ides of Milk",
+  "rev": 15338668
+ },
+ "The Knight's Sword": {
+  "kind": "quest",
+  "page": "The Knight's Sword",
+  "rev": 15367063,
+  "levels": {
+   "mining": 10
+  }
+ },
+ "The Lost Tribe": {
+  "kind": "quest",
+  "page": "The Lost Tribe",
+  "rev": 15370928,
+  "levels": {
+   "agility": 13,
+   "mining": 17,
+   "thieving": 13
+  },
+  "requires": [
+   "Goblin Diplomacy",
+   "Rune Mysteries"
+  ]
+ },
+ "The Path of Glouphrie": {
+  "kind": "quest",
+  "page": "The Path of Glouphrie",
+  "rev": 15374620,
+  "levels": {
+   "agility": 45,
+   "ranged": 47,
+   "slayer": 56,
+   "strength": 60,
+   "thieving": 56
+  },
+  "requires": [
+   "The Eyes of Glouphrie",
+   "Tree Gnome Village",
+   "Waterfall Quest"
+  ]
+ },
+ "The Queen of Thieves": {
+  "kind": "quest",
+  "page": "The Queen of Thieves",
+  "rev": 15373405,
+  "levels": {
+   "thieving": 20
+  },
+  "requires": [
+   "Client of Kourend"
+  ]
+ },
+ "The Red Reef": {
+  "kind": "quest",
+  "page": "The Red Reef",
+  "rev": 15375145,
+  "levels": {
+   "sailing": 52,
+   "smithing": 48
+  },
+  "requires": [
+   "Troubled Tortugans"
+  ]
+ },
+ "The Restless Ghost": {
+  "kind": "quest",
+  "page": "The Restless Ghost",
+  "rev": 15367047
+ },
+ "The Ribbiting Tale of a Lily Pad Labour Dispute": {
+  "kind": "quest",
+  "page": "The Ribbiting Tale of a Lily Pad Labour Dispute",
+  "rev": 15270097,
+  "levels": {
+   "woodcutting": 15
+  },
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "The Slug Menace": {
+  "kind": "quest",
+  "page": "The Slug Menace",
+  "rev": 15373642,
+  "levels": {
+   "crafting": 30,
+   "runecraft": 30,
+   "slayer": 30,
+   "thieving": 30
+  },
+  "requires": [
+   "Sea Slug",
+   "Wanted!"
+  ]
+ },
+ "The Tourist Trap": {
+  "kind": "quest",
+  "page": "The Tourist Trap",
+  "rev": 15373730,
+  "levels": {
+   "fletching": 10,
+   "smithing": 20
+  }
+ },
+ "Throne of Miscellania": {
+  "kind": "quest",
+  "page": "Throne of Miscellania",
+  "rev": 15360688,
+  "requires": [
+   "Heroes' Quest",
+   "The Fremennik Trials"
+  ]
+ },
+ "Tower of Life": {
+  "kind": "quest",
+  "page": "Tower of Life",
+  "rev": 15366014,
+  "levels": {
+   "construction": 10
+  }
+ },
+ "Tree Gnome Village": {
+  "kind": "quest",
+  "page": "Tree Gnome Village",
+  "rev": 15351851
+ },
+ "Tribal Totem": {
+  "kind": "quest",
+  "page": "Tribal Totem",
+  "rev": 15240951,
+  "levels": {
+   "thieving": 21
+  }
+ },
+ "Troll Romance": {
+  "kind": "quest",
+  "page": "Troll Romance",
+  "rev": 15375194,
+  "levels": {
+   "agility": 28
+  },
+  "requires": [
+   "Troll Stronghold"
+  ]
+ },
+ "Troll Stronghold": {
+  "kind": "quest",
+  "page": "Troll Stronghold",
+  "rev": 15326717,
+  "levels": {
+   "agility": 15
+  },
+  "requires": [
+   "Death Plateau"
+  ]
+ },
+ "Troubled Tortugans": {
+  "kind": "quest",
+  "page": "Troubled Tortugans",
+  "rev": 15273864,
+  "levels": {
+   "construction": 48,
+   "crafting": 34,
+   "hunter": 45,
+   "sailing": 45,
+   "slayer": 51,
+   "woodcutting": 40
+  },
+  "requires": [
+   "Pandemonium"
+  ]
+ },
+ "Twilight's Promise": {
+  "kind": "quest",
+  "page": "Twilight's Promise",
+  "rev": 15356498,
+  "requires": [
+   "Children of the Sun"
+  ]
+ },
+ "Underground Pass": {
+  "kind": "quest",
+  "page": "Underground Pass",
+  "rev": 15371489,
+  "levels": {
+   "ranged": 25
+  },
+  "requires": [
+   "Biohazard"
+  ]
+ },
+ "Vale Totems": {
+  "kind": "miniquest",
+  "page": "Vale Totems (miniquest)",
+  "rev": 15319442,
+  "levels": {
+   "fletching": 20
+  },
+  "requires": [
+   "Children of the Sun"
+  ],
+  "optional": true
+ },
+ "Vampyre Slayer": {
+  "kind": "quest",
+  "page": "Vampyre Slayer",
+  "rev": 15367056
+ },
+ "Wanted!": {
+  "kind": "quest",
+  "page": "Wanted!",
+  "rev": 15361297,
+  "requires": [
+   "Enter the Abyss",
+   "Priest in Peril",
+   "Recruitment Drive",
+   "The Lost Tribe"
+  ]
+ },
+ "Watchtower": {
+  "kind": "quest",
+  "page": "Watchtower",
+  "rev": 15367228,
+  "levels": {
+   "agility": 25,
+   "herblore": 14,
+   "magic": 14,
+   "mining": 40,
+   "thieving": 15
+  },
+  "implies": [
+   "Druidic Ritual"
+  ]
+ },
+ "Waterfall Quest": {
+  "kind": "quest",
+  "page": "Waterfall Quest",
+  "rev": 15357907
+ },
+ "What Lies Below": {
+  "kind": "quest",
+  "page": "What Lies Below",
+  "rev": 15373739,
+  "levels": {
+   "runecraft": 35
+  },
+  "requires": [
+   "Rune Mysteries"
+  ]
+ },
+ "While Guthix Sleeps": {
+  "kind": "quest",
+  "page": "While Guthix Sleeps",
+  "rev": 15375412,
+  "levels": {
+   "agility": 66,
+   "farming": 65,
+   "firemaking": 49,
+   "herblore": 65,
+   "hunter": 62,
+   "magic": 67,
+   "thieving": 72
+  },
+  "requires": [
+   "A Tail of Two Cats",
+   "Defender of Varrock",
+   "Dream Mentor",
+   "Fight Arena",
+   "Nature Spirit",
+   "Tears of Guthix",
+   "Temple of the Eye",
+   "The Hand in the Sand",
+   "The Path of Glouphrie",
+   "Wanted!"
+  ]
+ },
+ "Witch's House": {
+  "kind": "quest",
+  "page": "Witch's House",
+  "rev": 15168391
+ },
+ "Witch's Potion": {
+  "kind": "quest",
+  "page": "Witch's Potion",
+  "rev": 15367062
+ },
+ "X Marks the Spot": {
+  "kind": "quest",
+  "page": "X Marks the Spot",
+  "rev": 15367156
+ },
+ "Zogre Flesh Eaters": {
+  "kind": "quest",
+  "page": "Zogre Flesh Eaters",
+  "rev": 15375097,
+  "levels": {
+   "herblore": 8,
+   "ranged": 30,
+   "smithing": 4
+  },
+  "requires": [
+   "Big Chompy Bird Hunting",
+   "Jungle Potion"
+  ]
+ }
+}

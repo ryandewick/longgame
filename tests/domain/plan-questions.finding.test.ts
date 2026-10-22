@@ -9,14 +9,15 @@ import { accountFromSave, migrateLegacySave, type LegacySaveV1 } from '#shared/d
 /*
  * The measurement the question flow was designed on, kept as it was taken: before the app knew
  * which quests require which, and before it knew the levels a quest needs. Both are switched off
- * here, which is the only reason this is a file of its own. With them on the same account needs
- * fewer questions (see plan-questions.test.ts): one yes settles a chain, and a quest the
- * account's levels rule out is never asked.
+ * here (every quest's facts lose their `requires` and their levels), which is the only reason this
+ * is a file of its own. With them on the same account needs fewer questions (see
+ * plan-questions.test.ts): one yes settles a chain, and a quest the account's levels rule out is
+ * never asked.
  */
-vi.mock('#shared/data/quest-prerequisites', () => ({
-  QUEST_PREREQUISITES: { requires: new Map(), fromOwnPage: [], unlisted: [] },
-}))
-vi.mock('#shared/data/quests', () => ({ QUESTS: [] }))
+vi.mock('#shared/data/quest-facts', async (importOriginal) => {
+  const { QUEST_FACTS } = await importOriginal<typeof import('#shared/data/quest-facts')>()
+  return { QUEST_FACTS: QUEST_FACTS.map((quest) => ({ ...quest, requires: [], levels: {} })) }
+})
 
 const fixture = JSON.parse(
   readFileSync(new URL('../fixtures/account.json', import.meta.url), 'utf8'),

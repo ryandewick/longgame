@@ -5,6 +5,7 @@ import {
   combatLevel,
   hasCompletedDiary,
   hasCompletedQuest,
+  isDoneByEveryAccount,
   isIronman,
 } from '#shared/domain/account'
 import { accountWith } from './helpers'
@@ -42,6 +43,15 @@ describe('hasCompletedQuest and hasCompletedDiary', () => {
     expect(hasCompletedQuest(accountWith({ allQuests: true }), 'Anything at all')).toBe(true)
     expect(hasCompletedDiary(accountWith({ allDiaries: true }), 'Anywhere Elite')).toBe(true)
     expect(hasCompletedDiary(accountWith({ allQuests: true }), 'Ardougne Easy')).toBe(false)
+  })
+
+  it('counts Learning the Ropes as done by every account, ticked or not', () => {
+    // every player finishes it to reach the mainland (its wiki page)
+    expect(isDoneByEveryAccount('Learning the Ropes')).toBe(true)
+    expect(hasCompletedQuest(accountWith(), 'Learning the Ropes')).toBe(true)
+    expect(hasCompletedQuest(blankAccount(), 'Learning the Ropes')).toBe(true)
+    expect(isDoneByEveryAccount("Cook's Assistant")).toBe(false)
+    expect(hasCompletedQuest(accountWith(), "Cook's Assistant")).toBe(false)
   })
 })
 

@@ -1,9 +1,7 @@
 import type { Account } from '../types/account'
 import type { Intensity, Method } from '../types/method'
-import type { Quest } from '../types/quest'
 import type { SkillKey } from '../types/skill'
 import { METHODS } from '../data/methods'
-import { QUESTS } from '../data/quests'
 import { RESETS } from '../data/resets'
 import { SKILL_KEYS } from '../data/skills'
 import { WILDCARDS } from '../data/wildcards'
@@ -13,7 +11,7 @@ import { methodOptions, suitsTickPreference } from './methods'
 import { activityOf, isInPlay, methodForBlock } from './planner'
 import { questPrerequisites, questsRuledOut } from './quest-chains'
 import type { QuestTicks } from './quest-ticks'
-import { gatingDiaries, gatingQuests, questLevelsShort } from './quests'
+import { gatingDiaries, gatingQuests, levelsShort, questFacts } from './quests'
 import { xpPerHourAt } from './rates'
 import { resetAppliesTo, unlockedResets } from './resets'
 
@@ -93,10 +91,6 @@ const GATING_REQUIREMENTS: readonly PlanRequirement[] = [
   ...gatingDiaries().map((name) => ({ kind: 'diary', name }) as const),
 ]
 
-const QUESTS_BY_NAME: ReadonlyMap<string, Quest> = new Map(
-  QUESTS.map((quest) => [quest.name, quest]),
-)
-
 /** Does this method, reset or wildcard name the requirement? */
 function names(
   gated: { readonly requirements: Method['requirements'] },
@@ -142,8 +136,8 @@ function skillsGatedBy(requirements: readonly PlanRequirement[]): SkillKey[] {
  */
 function couldHaveFinished(account: Account, quest: string): boolean {
   return [quest, ...questPrerequisites(quest)].every((link) => {
-    const known = QUESTS_BY_NAME.get(link)
-    return !known || questLevelsShort(account, known).length === 0
+    const facts = questFacts(link)
+    return !facts || levelsShort(account, facts.levels).length === 0
   })
 }
 

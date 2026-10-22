@@ -26,7 +26,9 @@ const rows = computed(() =>
     name: quest.name,
     rewardSkills: questRewardSkills(quest),
     rewards: describeQuestRewards(quest),
-    isMiniquest: quest.miniquest,
+    // a miniquest or an activity says so beside its rewards; a quest says nothing
+    kindAside:
+      quest.kind === 'miniquest' ? 'Miniquest.' : quest.kind === 'activity' ? 'Activity.' : '',
     levelsShort: describeLevelsShort(levelsShort),
     totalXp: totalXp ? formatShortNumber(totalXp) : '',
     isBanded: index % 2 === 1,
@@ -64,8 +66,8 @@ const rows = computed(() =>
           </span>
           <span class="data-table__detail">
             {{ row.rewards }}
-            <em v-if="row.isMiniquest" class="quest-xp-table__aside quest-xp-table__aside--quiet">
-              Miniquest.
+            <em v-if="row.kindAside" class="quest-xp-table__aside quest-xp-table__aside--quiet">
+              {{ row.kindAside }}
             </em>
             <em v-if="row.levelsShort" class="data-table__needs quest-xp-table__aside">
               Short of {{ row.levelsShort }}.

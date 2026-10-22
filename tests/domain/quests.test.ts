@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { Quest } from '#shared/types/quest'
 import { METHODS } from '#shared/data/methods'
+import { QUEST_FACTS } from '#shared/data/quest-facts'
 import { QUESTS } from '#shared/data/quests'
 import { RESETS } from '#shared/data/resets'
 import { SKILL_KEYS } from '#shared/data/skills'
@@ -11,6 +12,8 @@ import {
   gatingDiaries,
   gatingQuests,
   knownQuests,
+  levelsShort,
+  questFacts,
   questLevelsShort,
   questOffers,
   questRewardSkills,
@@ -19,7 +22,7 @@ import {
 import { accountWith } from './helpers'
 
 function questWith(overrides: Partial<Quest> = {}): Quest {
-  return { name: 'Test quest', fixedXp: {}, skillLevelsNeeded: {}, miniquest: false, ...overrides }
+  return { name: 'Test quest', kind: 'quest', fixedXp: {}, skillLevelsNeeded: {}, ...overrides }
 }
 
 const dragonSlayer = questWith({
@@ -170,19 +173,35 @@ describe('gatingDiaries', () => {
 })
 
 describe('knownQuests', () => {
-  it('is every quest that pays XP and every quest that gates something, each once, in order', () => {
+  it('is every entry of the quest facts, each once, in order, which takes in every quest that pays XP or gates something', () => {
     const known = knownQuests()
+    expect(known).toEqual(QUEST_FACTS.map((quest) => quest.name))
     for (const quest of QUESTS) expect(known).toContain(quest.name)
     for (const quest of gatingQuests()) expect(known).toContain(quest)
     expect(known).toEqual([...new Set(known)].sort())
-    // Bone Voyage pays no XP, so only its gates put it on the list
-    expect(QUESTS.map((quest) => quest.name)).not.toContain('Bone Voyage')
-    expect(known).toContain('Bone Voyage')
+    // quests that neither pay XP nor gate anything are known too
+    expect(known).toContain('Rune Mysteries')
+    expect(known).toContain('Learning the Ropes')
   })
 
-  it('adds the gating quests to whatever list it is given', () => {
-    const known = knownQuests([small])
-    expect(known).toContain("Cook's Assistant")
-    expect(known).toHaveLength(gatingQuests().length + 1)
+  it('lists the facts it is given, in their order', () => {
+    const given = QUEST_FACTS.slice(0, 2)
+    expect(knownQuests(given)).toEqual(given.map((quest) => quest.name))
+  })
+})
+
+describe('questFacts and levelsShort', () => {
+  it('find an entry by its name, and nothing for a name the data does not have', () => {
+    expect(questFacts('Watchtower')?.kind).toBe('quest')
+    expect(questFacts('Knight Waves Training Grounds')?.kind).toBe('activity')
+    expect(questFacts('Tutorial Island')).toBeUndefined()
+  })
+
+  it('names the levels an account is short of, in the order given', () => {
+    const account = accountWith({ levels: { mining: 60, magic: 80 } })
+    expect(levelsShort(account, { mining: 68, magic: 75, smithing: 70 })).toEqual([
+      { skill: 'mining', level: 68 },
+      { skill: 'smithing', level: 70 },
+    ])
   })
 })

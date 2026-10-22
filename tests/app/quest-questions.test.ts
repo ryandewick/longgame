@@ -1,20 +1,23 @@
 import { describe, expect, it } from 'vitest'
-import type { Quest } from '#shared/types/quest'
+import type { Quest, QuestFacts } from '#shared/types/quest'
 import type { PlanQuestion, PlanRequirement } from '#shared/domain/plan-questions'
 import type { QuestTicks } from '#shared/domain/quest-ticks'
 import { accountWith } from '../domain/helpers'
 import {
   QUESTS_TABS,
+  QUEST_ROW_KIND_MEANING,
   alsoChangedNotice,
   alsoChangedSentence,
   answerAnnouncement,
   answerRows,
   answersStanding,
+  doneByEveryAccountNote,
   filterQuestRows,
   hoursInWords,
   hoursTakenOff,
   listInWords,
   progressLabel,
+  questRowLabel,
   questRows,
   questionAnnouncement,
   questionSentence,
@@ -541,32 +544,84 @@ describe('the tick list’s rows', () => {
   })
 
   const quests: Quest[] = [
-    {
-      name: "Cook's Assistant",
-      fixedXp: { cooking: 300 },
-      skillLevelsNeeded: {},
-      miniquest: false,
-    },
+    { name: "Cook's Assistant", kind: 'quest', fixedXp: { cooking: 300 }, skillLevelsNeeded: {} },
     {
       name: 'Grim Tales',
+      kind: 'quest',
       fixedXp: { farming: 4000, herblore: 5000 },
       lamps: { description: 'Lamps.', totalXp: 131_000 },
       skillLevelsNeeded: {},
-      miniquest: false,
     },
   ]
+  const facts = (name: string, overrides: Partial<QuestFacts> = {}): QuestFacts => ({
+    name,
+    kind: 'quest',
+    page: name,
+    revision: 1,
+    levels: {},
+    requires: [],
+    optional: false,
+    doneByEveryAccount: false,
+    ...overrides,
+  })
+  const entries = [
+    facts("Cook's Assistant"),
+    facts('Grim Tales'),
+    facts('Rune Mysteries'),
+    facts('Enter the Abyss', { kind: 'miniquest' }),
+    facts('Bear Your Soul', { kind: 'miniquest', optional: true }),
+    facts('Knight Waves Training Grounds', { kind: 'activity' }),
+    facts('Learning the Ropes', { doneByEveryAccount: true }),
+  ]
+  const rows = questRows(accountWith({ quests: ['Grim Tales'] }), entries, quests)
 
-  it('show every other quest with what it pays', () => {
-    expect(questRows(accountWith({ quests: ['Grim Tales'] }), quests)).toEqual([
-      { name: "Cook's Assistant", done: false, xp: '300' },
-      { name: 'Grim Tales', done: true, xp: '140k' },
+  it('show every other entry with what it pays, and nothing for one that pays no XP', () => {
+    expect(rows.map(({ name, done, xp }) => [name, done, xp])).toEqual([
+      ["Cook's Assistant", false, '300'],
+      ['Grim Tales', true, '140k'],
+      ['Rune Mysteries', false, ''],
+      ['Enter the Abyss', false, ''],
+      ['Bear Your Soul', false, ''],
+      ['Knight Waves Training Grounds', false, ''],
+      ['Learning the Ropes', true, ''],
+    ])
+  })
+
+  it('say what an entry is when it is not a quest, and which miniquests count toward nothing', () => {
+    expect(rows.map((row) => row.kind)).toEqual([
+      '',
+      '',
+      '',
+      'miniquest',
+      'optional',
+      'activity',
+      '',
+    ])
+    expect(QUEST_ROW_KIND_MEANING.optional).toMatch(/no quest and no diary task needs/)
+  })
+
+  it('mark the entry every account has done, which reads as done with nothing ticked', () => {
+    const learning = rows.find((row) => row.name === 'Learning the Ropes')
+    expect(learning).toMatchObject({ done: true, doneByEveryAccount: true })
+    expect(doneByEveryAccountNote('Learning the Ropes')).toBe(
+      'Every account has done Learning the Ropes: it is how a player reaches the mainland.',
+    )
+  })
+
+  it('give each tick box a label with what the entry is and whether it is done', () => {
+    expect(rows.map(questRowLabel)).toEqual([
+      "Cook's Assistant, not done",
+      'Grim Tales, done',
+      'Rune Mysteries, not done',
+      'Enter the Abyss, miniquest, not done',
+      'Bear Your Soul, optional miniquest, not done',
+      'Knight Waves Training Grounds, activity, not done',
+      'Learning the Ropes, done by every account',
     ])
   })
 
   it('say how many are ticked', () => {
-    expect(tickedCountLabel(questRows(accountWith({ quests: ['Grim Tales'] }), quests))).toBe(
-      '1 of 2 ticked',
-    )
+    expect(tickedCountLabel(rows)).toBe('2 of 7 ticked')
   })
 })
 

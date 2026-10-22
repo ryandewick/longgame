@@ -45,20 +45,43 @@ export interface MethodSourceFile {
   methods: MethodSource[]
 }
 
-/**
- * datasrc/quests_set.json: fixed quest XP parsed from the wiki's "Quest experience rewards", and
- * the skill levels every quest needs.
- */
+/** datasrc/quests_set.json: fixed quest XP parsed from the wiki's "Quest experience rewards". */
 export interface FixedQuestXpSource {
   /** Quest name to XP by skill. */
   xp: Record<string, Record<string, number>>
-  /**
-   * Quest name to the skill levels its own wiki page lists, for every quest that has any: those
-   * in `xp` under that name, and those that only pay lamps under the lamp table's.
-   */
-  need: Record<string, Record<string, number>>
-  /** The names in `xp` that are miniquests. */
-  mini: string[]
+}
+
+/** A lamp in datasrc/quest_facts.json: the Varrock Museum's, which the lamp table does not list. */
+export interface QuestFactLampSource {
+  count: number
+  xp: number
+  /** The level the chosen skill must be at. */
+  minLevel: number
+  /** Who hands it over: 'Historian Minas'. */
+  from: string
+}
+
+/**
+ * One entry of datasrc/quest_facts.json, keyed by the app's name for it. The file is exported from
+ * the quest and diary research (release/research/quests), never written by hand.
+ */
+export interface QuestFactSource {
+  /** 'quest', 'subquest', 'miniquest' or 'activity'. */
+  kind: string
+  /** The wiki page the facts were read from, and its revision. */
+  page: string
+  rev: number
+  /** Skill to level, as its page lists them. */
+  levels?: Record<string, number>
+  /** The quests its page says must be finished first. */
+  requires?: string[]
+  /** The quests one of its levels proves: Druidic Ritual, without which there is no Herblore. */
+  implies?: string[]
+  lamps?: QuestFactLampSource[]
+  /** A miniquest that no quest and no diary task needs. */
+  optional?: boolean
+  /** Every account has done it. */
+  everyAccount?: boolean
 }
 
 /** One entry of datasrc/quests_lamps.json: a skill-choice reward, as the wiki's Lua writes it. */
@@ -75,21 +98,6 @@ export interface LampSource {
   requirements: string | null
   notes: string | null
 }
-
-/**
- * One entry of datasrc/quest_prerequisites.json, which is keyed by the wiki's name for the quest.
- * Most are the wiki's Module:Questreq/data, entry for entry: quests, miniquests, activities and
- * diaries alike. The quests that module has no entry for were read from their own pages.
- */
-export interface QuestPrerequisiteSource {
-  /** The wiki page the entry came from: 'Module:Questreq/data', or the quest's own page. */
-  src: string
-  /** What it requires: quest names, some marked 'Started:' when finishing is not needed. */
-  requires: string[]
-}
-
-/** The page most entries of datasrc/quest_prerequisites.json came from. */
-export const QUEST_PREREQUISITE_MODULE = 'Module:Questreq/data'
 
 /** One entry of datasrc/resets.json. */
 export interface ResetSource {

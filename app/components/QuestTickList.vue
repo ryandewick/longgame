@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import { DIARY_REGIONS, DIARY_TIERS } from '#shared/data/diaries'
-import { QUESTS } from '#shared/data/quests'
+import { QUEST_FACTS } from '#shared/data/quest-facts'
 import { hasCompletedDiary } from '#shared/domain/account'
 import { gatingQuests } from '#shared/domain/quests'
 
 /**
  * The tick list part of the Quests page: everything the account can be told by hand. The quests
  * that unlock something come first, each with what it opens up, with the diary tiers beside
- * them; every other quest follows, to be searched and filtered. It is also where an answer to a
- * question is undone: untick the quest, or tick one that was answered "not yet".
+ * them; every other quest, miniquest and activity follows, to be searched and filtered. It is
+ * also where an answer to a question is undone: untick the quest, or tick one that was answered
+ * "not yet".
  */
 const account = useAccountStore()
 const { toggleQuest } = useQuestToggle()
 
 // which quests gate something is a fact of the data, the same for every account
 const GATING_QUESTS = gatingQuests()
-const OTHER_QUESTS = QUESTS.filter((quest) => !GATING_QUESTS.includes(quest.name))
+const OTHER_QUESTS = QUEST_FACTS.filter((entry) => !GATING_QUESTS.includes(entry.name))
 
 const EVERY_DIARY = DIARY_REGIONS.flatMap((region) =>
   DIARY_TIERS.map((tier) => `${region} ${tier}`),
@@ -67,10 +68,12 @@ function toggleDiary(diary: string): void {
     <section>
       <div class="section-heading">
         <h2 class="section-heading__title">Every other quest</h2>
-        <span class="section-heading__aside">
-          {{ others.length }} quests, ticked for their XP rewards
-        </span>
+        <span class="section-heading__aside">{{ tickedCountLabel(others) }}</span>
       </div>
+      <p class="note quest-tick-list__lead">
+        Miniquests and activities are here too, marked as such. Ticking one also ticks what it
+        requires.
+      </p>
       <QuestChecklist :rows="others" @toggle="toggleQuest" />
     </section>
   </div>

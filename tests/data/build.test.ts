@@ -1,15 +1,16 @@
 /* How datasrc/ entries become the app's data, and what the builders refuse. */
 import { describe, expect, it } from 'vitest'
+import type { QuestFacts } from '#shared/types/quest'
 import { buildMethods } from '#shared/data/build-methods'
-import { buildQuestPrerequisites } from '#shared/data/build-quest-prerequisites'
+import { buildQuestFacts } from '#shared/data/build-quest-facts'
 import { buildQuests } from '#shared/data/build-quests'
 import { buildResets } from '#shared/data/build-resets'
-import { DataSourceError, QUEST_PREREQUISITE_MODULE } from '#shared/data/sources'
+import { DataSourceError } from '#shared/data/sources'
 import type {
   FixedQuestXpSource,
   LampSource,
   MethodSource,
-  QuestPrerequisiteSource,
+  QuestFactSource,
   ResetSource,
 } from '#shared/data/sources'
 import { NO_REQUIREMENTS } from '#shared/domain/requirements'
@@ -266,8 +267,6 @@ describe('buildMethods', () => {
 describe('buildQuests', () => {
   const fixed = (overrides: Partial<FixedQuestXpSource> = {}): FixedQuestXpSource => ({
     xp: {},
-    need: {},
-    mini: [],
     ...overrides,
   })
   const lamp = (overrides: Partial<LampSource> = {}): LampSource => ({
@@ -278,23 +277,36 @@ describe('buildQuests', () => {
     notes: null,
     ...overrides,
   })
-  const lampText = (overrides: Partial<LampSource>) =>
-    buildQuests(fixed(), [lamp(overrides)])[0]?.lamps
+  /** The quest facts of a sketch: each name a plain quest unless told otherwise. */
+  const facts = (names: readonly string[], overrides: Record<string, Partial<QuestFacts>> = {}) =>
+    names.map((name): QuestFacts => ({
+      name,
+      kind: 'quest',
+      page: name,
+      revision: 1,
+      levels: {},
+      requires: [],
+      optional: false,
+      doneByEveryAccount: false,
+      ...overrides[name],
+    }))
+  const lampText = (overrides: Partial<LampSource>) => {
+    const source = lamp(overrides)
+    return buildQuests(fixed(), [source], facts([source.name.replaceAll("\\'", "'")]))[0]?.lamps
+  }
 
-  it('turns fixed XP into a quest', () => {
+  it('turns fixed XP into a quest, with its kind and its levels from the facts', () => {
     const quests = buildQuests(
-      fixed({
-        xp: { 'Cold War': { agility: 5000, crafting: 2000 } },
-        need: { 'Cold War': { agility: 30 } },
-      }),
+      fixed({ xp: { 'Cold War': { agility: 5000, crafting: 2000 } } }),
       [],
+      facts(['Cold War'], { 'Cold War': { levels: { agility: 30 } } }),
     )
     expect(quests).toEqual([
       {
         name: 'Cold War',
+        kind: 'quest',
         fixedXp: { agility: 5000, crafting: 2000 },
         skillLevelsNeeded: { agility: 30 },
-        miniquest: false,
       },
     ])
   })
@@ -305,6 +317,7 @@ describe('buildQuests', () => {
         xp: { Quest: { agility: 1000.5, herblore: 1001.5, prayer: 2812.4, magic: 2812.6 } },
       }),
       [],
+      facts(['Quest']),
     )
     expect(quest?.fixedXp).toEqual({ agility: 1000, herblore: 1002, prayer: 2812, magic: 2813 })
   })
@@ -313,55 +326,94 @@ describe('buildQuests', () => {
     const quests = buildQuests(
       fixed({ xp: { 'Recipe for Disaster/Freeing Evil Dave': { cooking: 7000 } } }),
       [],
+      facts(['Recipe for Disaster - Evil Dave'], {
+        'Recipe for Disaster - Evil Dave': { kind: 'subquest' },
+      }),
     )
-    expect(quests.map((quest) => quest.name)).toEqual(['Recipe for Disaster - Evil Dave'])
+    expect(quests.map((quest) => [quest.name, quest.kind])).toEqual([
+      ['Recipe for Disaster - Evil Dave', 'subquest'],
+    ])
   })
 
-  it('marks miniquests, going by the wiki’s name for them', () => {
+  it('takes what a quest is from the facts, under the quest list’s name', () => {
     const quests = buildQuests(
-      fixed({
-        xp: { 'Knight Waves': { attack: 20_000 }, 'Cold War': { agility: 5000 } },
-        mini: ['Knight Waves'],
-      }),
+      fixed({ xp: { 'Knight Waves': { attack: 20_000 }, 'Enter the Abyss': { runecraft: 1000 } } }),
       [],
+      facts(['Enter the Abyss', 'Knight Waves Training Grounds'], {
+        'Enter the Abyss': { kind: 'miniquest' },
+        'Knight Waves Training Grounds': { kind: 'activity' },
+      }),
     )
-    expect(quests.map((quest) => [quest.name, quest.miniquest])).toEqual([
-      ['Cold War', false],
-      ['Knight Waves Training Grounds', true],
+    expect(quests.map((quest) => [quest.name, quest.kind])).toEqual([
+      ['Enter the Abyss', 'miniquest'],
+      ['Knight Waves Training Grounds', 'activity'],
     ])
   })
 
   it('puts a quest’s fixed XP and its lamps together', () => {
-    const quests = buildQuests(fixed({ xp: { 'X Marks the Spot': { mining: 100 } } }), [lamp()])
+    const quests = buildQuests(
+      fixed({ xp: { 'X Marks the Spot': { mining: 100 } } }),
+      [lamp()],
+      facts(['X Marks the Spot']),
+    )
     expect(quests).toEqual([
       {
         name: 'X Marks the Spot',
+        kind: 'quest',
         fixedXp: { mining: 100 },
         lamps: { description: 'A 300 xp lamp for any skill.', totalXp: 300 },
         skillLevelsNeeded: {},
-        miniquest: false,
       },
     ])
   })
 
-  it('lists quests in plain code-point order, capitals before lower case', () => {
+  it('adds the lamps the facts give, as a quest of its own when it pays nothing else', () => {
+    const museum = { description: 'A 1,000 xp lamp from Historian Minas.', totalXp: 1000 }
     const quests = buildQuests(
-      fixed({
-        xp: { 'Zogre Flesh Eaters': {}, 'A Soul’s Bane': {}, "A Soul's Bane": {}, apple: {} },
-      }),
+      fixed({ xp: { 'Making History': { crafting: 1000 } } }),
       [],
+      facts(['Making History', 'Rune Mysteries', 'Shield of Arrav'], {
+        'Making History': { lamps: museum },
+        'Shield of Arrav': { lamps: museum },
+      }),
     )
-    expect(quests.map((quest) => quest.name)).toEqual([
-      "A Soul's Bane",
-      'A Soul’s Bane',
-      'Zogre Flesh Eaters',
-      'apple',
+    expect(quests.map((quest) => [quest.name, quest.fixedXp, quest.lamps?.totalXp])).toEqual([
+      ['Making History', { crafting: 1000 }, 1000],
+      ['Shield of Arrav', {}, 1000],
     ])
   })
 
+  it('lists quests in plain code-point order, capitals before lower case', () => {
+    const names = ["A Soul's Bane", 'A Soul’s Bane', 'Zogre Flesh Eaters', 'apple']
+    const quests = buildQuests(
+      fixed({ xp: Object.fromEntries(names.map((name) => [name, {}])) }),
+      [],
+      facts(names),
+    )
+    expect(quests.map((quest) => quest.name)).toEqual(names)
+  })
+
   it('refuses XP in a skill it does not know', () => {
-    const problems = problemsOf(() => buildQuests(fixed({ xp: { Quest: { dancing: 5 } } }), []))
+    const problems = problemsOf(() =>
+      buildQuests(fixed({ xp: { Quest: { dancing: 5 } } }), [], facts(['Quest'])),
+    )
     expect(problems).toEqual(["quest Quest: unknown skill 'dancing'"])
+  })
+
+  it('refuses a quest that pays XP but is not in the facts, and lamps given twice', () => {
+    const problems = problemsOf(() =>
+      buildQuests(
+        fixed({ xp: { 'Cold War': { agility: 5000 } } }),
+        [lamp()],
+        facts(['X Marks the Spot'], {
+          'X Marks the Spot': { lamps: { description: 'A lamp.', totalXp: 1000 } },
+        }),
+      ),
+    )
+    expect(problems).toEqual([
+      'quest X Marks the Spot: lamps in both the lamp table and the facts',
+      'quest Cold War: pays XP, but is not in the quest facts',
+    ])
   })
 
   describe('lamps', () => {
@@ -409,225 +461,140 @@ describe('buildQuests', () => {
     })
 
     it('unescapes apostrophes in quest names', () => {
-      const [quest] = buildQuests(fixed(), [lamp({ name: "King\\'s Ransom" })])
+      const [quest] = buildQuests(
+        fixed(),
+        [lamp({ name: "King\\'s Ransom" })],
+        facts(["King's Ransom"]),
+      )
       expect(quest?.name).toBe("King's Ransom")
     })
   })
 
   describe('skill levels', () => {
-    it('takes a quest’s levels from need, under the XP table’s name', () => {
-      const name = 'Recipe for Disaster/Freeing Skrach Uglogwee'
+    it('takes a quest’s levels from its facts, under the quest list’s name', () => {
       const [quest] = buildQuests(
-        fixed({
-          xp: { [name]: { cooking: 1500 } },
-          need: { [name]: { cooking: 41, firemaking: 20 } },
-        }),
+        fixed({ xp: { 'Recipe for Disaster/Freeing Skrach Uglogwee': { cooking: 1500 } } }),
         [],
+        facts(['Recipe for Disaster - Skrach Uglogwee'], {
+          'Recipe for Disaster - Skrach Uglogwee': { levels: { cooking: 41, firemaking: 20 } },
+        }),
       )
       expect(quest?.skillLevelsNeeded).toEqual({ cooking: 41, firemaking: 20 })
-    })
-
-    it('takes the levels of a quest that only pays lamps under the lamp table’s name', () => {
-      const [quest] = buildQuests(fixed({ need: { "Legends' Quest": { magic: 56 } } }), [
-        lamp({ name: "Legends\\' Quest" }),
-      ])
-      expect(quest?.skillLevelsNeeded).toEqual({ magic: 56 })
     })
 
     it('does not read the levels in the lamp table’s Lua', () => {
       const requirements = "string.format('%s, %s', SCP('Farming', '49'), SCP('Herblore', '57'))"
       const quests = buildQuests(
-        fixed({ xp: { 'X Marks the Spot': {} }, need: { 'X Marks the Spot': { farming: 30 } } }),
+        fixed({ xp: { 'X Marks the Spot': {} } }),
         [lamp({ requirements }), lamp({ name: 'Client of Kourend', requirements })],
+        facts(['Client of Kourend', 'X Marks the Spot'], {
+          'X Marks the Spot': { levels: { farming: 30 } },
+        }),
       )
       expect(quests.map((quest) => [quest.name, quest.skillLevelsNeeded])).toEqual([
         ['Client of Kourend', {}],
         ['X Marks the Spot', { farming: 30 }],
       ])
     })
-
-    it('refuses levels under a name neither table has, or in a skill it does not know', () => {
-      const problems = problemsOf(() =>
-        buildQuests(
-          fixed({
-            xp: { 'Recipe for Disaster/Freeing Evil Dave': { cooking: 7000 } },
-            need: {
-              'Recipe for Disaster - Evil Dave': { cooking: 25 },
-              'Recipe for Disaster/Freeing Evil Dave': { dancing: 5 },
-            },
-          }),
-          [],
-        ),
-      )
-      expect(problems).toEqual([
-        'quest Recipe for Disaster - Evil Dave: levels, but no XP or lamps under that name',
-        "quest Recipe for Disaster/Freeing Evil Dave: needs unknown skill 'dancing'",
-      ])
-    })
   })
 })
 
-describe('buildQuestPrerequisites', () => {
-  /** A source file from a sketch: each name with what it requires, all from the wiki's module. */
-  const moduleSource = (
-    requires: Record<string, string[]>,
-  ): Record<string, QuestPrerequisiteSource> =>
-    Object.fromEntries(
-      Object.entries(requires).map(([name, required]) => [
-        name,
-        { src: QUEST_PREREQUISITE_MODULE, requires: required },
-      ]),
-    )
+describe('buildQuestFacts', () => {
+  const entry = (overrides: Partial<QuestFactSource> = {}): QuestFactSource => ({
+    kind: 'quest',
+    page: 'A page',
+    rev: 15_000_000,
+    ...overrides,
+  })
 
-  const KNOWN = ['Biohazard', "King's Ransom", 'Plague City', 'Underground Pass', 'Watchtower']
-
-  const build = (requires: Record<string, string[]>, known: readonly string[] = KNOWN) =>
-    buildQuestPrerequisites(moduleSource(requires), known)
-
-  const requiredBy = (requires: Record<string, string[]>, known?: readonly string[]) =>
-    Object.fromEntries(build(requires, known).requires)
-
-  it('keeps what each known quest requires, in name order, and leaves out a quest that requires nothing', () => {
-    expect(
-      requiredBy({
-        'Plague City': [],
-        Biohazard: ['Plague City'],
-        'Underground Pass': ['Plague City', 'Biohazard'],
+  it('turns each entry into facts, in plain code-point order, with what it needs and proves joined', () => {
+    const built = buildQuestFacts({
+      Watchtower: entry({
+        page: 'Watchtower',
+        levels: { mining: 40, herblore: 14 },
+        implies: ['Druidic Ritual'],
       }),
-    ).toEqual({ Biohazard: ['Plague City'], 'Underground Pass': ['Biohazard', 'Plague City'] })
-  })
-
-  it('leaves out a requirement that only has to be started', () => {
-    expect(
-      requiredBy({ 'Underground Pass': ['Started:Plague City', 'Biohazard'], Biohazard: [] }),
-    ).toEqual({ 'Underground Pass': ['Biohazard'] })
-  })
-
-  it('straightens apostrophes and trims stray spaces, in entry names and in requirements', () => {
-    expect(
-      requiredBy({ 'King’s Ransom': ['Watchtower '], ' Biohazard': ['King’s Ransom'] }),
-    ).toEqual({ "King's Ransom": ['Watchtower'], Biohazard: ["King's Ransom"] })
-  })
-
-  it('gives the Recipe for Disaster subquests and the two oddly titled miniquests the quest list’s names', () => {
-    const known = [
-      'Monkey Madness I',
-      'Natural history quiz',
-      'Recipe for Disaster - King Awowogei',
-      'Vale Totems',
-    ]
-    const built = build(
-      {
-        'Recipe for Disaster/Freeing King Awowogei': ['Monkey Madness I'],
-        'Natural History Quiz': [],
-        'Vale Totems (miniquest)': ['Recipe for Disaster/Freeing King Awowogei'],
-      },
-      known,
-    )
-    expect(Object.fromEntries(built.requires)).toEqual({
-      'Recipe for Disaster - King Awowogei': ['Monkey Madness I'],
-      'Vale Totems': ['Recipe for Disaster - King Awowogei'],
+      'Druidic Ritual': entry({ page: 'Druidic Ritual' }),
+      Biohazard: entry({ page: 'Biohazard', requires: ['Plague City'] }),
+      'Plague City': entry({ page: 'Plague City' }),
     })
-    expect(built.unlisted).toEqual(['Monkey Madness I'])
+    expect(built.map((quest) => quest.name)).toEqual([
+      'Biohazard',
+      'Druidic Ritual',
+      'Plague City',
+      'Watchtower',
+    ])
+    expect(built[3]).toEqual({
+      name: 'Watchtower',
+      kind: 'quest',
+      page: 'Watchtower',
+      revision: 15_000_000,
+      levels: { mining: 40, herblore: 14 },
+      requires: ['Druidic Ritual'],
+      optional: false,
+      doneByEveryAccount: false,
+    })
+    expect(built[0]?.requires).toEqual(['Plague City'])
   })
 
-  it('drops an entry the app does not track, but passes on what it requires', () => {
-    // Troll Stronghold pays no XP and gates nothing, so the app does not know it; Death Plateau it does
-    const known = ['Death Plateau', 'Desert Treasure I']
-    expect(
-      requiredBy(
-        {
-          'Desert Treasure I': ['Troll Stronghold'],
-          'Troll Stronghold': ['Death Plateau', 'Started:Desert Treasure I'],
-          'Death Plateau': [],
-          'Easy Ardougne Diary': ['Death Plateau'],
-        },
-        known,
-      ),
-    ).toEqual({ 'Desert Treasure I': ['Death Plateau'] })
-  })
-
-  it('names a quest once however many ways lead to it', () => {
-    const known = ['Biohazard', 'Plague City']
-    expect(
-      requiredBy(
-        { Biohazard: ['Plague City', 'Clock Tower'], 'Clock Tower': ['Plague City'] },
-        known,
-      ),
-    ).toEqual({ Biohazard: ['Plague City'] })
-  })
-
-  it('ignores the placeholders of the module’s own template', () => {
-    expect(
-      requiredBy({
-        Name_of_quest: ['subquest', 'subquest'],
-        Biohazard: ['subquest', 'Plague City'],
+  it('describes the lamps it adds, and marks optional miniquests and the quest every account has done', () => {
+    const [bear, learning, shield] = buildQuestFacts({
+      'Bear Your Soul': entry({ kind: 'miniquest', optional: true }),
+      'Learning the Ropes': entry({ everyAccount: true }),
+      'Shield of Arrav': entry({
+        lamps: [{ count: 1, xp: 1000, minLevel: 20, from: 'Historian Minas' }],
       }),
-    ).toEqual({ Biohazard: ['Plague City'] })
-  })
-
-  it('leaves out a requirement the wiki names without an entry, when it is listed as untracked', () => {
-    expect(requiredBy({ Biohazard: ['Architectural Alliance', 'Plague City'] })).toEqual({
-      Biohazard: ['Plague City'],
+    })
+    expect(bear).toMatchObject({ kind: 'miniquest', optional: true, doneByEveryAccount: false })
+    expect(learning).toMatchObject({ optional: false, doneByEveryAccount: true })
+    expect(shield?.lamps).toEqual({
+      description: 'A 1,000 xp lamp from Historian Minas for any skill at level 20 or above.',
+      totalXp: 1000,
     })
   })
 
-  it('says which known quests were read from their own page and which have no entry at all', () => {
-    const built = buildQuestPrerequisites(
-      {
-        Biohazard: { src: QUEST_PREREQUISITE_MODULE, requires: ['Plague City'] },
-        Watchtower: { src: 'Watchtower', requires: [] },
-        'Clock Tower': { src: 'Clock Tower', requires: [] },
-      },
-      KNOWN,
-    )
-    expect(built.fromOwnPage).toEqual(['Watchtower'])
-    expect(built.unlisted).toEqual(["King's Ransom", 'Plague City', 'Underground Pass'])
-  })
-
-  it.each<[string, Record<string, string[]>, RegExp]>([
+  it.each<[string, Record<string, QuestFactSource>, RegExp]>([
+    ['a kind it does not know', { Quest: entry({ kind: 'saga' }) }, /Quest: kind 'saga'/],
+    ['an entry with no page', { Quest: entry({ page: ' ' }) }, /Quest: no page/],
+    ['a revision that is not one', { Quest: entry({ rev: 0 }) }, /Quest: revision 0/],
     [
-      'a requirement that is neither a known quest nor an entry',
-      { Biohazard: ['Plage City'] },
-      /Biohazard requires 'Plage City', which nothing knows/,
+      'a skill it does not know',
+      { Quest: entry({ levels: { dancing: 5 } }) },
+      /Quest: needs unknown skill 'dancing'/,
     ],
+    ['a level past 99', { Quest: entry({ levels: { mining: 100 } }) }, /Quest: mining 100/],
+    [
+      'a quest needed that is not an entry',
+      { Quest: entry({ requires: ['Plage City'] }) },
+      /Quest: needs 'Plage City', which is not an entry/,
+    ],
+    ['a quest that needs itself', { Quest: entry({ requires: ['Quest'] }) }, /Quest: needs itself/],
     [
       'a chain that comes back on itself',
       {
-        Biohazard: ['Plague City'],
-        'Plague City': ['Underground Pass'],
-        'Underground Pass': ['Biohazard'],
+        Biohazard: entry({ requires: ['Plague City'] }),
+        'Plague City': entry({ implies: ['Underground Pass'] }),
+        'Underground Pass': entry({ requires: ['Biohazard'] }),
       },
       /Biohazard > Plague City > Underground Pass > Biohazard is a cycle/,
     ],
     [
-      'a quest that requires itself',
-      { Biohazard: ['Biohazard'] },
-      /Biohazard > Biohazard is a cycle/,
+      'an optional entry that is not a miniquest',
+      { Quest: entry({ optional: true }) },
+      /Quest: optional, but not a miniquest/,
     ],
     [
-      'untracked entries that require each other',
-      {
-        Biohazard: ['Clock Tower'],
-        'Clock Tower': ['Demon Slayer'],
-        'Demon Slayer': ['Clock Tower'],
-      },
-      /Clock Tower > Demon Slayer > Clock Tower is a cycle/,
+      'a name with a curly apostrophe',
+      { 'King’s Ransom': entry() },
+      /'King’s Ransom': spelt unlike a tick/,
     ],
     [
-      'two entries that come to the same name',
-      { "King's Ransom": [], 'King’s Ransom': [] },
-      /'King's Ransom' has two entries/,
+      'a lamp that pays nothing',
+      { Quest: entry({ lamps: [{ count: 1, xp: 0, minLevel: 20, from: 'Historian Minas' }] }) },
+      /Quest: lamp xp 0/,
     ],
-  ])('refuses %s', (_case, requires, problem) => {
-    expect(problemsOf(() => build(requires)).join('\n')).toMatch(problem)
-  })
-
-  it('refuses an entry that does not say where it came from', () => {
-    const source = { Biohazard: { src: ' ', requires: [] } }
-    expect(problemsOf(() => buildQuestPrerequisites(source, KNOWN)).join('\n')).toMatch(
-      /'Biohazard' has no source page/,
-    )
+  ])('refuses %s', (_case, source, problem) => {
+    expect(problemsOf(() => buildQuestFacts(source)).join('\n')).toMatch(problem)
   })
 })
 

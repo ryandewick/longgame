@@ -1,6 +1,7 @@
 import type { Account } from '#shared/types/account'
-import type { Quest } from '#shared/types/quest'
+import type { Quest, QuestFacts } from '#shared/types/quest'
 import type { SkillKey } from '#shared/types/skill'
+import { QUESTS } from '#shared/data/quests'
 import { skillName } from '#shared/data/skills'
 import { hasCompletedQuest } from '#shared/domain/account'
 import { formatHours, formatNumber, formatShortNumber } from '#shared/domain/format'
@@ -443,21 +444,65 @@ export function unlockRows(account: Account, quests: readonly string[]): UnlockR
   })
 }
 
-/** A quest that unlocks nothing, ticked for its XP reward. */
+/** What an entry is, in a word beside its name, when it is not a quest. */
+export type QuestRowKind = '' | 'miniquest' | 'optional' | 'activity'
+
+/** A quest, miniquest or activity that unlocks no training method, ticked for itself. */
 export interface QuestRow {
   readonly name: string
   readonly done: boolean
-  /** Everything it pays, short: '140k'. */
+  /** Everything it pays, short: '140k'. Empty when it pays no XP. */
   readonly xp: string
+  /** 'miniquest'; 'optional' for a miniquest that no quest and no diary task needs; 'activity'. */
+  readonly kind: QuestRowKind
+  /** Every account has done it (Learning the Ropes), so its tick cannot be taken away. */
+  readonly doneByEveryAccount: boolean
 }
 
-/** The quests in the order given, each with whether it is done and what it pays. */
-export function questRows(account: Account, quests: readonly Quest[]): QuestRow[] {
-  return quests.map((quest) => ({
-    name: quest.name,
-    done: hasCompletedQuest(account, quest.name),
-    xp: formatShortNumber(questTotalXp(quest)),
-  }))
+/** The word beside an entry's name: nothing for a quest or a part of Recipe for Disaster. */
+function rowKind(entry: QuestFacts): QuestRowKind {
+  if (entry.kind === 'activity') return 'activity'
+  if (entry.kind === 'miniquest') return entry.optional ? 'optional' : 'miniquest'
+  return ''
+}
+
+/** What the word beside a name means, for its tooltip: why an optional miniquest is optional. */
+export const QUEST_ROW_KIND_MEANING: Readonly<Record<Exclude<QuestRowKind, ''>, string>> = {
+  miniquest: 'A miniquest. It gives no quest points, but a quest or a diary task needs it.',
+  optional: 'A miniquest that no quest and no diary task needs: it counts toward neither cape.',
+  activity: 'On neither the quest list nor the miniquest list, but it pays XP.',
+}
+
+/** The entries in the order given, each with whether it is done, what it pays and what it is. */
+export function questRows(
+  account: Account,
+  entries: readonly QuestFacts[],
+  quests: readonly Quest[] = QUESTS,
+): QuestRow[] {
+  const paying = new Map(quests.map((quest) => [quest.name, quest]))
+  return entries.map((entry) => {
+    const quest = paying.get(entry.name)
+    const xp = quest ? questTotalXp(quest) : 0
+    return {
+      name: entry.name,
+      done: hasCompletedQuest(account, entry.name),
+      xp: xp ? formatShortNumber(xp) : '',
+      kind: rowKind(entry),
+      doneByEveryAccount: entry.doneByEveryAccount,
+    }
+  })
+}
+
+/** What a screen reader calls a row's tick box: 'Bear Your Soul, optional miniquest, not done'. */
+export function questRowLabel(row: QuestRow): string {
+  const kind = row.kind === 'optional' ? 'optional miniquest' : row.kind
+  const state = row.doneByEveryAccount ? 'done by every account' : row.done ? 'done' : 'not done'
+  return [row.name, kind, state].filter(Boolean).join(', ')
+}
+
+/** Why pressing the tick of a quest every account has done changes nothing. */
+export function doneByEveryAccountNote(name: string): string {
+  return `Every account has done ${name}: it is how a player reaches the mainland.`
 }
 
 /** Which of a list's quests to show. */

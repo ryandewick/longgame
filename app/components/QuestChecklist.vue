@@ -1,7 +1,8 @@
 <script setup lang="ts">
 /**
- * A long list of quests to tick, with a search box and a filter over it: the quests that unlock
- * nothing and are ticked for their XP. Each row is a tick box, the quest's name and what it pays.
+ * A long list of quests to tick, with a search box and a filter over it: the quests, miniquests
+ * and activities that unlock no training method. Each row is a tick box, the name, a word for what
+ * it is when it is not a quest, and what it pays.
  */
 const { rows } = defineProps<{
   rows: readonly QuestRow[]
@@ -41,13 +42,21 @@ const shown = computed(() => filterQuestRows(rows, search.value, filter.value))
         <TickBox
           class="quest-checklist__tick"
           :ticked="row.done"
-          :label="`${row.name}, ${row.done ? 'done' : 'not done'}`"
+          :label="questRowLabel(row)"
           @toggle="emit('toggle', row.name)"
         >
           <span class="quest-checklist__name" :class="{ 'quest-checklist__name--done': row.done }">
             {{ row.name }}
           </span>
         </TickBox>
+        <span
+          v-if="row.kind"
+          class="quest-checklist__kind"
+          :title="QUEST_ROW_KIND_MEANING[row.kind]"
+          aria-hidden="true"
+        >
+          {{ row.kind }}
+        </span>
         <span class="quest-checklist__xp">{{ row.xp }}</span>
       </li>
     </ul>
@@ -97,6 +106,13 @@ const shown = computed(() => filterQuestRows(rows, search.value, filter.value))
     &--done {
       color: var(--color-text-strong);
     }
+  }
+
+  // what the entry is when it is not a quest; outside the name, so a long name is cut and not it
+  &__kind {
+    flex: none;
+    color: var(--color-text-faint);
+    font-size: 12px;
   }
 
   &__xp {
