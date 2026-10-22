@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import type { Quest, QuestFacts } from '#shared/types/quest'
+import type { Quest } from '#shared/types/quest'
 import type { PlanQuestion, PlanRequirement } from '#shared/domain/plan-questions'
 import type { QuestTicks } from '#shared/domain/quest-ticks'
-import { accountWith } from '../domain/helpers'
+import { QUEST_FACTS } from '#shared/data/quest-facts'
+import { accountWith, questFactsWith } from '../domain/helpers'
 import {
   QUESTS_TABS,
   QUEST_ROW_KIND_MEANING,
@@ -525,7 +526,9 @@ describe('the tick list’s rows', () => {
   const ironman = accountWith({ type: 'iron', quests: ['Bone Voyage'] })
 
   it('show each unlocking quest with what it opens up, cut short, and the skills that trains', () => {
-    expect(unlockRows(ironman, ['Bone Voyage', 'Temple of the Eye', 'Tears of Guthix'])).toEqual([
+    expect(
+      unlockRows(ironman, ['Bone Voyage', 'Temple of the Eye', 'Tears of Guthix']),
+    ).toMatchObject([
       {
         name: 'Bone Voyage',
         done: true,
@@ -554,6 +557,33 @@ describe('the tick list’s rows', () => {
         moreSkills: 0,
       },
     ])
+  })
+
+  it('say, until a quest is done, whether the account is ready for it or what it needs', () => {
+    const [done, temple] = unlockRows(ironman, ['Bone Voyage', 'Temple of the Eye'])
+    expect(done?.readiness).toBeNull()
+    expect(temple?.readiness).toEqual({
+      ready: false,
+      line: 'Needs Enter the Abyss and 10 Runecraft',
+      sentence: 'Needs Enter the Abyss and 10 Runecraft (you have 1).',
+    })
+    const ready = accountWith({ quests: ['Enter the Abyss'], levels: { runecraft: 10 } })
+    expect(unlockRows(ready, ['Temple of the Eye'])[0]?.readiness).toEqual({
+      ready: true,
+      line: 'Ready',
+      sentence: 'Ready.',
+    })
+  })
+
+  it('name the boost a quest is ready with', () => {
+    // every other quest done, and 57 of Swan Song's 62 Fishing: a super fishing potion is +6
+    const quests = QUEST_FACTS.map(({ name }) => name).filter((name) => name !== 'Swan Song')
+    const main = accountWith({ everySkill: 99, levels: { fishing: 57 }, quests })
+    expect(unlockRows(main, ['Swan Song'])[0]?.readiness).toEqual({
+      ready: true,
+      line: 'Ready with a super fishing potion',
+      sentence: 'Ready with a super fishing potion.',
+    })
   })
 
   it('show a quest whose start matters as started, and say how to get there', () => {
@@ -589,19 +619,7 @@ describe('the tick list’s rows', () => {
       skillLevelsNeeded: {},
     },
   ]
-  const facts = (name: string, overrides: Partial<QuestFacts> = {}): QuestFacts => ({
-    name,
-    kind: 'quest',
-    page: name,
-    revision: 1,
-    levels: {},
-    requires: [],
-    requiresStarted: [],
-    optional: false,
-    doneByEveryAccount: false,
-    startedMatters: false,
-    ...overrides,
-  })
+  const facts = questFactsWith
   const entries = [
     facts("Cook's Assistant"),
     facts('Grim Tales'),
@@ -660,6 +678,18 @@ describe('the tick list’s rows', () => {
 
   it('say how many are ticked', () => {
     expect(tickedCountLabel(rows)).toBe('2 of 7 ticked')
+  })
+
+  it('say whether each entry not done is ready, and nothing for one that is done', () => {
+    expect(rows.map(({ name, readiness }) => [name, readiness?.line ?? null])).toEqual([
+      ["Cook's Assistant", 'Ready'],
+      ['Grim Tales', null],
+      ['Rune Mysteries', 'Ready'],
+      ['Enter the Abyss', 'Ready'],
+      ['Bear Your Soul', 'Ready'],
+      ['Knight Waves Training Grounds', 'Ready'],
+      ['Learning the Ropes', null],
+    ])
   })
 
   it('show a started entry as started, in its label too', () => {

@@ -1,6 +1,7 @@
 /* How datasrc/ entries become the app's data, and what the builders refuse. */
 import { describe, expect, it } from 'vitest'
 import type { QuestFacts } from '#shared/types/quest'
+import { buildBoosts } from '#shared/data/build-boosts'
 import { buildMethods } from '#shared/data/build-methods'
 import { buildDiaryFacts } from '#shared/data/build-diary-facts'
 import { buildQuestFacts } from '#shared/data/build-quest-facts'
@@ -8,6 +9,7 @@ import { buildQuests } from '#shared/data/build-quests'
 import { buildResets } from '#shared/data/build-resets'
 import { DataSourceError } from '#shared/data/sources'
 import type {
+  BoostSource,
   DiaryFactSource,
   FixedQuestXpSource,
   LampSource,
@@ -17,6 +19,7 @@ import type {
 } from '#shared/data/sources'
 import { DIARY_REGIONS, DIARY_TIERS } from '#shared/data/diaries'
 import { NO_REQUIREMENTS } from '#shared/domain/requirements'
+import { questFactsWith } from '../domain/helpers'
 
 const methodSource = (overrides: Partial<MethodSource> = {}): MethodSource => ({
   lv: 1,
@@ -282,17 +285,7 @@ describe('buildQuests', () => {
   })
   /** The quest facts of a sketch: each name a plain quest unless told otherwise. */
   const facts = (names: readonly string[], overrides: Record<string, Partial<QuestFacts>> = {}) =>
-    names.map((name): QuestFacts => ({
-      name,
-      kind: 'quest',
-      page: name,
-      revision: 1,
-      levels: {},
-      requires: [],
-      optional: false,
-      doneByEveryAccount: false,
-      ...overrides[name],
-    }))
+    names.map((name) => questFactsWith(name, overrides[name]))
   const lampText = (overrides: Partial<LampSource>) => {
     const source = lamp(overrides)
     return buildQuests(fixed(), [source], facts([source.name.replaceAll("\\'", "'")]))[0]?.lamps
@@ -538,6 +531,16 @@ describe('buildQuestFacts', () => {
       optional: false,
       doneByEveryAccount: false,
       startedMatters: false,
+      needs: {
+        boostable: [],
+        finishOnly: [],
+        bypassable: [],
+        questPoints: 0,
+        combat: 0,
+        kudos: 0,
+        ironman: [],
+      },
+      gives: { questPoints: 0, kudos: 0, kudosOpened: 0 },
     })
     expect(built[0]?.requires).toEqual(['Plague City'])
   })
@@ -575,6 +578,67 @@ describe('buildQuestFacts', () => {
       description: 'A 1,000 xp lamp from Historian Minas for any skill at level 20 or above.',
       totalXp: 1000,
     })
+  })
+
+  it('reads what readiness needs: levels to boost, finish only or get round, counts, an ironman’s needs, and what it gives', () => {
+    const [quest] = buildQuestFacts({
+      Quest: entry({
+        levels: { fishing: 62, magic: 66, ranged: 40 },
+        boostable: ['fishing', 'magic'],
+        finishOnly: ['magic'],
+        bypassable: ['ranged'],
+        questPoints: 100,
+        combat: 85,
+        kudos: 100,
+        ironman: [
+          {
+            need: 'a mithril grapple',
+            options: [
+              [
+                { skill: 'fletching', level: 59 },
+                { skill: 'smithing', level: 59 },
+              ],
+              [{ skill: 'firemaking', level: 35 }],
+            ],
+          },
+          {
+            need: 'steel nails',
+            options: [[{ skill: 'smithing', level: 34 }]],
+            condition: 'free-to-play only',
+          },
+        ],
+        givesQuestPoints: 2,
+        givesKudos: 5,
+        opensKudos: 50,
+      }),
+    })
+    expect(quest?.needs).toEqual({
+      boostable: ['fishing', 'magic'],
+      finishOnly: ['magic'],
+      bypassable: ['ranged'],
+      questPoints: 100,
+      combat: 85,
+      kudos: 100,
+      ironman: [
+        {
+          need: 'a mithril grapple',
+          options: [
+            [
+              { skill: 'fletching', level: 59 },
+              { skill: 'smithing', level: 59 },
+            ],
+            [{ skill: 'firemaking', level: 35 }],
+          ],
+          condition: null,
+        },
+        {
+          need: 'steel nails',
+          options: [[{ skill: 'smithing', level: 34 }]],
+          condition: 'free-to-play only',
+        },
+      ],
+    })
+    expect(quest?.gives).toEqual({ questPoints: 2, kudos: 5, kudosOpened: 50 })
   })
 
   it.each<[string, Record<string, QuestFactSource>, RegExp]>([
@@ -643,6 +707,45 @@ describe('buildQuestFacts', () => {
       { Quest: entry({ lamps: [{ count: 1, xp: 0, minLevel: 20, from: 'Historian Minas' }] }) },
       /Quest: lamp xp 0/,
     ],
+    [
+      'a boostable skill it needs no level in',
+      { Quest: entry({ boostable: ['fishing'] }) },
+      /Quest: boostable names fishing, which it needs no level in/,
+    ],
+    [
+      'a skill it does not know, needed only to finish',
+      { Quest: entry({ levels: { mining: 5 }, finishOnly: ['dancing'] }) },
+      /Quest: finishOnly names unknown skill 'dancing'/,
+    ],
+    [
+      'a skill named twice as bypassable',
+      { Quest: entry({ levels: { mining: 5 }, bypassable: ['mining', 'mining'] }) },
+      /Quest: bypassable names mining twice/,
+    ],
+    [
+      'quest points needed that are not a whole number',
+      { Quest: entry({ questPoints: 1.5 }) },
+      /Quest: quest points needed 1.5/,
+    ],
+    [
+      'an ironman need with an empty option',
+      { Quest: entry({ ironman: [{ need: 'a shield', options: [[]] }] }) },
+      /Quest: an ironman need with an empty option/,
+    ],
+    [
+      'an ironman level past 99',
+      {
+        Quest: entry({
+          ironman: [{ need: 'a shield', options: [[{ skill: 'smithing', level: 100 }]] }],
+        }),
+      },
+      /Quest ironman: smithing 100/,
+    ],
+    [
+      'quest points from a miniquest',
+      { Quest: entry({ kind: 'miniquest', givesQuestPoints: 1 }) },
+      /Quest: gives quest points, but is not a quest/,
+    ],
   ])('refuses %s', (_case, source, problem) => {
     expect(problemsOf(() => buildQuestFacts(source)).join('\n')).toMatch(problem)
   })
@@ -698,6 +801,19 @@ describe('buildDiaryFacts', () => {
       page: 'Ardougne Diary',
       revision: 15_000_000,
       quests: { 'Fairytale II - Cure a Queen': 'started', 'Plague City': 'finished' },
+      planFinished: [],
+      levels: {},
+      boostable: [],
+      raiments: null,
+      choices: [],
+      questPoints: 0,
+      combat: 0,
+      kudos: 0,
+      allQuests: false,
+      ironman: [],
+      longTasks: [],
+      also: [],
+      gates: [],
     })
   })
 
@@ -733,8 +849,224 @@ describe('buildDiaryFacts', () => {
       everyTier({ 'Desert Hard': { quests: { 'Plague City': 'started' } } }),
       /Desert Hard: needs 'Plague City' started, which is not marked as mattering started/,
     ],
+    [
+      'a quest planned finished that it does not read started',
+      everyTier({
+        'Desert Hard': { quests: { 'Plague City': 'finished' }, planFinished: ['Plague City'] },
+      }),
+      /Desert Hard: plans 'Plague City' finished, which it does not read started/,
+    ],
+    [
+      'a level past 99',
+      everyTier({ 'Desert Hard': { levels: { smithing: 100 } } }),
+      /Desert Hard: smithing 100/,
+    ],
+    [
+      'a boostable skill it needs no level in',
+      everyTier({ 'Desert Hard': { boostable: ['smithing'] } }),
+      /Desert Hard: boostable names smithing, which it needs no level in/,
+    ],
+    [
+      'a Raiments of the Eye level no lower than its Runecraft',
+      everyTier({
+        'Varrock Elite': { levels: { runecraft: 50 }, raiments: { level: 52, pieces: 2 } },
+      }),
+      /Varrock Elite: 52 Runecraft with 2 pieces/,
+    ],
+    [
+      'more Raiments of the Eye pieces than there are',
+      everyTier({
+        'Varrock Elite': { levels: { runecraft: 78 }, raiments: { level: 52, pieces: 5 } },
+      }),
+      /Varrock Elite: 52 Runecraft with 5 pieces/,
+    ],
+    [
+      'a choice of one option',
+      everyTier({ 'Karamja Hard': { choices: [{ options: [[{ combat: 100 }]] }] } }),
+      /Karamja Hard: a choice of fewer than two options/,
+    ],
+    [
+      'a choice item that is two things',
+      everyTier({
+        'Karamja Hard': {
+          choices: [{ options: [[{ combat: 100, other: 'a slayer cape' }], [{ combat: 90 }]] }],
+        },
+      }),
+      /Karamja Hard: a choice item that is not one thing/,
+    ],
+    [
+      'a choice of a quest that is not an entry',
+      everyTier({
+        'Karamja Hard': {
+          choices: [{ options: [[{ quest: 'Contact', state: 'finished' }], [{ combat: 90 }]] }],
+        },
+      }),
+      /Karamja Hard: a choice of 'Contact', not a quest entry/,
+    ],
+    [
+      'a gate that is neither a method nor a reset',
+      everyTier({ 'Desert Hard': { gates: [{ kind: 'shop', name: 'Zahur' }] } }),
+      /Desert Hard: a gate of kind 'shop'/,
+    ],
+    [
+      'a long task of nothing',
+      everyTier({
+        'Western Provinces Elite': { longTasks: [{ amount: 0, unit: 'kills', text: '' }] },
+      }),
+      /Western Provinces Elite: a long task of 0 kills/,
+    ],
+    [
+      'an ironman level in a skill it does not know',
+      everyTier({ 'Varrock Hard': { ironman: [{ skill: 'dancing', level: 69 }] } }),
+      /Varrock Hard ironman: unknown skill 'dancing'/,
+    ],
   ])('refuses %s', (_case, source, problem) => {
     expect(problemsOf(() => buildDiaryFacts(source, quests)).join('\n')).toMatch(problem)
+  })
+
+  it('reads what readiness needs of a tier', () => {
+    const built = buildDiaryFacts(
+      everyTier({
+        'Varrock Elite': {
+          quests: { 'Fairytale II - Cure a Queen': 'started', 'Plague City': 'finished' },
+          planFinished: ['Fairytale II - Cure a Queen'],
+          levels: { runecraft: 78, cooking: 95, attack: 42 },
+          boostable: ['runecraft', 'cooking'],
+          raiments: { level: 52, pieces: 2 },
+          choices: [
+            {
+              options: [
+                [{ combat: 100 }],
+                [{ skill: 'slayer', level: 99 }],
+                [{ quest: 'Plague City', state: 'started' }, { other: 'a cooked oomlie wrap' }],
+                [{ skill: 'cooking', level: 50, boostable: true }],
+              ],
+              note: 'Duradel assigns tasks at 100 combat',
+            },
+          ],
+          questPoints: 32,
+          combat: 40,
+          kudos: 153,
+          allQuests: true,
+          ironman: [{ skill: 'hunter', level: 69 }],
+          longTasks: [{ amount: 1000, unit: 'chompy kills', text: '1,000 chompy kills' }],
+          also: ['Access to the Earth Altar'],
+          gates: [{ kind: 'reset', name: 'Battlestaves from Zaff' }],
+        },
+      }),
+      quests,
+    )
+    expect(built.find((diary) => diary.name === 'Varrock Elite')).toEqual({
+      name: 'Varrock Elite',
+      region: 'Varrock',
+      tier: 'Elite',
+      page: 'Varrock Diary',
+      revision: 15_000_000,
+      quests: { 'Fairytale II - Cure a Queen': 'started', 'Plague City': 'finished' },
+      planFinished: ['Fairytale II - Cure a Queen'],
+      levels: { runecraft: 78, cooking: 95, attack: 42 },
+      boostable: ['runecraft', 'cooking'],
+      raiments: { level: 52, pieces: 2 },
+      choices: [
+        {
+          options: [
+            [{ kind: 'combat', level: 100 }],
+            [{ kind: 'skill', skill: 'slayer', level: 99, boostable: false }],
+            [
+              { kind: 'quest', quest: 'Plague City', state: 'started' },
+              { kind: 'other', text: 'a cooked oomlie wrap' },
+            ],
+            [{ kind: 'skill', skill: 'cooking', level: 50, boostable: true }],
+          ],
+          note: 'Duradel assigns tasks at 100 combat',
+        },
+      ],
+      questPoints: 32,
+      combat: 40,
+      kudos: 153,
+      allQuests: true,
+      ironman: [{ skill: 'hunter', level: 69 }],
+      longTasks: [{ amount: 1000, unit: 'chompy kills', text: '1,000 chompy kills' }],
+      also: ['Access to the Earth Altar'],
+      gates: [{ kind: 'reset', name: 'Battlestaves from Zaff' }],
+    })
+  })
+})
+
+describe('buildBoosts', () => {
+  const boost = (overrides: Partial<BoostSource> = {}): BoostSource => ({
+    name: 'Super fishing potion',
+    phrase: 'a super fishing potion',
+    page: 'Super fishing potion',
+    rev: 15_000_000,
+    flat: 6,
+    main: 'always',
+    ironman: { skill: 'herblore', level: 62 },
+    ...overrides,
+  })
+
+  it('turns each skill’s boosts into the app’s: a flat size or a share of the level, and who may count it', () => {
+    const delight = boost({
+      name: "Chef's delight(m)",
+      phrase: "a mature chef's delight",
+      page: "Chef's delight(m)",
+      flat: undefined,
+      base: 2,
+      percent: 5,
+      ironman: 'never',
+    })
+    expect(buildBoosts({ fishing: [boost()], cooking: [delight] })).toEqual({
+      fishing: [
+        {
+          name: 'Super fishing potion',
+          phrase: 'a super fishing potion',
+          page: 'Super fishing potion',
+          revision: 15_000_000,
+          amount: { flat: 6 },
+          main: 'always',
+          ironman: { skill: 'herblore', level: 62 },
+        },
+      ],
+      cooking: [
+        {
+          name: "Chef's delight(m)",
+          phrase: "a mature chef's delight",
+          page: "Chef's delight(m)",
+          revision: 15_000_000,
+          amount: { base: 2, percentOfLevel: 5 },
+          main: 'always',
+          ironman: 'never',
+        },
+      ],
+    })
+  })
+
+  it.each<[string, Record<string, BoostSource[]>, RegExp]>([
+    ['a skill it does not know', { dancing: [boost()] }, /'dancing': not a skill the app knows/],
+    ['a boost with no phrase', { fishing: [boost({ phrase: ' ' })] }, /no name or phrase/],
+    ['a revision that is not one', { fishing: [boost({ rev: 0 })] }, /revision 0/],
+    [
+      'a size both flat and a share',
+      { fishing: [boost({ base: 2, percent: 5 })] },
+      /a size that is not flat or a base and a share/,
+    ],
+    [
+      'no size',
+      { fishing: [boost({ flat: undefined })] },
+      /a size that is not flat or a base and a share/,
+    ],
+    [
+      'a rule it does not know',
+      { fishing: [boost({ main: 'sometimes' })] },
+      /fishing: Super fishing potion main: a rule 'sometimes'/,
+    ],
+    [
+      'a rule past 99',
+      { fishing: [boost({ ironman: { skill: 'herblore', level: 100 } })] },
+      /fishing: Super fishing potion ironman: herblore 100/,
+    ],
+  ])('refuses %s', (_case, source, problem) => {
+    expect(problemsOf(() => buildBoosts(source)).join('\n')).toMatch(problem)
   })
 })
 

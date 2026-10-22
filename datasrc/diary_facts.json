@@ -5,7 +5,13 @@
   "quests": {
    "Biohazard": "finished",
    "Rune Mysteries": "finished"
-  }
+  },
+  "levels": {
+   "thieving": 5
+  },
+  "boostable": [
+   "thieving"
+  ]
  },
  "Ardougne Medium": {
   "page": "Ardougne Diary",
@@ -19,7 +25,38 @@
    "Tower of Life": "finished",
    "Underground Pass": "finished",
    "Watchtower": "started"
-  }
+  },
+  "levels": {
+   "agility": 39,
+   "farming": 31,
+   "firemaking": 50,
+   "magic": 51,
+   "ranged": 21,
+   "strength": 38,
+   "thieving": 38
+  },
+  "boostable": [
+   "agility",
+   "farming",
+   "firemaking",
+   "magic",
+   "ranged",
+   "strength",
+   "thieving"
+  ],
+  "also": [
+   "Ultimate Ironmen fill the bucket from the sand pit instead, without The Hand in the Sand"
+  ],
+  "gates": [
+   {
+    "kind": "method",
+    "name": "Knights of Ardougne"
+   },
+   {
+    "kind": "reset",
+    "name": "Pure essence from Cromperty"
+   }
+  ]
  },
  "Ardougne Hard": {
   "page": "Ardougne Diary",
@@ -30,7 +67,37 @@
    "Mourning's End Part II": "finished",
    "Plague City": "finished",
    "Watchtower": "finished"
-  }
+  },
+  "levels": {
+   "construction": 50,
+   "farming": 70,
+   "hunter": 59,
+   "magic": 66,
+   "runecraft": 65,
+   "smithing": 68,
+   "thieving": 72
+  },
+  "boostable": [
+   "farming",
+   "hunter",
+   "magic",
+   "runecraft",
+   "smithing",
+   "thieving"
+  ],
+  "also": [
+   "Access to the Death Altar via the Abyss"
+  ],
+  "gates": [
+   {
+    "kind": "method",
+    "name": "Pickpocketing vyres"
+   },
+   {
+    "kind": "method",
+    "name": "Master Farmers"
+   }
+  ]
  },
  "Ardougne Elite": {
   "page": "Ardougne Diary",
@@ -38,14 +105,52 @@
   "quests": {
    "Desert Treasure I": "finished",
    "Haunted Mine": "finished"
-  }
+  },
+  "levels": {
+   "agility": 90,
+   "cooking": 91,
+   "crafting": 10,
+   "farming": 85,
+   "fishing": 81,
+   "fletching": 69,
+   "magic": 94,
+   "smithing": 91,
+   "thieving": 82
+  },
+  "boostable": [
+   "agility",
+   "cooking",
+   "crafting",
+   "farming",
+   "fletching",
+   "magic",
+   "smithing",
+   "thieving"
+  ],
+  "also": [
+   "Access to the Nightmare Zone"
+  ],
+  "longTasks": [
+   {
+    "amount": 800000,
+    "unit": "Nightmare Zone points",
+    "text": "imbue a Salve amulet at Nightmare Zone: 800,000 points (400,000 with the hard Combat Achievements), unless an imbued one is already owned"
+   }
+  ]
  },
  "Desert Easy": {
   "page": "Desert Diary",
   "rev": 15366086,
   "quests": {
    "Icthlarin's Little Helper": "started"
-  }
+  },
+  "levels": {
+   "hunter": 5,
+   "thieving": 21
+  },
+  "boostable": [
+   "hunter"
+  ]
  },
  "Desert Medium": {
   "page": "Desert Diary",
@@ -56,7 +161,24 @@
    "Enakhra's Lament": "finished",
    "Spirits of the Elid": "finished",
    "The Golem": "finished"
-  }
+  },
+  "levels": {
+   "agility": 30,
+   "construction": 20,
+   "herblore": 36,
+   "hunter": 47,
+   "slayer": 22,
+   "thieving": 25,
+   "woodcutting": 35
+  },
+  "boostable": [
+   "agility",
+   "herblore",
+   "hunter",
+   "slayer",
+   "thieving",
+   "woodcutting"
+  ]
  },
  "Desert Hard": {
   "page": "Desert Diary",
@@ -66,7 +188,43 @@
    "Desert Treasure I": "finished",
    "Dream Mentor": "finished",
    "The Feud": "started"
-  }
+  },
+  "levels": {
+   "agility": 70,
+   "attack": 50,
+   "crafting": 55,
+   "defence": 10,
+   "firemaking": 60,
+   "magic": 68,
+   "mining": 45,
+   "slayer": 65,
+   "smithing": 68,
+   "thieving": 65
+  },
+  "boostable": [
+   "agility",
+   "crafting",
+   "firemaking",
+   "magic",
+   "mining",
+   "slayer",
+   "smithing",
+   "thieving"
+  ],
+  "planFinished": [
+   "Contact!",
+   "The Feud"
+  ],
+  "gates": [
+   {
+    "kind": "method",
+    "name": "Potions from your own herbs with Zahur"
+   },
+   {
+    "kind": "method",
+    "name": "Pollnivneach rooftop with hard diary"
+   }
+  ]
  },
  "Desert Elite": {
   "page": "Desert Diary",
@@ -76,7 +234,21 @@
    "Icthlarin's Little Helper": "started",
    "Priest in Peril": "finished",
    "The Tourist Trap": "finished"
-  }
+  },
+  "levels": {
+   "construction": 78,
+   "cooking": 85,
+   "fletching": 95,
+   "magic": 94,
+   "prayer": 85,
+   "thieving": 91
+  },
+  "boostable": [
+   "construction",
+   "cooking",
+   "fletching",
+   "magic"
+  ]
  },
  "Falador Easy": {
   "page": "Falador Diary",
@@ -84,7 +256,19 @@
   "quests": {
    "Doric's Quest": "finished",
    "The Knight's Sword": "finished"
-  }
+  },
+  "levels": {
+   "agility": 5,
+   "construction": 16,
+   "mining": 10,
+   "smithing": 13
+  },
+  "boostable": [
+   "agility",
+   "construction",
+   "mining",
+   "smithing"
+  ]
  },
  "Falador Medium": {
   "page": "Falador Diary",
@@ -93,7 +277,41 @@
    "Ratcatchers": "started",
    "Recruitment Drive": "finished",
    "Skippy and the Mogres": "finished"
-  }
+  },
+  "levels": {
+   "agility": 42,
+   "crafting": 40,
+   "defence": 20,
+   "farming": 23,
+   "firemaking": 49,
+   "magic": 37,
+   "mining": 40,
+   "prayer": 10,
+   "ranged": 19,
+   "slayer": 32,
+   "strength": 37,
+   "thieving": 40,
+   "woodcutting": 30
+  },
+  "boostable": [
+   "agility",
+   "crafting",
+   "farming",
+   "firemaking",
+   "magic",
+   "mining",
+   "ranged",
+   "slayer",
+   "strength",
+   "thieving",
+   "woodcutting"
+  ],
+  "ironman": [
+   {
+    "skill": "farming",
+    "level": 30
+   }
+  ]
  },
  "Falador Hard": {
   "page": "Falador Diary",
@@ -102,7 +320,57 @@
    "Grim Tales": "finished",
    "Heroes' Quest": "finished",
    "The Slug Menace": "finished"
-  }
+  },
+  "levels": {
+   "agility": 50,
+   "construction": 16,
+   "defence": 50,
+   "mining": 60,
+   "prayer": 70,
+   "runecraft": 56,
+   "slayer": 72,
+   "thieving": 50
+  },
+  "boostable": [
+   "agility",
+   "construction",
+   "mining",
+   "runecraft",
+   "slayer",
+   "thieving"
+  ],
+  "raiments": {
+   "level": 42,
+   "pieces": 3
+  },
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "other": "130 combined Attack and Strength"
+      }
+     ],
+     [
+      {
+       "skill": "attack",
+       "level": 99
+      }
+     ],
+     [
+      {
+       "skill": "strength",
+       "level": 99
+      }
+     ]
+    ],
+    "note": "the Warriors' Guild door; boosts cannot be used"
+   }
+  ],
+  "also": [
+   "Access to the Mind Altar (mind talisman/tiara, catalytic talisman/tiara, or the Abyss)",
+   "130 combined Attack and Strength, or 99 in either, to enter the Warriors' Guild (not boostable)"
+  ]
  },
  "Falador Elite": {
   "page": "Falador Diary",
@@ -110,7 +378,52 @@
   "quests": {
    "Druidic Ritual": "finished",
    "Wanted!": "finished"
-  }
+  },
+  "levels": {
+   "agility": 80,
+   "farming": 91,
+   "herblore": 81,
+   "runecraft": 88,
+   "woodcutting": 75
+  },
+  "boostable": [
+   "agility",
+   "farming",
+   "herblore",
+   "runecraft",
+   "woodcutting"
+  ],
+  "raiments": {
+   "level": 55,
+   "pieces": 4
+  },
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "other": "all quests completed (quest point cape)"
+      }
+     ],
+     [
+      {
+       "other": "level 99 in any skill (any Cape of Accomplishment, not a joke skillcape or the max cape)"
+      }
+     ]
+    ],
+    "note": "a skillcape or quest cape emote"
+   }
+  ],
+  "also": [
+   "Access to the Air Altar (air talisman/tiara, elemental talisman/tiara, or the Abyss)"
+  ],
+  "longTasks": [
+   {
+    "amount": 1300,
+    "unit": "Black Knight kill score",
+    "text": "White Knight Master rank: a Black Knight kill score of 1,300 (the rank starts at 100)"
+   }
+  ]
  },
  "Fremennik Easy": {
   "page": "Fremennik Diary",
@@ -118,7 +431,64 @@
   "quests": {
    "The Fremennik Trials": "finished",
    "The Giant Dwarf": "started"
-  }
+  },
+  "levels": {
+   "crafting": 23,
+   "firemaking": 15,
+   "hunter": 11,
+   "mining": 20,
+   "smithing": 20,
+   "thieving": 5,
+   "woodcutting": 15
+  },
+  "boostable": [
+   "crafting",
+   "firemaking",
+   "hunter",
+   "mining",
+   "smithing",
+   "thieving",
+   "woodcutting"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "other": "a Waterbirth teleport tablet"
+      }
+     ],
+     [
+      {
+       "other": "1,000 coins for Jarvald"
+      }
+     ],
+     [
+      {
+       "quest": "The Fremennik Trials",
+       "state": "finished"
+      }
+     ]
+    ],
+    "note": "to reach Waterbirth Island"
+   },
+   {
+    "options": [
+     [
+      {
+       "quest": "Troll Stronghold",
+       "state": "started"
+      }
+     ],
+     [
+      {
+       "other": "Ghommal's hilt 1 (the Easy Combat Achievements)"
+      }
+     ]
+    ],
+    "note": "to reach the stronghold"
+   }
+  ]
  },
  "Fremennik Medium": {
   "page": "Fremennik Diary",
@@ -130,7 +500,45 @@
    "Horror from the Deep": "finished",
    "Olaf's Quest": "started",
    "The Fremennik Trials": "finished"
-  }
+  },
+  "levels": {
+   "construction": 37,
+   "defence": 30,
+   "hunter": 35,
+   "mining": 40,
+   "slayer": 47,
+   "thieving": 42
+  },
+  "boostable": [
+   "construction",
+   "defence",
+   "hunter",
+   "mining",
+   "slayer",
+   "thieving"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "skill": "hunter",
+       "level": 35
+      },
+      {
+       "other": "butterfly net and butterfly jar"
+      }
+     ],
+     [
+      {
+       "skill": "hunter",
+       "level": 45
+      }
+     ]
+    ],
+    "note": "page lists 45 Hunter and 35 Hunter with a net and jar"
+   }
+  ]
  },
  "Fremennik Hard": {
   "page": "Fremennik Diary",
@@ -142,7 +550,45 @@
    "The Fremennik Isles": "started",
    "The Giant Dwarf": "started",
    "Throne of Miscellania": "started"
-  }
+  },
+  "levels": {
+   "herblore": 66,
+   "hunter": 55,
+   "magic": 72,
+   "mining": 70,
+   "smithing": 60,
+   "thieving": 75,
+   "woodcutting": 56
+  },
+  "boostable": [
+   "herblore",
+   "hunter",
+   "magic",
+   "mining",
+   "thieving",
+   "woodcutting"
+  ],
+  "planFinished": [
+   "The Fremennik Isles",
+   "Throne of Miscellania"
+  ],
+  "longTasks": [
+   {
+    "amount": 100,
+    "unit": "% support in Miscellania",
+    "text": "100% support from the kingdom of Miscellania (Managing Miscellania)"
+   }
+  ],
+  "gates": [
+   {
+    "kind": "method",
+    "name": "Tan Leather"
+   },
+   {
+    "kind": "method",
+    "name": "Rellekka rooftop with hard diary"
+   }
+  ]
  },
  "Fremennik Elite": {
   "page": "Fremennik Diary",
@@ -150,14 +596,79 @@
   "quests": {
    "Lunar Diplomacy": "finished",
    "The Fremennik Isles": "started"
-  }
+  },
+  "levels": {
+   "agility": 80,
+   "crafting": 80,
+   "hitpoints": 70,
+   "ranged": 70,
+   "runecraft": 82,
+   "slayer": 83,
+   "strength": 70
+  },
+  "boostable": [
+   "agility",
+   "crafting",
+   "runecraft",
+   "slayer"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "quest": "Troll Stronghold",
+       "state": "started"
+      }
+     ],
+     [
+      {
+       "other": "Ghommal's hilt 1 (the Easy Combat Achievements)"
+      }
+     ]
+    ],
+    "note": "to reach the God Wars Dungeon"
+   },
+   {
+    "options": [
+     [
+      {
+       "quest": "Troll Stronghold",
+       "state": "started"
+      }
+     ],
+     [
+      {
+       "other": "Ghommal's hilt 1 (the Easy Combat Achievements)"
+      }
+     ]
+    ],
+    "note": "to reach the God Wars Dungeon"
+   }
+  ]
  },
  "Kandarin Easy": {
   "page": "Kandarin Diary",
   "rev": 15360468,
   "quests": {
    "Elemental Workshop I": "started"
-  }
+  },
+  "levels": {
+   "agility": 20,
+   "farming": 13,
+   "fishing": 16
+  },
+  "boostable": [
+   "agility",
+   "farming",
+   "fishing"
+  ],
+  "gates": [
+   {
+    "kind": "reset",
+    "name": "Flax for bow string"
+   }
+  ]
  },
  "Kandarin Medium": {
   "page": "Kandarin Diary",
@@ -168,7 +679,37 @@
    "Elemental Workshop II": "started",
    "Fairytale II - Cure a Queen": "started",
    "Waterfall Quest": "started"
-  }
+  },
+  "levels": {
+   "agility": 36,
+   "cooking": 43,
+   "farming": 26,
+   "fishing": 46,
+   "fletching": 50,
+   "herblore": 48,
+   "magic": 45,
+   "mining": 30,
+   "ranged": 40,
+   "strength": 22,
+   "thieving": 47
+  },
+  "boostable": [
+   "agility",
+   "cooking",
+   "farming",
+   "fishing",
+   "fletching",
+   "herblore",
+   "magic",
+   "mining",
+   "ranged",
+   "strength",
+   "thieving"
+  ],
+  "also": [
+   "Glarial's amulet, only if Waterfall Quest is not finished",
+   "Completion of the Barbarian Assault tutorial to be able to play the minigame"
+  ]
  },
  "Kandarin Hard": {
   "page": "Kandarin Diary",
@@ -177,7 +718,45 @@
    "Desert Treasure I": "started",
    "King's Ransom": "finished",
    "Tai Bwo Wannai Trio": "finished"
-  }
+  },
+  "levels": {
+   "agility": 60,
+   "construction": 50,
+   "defence": 70,
+   "firemaking": 65,
+   "fishing": 70,
+   "fletching": 70,
+   "magic": 56,
+   "prayer": 70,
+   "smithing": 75,
+   "strength": 50,
+   "thieving": 53,
+   "woodcutting": 60
+  },
+  "boostable": [
+   "agility",
+   "firemaking",
+   "fishing",
+   "fletching",
+   "magic",
+   "smithing",
+   "thieving",
+   "woodcutting"
+  ],
+  "also": [
+   "Access to Barbarian Fishing",
+   "Knight Waves Training Ground completed (Piety)",
+   "Access to Barbarian Firemaking",
+   "Access to Barbarian Firemaking",
+   "the Penance Queen defeated in Barbarian Assault, and 95,000 coins for the granite body",
+   "Barbarian Smithing (Barbarian Training)"
+  ],
+  "gates": [
+   {
+    "kind": "method",
+    "name": "Seers' rooftop with Camelot teleport"
+   }
+  ]
  },
  "Kandarin Elite": {
   "page": "Kandarin Diary",
@@ -186,12 +765,54 @@
    "Druidic Ritual": "finished",
    "Family Crest": "finished",
    "Lunar Diplomacy": "finished"
-  }
+  },
+  "levels": {
+   "agility": 60,
+   "cooking": 80,
+   "crafting": 85,
+   "farming": 79,
+   "firemaking": 85,
+   "fishing": 76,
+   "herblore": 86,
+   "magic": 87,
+   "smithing": 90
+  },
+  "boostable": [
+   "agility",
+   "cooking",
+   "crafting",
+   "farming",
+   "firemaking",
+   "fishing",
+   "herblore",
+   "magic",
+   "smithing"
+  ],
+  "longTasks": [
+   {
+    "amount": 5600,
+    "unit": "Barbarian Assault honour points",
+    "text": "level 5 in every Barbarian Assault role: 5,600 honour points (1,400 a role) if none are spent on armour or gambles"
+   }
+  ],
+  "also": [
+   "Access to Barbarian Herblore",
+   "Access to Barbarian Smithing",
+   "Access to Barbarian Firemaking"
+  ]
  },
  "Karamja Easy": {
   "page": "Karamja Diary",
   "rev": 15372025,
-  "quests": {}
+  "quests": {},
+  "levels": {
+   "agility": 15,
+   "mining": 40
+  },
+  "boostable": [
+   "agility",
+   "mining"
+  ]
  },
  "Karamja Medium": {
   "page": "Karamja Diary",
@@ -202,7 +823,94 @@
    "Shilo Village": "finished",
    "Tai Bwo Wannai Trio": "started",
    "The Grand Tree": "finished"
-  }
+  },
+  "levels": {
+   "agility": 12,
+   "cooking": 16,
+   "farming": 27,
+   "fishing": 65,
+   "hunter": 41,
+   "mining": 40,
+   "woodcutting": 50
+  },
+  "boostable": [
+   "agility",
+   "cooking",
+   "farming",
+   "fishing",
+   "hunter",
+   "mining",
+   "woodcutting"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "other": "100 trading sticks and some Tai Bwo Wannai Cleanup favour (Hardwood Grove)"
+      }
+     ],
+     [
+      {
+       "quest": "Legends' Quest",
+       "state": "started"
+      },
+      {
+       "other": "a machete or 79 Agility (Kharazi Jungle)"
+      }
+     ]
+    ],
+    "note": "where to cut the teak"
+   },
+   {
+    "options": [
+     [
+      {
+       "other": "100 trading sticks and some Tai Bwo Wannai Cleanup favour (Hardwood Grove)"
+      }
+     ],
+     [
+      {
+       "quest": "Legends' Quest",
+       "state": "started"
+      },
+      {
+       "other": "a machete or 79 Agility (Kharazi Jungle)"
+      }
+     ]
+    ],
+    "note": "where to cut the mahogany"
+   },
+   {
+    "options": [
+     [
+      {
+       "quest": "Shilo Village",
+       "state": "finished"
+      }
+     ],
+     [
+      {
+       "other": "items for Tai Bwo Wannai Cleanup"
+      }
+     ]
+    ],
+    "note": "gem rocks at Shilo Village or in the Tai Bwo Wannai area"
+   }
+  ],
+  "longTasks": [
+   {
+    "amount": 100,
+    "unit": "% Tai Bwo Wannai favour",
+    "text": "100% favour in Tai Bwo Wannai (Tai Bwo Wannai Cleanup)"
+   }
+  ],
+  "gates": [
+   {
+    "kind": "method",
+    "name": "Gem rocks"
+   }
+  ]
  },
  "Karamja Hard": {
   "page": "Karamja Diary",
@@ -211,21 +919,113 @@
    "Legends' Quest": "started",
    "Shilo Village": "finished",
    "Tai Bwo Wannai Trio": "finished"
-  }
+  },
+  "levels": {
+   "agility": 53,
+   "cooking": 30,
+   "mining": 52,
+   "ranged": 42,
+   "runecraft": 44,
+   "slayer": 50,
+   "strength": 50,
+   "thieving": 50,
+   "woodcutting": 34
+  },
+  "boostable": [
+   "agility",
+   "cooking",
+   "mining",
+   "ranged",
+   "runecraft",
+   "strength",
+   "thieving",
+   "woodcutting"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "other": "a cooked oomlie wrap"
+      }
+     ],
+     [
+      {
+       "skill": "cooking",
+       "level": 50
+      },
+      {
+       "other": "a palm leaf and a raw oomlie"
+      }
+     ]
+    ]
+   },
+   {
+    "options": [
+     [
+      {
+       "combat": 100
+      }
+     ],
+     [
+      {
+       "skill": "slayer",
+       "level": 99
+      }
+     ]
+    ],
+    "note": "Duradel assigns tasks at 100 combat, or to a Slayer cape wearer"
+   }
+  ],
+  "also": [
+   "Access to the Nature Altar (nature talisman/tiara, catalytic talisman/tiara, or the Abyss)"
+  ],
+  "ironman": [
+   {
+    "skill": "cooking",
+    "level": 50
+   }
+  ]
  },
  "Karamja Elite": {
   "page": "Karamja Diary",
   "rev": 15372025,
   "quests": {
    "Druidic Ritual": "finished"
-  }
+  },
+  "levels": {
+   "farming": 72,
+   "herblore": 87,
+   "runecraft": 91
+  },
+  "boostable": [
+   "farming",
+   "herblore",
+   "runecraft"
+  ],
+  "also": [
+   "Access to the Nature Altar (nature talisman/tiara, catalytic talisman/tiara, or the Abyss)"
+  ]
  },
  "Kourend & Kebos Easy": {
   "page": "Kourend & Kebos Diary",
   "rev": 15366020,
   "quests": {
    "Druidic Ritual": "finished"
-  }
+  },
+  "levels": {
+   "construction": 25,
+   "fishing": 20,
+   "herblore": 12,
+   "mining": 15,
+   "thieving": 25
+  },
+  "boostable": [
+   "fishing",
+   "herblore",
+   "mining",
+   "thieving"
+  ]
  },
  "Kourend & Kebos Medium": {
   "page": "Kourend & Kebos Diary",
@@ -238,7 +1038,43 @@
    "The Depths of Despair": "finished",
    "The Forsaken Tower": "finished",
    "The Queen of Thieves": "finished"
-  }
+  },
+  "levels": {
+   "agility": 49,
+   "construction": 30,
+   "crafting": 30,
+   "farming": 45,
+   "firemaking": 50,
+   "fishing": 43,
+   "hunter": 53,
+   "mining": 42,
+   "woodcutting": 50
+  },
+  "boostable": [
+   "agility",
+   "construction",
+   "crafting",
+   "farming",
+   "hunter",
+   "mining",
+   "woodcutting"
+  ],
+  "planFinished": [
+   "Eagles' Peak"
+  ],
+  "longTasks": [
+   {
+    "amount": 500,
+    "unit": "Wintertodt points in one game",
+    "text": "subdue the Wintertodt with at least 500 points"
+   }
+  ],
+  "gates": [
+   {
+    "kind": "reset",
+    "name": "Dynamite from Thirus"
+   }
+  ]
  },
  "Kourend & Kebos Hard": {
   "page": "Kourend & Kebos Diary",
@@ -246,12 +1082,53 @@
   "quests": {
    "Dream Mentor": "finished",
    "The Forsaken Tower": "started"
-  }
+  },
+  "levels": {
+   "farming": 74,
+   "magic": 66,
+   "mining": 65,
+   "slayer": 62,
+   "smithing": 70,
+   "thieving": 49,
+   "woodcutting": 60
+  },
+  "boostable": [
+   "farming",
+   "magic",
+   "mining",
+   "slayer",
+   "smithing",
+   "woodcutting"
+  ]
  },
  "Kourend & Kebos Elite": {
   "page": "Kourend & Kebos Diary",
   "rev": 15366020,
-  "quests": {}
+  "quests": {},
+  "levels": {
+   "cooking": 84,
+   "crafting": 38,
+   "farming": 85,
+   "fishing": 82,
+   "fletching": 40,
+   "magic": 90,
+   "mining": 38,
+   "runecraft": 77,
+   "slayer": 95,
+   "woodcutting": 90
+  },
+  "boostable": [
+   "cooking",
+   "crafting",
+   "farming",
+   "fishing",
+   "fletching",
+   "magic",
+   "mining",
+   "runecraft",
+   "slayer",
+   "woodcutting"
+  ]
  },
  "Lumbridge & Draynor Easy": {
   "page": "Lumbridge & Draynor Diary",
@@ -259,7 +1136,26 @@
   "quests": {
    "Cook's Assistant": "finished",
    "Rune Mysteries": "finished"
-  }
+  },
+  "levels": {
+   "firemaking": 15,
+   "fishing": 15,
+   "mining": 15,
+   "runecraft": 5,
+   "slayer": 7,
+   "woodcutting": 15
+  },
+  "boostable": [
+   "firemaking",
+   "fishing",
+   "mining",
+   "runecraft",
+   "slayer",
+   "woodcutting"
+  ],
+  "also": [
+   "Access to the Water Altar (water talisman/tiara, elemental talisman/tiara, or the Abyss)"
+  ]
  },
  "Lumbridge & Draynor Medium": {
   "page": "Lumbridge & Draynor Diary",
@@ -268,7 +1164,34 @@
    "Animal Magnetism": "finished",
    "Fairytale II - Cure a Queen": "started",
    "Lost City": "finished"
-  }
+  },
+  "levels": {
+   "agility": 20,
+   "crafting": 38,
+   "fishing": 30,
+   "hunter": 42,
+   "magic": 31,
+   "ranged": 50,
+   "runecraft": 23,
+   "strength": 19,
+   "thieving": 38,
+   "woodcutting": 30
+  },
+  "boostable": [
+   "agility",
+   "crafting",
+   "fishing",
+   "hunter",
+   "magic",
+   "runecraft",
+   "strength",
+   "thieving",
+   "woodcutting"
+  ],
+  "combat": 70,
+  "also": [
+   "Access to the Fire Altar (fire talisman/tiara, elemental talisman/tiara, or the Abyss)"
+  ]
  },
  "Lumbridge & Draynor Hard": {
   "page": "Lumbridge & Draynor Diary",
@@ -278,21 +1201,112 @@
    "Lost City": "finished",
    "Recipe for Disaster": "finished",
    "Tears of Guthix": "finished"
-  }
+  },
+  "levels": {
+   "agility": 46,
+   "crafting": 70,
+   "farming": 63,
+   "firemaking": 65,
+   "magic": 60,
+   "prayer": 52,
+   "runecraft": 59,
+   "woodcutting": 57
+  },
+  "boostable": [
+   "agility",
+   "crafting",
+   "farming",
+   "firemaking",
+   "magic",
+   "runecraft",
+   "woodcutting"
+  ],
+  "also": [
+   "Bones to Peaches bought at the Mage Training Arena",
+   "Access to the Cosmic Altar (cosmic talisman/tiara, catalytic talisman/tiara, or the Abyss)"
+  ],
+  "longTasks": [
+   {
+    "amount": 100,
+    "unit": "tears in one visit",
+    "text": "collect at least 100 Tears of Guthix in one visit; one visit a week, and each quest point adds a tick (150 quest points recommended)"
+   }
+  ]
  },
  "Lumbridge & Draynor Elite": {
   "page": "Lumbridge & Draynor Diary",
   "rev": 15362921,
   "quests": {
    "Death to the Dorgeshuun": "finished"
-  }
+  },
+  "levels": {
+   "agility": 70,
+   "ranged": 70,
+   "runecraft": 76,
+   "smithing": 88,
+   "strength": 70,
+   "thieving": 78,
+   "woodcutting": 75
+  },
+  "boostable": [
+   "ranged",
+   "runecraft",
+   "smithing",
+   "strength",
+   "thieving",
+   "woodcutting"
+  ],
+  "raiments": {
+   "level": 38,
+   "pieces": 4
+  },
+  "also": [
+   "Access to the Water Altar (water talisman/tiara, elemental talisman/tiara, or the Abyss)"
+  ],
+  "allQuests": true
  },
  "Morytania Easy": {
   "page": "Morytania Diary",
   "rev": 15375886,
   "quests": {
    "Nature Spirit": "finished"
-  }
+  },
+  "levels": {
+   "cooking": 12,
+   "crafting": 15,
+   "farming": 23,
+   "slayer": 15
+  },
+  "boostable": [
+   "cooking",
+   "crafting",
+   "farming",
+   "slayer"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "other": "2 ecto-tokens"
+      }
+     ],
+     [
+      {
+       "quest": "Ghosts Ahoy",
+       "state": "finished"
+      }
+     ],
+     [
+      {
+       "other": "coins for a charter ship"
+      }
+     ]
+    ],
+    "note": "to enter Port Phasmatys"
+   }
+  ],
+  "combat": 20
  },
  "Morytania Medium": {
   "page": "Morytania Diary",
@@ -306,7 +1320,29 @@
    "Lair of Tarn Razorlor": "finished",
    "Nature Spirit": "finished",
    "Rum Deal": "finished"
-  }
+  },
+  "levels": {
+   "agility": 40,
+   "cooking": 40,
+   "herblore": 22,
+   "hunter": 29,
+   "slayer": 42,
+   "smithing": 35,
+   "woodcutting": 45
+  },
+  "boostable": [
+   "agility",
+   "herblore",
+   "hunter",
+   "smithing",
+   "woodcutting"
+  ],
+  "gates": [
+   {
+    "kind": "reset",
+    "name": "Bonemeal from Robin"
+   }
+  ]
  },
  "Morytania Hard": {
   "page": "Morytania Diary",
@@ -319,7 +1355,32 @@
    "King's Ransom": "finished",
    "Nature Spirit": "finished",
    "The Great Brain Robbery": "started"
-  }
+  },
+  "levels": {
+   "agility": 71,
+   "construction": 50,
+   "defence": 70,
+   "farming": 53,
+   "firemaking": 50,
+   "magic": 66,
+   "mining": 55,
+   "prayer": 70,
+   "slayer": 58,
+   "woodcutting": 50
+  },
+  "boostable": [
+   "agility",
+   "construction",
+   "farming",
+   "firemaking",
+   "magic",
+   "mining",
+   "slayer",
+   "woodcutting"
+  ],
+  "also": [
+   "Knight Waves Training Ground completed (Piety)"
+  ]
  },
  "Morytania Elite": {
   "page": "Morytania Diary",
@@ -328,14 +1389,102 @@
    "In Aid of the Myreque": "started",
    "Lunar Diplomacy": "finished",
    "Shades of Mort'ton": "finished"
-  }
+  },
+  "levels": {
+   "crafting": 84,
+   "defence": 70,
+   "firemaking": 80,
+   "fishing": 96,
+   "magic": 83,
+   "slayer": 85,
+   "strength": 76
+  },
+  "boostable": [
+   "crafting",
+   "firemaking",
+   "fishing",
+   "magic",
+   "slayer",
+   "strength"
+  ],
+  "planFinished": [
+   "In Aid of the Myreque"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "skill": "attack",
+       "level": 70
+      },
+      {
+       "skill": "magic",
+       "level": 70
+      }
+     ],
+     [
+      {
+       "skill": "attack",
+       "level": 70
+      },
+      {
+       "skill": "strength",
+       "level": 70
+      }
+     ],
+     [
+      {
+       "skill": "attack",
+       "level": 70
+      }
+     ],
+     [
+      {
+       "skill": "ranged",
+       "level": 70
+      }
+     ]
+    ],
+    "note": "any complete Barrows set: Ahrim's, Dharok's or Torag's, Guthan's or Verac's, Karil's; none boostable"
+   }
+  ],
+  "also": [
+   "Barbarian Fishing (Barbarian Training)"
+  ]
  },
  "Varrock Easy": {
   "page": "Varrock Diary",
   "rev": 15364291,
   "quests": {
    "Rune Mysteries": "finished"
-  }
+  },
+  "levels": {
+   "agility": 13,
+   "crafting": 8,
+   "fishing": 20,
+   "mining": 15,
+   "runecraft": 9,
+   "thieving": 5
+  },
+  "boostable": [
+   "agility",
+   "crafting",
+   "fishing",
+   "mining",
+   "runecraft",
+   "thieving"
+  ],
+  "kudos": 50,
+  "also": [
+   "Access to the Earth Altar (earth talisman/tiara, elemental talisman/tiara, or the Abyss)"
+  ],
+  "gates": [
+   {
+    "kind": "reset",
+    "name": "Battlestaves from Zaff"
+   }
+  ]
  },
  "Varrock Medium": {
   "page": "Varrock Diary",
@@ -347,14 +1496,69 @@
    "Gertrude's Cat": "finished",
    "The Dig Site": "finished",
    "Tree Gnome Village": "finished"
-  }
+  },
+  "levels": {
+   "agility": 30,
+   "farming": 30,
+   "firemaking": 40,
+   "magic": 25
+  },
+  "boostable": [
+   "agility",
+   "farming",
+   "firemaking",
+   "magic"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "other": "a digsite pendant: the clean necklace taught at the Varrock Museum, then 49 Magic or an enchant ruby or topaz tablet to make it"
+      }
+     ],
+     [
+      {
+       "other": "a mounted digsite pendant in any house (House party worlds)"
+      }
+     ]
+    ],
+    "note": "digsite pendants are untradeable"
+   }
+  ],
+  "questPoints": 32,
+  "combat": 40
  },
  "Varrock Hard": {
   "page": "Varrock Diary",
   "rev": 15364291,
   "quests": {
    "Desert Treasure I": "finished"
-  }
+  },
+  "levels": {
+   "agility": 51,
+   "construction": 50,
+   "farming": 68,
+   "firemaking": 60,
+   "hunter": 66,
+   "magic": 54,
+   "prayer": 52,
+   "woodcutting": 60
+  },
+  "boostable": [
+   "agility",
+   "farming",
+   "firemaking",
+   "magic",
+   "woodcutting"
+  ],
+  "kudos": 153,
+  "ironman": [
+   {
+    "skill": "hunter",
+    "level": 69
+   }
+  ]
  },
  "Varrock Elite": {
   "page": "Varrock Diary",
@@ -363,7 +1567,30 @@
    "Dream Mentor": "finished",
    "Druidic Ritual": "finished",
    "The Tourist Trap": "finished"
-  }
+  },
+  "levels": {
+   "cooking": 95,
+   "fletching": 81,
+   "herblore": 90,
+   "magic": 86,
+   "runecraft": 78,
+   "smithing": 89
+  },
+  "boostable": [
+   "cooking",
+   "fletching",
+   "herblore",
+   "magic",
+   "runecraft",
+   "smithing"
+  ],
+  "raiments": {
+   "level": 52,
+   "pieces": 2
+  },
+  "also": [
+   "Access to the Earth Altar (earth talisman/tiara, elemental talisman/tiara, or the Abyss)"
+  ]
  },
  "Western Provinces Easy": {
   "page": "Western Provinces Diary",
@@ -371,7 +1598,31 @@
   "quests": {
    "Big Chompy Bird Hunting": "finished",
    "Rune Mysteries": "finished"
-  }
+  },
+  "levels": {
+   "fletching": 20,
+   "hunter": 9,
+   "mining": 15
+  },
+  "boostable": [
+   "fletching",
+   "hunter",
+   "mining"
+  ],
+  "combat": 40,
+  "longTasks": [
+   {
+    "amount": 30,
+    "unit": "chompy or jubbly bird kills",
+    "text": "30 chompy or jubbly bird kills"
+   }
+  ],
+  "gates": [
+   {
+    "kind": "reset",
+    "name": "Ogre arrows from Rantz"
+   }
+  ]
  },
  "Western Provinces Medium": {
   "page": "Western Provinces Diary",
@@ -384,7 +1635,42 @@
    "The Eyes of Glouphrie": "finished",
    "The Grand Tree": "finished",
    "Tree Gnome Village": "finished"
-  }
+  },
+  "levels": {
+   "agility": 37,
+   "cooking": 42,
+   "firemaking": 35,
+   "fishing": 46,
+   "hunter": 31,
+   "mining": 40,
+   "woodcutting": 35
+  },
+  "boostable": [
+   "agility",
+   "cooking",
+   "firemaking",
+   "fishing",
+   "hunter",
+   "mining",
+   "woodcutting"
+  ],
+  "combat": 70,
+  "longTasks": [
+   {
+    "amount": 125,
+    "unit": "chompy or jubbly bird kills",
+    "text": "125 chompy or jubbly bird kills"
+   }
+  ],
+  "also": [
+   "Gnome Restaurant tutorial completed"
+  ],
+  "ironman": [
+   {
+    "skill": "cooking",
+    "level": 42
+   }
+  ]
  },
  "Western Provinces Hard": {
   "page": "Western Provinces Diary",
@@ -397,7 +1683,42 @@
    "Regicide": "finished",
    "Roving Elves": "finished",
    "Swan Song": "finished"
-  }
+  },
+  "levels": {
+   "agility": 48,
+   "construction": 65,
+   "cooking": 62,
+   "farming": 68,
+   "firemaking": 50,
+   "fishing": 62,
+   "hunter": 69,
+   "magic": 64,
+   "mining": 70,
+   "ranged": 70,
+   "thieving": 75,
+   "woodcutting": 50
+  },
+  "boostable": [
+   "agility",
+   "construction",
+   "cooking",
+   "farming",
+   "firemaking",
+   "fishing",
+   "hunter",
+   "magic",
+   "mining",
+   "thieving",
+   "woodcutting"
+  ],
+  "combat": 100,
+  "longTasks": [
+   {
+    "amount": 300,
+    "unit": "chompy or jubbly bird kills",
+    "text": "300 chompy or jubbly bird kills"
+   }
+  ]
  },
  "Western Provinces Elite": {
   "page": "Western Provinces Diary",
@@ -407,21 +1728,122 @@
    "Mourning's End Part I": "started",
    "Regicide": "finished",
    "Underground Pass": "finished"
-  }
+  },
+  "levels": {
+   "agility": 85,
+   "attack": 42,
+   "defence": 42,
+   "farming": 75,
+   "fletching": 85,
+   "hitpoints": 42,
+   "magic": 42,
+   "prayer": 22,
+   "ranged": 42,
+   "slayer": 93,
+   "strength": 42,
+   "thieving": 85
+  },
+  "boostable": [
+   "agility",
+   "farming",
+   "fletching",
+   "thieving"
+  ],
+  "combat": 40,
+  "also": [
+   "Pest Control commendation points for a void set (combat 40 to play)"
+  ],
+  "longTasks": [
+   {
+    "amount": 1000,
+    "unit": "chompy or jubbly bird kills",
+    "text": "1,000 chompy or jubbly bird kills"
+   }
+  ]
  },
  "Wilderness Easy": {
   "page": "Wilderness Diary",
   "rev": 15374244,
   "quests": {
    "Enter the Abyss": "finished"
-  }
+  },
+  "levels": {
+   "agility": 15,
+   "magic": 21,
+   "mining": 15
+  },
+  "boostable": [
+   "agility",
+   "magic",
+   "mining"
+  ],
+  "also": [
+   "Access to the Chaos Altar (chaos talisman/tiara, catalytic talisman/tiara, or the Abyss)"
+  ],
+  "gates": [
+   {
+    "kind": "reset",
+    "name": "Runes from Lundail"
+   }
+  ]
  },
  "Wilderness Medium": {
   "page": "Wilderness Diary",
   "rev": 15374244,
   "quests": {
    "Between a Rock...": "started"
-  }
+  },
+  "levels": {
+   "agility": 52,
+   "magic": 60,
+   "mining": 55,
+   "slayer": 50,
+   "smithing": 50,
+   "woodcutting": 61
+  },
+  "boostable": [
+   "agility",
+   "magic",
+   "mining",
+   "slayer",
+   "smithing"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "skill": "agility",
+       "level": 60
+      }
+     ],
+     [
+      {
+       "skill": "strength",
+       "level": 60
+      }
+     ]
+    ],
+    "note": "Wilderness God Wars Dungeon entrance; the page overview says both are boostable"
+   },
+   {
+    "options": [
+     [
+      {
+       "skill": "agility",
+       "level": 60
+      }
+     ],
+     [
+      {
+       "skill": "strength",
+       "level": 60
+      }
+     ]
+    ],
+    "note": "Wilderness God Wars Dungeon entrance; the page overview says both are boostable"
+   }
+  ]
  },
  "Wilderness Hard": {
   "page": "Wilderness Diary",
@@ -429,13 +1851,114 @@
   "quests": {
    "Druidic Ritual": "finished",
    "Mage Arena I": "finished"
-  }
+  },
+  "levels": {
+   "agility": 64,
+   "fishing": 53,
+   "herblore": 25,
+   "hunter": 67,
+   "magic": 66,
+   "slayer": 68,
+   "smithing": 75
+  },
+  "boostable": [
+   "agility",
+   "fishing",
+   "herblore",
+   "hunter",
+   "magic",
+   "slayer",
+   "smithing"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "quest": "Troll Stronghold",
+       "state": "started"
+      }
+     ],
+     [
+      {
+       "other": "Ghommal's hilt 1 (the Easy Combat Achievements)"
+      }
+     ]
+    ],
+    "note": "to reach Trollheim"
+   },
+   {
+    "options": [
+     [
+      {
+       "skill": "agility",
+       "level": 60
+      }
+     ],
+     [
+      {
+       "skill": "strength",
+       "level": 60
+      }
+     ]
+    ],
+    "note": "Wilderness God Wars Dungeon entrance; the page overview says both are boostable"
+   }
+  ],
+  "longTasks": [
+   {
+    "amount": 100,
+    "unit": "god spell casts in the Mage Arena",
+    "text": "god spells must first be cast 100 times inside the Mage Arena (the task can also be done there)"
+   }
+  ]
  },
  "Wilderness Elite": {
   "page": "Wilderness Diary",
   "rev": 15374244,
   "quests": {
    "Desert Treasure I": "finished"
-  }
+  },
+  "levels": {
+   "cooking": 90,
+   "firemaking": 75,
+   "fishing": 85,
+   "magic": 96,
+   "mining": 85,
+   "slayer": 83,
+   "smithing": 90,
+   "thieving": 84,
+   "woodcutting": 75
+  },
+  "boostable": [
+   "cooking",
+   "firemaking",
+   "fishing",
+   "magic",
+   "mining",
+   "slayer",
+   "smithing",
+   "thieving",
+   "woodcutting"
+  ],
+  "choices": [
+   {
+    "options": [
+     [
+      {
+       "skill": "agility",
+       "level": 60
+      }
+     ],
+     [
+      {
+       "skill": "strength",
+       "level": 60
+      }
+     ]
+    ],
+    "note": "Wilderness God Wars Dungeon entrance; the page overview says both are boostable"
+   }
+  ]
  }
 }

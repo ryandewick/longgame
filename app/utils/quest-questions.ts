@@ -14,7 +14,9 @@ import {
 } from '#shared/domain/plan-questions'
 import { startedMatters } from '#shared/domain/quest-proof'
 import type { QuestTickChange, QuestTicks } from '#shared/domain/quest-ticks'
-import { questTotalXp } from '#shared/domain/quests'
+import { questFacts, questTotalXp } from '#shared/domain/quests'
+import { questReadiness } from '#shared/domain/readiness'
+import { rowReadiness, type RowReadiness } from './quest-readiness'
 
 /*
  * What the Quests page and the prompt on Tonight say: the question card, the list of answers
@@ -510,16 +512,22 @@ export interface UnlockRow {
   readonly skills: readonly SkillKey[]
   /** How many more skills there are than icons shown. */
   readonly moreSkills: number
+  /** Whether it can be done now, or what it still needs; null once it is done. */
+  readonly readiness: RowReadiness | null
 }
 
 /** A row has room for this many skill icons beside the quest's name. */
 const MOST_SKILL_ICONS = 4
 
-/** The quests that unlock something, in the order given, each with what it opens for this account. */
+/**
+ * The quests that unlock something, in the order given, each with what it opens for this account
+ * and, until it is done, whether the account is ready for it.
+ */
 export function unlockRows(account: Account, quests: readonly string[]): UnlockRow[] {
   return quests.map((name) => {
     const gated = gatedActivities(account, { kind: 'quest', name })
     const done = hasCompletedQuest(account, name)
+    const facts = questFacts(name)
     return {
       name,
       done,
@@ -528,6 +536,7 @@ export function unlockRows(account: Account, quests: readonly string[]): UnlockR
       opens: listInWords(gated.names, 2),
       skills: gated.skills.slice(0, MOST_SKILL_ICONS),
       moreSkills: Math.max(0, gated.skills.length - MOST_SKILL_ICONS),
+      readiness: done || !facts ? null : rowReadiness(questReadiness(account, facts)),
     }
   })
 }
@@ -567,6 +576,8 @@ export interface QuestRow {
   readonly kind: QuestRowKind
   /** Every account has done it (Learning the Ropes), so its tick cannot be taken away. */
   readonly doneByEveryAccount: boolean
+  /** Whether it can be done now, or what it still needs; null once it is done. */
+  readonly readiness: RowReadiness | null
 }
 
 /** The word beside an entry's name: nothing for a quest or a part of Recipe for Disaster. */
@@ -583,7 +594,10 @@ export const QUEST_ROW_KIND_MEANING: Readonly<Record<Exclude<QuestRowKind, ''>, 
   activity: 'On neither the quest list nor the miniquest list, but it pays XP.',
 }
 
-/** The entries in the order given, each with whether it is done, what it pays and what it is. */
+/**
+ * The entries in the order given, each with whether it is done, what it pays, what it is and,
+ * until it is done, whether the account is ready for it.
+ */
 export function questRows(
   account: Account,
   entries: readonly QuestFacts[],
@@ -602,6 +616,7 @@ export function questRows(
       xp: xp ? formatShortNumber(xp) : '',
       kind: rowKind(entry),
       doneByEveryAccount: entry.doneByEveryAccount,
+      readiness: done ? null : rowReadiness(questReadiness(account, entry)),
     }
   })
 }

@@ -1,6 +1,7 @@
-import type { LampReward, QuestFacts, QuestKind } from '../types/quest'
+import type { IronmanNeed, LampReward, QuestFacts, QuestKind } from '../types/quest'
 import type { SkillKey } from '../types/skill'
 import { lampsInWords } from './build-quests'
+import { isLevel, readCount, readLevelNeed, readSkillList } from './read-needs'
 import { isSkillKey } from './skills'
 import { DataSourceError } from './sources'
 import type { QuestFactLampSource, QuestFactSource } from './sources'
@@ -48,8 +49,6 @@ function findCycle(requires: ReadonlyMap<string, readonly string[]>): string[] |
   return null
 }
 
-const isLevel = (level: number): boolean => Number.isInteger(level) && level >= 1 && level <= 99
-
 /** What is wrong with one lamp entry: nothing, when it is sound. */
 function lampProblems(name: string, lamp: QuestFactLampSource): string[] {
   const problems: string[] = []
@@ -68,6 +67,9 @@ function lampProblems(name: string, lamp: QuestFactLampSource): string[] {
  * ones needed only started), a quest needed only started that is marked as one whose start
  * matters, and names spelt as the player's ticks are stored (straight apostrophes, no stray
  * spaces). A quest's `requires` joins the quests its page names and the ones its levels prove.
+ * What readiness reads is checked too: the boostable, finish-only and bypassable levels name
+ * levels the quest needs, an ironman's options are real levels, the counts are whole numbers, and
+ * only a quest or a part of Recipe for Disaster gives quest points.
  *
  * Throws a DataSourceError listing everything wrong with the source.
  */
@@ -110,6 +112,21 @@ export function buildQuestFacts(source: Readonly<Record<string, QuestFactSource>
     if (entry.optional && entry.kind !== 'miniquest')
       problems.push(`${name}: optional, but not a miniquest`)
 
+    const ironman: IronmanNeed[] = (entry.ironman ?? []).map((need) => {
+      if (!need.need.trim()) problems.push(`${name}: an ironman need with no name`)
+      if (!need.options.length || need.options.some((option) => !option.length))
+        problems.push(`${name}: an ironman need with an empty option`)
+      return {
+        need: need.need,
+        options: need.options.map((option) =>
+          option.flatMap((level) => readLevelNeed(problems, `${name} ironman`, level) ?? []),
+        ),
+        condition: need.condition?.trim() || null,
+      }
+    })
+    if (entry.givesQuestPoints && entry.kind !== 'quest' && entry.kind !== 'subquest')
+      problems.push(`${name}: gives quest points, but is not a quest`)
+
     facts.push({
       name,
       kind: isKind(entry.kind) ? entry.kind : 'quest',
@@ -122,6 +139,20 @@ export function buildQuestFacts(source: Readonly<Record<string, QuestFactSource>
       optional: entry.optional === true,
       doneByEveryAccount: entry.everyAccount === true,
       startedMatters: entry.startedMatters === true,
+      needs: {
+        boostable: readSkillList(problems, name, 'boostable', entry.boostable, levels),
+        finishOnly: readSkillList(problems, name, 'finishOnly', entry.finishOnly, levels),
+        bypassable: readSkillList(problems, name, 'bypassable', entry.bypassable, levels),
+        questPoints: readCount(problems, name, 'quest points needed', entry.questPoints),
+        combat: readCount(problems, name, 'combat level needed', entry.combat),
+        kudos: readCount(problems, name, 'Kudos needed', entry.kudos),
+        ironman,
+      },
+      gives: {
+        questPoints: readCount(problems, name, 'quest points given', entry.givesQuestPoints),
+        kudos: readCount(problems, name, 'Kudos given', entry.givesKudos),
+        kudosOpened: readCount(problems, name, 'Kudos opened', entry.opensKudos),
+      },
     })
   }
 

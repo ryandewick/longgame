@@ -451,6 +451,7 @@ Option pickers and toggles. Slot surface with a 1px inset edge, ink 2 text at 60
 ### Inputs and Checkboxes
 - **Input:** stage well, 1px inset strong edge, white 16px text, 4px corners, up to 320px wide. Label above in white at 700, help below in 13px ink 3.
 - **Checkbox:** a 24px stage square with the strong edge, bone edge on hover; ticked is bone with an ink check. A quest whose start matters has a third state between them: started, a bone edge with the bottom half filled bone, as a cape fills from its hem, and a "Started" tag after the name. One box goes round all three, a press at a time; there is no second control.
+- **Readiness line:** under the name of a quest or diary tier not done, 13px and cut to one line, the whole sentence on hover: what it still needs in ink 2 at 500, or "Ready" (naming a boost when it counts on one) in bone at 600. The word and the weight say ready, never a colour. In the long list, where a row's tag and XP sit beside the name, its box sits level with the name rather than the middle of the two lines.
 
 ### Navigation
 Seven text tabs in the top bar, Figtree 600 at 15px, ink 2, white on hover. The active tab is white with a 3px stat yellow underline. On phones the tabs wrap under the brand.

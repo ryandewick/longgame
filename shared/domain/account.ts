@@ -51,6 +51,20 @@ export function questProgress(account: Account, quest: string): QuestProgressSta
   return account.startedQuests.has(quest) ? 'started' : 'not-done'
 }
 
+/**
+ * The account's quest points: those of every quest it has finished. Recipe for Disaster's come
+ * part by part, as the game gives them, so the umbrella entry gives none of its own.
+ */
+export function questPoints(account: Account): number {
+  return QUEST_FACTS.reduce(
+    (sum, quest) =>
+      quest.gives.questPoints && hasCompletedQuest(account, quest.name)
+        ? sum + quest.gives.questPoints
+        : sum,
+    0,
+  )
+}
+
 /** Has the account finished this diary tier ('Ardougne Medium')? */
 export function hasCompletedDiary(account: Account, diary: string): boolean {
   return account.allDiaries || account.completedDiaries.has(diary)

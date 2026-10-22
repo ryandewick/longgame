@@ -12,6 +12,7 @@
    "thieving": 52,
    "woodcutting": 52
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Tale of the Righteous",
    "The Ascent of Arceuus",
@@ -27,6 +28,7 @@
   "kind": "quest",
   "page": "A Night at the Theatre",
   "rev": 15367281,
+  "givesQuestPoints": 2,
   "requires": [
    "A Taste of Hope"
   ]
@@ -34,7 +36,8 @@
  "A Porcine of Interest": {
   "kind": "quest",
   "page": "A Porcine of Interest",
-  "rev": 15367468
+  "rev": 15367468,
+  "givesQuestPoints": 1
  },
  "A Ruff Situation": {
   "kind": "quest",
@@ -42,17 +45,21 @@
   "rev": 15369893,
   "levels": {
    "crafting": 15
-  }
+  },
+  "givesQuestPoints": 1
  },
  "A Soul's Bane": {
   "kind": "quest",
   "page": "A Soul's Bane",
-  "rev": 15359515
+  "rev": 15359515,
+  "givesQuestPoints": 1
  },
  "A Tail of Two Cats": {
   "kind": "quest",
   "page": "A Tail of Two Cats",
   "rev": 15364081,
+  "givesQuestPoints": 2,
+  "givesKudos": 5,
   "requires": [
    "Icthlarin's Little Helper"
   ]
@@ -68,6 +75,7 @@
    "herblore": 40,
    "slayer": 38
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Darkness of Hallowvale"
   ],
@@ -90,6 +98,20 @@
    "slayer": 18,
    "woodcutting": 35
   },
+  "ironman": [
+   {
+    "need": "a holy symbol",
+    "options": [
+     [
+      {
+       "skill": "prayer",
+       "level": 31
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Ernest the Chicken",
    "Priest in Peril",
@@ -104,6 +126,7 @@
    "attack": 15,
    "prayer": 25
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Death to the Dorgeshuun",
    "The Dig Site",
@@ -119,6 +142,7 @@
    "herblore": 30,
    "hunter": 46
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun",
    "Eagles' Peak"
@@ -141,6 +165,19 @@
    "smithing": 5,
    "strength": 35
   },
+  "boostable": [
+   "fishing"
+  ],
+  "finishOnly": [
+   "agility",
+   "crafting",
+   "farming",
+   "firemaking",
+   "fishing",
+   "herblore",
+   "smithing",
+   "strength"
+  ],
   "requires": [
    "Druidic Ritual",
    "Tai Bwo Wannai Trio"
@@ -156,7 +193,9 @@
  "Below Ice Mountain": {
   "kind": "quest",
   "page": "Below Ice Mountain",
-  "rev": 15355831
+  "rev": 15355831,
+  "questPoints": 16,
+  "givesQuestPoints": 1
  },
  "Beneath Cursed Sands": {
   "kind": "quest",
@@ -167,6 +206,7 @@
    "crafting": 55,
    "firemaking": 55
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Contact!"
   ]
@@ -180,6 +220,17 @@
    "mining": 40,
    "smithing": 50
   },
+  "boostable": [
+   "defence",
+   "mining",
+   "smithing"
+  ],
+  "finishOnly": [
+   "defence",
+   "mining",
+   "smithing"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Dwarf Cannon",
    "Fishing Contest"
@@ -194,12 +245,23 @@
    "cooking": 30,
    "fletching": 5,
    "ranged": 30
-  }
+  },
+  "boostable": [
+   "cooking",
+   "fletching"
+  ],
+  "finishOnly": [
+   "cooking",
+   "fletching",
+   "ranged"
+  ],
+  "givesQuestPoints": 2
  },
  "Biohazard": {
   "kind": "quest",
   "page": "Biohazard",
   "rev": 15327977,
+  "givesQuestPoints": 3,
   "requires": [
    "Plague City"
   ]
@@ -207,12 +269,16 @@
  "Black Knights' Fortress": {
   "kind": "quest",
   "page": "Black Knights' Fortress",
-  "rev": 15367061
+  "rev": 15367061,
+  "questPoints": 12,
+  "givesQuestPoints": 3
  },
  "Bone Voyage": {
   "kind": "quest",
   "page": "Bone Voyage",
   "rev": 15364304,
+  "kudos": 100,
+  "givesQuestPoints": 1,
   "requires": [
    "The Dig Site"
   ]
@@ -227,6 +293,7 @@
    "ranged": 40,
    "smithing": 50
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Pirate's Treasure",
    "Rum Deal"
@@ -235,12 +302,14 @@
  "Children of the Sun": {
   "kind": "quest",
   "page": "Children of the Sun",
-  "rev": 15241067
+  "rev": 15241067,
+  "givesQuestPoints": 1
  },
  "Client of Kourend": {
   "kind": "quest",
   "page": "Client of Kourend",
   "rev": 15315592,
+  "givesQuestPoints": 1,
   "requires": [
    "X Marks the Spot"
   ]
@@ -248,7 +317,8 @@
  "Clock Tower": {
   "kind": "quest",
   "page": "Clock Tower",
-  "rev": 15166584
+  "rev": 15166584,
+  "givesQuestPoints": 1
  },
  "Cold War": {
   "kind": "quest",
@@ -260,12 +330,14 @@
    "crafting": 30,
    "hunter": 10,
    "thieving": 15
-  }
+  },
+  "givesQuestPoints": 1
  },
  "Contact!": {
   "kind": "quest",
   "page": "Contact!",
   "rev": 15327950,
+  "givesQuestPoints": 1,
   "requires": [
    "Icthlarin's Little Helper",
    "Prince Ali Rescue"
@@ -275,7 +347,8 @@
  "Cook's Assistant": {
   "kind": "quest",
   "page": "Cook's Assistant",
-  "rev": 15375073
+  "rev": 15375073,
+  "givesQuestPoints": 1
  },
  "Crab Quest": {
   "kind": "quest",
@@ -284,7 +357,8 @@
   "levels": {
    "fishing": 30,
    "sailing": 40
-  }
+  },
+  "givesQuestPoints": 1
  },
  "Creature of Fenkenstrain": {
   "kind": "quest",
@@ -294,6 +368,28 @@
    "crafting": 20,
    "thieving": 25
   },
+  "boostable": [
+   "crafting",
+   "thieving"
+  ],
+  "finishOnly": [
+   "crafting",
+   "thieving"
+  ],
+  "ironman": [
+   {
+    "need": "a bronze wire",
+    "options": [
+     [
+      {
+       "skill": "smithing",
+       "level": 4
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Priest in Peril"
   ],
@@ -310,6 +406,7 @@
    "fishing": 10,
    "sailing": 22
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Pandemonium"
   ]
@@ -321,6 +418,10 @@
   "levels": {
    "prayer": 31
   },
+  "finishOnly": [
+   "prayer"
+  ],
+  "givesKudos": 10,
   "requiresStarted": [
    "Desert Treasure I",
    "The Restless Ghost"
@@ -345,6 +446,12 @@
    "strength": 40,
    "thieving": 22
   },
+  "boostable": [
+   "agility",
+   "construction",
+   "magic"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "In Aid of the Myreque"
   ]
@@ -352,7 +459,8 @@
  "Death Plateau": {
   "kind": "quest",
   "page": "Death Plateau",
-  "rev": 15368733
+  "rev": 15368733,
+  "givesQuestPoints": 1
  },
  "Death on the Isle": {
   "kind": "quest",
@@ -362,6 +470,7 @@
    "agility": 32,
    "thieving": 34
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Children of the Sun"
   ]
@@ -374,6 +483,15 @@
    "agility": 23,
    "thieving": 23
   },
+  "boostable": [
+   "agility",
+   "thieving"
+  ],
+  "finishOnly": [
+   "agility",
+   "thieving"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "The Lost Tribe"
   ]
@@ -386,6 +504,8 @@
    "hunter": 52,
    "smithing": 55
   },
+  "givesQuestPoints": 2,
+  "givesKudos": 5,
   "requires": [
    "Below Ice Mountain",
    "Demon Slayer",
@@ -408,7 +528,9 @@
  "Demon Slayer": {
   "kind": "quest",
   "page": "Demon Slayer",
-  "rev": 15369950
+  "rev": 15369950,
+  "givesQuestPoints": 3,
+  "givesKudos": 5
  },
  "Desert Treasure I": {
   "kind": "quest",
@@ -420,6 +542,18 @@
    "slayer": 10,
    "thieving": 53
   },
+  "boostable": [
+   "firemaking"
+  ],
+  "finishOnly": [
+   "firemaking",
+   "slayer",
+   "thieving"
+  ],
+  "bypassable": [
+   "slayer"
+  ],
+  "givesQuestPoints": 3,
   "requires": [
    "Priest in Peril",
    "Temple of Ikov",
@@ -442,6 +576,7 @@
    "runecraft": 60,
    "thieving": 70
   },
+  "givesQuestPoints": 5,
   "requires": [
    "Below Ice Mountain",
    "Desert Treasure I",
@@ -461,6 +596,14 @@
    "runecraft": 50,
    "smithing": 65
   },
+  "boostable": [
+   "fletching",
+   "smithing"
+  ],
+  "finishOnly": [
+   "smithing"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Doric's Quest",
    "Enter the Abyss",
@@ -471,12 +614,40 @@
  "Doric's Quest": {
   "kind": "quest",
   "page": "Doric's Quest",
-  "rev": 15367060
+  "rev": 15367060,
+  "givesQuestPoints": 1
  },
  "Dragon Slayer I": {
   "kind": "quest",
   "page": "Dragon Slayer I",
   "rev": 15370020,
+  "questPoints": 32,
+  "ironman": [
+   {
+    "need": "an unfired bowl",
+    "options": [
+     [
+      {
+       "skill": "crafting",
+       "level": 8
+      }
+     ]
+    ]
+   },
+   {
+    "need": "steel nails",
+    "options": [
+     [
+      {
+       "skill": "smithing",
+       "level": 34
+      }
+     ]
+    ],
+    "condition": "free-to-play only"
+   }
+  ],
+  "givesQuestPoints": 2,
   "startedMatters": true
  },
  "Dragon Slayer II": {
@@ -493,6 +664,8 @@
    "smithing": 70,
    "thieving": 60
   },
+  "questPoints": 200,
+  "givesQuestPoints": 5,
   "requires": [
    "A Tail of Two Cats",
    "Animal Magnetism",
@@ -510,6 +683,8 @@
   "kind": "quest",
   "page": "Dream Mentor",
   "rev": 15350904,
+  "combat": 85,
+  "givesQuestPoints": 2,
   "requires": [
    "Eadgar's Ruse",
    "Lunar Diplomacy"
@@ -518,12 +693,14 @@
  "Druidic Ritual": {
   "kind": "quest",
   "page": "Druidic Ritual",
-  "rev": 15322674
+  "rev": 15322674,
+  "givesQuestPoints": 4
  },
  "Dwarf Cannon": {
   "kind": "quest",
   "page": "Dwarf Cannon",
-  "rev": 15313000
+  "rev": 15313000,
+  "givesQuestPoints": 1
  },
  "Eadgar's Ruse": {
   "kind": "quest",
@@ -532,6 +709,10 @@
   "levels": {
    "herblore": 31
   },
+  "boostable": [
+   "herblore"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Druidic Ritual",
    "Troll Stronghold"
@@ -544,6 +725,10 @@
   "levels": {
    "hunter": 27
   },
+  "boostable": [
+   "hunter"
+  ],
+  "givesQuestPoints": 2,
   "startedMatters": true
  },
  "Elemental Workshop I": {
@@ -555,6 +740,34 @@
    "mining": 20,
    "smithing": 20
   },
+  "boostable": [
+   "crafting",
+   "mining",
+   "smithing"
+  ],
+  "finishOnly": [
+   "crafting",
+   "mining",
+   "smithing"
+  ],
+  "bypassable": [
+   "mining"
+  ],
+  "ironman": [
+   {
+    "need": "coal",
+    "options": [
+     [
+      {
+       "skill": "mining",
+       "level": 30
+      }
+     ]
+    ],
+    "condition": "only if mining the coal yourself"
+   }
+  ],
+  "givesQuestPoints": 1,
   "startedMatters": true
  },
  "Elemental Workshop II": {
@@ -565,6 +778,11 @@
    "magic": 20,
    "smithing": 30
   },
+  "boostable": [
+   "magic",
+   "smithing"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Elemental Workshop I"
   ],
@@ -579,7 +797,31 @@
    "firemaking": 45,
    "magic": 39,
    "prayer": 43
-  }
+  },
+  "boostable": [
+   "firemaking",
+   "magic"
+  ],
+  "finishOnly": [
+   "crafting",
+   "firemaking",
+   "magic",
+   "prayer"
+  ],
+  "ironman": [
+   {
+    "need": "granite",
+    "options": [
+     [
+      {
+       "skill": "mining",
+       "level": 45
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 2
  },
  "Enlightened Journey": {
   "kind": "quest",
@@ -589,7 +831,27 @@
    "crafting": 36,
    "farming": 30,
    "firemaking": 20
-  }
+  },
+  "boostable": [
+   "crafting",
+   "farming",
+   "firemaking"
+  ],
+  "questPoints": 20,
+  "ironman": [
+   {
+    "need": "willow branches",
+    "options": [
+     [
+      {
+       "skill": "farming",
+       "level": 30
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 1
  },
  "Enter the Abyss": {
   "kind": "miniquest",
@@ -602,7 +864,8 @@
  "Ernest the Chicken": {
   "kind": "quest",
   "page": "Ernest the Chicken",
-  "rev": 15367055
+  "rev": 15367055,
+  "givesQuestPoints": 4
  },
  "Ethically Acquired Antiquities": {
   "kind": "quest",
@@ -611,6 +874,7 @@
   "levels": {
    "thieving": 25
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun",
    "Shield of Arrav"
@@ -620,6 +884,7 @@
   "kind": "quest",
   "page": "Fairytale I - Growing Pains",
   "rev": 15352251,
+  "givesQuestPoints": 2,
   "requires": [
    "Lost City",
    "Nature Spirit"
@@ -634,6 +899,16 @@
    "herblore": 57,
    "thieving": 40
   },
+  "boostable": [
+   "farming",
+   "herblore"
+  ],
+  "finishOnly": [
+   "farming",
+   "herblore",
+   "thieving"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Fairytale I - Growing Pains"
   ],
@@ -652,6 +927,7 @@
    "runecraft": 47,
    "sailing": 62
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Pandemonium"
   ]
@@ -665,7 +941,20 @@
    "magic": 59,
    "mining": 40,
    "smithing": 40
-  }
+  },
+  "boostable": [
+   "crafting",
+   "magic",
+   "mining",
+   "smithing"
+  ],
+  "finishOnly": [
+   "crafting",
+   "magic",
+   "mining",
+   "smithing"
+  ],
+  "givesQuestPoints": 1
  },
  "Family Pest": {
   "kind": "miniquest",
@@ -679,7 +968,8 @@
  "Fight Arena": {
   "kind": "quest",
   "page": "Fight Arena",
-  "rev": 15367399
+  "rev": 15367399,
+  "givesQuestPoints": 2
  },
  "Fishing Contest": {
   "kind": "quest",
@@ -687,7 +977,8 @@
   "rev": 15302643,
   "levels": {
    "fishing": 10
-  }
+  },
+  "givesQuestPoints": 1
  },
  "Forgettable Tale...": {
   "kind": "quest",
@@ -697,6 +988,15 @@
    "cooking": 22,
    "farming": 17
   },
+  "boostable": [
+   "cooking",
+   "farming"
+  ],
+  "finishOnly": [
+   "cooking",
+   "farming"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Fishing Contest",
    "The Giant Dwarf"
@@ -709,6 +1009,7 @@
   "levels": {
    "farming": 25
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Creature of Fenkenstrain"
   ]
@@ -716,7 +1017,8 @@
  "Gertrude's Cat": {
   "kind": "quest",
   "page": "Gertrude's Cat",
-  "rev": 15374007
+  "rev": 15374007,
+  "givesQuestPoints": 1
  },
  "Getting Ahead": {
   "kind": "quest",
@@ -725,7 +1027,8 @@
   "levels": {
    "construction": 26,
    "crafting": 30
-  }
+  },
+  "givesQuestPoints": 1
  },
  "Ghosts Ahoy": {
   "kind": "quest",
@@ -735,6 +1038,15 @@
    "agility": 25,
    "cooking": 20
   },
+  "boostable": [
+   "agility",
+   "cooking"
+  ],
+  "finishOnly": [
+   "agility",
+   "cooking"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Priest in Peril",
    "The Restless Ghost"
@@ -743,7 +1055,8 @@
  "Goblin Diplomacy": {
   "kind": "quest",
   "page": "Goblin Diplomacy",
-  "rev": 15367064
+  "rev": 15367064,
+  "givesQuestPoints": 5
  },
  "Grim Tales": {
   "kind": "quest",
@@ -756,6 +1069,21 @@
    "thieving": 58,
    "woodcutting": 71
   },
+  "boostable": [
+   "agility",
+   "farming",
+   "herblore",
+   "thieving",
+   "woodcutting"
+  ],
+  "finishOnly": [
+   "agility",
+   "farming",
+   "herblore",
+   "thieving",
+   "woodcutting"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Witch's House"
   ],
@@ -770,6 +1098,13 @@
   "levels": {
    "crafting": 35
   },
+  "boostable": [
+   "crafting"
+  ],
+  "finishOnly": [
+   "crafting"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Priest in Peril"
   ]
@@ -777,7 +1112,9 @@
  "Hazeel Cult": {
   "kind": "quest",
   "page": "Hazeel Cult",
-  "rev": 15328196
+  "rev": 15328196,
+  "givesQuestPoints": 1,
+  "givesKudos": 5
  },
  "Heroes' Quest": {
   "kind": "quest",
@@ -789,6 +1126,20 @@
    "herblore": 25,
    "mining": 50
   },
+  "boostable": [
+   "cooking",
+   "fishing",
+   "herblore",
+   "mining"
+  ],
+  "finishOnly": [
+   "cooking",
+   "fishing",
+   "herblore",
+   "mining"
+  ],
+  "questPoints": 55,
+  "givesQuestPoints": 1,
   "requires": [
    "Dragon Slayer I",
    "Lost City",
@@ -814,6 +1165,10 @@
   "levels": {
    "attack": 20
   },
+  "finishOnly": [
+   "attack"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Merlin's Crystal"
   ]
@@ -842,6 +1197,13 @@
   "levels": {
    "agility": 35
   },
+  "boostable": [
+   "agility"
+  ],
+  "finishOnly": [
+   "agility"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Alfred Grimhand's Barcrawl"
   ]
@@ -850,6 +1212,7 @@
   "kind": "quest",
   "page": "Icthlarin's Little Helper",
   "rev": 15365541,
+  "givesQuestPoints": 2,
   "requires": [
    "Gertrude's Cat"
   ],
@@ -858,7 +1221,8 @@
  "Imp Catcher": {
   "kind": "quest",
   "page": "Imp Catcher",
-  "rev": 15375330
+  "rev": 15375330,
+  "givesQuestPoints": 1
  },
  "In Aid of the Myreque": {
   "kind": "quest",
@@ -870,6 +1234,12 @@
    "magic": 7,
    "mining": 15
   },
+  "boostable": [
+   "agility",
+   "magic"
+  ],
+  "givesQuestPoints": 2,
+  "givesKudos": 5,
   "requires": [
    "In Search of the Myreque"
   ],
@@ -888,6 +1258,10 @@
   "levels": {
    "agility": 25
   },
+  "boostable": [
+   "agility"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Nature Spirit"
   ]
@@ -908,6 +1282,13 @@
   "levels": {
    "herblore": 3
   },
+  "boostable": [
+   "herblore"
+  ],
+  "finishOnly": [
+   "herblore"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Druidic Ritual"
   ]
@@ -920,6 +1301,20 @@
    "defence": 65,
    "magic": 45
   },
+  "ironman": [
+   {
+    "need": "granite",
+    "options": [
+     [
+      {
+       "skill": "mining",
+       "level": 45
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Black Knights' Fortress",
    "Holy Grail",
@@ -956,6 +1351,7 @@
    "herblore": 48,
    "thieving": 45
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Another Slice of H.A.M.",
    "Fishing Contest"
@@ -965,6 +1361,7 @@
   "kind": "quest",
   "page": "Learning the Ropes",
   "rev": 15364218,
+  "givesQuestPoints": 1,
   "everyAccount": true
  },
  "Legends' Quest": {
@@ -983,6 +1380,32 @@
    "thieving": 50,
    "woodcutting": 50
   },
+  "boostable": [
+   "agility",
+   "crafting",
+   "herblore",
+   "magic",
+   "mining",
+   "prayer",
+   "smithing",
+   "strength",
+   "thieving",
+   "woodcutting"
+  ],
+  "finishOnly": [
+   "agility",
+   "crafting",
+   "herblore",
+   "magic",
+   "mining",
+   "prayer",
+   "smithing",
+   "strength",
+   "thieving",
+   "woodcutting"
+  ],
+  "questPoints": 107,
+  "givesQuestPoints": 4,
   "requires": [
    "Family Crest",
    "Heroes' Quest",
@@ -999,7 +1422,16 @@
   "levels": {
    "crafting": 31,
    "woodcutting": 36
-  }
+  },
+  "boostable": [
+   "crafting",
+   "woodcutting"
+  ],
+  "finishOnly": [
+   "crafting",
+   "woodcutting"
+  ],
+  "givesQuestPoints": 3
  },
  "Lunar Diplomacy": {
   "kind": "quest",
@@ -1014,6 +1446,7 @@
    "mining": 60,
    "woodcutting": 55
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Lost City",
    "Rune Mysteries",
@@ -1051,6 +1484,16 @@
    "firemaking": 66,
    "mining": 72
   },
+  "boostable": [
+   "agility",
+   "construction",
+   "mining"
+  ],
+  "finishOnly": [
+   "agility",
+   "mining"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Cold War",
    "My Arm's Big Adventure",
@@ -1062,6 +1505,22 @@
   "kind": "quest",
   "page": "Making History",
   "rev": 15315243,
+  "ironman": [
+   {
+    "need": "a sapphire amulet (u)",
+    "options": [
+     [
+      {
+       "skill": "crafting",
+       "level": 24
+      }
+     ]
+    ],
+    "condition": "only if making it yourself"
+   }
+  ],
+  "givesQuestPoints": 3,
+  "givesKudos": 5,
   "requires": [
    "Priest in Peril",
    "The Restless Ghost"
@@ -1079,6 +1538,7 @@
   "kind": "quest",
   "page": "Meat and Greet",
   "rev": 15355341,
+  "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun"
   ]
@@ -1087,6 +1547,8 @@
   "kind": "quest",
   "page": "Merlin's Crystal",
   "rev": 15336338,
+  "givesQuestPoints": 6,
+  "givesKudos": 5,
   "lamps": [
    {
     "count": 1,
@@ -1099,17 +1561,20 @@
  "Misthalin Mystery": {
   "kind": "quest",
   "page": "Misthalin Mystery",
-  "rev": 15367068
+  "rev": 15367068,
+  "givesQuestPoints": 1
  },
  "Monk's Friend": {
   "kind": "quest",
   "page": "Monk's Friend",
-  "rev": 15240952
+  "rev": 15240952,
+  "givesQuestPoints": 1
  },
  "Monkey Madness I": {
   "kind": "quest",
   "page": "Monkey Madness I",
   "rev": 15374574,
+  "givesQuestPoints": 3,
   "requires": [
    "The Grand Tree",
    "Tree Gnome Village"
@@ -1128,6 +1593,7 @@
    "slayer": 69,
    "thieving": 55
   },
+  "givesQuestPoints": 4,
   "requires": [
    "Enlightened Journey",
    "Recipe for Disaster - King Awowogei",
@@ -1142,7 +1608,14 @@
   "rev": 15292291,
   "levels": {
    "agility": 20
-  }
+  },
+  "boostable": [
+   "agility"
+  ],
+  "finishOnly": [
+   "agility"
+  ],
+  "givesQuestPoints": 2
  },
  "Mourning's End Part I": {
   "kind": "quest",
@@ -1152,6 +1625,46 @@
    "ranged": 60,
    "thieving": 50
   },
+  "ironman": [
+   {
+    "need": "magic logs",
+    "options": [
+     [
+      {
+       "skill": "woodcutting",
+       "level": 75
+      }
+     ],
+     [
+      {
+       "skill": "woodcutting",
+       "level": 50
+      },
+      {
+       "skill": "firemaking",
+       "level": 50
+      }
+     ],
+     [
+      {
+       "skill": "woodcutting",
+       "level": 50
+      },
+      {
+       "skill": "hunter",
+       "level": 46
+      }
+     ],
+     [
+      {
+       "skill": "hunter",
+       "level": 58
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Big Chompy Bird Hunting",
    "Roving Elves",
@@ -1163,6 +1676,7 @@
   "kind": "quest",
   "page": "Mourning's End Part II",
   "rev": 15351344,
+  "givesQuestPoints": 2,
   "requires": [
    "Mourning's End Part I"
   ]
@@ -1170,7 +1684,8 @@
  "Murder Mystery": {
   "kind": "quest",
   "page": "Murder Mystery",
-  "rev": 15365419
+  "rev": 15365419,
+  "givesQuestPoints": 3
  },
  "My Arm's Big Adventure": {
   "kind": "quest",
@@ -1180,6 +1695,10 @@
    "farming": 29,
    "woodcutting": 10
   },
+  "boostable": [
+   "farming"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Eadgar's Ruse",
    "Jungle Potion",
@@ -1189,12 +1708,27 @@
  "Natural history quiz": {
   "kind": "activity",
   "page": "Natural history quiz",
-  "rev": 15376362
+  "rev": 15376362,
+  "givesKudos": 28
  },
  "Nature Spirit": {
   "kind": "quest",
   "page": "Nature Spirit",
   "rev": 15372142,
+  "ironman": [
+   {
+    "need": "a silver sickle",
+    "options": [
+     [
+      {
+       "skill": "crafting",
+       "level": 18
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Priest in Peril",
    "The Restless Ghost"
@@ -1203,7 +1737,9 @@
  "Observatory Quest": {
   "kind": "quest",
   "page": "Observatory Quest",
-  "rev": 15326719
+  "rev": 15326719,
+  "givesQuestPoints": 2,
+  "givesKudos": 5
  },
  "Olaf's Quest": {
   "kind": "quest",
@@ -1213,6 +1749,15 @@
    "firemaking": 40,
    "woodcutting": 50
   },
+  "boostable": [
+   "firemaking",
+   "woodcutting"
+  ],
+  "finishOnly": [
+   "firemaking",
+   "woodcutting"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "The Fremennik Trials"
   ],
@@ -1228,6 +1773,13 @@
    "herblore": 18,
    "smithing": 30
   },
+  "boostable": [
+   "agility",
+   "crafting",
+   "herblore",
+   "smithing"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Rune Mysteries",
    "Shilo Village"
@@ -1237,7 +1789,8 @@
  "Pandemonium": {
   "kind": "quest",
   "page": "Pandemonium",
-  "rev": 15373315
+  "rev": 15373315,
+  "givesQuestPoints": 1
  },
  "Perilous Moons": {
   "kind": "quest",
@@ -1250,6 +1803,7 @@
    "runecraft": 20,
    "slayer": 48
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Twilight's Promise"
   ]
@@ -1257,22 +1811,27 @@
  "Pirate's Treasure": {
   "kind": "quest",
   "page": "Pirate's Treasure",
-  "rev": 15367065
+  "rev": 15367065,
+  "givesQuestPoints": 2
  },
  "Plague City": {
   "kind": "quest",
   "page": "Plague City",
-  "rev": 15343824
+  "rev": 15343824,
+  "givesQuestPoints": 1
  },
  "Priest in Peril": {
   "kind": "quest",
   "page": "Priest in Peril",
-  "rev": 15360755
+  "rev": 15360755,
+  "givesQuestPoints": 1,
+  "givesKudos": 5
  },
  "Prince Ali Rescue": {
   "kind": "quest",
   "page": "Prince Ali Rescue",
-  "rev": 15375277
+  "rev": 15375277,
+  "givesQuestPoints": 3
  },
  "Prying Times": {
   "kind": "quest",
@@ -1282,6 +1841,7 @@
    "sailing": 12,
    "smithing": 30
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Pandemonium",
    "The Knight's Sword"
@@ -1290,7 +1850,8 @@
  "Rag and Bone Man I": {
   "kind": "quest",
   "page": "Rag and Bone Man I",
-  "rev": 15292348
+  "rev": 15292348,
+  "givesQuestPoints": 1
  },
  "Rag and Bone Man II": {
   "kind": "quest",
@@ -1300,6 +1861,14 @@
    "defence": 20,
    "slayer": 40
   },
+  "boostable": [
+   "slayer"
+  ],
+  "finishOnly": [
+   "defence",
+   "slayer"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Rag and Bone Man I",
    "Skippy and the Mogres"
@@ -1312,6 +1881,7 @@
   "kind": "quest",
   "page": "Ratcatchers",
   "rev": 15351359,
+  "givesQuestPoints": 2,
   "requires": [
    "Icthlarin's Little Helper"
   ],
@@ -1339,6 +1909,19 @@
    "thieving": 53,
    "woodcutting": 36
   },
+  "boostable": [
+   "cooking",
+   "crafting",
+   "firemaking",
+   "fishing",
+   "fletching",
+   "herblore",
+   "magic",
+   "mining",
+   "smithing",
+   "woodcutting"
+  ],
+  "questPoints": 175,
   "requires": [
    "Recipe for Disaster - Another Cook's Quest",
    "Recipe for Disaster - Culinaromancer",
@@ -1359,6 +1942,7 @@
   "levels": {
    "cooking": 10
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Cook's Assistant"
   ]
@@ -1367,6 +1951,8 @@
   "kind": "subquest",
   "page": "Recipe for Disaster/Defeating the Culinaromancer",
   "rev": 15361128,
+  "questPoints": 175,
+  "givesQuestPoints": 1,
   "requires": [
    "Desert Treasure I",
    "Horror from the Deep",
@@ -1384,6 +1970,7 @@
   "kind": "subquest",
   "page": "Recipe for Disaster/Freeing Evil Dave",
   "rev": 15366289,
+  "givesQuestPoints": 1,
   "requires": [
    "Gertrude's Cat",
    "Recipe for Disaster - Another Cook's Quest",
@@ -1398,6 +1985,14 @@
    "agility": 48,
    "cooking": 70
   },
+  "boostable": [
+   "cooking"
+  ],
+  "finishOnly": [
+   "agility",
+   "cooking"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Monkey Madness I",
    "Recipe for Disaster - Another Cook's Quest"
@@ -1410,6 +2005,10 @@
   "levels": {
    "cooking": 40
   },
+  "boostable": [
+   "cooking"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Big Chompy Bird Hunting",
    "Biohazard",
@@ -1424,6 +2023,7 @@
   "kind": "subquest",
   "page": "Recipe for Disaster/Freeing the Mountain Dwarf",
   "rev": 15361102,
+  "givesQuestPoints": 1,
   "requires": [
    "Fishing Contest",
    "Recipe for Disaster - Another Cook's Quest"
@@ -1436,6 +2036,23 @@
   "levels": {
    "cooking": 31
   },
+  "boostable": [
+   "cooking"
+  ],
+  "ironman": [
+   {
+    "need": "a bronze wire",
+    "options": [
+     [
+      {
+       "skill": "smithing",
+       "level": 4
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Recipe for Disaster - Another Cook's Quest"
   ]
@@ -1444,6 +2061,8 @@
   "kind": "subquest",
   "page": "Recipe for Disaster/Freeing Sir Amik Varze",
   "rev": 15361142,
+  "questPoints": 107,
+  "givesQuestPoints": 1,
   "requires": [
    "Recipe for Disaster - Another Cook's Quest"
   ],
@@ -1459,6 +2078,29 @@
    "cooking": 41,
    "firemaking": 20
   },
+  "boostable": [
+   "cooking",
+   "firemaking"
+  ],
+  "finishOnly": [
+   "cooking",
+   "firemaking"
+  ],
+  "ironman": [
+   {
+    "need": "an iron spit",
+    "options": [
+     [
+      {
+       "skill": "smithing",
+       "level": 17
+      }
+     ]
+    ],
+    "condition": "only without access to Weiss"
+   }
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Big Chompy Bird Hunting",
    "Recipe for Disaster - Another Cook's Quest"
@@ -1468,6 +2110,7 @@
   "kind": "subquest",
   "page": "Recipe for Disaster/Freeing the Goblin generals",
   "rev": 15361105,
+  "givesQuestPoints": 1,
   "requires": [
    "Goblin Diplomacy",
    "Recipe for Disaster - Another Cook's Quest"
@@ -1477,6 +2120,7 @@
   "kind": "quest",
   "page": "Recruitment Drive",
   "rev": 15372696,
+  "givesQuestPoints": 1,
   "requires": [
    "Black Knights' Fortress",
    "Druidic Ritual"
@@ -1490,6 +2134,13 @@
    "agility": 56,
    "crafting": 10
   },
+  "boostable": [
+   "agility"
+  ],
+  "finishOnly": [
+   "agility"
+  ],
+  "givesQuestPoints": 3,
   "requires": [
    "Underground Pass"
   ]
@@ -1497,7 +2148,8 @@
  "Romeo & Juliet": {
   "kind": "quest",
   "page": "Romeo & Juliet",
-  "rev": 15375169
+  "rev": 15375169,
+  "givesQuestPoints": 5
  },
  "Roving Elves": {
   "kind": "quest",
@@ -1506,6 +2158,13 @@
   "levels": {
    "agility": 56
   },
+  "boostable": [
+   "agility"
+  ],
+  "finishOnly": [
+   "agility"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Regicide",
    "Waterfall Quest"
@@ -1519,6 +2178,15 @@
    "agility": 40,
    "slayer": 40
   },
+  "boostable": [
+   "agility",
+   "slayer"
+  ],
+  "finishOnly": [
+   "agility",
+   "slayer"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Throne of Miscellania"
   ]
@@ -1534,6 +2202,22 @@
    "prayer": 47,
    "slayer": 42
   },
+  "boostable": [
+   "crafting",
+   "farming",
+   "fishing",
+   "prayer"
+  ],
+  "finishOnly": [
+   "crafting",
+   "farming",
+   "fishing",
+   "prayer"
+  ],
+  "bypassable": [
+   "fishing"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Priest in Peril",
    "Zogre Flesh Eaters"
@@ -1542,7 +2226,9 @@
  "Rune Mysteries": {
   "kind": "quest",
   "page": "Rune Mysteries",
-  "rev": 15374658
+  "rev": 15374658,
+  "givesQuestPoints": 1,
+  "givesKudos": 5
  },
  "Scorpion Catcher": {
   "kind": "quest",
@@ -1551,6 +2237,10 @@
   "levels": {
    "prayer": 31
   },
+  "finishOnly": [
+   "prayer"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Alfred Grimhand's Barcrawl"
   ]
@@ -1564,6 +2254,7 @@
    "cooking": 36,
    "smithing": 35
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun"
   ]
@@ -1575,6 +2266,13 @@
   "levels": {
    "firemaking": 30
   },
+  "boostable": [
+   "firemaking"
+  ],
+  "finishOnly": [
+   "firemaking"
+  ],
+  "givesQuestPoints": 1,
   "startedMatters": true
  },
  "Secrets of the North": {
@@ -1586,6 +2284,7 @@
    "hunter": 56,
    "thieving": 64
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Devious Minds",
    "Hazeel Cult",
@@ -1602,6 +2301,17 @@
    "firemaking": 5,
    "herblore": 15
   },
+  "boostable": [
+   "crafting",
+   "firemaking",
+   "herblore"
+  ],
+  "finishOnly": [
+   "crafting",
+   "firemaking",
+   "herblore"
+  ],
+  "givesQuestPoints": 3,
   "requires": [
    "Priest in Peril"
   ],
@@ -1616,6 +2326,13 @@
   "levels": {
    "crafting": 30
   },
+  "boostable": [
+   "crafting"
+  ],
+  "finishOnly": [
+   "crafting"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Demon Slayer",
    "The Golem"
@@ -1631,6 +2348,7 @@
    "hunter": 36,
    "slayer": 54
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Children of the Sun"
   ]
@@ -1638,17 +2356,21 @@
  "Sheep Herder": {
   "kind": "quest",
   "page": "Sheep Herder",
-  "rev": 15282409
+  "rev": 15282409,
+  "givesQuestPoints": 4
  },
  "Sheep Shearer": {
   "kind": "quest",
   "page": "Sheep Shearer",
-  "rev": 15367050
+  "rev": 15367050,
+  "givesQuestPoints": 1
  },
  "Shield of Arrav": {
   "kind": "quest",
   "page": "Shield of Arrav",
   "rev": 15367052,
+  "givesQuestPoints": 1,
+  "givesKudos": 5,
   "lamps": [
    {
     "count": 1,
@@ -1666,6 +2388,28 @@
    "agility": 32,
    "crafting": 20
   },
+  "boostable": [
+   "agility",
+   "crafting"
+  ],
+  "finishOnly": [
+   "agility",
+   "crafting"
+  ],
+  "ironman": [
+   {
+    "need": "a bronze wire",
+    "options": [
+     [
+      {
+       "skill": "smithing",
+       "level": 4
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Jungle Potion"
   ]
@@ -1683,6 +2427,7 @@
    "slayer": 50,
    "woodcutting": 62
   },
+  "givesQuestPoints": 2,
   "requires": [
    "A Taste of Hope",
    "Vampyre Slayer"
@@ -1694,7 +2439,13 @@
   "rev": 15292393,
   "levels": {
    "cooking": 20
-  }
+  },
+  "boostable": [
+   "cooking"
+  ],
+  "finishOnly": [
+   "cooking"
+  ]
  },
  "Sleeping Giants": {
   "kind": "quest",
@@ -1702,7 +2453,8 @@
   "rev": 15241064,
   "levels": {
    "smithing": 15
-  }
+  },
+  "givesQuestPoints": 1
  },
  "Song of the Elves": {
   "kind": "quest",
@@ -1718,6 +2470,7 @@
    "smithing": 70,
    "woodcutting": 70
   },
+  "givesQuestPoints": 4,
   "requires": [
    "Druidic Ritual",
    "Making History",
@@ -1733,7 +2486,20 @@
    "mining": 37,
    "ranged": 37,
    "thieving": 37
-  }
+  },
+  "boostable": [
+   "magic",
+   "mining",
+   "ranged",
+   "thieving"
+  ],
+  "finishOnly": [
+   "magic",
+   "mining",
+   "ranged",
+   "thieving"
+  ],
+  "givesQuestPoints": 2
  },
  "Swan Song": {
   "kind": "quest",
@@ -1747,6 +2513,24 @@
    "magic": 66,
    "smithing": 45
   },
+  "boostable": [
+   "cooking",
+   "crafting",
+   "firemaking",
+   "fishing",
+   "magic",
+   "smithing"
+  ],
+  "finishOnly": [
+   "cooking",
+   "crafting",
+   "firemaking",
+   "fishing",
+   "magic",
+   "smithing"
+  ],
+  "questPoints": 100,
+  "givesQuestPoints": 2,
   "requires": [
    "Garden of Tranquillity",
    "One Small Favour"
@@ -1761,6 +2545,30 @@
    "cooking": 30,
    "fishing": 5
   },
+  "boostable": [
+   "agility",
+   "fishing"
+  ],
+  "finishOnly": [
+   "agility",
+   "cooking",
+   "fishing"
+  ],
+  "ironman": [
+   {
+    "need": "a raw karambwan",
+    "options": [
+     [
+      {
+       "skill": "fishing",
+       "level": 65
+      }
+     ]
+    ],
+    "condition": "only if you burn the one given"
+   }
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Jungle Potion"
   ],
@@ -1774,6 +2582,7 @@
    "mining": 10,
    "strength": 16
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Client of Kourend"
   ]
@@ -1786,7 +2595,19 @@
    "crafting": 20,
    "firemaking": 49,
    "mining": 20
-  }
+  },
+  "boostable": [
+   "crafting",
+   "firemaking",
+   "mining"
+  ],
+  "finishOnly": [
+   "crafting",
+   "firemaking",
+   "mining"
+  ],
+  "questPoints": 43,
+  "givesQuestPoints": 1
  },
  "Temple of Ikov": {
   "kind": "quest",
@@ -1794,7 +2615,15 @@
   "rev": 15363124,
   "levels": {
    "thieving": 42
-  }
+  },
+  "boostable": [
+   "thieving"
+  ],
+  "finishOnly": [
+   "thieving"
+  ],
+  "givesQuestPoints": 1,
+  "givesKudos": 5
  },
  "Temple of the Eye": {
   "kind": "quest",
@@ -1803,6 +2632,7 @@
   "levels": {
    "runecraft": 10
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Enter the Abyss"
   ]
@@ -1814,6 +2644,7 @@
   "levels": {
    "hunter": 12
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Client of Kourend"
   ]
@@ -1834,6 +2665,7 @@
    "smithing": 72,
    "woodcutting": 74
   },
+  "givesQuestPoints": 4,
   "requires": [
    "A Night at the Theatre",
    "Sins of the Father"
@@ -1842,7 +2674,8 @@
  "The Corsair Curse": {
   "kind": "quest",
   "page": "The Corsair Curse",
-  "rev": 15373740
+  "rev": 15373740,
+  "givesQuestPoints": 2
  },
  "The Curse of Arrav": {
   "kind": "quest",
@@ -1856,6 +2689,30 @@
    "strength": 58,
    "thieving": 62
   },
+  "ironman": [
+   {
+    "need": "a mithril grapple",
+    "options": [
+     [
+      {
+       "skill": "fletching",
+       "level": 59
+      },
+      {
+       "skill": "smithing",
+       "level": 59
+      }
+     ],
+     [
+      {
+       "skill": "firemaking",
+       "level": 35
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Defender of Varrock",
    "Troll Romance"
@@ -1868,6 +2725,7 @@
   "levels": {
    "agility": 18
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Client of Kourend"
   ]
@@ -1881,6 +2739,18 @@
    "herblore": 10,
    "thieving": 25
   },
+  "boostable": [
+   "agility",
+   "herblore",
+   "thieving"
+  ],
+  "finishOnly": [
+   "agility",
+   "herblore",
+   "thieving"
+  ],
+  "givesQuestPoints": 2,
+  "opensKudos": 50,
   "implies": [
    "Druidic Ritual"
   ]
@@ -1902,6 +2772,35 @@
    "construction": 5,
    "magic": 46
   },
+  "finishOnly": [
+   "magic"
+  ],
+  "ironman": [
+   {
+    "need": "mud runes",
+    "options": [
+     [
+      {
+       "skill": "runecraft",
+       "level": 13
+      }
+     ],
+     [
+      {
+       "skill": "magic",
+       "level": 33
+      }
+     ],
+     [
+      {
+       "skill": "hunter",
+       "level": 42
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "The Grand Tree"
   ]
@@ -1913,6 +2812,7 @@
   "levels": {
    "thieving": 30
   },
+  "givesQuestPoints": 1,
   "startedMatters": true
  },
  "The Final Dawn": {
@@ -1924,6 +2824,7 @@
    "runecraft": 52,
    "thieving": 66
   },
+  "givesQuestPoints": 3,
   "requires": [
    "Perilous Moons",
    "The Heart of Darkness"
@@ -1933,6 +2834,7 @@
   "kind": "quest",
   "page": "The Forsaken Tower",
   "rev": 15316647,
+  "givesQuestPoints": 1,
   "requires": [
    "Client of Kourend"
   ],
@@ -1959,6 +2861,13 @@
    "slayer": 60,
    "smithing": 60
   },
+  "boostable": [
+   "mining"
+  ],
+  "finishOnly": [
+   "mining"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Heroes' Quest",
    "Lunar Diplomacy",
@@ -1973,6 +2882,37 @@
   "levels": {
    "construction": 20
   },
+  "boostable": [
+   "construction"
+  ],
+  "finishOnly": [
+   "construction"
+  ],
+  "ironman": [
+   {
+    "need": "a Neitiznot shield",
+    "options": [
+     [
+      {
+       "skill": "woodcutting",
+       "level": 56
+      }
+     ]
+    ]
+   },
+   {
+    "need": "yak-hide armour",
+    "options": [
+     [
+      {
+       "skill": "crafting",
+       "level": 46
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "The Fremennik Trials"
   ],
@@ -1981,7 +2921,8 @@
  "The Fremennik Trials": {
   "kind": "quest",
   "page": "The Fremennik Trials",
-  "rev": 15374585
+  "rev": 15374585,
+  "givesQuestPoints": 3
  },
  "The Frozen Door": {
   "kind": "miniquest",
@@ -1993,6 +2934,15 @@
    "ranged": 70,
    "strength": 70
   },
+  "boostable": [
+   "hitpoints"
+  ],
+  "finishOnly": [
+   "agility",
+   "hitpoints",
+   "ranged",
+   "strength"
+  ],
   "requires": [
    "Desert Treasure I"
   ],
@@ -2004,7 +2954,8 @@
   "rev": 15375335,
   "levels": {
    "farming": 20
-  }
+  },
+  "givesQuestPoints": 1
  },
  "The General's Shadow": {
   "kind": "miniquest",
@@ -2025,6 +2976,19 @@
    "magic": 33,
    "thieving": 14
   },
+  "boostable": [
+   "crafting",
+   "firemaking",
+   "magic",
+   "thieving"
+  ],
+  "finishOnly": [
+   "crafting",
+   "firemaking",
+   "magic",
+   "thieving"
+  ],
+  "givesQuestPoints": 2,
   "startedMatters": true
  },
  "The Golem": {
@@ -2034,7 +2998,16 @@
   "levels": {
    "crafting": 20,
    "thieving": 25
-  }
+  },
+  "boostable": [
+   "crafting",
+   "thieving"
+  ],
+  "finishOnly": [
+   "crafting",
+   "thieving"
+  ],
+  "givesQuestPoints": 1
  },
  "The Grand Tree": {
   "kind": "quest",
@@ -2042,7 +3015,15 @@
   "rev": 15343831,
   "levels": {
    "agility": 25
-  }
+  },
+  "boostable": [
+   "agility"
+  ],
+  "finishOnly": [
+   "agility"
+  ],
+  "givesQuestPoints": 5,
+  "givesKudos": 5
  },
  "The Great Brain Robbery": {
   "kind": "quest",
@@ -2053,6 +3034,7 @@
    "crafting": 16,
    "prayer": 50
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Cabin Fever",
    "Creature of Fenkenstrain",
@@ -2067,7 +3049,8 @@
   "levels": {
    "crafting": 49,
    "thieving": 17
-  }
+  },
+  "givesQuestPoints": 1
  },
  "The Heart of Darkness": {
   "kind": "quest",
@@ -2079,6 +3062,7 @@
    "slayer": 48,
    "thieving": 48
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Twilight's Promise"
   ]
@@ -2086,7 +3070,8 @@
  "The Ides of Milk": {
   "kind": "quest",
   "page": "The Ides of Milk",
-  "rev": 15338668
+  "rev": 15338668,
+  "givesQuestPoints": 1
  },
  "The Knight's Sword": {
   "kind": "quest",
@@ -2094,7 +3079,14 @@
   "rev": 15367063,
   "levels": {
    "mining": 10
-  }
+  },
+  "boostable": [
+   "mining"
+  ],
+  "finishOnly": [
+   "mining"
+  ],
+  "givesQuestPoints": 1
  },
  "The Lost Tribe": {
   "kind": "quest",
@@ -2105,6 +3097,12 @@
    "mining": 17,
    "thieving": 13
   },
+  "boostable": [
+   "agility",
+   "mining",
+   "thieving"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Goblin Diplomacy",
    "Rune Mysteries"
@@ -2121,6 +3119,30 @@
    "strength": 60,
    "thieving": 56
   },
+  "ironman": [
+   {
+    "need": "a mithril grapple",
+    "options": [
+     [
+      {
+       "skill": "fletching",
+       "level": 59
+      },
+      {
+       "skill": "smithing",
+       "level": 59
+      }
+     ],
+     [
+      {
+       "skill": "firemaking",
+       "level": 35
+      }
+     ]
+    ]
+   }
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "The Eyes of Glouphrie",
    "Tree Gnome Village",
@@ -2134,6 +3156,7 @@
   "levels": {
    "thieving": 20
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Client of Kourend"
   ]
@@ -2146,6 +3169,7 @@
    "sailing": 52,
    "smithing": 48
   },
+  "givesQuestPoints": 2,
   "requires": [
    "Troubled Tortugans"
   ]
@@ -2154,6 +3178,7 @@
   "kind": "quest",
   "page": "The Restless Ghost",
   "rev": 15367047,
+  "givesQuestPoints": 1,
   "startedMatters": true
  },
  "The Ribbiting Tale of a Lily Pad Labour Dispute": {
@@ -2163,6 +3188,7 @@
   "levels": {
    "woodcutting": 15
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun"
   ]
@@ -2177,6 +3203,7 @@
    "slayer": 30,
    "thieving": 30
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Sea Slug",
    "Wanted!"
@@ -2189,12 +3216,22 @@
   "levels": {
    "fletching": 10,
    "smithing": 20
-  }
+  },
+  "boostable": [
+   "fletching",
+   "smithing"
+  ],
+  "finishOnly": [
+   "fletching",
+   "smithing"
+  ],
+  "givesQuestPoints": 2
  },
  "Throne of Miscellania": {
   "kind": "quest",
   "page": "Throne of Miscellania",
   "rev": 15360688,
+  "givesQuestPoints": 1,
   "requires": [
    "Heroes' Quest",
    "The Fremennik Trials"
@@ -2207,12 +3244,14 @@
   "rev": 15366014,
   "levels": {
    "construction": 10
-  }
+  },
+  "givesQuestPoints": 2
  },
  "Tree Gnome Village": {
   "kind": "quest",
   "page": "Tree Gnome Village",
-  "rev": 15351851
+  "rev": 15351851,
+  "givesQuestPoints": 2
  },
  "Tribal Totem": {
   "kind": "quest",
@@ -2220,7 +3259,14 @@
   "rev": 15240951,
   "levels": {
    "thieving": 21
-  }
+  },
+  "boostable": [
+   "thieving"
+  ],
+  "finishOnly": [
+   "thieving"
+  ],
+  "givesQuestPoints": 1
  },
  "Troll Romance": {
   "kind": "quest",
@@ -2229,6 +3275,10 @@
   "levels": {
    "agility": 28
   },
+  "boostable": [
+   "agility"
+  ],
+  "givesQuestPoints": 2,
   "requires": [
    "Troll Stronghold"
   ]
@@ -2240,6 +3290,13 @@
   "levels": {
    "agility": 15
   },
+  "boostable": [
+   "agility"
+  ],
+  "finishOnly": [
+   "agility"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Death Plateau"
   ],
@@ -2257,6 +3314,7 @@
    "slayer": 51,
    "woodcutting": 40
   },
+  "givesQuestPoints": 1,
   "requires": [
    "Pandemonium"
   ]
@@ -2265,6 +3323,7 @@
   "kind": "quest",
   "page": "Twilight's Promise",
   "rev": 15356498,
+  "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun"
   ]
@@ -2276,6 +3335,10 @@
   "levels": {
    "ranged": 25
   },
+  "boostable": [
+   "ranged"
+  ],
+  "givesQuestPoints": 5,
   "requires": [
    "Biohazard"
   ]
@@ -2287,6 +3350,19 @@
   "levels": {
    "fletching": 20
   },
+  "ironman": [
+   {
+    "need": "oak logs",
+    "options": [
+     [
+      {
+       "skill": "woodcutting",
+       "level": 15
+      }
+     ]
+    ]
+   }
+  ],
   "requires": [
    "Children of the Sun"
   ],
@@ -2295,12 +3371,15 @@
  "Vampyre Slayer": {
   "kind": "quest",
   "page": "Vampyre Slayer",
-  "rev": 15367056
+  "rev": 15367056,
+  "givesQuestPoints": 3
  },
  "Wanted!": {
   "kind": "quest",
   "page": "Wanted!",
   "rev": 15361297,
+  "questPoints": 32,
+  "givesQuestPoints": 1,
   "requires": [
    "Enter the Abyss",
    "Priest in Peril",
@@ -2319,6 +3398,21 @@
    "mining": 40,
    "thieving": 15
   },
+  "boostable": [
+   "agility",
+   "herblore",
+   "magic",
+   "mining",
+   "thieving"
+  ],
+  "finishOnly": [
+   "agility",
+   "herblore",
+   "magic",
+   "mining",
+   "thieving"
+  ],
+  "givesQuestPoints": 4,
   "implies": [
    "Druidic Ritual"
   ],
@@ -2328,6 +3422,7 @@
   "kind": "quest",
   "page": "Waterfall Quest",
   "rev": 15357907,
+  "givesQuestPoints": 1,
   "startedMatters": true
  },
  "What Lies Below": {
@@ -2337,6 +3432,8 @@
   "levels": {
    "runecraft": 35
   },
+  "givesQuestPoints": 1,
+  "givesKudos": 5,
   "requires": [
    "Rune Mysteries"
   ]
@@ -2354,6 +3451,8 @@
    "magic": 67,
    "thieving": 72
   },
+  "questPoints": 180,
+  "givesQuestPoints": 5,
   "requires": [
    "A Tail of Two Cats",
    "Defender of Varrock",
@@ -2370,17 +3469,20 @@
  "Witch's House": {
   "kind": "quest",
   "page": "Witch's House",
-  "rev": 15168391
+  "rev": 15168391,
+  "givesQuestPoints": 4
  },
  "Witch's Potion": {
   "kind": "quest",
   "page": "Witch's Potion",
-  "rev": 15367062
+  "rev": 15367062,
+  "givesQuestPoints": 1
  },
  "X Marks the Spot": {
   "kind": "quest",
   "page": "X Marks the Spot",
-  "rev": 15367156
+  "rev": 15367156,
+  "givesQuestPoints": 1
  },
  "Zogre Flesh Eaters": {
   "kind": "quest",
@@ -2391,6 +3493,11 @@
    "ranged": 30,
    "smithing": 4
   },
+  "boostable": [
+   "herblore",
+   "smithing"
+  ],
+  "givesQuestPoints": 1,
   "requires": [
    "Big Chompy Bird Hunting",
    "Jungle Potion"

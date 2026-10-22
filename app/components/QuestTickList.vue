@@ -7,9 +7,10 @@ import { gatingQuests } from '#shared/domain/quests'
 /**
  * The tick list part of the Quests page: everything the account can be told by hand. The quests
  * that unlock something come first, each with what it opens up, with the diary tiers beside
- * them; every other quest, miniquest and activity follows, to be searched and filtered. It is
- * also where an answer to a question is undone: untick the quest, or tick one that was answered
- * "not yet".
+ * them and each diary's next tier under those; every other quest, miniquest and activity follows,
+ * to be searched and filtered. Every quest and next tier not done says whether the account is
+ * ready for it, or what it still needs. It is also where an answer to a question is undone:
+ * untick the quest, or tick one that was answered "not yet".
  */
 const account = useAccountStore()
 const { toggleQuest, toggleDiary } = useQuestToggle()
@@ -28,6 +29,7 @@ const others = computed(() => questRows(account.account, OTHER_QUESTS))
 const completedDiaries = computed(
   () => new Set(EVERY_DIARY.filter((diary) => hasCompletedDiary(account.account, diary))),
 )
+const nextTiers = computed(() => diaryNextRows(account.account))
 </script>
 
 <template>
@@ -39,10 +41,11 @@ const completedDiaries = computed(
           <span class="section-heading__aside">{{ tickedCountLabel(unlocks) }}</span>
         </div>
         <p class="note quest-tick-list__lead">
-          These change your plan the most. Each one shows what it opens up. Ticking a quest also
-          ticks the quests it requires, and unticking one unticks the quests that require it. A few
-          quests count once started, like Fairytale II for the fairy rings: press one of those once
-          for started and again for done.
+          These change your plan the most. Each one shows what it opens up, and whether you are
+          ready for it or what it still needs, naming the boost that covers a level where one does.
+          Ticking a quest also ticks the quests it requires, and unticking one unticks the quests
+          that require it. A few quests count once started, like Fairytale II for the fairy rings:
+          press one of those once for started and again for done.
         </p>
         <UnlockList :quests="unlocks" @toggle="toggleQuest" />
       </section>
@@ -59,6 +62,7 @@ const completedDiaries = computed(
           ticked with it.
         </p>
         <DiaryGrid :completed="completedDiaries" @toggle="toggleDiary" />
+        <DiaryNext :rows="nextTiers" />
       </section>
     </div>
 
@@ -68,8 +72,8 @@ const completedDiaries = computed(
         <span class="section-heading__aside">{{ tickedCountLabel(others) }}</span>
       </div>
       <p class="note quest-tick-list__lead">
-        Miniquests and activities are here too, marked as such. Ticking one also ticks what it
-        requires, and marks started the quests it needs only started.
+        Miniquests and activities are here too, marked as such, each with what it still needs.
+        Ticking one also ticks what it requires, and marks started the quests it needs only started.
       </p>
       <QuestChecklist :rows="others" @toggle="toggleQuest" />
     </section>

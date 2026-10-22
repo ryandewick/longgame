@@ -8,6 +8,7 @@ import { describe, expect, it } from 'vitest'
 import type { Method } from '#shared/types/method'
 import type { QuestFacts } from '#shared/types/quest'
 import type { Requirements } from '#shared/types/requirement'
+import { BOOSTS } from '#shared/data/boosts'
 import { DIARY_FACTS } from '#shared/data/diary-facts'
 import { METHODS } from '#shared/data/methods'
 import { QUEST_FACTS } from '#shared/data/quest-facts'
@@ -528,6 +529,59 @@ describe('quest facts', () => {
   })
 })
 
+describe('quest facts for readiness', () => {
+  const total = (count: (quest: QuestFacts) => number): number =>
+    QUEST_FACTS.reduce((sum, quest) => sum + count(quest), 0)
+
+  it('gives 343 quest points in all, Recipe for Disaster’s part by part as the game does', () => {
+    expect(total((quest) => quest.gives.questPoints)).toBe(343)
+    const recipe = QUEST_FACTS.filter((quest) => quest.name.startsWith('Recipe for Disaster'))
+    expect(recipe.map((quest) => quest.gives.questPoints)).toEqual([
+      0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    ])
+  })
+
+  it('gives 80 Kudos from quests and 28 from the quiz, and opens 50 with The Dig Site (approval 6)', () => {
+    const quiz = 'Natural history quiz'
+    expect(total((quest) => (quest.name === quiz ? 0 : quest.gives.kudos))).toBe(80)
+    expect(QUEST_FACTS.find((quest) => quest.name === quiz)?.gives.kudos).toBe(28)
+    expect(
+      QUEST_FACTS.filter((quest) => quest.gives.kudosOpened).map((quest) => [
+        quest.name,
+        quest.gives.kudosOpened,
+      ]),
+    ).toEqual([['The Dig Site', 50]])
+  })
+
+  it('names the five ironman needs that apply only sometimes, which never stand in the way (acceptance B3)', () => {
+    expect(
+      QUEST_FACTS.flatMap((quest) =>
+        quest.needs.ironman
+          .filter((need) => need.condition !== null)
+          .map((need) => `${quest.name}: ${need.need}, ${need.condition}`),
+      ),
+    ).toEqual([
+      'Dragon Slayer I: steel nails, free-to-play only',
+      'Elemental Workshop I: coal, only if mining the coal yourself',
+      'Making History: a sapphire amulet (u), only if making it yourself',
+      'Recipe for Disaster - Skrach Uglogwee: an iron spit, only without access to Weiss',
+      'Tai Bwo Wannai Trio: a raw karambwan, only if you burn the one given',
+    ])
+  })
+
+  it('names the three levels a page says can be got round', () => {
+    expect(
+      QUEST_FACTS.flatMap((quest) =>
+        quest.needs.bypassable.map((skill) => `${quest.name}: ${quest.levels[skill]} ${skill}`),
+      ),
+    ).toEqual([
+      'Desert Treasure I: 10 slayer',
+      'Elemental Workshop I: 20 mining',
+      'Rum Deal: 50 fishing',
+    ])
+  })
+})
+
 describe('diary facts', () => {
   it('holds the 48 tiers, region by region and easiest first, with the page each was read from', () => {
     expect(DIARY_FACTS).toHaveLength(48)
@@ -571,6 +625,164 @@ describe('diary facts', () => {
     })
     expect(quests('Kourend & Kebos Medium')).toMatchObject({ "Eagles' Peak": 'started' })
     expect(quests('Morytania Elite')).toMatchObject({ 'In Aid of the Myreque': 'started' })
+  })
+
+  it('plans those six on their quest finished (decision 4)', () => {
+    expect(
+      DIARY_FACTS.flatMap((diary) => diary.planFinished.map((quest) => `${diary.name}: ${quest}`)),
+    ).toEqual([
+      'Desert Hard: Contact!',
+      'Desert Hard: The Feud',
+      'Fremennik Hard: The Fremennik Isles',
+      'Fremennik Hard: Throne of Miscellania',
+      "Kourend & Kebos Medium: Eagles' Peak",
+      'Morytania Elite: In Aid of the Myreque',
+    ])
+  })
+
+  it('backs every diary gate of a method or a reset with the tier whose reward opens it (acceptance E1)', () => {
+    const gates = DIARY_FACTS.flatMap((diary) =>
+      diary.gates.map((gate) => `${diary.name}: ${gate.kind} ${gate.name}`),
+    )
+    const gated = [
+      ...allMethods.flatMap((method) =>
+        method.requirements.diaries.map((diary) => `${diary}: method ${method.name}`),
+      ),
+      ...RESETS.flatMap((reset) =>
+        reset.requirements.diaries.map((diary) => `${diary}: reset ${reset.name}`),
+      ),
+    ]
+    expect(gates).toHaveLength(16)
+    expect([...gates].sort()).toEqual([...gated].sort())
+  })
+
+  it('says how much each diary reset gives at every tier, as the pages do (acceptance E2)', () => {
+    const amounts: Record<string, number[]> = {
+      'Battlestaves from Zaff': [15, 30, 60, 120],
+      'Pure essence from Cromperty': [100, 150, 250],
+      'Flax for bow string': [30, 60, 120, 250],
+      'Runes from Lundail': [40, 80, 120, 200],
+      'Bonemeal from Robin': [13, 26, 39],
+      'Ogre arrows from Rantz': [25, 50, 100, 150],
+      'Dynamite from Thirus': [20, 40, 80],
+    }
+    const figures = (note: string): number[] =>
+      [...note.matchAll(/\d[\d,]*/g)].map(([figure]) => Number(figure.replaceAll(',', '')))
+    /** Do the amounts appear in the note in this order, perhaps with other figures between? */
+    const inOrder = (note: string, wanted: readonly number[]): boolean => {
+      let next = 0
+      for (const figure of figures(note)) if (figure === wanted[next]) next += 1
+      return next === wanted.length
+    }
+    const notes = Object.keys(amounts).map((name) => RESETS.find((reset) => reset.name === name))
+    expect(notes.map((reset) => reset?.name)).toEqual(Object.keys(amounts))
+    expect(
+      notes.filter((reset) => !reset || !inOrder(reset.note, amounts[reset.name] ?? [])),
+    ).toEqual([])
+  })
+
+  it('never lets a boost count toward a gear or guild level (acceptance E3)', () => {
+    // the Keris and the slayer helmet, Initiate armour, the dwarven helmet, the granite body, Void
+    const gear: [string, string[]][] = [
+      ['Desert Hard', ['attack', 'defence']],
+      ['Falador Medium', ['defence', 'prayer']],
+      ['Falador Hard', ['defence']],
+      ['Kandarin Hard', ['strength']],
+      [
+        'Western Provinces Elite',
+        ['attack', 'strength', 'defence', 'hitpoints', 'ranged', 'magic', 'prayer'],
+      ],
+    ]
+    for (const [name, skills] of gear) {
+      const diary = DIARY_FACTS.find((tier) => tier.name === name)
+      for (const skill of skills) {
+        expect(diary?.levels).toHaveProperty(skill)
+        expect(diary?.boostable).not.toContain(skill)
+      }
+    }
+    // the Warriors' Guild door: 99 Attack or Strength, if not 130 of the two together
+    const door = DIARY_FACTS.find((tier) => tier.name === 'Falador Hard')?.choices
+    expect(door?.flatMap((choice) => choice.options.flat())).toEqual(
+      expect.arrayContaining([
+        { kind: 'skill', skill: 'attack', level: 99, boostable: false },
+        { kind: 'skill', skill: 'strength', level: 99, boostable: false },
+      ]),
+    )
+  })
+
+  it('offers the counts five tiers need built up as long tasks (acceptance E5)', () => {
+    const tasks = DIARY_FACTS.flatMap((diary) =>
+      diary.longTasks.map((task) => `${diary.name}: ${task.amount} ${task.unit}`),
+    )
+    expect(tasks).toEqual(
+      expect.arrayContaining([
+        'Western Provinces Elite: 1000 chompy or jubbly bird kills',
+        'Kandarin Elite: 5600 Barbarian Assault honour points',
+        'Falador Elite: 1300 Black Knight kill score',
+        'Ardougne Elite: 800000 Nightmare Zone points',
+        'Lumbridge & Draynor Hard: 100 tears in one visit',
+      ]),
+    )
+    expect(tasks).toHaveLength(12)
+  })
+
+  it('lowers four Runecraft levels with Raiments of the Eye pieces, for words only (decision 5)', () => {
+    expect(
+      DIARY_FACTS.flatMap((diary) =>
+        diary.raiments
+          ? [
+              `${diary.name}: ${diary.levels.runecraft} or ${diary.raiments.level} with ${diary.raiments.pieces}`,
+            ]
+          : [],
+      ),
+    ).toEqual([
+      'Falador Hard: 56 or 42 with 3',
+      'Falador Elite: 88 or 55 with 4',
+      'Lumbridge & Draynor Elite: 76 or 38 with 4',
+      'Varrock Elite: 78 or 52 with 2',
+    ])
+  })
+
+  it('needs Kudos for two Varrock tiers and every quest for Lumbridge & Draynor Elite', () => {
+    expect(
+      DIARY_FACTS.filter((diary) => diary.kudos).map((diary) => [diary.name, diary.kudos]),
+    ).toEqual([
+      ['Varrock Easy', 50],
+      ['Varrock Hard', 153],
+    ])
+    expect(DIARY_FACTS.filter((diary) => diary.allQuests).map((diary) => diary.name)).toEqual([
+      'Lumbridge & Draynor Elite',
+    ])
+  })
+})
+
+describe('boosts', () => {
+  const boosts = SKILL_KEYS.flatMap((skill) => BOOSTS[skill] ?? [])
+
+  it('holds decision 1’s 35 boosts in 20 skills, each with the page it was read from', () => {
+    expect(boosts).toHaveLength(35)
+    expect(SKILL_KEYS.filter((skill) => BOOSTS[skill]?.length)).toHaveLength(20)
+    expect(boosts.filter((boost) => !boost.page.trim() || !(boost.revision > 0))).toEqual([])
+  })
+
+  it('lets an ironman count no ale, and no axe or pickaxe that comes only as a drop', () => {
+    expect(boosts.filter((boost) => boost.ironman === 'never').map((boost) => boost.name)).toEqual([
+      "Chef's delight(m)",
+      "Chef's delight",
+      'Dragon axe',
+      "Axeman's folly(m)",
+      "Kovac's grog",
+      'Dwarven stout(m)',
+      'Dragon pickaxe',
+      'Dwarven stout(m)',
+      "Greenman's ale(m)",
+      "Slayer's respite(m)",
+      'Mature cider',
+    ])
+  })
+
+  it('names a boost in words a sentence can carry: “ready with a super fishing potion”', () => {
+    expect(boosts.filter((boost) => !/^(a|an|the) /.test(boost.phrase))).toEqual([])
   })
 })
 

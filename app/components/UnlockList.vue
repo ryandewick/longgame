@@ -2,13 +2,17 @@
 import { skillName } from '#shared/data/skills'
 
 /**
- * The quests that unlock something the planner deals: each with a tick box, what it opens up and
- * the icons of the skills that trains. Two columns that read downwards, one on a narrow screen. A
- * quest whose start matters can show as started: its box half filled and a "Started" tag.
+ * The quests that unlock something the planner deals: each with a tick box, what it opens up, the
+ * icons of the skills that trains and, until it is done, whether the account is ready for it. Two
+ * columns that read downwards, one on a narrow screen. A quest whose start matters can show as
+ * started: its box half filled and a "Started" tag.
  */
 defineProps<{
   quests: readonly UnlockRow[]
 }>()
+
+// each row's readiness sentence gets an id from this, for its tick box to be described by
+const listId = useId()
 
 const emit = defineEmits<{
   /** The player ticked this quest, or unticked it. */
@@ -31,6 +35,7 @@ const emit = defineEmits<{
         :started="quest.started"
         :label="unlockRowLabel(quest)"
         :title="startedTickHint(quest) || undefined"
+        :described-by="quest.readiness ? `${listId}-${index}` : undefined"
         @toggle="emit('toggle', quest.name)"
       >
         <b class="unlock-list__name" :class="{ 'unlock-list__name--done': quest.done }">
@@ -40,6 +45,11 @@ const emit = defineEmits<{
           </span>
         </b>
         <span class="unlock-list__opens">{{ quest.opens }}</span>
+        <ReadinessLine
+          v-if="quest.readiness"
+          :readiness="quest.readiness"
+          :sentence-id="`${listId}-${index}`"
+        />
       </TickBox>
       <span v-if="quest.skills.length" class="unlock-list__skills">
         <SkillIcon

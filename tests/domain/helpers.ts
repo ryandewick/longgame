@@ -1,5 +1,7 @@
 import type { Account, AccountType, Budget } from '#shared/types/account'
+import type { DiaryFacts } from '#shared/types/diary'
 import type { Method } from '#shared/types/method'
+import type { QuestFacts } from '#shared/types/quest'
 import type { SkillKey } from '#shared/types/skill'
 import { forEverySkill } from '#shared/data/skills'
 import { NO_REQUIREMENTS } from '#shared/domain/requirements'
@@ -42,6 +44,69 @@ export function accountWith(sketch: AccountSketch = {}): Account {
       tickPerfect: sketch.tickPerfect ?? false,
       excludedSkills: new Set(sketch.excluded),
     },
+  }
+}
+
+/**
+ * A fresh account for a test: 10 Hitpoints (1,154 XP), the only skill a player starts with XP in,
+ * and 1 elsewhere, unless the sketch says otherwise. `blankAccount()` is not one: it means "not
+ * looked up yet", level 1 everywhere.
+ */
+export function freshAccount(sketch: AccountSketch = {}): Account {
+  return accountWith({ ...sketch, levels: { hitpoints: 10, ...sketch.levels } })
+}
+
+/** The facts of a plain quest for a test: no levels, no quests before it, nothing needed or given. */
+export function questFactsWith(name: string, overrides: Partial<QuestFacts> = {}): QuestFacts {
+  return {
+    name,
+    kind: 'quest',
+    page: name,
+    revision: 1,
+    levels: {},
+    requires: [],
+    requiresStarted: [],
+    optional: false,
+    doneByEveryAccount: false,
+    startedMatters: false,
+    needs: {
+      boostable: [],
+      finishOnly: [],
+      bypassable: [],
+      questPoints: 0,
+      combat: 0,
+      kudos: 0,
+      ironman: [],
+    },
+    gives: { questPoints: 0, kudos: 0, kudosOpened: 0 },
+    ...overrides,
+  }
+}
+
+/** The facts of a diary tier for a test ('Varrock Hard'): it needs nothing unless told otherwise. */
+export function diaryFactsWith(name: string, overrides: Partial<DiaryFacts> = {}): DiaryFacts {
+  const tier = name.split(' ').at(-1) ?? ''
+  return {
+    name,
+    region: name.slice(0, -tier.length - 1),
+    tier,
+    page: `${name.slice(0, -tier.length - 1)} Diary`,
+    revision: 1,
+    quests: {},
+    planFinished: [],
+    levels: {},
+    boostable: [],
+    raiments: null,
+    choices: [],
+    questPoints: 0,
+    combat: 0,
+    kudos: 0,
+    allQuests: false,
+    ironman: [],
+    longTasks: [],
+    also: [],
+    gates: [],
+    ...overrides,
   }
 }
 

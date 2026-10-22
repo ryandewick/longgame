@@ -7,12 +7,27 @@
  * A quest whose start matters has a third state between empty and ticked: started, the box half
  * filled from the bottom, as a cape fills from its hem, and pressed "mixed" for a screen reader.
  */
-const { ticked, started = false } = defineProps<{
+const {
+  ticked,
+  started = false,
+  describedBy = undefined,
+  top = false,
+} = defineProps<{
   ticked: boolean
   /** Started and not finished. Ignored once ticked. */
   started?: boolean
   /** What a screen reader calls it, state included: 'Ardougne Medium, done'. */
   label: string
+  /**
+   * The id of what a screen reader reads after the label: a quest's readiness. The label covers
+   * the button's words, so anything more it says needs this.
+   */
+  describedBy?: string
+  /**
+   * Level the box with the first line of its words, not their middle: for a name with a line
+   * under it.
+   */
+  top?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -27,8 +42,10 @@ const pressed = computed(() => (ticked ? 'true' : started ? 'mixed' : 'false'))
   <button
     type="button"
     class="tick-box"
+    :class="{ 'tick-box--top': top }"
     :aria-pressed="pressed"
     :aria-label="label"
+    :aria-describedby="describedBy"
     @click="emit('toggle')"
   >
     <span
@@ -59,6 +76,10 @@ const pressed = computed(() => (ticked ? 'true' : started ? 'mixed' : 'false'))
   text-align: left;
   vertical-align: middle;
   cursor: pointer;
+
+  &--top {
+    align-items: flex-start;
+  }
 
   // the box: an empty well, half bone when started, or bone with an ink tick. Never yellow:
   // yellow is reserved. The started half is drawn as an inset shadow, so the box keeps its shape.

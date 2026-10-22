@@ -3,7 +3,7 @@
  * A long list of quests to tick, with a search box and a filter over it: the quests, miniquests
  * and activities that unlock no training method. Each row is a tick box, the name, a "Started"
  * tag while a quest whose start matters is started, a word for what it is when it is not a
- * quest, and what it pays.
+ * quest, and what it pays; under the name of one not done, whether the account is ready for it.
  */
 const { rows } = defineProps<{
   rows: readonly QuestRow[]
@@ -19,6 +19,9 @@ const filter = shallowRef<QuestFilter>('all')
 const searchId = useId()
 
 const shown = computed(() => filterQuestRows(rows, search.value, filter.value))
+
+// each row's readiness sentence gets an id from this, for its tick box to be described by
+const listId = useId()
 </script>
 
 <template>
@@ -39,18 +42,25 @@ const shown = computed(() => filterQuestRows(rows, search.value, filter.value))
 
     <!-- named a list outright: some browsers stop announcing one once its markers are styled away -->
     <ul v-if="shown.length" class="quest-checklist__list" role="list">
-      <li v-for="row in shown" :key="row.name" class="quest-checklist__row">
+      <li v-for="(row, index) in shown" :key="row.name" class="quest-checklist__row">
         <TickBox
           class="quest-checklist__tick"
           :ticked="row.done"
           :started="row.started"
           :label="questRowLabel(row)"
           :title="startedTickHint(row) || undefined"
+          :described-by="row.readiness ? `${listId}-${index}` : undefined"
+          top
           @toggle="emit('toggle', row.name)"
         >
           <span class="quest-checklist__name" :class="{ 'quest-checklist__name--done': row.done }">
             {{ row.name }}
           </span>
+          <ReadinessLine
+            v-if="row.readiness"
+            :readiness="row.readiness"
+            :sentence-id="`${listId}-${index}`"
+          />
         </TickBox>
         <span v-if="row.started" class="tag quest-checklist__state" aria-hidden="true">
           Started
@@ -80,19 +90,21 @@ const shown = computed(() => filterQuestRows(rows, search.value, filter.value))
     margin-bottom: 12px;
   }
 
+  // three columns, not four: a row not done carries a second line, what it still needs
   &__list {
     margin: 0;
     padding: 0;
-    columns: 4;
+    columns: 3;
     column-gap: 14px;
     list-style: none;
   }
 
+  // the tag, the kind and the XP sit level with the name, the first of the row's lines
   &__row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
-    padding: 6px 8px;
+    padding: 7px 8px;
     break-inside: avoid;
   }
 
@@ -117,17 +129,20 @@ const shown = computed(() => filterQuestRows(rows, search.value, filter.value))
   // the box's half fill said in words; outside the name, so a long name is cut and not the tag
   &__state {
     flex: none;
+    margin-top: 2px;
   }
 
   // what the entry is when it is not a quest; outside the name, so a long name is cut and not it
   &__kind {
     flex: none;
+    margin-top: 3px;
     color: var(--color-text-faint);
     font-size: 12px;
   }
 
   &__xp {
     flex: none;
+    margin-top: 2px;
     color: var(--color-text-faint);
     font-size: 13px;
     font-variant-numeric: tabular-nums lining-nums;

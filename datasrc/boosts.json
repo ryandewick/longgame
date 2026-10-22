@@ -1,0 +1,456 @@
+{
+ "agility": [
+  {
+   "name": "Summer pie",
+   "phrase": "a summer pie",
+   "page": "Summer pie",
+   "rev": 15369837,
+   "flat": 5,
+   "main": "always",
+   "ironman": {
+    "skill": "cooking",
+    "level": 95
+   }
+  },
+  {
+   "name": "Agility potion",
+   "phrase": "an agility potion",
+   "page": "Agility potion",
+   "rev": 15250405,
+   "flat": 3,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 34
+   }
+  }
+ ],
+ "attack": [
+  {
+   "name": "Attack potion",
+   "phrase": "an attack potion",
+   "page": "Attack potion",
+   "rev": 15247702,
+   "base": 3,
+   "percent": 10,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 3
+   }
+  }
+ ],
+ "construction": [
+  {
+   "name": "Cup of tea (trimmed)",
+   "phrase": "a cup of tea from a trimmed tea set",
+   "page": "Cup of tea (trimmed)",
+   "rev": 15189005,
+   "flat": 3,
+   "main": {
+    "skill": "construction",
+    "level": 67
+   },
+   "ironman": {
+    "skill": "construction",
+    "level": 67
+   }
+  },
+  {
+   "name": "Cup of tea (porcelain)",
+   "phrase": "a cup of tea from a porcelain tea set",
+   "page": "Cup of tea (porcelain)",
+   "rev": 15189004,
+   "flat": 2,
+   "main": {
+    "skill": "construction",
+    "level": 23
+   },
+   "ironman": {
+    "skill": "construction",
+    "level": 23
+   }
+  }
+ ],
+ "cooking": [
+  {
+   "name": "Chef's delight(m)",
+   "phrase": "a mature chef's delight",
+   "page": "Chef's delight(m)",
+   "rev": 15184675,
+   "base": 2,
+   "percent": 5,
+   "main": "always",
+   "ironman": "never"
+  },
+  {
+   "name": "Chef's delight",
+   "phrase": "a chef's delight",
+   "page": "Chef's delight",
+   "rev": 15358944,
+   "base": 1,
+   "percent": 5,
+   "main": "always",
+   "ironman": "never"
+  }
+ ],
+ "crafting": [
+  {
+   "name": "Mushroom pie",
+   "phrase": "a mushroom pie",
+   "page": "Mushroom pie",
+   "rev": 15364322,
+   "flat": 4,
+   "main": "always",
+   "ironman": {
+    "skill": "cooking",
+    "level": 60
+   }
+  }
+ ],
+ "defence": [
+  {
+   "name": "Defence potion",
+   "phrase": "a defence potion",
+   "page": "Defence potion",
+   "rev": 15183997,
+   "base": 3,
+   "percent": 10,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 30
+   }
+  }
+ ],
+ "farming": [
+  {
+   "name": "Garden pie",
+   "phrase": "a garden pie",
+   "page": "Garden pie",
+   "rev": 15242180,
+   "flat": 3,
+   "main": "always",
+   "ironman": {
+    "skill": "cooking",
+    "level": 34
+   }
+  },
+  {
+   "name": "Mature cider",
+   "phrase": "a mature cider",
+   "page": "Mature cider",
+   "rev": 15184676,
+   "flat": 2,
+   "main": "always",
+   "ironman": "never"
+  }
+ ],
+ "fishing": [
+  {
+   "name": "Super fishing potion",
+   "phrase": "a super fishing potion",
+   "page": "Super fishing potion",
+   "rev": 15293487,
+   "flat": 6,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 62
+   }
+  },
+  {
+   "name": "Admiral pie",
+   "phrase": "an admiral pie",
+   "page": "Admiral pie",
+   "rev": 15227370,
+   "flat": 5,
+   "main": "always",
+   "ironman": {
+    "skill": "cooking",
+    "level": 70
+   }
+  },
+  {
+   "name": "Fishing potion",
+   "phrase": "a fishing potion",
+   "page": "Fishing potion",
+   "rev": 15183994,
+   "flat": 3,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 50
+   }
+  }
+ ],
+ "fletching": [
+  {
+   "name": "Dragonfruit pie",
+   "phrase": "a dragonfruit pie",
+   "page": "Dragonfruit pie",
+   "rev": 15242177,
+   "flat": 4,
+   "main": "always",
+   "ironman": {
+    "skill": "cooking",
+    "level": 73
+   }
+  }
+ ],
+ "herblore": [
+  {
+   "name": "Botanical pie",
+   "phrase": "a botanical pie",
+   "page": "Botanical pie",
+   "rev": 15242175,
+   "flat": 4,
+   "main": "always",
+   "ironman": {
+    "skill": "cooking",
+    "level": 52
+   }
+  },
+  {
+   "name": "Greenman's ale(m)",
+   "phrase": "a mature Greenman's ale",
+   "page": "Greenman's ale(m)",
+   "rev": 15184677,
+   "flat": 2,
+   "main": "always",
+   "ironman": "never"
+  }
+ ],
+ "hunter": [
+  {
+   "name": "Super hunter potion",
+   "phrase": "a super hunter potion",
+   "page": "Super hunter potion",
+   "rev": 15312328,
+   "flat": 6,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 67
+   }
+  },
+  {
+   "name": "Hunter potion",
+   "phrase": "a hunter potion",
+   "page": "Hunter potion",
+   "rev": 15184175,
+   "flat": 3,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 53
+   }
+  },
+  {
+   "name": "Trapper's tipple",
+   "phrase": "a Trapper's tipple",
+   "page": "Trapper's tipple",
+   "rev": 15192451,
+   "flat": 2,
+   "main": "always",
+   "ironman": {
+    "skill": "hunter",
+    "level": 46
+   }
+  }
+ ],
+ "magic": [
+  {
+   "name": "Magic potion",
+   "phrase": "a magic potion",
+   "page": "Magic potion",
+   "rev": 15247721,
+   "flat": 4,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 76
+   }
+  }
+ ],
+ "mining": [
+  {
+   "name": "Dragon pickaxe",
+   "phrase": "the dragon pickaxe's special attack",
+   "page": "Dragon pickaxe",
+   "rev": 15343679,
+   "flat": 3,
+   "main": {
+    "skill": "attack",
+    "level": 60
+   },
+   "ironman": "never"
+  },
+  {
+   "name": "Dwarven stout(m)",
+   "phrase": "a mature dwarven stout",
+   "page": "Dwarven stout(m)",
+   "rev": 15183510,
+   "flat": 2,
+   "main": "always",
+   "ironman": "never"
+  }
+ ],
+ "prayer": [
+  {
+   "name": "Edgeville Monastery and Nature Grotto; altars",
+   "phrase": "the altar at the Edgeville Monastery or the Nature Grotto",
+   "page": "Temporary skill boost/Prayer",
+   "rev": 15299794,
+   "flat": 2,
+   "main": {
+    "skill": "prayer",
+    "level": 31
+   },
+   "ironman": {
+    "skill": "prayer",
+    "level": 31
+   }
+  }
+ ],
+ "ranged": [
+  {
+   "name": "Ranging potion",
+   "phrase": "a ranging potion",
+   "page": "Ranging potion",
+   "rev": 15293943,
+   "base": 4,
+   "percent": 10,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 72
+   }
+  },
+  {
+   "name": "Wild pie",
+   "phrase": "a wild pie",
+   "page": "Wild pie",
+   "rev": 15369834,
+   "flat": 4,
+   "main": "always",
+   "ironman": {
+    "skill": "cooking",
+    "level": 85
+   }
+  }
+ ],
+ "slayer": [
+  {
+   "name": "Wild pie",
+   "phrase": "a wild pie",
+   "page": "Wild pie",
+   "rev": 15369834,
+   "flat": 5,
+   "main": "always",
+   "ironman": {
+    "skill": "cooking",
+    "level": 85
+   }
+  },
+  {
+   "name": "Slayer's respite(m)",
+   "phrase": "a mature slayer's respite",
+   "page": "Slayer's respite(m)",
+   "rev": 15364804,
+   "flat": 4,
+   "main": "always",
+   "ironman": "never"
+  }
+ ],
+ "smithing": [
+  {
+   "name": "Kovac's grog",
+   "phrase": "a Kovac's grog",
+   "page": "Kovac's grog",
+   "rev": 15371915,
+   "flat": 4,
+   "main": "always",
+   "ironman": "never"
+  },
+  {
+   "name": "Dwarven stout(m)",
+   "phrase": "a mature dwarven stout",
+   "page": "Dwarven stout(m)",
+   "rev": 15183510,
+   "flat": 2,
+   "main": "always",
+   "ironman": "never"
+  }
+ ],
+ "strength": [
+  {
+   "name": "Strength potion",
+   "phrase": "a strength potion",
+   "page": "Strength potion",
+   "rev": 15359571,
+   "base": 3,
+   "percent": 10,
+   "main": "always",
+   "ironman": {
+    "skill": "herblore",
+    "level": 12
+   }
+  }
+ ],
+ "thieving": [
+  {
+   "name": "Summer sq'irkjuice",
+   "phrase": "a summer sq'irkjuice",
+   "page": "Summer sq'irkjuice",
+   "rev": 15185306,
+   "flat": 3,
+   "main": {
+    "skill": "thieving",
+    "level": 65
+   },
+   "ironman": {
+    "skill": "thieving",
+    "level": 65
+   }
+  },
+  {
+   "name": "Autumn sq'irkjuice",
+   "phrase": "an autumn sq'irkjuice",
+   "page": "Autumn sq'irkjuice",
+   "rev": 15185305,
+   "flat": 2,
+   "main": {
+    "skill": "thieving",
+    "level": 45
+   },
+   "ironman": {
+    "skill": "thieving",
+    "level": 45
+   }
+  }
+ ],
+ "woodcutting": [
+  {
+   "name": "Dragon axe",
+   "phrase": "the dragon axe's special attack",
+   "page": "Dragon axe",
+   "rev": 15345217,
+   "flat": 3,
+   "main": {
+    "skill": "attack",
+    "level": 60
+   },
+   "ironman": "never"
+  },
+  {
+   "name": "Axeman's folly(m)",
+   "phrase": "a mature axeman's folly",
+   "page": "Axeman's folly(m)",
+   "rev": 15184674,
+   "flat": 2,
+   "main": "always",
+   "ironman": "never"
+  }
+ ]
+}

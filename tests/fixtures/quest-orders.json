@@ -1,0 +1,5307 @@
+{
+ "main": {
+  "page": "Optimal quest guide",
+  "rev": 15358869,
+  "steps": [
+   {
+    "n": 1,
+    "kind": "quest",
+    "quest": "Learning the Ropes"
+   },
+   {
+    "n": 2,
+    "kind": "quest",
+    "quest": "Cook's Assistant",
+    "xp": {
+     "cooking": 300
+    }
+   },
+   {
+    "n": 3,
+    "kind": "quest",
+    "quest": "Sheep Shearer",
+    "xp": {
+     "crafting": 150
+    }
+   },
+   {
+    "n": 4,
+    "kind": "quest",
+    "quest": "Misthalin Mystery",
+    "xp": {
+     "crafting": 600
+    }
+   },
+   {
+    "n": 5,
+    "kind": "quest",
+    "quest": "Prince Ali Rescue"
+   },
+   {
+    "n": 6,
+    "kind": "quest",
+    "quest": "The Restless Ghost",
+    "xp": {
+     "prayer": 1125
+    }
+   },
+   {
+    "n": 7,
+    "kind": "quest",
+    "quest": "Rune Mysteries"
+   },
+   {
+    "n": 8,
+    "kind": "unlock"
+   },
+   {
+    "n": 9,
+    "kind": "quest",
+    "quest": "Imp Catcher",
+    "xp": {
+     "magic": 875
+    }
+   },
+   {
+    "n": 10,
+    "kind": "quest",
+    "quest": "Witch's Potion",
+    "xp": {
+     "magic": 325
+    }
+   },
+   {
+    "n": 11,
+    "kind": "quest",
+    "quest": "Gertrude's Cat",
+    "xp": {
+     "cooking": 1525
+    }
+   },
+   {
+    "n": 12,
+    "kind": "quest",
+    "quest": "Children of the Sun"
+   },
+   {
+    "n": 13,
+    "kind": "quest",
+    "quest": "Natural history quiz",
+    "xp": {
+     "hunter": 1000,
+     "slayer": 1000
+    }
+   },
+   {
+    "n": 14,
+    "kind": "quest",
+    "quest": "Daddy's Home",
+    "xp": {
+     "construction": 944
+    }
+   },
+   {
+    "n": 15,
+    "kind": "quest",
+    "quest": "Dwarf Cannon",
+    "xp": {
+     "crafting": 750
+    }
+   },
+   {
+    "n": 16,
+    "kind": "quest",
+    "quest": "Waterfall Quest",
+    "xp": {
+     "attack": 13750,
+     "strength": 13750
+    },
+    "starts": [
+     "Tree Gnome Village"
+    ]
+   },
+   {
+    "n": 17,
+    "kind": "quest",
+    "quest": "Tree Gnome Village",
+    "xp": {
+     "attack": 11450
+    }
+   },
+   {
+    "n": 18,
+    "kind": "quest",
+    "quest": "Doric's Quest",
+    "xp": {
+     "mining": 1300
+    },
+    "starts": [
+     "Below Ice Mountain"
+    ]
+   },
+   {
+    "n": 19,
+    "kind": "quest",
+    "quest": "Witch's House",
+    "xp": {
+     "hitpoints": 6325
+    }
+   },
+   {
+    "n": 20,
+    "kind": "quest",
+    "quest": "The Knight's Sword",
+    "xp": {
+     "smithing": 12725
+    }
+   },
+   {
+    "n": 21,
+    "kind": "train",
+    "skill": "fletching",
+    "level": 10
+   },
+   {
+    "n": 22,
+    "kind": "quest",
+    "quest": "The Tourist Trap",
+    "xp": {
+     "agility": 9300
+    }
+   },
+   {
+    "n": 23,
+    "kind": "quest",
+    "quest": "Black Knights' Fortress"
+   },
+   {
+    "n": 24,
+    "kind": "quest",
+    "quest": "Druidic Ritual",
+    "xp": {
+     "herblore": 250
+    }
+   },
+   {
+    "n": 25,
+    "kind": "quest",
+    "quest": "Recruitment Drive",
+    "xp": {
+     "agility": 1000,
+     "herblore": 1000,
+     "prayer": 1000
+    }
+   },
+   {
+    "n": 26,
+    "kind": "quest",
+    "quest": "Goblin Diplomacy",
+    "xp": {
+     "crafting": 200
+    }
+   },
+   {
+    "n": 27,
+    "kind": "quest",
+    "quest": "Sleeping Giants",
+    "xp": {
+     "smithing": 6000
+    }
+   },
+   {
+    "n": 28,
+    "kind": "quest",
+    "quest": "Fight Arena",
+    "xp": {
+     "attack": 12175,
+     "thieving": 2175
+    }
+   },
+   {
+    "n": 29,
+    "kind": "quest",
+    "quest": "Plague City",
+    "xp": {
+     "mining": 2425
+    }
+   },
+   {
+    "n": 30,
+    "kind": "quest",
+    "quest": "Monk's Friend",
+    "xp": {
+     "woodcutting": 2000
+    }
+   },
+   {
+    "n": 31,
+    "kind": "quest",
+    "quest": "Hazeel Cult",
+    "xp": {
+     "thieving": 1500
+    }
+   },
+   {
+    "n": 32,
+    "kind": "quest",
+    "quest": "Sheep Herder"
+   },
+   {
+    "n": 33,
+    "kind": "quest",
+    "quest": "Biohazard",
+    "xp": {
+     "thieving": 1250
+    }
+   },
+   {
+    "n": 34,
+    "kind": "train",
+    "skill": "construction",
+    "level": 10
+   },
+   {
+    "n": 35,
+    "kind": "quest",
+    "quest": "Tower of Life",
+    "xp": {
+     "construction": 1000,
+     "crafting": 500,
+     "thieving": 500
+    }
+   },
+   {
+    "n": 36,
+    "kind": "quest",
+    "quest": "Tribal Totem",
+    "xp": {
+     "thieving": 1775
+    }
+   },
+   {
+    "n": 37,
+    "kind": "quest",
+    "quest": "Death Plateau",
+    "xp": {
+     "attack": 3000
+    }
+   },
+   {
+    "n": 38,
+    "kind": "quest",
+    "quest": "Merlin's Crystal"
+   },
+   {
+    "n": 39,
+    "kind": "quest",
+    "quest": "Holy Grail",
+    "xp": {
+     "defence": 15300,
+     "prayer": 11000
+    }
+   },
+   {
+    "n": 40,
+    "kind": "quest",
+    "quest": "Murder Mystery",
+    "xp": {
+     "crafting": 1406
+    }
+   },
+   {
+    "n": 41,
+    "kind": "quest",
+    "quest": "The Grand Tree",
+    "xp": {
+     "attack": 18400,
+     "agility": 7900,
+     "magic": 2150
+    }
+   },
+   {
+    "n": 42,
+    "kind": "diary",
+    "diary": "Ardougne Easy",
+    "xp": {
+     "agility": 2500
+    }
+   },
+   {
+    "n": 43,
+    "kind": "quest",
+    "quest": "A Ruff Situation",
+    "xp": {
+     "crafting": 1000
+    }
+   },
+   {
+    "n": 44,
+    "kind": "quest",
+    "quest": "Rag and Bone Man I",
+    "xp": {
+     "prayer": 500,
+     "cooking": 500
+    },
+    "starts": [
+     "Rag and Bone Man II"
+    ]
+   },
+   {
+    "n": 45,
+    "kind": "quest",
+    "quest": "Priest in Peril",
+    "xp": {
+     "prayer": 1406
+    }
+   },
+   {
+    "n": 46,
+    "kind": "quest",
+    "quest": "Nature Spirit",
+    "xp": {
+     "crafting": 3000,
+     "defence": 2000,
+     "hitpoints": 2000
+    }
+   },
+   {
+    "n": 47,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 20
+   },
+   {
+    "n": 48,
+    "kind": "quest",
+    "quest": "Ghosts Ahoy",
+    "xp": {
+     "prayer": 2400
+    }
+   },
+   {
+    "n": 49,
+    "kind": "quest",
+    "quest": "Making History",
+    "xp": {
+     "crafting": 1000,
+     "prayer": 1000
+    }
+   },
+   {
+    "n": 50,
+    "kind": "quest",
+    "quest": "The Ides of Milk",
+    "xp": {
+     "prayer": 1000
+    }
+   },
+   {
+    "n": 51,
+    "kind": "quest",
+    "quest": "The Lost Tribe",
+    "xp": {
+     "mining": 3000
+    }
+   },
+   {
+    "n": 52,
+    "kind": "quest",
+    "quest": "Death to the Dorgeshuun",
+    "xp": {
+     "ranged": 2000,
+     "thieving": 2000
+    }
+   },
+   {
+    "n": 53,
+    "kind": "quest",
+    "quest": "Elemental Workshop I",
+    "xp": {
+     "crafting": 5000,
+     "smithing": 5000
+    }
+   },
+   {
+    "n": 54,
+    "kind": "train",
+    "skill": "agility",
+    "level": 35
+   },
+   {
+    "n": 55,
+    "kind": "train",
+    "skill": "prayer",
+    "level": 37
+   },
+   {
+    "n": 56,
+    "kind": "quest",
+    "quest": "Icthlarin's Little Helper",
+    "xp": {
+     "agility": 4000,
+     "thieving": 4500,
+     "woodcutting": 4000
+    }
+   },
+   {
+    "n": 57,
+    "kind": "quest",
+    "quest": "The Golem",
+    "xp": {
+     "crafting": 1000,
+     "thieving": 1000
+    }
+   },
+   {
+    "n": 58,
+    "kind": "quest",
+    "quest": "The Ribbiting Tale of a Lily Pad Labour Dispute",
+    "xp": {
+     "woodcutting": 2000
+    }
+   },
+   {
+    "n": 59,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 36
+   },
+   {
+    "n": 60,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 31
+   },
+   {
+    "n": 61,
+    "kind": "quest",
+    "quest": "Lost City"
+   },
+   {
+    "n": 62,
+    "kind": "quest",
+    "quest": "Fairytale I - Growing Pains",
+    "xp": {
+     "attack": 2000,
+     "farming": 3500,
+     "magic": 1000
+    },
+    "starts": [
+     "Fairytale II - Cure a Queen"
+    ]
+   },
+   {
+    "n": 63,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Another Cook's Quest"
+   },
+   {
+    "n": 64,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Wartface & Bentnoze",
+    "xp": {
+     "cooking": 1000,
+     "crafting": 1000,
+     "farming": 1000
+    }
+   },
+   {
+    "n": 65,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 30
+   },
+   {
+    "n": 66,
+    "kind": "quest",
+    "quest": "Sea Slug",
+    "xp": {
+     "fishing": 7175
+    }
+   },
+   {
+    "n": 67,
+    "kind": "quest",
+    "quest": "Pandemonium",
+    "xp": {
+     "sailing": 400
+    }
+   },
+   {
+    "n": 68,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 12
+   },
+   {
+    "n": 69,
+    "kind": "quest",
+    "quest": "Prying Times",
+    "xp": {
+     "sailing": 800,
+     "smithing": 1000
+    }
+   },
+   {
+    "n": 70,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 22
+   },
+   {
+    "n": 71,
+    "kind": "quest",
+    "quest": "Current Affairs",
+    "xp": {
+     "sailing": 1400,
+     "fishing": 1000
+    }
+   },
+   {
+    "n": 72,
+    "kind": "quest",
+    "quest": "Fishing Contest",
+    "xp": {
+     "fishing": 2437
+    }
+   },
+   {
+    "n": 73,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Mountain Dwarf",
+    "xp": {
+     "cooking": 1000,
+     "slayer": 1000
+    }
+   },
+   {
+    "n": 74,
+    "kind": "quest",
+    "quest": "Mountain Daughter",
+    "xp": {
+     "attack": 1000,
+     "prayer": 2000
+    },
+    "starts": [
+     "The Giant Dwarf"
+    ]
+   },
+   {
+    "n": 75,
+    "kind": "quest",
+    "quest": "Ratcatchers",
+    "xp": {
+     "thieving": 4500
+    },
+    "starts": [
+     "The Giant Dwarf"
+    ]
+   },
+   {
+    "n": 76,
+    "kind": "quest",
+    "quest": "The Feud",
+    "xp": {
+     "thieving": 15000
+    }
+   },
+   {
+    "n": 77,
+    "kind": "quest",
+    "quest": "Death on the Isle",
+    "xp": {
+     "thieving": 10000,
+     "agility": 7500,
+     "crafting": 5000
+    }
+   },
+   {
+    "n": 78,
+    "kind": "quest",
+    "quest": "Alfred Grimhand's Barcrawl"
+   },
+   {
+    "n": 79,
+    "kind": "quest",
+    "quest": "Scorpion Catcher",
+    "xp": {
+     "strength": 6625
+    }
+   },
+   {
+    "n": 80,
+    "kind": "quest",
+    "quest": "The Dig Site",
+    "xp": {
+     "herblore": 2000,
+     "mining": 15300
+    },
+    "starts": [
+     "Elemental Workshop II"
+    ]
+   },
+   {
+    "n": 81,
+    "kind": "quest",
+    "quest": "Elemental Workshop II",
+    "xp": {
+     "crafting": 7500,
+     "smithing": 7500
+    }
+   },
+   {
+    "n": 82,
+    "kind": "quest",
+    "quest": "A Soul's Bane",
+    "xp": {
+     "defence": 500,
+     "hitpoints": 500
+    }
+   },
+   {
+    "n": 83,
+    "kind": "quest",
+    "quest": "Enter the Abyss",
+    "xp": {
+     "runecraft": 1000
+    }
+   },
+   {
+    "n": 84,
+    "kind": "quest",
+    "quest": "X Marks the Spot",
+    "xp": {
+     "slayer": 300
+    }
+   },
+   {
+    "n": 85,
+    "kind": "quest",
+    "quest": "Pirate's Treasure"
+   },
+   {
+    "n": 86,
+    "kind": "quest",
+    "quest": "Client of Kourend",
+    "xp": {
+     "slayer": 1000
+    }
+   },
+   {
+    "n": 87,
+    "kind": "quest",
+    "quest": "The Queen of Thieves",
+    "xp": {
+     "thieving": 2000
+    }
+   },
+   {
+    "n": 88,
+    "kind": "quest",
+    "quest": "The Depths of Despair",
+    "xp": {
+     "agility": 1500
+    }
+   },
+   {
+    "n": 89,
+    "kind": "quest",
+    "quest": "A Porcine of Interest",
+    "xp": {
+     "slayer": 1000
+    }
+   },
+   {
+    "n": 90,
+    "kind": "quest",
+    "quest": "Wanted!",
+    "xp": {
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 91,
+    "kind": "quest",
+    "quest": "Shield of Arrav"
+   },
+   {
+    "n": 92,
+    "kind": "unlock",
+    "xp": {
+     "slayer": 3000,
+     "mining": 3500,
+     "crafting": 2500
+    }
+   },
+   {
+    "n": 93,
+    "kind": "quest",
+    "quest": "Bone Voyage"
+   },
+   {
+    "n": 94,
+    "kind": "train",
+    "skill": "mining",
+    "level": 39
+   },
+   {
+    "n": 95,
+    "kind": "quest",
+    "quest": "Watchtower",
+    "xp": {
+     "magic": 15250
+    }
+   },
+   {
+    "n": 96,
+    "kind": "quest",
+    "quest": "The Giant Dwarf",
+    "xp": {
+     "crafting": 2500,
+     "firemaking": 1500,
+     "mining": 2500,
+     "smithing": 2500,
+     "thieving": 1500,
+     "magic": 1500
+    }
+   },
+   {
+    "n": 97,
+    "kind": "quest",
+    "quest": "Forgettable Tale...",
+    "xp": {
+     "cooking": 5000,
+     "farming": 5000
+    }
+   },
+   {
+    "n": 98,
+    "kind": "quest",
+    "quest": "Another Slice of H.A.M.",
+    "xp": {
+     "mining": 3000,
+     "prayer": 3000
+    }
+   },
+   {
+    "n": 99,
+    "kind": "quest",
+    "quest": "Vampyre Slayer",
+    "xp": {
+     "attack": 4825
+    }
+   },
+   {
+    "n": 100,
+    "kind": "quest",
+    "quest": "Ernest the Chicken"
+   },
+   {
+    "n": 101,
+    "kind": "quest",
+    "quest": "Demon Slayer"
+   },
+   {
+    "n": 102,
+    "kind": "quest",
+    "quest": "Shadow of the Storm",
+    "xp": {
+     "ranged": 10000
+    }
+   },
+   {
+    "n": 103,
+    "kind": "train",
+    "skill": "prayer",
+    "level": 40
+   },
+   {
+    "n": 104,
+    "kind": "quest",
+    "quest": "Horror from the Deep",
+    "xp": {
+     "magic": 4662.5,
+     "ranged": 4662.5,
+     "strength": 4662.5
+    }
+   },
+   {
+    "n": 105,
+    "kind": "quest",
+    "quest": "Animal Magnetism",
+    "xp": {
+     "crafting": 1000,
+     "fletching": 1000,
+     "slayer": 1000,
+     "woodcutting": 2500
+    }
+   },
+   {
+    "n": 106,
+    "kind": "quest",
+    "quest": "Creature of Fenkenstrain",
+    "xp": {
+     "thieving": 1000
+    }
+   },
+   {
+    "n": 107,
+    "kind": "quest",
+    "quest": "Big Chompy Bird Hunting",
+    "xp": {
+     "cooking": 1470,
+     "fletching": 262,
+     "ranged": 735
+    }
+   },
+   {
+    "n": 108,
+    "kind": "quest",
+    "quest": "Jungle Potion",
+    "xp": {
+     "herblore": 775
+    }
+   },
+   {
+    "n": 109,
+    "kind": "quest",
+    "quest": "Shilo Village",
+    "xp": {
+     "crafting": 3875
+    }
+   },
+   {
+    "n": 110,
+    "kind": "diary",
+    "diary": "Karamja Easy",
+    "xp": {
+     "slayer": 1000
+    }
+   },
+   {
+    "n": 111,
+    "kind": "quest",
+    "quest": "Zogre Flesh Eaters",
+    "xp": {
+     "fletching": 2000,
+     "herblore": 2000,
+     "ranged": 2000
+    }
+   },
+   {
+    "n": 112,
+    "kind": "quest",
+    "quest": "Observatory Quest",
+    "xp": {
+     "crafting": 2000
+    }
+   },
+   {
+    "n": 113,
+    "kind": "train",
+    "skill": "ranged",
+    "level": 37
+   },
+   {
+    "n": 114,
+    "kind": "quest",
+    "quest": "Spirits of the Elid",
+    "xp": {
+     "magic": 1000,
+     "prayer": 8000,
+     "thieving": 1000
+    }
+   },
+   {
+    "n": 115,
+    "kind": "quest",
+    "quest": "Garden of Tranquillity",
+    "xp": {
+     "farming": 5000
+    }
+   },
+   {
+    "n": 116,
+    "kind": "quest",
+    "quest": "Enlightened Journey",
+    "xp": {
+     "crafting": 2000,
+     "farming": 3000,
+     "firemaking": 4000,
+     "woodcutting": 1500
+    }
+   },
+   {
+    "n": 117,
+    "kind": "unlock",
+    "xp": {
+     "firemaking": 2000
+    }
+   },
+   {
+    "n": 118,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 40
+   },
+   {
+    "n": 119,
+    "kind": "unlock",
+    "xp": {
+     "firemaking": 2000
+    }
+   },
+   {
+    "n": 120,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 49
+   },
+   {
+    "n": 121,
+    "kind": "quest",
+    "quest": "Romeo & Juliet"
+   },
+   {
+    "n": 122,
+    "kind": "quest",
+    "quest": "Tears of Guthix",
+    "xp": {
+     "crafting": 1000
+    }
+   },
+   {
+    "n": 123,
+    "kind": "train",
+    "skill": "prayer",
+    "level": 43
+   },
+   {
+    "n": 124,
+    "kind": "quest",
+    "quest": "In Search of the Myreque",
+    "xp": {
+     "attack": 600,
+     "crafting": 600,
+     "defence": 600,
+     "hitpoints": 600,
+     "strength": 600
+    }
+   },
+   {
+    "n": 125,
+    "kind": "quest",
+    "quest": "Shades of Mort'ton",
+    "xp": {
+     "crafting": 2000,
+     "herblore": 2000
+    }
+   },
+   {
+    "n": 126,
+    "kind": "quest",
+    "quest": "In Aid of the Myreque",
+    "xp": {
+     "attack": 2000,
+     "crafting": 2000,
+     "defence": 2000,
+     "strength": 2000
+    },
+    "extraXp": {
+     "herblore": 335
+    }
+   },
+   {
+    "n": 127,
+    "kind": "quest",
+    "quest": "Skippy and the Mogres"
+   },
+   {
+    "n": 128,
+    "kind": "quest",
+    "quest": "Troll Stronghold"
+   },
+   {
+    "n": 129,
+    "kind": "quest",
+    "quest": "Troll Romance",
+    "xp": {
+     "agility": 8000,
+     "strength": 4000
+    }
+   },
+   {
+    "n": 130,
+    "kind": "train",
+    "skill": "strength",
+    "level": 40
+   },
+   {
+    "n": 131,
+    "kind": "quest",
+    "quest": "Darkness of Hallowvale",
+    "xp": {
+     "agility": 7000,
+     "construction": 2000,
+     "thieving": 6000,
+     "slayer": 6000
+    }
+   },
+   {
+    "n": 132,
+    "kind": "train",
+    "skill": "agility",
+    "level": 56
+   },
+   {
+    "n": 133,
+    "kind": "quest",
+    "quest": "Underground Pass",
+    "xp": {
+     "agility": 3000,
+     "attack": 3000
+    }
+   },
+   {
+    "n": 134,
+    "kind": "quest",
+    "quest": "Regicide",
+    "xp": {
+     "agility": 13750
+    }
+   },
+   {
+    "n": 135,
+    "kind": "quest",
+    "quest": "Dragon Slayer I",
+    "xp": {
+     "defence": 18650,
+     "strength": 18650
+    }
+   },
+   {
+    "n": 136,
+    "kind": "quest",
+    "quest": "The Fremennik Trials",
+    "xp": {
+     "agility": 2812,
+     "attack": 2812,
+     "crafting": 2812,
+     "defence": 2812,
+     "fishing": 2812,
+     "fletching": 2812,
+     "hitpoints": 2812,
+     "strength": 2812,
+     "thieving": 2812,
+     "woodcutting": 2812
+    }
+   },
+   {
+    "n": 137,
+    "kind": "train",
+    "skill": "construction",
+    "level": 20
+   },
+   {
+    "n": 138,
+    "kind": "quest",
+    "quest": "The Fremennik Isles",
+    "xp": {
+     "construction": 5000,
+     "crafting": 5000,
+     "woodcutting": 10000,
+     "defence": 20000
+    }
+   },
+   {
+    "n": 139,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Evil Dave",
+    "xp": {
+     "cooking": 7000
+    }
+   },
+   {
+    "n": 140,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Pirate Pete",
+    "xp": {
+     "cooking": 1000,
+     "crafting": 1000,
+     "fishing": 1000,
+     "smithing": 1000
+    }
+   },
+   {
+    "n": 141,
+    "kind": "quest",
+    "quest": "Tai Bwo Wannai Trio",
+    "xp": {
+     "cooking": 5000,
+     "fishing": 5000,
+     "attack": 2500,
+     "strength": 2500
+    }
+   },
+   {
+    "n": 142,
+    "kind": "diary",
+    "diary": "Kandarin Easy",
+    "xp": {
+     "smithing": 2500
+    }
+   },
+   {
+    "n": 143,
+    "kind": "quest",
+    "quest": "Contact!",
+    "xp": {
+     "magic": 14000,
+     "thieving": 7000
+    }
+   },
+   {
+    "n": 144,
+    "kind": "train",
+    "skill": "ranged",
+    "level": 40
+   },
+   {
+    "n": 145,
+    "kind": "quest",
+    "quest": "Temple of Ikov",
+    "xp": {
+     "fletching": 8000,
+     "ranged": 10500
+    }
+   },
+   {
+    "n": 146,
+    "kind": "train",
+    "skill": "magic",
+    "level": 46
+   },
+   {
+    "n": 147,
+    "kind": "quest",
+    "quest": "The Eyes of Glouphrie",
+    "xp": {
+     "construction": 250,
+     "magic": 12000,
+     "runecraft": 6000,
+     "woodcutting": 2500
+    }
+   },
+   {
+    "n": 148,
+    "kind": "quest",
+    "quest": "Temple of the Eye",
+    "xp": {
+     "runecraft": 9210
+    }
+   },
+   {
+    "n": 149,
+    "kind": "quest",
+    "quest": "One Small Favour",
+    "xp": {
+     "slayer": 20000
+    }
+   },
+   {
+    "n": 150,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 12
+   },
+   {
+    "n": 151,
+    "kind": "quest",
+    "quest": "The Ascent of Arceuus",
+    "xp": {
+     "runecraft": 500,
+     "hunter": 1500
+    }
+   },
+   {
+    "n": 152,
+    "kind": "quest",
+    "quest": "Tale of the Righteous"
+   },
+   {
+    "n": 153,
+    "kind": "quest",
+    "quest": "The Forsaken Tower",
+    "xp": {
+     "smithing": 500,
+     "mining": 500
+    }
+   },
+   {
+    "n": 154,
+    "kind": "diary",
+    "diary": "Desert Easy",
+    "xp": {
+     "smithing": 22500
+    }
+   },
+   {
+    "n": 155,
+    "kind": "diary",
+    "diary": "Fremennik Easy"
+   },
+   {
+    "n": 156,
+    "kind": "diary",
+    "diary": "Falador Easy"
+   },
+   {
+    "n": 157,
+    "kind": "diary",
+    "diary": "Kourend & Kebos Easy"
+   },
+   {
+    "n": 158,
+    "kind": "diary",
+    "diary": "Lumbridge & Draynor Easy"
+   },
+   {
+    "n": 159,
+    "kind": "diary",
+    "diary": "Morytania Easy"
+   },
+   {
+    "n": 160,
+    "kind": "diary",
+    "diary": "Varrock Easy"
+   },
+   {
+    "n": 161,
+    "kind": "diary",
+    "diary": "Western Provinces Easy"
+   },
+   {
+    "n": 162,
+    "kind": "diary",
+    "diary": "Wilderness Easy"
+   },
+   {
+    "n": 163,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 50
+   },
+   {
+    "n": 164,
+    "kind": "quest",
+    "quest": "Between a Rock...",
+    "xp": {
+     "defence": 5000,
+     "mining": 5000,
+     "smithing": 5000
+    }
+   },
+   {
+    "n": 165,
+    "kind": "quest",
+    "quest": "The Slug Menace",
+    "xp": {
+     "crafting": 3500,
+     "runecraft": 3500,
+     "thieving": 3500
+    }
+   },
+   {
+    "n": 166,
+    "kind": "quest",
+    "quest": "Getting Ahead",
+    "xp": {
+     "construction": 3200,
+     "crafting": 4000
+    }
+   },
+   {
+    "n": 167,
+    "kind": "unlock",
+    "xp": {
+     "construction": 3650,
+     "herblore": 2000
+    }
+   },
+   {
+    "n": 168,
+    "kind": "train",
+    "skill": "construction",
+    "level": 37
+   },
+   {
+    "n": 169,
+    "kind": "quest",
+    "quest": "Cold War",
+    "xp": {
+     "agility": 5000,
+     "construction": 1500,
+     "crafting": 2000
+    }
+   },
+   {
+    "n": 170,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 49
+   },
+   {
+    "n": 171,
+    "kind": "quest",
+    "quest": "The Hand in the Sand",
+    "xp": {
+     "thieving": 1000,
+     "crafting": 9000
+    }
+   },
+   {
+    "n": 172,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 50
+   },
+   {
+    "n": 173,
+    "kind": "quest",
+    "quest": "Enakhra's Lament",
+    "xp": {
+     "crafting": 7000,
+     "firemaking": 7000,
+     "mining": 7000,
+     "magic": 7000
+    }
+   },
+   {
+    "n": 174,
+    "kind": "quest",
+    "quest": "Eadgar's Ruse",
+    "xp": {
+     "herblore": 11000
+    }
+   },
+   {
+    "n": 175,
+    "kind": "quest",
+    "quest": "My Arm's Big Adventure",
+    "xp": {
+     "farming": 5000,
+     "herblore": 10000
+    }
+   },
+   {
+    "n": 176,
+    "kind": "quest",
+    "quest": "The Garden of Death",
+    "xp": {
+     "farming": 10000
+    }
+   },
+   {
+    "n": 177,
+    "kind": "quest",
+    "quest": "Rag and Bone Man II",
+    "xp": {
+     "prayer": 5000
+    }
+   },
+   {
+    "n": 178,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 40
+   },
+   {
+    "n": 179,
+    "kind": "quest",
+    "quest": "Crab Quest",
+    "xp": {
+     "sailing": 10000,
+     "fishing": 3000
+    }
+   },
+   {
+    "n": 180,
+    "kind": "train",
+    "skill": "prayer",
+    "level": 45
+   },
+   {
+    "n": 181,
+    "kind": "train",
+    "skill": "fishing",
+    "level": 50
+   },
+   {
+    "n": 182,
+    "kind": "train",
+    "skill": "farming",
+    "level": 40
+   },
+   {
+    "n": 183,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 42
+   },
+   {
+    "n": 184,
+    "kind": "quest",
+    "quest": "Rum Deal",
+    "xp": {
+     "farming": 7000,
+     "fishing": 7000,
+     "prayer": 7000
+    }
+   },
+   {
+    "n": 185,
+    "kind": "quest",
+    "quest": "Cabin Fever",
+    "xp": {
+     "agility": 7000,
+     "crafting": 7000,
+     "smithing": 7000
+    }
+   },
+   {
+    "n": 186,
+    "kind": "quest",
+    "quest": "Meat and Greet",
+    "xp": {
+     "cooking": 8000
+    }
+   },
+   {
+    "n": 187,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 40
+   },
+   {
+    "n": 188,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Lumbridge Guide",
+    "xp": {
+     "magic": 2500
+    }
+   },
+   {
+    "n": 189,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 42
+   },
+   {
+    "n": 190,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Skrach Uglogwee",
+    "xp": {
+     "crafting": 1500,
+     "ranged": 1500,
+     "woodcutting": 1500
+    }
+   },
+   {
+    "n": 191,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 50
+   },
+   {
+    "n": 192,
+    "kind": "train",
+    "skill": "mining",
+    "level": 50
+   },
+   {
+    "n": 193,
+    "kind": "quest",
+    "quest": "Heroes' Quest",
+    "xp": {
+     "attack": 3075,
+     "cooking": 2825,
+     "defence": 3075,
+     "firemaking": 1575,
+     "fishing": 2725,
+     "herblore": 1325,
+     "hitpoints": 3075,
+     "mining": 2575,
+     "ranged": 2075,
+     "smithing": 2257,
+     "strength": 3075,
+     "woodcutting": 1575
+    }
+   },
+   {
+    "n": 194,
+    "kind": "quest",
+    "quest": "Throne of Miscellania"
+   },
+   {
+    "n": 195,
+    "kind": "quest",
+    "quest": "Royal Trouble",
+    "xp": {
+     "agility": 5000,
+     "hitpoints": 5000,
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 196,
+    "kind": "quest",
+    "quest": "Haunted Mine",
+    "xp": {
+     "strength": 22000
+    }
+   },
+   {
+    "n": 197,
+    "kind": "quest",
+    "quest": "Lair of Tarn Razorlor",
+    "xp": {
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 198,
+    "kind": "quest",
+    "quest": "Monkey Madness I",
+    "xp": {
+     "attack": 35000,
+     "defence": 35000,
+     "hitpoints": 20000,
+     "strength": 20000
+    }
+   },
+   {
+    "n": 199,
+    "kind": "quest",
+    "quest": "Ethically Acquired Antiquities",
+    "xp": {
+     "thieving": 6000
+    }
+   },
+   {
+    "n": 200,
+    "kind": "quest",
+    "quest": "Twilight's Promise",
+    "xp": {
+     "thieving": 3000
+    }
+   },
+   {
+    "n": 201,
+    "kind": "train",
+    "skill": "ranged",
+    "level": 60
+   },
+   {
+    "n": 202,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 50
+   },
+   {
+    "n": 203,
+    "kind": "quest",
+    "quest": "Roving Elves",
+    "xp": {
+     "strength": 10000
+    }
+   },
+   {
+    "n": 204,
+    "kind": "quest",
+    "quest": "Mourning's End Part I",
+    "xp": {
+     "hitpoints": 25000,
+     "thieving": 40000
+    }
+   },
+   {
+    "n": 205,
+    "kind": "quest",
+    "quest": "Mourning's End Part II",
+    "xp": {
+     "agility": 60000
+    }
+   },
+   {
+    "n": 206,
+    "kind": "train",
+    "skill": "magic",
+    "level": 50
+   },
+   {
+    "n": 207,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 50
+   },
+   {
+    "n": 208,
+    "kind": "quest",
+    "quest": "Desert Treasure I",
+    "xp": {
+     "magic": 20000
+    }
+   },
+   {
+    "n": 209,
+    "kind": "train",
+    "skill": "magic",
+    "level": 55
+   },
+   {
+    "n": 210,
+    "kind": "quest",
+    "quest": "Family Crest"
+   },
+   {
+    "n": 211,
+    "kind": "train",
+    "skill": "runecraft",
+    "level": 35
+   },
+   {
+    "n": 212,
+    "kind": "quest",
+    "quest": "What Lies Below",
+    "xp": {
+     "defence": 2000,
+     "runecraft": 8000
+    }
+   },
+   {
+    "n": 213,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 27
+   },
+   {
+    "n": 214,
+    "kind": "quest",
+    "quest": "Eagles' Peak",
+    "xp": {
+     "hunter": 2500
+    }
+   },
+   {
+    "n": 215,
+    "kind": "quest",
+    "quest": "A Tail of Two Cats",
+    "xp": {
+     "herblore": 5000
+    }
+   },
+   {
+    "n": 216,
+    "kind": "train",
+    "skill": "mining",
+    "level": 52
+   },
+   {
+    "n": 217,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 50
+   },
+   {
+    "n": 218,
+    "kind": "train",
+    "skill": "herblore",
+    "level": 41
+   },
+   {
+    "n": 219,
+    "kind": "quest",
+    "quest": "Legends' Quest",
+    "xp": {
+     "herblore": 120000
+    }
+   },
+   {
+    "n": 220,
+    "kind": "quest",
+    "quest": "Land of the Goblins",
+    "xp": {
+     "agility": 8000,
+     "fishing": 8000,
+     "thieving": 8000,
+     "herblore": 8000
+    }
+   },
+   {
+    "n": 221,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Sir Amik Varze",
+    "xp": {
+     "cooking": 4000,
+     "hitpoints": 4000
+    }
+   },
+   {
+    "n": 222,
+    "kind": "quest",
+    "quest": "Olaf's Quest",
+    "xp": {
+     "defence": 12000
+    }
+   },
+   {
+    "n": 223,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 52
+   },
+   {
+    "n": 224,
+    "kind": "quest",
+    "quest": "A Kingdom Divided",
+    "xp": {
+     "slayer": 20000
+    }
+   },
+   {
+    "n": 225,
+    "kind": "quest",
+    "quest": "A Taste of Hope",
+    "xp": {
+     "slayer": 7500
+    }
+   },
+   {
+    "n": 226,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 46
+   },
+   {
+    "n": 227,
+    "kind": "quest",
+    "quest": "At First Light",
+    "xp": {
+     "hunter": 4500,
+     "construction": 800
+    }
+   },
+   {
+    "n": 228,
+    "kind": "train",
+    "skill": "farming",
+    "level": 46
+   },
+   {
+    "n": 229,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 50
+   },
+   {
+    "n": 230,
+    "kind": "train",
+    "skill": "fletching",
+    "level": 50
+   },
+   {
+    "n": 231,
+    "kind": "unlock",
+    "xp": {
+     "firemaking": 2000
+    }
+   },
+   {
+    "n": 232,
+    "kind": "diary",
+    "diary": "Ardougne Medium",
+    "xp": {
+     "slayer": 75000
+    }
+   },
+   {
+    "n": 233,
+    "kind": "diary",
+    "diary": "Desert Medium"
+   },
+   {
+    "n": 234,
+    "kind": "diary",
+    "diary": "Falador Medium"
+   },
+   {
+    "n": 235,
+    "kind": "diary",
+    "diary": "Fremennik Medium"
+   },
+   {
+    "n": 236,
+    "kind": "diary",
+    "diary": "Kandarin Medium"
+   },
+   {
+    "n": 237,
+    "kind": "diary",
+    "diary": "Kourend & Kebos Medium"
+   },
+   {
+    "n": 238,
+    "kind": "diary",
+    "diary": "Lumbridge & Draynor Medium"
+   },
+   {
+    "n": 239,
+    "kind": "diary",
+    "diary": "Morytania Medium"
+   },
+   {
+    "n": 240,
+    "kind": "diary",
+    "diary": "Varrock Medium"
+   },
+   {
+    "n": 241,
+    "kind": "diary",
+    "diary": "Western Provinces Medium"
+   },
+   {
+    "n": 242,
+    "kind": "quest",
+    "quest": "Curse of the Empty Lord",
+    "starts": [
+     "Desert Treasure I"
+    ]
+   },
+   {
+    "n": 243,
+    "kind": "quest",
+    "quest": "The General's Shadow",
+    "xp": {
+     "slayer": 2000
+    }
+   },
+   {
+    "n": 244,
+    "kind": "unlock",
+    "xp": {
+     "crafting": 4000,
+     "hunter": 4000,
+     "prayer": 4000,
+     "slayer": 14000,
+     "smithing": 4000
+    }
+   },
+   {
+    "n": 245,
+    "kind": "quest",
+    "quest": "His Faithful Servants",
+    "xp": {
+     "prayer": 20000
+    }
+   },
+   {
+    "n": 246,
+    "kind": "train",
+    "skill": "prayer",
+    "level": 50
+   },
+   {
+    "n": 247,
+    "kind": "quest",
+    "quest": "The Great Brain Robbery",
+    "xp": {
+     "construction": 2000,
+     "crafting": 3000,
+     "prayer": 6000,
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 248,
+    "kind": "quest",
+    "quest": "Scrambled!",
+    "xp": {
+     "smithing": 5000,
+     "cooking": 5000,
+     "construction": 5000
+    }
+   },
+   {
+    "n": 249,
+    "kind": "quest",
+    "quest": "Fairytale II - Cure a Queen",
+    "xp": {
+     "herblore": 3500,
+     "thieving": 2500,
+     "slayer": 2500
+    }
+   },
+   {
+    "n": 250,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 66
+   },
+   {
+    "n": 251,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - King Awowogei",
+    "xp": {
+     "agility": 10000,
+     "cooking": 10000
+    }
+   },
+   {
+    "n": 252,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Culinaromancer",
+    "xp": {
+     "slayer": 20000
+    }
+   },
+   {
+    "n": 253,
+    "kind": "train",
+    "skill": "defence",
+    "level": 60
+   },
+   {
+    "n": 254,
+    "kind": "train",
+    "skill": "strength",
+    "level": 60
+   },
+   {
+    "n": 255,
+    "kind": "quest",
+    "quest": "Perilous Moons",
+    "xp": {
+     "slayer": 40000,
+     "runecraft": 5000,
+     "hunter": 5000,
+     "fishing": 5000
+    },
+    "starts": [
+     "In Search of Knowledge"
+    ]
+   },
+   {
+    "n": 256,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 56
+   },
+   {
+    "n": 257,
+    "kind": "quest",
+    "quest": "The Path of Glouphrie",
+    "xp": {
+     "slayer": 20000,
+     "thieving": 5000,
+     "strength": 30000,
+     "magic": 5000
+    }
+   },
+   {
+    "n": 258,
+    "kind": "train",
+    "skill": "mining",
+    "level": 55
+   },
+   {
+    "n": 259,
+    "kind": "quest",
+    "quest": "The Heart of Darkness",
+    "xp": {
+     "mining": 8000,
+     "thieving": 8000,
+     "slayer": 8000,
+     "agility": 8000
+    }
+   },
+   {
+    "n": 260,
+    "kind": "train",
+    "skill": "magic",
+    "level": 65
+   },
+   {
+    "n": 261,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 61
+   },
+   {
+    "n": 262,
+    "kind": "train",
+    "skill": "mining",
+    "level": 60
+   },
+   {
+    "n": 263,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 55
+   },
+   {
+    "n": 264,
+    "kind": "quest",
+    "quest": "Lunar Diplomacy",
+    "xp": {
+     "magic": 5000,
+     "runecraft": 5000
+    }
+   },
+   {
+    "n": 265,
+    "kind": "train",
+    "skill": "defence",
+    "level": 65
+   },
+   {
+    "n": 266,
+    "kind": "quest",
+    "quest": "King's Ransom",
+    "xp": {
+     "defence": 33000,
+     "magic": 5000,
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 267,
+    "kind": "quest",
+    "quest": "Knight Waves Training Grounds",
+    "xp": {
+     "attack": 20000,
+     "defence": 20000,
+     "hitpoints": 20000,
+     "strength": 20000
+    }
+   },
+   {
+    "n": 268,
+    "kind": "train",
+    "skill": "magic",
+    "level": 66
+   },
+   {
+    "n": 269,
+    "kind": "train",
+    "skill": "fishing",
+    "level": 57
+   },
+   {
+    "n": 270,
+    "kind": "quest",
+    "quest": "Swan Song",
+    "xp": {
+     "fishing": 50000,
+     "magic": 15000,
+     "prayer": 10000
+    }
+   },
+   {
+    "n": 271,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 55
+   },
+   {
+    "n": 272,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 52
+   },
+   {
+    "n": 273,
+    "kind": "quest",
+    "quest": "Below Ice Mountain"
+   },
+   {
+    "n": 274,
+    "kind": "quest",
+    "quest": "Defender of Varrock",
+    "xp": {
+     "smithing": 15000,
+     "hunter": 15000,
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 275,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 65
+   },
+   {
+    "n": 276,
+    "kind": "train",
+    "skill": "runecraft",
+    "level": 50
+   },
+   {
+    "n": 277,
+    "kind": "quest",
+    "quest": "Devious Minds",
+    "xp": {
+     "fletching": 5000,
+     "runecraft": 5000,
+     "smithing": 6500
+    }
+   },
+   {
+    "n": 278,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 68
+   },
+   {
+    "n": 279,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 58
+   },
+   {
+    "n": 280,
+    "kind": "quest",
+    "quest": "Grim Tales",
+    "xp": {
+     "agility": 25000,
+     "herblore": 15000,
+     "hitpoints": 5000,
+     "farming": 10000,
+     "thieving": 25000,
+     "woodcutting": 60000
+    }
+   },
+   {
+    "n": 281,
+    "kind": "quest",
+    "quest": "Dream Mentor",
+    "xp": {
+     "magic": 25000,
+     "hitpoints": 15000
+    }
+   },
+   {
+    "n": 282,
+    "kind": "train",
+    "skill": "fishing",
+    "level": 60
+   },
+   {
+    "n": 283,
+    "kind": "diary",
+    "diary": "Karamja Medium",
+    "xp": {
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 284,
+    "kind": "diary",
+    "diary": "Wilderness Medium",
+    "xp": {
+     "slayer": 7500
+    }
+   },
+   {
+    "n": 285,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 65
+   },
+   {
+    "n": 286,
+    "kind": "train",
+    "skill": "runecraft",
+    "level": 55
+   },
+   {
+    "n": 287,
+    "kind": "quest",
+    "quest": "The Fremennik Exiles",
+    "xp": {
+     "slayer": 50000,
+     "crafting": 50000,
+     "runecraft": 30000
+    }
+   },
+   {
+    "n": 288,
+    "kind": "train",
+    "skill": "fletching",
+    "level": 60
+   },
+   {
+    "n": 289,
+    "kind": "quest",
+    "quest": "Sins of the Father",
+    "xp": {
+     "slayer": 90000
+    }
+   },
+   {
+    "n": 290,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 60
+   },
+   {
+    "n": 291,
+    "kind": "unlock",
+    "xp": {
+     "firemaking": 2000
+    }
+   },
+   {
+    "n": 292,
+    "kind": "quest",
+    "quest": "In Search of Knowledge",
+    "xp": {
+     "slayer": 10000
+    }
+   },
+   {
+    "n": 293,
+    "kind": "quest",
+    "quest": "Hopespear's Will",
+    "xp": {
+     "prayer": 38750
+    }
+   },
+   {
+    "n": 294,
+    "kind": "train",
+    "skill": "agility",
+    "level": 62
+   },
+   {
+    "n": 295,
+    "kind": "quest",
+    "quest": "Beneath Cursed Sands",
+    "xp": {
+     "agility": 50000
+    }
+   },
+   {
+    "n": 296,
+    "kind": "train",
+    "skill": "construction",
+    "level": 41
+   },
+   {
+    "n": 297,
+    "kind": "quest",
+    "quest": "Shadows of Custodia",
+    "xp": {
+     "slayer": 10000,
+     "hunter": 4000,
+     "fishing": 3000,
+     "construction": 3000
+    }
+   },
+   {
+    "n": 298,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 45
+   },
+   {
+    "n": 299,
+    "kind": "train",
+    "skill": "construction",
+    "level": 50
+   },
+   {
+    "n": 300,
+    "kind": "quest",
+    "quest": "Troubled Tortugans",
+    "xp": {
+     "slayer": 8000,
+     "sailing": 10000
+    }
+   },
+   {
+    "n": 301,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 52
+   },
+   {
+    "n": 302,
+    "kind": "quest",
+    "quest": "The Red Reef",
+    "xp": {
+     "smithing": 5000,
+     "sailing": 15000
+    }
+   },
+   {
+    "n": 303,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 62
+   },
+   {
+    "n": 304,
+    "kind": "quest",
+    "quest": "Fallen From Grace",
+    "xp": {
+     "crafting": 10000,
+     "sailing": 12500,
+     "mining": 5000,
+     "runecraft": 5000
+    }
+   },
+   {
+    "n": 305,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 60
+   },
+   {
+    "n": 306,
+    "kind": "train",
+    "skill": "agility",
+    "level": 68
+   },
+   {
+    "n": 307,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 69
+   },
+   {
+    "n": 308,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 70
+   },
+   {
+    "n": 309,
+    "kind": "quest",
+    "quest": "Monkey Madness II",
+    "xp": {
+     "agility": 60000,
+     "hunter": 50000,
+     "slayer": 80000,
+     "thieving": 50000,
+     "magic": 100000
+    }
+   },
+   {
+    "n": 310,
+    "kind": "quest",
+    "quest": "Into the Tombs",
+    "xp": {
+     "magic": 50000
+    }
+   },
+   {
+    "n": 311,
+    "kind": "quest",
+    "quest": "A Night at the Theatre",
+    "xp": {
+     "magic": 80000
+    }
+   },
+   {
+    "n": 312,
+    "kind": "train",
+    "skill": "magic",
+    "level": 75
+   },
+   {
+    "n": 313,
+    "kind": "train",
+    "skill": "mining",
+    "level": 68
+   },
+   {
+    "n": 314,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 70
+   },
+   {
+    "n": 315,
+    "kind": "quest",
+    "quest": "Dragon Slayer II",
+    "xp": {
+     "smithing": 80000,
+     "mining": 60000,
+     "agility": 50000,
+     "thieving": 50000,
+     "attack": 100000
+    }
+   },
+   {
+    "n": 316,
+    "kind": "quest",
+    "quest": "The Curse of Arrav",
+    "xp": {
+     "mining": 40000,
+     "thieving": 40000,
+     "agility": 40000
+    }
+   },
+   {
+    "n": 317,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 66
+   },
+   {
+    "n": 318,
+    "kind": "quest",
+    "quest": "Making Friends with My Arm",
+    "xp": {
+     "construction": 10000,
+     "firemaking": 40000,
+     "mining": 50000,
+     "agility": 50000
+    }
+   },
+   {
+    "n": 319,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 64
+   },
+   {
+    "n": 320,
+    "kind": "quest",
+    "quest": "Secrets of the North",
+    "xp": {
+     "agility": 60000,
+     "thieving": 50000,
+     "hunter": 40000
+    }
+   },
+   {
+    "n": 321,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 66
+   },
+   {
+    "n": 322,
+    "kind": "quest",
+    "quest": "The Final Dawn",
+    "xp": {
+     "runecraft": 25000,
+     "thieving": 55000,
+     "fletching": 25000,
+     "prayer": 55000
+    }
+   },
+   {
+    "n": 323,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 72
+   },
+   {
+    "n": 324,
+    "kind": "train",
+    "skill": "farming",
+    "level": 65
+   },
+   {
+    "n": 325,
+    "kind": "train",
+    "skill": "herblore",
+    "level": 65
+   },
+   {
+    "n": 326,
+    "kind": "train",
+    "skill": "attack",
+    "level": 65
+   },
+   {
+    "n": 327,
+    "kind": "train",
+    "skill": "strength",
+    "level": 65
+   },
+   {
+    "n": 328,
+    "kind": "quest",
+    "quest": "While Guthix Sleeps",
+    "xp": {
+     "thieving": 80000,
+     "farming": 75000,
+     "herblore": 75000,
+     "hunter": 50000
+    }
+   },
+   {
+    "n": 329,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 75
+   },
+   {
+    "n": 330,
+    "kind": "train",
+    "skill": "runecraft",
+    "level": 60
+   },
+   {
+    "n": 331,
+    "kind": "train",
+    "skill": "construction",
+    "level": 60
+   },
+   {
+    "n": 332,
+    "kind": "quest",
+    "quest": "Desert Treasure II - The Fallen Empire",
+    "xp": {
+     "prayer": 300000
+    }
+   },
+   {
+    "n": 333,
+    "kind": "train",
+    "skill": "construction",
+    "level": 70
+   },
+   {
+    "n": 334,
+    "kind": "train",
+    "skill": "farming",
+    "level": 70
+   },
+   {
+    "n": 335,
+    "kind": "train",
+    "skill": "herblore",
+    "level": 70
+   },
+   {
+    "n": 336,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 70
+   },
+   {
+    "n": 337,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 70
+   },
+   {
+    "n": 338,
+    "kind": "quest",
+    "quest": "Song of the Elves",
+    "xp": {
+     "agility": 40000,
+     "construction": 40000,
+     "farming": 40000,
+     "herblore": 40000,
+     "hunter": 40000,
+     "mining": 40000,
+     "smithing": 40000,
+     "woodcutting": 40000
+    }
+   },
+   {
+    "n": 339,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 74
+   },
+   {
+    "n": 340,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 74
+   },
+   {
+    "n": 341,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 72
+   },
+   {
+    "n": 342,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 72
+   },
+   {
+    "n": 343,
+    "kind": "train",
+    "skill": "fletching",
+    "level": 70
+   },
+   {
+    "n": 344,
+    "kind": "quest",
+    "quest": "The Blood Moon Rises",
+    "xp": {
+     "slayer": 180000
+    }
+   },
+   {
+    "n": 345,
+    "kind": "quest",
+    "quest": "Clock Tower"
+   },
+   {
+    "n": 346,
+    "kind": "quest",
+    "quest": "The Corsair Curse"
+   }
+  ]
+ },
+ "ironman": {
+  "page": "Optimal quest guide/Ironman",
+  "rev": 15374254,
+  "steps": [
+   {
+    "n": 1,
+    "kind": "quest",
+    "quest": "Learning the Ropes"
+   },
+   {
+    "n": 2,
+    "kind": "quest",
+    "quest": "Cook's Assistant",
+    "xp": {
+     "cooking": 300
+    }
+   },
+   {
+    "n": 3,
+    "kind": "quest",
+    "quest": "Sheep Shearer",
+    "xp": {
+     "crafting": 200
+    }
+   },
+   {
+    "n": 4,
+    "kind": "quest",
+    "quest": "The Restless Ghost",
+    "xp": {
+     "prayer": 1125
+    }
+   },
+   {
+    "n": 5,
+    "kind": "quest",
+    "quest": "Misthalin Mystery",
+    "xp": {
+     "crafting": 600
+    }
+   },
+   {
+    "n": 6,
+    "kind": "quest",
+    "quest": "X Marks the Spot",
+    "xp": {
+     "agility": 300
+    }
+   },
+   {
+    "n": 7,
+    "kind": "quest",
+    "quest": "Witch's Potion",
+    "xp": {
+     "magic": 325
+    }
+   },
+   {
+    "n": 8,
+    "kind": "quest",
+    "quest": "Client of Kourend",
+    "xp": {
+     "agility": 1000
+    }
+   },
+   {
+    "n": 9,
+    "kind": "quest",
+    "quest": "Pandemonium",
+    "xp": {
+     "sailing": 400
+    }
+   },
+   {
+    "n": 10,
+    "kind": "partial",
+    "quest": "Pirate's Treasure"
+   },
+   {
+    "n": 11,
+    "kind": "unlock"
+   },
+   {
+    "n": 12,
+    "kind": "quest",
+    "quest": "Children of the Sun"
+   },
+   {
+    "n": 13,
+    "kind": "quest",
+    "quest": "Romeo & Juliet"
+   },
+   {
+    "n": 14,
+    "kind": "quest",
+    "quest": "Gertrude's Cat",
+    "xp": {
+     "cooking": 1525
+    }
+   },
+   {
+    "n": 15,
+    "kind": "quest",
+    "quest": "Daddy's Home",
+    "xp": {
+     "construction": 944
+    }
+   },
+   {
+    "n": 16,
+    "kind": "quest",
+    "quest": "Natural history quiz",
+    "xp": {
+     "hunter": 1000,
+     "slayer": 1000
+    }
+   },
+   {
+    "n": 17,
+    "kind": "quest",
+    "quest": "Demon Slayer"
+   },
+   {
+    "n": 18,
+    "kind": "quest",
+    "quest": "Rune Mysteries"
+   },
+   {
+    "n": 19,
+    "kind": "partial",
+    "quest": "Enter the Abyss"
+   },
+   {
+    "n": 20,
+    "kind": "quest",
+    "quest": "Tree Gnome Village",
+    "xp": {
+     "attack": 11450
+    }
+   },
+   {
+    "n": 21,
+    "kind": "quest",
+    "quest": "Hazeel Cult",
+    "xp": {
+     "thieving": 1500
+    }
+   },
+   {
+    "n": 22,
+    "kind": "quest",
+    "quest": "Clock Tower"
+   },
+   {
+    "n": 23,
+    "kind": "quest",
+    "quest": "Monk's Friend",
+    "xp": {
+     "woodcutting": 2000
+    }
+   },
+   {
+    "n": 24,
+    "kind": "quest",
+    "quest": "Plague City",
+    "xp": {
+     "mining": 2425
+    }
+   },
+   {
+    "n": 25,
+    "kind": "quest",
+    "quest": "Biohazard",
+    "xp": {
+     "thieving": 1250
+    }
+   },
+   {
+    "n": 26,
+    "kind": "quest",
+    "quest": "Enter the Abyss",
+    "xp": {
+     "runecraft": 1000
+    }
+   },
+   {
+    "n": 27,
+    "kind": "diary",
+    "diary": "Ardougne Easy"
+   },
+   {
+    "n": 28,
+    "kind": "quest",
+    "quest": "Fight Arena",
+    "xp": {
+     "attack": 12175,
+     "thieving": 2175
+    }
+   },
+   {
+    "n": 29,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 21
+   },
+   {
+    "n": 30,
+    "kind": "quest",
+    "quest": "Tribal Totem",
+    "xp": {
+     "thieving": 1775
+    }
+   },
+   {
+    "n": 31,
+    "kind": "quest",
+    "quest": "Sheep Herder"
+   },
+   {
+    "n": 32,
+    "kind": "partial",
+    "quest": "Dwarf Cannon"
+   },
+   {
+    "n": 33,
+    "kind": "unlock"
+   },
+   {
+    "n": 34,
+    "kind": "quest",
+    "quest": "Waterfall Quest",
+    "xp": {
+     "attack": 13750,
+     "strength": 13750
+    }
+   },
+   {
+    "n": 35,
+    "kind": "quest",
+    "quest": "Murder Mystery",
+    "xp": {
+     "crafting": 1406
+    }
+   },
+   {
+    "n": 36,
+    "kind": "partial",
+    "quest": "Merlin's Crystal"
+   },
+   {
+    "n": 37,
+    "kind": "quest",
+    "quest": "Doric's Quest",
+    "xp": {
+     "mining": 1300
+    }
+   },
+   {
+    "n": 38,
+    "kind": "quest",
+    "quest": "Druidic Ritual",
+    "xp": {
+     "herblore": 250
+    }
+   },
+   {
+    "n": 39,
+    "kind": "quest",
+    "quest": "Witch's House",
+    "xp": {
+     "hitpoints": 6325
+    }
+   },
+   {
+    "n": 40,
+    "kind": "quest",
+    "quest": "Dwarf Cannon",
+    "xp": {
+     "crafting": 750
+    }
+   },
+   {
+    "n": 41,
+    "kind": "quest",
+    "quest": "Merlin's Crystal"
+   },
+   {
+    "n": 42,
+    "kind": "quest",
+    "quest": "Holy Grail",
+    "xp": {
+     "defence": 15300,
+     "prayer": 11000
+    }
+   },
+   {
+    "n": 43,
+    "kind": "quest",
+    "quest": "Vampyre Slayer",
+    "xp": {
+     "attack": 4825
+    }
+   },
+   {
+    "n": 44,
+    "kind": "quest",
+    "quest": "Below Ice Mountain"
+   },
+   {
+    "n": 45,
+    "kind": "quest",
+    "quest": "Black Knights' Fortress"
+   },
+   {
+    "n": 46,
+    "kind": "quest",
+    "quest": "Pirate's Treasure"
+   },
+   {
+    "n": 47,
+    "kind": "quest",
+    "quest": "A Ruff Situation",
+    "xp": {
+     "crafting": 1000
+    }
+   },
+   {
+    "n": 48,
+    "kind": "quest",
+    "quest": "The Ides of Milk",
+    "xp": {
+     "prayer": 1000
+    }
+   },
+   {
+    "n": 49,
+    "kind": "quest",
+    "quest": "Observatory Quest",
+    "xp": {
+     "crafting": 2000
+    }
+   },
+   {
+    "n": 50,
+    "kind": "quest",
+    "quest": "Priest in Peril",
+    "xp": {
+     "prayer": 3906
+    }
+   },
+   {
+    "n": 51,
+    "kind": "partial",
+    "quest": "Rag and Bone Man I"
+   },
+   {
+    "n": 52,
+    "kind": "quest",
+    "quest": "Nature Spirit",
+    "xp": {
+     "crafting": 3000,
+     "defence": 2000,
+     "hitpoints": 2000
+    }
+   },
+   {
+    "n": 53,
+    "kind": "quest",
+    "quest": "Recruitment Drive",
+    "xp": {
+     "agility": 1000,
+     "herblore": 1000,
+     "prayer": 1000
+    }
+   },
+   {
+    "n": 54,
+    "kind": "quest",
+    "quest": "Alfred Grimhand's Barcrawl"
+   },
+   {
+    "n": 55,
+    "kind": "unlock"
+   },
+   {
+    "n": 56,
+    "kind": "quest",
+    "quest": "Scorpion Catcher",
+    "xp": {
+     "strength": 6625
+    }
+   },
+   {
+    "n": 57,
+    "kind": "quest",
+    "quest": "Jungle Potion",
+    "xp": {
+     "herblore": 775
+    }
+   },
+   {
+    "n": 58,
+    "kind": "quest",
+    "quest": "A Porcine of Interest",
+    "xp": {
+     "slayer": 1000
+    }
+   },
+   {
+    "n": 59,
+    "kind": "quest",
+    "quest": "Rag and Bone Man I",
+    "xp": {
+     "prayer": 500,
+     "cooking": 500
+    }
+   },
+   {
+    "n": 60,
+    "kind": "partial",
+    "quest": "Rag and Bone Man II"
+   },
+   {
+    "n": 61,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 15
+   },
+   {
+    "n": 62,
+    "kind": "quest",
+    "quest": "Death Plateau",
+    "xp": {
+     "attack": 3000
+    }
+   },
+   {
+    "n": 63,
+    "kind": "quest",
+    "quest": "The Queen of Thieves",
+    "xp": {
+     "thieving": 2000
+    }
+   },
+   {
+    "n": 64,
+    "kind": "quest",
+    "quest": "The Forsaken Tower",
+    "xp": {
+     "mining": 500,
+     "smithing": 500
+    }
+   },
+   {
+    "n": 65,
+    "kind": "train",
+    "skill": "agility",
+    "level": 18
+   },
+   {
+    "n": 66,
+    "kind": "quest",
+    "quest": "The Depths of Despair",
+    "xp": {
+     "agility": 1500
+    }
+   },
+   {
+    "n": 67,
+    "kind": "quest",
+    "quest": "Tale of the Righteous"
+   },
+   {
+    "n": 68,
+    "kind": "train",
+    "skill": "agility",
+    "level": 25
+   },
+   {
+    "n": 69,
+    "kind": "quest",
+    "quest": "The Grand Tree",
+    "xp": {
+     "attack": 18400,
+     "agility": 7900,
+     "magic": 2150
+    }
+   },
+   {
+    "n": 70,
+    "kind": "quest",
+    "quest": "Mountain Daughter",
+    "xp": {
+     "attack": 1000,
+     "prayer": 2000
+    }
+   },
+   {
+    "n": 71,
+    "kind": "quest",
+    "quest": "Shield of Arrav"
+   },
+   {
+    "n": 72,
+    "kind": "quest",
+    "quest": "The Dig Site",
+    "xp": {
+     "herblore": 2000,
+     "mining": 15300
+    }
+   },
+   {
+    "n": 73,
+    "kind": "quest",
+    "quest": "The Golem",
+    "xp": {
+     "crafting": 1000,
+     "thieving": 1000
+    }
+   },
+   {
+    "n": 74,
+    "kind": "quest",
+    "quest": "Ethically Acquired Antiquities",
+    "xp": {
+     "thieving": 6000
+    }
+   },
+   {
+    "n": 75,
+    "kind": "quest",
+    "quest": "Twilight's Promise",
+    "xp": {
+     "thieving": 3000
+    }
+   },
+   {
+    "n": 76,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 34
+   },
+   {
+    "n": 77,
+    "kind": "train",
+    "skill": "agility",
+    "level": 32
+   },
+   {
+    "n": 78,
+    "kind": "quest",
+    "quest": "Death on the Isle",
+    "xp": {
+     "agility": 7500,
+     "thieving": 10000,
+     "crafting": 5000
+    }
+   },
+   {
+    "n": 79,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Another Cook's Quest"
+   },
+   {
+    "n": 80,
+    "kind": "quest",
+    "quest": "Goblin Diplomacy",
+    "xp": {
+     "crafting": 200
+    }
+   },
+   {
+    "n": 81,
+    "kind": "quest",
+    "quest": "The Lost Tribe",
+    "xp": {
+     "mining": 3000
+    }
+   },
+   {
+    "n": 82,
+    "kind": "quest",
+    "quest": "Death to the Dorgeshuun",
+    "xp": {
+     "ranged": 2000,
+     "thieving": 2000
+    }
+   },
+   {
+    "n": 83,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Wartface & Bentnoze",
+    "xp": {
+     "cooking": 1000,
+     "crafting": 1000,
+     "farming": 1000
+    }
+   },
+   {
+    "n": 84,
+    "kind": "quest",
+    "quest": "The Knight's Sword",
+    "xp": {
+     "smithing": 12725
+    }
+   },
+   {
+    "n": 85,
+    "kind": "quest",
+    "quest": "Prince Ali Rescue"
+   },
+   {
+    "n": 86,
+    "kind": "quest",
+    "quest": "The Feud",
+    "xp": {
+     "thieving": 15000
+    }
+   },
+   {
+    "n": 87,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 30
+   },
+   {
+    "n": 88,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 30
+   },
+   {
+    "n": 89,
+    "kind": "quest",
+    "quest": "Icthlarin's Little Helper",
+    "xp": {
+     "agility": 4000,
+     "thieving": 4500,
+     "woodcutting": 4000
+    }
+   },
+   {
+    "n": 90,
+    "kind": "quest",
+    "quest": "Shadow of the Storm",
+    "xp": {
+     "ranged": 10000
+    }
+   },
+   {
+    "n": 91,
+    "kind": "quest",
+    "quest": "Sea Slug",
+    "xp": {
+     "fishing": 7175
+    }
+   },
+   {
+    "n": 92,
+    "kind": "quest",
+    "quest": "Fishing Contest",
+    "xp": {
+     "fishing": 2437
+    }
+   },
+   {
+    "n": 93,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Mountain Dwarf",
+    "xp": {
+     "cooking": 1000,
+     "slayer": 1000
+    }
+   },
+   {
+    "n": 94,
+    "kind": "quest",
+    "quest": "The Ribbiting Tale of a Lily Pad Labour Dispute",
+    "xp": {
+     "woodcutting": 2000
+    }
+   },
+   {
+    "n": 95,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 36
+   },
+   {
+    "n": 96,
+    "kind": "quest",
+    "quest": "Lost City"
+   },
+   {
+    "n": 97,
+    "kind": "quest",
+    "quest": "Fairytale I - Growing Pains",
+    "xp": {
+     "attack": 2000,
+     "farming": 3500,
+     "magic": 1000
+    }
+   },
+   {
+    "n": 98,
+    "kind": "partial",
+    "quest": "Fairytale II - Cure a Queen"
+   },
+   {
+    "n": 99,
+    "kind": "quest",
+    "quest": "Ratcatchers",
+    "xp": {
+     "thieving": 4500
+    }
+   },
+   {
+    "n": 100,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Evil Dave",
+    "xp": {
+     "cooking": 7000
+    }
+   },
+   {
+    "n": 101,
+    "kind": "quest",
+    "quest": "Ghosts Ahoy",
+    "xp": {
+     "prayer": 2400
+    }
+   },
+   {
+    "n": 102,
+    "kind": "quest",
+    "quest": "Creature of Fenkenstrain",
+    "xp": {
+     "thieving": 1000
+    }
+   },
+   {
+    "n": 103,
+    "kind": "quest",
+    "quest": "Shades of Mort'ton",
+    "xp": {
+     "crafting": 2000,
+     "herblore": 2000
+    }
+   },
+   {
+    "n": 104,
+    "kind": "quest",
+    "quest": "Making History",
+    "xp": {
+     "crafting": 1000,
+     "prayer": 1000
+    }
+   },
+   {
+    "n": 105,
+    "kind": "train",
+    "skill": "prayer",
+    "level": 37
+   },
+   {
+    "n": 106,
+    "kind": "quest",
+    "quest": "Temple of Ikov",
+    "xp": {
+     "fletching": 8000,
+     "ranged": 10500
+    }
+   },
+   {
+    "n": 107,
+    "kind": "unlock",
+    "xp": {
+     "herblore": 3000,
+     "mining": 3500,
+     "crafting": 2500
+    }
+   },
+   {
+    "n": 108,
+    "kind": "quest",
+    "quest": "Bone Voyage"
+   },
+   {
+    "n": 109,
+    "kind": "quest",
+    "quest": "The Tourist Trap",
+    "xp": {
+     "agility": 9300
+    }
+   },
+   {
+    "n": 110,
+    "kind": "quest",
+    "quest": "Wanted!",
+    "xp": {
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 111,
+    "kind": "quest",
+    "quest": "Ernest the Chicken"
+   },
+   {
+    "n": 112,
+    "kind": "quest",
+    "quest": "Animal Magnetism",
+    "xp": {
+     "crafting": 1000,
+     "fletching": 1000,
+     "slayer": 1000,
+     "woodcutting": 2500
+    }
+   },
+   {
+    "n": 113,
+    "kind": "quest",
+    "quest": "Imp Catcher",
+    "xp": {
+     "magic": 875
+    }
+   },
+   {
+    "n": 114,
+    "kind": "train",
+    "skill": "magic",
+    "level": 33
+   },
+   {
+    "n": 115,
+    "kind": "quest",
+    "quest": "The Giant Dwarf",
+    "xp": {
+     "crafting": 2500,
+     "firemaking": 1500,
+     "mining": 2500,
+     "smithing": 2500,
+     "thieving": 1500,
+     "magic": 1500
+    }
+   },
+   {
+    "n": 116,
+    "kind": "quest",
+    "quest": "Another Slice of H.A.M.",
+    "xp": {
+     "mining": 3000,
+     "prayer": 3000
+    }
+   },
+   {
+    "n": 117,
+    "kind": "train",
+    "skill": "ranged",
+    "level": 37
+   },
+   {
+    "n": 118,
+    "kind": "quest",
+    "quest": "Spirits of the Elid",
+    "xp": {
+     "magic": 1000,
+     "prayer": 8000,
+     "thieving": 1000
+    }
+   },
+   {
+    "n": 119,
+    "kind": "train",
+    "skill": "prayer",
+    "level": 43
+   },
+   {
+    "n": 120,
+    "kind": "quest",
+    "quest": "Dragon Slayer I",
+    "xp": {
+     "defence": 18650,
+     "strength": 18650
+    }
+   },
+   {
+    "n": 121,
+    "kind": "quest",
+    "quest": "Horror from the Deep",
+    "xp": {
+     "magic": 4662.5,
+     "ranged": 4662.5,
+     "strength": 4662.5
+    }
+   },
+   {
+    "n": 122,
+    "kind": "quest",
+    "quest": "The Garden of Death",
+    "xp": {
+     "farming": 10000
+    }
+   },
+   {
+    "n": 123,
+    "kind": "quest",
+    "quest": "Enlightened Journey",
+    "xp": {
+     "crafting": 2000,
+     "farming": 3000,
+     "firemaking": 4000,
+     "woodcutting": 1500
+    }
+   },
+   {
+    "n": 124,
+    "kind": "unlock",
+    "xp": {
+     "firemaking": 2000
+    }
+   },
+   {
+    "n": 125,
+    "kind": "quest",
+    "quest": "Meat and Greet",
+    "xp": {
+     "cooking": 8000
+    }
+   },
+   {
+    "n": 126,
+    "kind": "quest",
+    "quest": "Forgettable Tale...",
+    "xp": {
+     "cooking": 5000,
+     "farming": 5000
+    }
+   },
+   {
+    "n": 127,
+    "kind": "quest",
+    "quest": "Garden of Tranquillity",
+    "xp": {
+     "farming": 5000
+    }
+   },
+   {
+    "n": 128,
+    "kind": "quest",
+    "quest": "Big Chompy Bird Hunting",
+    "xp": {
+     "cooking": 1470,
+     "fletching": 262,
+     "ranged": 735
+    }
+   },
+   {
+    "n": 129,
+    "kind": "quest",
+    "quest": "Zogre Flesh Eaters",
+    "xp": {
+     "fletching": 2000,
+     "herblore": 2000,
+     "ranged": 2000
+    }
+   },
+   {
+    "n": 130,
+    "kind": "quest",
+    "quest": "In Search of the Myreque",
+    "xp": {
+     "attack": 600,
+     "crafting": 600,
+     "defence": 600,
+     "hitpoints": 600,
+     "strength": 600
+    }
+   },
+   {
+    "n": 131,
+    "kind": "quest",
+    "quest": "In Aid of the Myreque",
+    "xp": {
+     "attack": 2000,
+     "crafting": 2000,
+     "defence": 2000,
+     "strength": 2000
+    }
+   },
+   {
+    "n": 132,
+    "kind": "train",
+    "skill": "herblore",
+    "level": 30
+   },
+   {
+    "n": 133,
+    "kind": "quest",
+    "quest": "Darkness of Hallowvale",
+    "xp": {
+     "agility": 7000,
+     "construction": 2000,
+     "thieving": 6000,
+     "herblore": 6000
+    }
+   },
+   {
+    "n": 134,
+    "kind": "quest",
+    "quest": "A Tail of Two Cats",
+    "xp": {
+     "herblore": 5000
+    }
+   },
+   {
+    "n": 135,
+    "kind": "diary",
+    "diary": "Varrock Easy",
+    "xp": {
+     "herblore": 2500
+    }
+   },
+   {
+    "n": 136,
+    "kind": "diary",
+    "diary": "Desert Easy",
+    "xp": {
+     "herblore": 2500
+    }
+   },
+   {
+    "n": 137,
+    "kind": "quest",
+    "quest": "Tower of Life",
+    "xp": {
+     "construction": 1000,
+     "crafting": 500,
+     "thieving": 500
+    }
+   },
+   {
+    "n": 138,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Pirate Pete",
+    "xp": {
+     "cooking": 1000,
+     "crafting": 1000,
+     "fishing": 1000,
+     "smithing": 1000
+    }
+   },
+   {
+    "n": 139,
+    "kind": "diary",
+    "diary": "Falador Easy",
+    "xp": {
+     "herblore": 2500
+    }
+   },
+   {
+    "n": 140,
+    "kind": "quest",
+    "quest": "Tai Bwo Wannai Trio",
+    "xp": {
+     "cooking": 5000,
+     "fishing": 5000,
+     "attack": 2500,
+     "strength": 2500
+    }
+   },
+   {
+    "n": 141,
+    "kind": "quest",
+    "quest": "Troll Stronghold"
+   },
+   {
+    "n": 142,
+    "kind": "quest",
+    "quest": "Eadgar's Ruse",
+    "xp": {
+     "herblore": 11000
+    }
+   },
+   {
+    "n": 143,
+    "kind": "quest",
+    "quest": "My Arm's Big Adventure",
+    "xp": {
+     "farming": 5315,
+     "herblore": 10000
+    }
+   },
+   {
+    "n": 144,
+    "kind": "quest",
+    "quest": "The Fremennik Trials",
+    "xp": {
+     "agility": 2812,
+     "attack": 2812,
+     "crafting": 2812,
+     "defence": 2812,
+     "fishing": 2812,
+     "fletching": 2812,
+     "hitpoints": 2812,
+     "strength": 2812,
+     "thieving": 2812,
+     "woodcutting": 2812
+    }
+   },
+   {
+    "n": 145,
+    "kind": "quest",
+    "quest": "Shilo Village",
+    "xp": {
+     "crafting": 3875
+    }
+   },
+   {
+    "n": 146,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 45
+   },
+   {
+    "n": 147,
+    "kind": "quest",
+    "quest": "Troll Romance",
+    "xp": {
+     "agility": 8000,
+     "strength": 4000
+    }
+   },
+   {
+    "n": 148,
+    "kind": "train",
+    "skill": "magic",
+    "level": 46
+   },
+   {
+    "n": 149,
+    "kind": "quest",
+    "quest": "The Eyes of Glouphrie",
+    "xp": {
+     "construction": 250,
+     "magic": 12000,
+     "runecraft": 6000,
+     "woodcutting": 2500
+    }
+   },
+   {
+    "n": 150,
+    "kind": "quest",
+    "quest": "Temple of the Eye",
+    "xp": {
+     "runecraft": 9210
+    }
+   },
+   {
+    "n": 151,
+    "kind": "quest",
+    "quest": "Elemental Workshop I",
+    "xp": {
+     "crafting": 5000,
+     "smithing": 5000
+    }
+   },
+   {
+    "n": 152,
+    "kind": "quest",
+    "quest": "Elemental Workshop II",
+    "xp": {
+     "crafting": 7500,
+     "smithing": 7500
+    }
+   },
+   {
+    "n": 153,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 12
+   },
+   {
+    "n": 154,
+    "kind": "quest",
+    "quest": "Prying Times",
+    "xp": {
+     "sailing": 800,
+     "smithing": 1000
+    }
+   },
+   {
+    "n": 155,
+    "kind": "quest",
+    "quest": "Sleeping Giants",
+    "xp": {
+     "smithing": 6000
+    }
+   },
+   {
+    "n": 156,
+    "kind": "train",
+    "skill": "construction",
+    "level": 20
+   },
+   {
+    "n": 157,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 56
+   },
+   {
+    "n": 158,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 46
+   },
+   {
+    "n": 159,
+    "kind": "quest",
+    "quest": "The Fremennik Isles",
+    "xp": {
+     "construction": 5000,
+     "crafting": 5000,
+     "woodcutting": 10000,
+     "strength": 20000
+    }
+   },
+   {
+    "n": 160,
+    "kind": "quest",
+    "quest": "Getting Ahead",
+    "xp": {
+     "construction": 3200,
+     "crafting": 4000
+    }
+   },
+   {
+    "n": 161,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 41
+   },
+   {
+    "n": 162,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Lumbridge Guide",
+    "xp": {
+     "magic": 2500
+    }
+   },
+   {
+    "n": 163,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Skrach Uglogwee",
+    "xp": {
+     "crafting": 1500,
+     "ranged": 1500,
+     "woodcutting": 1500
+    }
+   },
+   {
+    "n": 164,
+    "kind": "quest",
+    "quest": "Haunted Mine",
+    "xp": {
+     "strength": 22000
+    }
+   },
+   {
+    "n": 165,
+    "kind": "train",
+    "skill": "mining",
+    "level": 40
+   },
+   {
+    "n": 166,
+    "kind": "diary",
+    "diary": "Karamja Easy",
+    "xp": {
+     "herblore": 1000
+    }
+   },
+   {
+    "n": 167,
+    "kind": "quest",
+    "quest": "Watchtower",
+    "xp": {
+     "magic": 15250
+    }
+   },
+   {
+    "n": 168,
+    "kind": "quest",
+    "quest": "Contact!",
+    "xp": {
+     "magic": 14000,
+     "thieving": 7000
+    }
+   },
+   {
+    "n": 169,
+    "kind": "quest",
+    "quest": "Monkey Madness I",
+    "xp": {
+     "attack": 35000,
+     "defence": 35000,
+     "hitpoints": 20000,
+     "strength": 20000
+    }
+   },
+   {
+    "n": 170,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 40
+   },
+   {
+    "n": 171,
+    "kind": "unlock",
+    "xp": {
+     "firemaking": 2000
+    }
+   },
+   {
+    "n": 172,
+    "kind": "quest",
+    "quest": "Olaf's Quest",
+    "xp": {
+     "defence": 12000
+    }
+   },
+   {
+    "n": 173,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 50
+   },
+   {
+    "n": 174,
+    "kind": "quest",
+    "quest": "Tears of Guthix",
+    "xp": {
+     "crafting": 1000
+    }
+   },
+   {
+    "n": 175,
+    "kind": "train",
+    "skill": "ranged",
+    "level": 40
+   },
+   {
+    "n": 176,
+    "kind": "quest",
+    "quest": "One Small Favour",
+    "xp": {
+     "herblore": 20000
+    }
+   },
+   {
+    "n": 177,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 50
+   },
+   {
+    "n": 178,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 30
+   },
+   {
+    "n": 179,
+    "kind": "quest",
+    "quest": "The Slug Menace",
+    "xp": {
+     "crafting": 3500,
+     "runecraft": 3500,
+     "thieving": 3500
+    }
+   },
+   {
+    "n": 180,
+    "kind": "quest",
+    "quest": "Between a Rock...",
+    "xp": {
+     "defence": 5000,
+     "mining": 5000,
+     "smithing": 5000
+    }
+   },
+   {
+    "n": 181,
+    "kind": "train",
+    "skill": "construction",
+    "level": 34
+   },
+   {
+    "n": 182,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 10
+   },
+   {
+    "n": 183,
+    "kind": "quest",
+    "quest": "Cold War",
+    "xp": {
+     "agility": 5000,
+     "construction": 1500,
+     "crafting": 2000
+    }
+   },
+   {
+    "n": 184,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 12
+   },
+   {
+    "n": 185,
+    "kind": "quest",
+    "quest": "The Ascent of Arceuus",
+    "xp": {
+     "runecraft": 500,
+     "hunter": 1500
+    }
+   },
+   {
+    "n": 186,
+    "kind": "quest",
+    "quest": "Underground Pass",
+    "xp": {
+     "agility": 3000,
+     "attack": 3000
+    }
+   },
+   {
+    "n": 187,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 42
+   },
+   {
+    "n": 188,
+    "kind": "quest",
+    "quest": "Skippy and the Mogres"
+   },
+   {
+    "n": 189,
+    "kind": "quest",
+    "quest": "Rag and Bone Man II",
+    "xp": {
+     "prayer": 5000
+    }
+   },
+   {
+    "n": 190,
+    "kind": "quest",
+    "quest": "Lair of Tarn Razorlor",
+    "xp": {
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 191,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 22
+   },
+   {
+    "n": 192,
+    "kind": "quest",
+    "quest": "Current Affairs",
+    "xp": {
+     "sailing": 1400,
+     "fishing": 1000
+    }
+   },
+   {
+    "n": 193,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 40
+   },
+   {
+    "n": 194,
+    "kind": "quest",
+    "quest": "Crab Quest",
+    "xp": {
+     "fishing": 3000,
+     "sailing": 10000
+    }
+   },
+   {
+    "n": 195,
+    "kind": "train",
+    "skill": "fishing",
+    "level": 50
+   },
+   {
+    "n": 196,
+    "kind": "train",
+    "skill": "prayer",
+    "level": 47
+   },
+   {
+    "n": 197,
+    "kind": "train",
+    "skill": "farming",
+    "level": 40
+   },
+   {
+    "n": 198,
+    "kind": "quest",
+    "quest": "Rum Deal",
+    "xp": {
+     "farming": 7000,
+     "fishing": 7000,
+     "prayer": 7000
+    }
+   },
+   {
+    "n": 199,
+    "kind": "quest",
+    "quest": "Cabin Fever",
+    "xp": {
+     "agility": 7000,
+     "crafting": 7000,
+     "smithing": 7000
+    }
+   },
+   {
+    "n": 200,
+    "kind": "quest",
+    "quest": "His Faithful Servants",
+    "xp": {
+     "prayer": 20000
+    }
+   },
+   {
+    "n": 201,
+    "kind": "quest",
+    "quest": "The Great Brain Robbery",
+    "xp": {
+     "construction": 2000,
+     "crafting": 3000,
+     "prayer": 6000,
+     "herblore": 5000
+    }
+   },
+   {
+    "n": 202,
+    "kind": "train",
+    "skill": "construction",
+    "level": 38
+   },
+   {
+    "n": 203,
+    "kind": "quest",
+    "quest": "Scrambled!",
+    "xp": {
+     "smithing": 5000,
+     "cooking": 5000,
+     "construction": 5000
+    }
+   },
+   {
+    "n": 204,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 50
+   },
+   {
+    "n": 205,
+    "kind": "quest",
+    "quest": "The Hand in the Sand",
+    "xp": {
+     "thieving": 1000
+    }
+   },
+   {
+    "n": 206,
+    "kind": "train",
+    "skill": "mining",
+    "level": 45
+   },
+   {
+    "n": 207,
+    "kind": "quest",
+    "quest": "Enakhra's Lament",
+    "xp": {
+     "crafting": 7000,
+     "firemaking": 7000,
+     "mining": 7000,
+     "magic": 7000
+    }
+   },
+   {
+    "n": 208,
+    "kind": "train",
+    "skill": "mining",
+    "level": 50
+   },
+   {
+    "n": 209,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 53
+   },
+   {
+    "n": 210,
+    "kind": "train",
+    "skill": "fishing",
+    "level": 53
+   },
+   {
+    "n": 211,
+    "kind": "quest",
+    "quest": "Heroes' Quest",
+    "xp": {
+     "attack": 3075,
+     "cooking": 2825,
+     "defence": 3075,
+     "firemaking": 1575,
+     "fishing": 2725,
+     "herblore": 1325,
+     "hitpoints": 3075,
+     "mining": 2575,
+     "ranged": 2075,
+     "smithing": 2257,
+     "strength": 3075,
+     "woodcutting": 1575
+    }
+   },
+   {
+    "n": 212,
+    "kind": "quest",
+    "quest": "Throne of Miscellania"
+   },
+   {
+    "n": 213,
+    "kind": "quest",
+    "quest": "Royal Trouble",
+    "xp": {
+     "agility": 5000,
+     "hitpoints": 5000,
+     "slayer": 5000
+    }
+   },
+   {
+    "n": 214,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 53
+   },
+   {
+    "n": 215,
+    "kind": "quest",
+    "quest": "Desert Treasure I",
+    "xp": {
+     "magic": 20000
+    }
+   },
+   {
+    "n": 216,
+    "kind": "train",
+    "skill": "magic",
+    "level": 59
+   },
+   {
+    "n": 217,
+    "kind": "train",
+    "skill": "mining",
+    "level": 52
+   },
+   {
+    "n": 218,
+    "kind": "train",
+    "skill": "agility",
+    "level": 50
+   },
+   {
+    "n": 219,
+    "kind": "quest",
+    "quest": "A Taste of Hope",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 220,
+    "kind": "quest",
+    "quest": "Family Crest"
+   },
+   {
+    "n": 221,
+    "kind": "quest",
+    "quest": "Legends' Quest",
+    "xp": {
+     "herblore": 120000
+    }
+   },
+   {
+    "n": 222,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Sir Amik Varze",
+    "xp": {
+     "cooking": 4000,
+     "hitpoints": 4000
+    }
+   },
+   {
+    "n": 223,
+    "kind": "quest",
+    "quest": "Curse of the Empty Lord",
+    "xp": {
+     "herblore": 10000
+    }
+   },
+   {
+    "n": 224,
+    "kind": "quest",
+    "quest": "The General's Shadow",
+    "xp": {
+     "slayer": 2000
+    }
+   },
+   {
+    "n": 225,
+    "kind": "train",
+    "skill": "farming",
+    "level": 44
+   },
+   {
+    "n": 226,
+    "kind": "tiers",
+    "tier": "Easy",
+    "xp": {
+     "herblore": 17500
+    }
+   },
+   {
+    "n": 227,
+    "kind": "diary",
+    "diary": "Ardougne Medium",
+    "xp": {
+     "herblore": 7500,
+     "firemaking": 2000
+    }
+   },
+   {
+    "n": 228,
+    "kind": "diary",
+    "diary": "Falador Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 229,
+    "kind": "quest",
+    "quest": "A Soul's Bane",
+    "xp": {
+     "defence": 500,
+     "hitpoints": 500
+    }
+   },
+   {
+    "n": 230,
+    "kind": "diary",
+    "diary": "Varrock Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 231,
+    "kind": "train",
+    "skill": "fletching",
+    "level": 50
+   },
+   {
+    "n": 232,
+    "kind": "diary",
+    "diary": "Kandarin Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 233,
+    "kind": "quest",
+    "quest": "Land of the Goblins",
+    "xp": {
+     "herblore": 8000,
+     "thieving": 8000,
+     "fishing": 8000,
+     "agility": 8000
+    }
+   },
+   {
+    "n": 234,
+    "kind": "train",
+    "skill": "farming",
+    "level": 46
+   },
+   {
+    "n": 235,
+    "kind": "quest",
+    "quest": "Fairytale II - Cure a Queen",
+    "xp": {
+     "herblore": 3500,
+     "thieving": 2500
+    }
+   },
+   {
+    "n": 236,
+    "kind": "train",
+    "skill": "agility",
+    "level": 54
+   },
+   {
+    "n": 237,
+    "kind": "quest",
+    "quest": "A Kingdom Divided",
+    "xp": {
+     "herblore": 20000
+    }
+   },
+   {
+    "n": 238,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 48
+   },
+   {
+    "n": 239,
+    "kind": "train",
+    "skill": "mining",
+    "level": 55
+   },
+   {
+    "n": 240,
+    "kind": "quest",
+    "quest": "The Heart of Darkness",
+    "xp": {
+     "mining": 8000,
+     "thieving": 8000,
+     "slayer": 8000,
+     "agility": 8000
+    }
+   },
+   {
+    "n": 241,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 20
+   },
+   {
+    "n": 242,
+    "kind": "quest",
+    "quest": "Perilous Moons",
+    "xp": {
+     "slayer": 40000,
+     "runecraft": 5000,
+     "hunter": 5000,
+     "fishing": 5000
+    }
+   },
+   {
+    "n": 243,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 65
+   },
+   {
+    "n": 244,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - King Awowogei",
+    "xp": {
+     "agility": 10000,
+     "cooking": 10000
+    }
+   },
+   {
+    "n": 245,
+    "kind": "train",
+    "skill": "agility",
+    "level": 56
+   },
+   {
+    "n": 246,
+    "kind": "quest",
+    "quest": "Regicide",
+    "xp": {
+     "agility": 13750
+    }
+   },
+   {
+    "n": 247,
+    "kind": "quest",
+    "quest": "Roving Elves",
+    "xp": {
+     "strength": 10000
+    }
+   },
+   {
+    "n": 248,
+    "kind": "train",
+    "skill": "ranged",
+    "level": 60
+   },
+   {
+    "n": 249,
+    "kind": "quest",
+    "quest": "Mourning's End Part I",
+    "xp": {
+     "hitpoints": 25000,
+     "thieving": 40000
+    }
+   },
+   {
+    "n": 250,
+    "kind": "quest",
+    "quest": "Mourning's End Part II",
+    "xp": {
+     "agility": 60000
+    }
+   },
+   {
+    "n": 251,
+    "kind": "train",
+    "skill": "magic",
+    "level": 65
+   },
+   {
+    "n": 252,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 61
+   },
+   {
+    "n": 253,
+    "kind": "train",
+    "skill": "mining",
+    "level": 60
+   },
+   {
+    "n": 254,
+    "kind": "quest",
+    "quest": "Lunar Diplomacy",
+    "xp": {
+     "magic": 5000,
+     "runecraft": 5000
+    }
+   },
+   {
+    "n": 255,
+    "kind": "quest",
+    "quest": "What Lies Below",
+    "xp": {
+     "defence": 2000,
+     "runecraft": 8000,
+     "crafting": 4000,
+     "hunter": 4000,
+     "prayer": 4000,
+     "slayer": 4000,
+     "smithing": 4000
+    }
+   },
+   {
+    "n": 256,
+    "kind": "train",
+    "skill": "defence",
+    "level": 65
+   },
+   {
+    "n": 257,
+    "kind": "quest",
+    "quest": "King's Ransom",
+    "xp": {
+     "defence": 33000,
+     "magic": 5000,
+     "herblore": 5000
+    }
+   },
+   {
+    "n": 258,
+    "kind": "quest",
+    "quest": "Knight Waves Training Grounds",
+    "xp": {
+     "attack": 20000,
+     "defence": 20000,
+     "hitpoints": 20000,
+     "strength": 20000
+    }
+   },
+   {
+    "n": 259,
+    "kind": "train",
+    "skill": "magic",
+    "level": 66
+   },
+   {
+    "n": 260,
+    "kind": "train",
+    "skill": "fishing",
+    "level": 57
+   },
+   {
+    "n": 261,
+    "kind": "quest",
+    "quest": "Swan Song",
+    "xp": {
+     "fishing": 50000,
+     "magic": 15000,
+     "prayer": 10000
+    }
+   },
+   {
+    "n": 262,
+    "kind": "quest",
+    "quest": "Recipe for Disaster - Culinaromancer",
+    "xp": {
+     "herblore": 20000
+    }
+   },
+   {
+    "n": 263,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 71
+   },
+   {
+    "n": 264,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 58
+   },
+   {
+    "n": 265,
+    "kind": "quest",
+    "quest": "Grim Tales",
+    "xp": {
+     "agility": 25000,
+     "herblore": 15000,
+     "hitpoints": 5000,
+     "farming": 10000,
+     "thieving": 25000,
+     "woodcutting": 60000
+    }
+   },
+   {
+    "n": 266,
+    "kind": "quest",
+    "quest": "Dream Mentor",
+    "xp": {
+     "magic": 10000,
+     "hitpoints": 15000
+    }
+   },
+   {
+    "n": 267,
+    "kind": "quest",
+    "quest": "Eagles' Peak",
+    "xp": {
+     "hunter": 2500
+    }
+   },
+   {
+    "n": 268,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 47
+   },
+   {
+    "n": 269,
+    "kind": "quest",
+    "quest": "At First Light",
+    "xp": {
+     "hunter": 4500,
+     "construction": 800,
+     "herblore": 500
+    }
+   },
+   {
+    "n": 270,
+    "kind": "diary",
+    "diary": "Western Provinces Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 271,
+    "kind": "diary",
+    "diary": "Desert Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 272,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 52
+   },
+   {
+    "n": 273,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 55
+   },
+   {
+    "n": 274,
+    "kind": "quest",
+    "quest": "Defender of Varrock",
+    "xp": {
+     "smithing": 15000,
+     "hunter": 15000,
+     "herblore": 5000
+    }
+   },
+   {
+    "n": 275,
+    "kind": "diary",
+    "diary": "Wilderness Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 276,
+    "kind": "diary",
+    "diary": "Karamja Medium",
+    "xp": {
+     "herblore": 5000
+    }
+   },
+   {
+    "n": 277,
+    "kind": "diary",
+    "diary": "Kourend & Kebos Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 278,
+    "kind": "diary",
+    "diary": "Lumbridge & Draynor Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 279,
+    "kind": "diary",
+    "diary": "Morytania Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 280,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 65
+   },
+   {
+    "n": 281,
+    "kind": "train",
+    "skill": "runecraft",
+    "level": 50
+   },
+   {
+    "n": 282,
+    "kind": "quest",
+    "quest": "Devious Minds",
+    "xp": {
+     "fletching": 5000,
+     "runecraft": 5000,
+     "smithing": 6500
+    }
+   },
+   {
+    "n": 283,
+    "kind": "train",
+    "skill": "runecraft",
+    "level": 52
+   },
+   {
+    "n": 284,
+    "kind": "train",
+    "skill": "fletching",
+    "level": 52
+   },
+   {
+    "n": 285,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 66
+   },
+   {
+    "n": 286,
+    "kind": "quest",
+    "quest": "The Final Dawn",
+    "xp": {
+     "runecraft": 25000,
+     "thieving": 55000,
+     "fletching": 25000
+    }
+   },
+   {
+    "n": 287,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 45
+   },
+   {
+    "n": 288,
+    "kind": "train",
+    "skill": "construction",
+    "level": 48
+   },
+   {
+    "n": 289,
+    "kind": "quest",
+    "quest": "Troubled Tortugans",
+    "xp": {
+     "slayer": 8000,
+     "sailing": 10000
+    }
+   },
+   {
+    "n": 290,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 52
+   },
+   {
+    "n": 291,
+    "kind": "quest",
+    "quest": "The Red Reef",
+    "xp": {
+     "smithing": 5000,
+     "sailing": 15000
+    }
+   },
+   {
+    "n": 292,
+    "kind": "train",
+    "skill": "sailing",
+    "level": 62
+   },
+   {
+    "n": 293,
+    "kind": "quest",
+    "quest": "Fallen From Grace",
+    "xp": {
+     "crafting": 10000,
+     "sailing": 12500,
+     "mining": 5000,
+     "runecraft": 5000
+    }
+   },
+   {
+    "n": 294,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 54
+   },
+   {
+    "n": 295,
+    "kind": "quest",
+    "quest": "Shadows of Custodia",
+    "xp": {
+     "slayer": 10000,
+     "hunter": 4000,
+     "fishing": 3000,
+     "construction": 3000
+    }
+   },
+   {
+    "n": 296,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 56
+   },
+   {
+    "n": 297,
+    "kind": "quest",
+    "quest": "The Path of Glouphrie",
+    "xp": {
+     "strength": 30000,
+     "slayer": 20000,
+     "thieving": 5000,
+     "magic": 5000
+    }
+   },
+   {
+    "n": 298,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 65
+   },
+   {
+    "n": 299,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 60
+   },
+   {
+    "n": 300,
+    "kind": "train",
+    "skill": "runecraft",
+    "level": 55
+   },
+   {
+    "n": 301,
+    "kind": "train",
+    "skill": "fishing",
+    "level": 60
+   },
+   {
+    "n": 302,
+    "kind": "quest",
+    "quest": "The Fremennik Exiles",
+    "xp": {
+     "slayer": 50000,
+     "crafting": 50000,
+     "runecraft": 30000
+    }
+   },
+   {
+    "n": 303,
+    "kind": "train",
+    "skill": "fletching",
+    "level": 60
+   },
+   {
+    "n": 304,
+    "kind": "quest",
+    "quest": "Sins of the Father",
+    "xp": {
+     "herblore": 90000
+    }
+   },
+   {
+    "n": 305,
+    "kind": "train",
+    "skill": "agility",
+    "level": 62
+   },
+   {
+    "n": 306,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 55
+   },
+   {
+    "n": 307,
+    "kind": "quest",
+    "quest": "Beneath Cursed Sands",
+    "xp": {
+     "agility": 20000
+    }
+   },
+   {
+    "n": 308,
+    "kind": "train",
+    "skill": "mining",
+    "level": 64
+   },
+   {
+    "n": 309,
+    "kind": "train",
+    "skill": "ranged",
+    "level": 62
+   },
+   {
+    "n": 310,
+    "kind": "train",
+    "skill": "strength",
+    "level": 58
+   },
+   {
+    "n": 311,
+    "kind": "quest",
+    "quest": "The Curse of Arrav",
+    "xp": {
+     "mining": 40000,
+     "thieving": 40000,
+     "agility": 40000
+    }
+   },
+   {
+    "n": 312,
+    "kind": "train",
+    "skill": "agility",
+    "level": 68
+   },
+   {
+    "n": 313,
+    "kind": "train",
+    "skill": "mining",
+    "level": 70
+   },
+   {
+    "n": 314,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 66
+   },
+   {
+    "n": 315,
+    "kind": "quest",
+    "quest": "Making Friends with My Arm",
+    "xp": {
+     "construction": 10000,
+     "firemaking": 40000,
+     "mining": 50000,
+     "agility": 50000
+    }
+   },
+   {
+    "n": 316,
+    "kind": "train",
+    "skill": "crafting",
+    "level": 70
+   },
+   {
+    "n": 317,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 60
+   },
+   {
+    "n": 318,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 69
+   },
+   {
+    "n": 319,
+    "kind": "quest",
+    "quest": "Monkey Madness II",
+    "xp": {
+     "agility": 60000,
+     "hunter": 50000,
+     "slayer": 80000,
+     "thieving": 50000,
+     "magic": 100000
+    }
+   },
+   {
+    "n": 320,
+    "kind": "diary",
+    "diary": "Fremennik Medium",
+    "xp": {
+     "herblore": 7500
+    }
+   },
+   {
+    "n": 321,
+    "kind": "quest",
+    "quest": "A Night at the Theatre",
+    "xp": {
+     "magic": 80000
+    }
+   },
+   {
+    "n": 322,
+    "kind": "train",
+    "skill": "magic",
+    "level": 75
+   },
+   {
+    "n": 323,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 70
+   },
+   {
+    "n": 324,
+    "kind": "train",
+    "skill": "construction",
+    "level": 50
+   },
+   {
+    "n": 325,
+    "kind": "quest",
+    "quest": "Dragon Slayer II",
+    "xp": {
+     "smithing": 80000,
+     "mining": 60000,
+     "agility": 50000,
+     "thieving": 50000,
+     "strength": 100000
+    }
+   },
+   {
+    "n": 326,
+    "kind": "quest",
+    "quest": "Secrets of the North",
+    "xp": {
+     "agility": 60000,
+     "thieving": 50000,
+     "hunter": 40000
+    }
+   },
+   {
+    "n": 327,
+    "kind": "train",
+    "skill": "farming",
+    "level": 65
+   },
+   {
+    "n": 328,
+    "kind": "train",
+    "skill": "thieving",
+    "level": 72
+   },
+   {
+    "n": 329,
+    "kind": "quest",
+    "quest": "While Guthix Sleeps",
+    "xp": {
+     "thieving": 80000,
+     "farming": 75000,
+     "herblore": 75000,
+     "hunter": 50000
+    }
+   },
+   {
+    "n": 330,
+    "kind": "train",
+    "skill": "construction",
+    "level": 70
+   },
+   {
+    "n": 331,
+    "kind": "train",
+    "skill": "farming",
+    "level": 70
+   },
+   {
+    "n": 332,
+    "kind": "train",
+    "skill": "herblore",
+    "level": 70
+   },
+   {
+    "n": 333,
+    "kind": "train",
+    "skill": "hunter",
+    "level": 70
+   },
+   {
+    "n": 334,
+    "kind": "quest",
+    "quest": "Song of the Elves",
+    "xp": {
+     "agility": 40000,
+     "construction": 40000,
+     "farming": 40000,
+     "herblore": 40000,
+     "hunter": 40000,
+     "mining": 40000,
+     "smithing": 40000,
+     "woodcutting": 40000
+    }
+   },
+   {
+    "n": 335,
+    "kind": "train",
+    "skill": "firemaking",
+    "level": 75
+   },
+   {
+    "n": 336,
+    "kind": "train",
+    "skill": "runecraft",
+    "level": 60
+   },
+   {
+    "n": 337,
+    "kind": "quest",
+    "quest": "Desert Treasure II - The Fallen Empire",
+    "xp": {
+     "prayer": 300000
+    }
+   },
+   {
+    "n": 338,
+    "kind": "train",
+    "skill": "slayer",
+    "level": 74
+   },
+   {
+    "n": 339,
+    "kind": "train",
+    "skill": "woodcutting",
+    "level": 74
+   },
+   {
+    "n": 340,
+    "kind": "train",
+    "skill": "smithing",
+    "level": 72
+   },
+   {
+    "n": 341,
+    "kind": "train",
+    "skill": "cooking",
+    "level": 72
+   },
+   {
+    "n": 342,
+    "kind": "train",
+    "skill": "fletching",
+    "level": 70
+   },
+   {
+    "n": 343,
+    "kind": "quest",
+    "quest": "The Blood Moon Rises",
+    "xp": {
+     "herblore": 180000
+    }
+   },
+   {
+    "n": 344,
+    "kind": "quest",
+    "quest": "The Corsair Curse"
+   }
+  ]
+ }
+}

@@ -86,6 +86,44 @@ export interface QuestFactSource {
   everyAccount?: boolean
   /** Something needs it only started: a quest, a diary tier, an either-or choice or a goal. */
   startedMatters?: boolean
+  /** Skills whose level may be boosted, is needed only to finish, or can be got round. */
+  boostable?: string[]
+  finishOnly?: string[]
+  bypassable?: string[]
+  /** Quest points, combat level and Kudos needed. */
+  questPoints?: number
+  combat?: number
+  kudos?: number
+  /** What an ironman has to make for it, and the levels that takes. */
+  ironman?: IronmanNeedSource[]
+  /** Quest points and Kudos it gives, and Kudos it makes available afterwards. */
+  givesQuestPoints?: number
+  givesKudos?: number
+  opensKudos?: number
+}
+
+/** A skill at a level, as the facts files write it. */
+export interface LevelSource {
+  skill: string
+  level: number
+}
+
+/** An ironman's need of a quest: one of the options, each a set of levels; a condition when it applies only sometimes. */
+export interface IronmanNeedSource {
+  need: string
+  options: LevelSource[][]
+  condition?: string
+}
+
+/** One item of a diary tier's either-or choice. Exactly one of skill, quest, combat or other is set. */
+export interface ChoiceItemSource {
+  skill?: string
+  level?: number
+  boostable?: boolean
+  quest?: string
+  state?: string
+  combat?: number
+  other?: string
 }
 
 /**
@@ -98,6 +136,41 @@ export interface DiaryFactSource {
   rev: number
   /** Quest name to 'finished' or 'started', as the tier's page reads its tasks. */
   quests: Record<string, string>
+  /** The quests to plan on finished though the page reads them started. */
+  planFinished?: string[]
+  /** Skill to level (the safe reading), and the skills whose level may be boosted. */
+  levels?: Record<string, number>
+  boostable?: string[]
+  /** A lower Runecraft level that is enough with this many Raiments of the Eye pieces. */
+  raiments?: { level: number; pieces: number }
+  choices?: { options: ChoiceItemSource[][]; note?: string }[]
+  questPoints?: number
+  combat?: number
+  kudos?: number
+  allQuests?: boolean
+  ironman?: LevelSource[]
+  longTasks?: { amount: number; unit: string; text: string }[]
+  also?: string[]
+  gates?: { kind: string; name: string }[]
+}
+
+/** Who may count a boost: 'always' (everyone), 'never' (nobody), or an account with this level. */
+export type BoostRuleSource = string | LevelSource
+
+/**
+ * One boost of datasrc/boosts.json, under its skill. Exported from the quest and diary research
+ * (decision 1), never written by hand. Either `flat`, or `base` and `percent` of the level.
+ */
+export interface BoostSource {
+  name: string
+  phrase: string
+  page: string
+  rev: number
+  flat?: number
+  base?: number
+  percent?: number
+  main: BoostRuleSource
+  ironman: BoostRuleSource
 }
 
 /** One entry of datasrc/quests_lamps.json: a skill-choice reward, as the wiki's Lua writes it. */
