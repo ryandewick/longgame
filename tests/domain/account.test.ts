@@ -5,8 +5,10 @@ import {
   combatLevel,
   hasCompletedDiary,
   hasCompletedQuest,
+  hasStartedQuest,
   isDoneByEveryAccount,
   isIronman,
+  questProgress,
 } from '#shared/domain/account'
 import { accountWith } from './helpers'
 
@@ -52,6 +54,28 @@ describe('hasCompletedQuest and hasCompletedDiary', () => {
     expect(hasCompletedQuest(blankAccount(), 'Learning the Ropes')).toBe(true)
     expect(isDoneByEveryAccount("Cook's Assistant")).toBe(false)
     expect(hasCompletedQuest(accountWith(), "Cook's Assistant")).toBe(false)
+  })
+})
+
+describe('hasStartedQuest and questProgress', () => {
+  it('count a quest started when it is started or finished', () => {
+    const account = accountWith({ quests: ['Bone Voyage'], started: ['The Giant Dwarf'] })
+    expect(hasStartedQuest(account, 'The Giant Dwarf')).toBe(true)
+    expect(hasStartedQuest(account, 'Bone Voyage')).toBe(true)
+    expect(hasStartedQuest(account, 'Dragon Slayer I')).toBe(false)
+    expect(hasStartedQuest(accountWith({ allQuests: true }), 'Dragon Slayer I')).toBe(true)
+  })
+
+  it('say how far a quest has got, done before started', () => {
+    const account = accountWith({
+      quests: ['Bone Voyage', 'The Giant Dwarf'],
+      started: ['The Giant Dwarf', 'Ratcatchers'],
+    })
+    expect(questProgress(account, 'Bone Voyage')).toBe('done')
+    expect(questProgress(account, 'The Giant Dwarf')).toBe('done')
+    expect(questProgress(account, 'Ratcatchers')).toBe('started')
+    expect(questProgress(account, 'Dragon Slayer I')).toBe('not-done')
+    expect(questProgress(account, 'Learning the Ropes')).toBe('done')
   })
 })
 

@@ -3,7 +3,8 @@ import { skillName } from '#shared/data/skills'
 
 /**
  * The quests that unlock something the planner deals: each with a tick box, what it opens up and
- * the icons of the skills that trains. Two columns that read downwards, one on a narrow screen.
+ * the icons of the skills that trains. Two columns that read downwards, one on a narrow screen. A
+ * quest whose start matters can show as started: its box half filled and a "Started" tag.
  */
 defineProps<{
   quests: readonly UnlockRow[]
@@ -27,11 +28,16 @@ const emit = defineEmits<{
       <TickBox
         class="unlock-list__tick"
         :ticked="quest.done"
-        :label="`${quest.name}, ${quest.done ? 'done' : 'not done'}`"
+        :started="quest.started"
+        :label="unlockRowLabel(quest)"
+        :title="startedTickHint(quest) || undefined"
         @toggle="emit('toggle', quest.name)"
       >
         <b class="unlock-list__name" :class="{ 'unlock-list__name--done': quest.done }">
           {{ quest.name }}
+          <span v-if="quest.started" class="tag unlock-list__state" aria-hidden="true">
+            Started
+          </span>
         </b>
         <span class="unlock-list__opens">{{ quest.opens }}</span>
       </TickBox>
@@ -90,6 +96,12 @@ const emit = defineEmits<{
     &--done {
       color: var(--color-text-strong);
     }
+  }
+
+  // the tag after a started quest's name: the box's half fill said in words
+  &__state {
+    margin-left: 4px;
+    vertical-align: 1px;
   }
 
   &__opens {

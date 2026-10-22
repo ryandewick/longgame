@@ -144,7 +144,8 @@
   "requires": [
    "Druidic Ritual",
    "Tai Bwo Wannai Trio"
-  ]
+  ],
+  "startedMatters": true
  },
  "Bear Your Soul": {
   "kind": "miniquest",
@@ -182,7 +183,8 @@
   "requires": [
    "Dwarf Cannon",
    "Fishing Contest"
-  ]
+  ],
+  "startedMatters": true
  },
  "Big Chompy Bird Hunting": {
   "kind": "quest",
@@ -267,7 +269,8 @@
   "requires": [
    "Icthlarin's Little Helper",
    "Prince Ali Rescue"
-  ]
+  ],
+  "startedMatters": true
  },
  "Cook's Assistant": {
   "kind": "quest",
@@ -293,7 +296,11 @@
   },
   "requires": [
    "Priest in Peril"
-  ]
+  ],
+  "requiresStarted": [
+   "The Restless Ghost"
+  ],
+  "startedMatters": true
  },
  "Current Affairs": {
   "kind": "quest",
@@ -313,7 +320,11 @@
   "rev": 15365488,
   "levels": {
    "prayer": 31
-  }
+  },
+  "requiresStarted": [
+   "Desert Treasure I",
+   "The Restless Ghost"
+  ]
  },
  "Daddy's Home": {
   "kind": "miniquest",
@@ -416,7 +427,8 @@
    "The Tourist Trap",
    "Troll Stronghold",
    "Waterfall Quest"
-  ]
+  ],
+  "startedMatters": true
  },
  "Desert Treasure II - The Fallen Empire": {
   "kind": "quest",
@@ -464,7 +476,8 @@
  "Dragon Slayer I": {
   "kind": "quest",
   "page": "Dragon Slayer I",
-  "rev": 15370020
+  "rev": 15370020,
+  "startedMatters": true
  },
  "Dragon Slayer II": {
   "kind": "quest",
@@ -488,6 +501,9 @@
    "Dream Mentor",
    "Ghosts Ahoy",
    "Legends' Quest"
+  ],
+  "requiresStarted": [
+   "Barbarian Training"
   ]
  },
  "Dream Mentor": {
@@ -527,7 +543,8 @@
   "rev": 15314504,
   "levels": {
    "hunter": 27
-  }
+  },
+  "startedMatters": true
  },
  "Elemental Workshop I": {
   "kind": "quest",
@@ -537,7 +554,8 @@
    "crafting": 20,
    "mining": 20,
    "smithing": 20
-  }
+  },
+  "startedMatters": true
  },
  "Elemental Workshop II": {
   "kind": "quest",
@@ -549,7 +567,8 @@
   },
   "requires": [
    "Elemental Workshop I"
-  ]
+  ],
+  "startedMatters": true
  },
  "Enakhra's Lament": {
   "kind": "quest",
@@ -620,7 +639,8 @@
   ],
   "implies": [
    "Druidic Ritual"
-  ]
+  ],
+  "startedMatters": true
  },
  "Fallen From Grace": {
   "kind": "quest",
@@ -810,6 +830,9 @@
    "Fairytale II - Cure a Queen",
    "Land of the Goblins"
   ],
+  "requiresStarted": [
+   "The Restless Ghost"
+  ],
   "optional": true
  },
  "Horror from the Deep": {
@@ -829,7 +852,8 @@
   "rev": 15365541,
   "requires": [
    "Gertrude's Cat"
-  ]
+  ],
+  "startedMatters": true
  },
  "Imp Catcher": {
   "kind": "quest",
@@ -848,7 +872,8 @@
   },
   "requires": [
    "In Search of the Myreque"
-  ]
+  ],
+  "startedMatters": true
  },
  "In Search of Knowledge": {
   "kind": "miniquest",
@@ -964,7 +989,8 @@
    "Shilo Village",
    "Underground Pass",
    "Waterfall Quest"
-  ]
+  ],
+  "startedMatters": true
  },
  "Lost City": {
   "kind": "quest",
@@ -1087,7 +1113,8 @@
   "requires": [
    "The Grand Tree",
    "Tree Gnome Village"
-  ]
+  ],
+  "startedMatters": true
  },
  "Monkey Madness II": {
   "kind": "quest",
@@ -1129,7 +1156,8 @@
    "Big Chompy Bird Hunting",
    "Roving Elves",
    "Sheep Herder"
-  ]
+  ],
+  "startedMatters": true
  },
  "Mourning's End Part II": {
   "kind": "quest",
@@ -1187,7 +1215,8 @@
   },
   "requires": [
    "The Fremennik Trials"
-  ]
+  ],
+  "startedMatters": true
  },
  "One Small Favour": {
   "kind": "quest",
@@ -1202,7 +1231,8 @@
   "requires": [
    "Rune Mysteries",
    "Shilo Village"
-  ]
+  ],
+  "startedMatters": true
  },
  "Pandemonium": {
   "kind": "quest",
@@ -1273,6 +1303,9 @@
   "requires": [
    "Rag and Bone Man I",
    "Skippy and the Mogres"
+  ],
+  "requiresStarted": [
+   "Creature of Fenkenstrain"
   ]
  },
  "Ratcatchers": {
@@ -1281,7 +1314,11 @@
   "rev": 15351359,
   "requires": [
    "Icthlarin's Little Helper"
-  ]
+  ],
+  "requiresStarted": [
+   "The Giant Dwarf"
+  ],
+  "startedMatters": true
  },
  "Recipe for Disaster": {
   "kind": "quest",
@@ -1409,6 +1446,9 @@
   "rev": 15361142,
   "requires": [
    "Recipe for Disaster - Another Cook's Quest"
+  ],
+  "requiresStarted": [
+   "Legends' Quest"
   ]
  },
  "Recipe for Disaster - Skrach Uglogwee": {
@@ -1534,7 +1574,8 @@
   "rev": 15364120,
   "levels": {
    "firemaking": 30
-  }
+  },
+  "startedMatters": true
  },
  "Secrets of the North": {
   "kind": "quest",
@@ -1722,7 +1763,8 @@
   },
   "requires": [
    "Jungle Potion"
-  ]
+  ],
+  "startedMatters": true
  },
  "Tale of the Righteous": {
   "kind": "quest",
@@ -1870,7 +1912,8 @@
   "rev": 15376145,
   "levels": {
    "thieving": 30
-  }
+  },
+  "startedMatters": true
  },
  "The Final Dawn": {
   "kind": "quest",
@@ -1892,7 +1935,8 @@
   "rev": 15316647,
   "requires": [
    "Client of Kourend"
-  ]
+  ],
+  "startedMatters": true
  },
  "The Fractured Archive": {
   "kind": "miniquest",
@@ -1931,7 +1975,8 @@
   },
   "requires": [
    "The Fremennik Trials"
-  ]
+  ],
+  "startedMatters": true
  },
  "The Fremennik Trials": {
   "kind": "quest",
@@ -1979,7 +2024,8 @@
    "firemaking": 16,
    "magic": 33,
    "thieving": 14
-  }
+  },
+  "startedMatters": true
  },
  "The Golem": {
   "kind": "quest",
@@ -2011,7 +2057,8 @@
    "Cabin Fever",
    "Creature of Fenkenstrain",
    "Recipe for Disaster - Pirate Pete"
-  ]
+  ],
+  "startedMatters": true
  },
  "The Hand in the Sand": {
   "kind": "quest",
@@ -2106,7 +2153,8 @@
  "The Restless Ghost": {
   "kind": "quest",
   "page": "The Restless Ghost",
-  "rev": 15367047
+  "rev": 15367047,
+  "startedMatters": true
  },
  "The Ribbiting Tale of a Lily Pad Labour Dispute": {
   "kind": "quest",
@@ -2150,7 +2198,8 @@
   "requires": [
    "Heroes' Quest",
    "The Fremennik Trials"
-  ]
+  ],
+  "startedMatters": true
  },
  "Tower of Life": {
   "kind": "quest",
@@ -2193,7 +2242,8 @@
   },
   "requires": [
    "Death Plateau"
-  ]
+  ],
+  "startedMatters": true
  },
  "Troubled Tortugans": {
   "kind": "quest",
@@ -2271,12 +2321,14 @@
   },
   "implies": [
    "Druidic Ritual"
-  ]
+  ],
+  "startedMatters": true
  },
  "Waterfall Quest": {
   "kind": "quest",
   "page": "Waterfall Quest",
-  "rev": 15357907
+  "rev": 15357907,
+  "startedMatters": true
  },
  "What Lies Below": {
   "kind": "quest",

@@ -167,6 +167,25 @@ describe('migrateLegacySave: the account', () => {
     expect(migrateLegacySave(legacy).completedQuests).toEqual(['Bone Voyage', "Cook's Assistant"])
   })
 
+  it('keeps the quests WikiSync had read as started, where the start matters to something', () => {
+    const legacy = blankLegacySave()
+    legacy.manual = { quests: { 'The Giant Dwarf': true } }
+    legacy.ws = {
+      quests: {
+        'Dragon Slayer I': 1,
+        'Fairytale II - Cure a Queen': 1,
+        // nothing needs Cook's Assistant only started; The Giant Dwarf is ticked done by hand
+        'Cook’s Assistant': 1,
+        'The Giant Dwarf': 1,
+        'Plague City': 0,
+      },
+    }
+    expect(migrateLegacySave(legacy).startedQuests).toEqual([
+      'Dragon Slayer I',
+      'Fairytale II - Cure a Queen',
+    ])
+  })
+
   it('turns diaries WikiSync had read into ticks, under the names requirements use', () => {
     const legacy = blankLegacySave()
     legacy.ws = {
@@ -382,6 +401,27 @@ describe('accountFromSave', () => {
   })
 })
 
+describe('accountFromSave: what the ticks prove', () => {
+  it('reads every quest and tier the ticks prove, not only the ones ticked', () => {
+    const account = accountFromSave({
+      ...blankSave(),
+      completedQuests: ['Creature of Fenkenstrain'],
+      completedDiaries: ['Kandarin Easy'],
+    })
+    expect(account.completedQuests.has('Priest in Peril')).toBe(true)
+    expect([...account.startedQuests].sort()).toEqual([
+      'Elemental Workshop I',
+      'The Restless Ghost',
+    ])
+  })
+
+  it('counts every tier as claimed, with what it proves, under the diary cape shortcut', () => {
+    const account = accountFromSave({ ...blankSave(), allDiaries: true })
+    expect(account.completedDiaries.size).toBe(48)
+    expect(account.startedQuests.has('Fairytale II - Cure a Queen')).toBe(true)
+  })
+})
+
 describe('readSave', () => {
   it('migrates a vanilla save', () => {
     const legacy = { ...blankLegacySave(), name: 'Zezima' }
@@ -404,21 +444,28 @@ describe('readSave', () => {
   })
 
   it('reads a version 2 save written before answers were kept as one with nothing declined', () => {
-    const { declinedQuests, declinedDiaries, ...older } = {
+    const { declinedQuests, declinedDiaries, startedQuests, ...older } = {
       ...blankSave(),
       name: 'Zezima',
       completedQuests: ['Bone Voyage'],
     }
     expect(declinedQuests).toEqual([])
     expect(declinedDiaries).toEqual([])
+    expect(startedQuests).toEqual([])
     expect(older).not.toHaveProperty('declinedQuests')
     expect(older.version).toBe(SAVE_VERSION)
 
     expect(readSave(JSON.parse(JSON.stringify(older)))).toEqual({
       ...older,
+      startedQuests: [],
       declinedQuests: [],
       declinedDiaries: [],
     })
+  })
+
+  it('keeps the quests started', () => {
+    const save = { ...blankSave(), startedQuests: ['Fairytale II - Cure a Queen'] }
+    expect(readSave(JSON.parse(JSON.stringify(save)))).toEqual(save)
   })
 
   it('declines nothing in a vanilla save, which never asked', () => {

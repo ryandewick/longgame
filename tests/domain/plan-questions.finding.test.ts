@@ -8,15 +8,27 @@ import { accountFromSave, migrateLegacySave, type LegacySaveV1 } from '#shared/d
 
 /*
  * The measurement the question flow was designed on, kept as it was taken: before the app knew
- * which quests require which, and before it knew the levels a quest needs. Both are switched off
- * here (every quest's facts lose their `requires` and their levels), which is the only reason this
- * is a file of its own. With them on the same account needs fewer questions (see
+ * which quests require which, before it knew the levels a quest needs, and before it knew what a
+ * claimed diary tier proves. All are switched off here (every quest's facts lose their `requires`,
+ * their quests needed only started and their levels, and every tier its quests), which is the
+ * only reason this is a file of its own. With them on the same account needs fewer questions (see
  * plan-questions.test.ts): one yes settles a chain, and a quest the account's levels rule out is
  * never asked.
  */
 vi.mock('#shared/data/quest-facts', async (importOriginal) => {
   const { QUEST_FACTS } = await importOriginal<typeof import('#shared/data/quest-facts')>()
-  return { QUEST_FACTS: QUEST_FACTS.map((quest) => ({ ...quest, requires: [], levels: {} })) }
+  return {
+    QUEST_FACTS: QUEST_FACTS.map((quest) => ({
+      ...quest,
+      requires: [],
+      requiresStarted: [],
+      levels: {},
+    })),
+  }
+})
+vi.mock('#shared/data/diary-facts', async (importOriginal) => {
+  const { DIARY_FACTS } = await importOriginal<typeof import('#shared/data/diary-facts')>()
+  return { DIARY_FACTS: DIARY_FACTS.map((diary) => ({ ...diary, quests: {} })) }
 })
 
 const fixture = JSON.parse(
@@ -29,6 +41,7 @@ describe('the finding the question flow rests on', () => {
   it('takes the fixture account from 2,819 hours to 2,330 in 13 questions, asked biggest saving first', () => {
     let ticks: QuestTicks = {
       completedQuests: [],
+      startedQuests: [],
       completedDiaries: [],
       declinedQuests: [],
       declinedDiaries: [],
@@ -36,6 +49,7 @@ describe('the finding the question flow rests on', () => {
     const account = (): Account => ({
       ...truth,
       completedQuests: new Set(ticks.completedQuests),
+      startedQuests: new Set(),
       completedDiaries: new Set(),
     })
     expect(Math.round(maxProgress(account()).hoursLeft)).toBe(2819)

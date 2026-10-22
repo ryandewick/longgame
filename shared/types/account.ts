@@ -18,9 +18,14 @@ export interface AccountPreferences {
 export interface Account {
   readonly type: AccountType
   readonly skills: Readonly<Record<SkillKey, SkillStat>>
-  /** Quest names as the data spells them, with straight apostrophes. */
+  /**
+   * Quest names as the data spells them, with straight apostrophes: every quest the ticks prove
+   * finished, not only the ones ticked (see shared/domain/quest-proof.ts).
+   */
   readonly completedQuests: ReadonlySet<string>
-  /** Region and tier, for example 'Ardougne Medium'. */
+  /** Quests the ticks prove started and not finished. */
+  readonly startedQuests: ReadonlySet<string>
+  /** Region and tier, for example 'Ardougne Medium': every tier the ticks prove claimed. */
   readonly completedDiaries: ReadonlySet<string>
   /** The quest cape shortcut: every quest counts as done. */
   readonly allQuests: boolean

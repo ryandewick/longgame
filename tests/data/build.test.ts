@@ -2,17 +2,20 @@
 import { describe, expect, it } from 'vitest'
 import type { QuestFacts } from '#shared/types/quest'
 import { buildMethods } from '#shared/data/build-methods'
+import { buildDiaryFacts } from '#shared/data/build-diary-facts'
 import { buildQuestFacts } from '#shared/data/build-quest-facts'
 import { buildQuests } from '#shared/data/build-quests'
 import { buildResets } from '#shared/data/build-resets'
 import { DataSourceError } from '#shared/data/sources'
 import type {
+  DiaryFactSource,
   FixedQuestXpSource,
   LampSource,
   MethodSource,
   QuestFactSource,
   ResetSource,
 } from '#shared/data/sources'
+import { DIARY_REGIONS, DIARY_TIERS } from '#shared/data/diaries'
 import { NO_REQUIREMENTS } from '#shared/domain/requirements'
 
 const methodSource = (overrides: Partial<MethodSource> = {}): MethodSource => ({
@@ -531,10 +534,31 @@ describe('buildQuestFacts', () => {
       revision: 15_000_000,
       levels: { mining: 40, herblore: 14 },
       requires: ['Druidic Ritual'],
+      requiresStarted: [],
       optional: false,
       doneByEveryAccount: false,
+      startedMatters: false,
     })
     expect(built[0]?.requires).toEqual(['Plague City'])
+  })
+
+  it('keeps the quests needed only started out of the chain, and marks the ones whose start matters', () => {
+    const [creature, priest, ghost] = buildQuestFacts({
+      'Creature of Fenkenstrain': entry({
+        requires: ['Priest in Peril'],
+        requiresStarted: ['The Restless Ghost'],
+      }),
+      'The Restless Ghost': entry({ startedMatters: true }),
+      'Priest in Peril': entry(),
+    })
+    expect(creature).toMatchObject({
+      name: 'Creature of Fenkenstrain',
+      requires: ['Priest in Peril'],
+      requiresStarted: ['The Restless Ghost'],
+      startedMatters: false,
+    })
+    expect(priest).toMatchObject({ name: 'Priest in Peril', startedMatters: false })
+    expect(ghost).toMatchObject({ name: 'The Restless Ghost', startedMatters: true })
   })
 
   it('describes the lamps it adds, and marks optional miniquests and the quest every account has done', () => {
@@ -579,6 +603,32 @@ describe('buildQuestFacts', () => {
       /Biohazard > Plague City > Underground Pass > Biohazard is a cycle/,
     ],
     [
+      'a quest needed started that is not an entry',
+      { Quest: entry({ requiresStarted: ['The Restles Ghost'] }) },
+      /Quest: needs 'The Restles Ghost', which is not an entry/,
+    ],
+    [
+      'a quest needed both finished and started',
+      {
+        Quest: entry({ requires: ['Plague City'], requiresStarted: ['Plague City'] }),
+        'Plague City': entry({ startedMatters: true }),
+      },
+      /Quest: needs 'Plague City' finished and started/,
+    ],
+    [
+      'a quest needed started whose start is not marked as mattering',
+      { Quest: entry({ requiresStarted: ['Plague City'] }), 'Plague City': entry() },
+      /Quest: needs 'Plague City' started, which is not marked as mattering started/,
+    ],
+    [
+      'a chain that comes back on itself through a quest needed started',
+      {
+        Biohazard: entry({ requires: ['Plague City'] }),
+        'Plague City': entry({ requiresStarted: ['Biohazard'] }),
+      },
+      /Biohazard > Plague City > Biohazard is a cycle/,
+    ],
+    [
       'an optional entry that is not a miniquest',
       { Quest: entry({ optional: true }) },
       /Quest: optional, but not a miniquest/,
@@ -595,6 +645,96 @@ describe('buildQuestFacts', () => {
     ],
   ])('refuses %s', (_case, source, problem) => {
     expect(problemsOf(() => buildQuestFacts(source)).join('\n')).toMatch(problem)
+  })
+})
+
+describe('buildDiaryFacts', () => {
+  const quests = buildQuestFacts({
+    'Fairytale II - Cure a Queen': {
+      kind: 'quest',
+      page: 'Fairytale II',
+      rev: 1,
+      startedMatters: true,
+    },
+    'Plague City': { kind: 'quest', page: 'Plague City', rev: 1 },
+  })
+  /** Every tier the app knows, each with no quests unless given some. */
+  const everyTier = (
+    overrides: Record<string, Partial<DiaryFactSource>> = {},
+  ): Record<string, DiaryFactSource> =>
+    Object.fromEntries(
+      DIARY_REGIONS.flatMap((region) =>
+        DIARY_TIERS.map((tier) => {
+          const name = `${region} ${tier}`
+          return [
+            name,
+            { page: `${region} Diary`, rev: 15_000_000, quests: {}, ...overrides[name] },
+          ]
+        }),
+      ),
+    )
+
+  it('builds the 48 tiers region by region, easiest first, with the quests their tasks need', () => {
+    const built = buildDiaryFacts(
+      everyTier({
+        'Ardougne Medium': {
+          quests: { 'Fairytale II - Cure a Queen': 'started', 'Plague City': 'finished' },
+        },
+      }),
+      quests,
+    )
+    expect(built).toHaveLength(48)
+    expect(built.slice(0, 5).map((diary) => diary.name)).toEqual([
+      'Ardougne Easy',
+      'Ardougne Medium',
+      'Ardougne Hard',
+      'Ardougne Elite',
+      'Desert Easy',
+    ])
+    expect(built[1]).toEqual({
+      name: 'Ardougne Medium',
+      region: 'Ardougne',
+      tier: 'Medium',
+      page: 'Ardougne Diary',
+      revision: 15_000_000,
+      quests: { 'Fairytale II - Cure a Queen': 'started', 'Plague City': 'finished' },
+    })
+  })
+
+  it.each<[string, Record<string, DiaryFactSource>, RegExp]>([
+    [
+      'a missing tier',
+      Object.fromEntries(Object.entries(everyTier()).filter(([name]) => name !== 'Varrock Elite')),
+      /Varrock Elite: missing/,
+    ],
+    [
+      'a tier it does not know',
+      { ...everyTier(), 'Varrock Master': { page: 'Varrock Diary', rev: 1, quests: {} } },
+      /'Varrock Master': not a tier the app knows/,
+    ],
+    ['a tier with no page', everyTier({ 'Desert Hard': { page: ' ' } }), /Desert Hard: no page/],
+    [
+      'a revision that is not one',
+      everyTier({ 'Desert Hard': { rev: -1 } }),
+      /Desert Hard: revision -1/,
+    ],
+    [
+      'a quest that is not an entry',
+      everyTier({ 'Desert Hard': { quests: { Contact: 'finished' } } }),
+      /Desert Hard: needs 'Contact', which is not a quest entry/,
+    ],
+    [
+      'a state it does not know',
+      everyTier({ 'Desert Hard': { quests: { 'Plague City': 'halfway' } } }),
+      /Desert Hard: needs 'Plague City' halfway/,
+    ],
+    [
+      'a quest needed started whose start is not marked as mattering',
+      everyTier({ 'Desert Hard': { quests: { 'Plague City': 'started' } } }),
+      /Desert Hard: needs 'Plague City' started, which is not marked as mattering started/,
+    ],
+  ])('refuses %s', (_case, source, problem) => {
+    expect(problemsOf(() => buildDiaryFacts(source, quests)).join('\n')).toMatch(problem)
   })
 })
 

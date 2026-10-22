@@ -1,9 +1,10 @@
 import type { Account } from '#shared/types/account'
 import type { Quest, QuestFacts } from '#shared/types/quest'
 import type { SkillKey } from '#shared/types/skill'
+import { DIARY_REGIONS, DIARY_TIERS } from '#shared/data/diaries'
 import { QUESTS } from '#shared/data/quests'
 import { skillName } from '#shared/data/skills'
-import { hasCompletedQuest } from '#shared/domain/account'
+import { hasCompletedQuest, hasStartedQuest, type QuestProgressState } from '#shared/domain/account'
 import { formatHours, formatNumber, formatShortNumber } from '#shared/domain/format'
 import {
   SMALLEST_SAVING_IN_HOURS,
@@ -11,7 +12,8 @@ import {
   type PlanQuestion,
   type PlanRequirement,
 } from '#shared/domain/plan-questions'
-import type { QuestTicks } from '#shared/domain/quest-ticks'
+import { startedMatters } from '#shared/domain/quest-proof'
+import type { QuestTickChange, QuestTicks } from '#shared/domain/quest-ticks'
 import { questTotalXp } from '#shared/domain/quests'
 
 /*
@@ -173,6 +175,85 @@ export function alsoChangedSentence(ticked: boolean, quests: readonly string[]):
 export function alsoChangedNotice(answer: GivenAnswer): string {
   const also = alsoChangedSentence(true, answer.alsoTicked)
   return also && `${requirementLabel(answer.requirement)} ticked. ${also}`
+}
+
+/** What the toast says after a press of a tick box: a few words set in bold, then what else moved. */
+export interface TickNews {
+  readonly lead: string
+  readonly message: string
+}
+
+/** What a press of a tick box moved besides its own quest or tier. */
+type Moved = Omit<QuestTickChange, 'ticks'>
+
+const DIARY_NAMES: ReadonlySet<string> = new Set(
+  DIARY_REGIONS.flatMap((region) => DIARY_TIERS.map((tier) => `${region} ${tier}`)),
+)
+
+/** A quest by its name, a diary tier as 'the Ardougne Medium diary'. */
+function inSentence(name: string): string {
+  return DIARY_NAMES.has(name) ? `the ${name} diary` : name
+}
+
+/**
+ * What else a press moved, as sentences: 'Also ticked: Ardougne Easy, Plague City and 3 more.
+ * Also marked started: Fairytale II - Cure a Queen.' Tiers come first. Empty when nothing moved.
+ */
+function movedSentences(ticked: boolean, moved: Moved): string {
+  const sentences: string[] = []
+  const changed = [...moved.diariesChanged, ...moved.alsoChanged]
+  if (changed.length)
+    sentences.push(`Also ${ticked ? 'ticked' : 'unticked'}: ${listInWords(changed)}.`)
+  if (moved.alsoStarted.length)
+    sentences.push(`Also marked started: ${listInWords(moved.alsoStarted)}.`)
+  return sentences.join(' ')
+}
+
+/** What a press of a quest's tick box did, from where to where, and what else it moved. */
+export interface QuestStepNews extends Moved {
+  readonly from: QuestProgressState
+  readonly to: QuestProgressState
+}
+
+/**
+ * The toast after a press of a quest's tick box. It says why a quest stopped at started rather
+ * than going back to not done, why nothing changed while the diary shortcut proves the quest, and
+ * otherwise what else moved with it. Null when the quest moved alone, as far as it was asked to.
+ */
+export function questStepNews(name: string, step: QuestStepNews): TickNews | null {
+  if (step.heldStartedBy.length) {
+    const holders = listInWords(step.heldStartedBy.map(inSentence))
+    const need = step.heldStartedBy.length === 1 ? 'needs' : 'need'
+    const why = `${holders.charAt(0).toUpperCase()}${holders.slice(1)} ${need} it started.`
+    return {
+      lead: `${name} is still started.`,
+      message: [why, movedSentences(false, step)].filter(Boolean).join(' '),
+    }
+  }
+  if (step.to === step.from) {
+    return {
+      lead: `${name} stays ${step.to === 'done' ? 'done' : 'started'}.`,
+      message:
+        'While “I have done every diary” is on, every diary counts as done, and one needs it.',
+    }
+  }
+  const ticked = step.to !== 'not-done'
+  const moved = movedSentences(ticked, step)
+  if (!moved) return null
+  const action =
+    step.to === 'done' ? 'ticked' : step.to === 'started' ? 'marked started' : 'unticked'
+  return { lead: `${name} ${action}.`, message: moved }
+}
+
+/** What a press of a diary tier's tick box did, and what else it moved. */
+export interface DiaryStepNews extends Moved {
+  readonly ticked: boolean
+}
+
+/** The toast after a press of a tier's tick box, or null when the tier moved alone. */
+export function diaryStepNews(name: string, step: DiaryStepNews): TickNews | null {
+  const moved = movedSentences(step.ticked, step)
+  return moved ? { lead: `${name} ${step.ticked ? 'ticked' : 'unticked'}.`, message: moved } : null
 }
 
 /** The two rounds of questions: the ones that save hours, then the smaller ones. */
@@ -419,6 +500,10 @@ export function questionsDoneSummary(answers: readonly GivenAnswer[]): string {
 export interface UnlockRow {
   readonly name: string
   readonly done: boolean
+  /** Started and not finished. */
+  readonly started: boolean
+  /** Something needs it only started, so its tick box has a started state. */
+  readonly startedMatters: boolean
   /** What it stands in front of: 'Hardwood tree runs, Drift net fishing and 8 more'. */
   readonly opens: string
   /** The first few of the skills those train, for their icons. */
@@ -434,14 +519,35 @@ const MOST_SKILL_ICONS = 4
 export function unlockRows(account: Account, quests: readonly string[]): UnlockRow[] {
   return quests.map((name) => {
     const gated = gatedActivities(account, { kind: 'quest', name })
+    const done = hasCompletedQuest(account, name)
     return {
       name,
-      done: hasCompletedQuest(account, name),
+      done,
+      started: !done && hasStartedQuest(account, name),
+      startedMatters: startedMatters(name),
       opens: listInWords(gated.names, 2),
       skills: gated.skills.slice(0, MOST_SKILL_ICONS),
       moreSkills: Math.max(0, gated.skills.length - MOST_SKILL_ICONS),
     }
   })
+}
+
+/** A quest's state in the words a tick box gives it: 'done', 'started' or 'not done'. */
+function progressWords(row: { readonly done: boolean; readonly started: boolean }): string {
+  return row.done ? 'done' : row.started ? 'started' : 'not done'
+}
+
+/** What a screen reader calls an unlock row's tick box: 'Fairytale II - Cure a Queen, started'. */
+export function unlockRowLabel(row: UnlockRow): string {
+  return `${row.name}, ${progressWords(row)}`
+}
+
+/**
+ * The hint on the tick box of a quest whose start matters: it takes three presses to go round.
+ * Empty for any other quest.
+ */
+export function startedTickHint(row: { readonly startedMatters: boolean }): string {
+  return row.startedMatters ? 'Press once for started, again for done.' : ''
 }
 
 /** What an entry is, in a word beside its name, when it is not a quest. */
@@ -451,6 +557,10 @@ export type QuestRowKind = '' | 'miniquest' | 'optional' | 'activity'
 export interface QuestRow {
   readonly name: string
   readonly done: boolean
+  /** Started and not finished. */
+  readonly started: boolean
+  /** Something needs it only started, so its tick box has a started state. */
+  readonly startedMatters: boolean
   /** Everything it pays, short: '140k'. Empty when it pays no XP. */
   readonly xp: string
   /** 'miniquest'; 'optional' for a miniquest that no quest and no diary task needs; 'activity'. */
@@ -483,9 +593,12 @@ export function questRows(
   return entries.map((entry) => {
     const quest = paying.get(entry.name)
     const xp = quest ? questTotalXp(quest) : 0
+    const done = hasCompletedQuest(account, entry.name)
     return {
       name: entry.name,
-      done: hasCompletedQuest(account, entry.name),
+      done,
+      started: !done && hasStartedQuest(account, entry.name),
+      startedMatters: entry.startedMatters,
       xp: xp ? formatShortNumber(xp) : '',
       kind: rowKind(entry),
       doneByEveryAccount: entry.doneByEveryAccount,
@@ -496,7 +609,7 @@ export function questRows(
 /** What a screen reader calls a row's tick box: 'Bear Your Soul, optional miniquest, not done'. */
 export function questRowLabel(row: QuestRow): string {
   const kind = row.kind === 'optional' ? 'optional miniquest' : row.kind
-  const state = row.doneByEveryAccount ? 'done by every account' : row.done ? 'done' : 'not done'
+  const state = row.doneByEveryAccount ? 'done by every account' : progressWords(row)
   return [row.name, kind, state].filter(Boolean).join(', ')
 }
 
@@ -505,8 +618,8 @@ export function doneByEveryAccountNote(name: string): string {
   return `Every account has done ${name}: it is how a player reaches the mainland.`
 }
 
-/** Which of a list's quests to show. */
-export type QuestFilter = 'all' | 'not-done' | 'done'
+/** Which of a list's quests to show. A started quest is not done, so "not done" shows it too. */
+export type QuestFilter = 'all' | 'not-done' | 'started' | 'done'
 
 /** The choices of the filter, as their chips say them. */
 export const QUEST_FILTER_OPTIONS: readonly {
@@ -515,21 +628,27 @@ export const QUEST_FILTER_OPTIONS: readonly {
 }[] = [
   { value: 'all', label: 'All' },
   { value: 'not-done', label: 'Not done' },
+  { value: 'started', label: 'Started' },
   { value: 'done', label: 'Done' },
 ]
 
-/** The rows whose name holds the search text, whatever its capitals, and that pass the filter. */
-export function filterQuestRows<Row extends { readonly name: string; readonly done: boolean }>(
-  rows: readonly Row[],
-  search: string,
+/** Does a row pass the filter? */
+function passes(
+  row: { readonly done: boolean; readonly started: boolean },
   filter: QuestFilter,
-): Row[] {
+): boolean {
+  if (filter === 'done') return row.done
+  if (filter === 'not-done') return !row.done
+  if (filter === 'started') return row.started && !row.done
+  return true
+}
+
+/** The rows whose name holds the search text, whatever its capitals, and that pass the filter. */
+export function filterQuestRows<
+  Row extends { readonly name: string; readonly done: boolean; readonly started: boolean },
+>(rows: readonly Row[], search: string, filter: QuestFilter): Row[] {
   const sought = search.trim().toLowerCase()
-  return rows.filter(
-    (row) =>
-      row.name.toLowerCase().includes(sought) &&
-      (filter === 'all' || row.done === (filter === 'done')),
-  )
+  return rows.filter((row) => row.name.toLowerCase().includes(sought) && passes(row, filter))
 }
 
 /** How many of a list are done, as its heading's aside says: '22 of 39 ticked'. */

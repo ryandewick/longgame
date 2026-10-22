@@ -12,6 +12,7 @@ import type { SkillKey, SkillStat } from '../types/skill'
 import type { XpSnapshot } from '../types/snapshot'
 import { forEverySkill, isSkillKey } from '../data/skills'
 import { blankAccount } from './account'
+import { provenProgress, startedMatters } from './quest-proof'
 import type { ResetLog } from './resets'
 
 /*
@@ -56,6 +57,12 @@ export interface SavedState {
   readonly accountType: AccountType | null
   readonly hiscores: SavedHiscores | null
   readonly completedQuests: readonly string[]
+  /**
+   * Quests started and not finished, only ever ones whose start matters to something (Fairytale II,
+   * for the fairy rings). Added after version 2 was first written: a save without it reads as
+   * none started.
+   */
+  readonly startedQuests: readonly string[]
   readonly completedDiaries: readonly string[]
   /**
    * Quests and diary tiers the player has said are not done yet, so they are not asked about
@@ -75,7 +82,7 @@ export interface SavedState {
 }
 
 /** The fields a version 2 save may lack, because they were added after the first ones were written. */
-type AddedSinceVersionTwo = Pick<SavedState, 'declinedQuests' | 'declinedDiaries'>
+type AddedSinceVersionTwo = Pick<SavedState, 'declinedQuests' | 'declinedDiaries' | 'startedQuests'>
 
 /** A save for someone who has never used the app. */
 export function blankSave(): SavedState {
@@ -85,6 +92,7 @@ export function blankSave(): SavedState {
     accountType: null,
     hiscores: null,
     completedQuests: [],
+    startedQuests: [],
     completedDiaries: [],
     declinedQuests: [],
     declinedDiaries: [],
@@ -107,14 +115,20 @@ export function blankSave(): SavedState {
   }
 }
 
-/** The account the rules work on, read out of a save. */
+/**
+ * The account the rules work on, read out of a save. Its quests and tiers are everything the
+ * ticks prove (quest-proof.ts), so a save from before a rule was written gains what it proves; the
+ * diary cape shortcut proves what every tier would.
+ */
 export function accountFromSave(save: SavedState): Account {
+  const proven = provenProgress(save, save.allDiaries)
   return {
     // until the lookup says otherwise an account is treated as a main, which hides nothing
     type: save.accountType ?? 'main',
     skills: save.hiscores?.skills ?? blankAccount().skills,
-    completedQuests: new Set(save.completedQuests),
-    completedDiaries: new Set(save.completedDiaries),
+    completedQuests: proven.completedQuests,
+    startedQuests: proven.startedQuests,
+    completedDiaries: proven.completedDiaries,
     allQuests: save.allQuests,
     allDiaries: save.allDiaries,
     preferences: {
@@ -146,7 +160,7 @@ export interface LegacyHiscores {
 
 /** Quest and diary progress from the private WikiSync add-on that one local copy had. */
 export interface LegacyWikiSync {
-  /** Quest name to state: 2 is complete. */
+  /** Quest name to state: 0 is not started, 1 is started, 2 is complete. */
   quests?: Record<string, number>
   /** Region to tier to progress. */
   achievement_diaries?: Record<string, Record<string, { complete?: boolean }>>
@@ -262,11 +276,20 @@ function bySkill(
 /** WikiSync writes some quest names with a curly apostrophe; the data uses straight ones. */
 const straightenApostrophes = (name: string): string => name.replaceAll('’', "'")
 
-function completedQuests(legacy: LegacySaveV1): string[] {
-  const synced = Object.entries(legacy.ws?.quests ?? {})
-    .filter(([, state]) => state === 2)
+/** The quests WikiSync had read in one state, under the data's names. */
+function syncedQuests(legacy: LegacySaveV1, wanted: number): string[] {
+  return Object.entries(legacy.ws?.quests ?? {})
+    .filter(([, state]) => state === wanted)
     .map(([name]) => straightenApostrophes(name))
-  return [...new Set([...tickedNames(legacy.manual?.quests), ...synced])]
+}
+
+function completedQuests(legacy: LegacySaveV1): string[] {
+  return [...new Set([...tickedNames(legacy.manual?.quests), ...syncedQuests(legacy, 2)])]
+}
+
+/** The quests WikiSync had read as started, where the start matters and nothing ticked them done. */
+function startedQuests(legacy: LegacySaveV1, completed: readonly string[]): string[] {
+  return syncedQuests(legacy, 1).filter((name) => startedMatters(name) && !completed.includes(name))
 }
 
 function completedDiaries(legacy: LegacySaveV1): string[] {
@@ -377,19 +400,22 @@ function migrateHistoryEntry(entry: LegacyHistoryEntry): HistoryEntry {
 /**
  * Brings a save from the vanilla app up to the current format. Nothing the player did is lost:
  * quests and diaries WikiSync had read become ordinary ticks, since this app cannot read them
- * again. A skill this app does not know (one Jagex added after the data was built) is dropped.
+ * again, and so do the quests it had read as started, where the start matters to something. A
+ * skill this app does not know (one Jagex added after the data was built) is dropped.
  */
 export function migrateLegacySave(legacy: LegacySaveV1): SavedState {
   const blank = blankSave()
   const preferences = legacy.prefs ?? {}
   const mood = isMood(preferences.mood) ? preferences.mood : blank.preferences.mood
+  const completed = completedQuests(legacy)
   return {
     version: SAVE_VERSION,
     name: legacy.name ?? '',
     accountType:
       preferences.account === 'main' || preferences.account === 'iron' ? preferences.account : null,
     hiscores: legacy.hs ? migrateHiscores(legacy.hs) : null,
-    completedQuests: completedQuests(legacy),
+    completedQuests: completed,
+    startedQuests: startedQuests(legacy, completed),
     completedDiaries: completedDiaries(legacy),
     // the vanilla app never asked, so nothing was ever declined
     declinedQuests: [],
@@ -440,6 +466,7 @@ export function readSave(value: unknown): SavedState | null {
   // them. That is all an older save needs, so adding them did not take a new version number.
   return {
     ...save,
+    startedQuests: save.startedQuests ?? [],
     declinedQuests: save.declinedQuests ?? [],
     declinedDiaries: save.declinedDiaries ?? [],
   }

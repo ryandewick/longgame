@@ -7,9 +7,8 @@ import { QUEST_FACTS } from '../data/quest-facts'
  *
  * The chains are the quest facts' `requires`: what each quest's page says must be finished first,
  * and Druidic Ritual behind a Herblore level. A quest that only has to be started is not part of a
- * chain, since finishing the later quest says nothing about whether it was finished.
- *
- * Only quests are chained. Nothing is inferred between diary tiers, or between a diary and a quest.
+ * chain, since finishing the later quest says only that it was started (quest-proof.ts marks it
+ * so). What diary tiers prove is worked out in quest-proof.ts too.
  */
 
 /** The chains between quests, read in both directions and all the way along. */

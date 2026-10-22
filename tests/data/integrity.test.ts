@@ -8,6 +8,7 @@ import { describe, expect, it } from 'vitest'
 import type { Method } from '#shared/types/method'
 import type { QuestFacts } from '#shared/types/quest'
 import type { Requirements } from '#shared/types/requirement'
+import { DIARY_FACTS } from '#shared/data/diary-facts'
 import { METHODS } from '#shared/data/methods'
 import { QUEST_FACTS } from '#shared/data/quest-facts'
 import { QUESTS } from '#shared/data/quests'
@@ -484,6 +485,26 @@ describe('quest facts', () => {
     expect(questDependants('Watchtower')).not.toEqual([])
   })
 
+  it('keeps the quests needed only started apart from the chains, as the research reads the pages', () => {
+    const started = QUEST_FACTS.filter((quest) => quest.requiresStarted.length).map((quest) => [
+      quest.name,
+      quest.requiresStarted,
+    ])
+    expect(started).toEqual([
+      ['Creature of Fenkenstrain', ['The Restless Ghost']],
+      ['Curse of the Empty Lord', ['Desert Treasure I', 'The Restless Ghost']],
+      ['Dragon Slayer II', ['Barbarian Training']],
+      ["Hopespear's Will", ['The Restless Ghost']],
+      ['Rag and Bone Man II', ['Creature of Fenkenstrain']],
+      ['Ratcatchers', ['The Giant Dwarf']],
+      ['Recipe for Disaster - Sir Amik Varze', ["Legends' Quest"]],
+    ])
+  })
+
+  it('marks the 30 quests something needs only started, so they can be ticked as started', () => {
+    expect(QUEST_FACTS.filter((quest) => quest.startedMatters)).toHaveLength(30)
+  })
+
   it('makes Dragon Slayer II the longest chain among the quests that gate something', () => {
     const gating = gatingQuests()
     const gatingBehind = (quest: string) =>
@@ -504,6 +525,52 @@ describe('quest facts', () => {
       'Shilo Village',
       'The Fremennik Trials',
     ])
+  })
+})
+
+describe('diary facts', () => {
+  it('holds the 48 tiers, region by region and easiest first, with the page each was read from', () => {
+    expect(DIARY_FACTS).toHaveLength(48)
+    expect(DIARY_FACTS.slice(0, 4).map((diary) => diary.name)).toEqual([
+      'Ardougne Easy',
+      'Ardougne Medium',
+      'Ardougne Hard',
+      'Ardougne Elite',
+    ])
+    expect(DIARY_FACTS.filter((diary) => !diary.page.trim() || !(diary.revision > 0))).toEqual([])
+  })
+
+  it('names 153 quests the tiers’ tasks need, 37 of them only started', () => {
+    const needs = DIARY_FACTS.flatMap((diary) => Object.values(diary.quests))
+    expect(needs).toHaveLength(153)
+    expect(needs.filter((state) => state === 'started')).toHaveLength(37)
+  })
+
+  it('needs Fairytale II started for the five Medium tiers with a fairy ring task', () => {
+    expect(
+      DIARY_FACTS.filter((diary) => diary.quests['Fairytale II - Cure a Queen']).map((diary) => [
+        diary.name,
+        diary.quests['Fairytale II - Cure a Queen'],
+      ]),
+    ).toEqual([
+      ['Ardougne Medium', 'started'],
+      ['Fremennik Medium', 'started'],
+      ['Kandarin Medium', 'started'],
+      ['Kourend & Kebos Medium', 'started'],
+      ['Lumbridge & Draynor Medium', 'started'],
+    ])
+  })
+
+  it('reads a quest as its tier’s page does where the page says partial completion is enough', () => {
+    // Quest Helper and RuneLite ask for these finished; a claimed tier proves at least started
+    const quests = (name: string) => DIARY_FACTS.find((diary) => diary.name === name)?.quests
+    expect(quests('Desert Hard')).toMatchObject({ 'Contact!': 'started', 'The Feud': 'started' })
+    expect(quests('Fremennik Hard')).toMatchObject({
+      'The Fremennik Isles': 'started',
+      'Throne of Miscellania': 'started',
+    })
+    expect(quests('Kourend & Kebos Medium')).toMatchObject({ "Eagles' Peak": 'started' })
+    expect(quests('Morytania Elite')).toMatchObject({ 'In Aid of the Myreque': 'started' })
   })
 })
 

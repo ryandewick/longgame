@@ -7,6 +7,9 @@ import type { SkillKey } from './skill'
  */
 export type QuestKind = 'quest' | 'subquest' | 'miniquest' | 'activity'
 
+/** How far a quest has to have got: finished, or only started. */
+export type QuestState = 'finished' | 'started'
+
 /** XP the player may put in a skill of their choice. */
 export interface LampReward {
   /** The reward in words: 'Two 10,000 xp lamps for any skill at level 40 or above.' */
@@ -31,12 +34,23 @@ export interface QuestFacts {
    * and Druidic Ritual where one of its Herblore levels could not be had without it.
    */
   readonly requires: readonly string[]
+  /**
+   * The quests that only have to be started before it can be finished, in name order: The
+   * Restless Ghost for Creature of Fenkenstrain. Not part of the quest chains, since finishing this
+   * quest says only that those were started.
+   */
+  readonly requiresStarted: readonly string[]
   /** Lamps it pays that the lamp table does not list: the Varrock Museum's, after the quest. */
   readonly lamps?: LampReward
   /** A miniquest that no quest and no diary task needs. */
   readonly optional: boolean
   /** Every account has done it: Learning the Ropes, which every player finishes to reach the mainland. */
   readonly doneByEveryAccount: boolean
+  /**
+   * Something needs it only started (another quest, a diary tier, an either-or choice, a goal),
+   * so a player can tell the app it is started: Fairytale II for the fairy rings.
+   */
+  readonly startedMatters: boolean
 }
 
 /** A quest, miniquest or activity and the XP it pays. */

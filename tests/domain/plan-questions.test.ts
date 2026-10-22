@@ -30,27 +30,27 @@ import { xpForLevel } from '#shared/domain/xp'
 
 /*
  * These run on the fixture account (tests/fixtures/account.json), as an ironman.
- * Its own ticks, with the quests they prove, are taken as the truth about what it has done; the
- * questions are put to the same account with nothing ticked, the way a new player's account
- * arrives from the hiscores. The proven quests are needed because the fixture was saved before the
- * app knew Rune Mysteries and the other quests that gate nothing, so it could not tick them.
+ * Its own ticks, with everything they prove (shared/domain/quest-proof.ts), are taken as the
+ * truth about what it has done; the questions are put to the same account with nothing ticked,
+ * the way a new player's account arrives from the hiscores. What the ticks prove matters because
+ * the fixture was saved before the app knew Rune Mysteries and the other quests that gate
+ * nothing, so it could not tick them, and before a tier's tick said anything about its quests.
  */
 const fixture = JSON.parse(
   readFileSync(new URL('../fixtures/account.json', import.meta.url), 'utf8'),
 ) as { state: LegacySaveV1 }
 
-const ticked = accountFromSave(migrateLegacySave(fixture.state))
-const truth: Account = {
-  ...ticked,
-  type: 'iron',
-  completedQuests: new Set(
-    [...ticked.completedQuests].flatMap((done) => [done, ...questPrerequisites(done)]),
-  ),
+const truth: Account = { ...accountFromSave(migrateLegacySave(fixture.state)), type: 'iron' }
+const unticked: Account = {
+  ...truth,
+  completedQuests: new Set(),
+  startedQuests: new Set(),
+  completedDiaries: new Set(),
 }
-const unticked: Account = { ...truth, completedQuests: new Set(), completedDiaries: new Set() }
 
 const NOTHING_TICKED: QuestTicks = {
   completedQuests: [],
+  startedQuests: [],
   completedDiaries: [],
   declinedQuests: [],
   declinedDiaries: [],
@@ -79,6 +79,7 @@ function questionAbout(account: Account, name: string, ticks = NOTHING_TICKED): 
 const withTicks = (ticks: QuestTicks): Account => ({
   ...unticked,
   completedQuests: new Set(ticks.completedQuests),
+  startedQuests: new Set(ticks.startedQuests),
   completedDiaries: new Set(ticks.completedDiaries),
 })
 
@@ -106,7 +107,9 @@ function answerTruthfully(isWorthAsking?: (effect: RequirementEffect) => boolean
         ? tickQuest(ticks, name).ticks
         : declineQuest(ticks, name)
     } else {
-      ticks = truth.completedDiaries.has(name) ? tickDiary(ticks, name) : declineDiary(ticks, name)
+      ticks = truth.completedDiaries.has(name)
+        ? tickDiary(ticks, name).ticks
+        : declineDiary(ticks, name)
     }
   }
 }
@@ -130,7 +133,7 @@ function totalsShown(
     const { kind, name } = question.requirement
     const yes = says(question.requirement)
     if (kind === 'quest') ticks = yes ? tickQuest(ticks, name).ticks : declineQuest(ticks, name)
-    else ticks = yes ? tickDiary(ticks, name) : declineDiary(ticks, name)
+    else ticks = yes ? tickDiary(ticks, name).ticks : declineDiary(ticks, name)
   }
 }
 
@@ -171,10 +174,12 @@ describe('withRequirementDone', () => {
     expect(unticked.completedQuests.size).toBe(0)
   })
 
-  it('ticks a diary tier by itself', () => {
-    const after = withRequirementDone(unticked, diary('Ardougne Hard'))
-    expect([...after.completedDiaries]).toEqual(['Ardougne Hard'])
-    expect(after.completedQuests.size).toBe(0)
+  it('ticks a diary tier with the tiers below it and what their tasks need', () => {
+    const after = withRequirementDone(unticked, diary('Wilderness Medium'))
+    expect([...after.completedDiaries].sort()).toEqual(['Wilderness Easy', 'Wilderness Medium'])
+    expect([...after.completedQuests].sort()).toEqual(['Enter the Abyss', 'Rune Mysteries'])
+    expect([...after.startedQuests]).toEqual(['Between a Rock...'])
+    expect(unticked.completedDiaries.size).toBe(0)
   })
 })
 
@@ -191,10 +196,10 @@ describe('planQuestions: what can be asked about', () => {
   })
 
   it('counts the open requirements it does not ask about', () => {
-    // 48 quests and 12 diary tiers gate something; with nothing ticked 39 are worth a question
+    // 48 quests and 12 diary tiers gate something; with nothing ticked 40 are worth a question
     expect(gatingQuests().length + gatingDiaries().length).toBe(60)
-    expect(questions).toHaveLength(39)
-    expect(setAsideCount).toBe(21)
+    expect(questions).toHaveLength(40)
+    expect(setAsideCount).toBe(20)
   })
 
   it('does not ask about what is ticked', () => {
@@ -210,13 +215,15 @@ describe('planQuestions: what can be asked about', () => {
   })
 
   it('does not ask again about what was answered "not yet"', () => {
-    // nothing requires Tears of Guthix, so these two answers rule nothing else out
+    // nothing requires Tears of Guthix, so that answer rules nothing else out; Kandarin Easy rules
+    // out the tiers above it, as none of them can be claimed without it
     const ticks = declineDiary(declineQuest(NOTHING_TICKED, 'Tears of Guthix'), 'Kandarin Easy')
     const plan = planQuestions(unticked, ticks)
     expect(namesAsked(everyQuestion(plan))).not.toContain('Tears of Guthix')
     expect(namesAsked(everyQuestion(plan))).not.toContain('Kandarin Easy')
-    // an answer is not something set aside
-    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(58)
+    expect(namesAsked(everyQuestion(plan))).not.toContain('Kandarin Hard')
+    // an answer is not something set aside, and neither is a tier it rules out
+    expect(everyQuestion(plan).length + plan.setAsideCount).toBe(57)
   })
 
   it('does not ask about a quest that requires one answered "not yet"', () => {
@@ -353,7 +360,9 @@ describe('planQuestions: what a question carries', () => {
       resetsOpened: ['Tears of Guthix'],
       opens: ['Tears of Guthix'],
     })
+    // a yes to the tier settles The Hand in the Sand too, which Bert's sand needs
     expect(questionAbout(unticked, 'Ardougne Medium').resetsOpened).toEqual([
+      'Sand from Bert',
       'Pure essence from Cromperty',
     ])
     expect(questionAbout(unticked, 'Bone Voyage').resetsOpened).toEqual([
@@ -527,8 +536,8 @@ describe('planQuestions: the two rounds', () => {
   it('asks the questions that save hours first, and keeps the smaller ones for a second round', () => {
     expect(plan.savingHours.every(savesHours)).toBe(true)
     expect(plan.smaller.some(savesHours)).toBe(false)
-    expect(plan.savingHours).toHaveLength(24)
-    expect(plan.smaller).toHaveLength(15)
+    expect(plan.savingHours).toHaveLength(29)
+    expect(plan.smaller).toHaveLength(11)
   })
 
   it('makes every smaller question one that adds a reset or changes a block, with no question in both rounds', () => {
@@ -553,11 +562,13 @@ describe('planQuestions: the order', () => {
   const plan = planQuestions(unticked, NOTHING_TICKED)
   const planChanges = (question: PlanQuestion) =>
     question.skillsChanged.length + question.resetsOpened.length
-  const carries = (earlier: PlanQuestion, later: PlanQuestion): boolean =>
-    earlier.requirement.kind === 'quest' &&
-    later.requirement.kind === 'quest' &&
-    questPrerequisites(later.requirement.name).includes(earlier.requirement.name) &&
-    earlier.hoursSaved >= later.hoursSaved / 2
+  /** Would a yes to the later question settle the earlier one too, which carries half its saving? */
+  const carries = (earlier: PlanQuestion, later: PlanQuestion): boolean => {
+    const after = withRequirementDone(unticked, later.requirement)
+    const { kind, name } = earlier.requirement
+    const settled = kind === 'quest' ? after.completedQuests : after.completedDiaries
+    return earlier !== later && settled.has(name) && earlier.hoursSaved >= later.hoursSaved / 2
+  }
 
   it('asks the fixture account’s first round in this order, with nothing ticked', () => {
     expect(
@@ -572,14 +583,22 @@ describe('planQuestions: the order', () => {
       'Shilo Village 269',
       'Lunar Diplomacy 276',
       'Dream Mentor 276',
+      // a tier's yes settles the quests its tasks need: Desert Hard's carries Dream Mentor's
+      // saving and Desert Treasure I's, which are asked first
+      'Desert Treasure I 269',
+      'Desert Hard 294',
+      'Fremennik Hard 279',
       'One Small Favour 269',
       'Swan Song 276',
-      'Desert Treasure I 269',
+      'Morytania Medium 269',
       'Fairytale II - Cure a Queen 269',
       "Shades of Mort'ton 269",
       'Tai Bwo Wannai Trio 269',
+      'Kandarin Hard 269',
+      'Kourend & Kebos Medium 269',
       'Throne of Miscellania 269',
       'A Kingdom Divided 269',
+      'Karamja Medium 269',
       'Family Crest 82',
       'Sleeping Giants 75',
       // and Children of the Sun is behind the four that follow it
@@ -589,20 +608,15 @@ describe('planQuestions: the order', () => {
       'The Ribbiting Tale of a Lily Pad Labour Dispute 35',
       'The Heart of Darkness 34',
       'Creature of Fenkenstrain 7',
-      'Fremennik Hard 3',
       'Pandemonium 1',
     ])
   })
 
   it('asks the smaller questions in this order', () => {
     expect(namesAsked(plan.smaller)).toEqual([
-      'Desert Hard',
       'Priest in Peril',
       'Ardougne Medium',
       'Kandarin Easy',
-      'Kandarin Hard',
-      'Kourend & Kebos Medium',
-      'Morytania Medium',
       'Tears of Guthix',
       'Temple of the Eye',
       'The Hand in the Sand',
@@ -614,7 +628,7 @@ describe('planQuestions: the order', () => {
     ])
   })
 
-  it('never asks a quest before one it requires that carries at least half of its saving', () => {
+  it('never asks a question before one it settles that carries at least half of its saving', () => {
     plan.savingHours.forEach((later, place) => {
       for (const earlier of plan.savingHours.slice(place + 1)) {
         expect(
@@ -626,7 +640,7 @@ describe('planQuestions: the order', () => {
   })
 
   it('otherwise puts the biggest saving of hours first', () => {
-    // a question out of plain order is always one that was moved in front of a quest it carries
+    // a question out of plain order is always one that was moved in front of a question it carries
     plan.savingHours.forEach((question, place) => {
       const after = plan.savingHours.slice(place + 1)
       const isOutOfOrder = after.some((later) => later.hoursSaved > question.hoursSaved)
@@ -689,7 +703,7 @@ describe('planQuestions: the order', () => {
 })
 
 describe('planQuestions: a whole run of answers', () => {
-  it('takes the fixture account from 2,819 hours to 2,330 in the 11 questions of the first round', () => {
+  it('takes the fixture account from 2,819 hours to 2,330 in the 10 questions of the first round', () => {
     const { asked, account } = answerTruthfully(savesHours)
     expect(Math.round(maxProgress(unticked).hoursLeft)).toBe(2819)
     expect(
@@ -706,7 +720,6 @@ describe('planQuestions: a whole run of answers', () => {
       'Children of the Sun 26 yes',
       'Lunar Diplomacy 48 no',
       'Vale Totems 21 yes',
-      'Desert Hard 19 no',
       'Creature of Fenkenstrain 7 yes',
       'Pandemonium 1 no',
     ])
@@ -715,12 +728,12 @@ describe('planQuestions: a whole run of answers', () => {
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
 
-  it('asks 27 questions if the player goes on through the second round: 11, then 16 smaller ones', () => {
+  it('asks 25 questions if the player goes on through the second round: 10, then 15 smaller ones', () => {
     const { asked, account } = answerTruthfully()
-    expect(asked).toHaveLength(27)
-    expect(asked.filter(savesHours)).toHaveLength(11)
+    expect(asked).toHaveLength(25)
+    expect(asked.filter(savesHours)).toHaveLength(10)
     // the first round is over before the second starts
-    expect(asked.slice(0, 11).every(savesHours)).toBe(true)
+    expect(asked.slice(0, 10).every(savesHours)).toBe(true)
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
 
@@ -814,7 +827,7 @@ describe('the count of questions over the card', () => {
   const neverGrows = (totals: readonly number[]): boolean =>
     totals.every((total, index) => index === 0 || total <= (totals[index - 1] ?? 0))
 
-  // 'Question 1 of at most 24' is only true if the total can fall but not rise
+  // 'Question 1 of at most 29' is only true if the total can fall but not rise
   it.each([
     ['answered as the fixture did', asTheFixtureDid],
     ['all answered yes', () => true],
@@ -830,7 +843,7 @@ describe('the count of questions over the card', () => {
 
   it('starts well above what is asked, which is why it says at most', () => {
     const { totals } = totalsShown('savingHours', asTheFixtureDid)
-    expect(totals[0]).toBe(24)
-    expect(totals).toHaveLength(11)
+    expect(totals[0]).toBe(29)
+    expect(totals).toHaveLength(10)
   })
 })

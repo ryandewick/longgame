@@ -3,28 +3,38 @@
  * The one tick box of the app: a quest done, a diary tier done. It is a button that says whether
  * it is pressed. Whatever is put inside it is the box's visible label and is part of the button,
  * so the words can be pressed as well as the box; with nothing inside it is the box alone.
+ *
+ * A quest whose start matters has a third state between empty and ticked: started, the box half
+ * filled from the bottom, as a cape fills from its hem, and pressed "mixed" for a screen reader.
  */
-defineProps<{
+const { ticked, started = false } = defineProps<{
   ticked: boolean
+  /** Started and not finished. Ignored once ticked. */
+  started?: boolean
   /** What a screen reader calls it, state included: 'Ardougne Medium, done'. */
   label: string
 }>()
 
 const emit = defineEmits<{
-  /** The player pressed the box: whoever holds the state flips it. */
+  /** The player pressed the box: whoever holds the state moves it on. */
   toggle: []
 }>()
+
+const pressed = computed(() => (ticked ? 'true' : started ? 'mixed' : 'false'))
 </script>
 
 <template>
   <button
     type="button"
     class="tick-box"
-    :aria-pressed="ticked"
+    :aria-pressed="pressed"
     :aria-label="label"
     @click="emit('toggle')"
   >
-    <span class="tick-box__box" :class="{ 'tick-box__box--ticked': ticked }">
+    <span
+      class="tick-box__box"
+      :class="{ 'tick-box__box--ticked': ticked, 'tick-box__box--started': started && !ticked }"
+    >
       <svg v-if="ticked" class="tick-box__tick" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M6 12.5l4 4 8-9" />
       </svg>
@@ -50,7 +60,8 @@ const emit = defineEmits<{
   vertical-align: middle;
   cursor: pointer;
 
-  // the box: an empty well, or bone with an ink tick. Never yellow: yellow is reserved.
+  // the box: an empty well, half bone when started, or bone with an ink tick. Never yellow:
+  // yellow is reserved. The started half is drawn as an inset shadow, so the box keeps its shape.
   &__box {
     flex: none;
     width: 24px;
@@ -58,6 +69,12 @@ const emit = defineEmits<{
     border-radius: var(--radius);
     background: var(--color-stage);
     box-shadow: inset 0 0 0 1px var(--color-edge-strong);
+
+    &--started {
+      box-shadow:
+        inset 0 0 0 1px var(--color-text),
+        inset 0 -12px 0 var(--color-text);
+    }
 
     &--ticked {
       background: var(--color-text);
@@ -69,6 +86,12 @@ const emit = defineEmits<{
   // lets one element's state change another, because the button is the thing being pointed at.
   &:hover &__box {
     box-shadow: inset 0 0 0 1px var(--color-text);
+  }
+
+  &:hover &__box--started {
+    box-shadow:
+      inset 0 0 0 1px var(--color-text),
+      inset 0 -12px 0 var(--color-text);
   }
 
   &:hover &__box--ticked {

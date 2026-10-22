@@ -12,7 +12,7 @@ import { gatingQuests } from '#shared/domain/quests'
  * "not yet".
  */
 const account = useAccountStore()
-const { toggleQuest } = useQuestToggle()
+const { toggleQuest, toggleDiary } = useQuestToggle()
 
 // which quests gate something is a fact of the data, the same for every account
 const GATING_QUESTS = gatingQuests()
@@ -28,14 +28,6 @@ const others = computed(() => questRows(account.account, OTHER_QUESTS))
 const completedDiaries = computed(
   () => new Set(EVERY_DIARY.filter((diary) => hasCompletedDiary(account.account, diary))),
 )
-
-// While the diary shortcut is on, every tier reads as done whatever is ticked underneath. A click
-// then can only take a hand tick away: adding one would change nothing on screen and leave a
-// tick behind for when the shortcut is turned off. (`useQuestToggle` does the same for quests.)
-function toggleDiary(diary: string): void {
-  if (account.allDiaries && !account.completedDiaries.includes(diary)) return
-  account.toggleDiary(diary)
-}
 </script>
 
 <template>
@@ -48,7 +40,9 @@ function toggleDiary(diary: string): void {
         </div>
         <p class="note quest-tick-list__lead">
           These change your plan the most. Each one shows what it opens up. Ticking a quest also
-          ticks the quests it requires, and unticking one unticks the quests that require it.
+          ticks the quests it requires, and unticking one unticks the quests that require it. A few
+          quests count once started, like Fairytale II for the fairy rings: press one of those once
+          for started and again for done.
         </p>
         <UnlockList :quests="unlocks" @toggle="toggleQuest" />
       </section>
@@ -60,7 +54,10 @@ function toggleDiary(diary: string): void {
             {{ completedDiaries.size }} of {{ EVERY_DIARY.length }} ticked
           </span>
         </div>
-        <p class="note quest-tick-list__lead">Tick each tier you have completed.</p>
+        <p class="note quest-tick-list__lead">
+          Tick each tier you have claimed. The tiers below it, and the quests its tasks need, are
+          ticked with it.
+        </p>
         <DiaryGrid :completed="completedDiaries" @toggle="toggleDiary" />
       </section>
     </div>
@@ -72,7 +69,7 @@ function toggleDiary(diary: string): void {
       </div>
       <p class="note quest-tick-list__lead">
         Miniquests and activities are here too, marked as such. Ticking one also ticks what it
-        requires.
+        requires, and marks started the quests it needs only started.
       </p>
       <QuestChecklist :rows="others" @toggle="toggleQuest" />
     </section>

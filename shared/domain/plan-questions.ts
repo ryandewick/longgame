@@ -10,6 +10,7 @@ import { hoursLeft } from './estimates'
 import { methodOptions, suitsTickPreference } from './methods'
 import { activityOf, isInPlay, methodForBlock } from './planner'
 import { questPrerequisites, questsRuledOut } from './quest-chains'
+import { provenProgress } from './quest-proof'
 import type { QuestTicks } from './quest-ticks'
 import { gatingDiaries, gatingQuests, levelsShort, questFacts } from './quests'
 import { xpPerHourAt } from './rates'
@@ -100,27 +101,35 @@ function names(
   return (requirement.kind === 'quest' ? quests : diaries).includes(requirement.name)
 }
 
-/** The account with one more requirement done. A quest brings every quest it requires with it. */
+/**
+ * The account with one more requirement done, and everything that proves (quest-proof.ts): a quest
+ * brings every quest it requires with it, a diary tier the tiers below it and the quests its
+ * tasks need.
+ */
 export function withRequirementDone(account: Account, requirement: PlanRequirement): Account {
-  if (requirement.kind === 'diary') {
-    return {
-      ...account,
-      completedDiaries: new Set([...account.completedDiaries, requirement.name]),
-    }
-  }
-  return {
-    ...account,
-    completedQuests: new Set([
-      ...account.completedQuests,
-      requirement.name,
-      ...questPrerequisites(requirement.name),
-    ]),
-  }
+  const added = (kind: PlanRequirement['kind']): string[] =>
+    requirement.kind === kind ? [requirement.name] : []
+  const proven = provenProgress(
+    {
+      completedQuests: [...account.completedQuests, ...added('quest')],
+      startedQuests: account.startedQuests,
+      completedDiaries: [...account.completedDiaries, ...added('diary')],
+    },
+    account.allDiaries,
+  )
+  return { ...account, ...proven }
 }
 
-/** The quests a yes would newly settle: the quest itself and whatever it requires that is not done. */
-function questsSettledBy(account: Account, quest: string): string[] {
-  return [quest, ...questPrerequisites(quest)].filter((link) => !hasCompletedQuest(account, link))
+/** The quests and tiers a yes would newly settle: what is done afterwards and not before. */
+function settledBy(account: Account, after: Account): PlanRequirement[] {
+  return [
+    ...[...after.completedQuests]
+      .filter((quest) => !hasCompletedQuest(account, quest))
+      .map((name) => ({ kind: 'quest', name }) as const),
+    ...[...after.completedDiaries]
+      .filter((diary) => !hasCompletedDiary(account, diary))
+      .map((name) => ({ kind: 'diary', name }) as const),
+  ]
 }
 
 /** The skills with a method that names any of these requirements, in hiscores order. */
@@ -139,6 +148,18 @@ function couldHaveFinished(account: Account, quest: string): boolean {
     const facts = questFacts(link)
     return !facts || levelsShort(account, facts.levels).length === 0
   })
+}
+
+/**
+ * Could the account have done this requirement? A quest as `couldHaveFinished` says; a diary tier
+ * if it could have finished every quest the tier's tasks need finished. (A tier's own levels are
+ * not known to the app yet.)
+ */
+function couldHaveDone(account: Account, requirement: PlanRequirement): boolean {
+  if (requirement.kind === 'quest') return couldHaveFinished(account, requirement.name)
+  return whatATierProves(requirement.name).every(
+    ({ kind, name }) => kind !== 'quest' || couldHaveFinished(account, name),
+  )
 }
 
 /** The methods of these skills that go from missing something to missing nothing, the fastest first. */
@@ -210,12 +231,8 @@ function requirementEffect(
   hoursNow: (skill: SkillKey) => number,
 ): RequirementEffect {
   const after = withRequirementDone(account, requirement)
-  const settled: readonly PlanRequirement[] =
-    requirement.kind === 'quest'
-      ? questsSettledBy(account, requirement.name).map((name) => ({ kind: 'quest', name }))
-      : [requirement]
-  // a requirement can only change the skills that have a method behind it
-  const skills = skillsGatedBy(settled)
+  // a requirement can only change the skills that have a method behind what it settles
+  const skills = skillsGatedBy(settledBy(account, after))
 
   let hoursSaved = 0
   const skillsChanged: SkillKey[] = []
@@ -265,33 +282,42 @@ function planChanges(effect: RequirementEffect): number {
 }
 
 /**
- * Puts a quest that carries another's saving in front of it. A quest's saving counts what the
- * quests it requires unlock, so several quests can each seem to save what is one early quest's
- * doing (Druidic Ritual, behind a dozen others). Asked in plain order of saving, a player who
- * has the early quest but none of the later ones would say "not yet" all the way down to it.
+ * Puts a question that carries another's saving in front of it. A quest's saving counts what the
+ * quests it requires unlock, and a diary tier's what the quests its tasks need and the tiers below
+ * it unlock, so several questions can each seem to save what is one early quest's doing (Druidic
+ * Ritual, behind a dozen quests and tiers). Asked in plain order of saving, a player who has the
+ * early quest but none of the later ones would say "not yet" all the way down to it.
  *
- * So a quest is never asked before a quest it requires, however far back, whose own saving is at
- * least half of its saving: that one moves to just before it, and whatever carries its saving
- * moves in front of that in turn. Otherwise the order given is kept. Diary tiers have no chains
- * and stay where they are, and a question that saves no hours neither moves nor moves another.
+ * So a question is never asked before one about something a yes to it would settle (a quest it
+ * requires, however far back; for a tier, a quest it proves or a tier below it) whose own saving
+ * is at least half of its saving: that one moves to just before it, and whatever carries its
+ * saving moves in front of that in turn. Otherwise the order given is kept, and a question that
+ * saves no hours neither moves nor moves another.
  */
 export function askCarriersFirst(
   questions: readonly PlanQuestion[],
   prerequisitesOf: (quest: string) => readonly string[] = questPrerequisites,
+  provenByTier: (diary: string) => readonly PlanRequirement[] = whatATierProves,
 ): PlanQuestion[] {
   const ordered: PlanQuestion[] = []
   const placed = new Set<PlanQuestion>()
+  // what a yes to a requirement settles beyond itself: a quest's chain, a tier's quests and lower tiers
+  const settledWith = ({ kind, name }: PlanRequirement): readonly PlanRequirement[] =>
+    kind === 'quest'
+      ? prerequisitesOf(name).map((required) => ({ kind: 'quest', name: required }))
+      : provenByTier(name)
   const place = (question: PlanQuestion): void => {
     if (placed.has(question)) return
     // marked before its carriers are placed, so nothing can come round to it again
     placed.add(question)
-    if (question.requirement.kind === 'quest' && savesHours(question)) {
-      const required = prerequisitesOf(question.requirement.name)
+    if (savesHours(question)) {
+      const settled = settledWith(question.requirement)
       for (const other of questions) {
         const carries =
-          other.requirement.kind === 'quest' &&
           savesHours(other) &&
-          required.includes(other.requirement.name) &&
+          settled.some(
+            ({ kind, name }) => kind === other.requirement.kind && name === other.requirement.name,
+          ) &&
           other.hoursSaved >= question.hoursSaved / 2
         if (carries) place(other)
       }
@@ -300,6 +326,21 @@ export function askCarriersFirst(
   }
   for (const question of questions) place(question)
   return ordered
+}
+
+/** What a yes to a diary tier settles beyond itself: the quests it proves finished, and the tiers below it. */
+function whatATierProves(diary: string): PlanRequirement[] {
+  const proven = provenProgress({
+    completedQuests: [],
+    startedQuests: [],
+    completedDiaries: [diary],
+  })
+  return [
+    ...[...proven.completedQuests].map((name) => ({ kind: 'quest', name }) as const),
+    ...[...proven.completedDiaries]
+      .filter((name) => name !== diary)
+      .map((name) => ({ kind: 'diary', name }) as const),
+  ]
 }
 
 /**
@@ -311,8 +352,10 @@ export function askCarriersFirst(
  *
  * A requirement is a candidate when a method, a reset or a wildcard requires it and the account
  * has neither done it nor said "not yet". A quest is left out when the account cannot have
- * finished it: its levels are short of the quest's own, or a quest it requires was declined.
- * A candidate becomes a question when `isWorthAsking` says a yes would change something.
+ * finished it: its levels are short of the quest's own, or a quest it requires was declined. A
+ * diary tier is left out the same way for the quests its tasks need finished, and when a tier
+ * below it was declined. A candidate becomes a question when `isWorthAsking` says a yes would
+ * change something.
  *
  * Each effect is worked out with everything else as it stands, so one answer changes what the
  * others are worth: ask the first question, take the answer in, and call this again.
@@ -323,9 +366,17 @@ export function planQuestions(
   isWorthAsking: (effect: RequirementEffect) => boolean = changesThePlan,
 ): PlanQuestions {
   const ruledOut = questsRuledOut(declined.declinedQuests)
+  // a tier is ruled out by a "not yet" for anything a yes to it would settle: a quest its tasks
+  // need finished (or one that quest requires), or a tier below it
+  const notYet = ({ kind, name }: PlanRequirement): boolean =>
+    kind === 'quest'
+      ? declined.declinedQuests.includes(name) || ruledOut.has(name)
+      : declined.declinedDiaries.includes(name)
   const candidates = GATING_REQUIREMENTS.filter(({ kind, name }) =>
     kind === 'diary'
-      ? !hasCompletedDiary(account, name) && !declined.declinedDiaries.includes(name)
+      ? !hasCompletedDiary(account, name) &&
+        !declined.declinedDiaries.includes(name) &&
+        !whatATierProves(name).some(notYet)
       : !hasCompletedQuest(account, name) &&
         !declined.declinedQuests.includes(name) &&
         !ruledOut.has(name),
@@ -343,7 +394,7 @@ export function planQuestions(
 
   const questions: PlanQuestion[] = []
   for (const requirement of candidates) {
-    if (requirement.kind === 'quest' && !couldHaveFinished(account, requirement.name)) continue
+    if (!couldHaveDone(account, requirement)) continue
     const effect = requirementEffect(account, requirement, hoursNow)
     if (isWorthAsking(effect)) questions.push({ requirement, ...effect })
   }

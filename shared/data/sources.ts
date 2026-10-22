@@ -75,6 +75,8 @@ export interface QuestFactSource {
   levels?: Record<string, number>
   /** The quests its page says must be finished first. */
   requires?: string[]
+  /** The quests its page says need only be started. */
+  requiresStarted?: string[]
   /** The quests one of its levels proves: Druidic Ritual, without which there is no Herblore. */
   implies?: string[]
   lamps?: QuestFactLampSource[]
@@ -82,6 +84,20 @@ export interface QuestFactSource {
   optional?: boolean
   /** Every account has done it. */
   everyAccount?: boolean
+  /** Something needs it only started: a quest, a diary tier, an either-or choice or a goal. */
+  startedMatters?: boolean
+}
+
+/**
+ * One entry of datasrc/diary_facts.json, keyed by region and tier ('Ardougne Medium'). Exported
+ * from the quest and diary research like quest_facts.json, never written by hand.
+ */
+export interface DiaryFactSource {
+  /** The wiki page the facts were read from, and its revision. */
+  page: string
+  rev: number
+  /** Quest name to 'finished' or 'started', as the tier's page reads its tasks. */
+  quests: Record<string, string>
 }
 
 /** One entry of datasrc/quests_lamps.json: a skill-choice reward, as the wiki's Lua writes it. */

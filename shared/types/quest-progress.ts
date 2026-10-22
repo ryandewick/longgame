@@ -8,6 +8,11 @@
 export interface QuestProgress {
   /** The quests and miniquests the account has completed, named as the app's own data names them. */
   readonly quests: readonly string[]
+  /**
+   * The quests the account has started and not completed, named the same way. Optional: a provider that cannot
+   * tell started from not started leaves it out. The app keeps only the ones whose start matters to something.
+   */
+  readonly started?: readonly string[]
   /** The diary tiers the account has completed, as a region and a tier: 'Kourend & Kebos Hard'. */
   readonly diaries: readonly string[]
   /** When the provider read this, in milliseconds since 1970. */

@@ -11,6 +11,8 @@ interface AccountSketch {
   everySkill?: number
   levels?: Partial<Record<SkillKey, number>>
   quests?: string[]
+  /** Quests started and not finished. */
+  started?: string[]
   diaries?: string[]
   allQuests?: boolean
   allDiaries?: boolean
@@ -31,6 +33,7 @@ export function accountWith(sketch: AccountSketch = {}): Account {
       return { level, xp: xpForLevel(level) }
     }),
     completedQuests: new Set(sketch.quests),
+    startedQuests: new Set(sketch.started),
     completedDiaries: new Set(sketch.diaries),
     allQuests: sketch.allQuests ?? false,
     allDiaries: sketch.allDiaries ?? false,

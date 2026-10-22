@@ -11,6 +11,7 @@ import {
   answerAnnouncement,
   answerRows,
   answersStanding,
+  diaryStepNews,
   doneByEveryAccountNote,
   filterQuestRows,
   hoursInWords,
@@ -19,6 +20,7 @@ import {
   progressLabel,
   questRowLabel,
   questRows,
+  questStepNews,
   questionAnnouncement,
   questionSentence,
   questionWording,
@@ -32,8 +34,10 @@ import {
   setAsideNote,
   smallerQuestionAdds,
   smallerRoundNote,
+  startedTickHint,
   stepLabel,
   tickedCountLabel,
+  unlockRowLabel,
   unlockRows,
   type GivenAnswer,
 } from '~~/app/utils/quest-questions'
@@ -358,6 +362,7 @@ describe('questionsPrompt', () => {
 describe('the answers given this visit', () => {
   const ticks: QuestTicks = {
     completedQuests: ['Bone Voyage'],
+    startedQuests: [],
     completedDiaries: ['Kandarin Easy'],
     declinedQuests: ['Sins of the Father'],
     declinedDiaries: ['Desert Hard'],
@@ -376,6 +381,7 @@ describe('the answers given this visit', () => {
   it('drop out once undone on the tick list: a yes unticked, a "not yet" ticked', () => {
     const undone: QuestTicks = {
       completedQuests: ['Sins of the Father'],
+      startedQuests: [],
       completedDiaries: [],
       declinedQuests: [],
       declinedDiaries: ['Desert Hard'],
@@ -523,6 +529,8 @@ describe('the tick list’s rows', () => {
       {
         name: 'Bone Voyage',
         done: true,
+        started: false,
+        startedMatters: false,
         opens: 'Teak trees (1.5-tick), Sulliusceps and 9 more',
         skills: ['woodcutting', 'fishing', 'crafting', 'mining'],
         moreSkills: 2,
@@ -530,12 +538,40 @@ describe('the tick list’s rows', () => {
       {
         name: 'Temple of the Eye',
         done: false,
+        started: false,
+        startedMatters: false,
         opens: 'Guardians of the Rift',
         skills: ['runecraft'],
         moreSkills: 0,
       },
-      { name: 'Tears of Guthix', done: false, opens: 'Tears of Guthix', skills: [], moreSkills: 0 },
+      {
+        name: 'Tears of Guthix',
+        done: false,
+        started: false,
+        startedMatters: false,
+        opens: 'Tears of Guthix',
+        skills: [],
+        moreSkills: 0,
+      },
     ])
+  })
+
+  it('show a quest whose start matters as started, and say how to get there', () => {
+    const account = accountWith({ started: ['Fairytale II - Cure a Queen'] })
+    const [started, ticked] = unlockRows(account, ['Fairytale II - Cure a Queen', 'Bone Voyage'])
+    expect(started).toMatchObject({ done: false, started: true, startedMatters: true })
+    expect(started && unlockRowLabel(started)).toBe('Fairytale II - Cure a Queen, started')
+    expect(started && startedTickHint(started)).toBe('Press once for started, again for done.')
+    expect(ticked && startedTickHint(ticked)).toBe('')
+  })
+
+  it('never show a done quest as started', () => {
+    const account = accountWith({
+      quests: ['Fairytale II - Cure a Queen'],
+      started: ['Fairytale II - Cure a Queen'],
+    })
+    const [row] = unlockRows(account, ['Fairytale II - Cure a Queen'])
+    expect(row).toMatchObject({ done: true, started: false })
   })
 
   it('count a quest as done under the quest cape shortcut', () => {
@@ -560,8 +596,10 @@ describe('the tick list’s rows', () => {
     revision: 1,
     levels: {},
     requires: [],
+    requiresStarted: [],
     optional: false,
     doneByEveryAccount: false,
+    startedMatters: false,
     ...overrides,
   })
   const entries = [
@@ -623,13 +661,21 @@ describe('the tick list’s rows', () => {
   it('say how many are ticked', () => {
     expect(tickedCountLabel(rows)).toBe('2 of 7 ticked')
   })
+
+  it('show a started entry as started, in its label too', () => {
+    const [row] = questRows(accountWith({ started: ['The Giant Dwarf'] }), [
+      facts('The Giant Dwarf', { startedMatters: true }),
+    ])
+    expect(row).toMatchObject({ done: false, started: true, startedMatters: true })
+    expect(row && questRowLabel(row)).toBe('The Giant Dwarf, started')
+  })
 })
 
 describe('filterQuestRows', () => {
   const rows = [
-    { name: "Cook's Assistant", done: true },
-    { name: 'Cold War', done: false },
-    { name: 'Contact!', done: false },
+    { name: "Cook's Assistant", done: true, started: false },
+    { name: 'Cold War', done: false, started: false },
+    { name: 'Contact!', done: false, started: true },
   ]
   const names = (found: readonly { name: string }[]) => found.map((row) => row.name)
 
@@ -652,5 +698,108 @@ describe('filterQuestRows', () => {
     expect(names(filterQuestRows(rows, '', 'not-done'))).toEqual(['Cold War', 'Contact!'])
     expect(names(filterQuestRows(rows, 'cont', 'not-done'))).toEqual(['Contact!'])
     expect(filterQuestRows(rows, 'cont', 'done')).toEqual([])
+  })
+
+  it('shows the started ones, which are among the not done', () => {
+    expect(names(filterQuestRows(rows, '', 'started'))).toEqual(['Contact!'])
+    expect(names(filterQuestRows(rows, 'cold', 'started'))).toEqual([])
+  })
+})
+
+describe('the toast after a tick box is pressed', () => {
+  const moved = {
+    alsoChanged: [] as string[],
+    alsoStarted: [] as string[],
+    diariesChanged: [] as string[],
+    heldStartedBy: [] as string[],
+  }
+
+  it('says what else a quest ticked and marked started', () => {
+    expect(
+      questStepNews('Creature of Fenkenstrain', {
+        ...moved,
+        from: 'not-done',
+        to: 'done',
+        alsoChanged: ['Priest in Peril'],
+        alsoStarted: ['The Restless Ghost'],
+      }),
+    ).toEqual({
+      lead: 'Creature of Fenkenstrain ticked.',
+      message: 'Also ticked: Priest in Peril. Also marked started: The Restless Ghost.',
+    })
+  })
+
+  it('says what an untick took with it, tiers first', () => {
+    expect(
+      questStepNews('Rune Mysteries', {
+        ...moved,
+        from: 'done',
+        to: 'not-done',
+        alsoChanged: ['Enter the Abyss'],
+        diariesChanged: ['Wilderness Easy', 'Wilderness Medium'],
+      }),
+    ).toEqual({
+      lead: 'Rune Mysteries unticked.',
+      message: 'Also unticked: Wilderness Easy, Wilderness Medium and Enter the Abyss.',
+    })
+  })
+
+  it('says why a quest went back only to started', () => {
+    expect(
+      questStepNews('Fairytale II - Cure a Queen', {
+        ...moved,
+        from: 'done',
+        to: 'started',
+        heldStartedBy: ['Ardougne Medium', 'Kandarin Medium'],
+      }),
+    ).toEqual({
+      lead: 'Fairytale II - Cure a Queen is still started.',
+      message: 'The Ardougne Medium diary and the Kandarin Medium diary need it started.',
+    })
+    expect(
+      questStepNews('The Restless Ghost', {
+        ...moved,
+        from: 'done',
+        to: 'started',
+        heldStartedBy: ['Creature of Fenkenstrain'],
+      })?.message,
+    ).toBe('Creature of Fenkenstrain needs it started.')
+  })
+
+  it('says why nothing moved while the diary shortcut proves the quest', () => {
+    expect(questStepNews('Plague City', { ...moved, from: 'done', to: 'done' })?.lead).toBe(
+      'Plague City stays done.',
+    )
+  })
+
+  it('says nothing when the quest moved alone', () => {
+    expect(
+      questStepNews('The Giant Dwarf', { ...moved, from: 'not-done', to: 'started' }),
+    ).toBeNull()
+    expect(questStepNews('The Giant Dwarf', { ...moved, from: 'started', to: 'done' })).toBeNull()
+  })
+
+  it('says what a tier ticked with it, and what an untick took', () => {
+    expect(
+      diaryStepNews('Wilderness Medium', {
+        ...moved,
+        ticked: true,
+        diariesChanged: ['Wilderness Easy'],
+        alsoChanged: ['Enter the Abyss', 'Rune Mysteries'],
+        alsoStarted: ['Between a Rock...'],
+      }),
+    ).toEqual({
+      lead: 'Wilderness Medium ticked.',
+      message:
+        'Also ticked: Wilderness Easy, Enter the Abyss and Rune Mysteries. Also marked started: Between a Rock....',
+    })
+    expect(
+      diaryStepNews('Wilderness Easy', {
+        ...moved,
+        ticked: false,
+        diariesChanged: ['Wilderness Medium'],
+      }),
+    ).toEqual({ lead: 'Wilderness Easy unticked.', message: 'Also unticked: Wilderness Medium.' })
+    expect(diaryStepNews('Varrock Elite', { ...moved, ticked: false })).toBeNull()
   })
 })

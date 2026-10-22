@@ -5,6 +5,7 @@ import type { XpSnapshot } from '#shared/types/snapshot'
 import { SKILL_KEYS } from '#shared/data/skills'
 import { hoursLeft, maxProgress } from '#shared/domain/estimates'
 import { fastestMethod, methodOptions } from '#shared/domain/methods'
+import { closeTicks } from '#shared/domain/quest-ticks'
 import {
   accountFromSave,
   blankSave,
@@ -27,6 +28,12 @@ function fixtureSave(): SavedState {
   const save = readSave(fixture.state)
   if (!save) throw new Error('tests/fixtures/account.json is not a save')
   return save
+}
+
+/** The fixture's save with everything its ticks prove written in, as the stores keep it. */
+function closedFixtureSave(): SavedState {
+  const save = fixtureSave()
+  return { ...save, ...closeTicks(save) }
 }
 
 const fixtureSnapshots = (): XpSnapshot[] => migrateLegacySnapshots(fixture.snapshots)
@@ -55,9 +62,17 @@ describe('the save', () => {
     expect(useSavedState().savedState.value).toEqual(blankSave())
   })
 
-  it('comes back out of the stores exactly as it went in', () => {
-    const { savedState } = loadedStores()
-    expect(savedState.value).toEqual(fixtureSave())
+  it('comes back out of the stores as it went in, with what its ticks prove written in', () => {
+    const { savedState, restore } = loadedStores()
+    expect(savedState.value).toEqual(closedFixtureSave())
+    // the fixture was saved before the app knew Rune Mysteries (acceptance C2), and before a
+    // claimed tier said anything about its quests: Ardougne Medium needs Fairytale II started (C5)
+    expect(savedState.value.completedQuests).toContain('Rune Mysteries')
+    expect(savedState.value.startedQuests).toContain('Fairytale II - Cure a Queen')
+    // a save with all of that written in already comes back exactly as it went in
+    setActivePinia(createPinia())
+    restore(closedFixtureSave())
+    expect(useSavedState().savedState.value).toEqual(closedFixtureSave())
   })
 
   it('survives a trip through JSON, which is how it is stored', () => {
@@ -67,7 +82,7 @@ describe('the save', () => {
     const again = readSave(stored)
     expect(again).not.toBeNull()
     if (again) restore(again)
-    expect(useSavedState().savedState.value).toEqual(fixtureSave())
+    expect(useSavedState().savedState.value).toEqual(closedFixtureSave())
   })
 })
 
@@ -124,44 +139,94 @@ describe('the account store', () => {
 
   it('ticks what a quest-progress add-on reports, keeping every tick already there', () => {
     const account = useAccountStore()
-    account.toggleQuest('Dragon Slayer I')
-    account.toggleDiary('Ardougne Medium')
-    account.recordCompleted(
-      ["Cook's Assistant", 'Dragon Slayer I', "Cook's Assistant"],
-      ['Kourend & Kebos Easy'],
-    )
-    expect(account.completedQuests).toEqual(['Dragon Slayer I', "Cook's Assistant"])
-    expect(account.completedDiaries).toEqual(['Ardougne Medium', 'Kourend & Kebos Easy'])
+    account.stepQuest('Plague City')
+    account.toggleDiary('Karamja Easy')
+    account.recordProgress({
+      quests: ["Cook's Assistant", 'Plague City', "Cook's Assistant"],
+      started: ['The Giant Dwarf'],
+      // the Kourend & Kebos Easy diary needs Druidic Ritual, which comes with it
+      diaries: ['Kourend & Kebos Easy'],
+    })
+    expect(account.completedQuests).toEqual(['Plague City', "Cook's Assistant", 'Druidic Ritual'])
+    expect(account.startedQuests).toEqual(['The Giant Dwarf'])
+    expect(account.completedDiaries).toEqual(['Karamja Easy', 'Kourend & Kebos Easy'])
     expect(account.account.completedQuests.has("Cook's Assistant")).toBe(true)
   })
 
   it('leaves the ticks untouched when a report holds nothing new', () => {
     const account = useAccountStore()
-    account.toggleQuest('Dragon Slayer I')
-    const { completedQuests, completedDiaries } = account
-    account.recordCompleted(['Dragon Slayer I'], [])
+    account.stepQuest('Plague City')
+    const { completedQuests, startedQuests, completedDiaries } = account
+    account.recordProgress({ quests: ['Plague City'], diaries: [] })
     // the same lists, so nothing is saved again
     expect(account.completedQuests).toBe(completedQuests)
+    expect(account.startedQuests).toBe(startedQuests)
     expect(account.completedDiaries).toBe(completedDiaries)
   })
 
   it('ticks and unticks quests and diaries', () => {
     const account = useAccountStore()
-    account.toggleQuest('Dragon Slayer I')
-    account.toggleDiary('Ardougne Medium')
-    expect(account.account.completedQuests.has('Dragon Slayer I')).toBe(true)
-    expect(account.account.completedDiaries.has('Ardougne Medium')).toBe(true)
-    account.toggleQuest('Dragon Slayer I')
-    account.toggleDiary('Ardougne Medium')
+    account.stepQuest("Cook's Assistant")
+    account.toggleDiary('Karamja Easy')
+    expect(account.account.completedQuests.has("Cook's Assistant")).toBe(true)
+    expect(account.account.completedDiaries.has('Karamja Easy')).toBe(true)
+    account.stepQuest("Cook's Assistant")
+    account.toggleDiary('Karamja Easy')
     expect(account.completedQuests).toEqual([])
+    expect(account.completedDiaries).toEqual([])
+  })
+
+  it('steps a quest whose start matters through started, done and back to not done', () => {
+    const account = useAccountStore()
+    expect(account.stepQuest('Dragon Slayer I')).toMatchObject({ from: 'not-done', to: 'started' })
+    expect(account.startedQuests).toEqual(['Dragon Slayer I'])
+    expect(account.stepQuest('Dragon Slayer I')).toMatchObject({ from: 'started', to: 'done' })
+    expect(account.completedQuests).toEqual(['Dragon Slayer I'])
+    expect(account.startedQuests).toEqual([])
+    expect(account.stepQuest('Dragon Slayer I')).toMatchObject({ from: 'done', to: 'not-done' })
+    expect(account.completedQuests).toEqual([])
+    expect(account.startedQuests).toEqual([])
+  })
+
+  it('takes a quest back only to started while a claimed tier needs it started, and says which', () => {
+    const account = useAccountStore()
+    // the Kandarin Easy diary needs Elemental Workshop I started
+    expect(account.toggleDiary('Kandarin Easy')).toMatchObject({
+      ticked: true,
+      alsoStarted: ['Elemental Workshop I'],
+    })
+    expect(account.questState('Elemental Workshop I')).toBe('started')
+    account.stepQuest('Elemental Workshop I')
+    expect(account.stepQuest('Elemental Workshop I')).toMatchObject({
+      from: 'done',
+      to: 'started',
+      heldStartedBy: ['Kandarin Easy'],
+    })
+  })
+
+  it('ticks the tiers below a tier with it, and unticks the ones above', () => {
+    const account = useAccountStore()
+    expect(account.toggleDiary('Wilderness Medium')).toMatchObject({
+      ticked: true,
+      diariesChanged: ['Wilderness Easy'],
+      alsoChanged: ['Enter the Abyss', 'Rune Mysteries'],
+    })
+    expect(account.toggleDiary('Wilderness Easy')).toMatchObject({
+      ticked: false,
+      diariesChanged: ['Wilderness Medium'],
+    })
     expect(account.completedDiaries).toEqual([])
   })
 
   it('ticks the quests a quest requires with it, and says which', () => {
     const account = useAccountStore()
-    expect(account.toggleQuest('Underground Pass')).toEqual({
-      ticked: true,
+    expect(account.stepQuest('Underground Pass')).toEqual({
+      from: 'not-done',
+      to: 'done',
       alsoChanged: ['Biohazard', 'Plague City'],
+      alsoStarted: [],
+      diariesChanged: [],
+      heldStartedBy: [],
     })
     expect(account.completedQuests).toEqual(['Underground Pass', 'Biohazard', 'Plague City'])
     expect(account.account.completedQuests.has('Plague City')).toBe(true)
@@ -169,10 +234,14 @@ describe('the account store', () => {
 
   it('unticks the quests that require a quest with it, and says which', () => {
     const account = useAccountStore()
-    account.toggleQuest('Underground Pass')
-    expect(account.toggleQuest('Plague City')).toEqual({
-      ticked: false,
+    account.stepQuest('Underground Pass')
+    expect(account.stepQuest('Plague City')).toEqual({
+      from: 'done',
+      to: 'not-done',
       alsoChanged: ['Biohazard', 'Underground Pass'],
+      alsoStarted: [],
+      diariesChanged: [],
+      heldStartedBy: [],
     })
     expect(account.completedQuests).toEqual([])
     expect(account.declinedQuests).toEqual([])
@@ -204,12 +273,12 @@ describe('the account store', () => {
     account.answerQuestion({ kind: 'diary', name: 'Desert Hard' }, false)
 
     // ticking a quest that requires it settles Plague City too
-    account.toggleQuest('Biohazard')
+    account.stepQuest('Biohazard')
     account.toggleDiary('Desert Hard')
     expect(account.declinedQuests).toEqual(['Bone Voyage'])
     expect(account.declinedDiaries).toEqual([])
 
-    account.recordCompleted(['Bone Voyage'], [])
+    account.recordProgress({ quests: ['Bone Voyage'], diaries: [] })
     expect(account.declinedQuests).toEqual([])
   })
 
@@ -217,13 +286,15 @@ describe('the account store', () => {
     const { account } = loadedStores()
     const before = account.planQuestions
     const [first] = before.savingHours
-    expect(first?.requirement).toEqual({ kind: 'quest', name: 'Sins of the Father' })
+    // the Desert Hard diary saves the most, and most of that is Dream Mentor's, which is mostly
+    // Lunar Diplomacy's (Dream Mentor requires it), so Lunar Diplomacy is asked first
+    expect(first?.requirement).toEqual({ kind: 'quest', name: 'Lunar Diplomacy' })
     if (!first) return
 
     account.answerQuestion(first.requirement, false)
     const after = account.planQuestions
     expect(after.savingHours.map((question) => question.requirement.name)).not.toContain(
-      'Sins of the Father',
+      'Lunar Diplomacy',
     )
     expect(after.savingHours.length).toBeLessThan(before.savingHours.length)
     // the smaller questions are a round of their own, and this answer was not one of them
@@ -271,7 +342,7 @@ describe('the account store', () => {
 
   it('starts a new account when the name changes, keeping ticks and preferences', () => {
     const { account, session, history } = loadedStores()
-    account.toggleQuest('Dragon Slayer I')
+    account.stepQuest('Dragon Slayer I')
     account.setPreference('mood', 'afk')
     session.deal()
     const quests = account.completedQuests

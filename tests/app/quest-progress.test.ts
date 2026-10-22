@@ -19,6 +19,11 @@ describe('parseQuestProgress', () => {
     })
   })
 
+  it('reads the quests started, when the provider sends them', () => {
+    const report = { quests: [], started: ['Fairytale II - Cure a Queen'], diaries: [], fetched: 1 }
+    expect(parseQuestProgress(report)).toEqual(report)
+  })
+
   it('leaves out anything else the provider sent along', () => {
     const report = { quests: [], diaries: [], fetched: 1, league: 'none' }
     expect(parseQuestProgress(report)).toEqual({ quests: [], diaries: [], fetched: 1 })
@@ -36,6 +41,8 @@ describe('parseQuestProgress', () => {
     { quests: ["Cook's Assistant", 2], diaries: [], fetched: 1 },
     { quests: [], diaries: [{ region: 'Ardougne' }], fetched: 1 },
     { quests: [], diaries: [], fetched: 'now' },
+    { quests: [], started: 'Fairytale II', diaries: [], fetched: 1 },
+    { quests: [], started: [1], diaries: [], fetched: 1 },
   ])('refuses %j', (payload) => {
     expect(parseQuestProgress(payload)).toBeNull()
   })

@@ -19,6 +19,7 @@ export function blankAccount(): Account {
     type: 'main',
     skills: forEverySkill(() => ({ level: 1, xp: 0 })),
     completedQuests: new Set(),
+    startedQuests: new Set(),
     completedDiaries: new Set(),
     allQuests: false,
     allDiaries: false,
@@ -34,6 +35,20 @@ export function isIronman(account: Account): boolean {
 /** Has the account finished this quest? */
 export function hasCompletedQuest(account: Account, quest: string): boolean {
   return account.allQuests || isDoneByEveryAccount(quest) || account.completedQuests.has(quest)
+}
+
+/** Has the account at least started this quest? A finished quest has been started. */
+export function hasStartedQuest(account: Account, quest: string): boolean {
+  return hasCompletedQuest(account, quest) || account.startedQuests.has(quest)
+}
+
+/** How far an account has got with a quest, as its tick box shows it. */
+export type QuestProgressState = 'not-done' | 'started' | 'done'
+
+/** How far the account has got with this quest. */
+export function questProgress(account: Account, quest: string): QuestProgressState {
+  if (hasCompletedQuest(account, quest)) return 'done'
+  return account.startedQuests.has(quest) ? 'started' : 'not-done'
 }
 
 /** Has the account finished this diary tier ('Ardougne Medium')? */

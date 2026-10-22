@@ -64,9 +64,10 @@ function lampProblems(name: string, lamp: QuestFactLampSource): string[] {
 /**
  * Turns datasrc/quest_facts.json into the app's `QuestFacts`, in name order. Every field is
  * checked: a known kind, a page and revision, levels from 1 to 99 in skills the app knows, quests
- * needed that are entries themselves, no chain of them that comes back on itself, and names spelt
- * as the player's ticks are stored (straight apostrophes, no stray spaces). A quest's `requires`
- * joins the quests its page names and the ones its levels prove.
+ * needed that are entries themselves, no chain of them that comes back on itself (counting the
+ * ones needed only started), a quest needed only started that is marked as one whose start
+ * matters, and names spelt as the player's ticks are stored (straight apostrophes, no stray
+ * spaces). A quest's `requires` joins the quests its page names and the ones its levels prove.
  *
  * Throws a DataSourceError listing everything wrong with the source.
  */
@@ -74,6 +75,7 @@ export function buildQuestFacts(source: Readonly<Record<string, QuestFactSource>
   const problems: string[] = []
   const names = new Set(Object.keys(source))
   const facts: QuestFacts[] = []
+  const startedMatters = (quest: string): boolean => source[quest]?.startedMatters === true
 
   for (const [name, entry] of Object.entries(source)) {
     if (name !== name.trim() || name.includes('’')) problems.push(`'${name}': spelt unlike a tick`)
@@ -90,12 +92,18 @@ export function buildQuestFacts(source: Readonly<Record<string, QuestFactSource>
     }
 
     const linked = [...(entry.requires ?? []), ...(entry.implies ?? [])]
-    for (const quest of linked) {
+    const started = entry.requiresStarted ?? []
+    for (const quest of [...linked, ...started]) {
       if (quest === name) problems.push(`${name}: needs itself`)
       else if (!names.has(quest)) problems.push(`${name}: needs '${quest}', which is not an entry`)
     }
-    for (const list of [entry.requires ?? [], entry.implies ?? []]) {
+    for (const list of [entry.requires ?? [], entry.implies ?? [], started]) {
       if (new Set(list).size !== list.length) problems.push(`${name}: a quest needed twice`)
+    }
+    for (const quest of started) {
+      if (linked.includes(quest)) problems.push(`${name}: needs '${quest}' finished and started`)
+      else if (names.has(quest) && !startedMatters(quest))
+        problems.push(`${name}: needs '${quest}' started, which is not marked as mattering started`)
     }
 
     for (const lamp of entry.lamps ?? []) problems.push(...lampProblems(name, lamp))
@@ -109,13 +117,17 @@ export function buildQuestFacts(source: Readonly<Record<string, QuestFactSource>
       revision: entry.rev,
       levels,
       requires: [...new Set(linked)].sort(byName),
+      requiresStarted: [...started].sort(byName),
       ...(entry.lamps?.length ? { lamps: lampReward(entry.lamps) } : {}),
       optional: entry.optional === true,
       doneByEveryAccount: entry.everyAccount === true,
+      startedMatters: entry.startedMatters === true,
     })
   }
 
-  const cycle = findCycle(new Map(facts.map((quest) => [quest.name, quest.requires])))
+  const cycle = findCycle(
+    new Map(facts.map((quest) => [quest.name, [...quest.requires, ...quest.requiresStarted]])),
+  )
   if (cycle) problems.push(`${cycle.join(' > ')} is a cycle`)
   if (problems.length)
     throw new DataSourceError(problems.map((problem) => `quest facts: ${problem}`))

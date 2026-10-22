@@ -1,0 +1,441 @@
+{
+ "Ardougne Easy": {
+  "page": "Ardougne Diary",
+  "rev": 15372429,
+  "quests": {
+   "Biohazard": "finished",
+   "Rune Mysteries": "finished"
+  }
+ },
+ "Ardougne Medium": {
+  "page": "Ardougne Diary",
+  "rev": 15372429,
+  "quests": {
+   "Enlightened Journey": "finished",
+   "Fairytale II - Cure a Queen": "started",
+   "Plague City": "finished",
+   "Sea Slug": "started",
+   "The Hand in the Sand": "finished",
+   "Tower of Life": "finished",
+   "Underground Pass": "finished",
+   "Watchtower": "started"
+  }
+ },
+ "Ardougne Hard": {
+  "page": "Ardougne Diary",
+  "rev": 15372429,
+  "quests": {
+   "Legends' Quest": "finished",
+   "Monkey Madness I": "started",
+   "Mourning's End Part II": "finished",
+   "Plague City": "finished",
+   "Watchtower": "finished"
+  }
+ },
+ "Ardougne Elite": {
+  "page": "Ardougne Diary",
+  "rev": 15372429,
+  "quests": {
+   "Desert Treasure I": "finished",
+   "Haunted Mine": "finished"
+  }
+ },
+ "Desert Easy": {
+  "page": "Desert Diary",
+  "rev": 15366086,
+  "quests": {
+   "Icthlarin's Little Helper": "started"
+  }
+ },
+ "Desert Medium": {
+  "page": "Desert Diary",
+  "rev": 15366086,
+  "quests": {
+   "Druidic Ritual": "finished",
+   "Eagles' Peak": "finished",
+   "Enakhra's Lament": "finished",
+   "Spirits of the Elid": "finished",
+   "The Golem": "finished"
+  }
+ },
+ "Desert Hard": {
+  "page": "Desert Diary",
+  "rev": 15366086,
+  "quests": {
+   "Contact!": "started",
+   "Desert Treasure I": "finished",
+   "Dream Mentor": "finished",
+   "The Feud": "started"
+  }
+ },
+ "Desert Elite": {
+  "page": "Desert Diary",
+  "rev": 15366086,
+  "quests": {
+   "Desert Treasure I": "finished",
+   "Icthlarin's Little Helper": "started",
+   "Priest in Peril": "finished",
+   "The Tourist Trap": "finished"
+  }
+ },
+ "Falador Easy": {
+  "page": "Falador Diary",
+  "rev": 15372391,
+  "quests": {
+   "Doric's Quest": "finished",
+   "The Knight's Sword": "finished"
+  }
+ },
+ "Falador Medium": {
+  "page": "Falador Diary",
+  "rev": 15372391,
+  "quests": {
+   "Ratcatchers": "started",
+   "Recruitment Drive": "finished",
+   "Skippy and the Mogres": "finished"
+  }
+ },
+ "Falador Hard": {
+  "page": "Falador Diary",
+  "rev": 15372391,
+  "quests": {
+   "Grim Tales": "finished",
+   "Heroes' Quest": "finished",
+   "The Slug Menace": "finished"
+  }
+ },
+ "Falador Elite": {
+  "page": "Falador Diary",
+  "rev": 15372391,
+  "quests": {
+   "Druidic Ritual": "finished",
+   "Wanted!": "finished"
+  }
+ },
+ "Fremennik Easy": {
+  "page": "Fremennik Diary",
+  "rev": 15375916,
+  "quests": {
+   "The Fremennik Trials": "finished",
+   "The Giant Dwarf": "started"
+  }
+ },
+ "Fremennik Medium": {
+  "page": "Fremennik Diary",
+  "rev": 15375916,
+  "quests": {
+   "Between a Rock...": "started",
+   "Eagles' Peak": "finished",
+   "Fairytale II - Cure a Queen": "started",
+   "Horror from the Deep": "finished",
+   "Olaf's Quest": "started",
+   "The Fremennik Trials": "finished"
+  }
+ },
+ "Fremennik Hard": {
+  "page": "Fremennik Diary",
+  "rev": 15375916,
+  "quests": {
+   "Druidic Ritual": "finished",
+   "Eadgar's Ruse": "finished",
+   "Lunar Diplomacy": "finished",
+   "The Fremennik Isles": "started",
+   "The Giant Dwarf": "started",
+   "Throne of Miscellania": "started"
+  }
+ },
+ "Fremennik Elite": {
+  "page": "Fremennik Diary",
+  "rev": 15375916,
+  "quests": {
+   "Lunar Diplomacy": "finished",
+   "The Fremennik Isles": "started"
+  }
+ },
+ "Kandarin Easy": {
+  "page": "Kandarin Diary",
+  "rev": 15360468,
+  "quests": {
+   "Elemental Workshop I": "started"
+  }
+ },
+ "Kandarin Medium": {
+  "page": "Kandarin Diary",
+  "rev": 15360468,
+  "quests": {
+   "Alfred Grimhand's Barcrawl": "finished",
+   "Druidic Ritual": "finished",
+   "Elemental Workshop II": "started",
+   "Fairytale II - Cure a Queen": "started",
+   "Waterfall Quest": "started"
+  }
+ },
+ "Kandarin Hard": {
+  "page": "Kandarin Diary",
+  "rev": 15360468,
+  "quests": {
+   "Desert Treasure I": "started",
+   "King's Ransom": "finished",
+   "Tai Bwo Wannai Trio": "finished"
+  }
+ },
+ "Kandarin Elite": {
+  "page": "Kandarin Diary",
+  "rev": 15360468,
+  "quests": {
+   "Druidic Ritual": "finished",
+   "Family Crest": "finished",
+   "Lunar Diplomacy": "finished"
+  }
+ },
+ "Karamja Easy": {
+  "page": "Karamja Diary",
+  "rev": 15372025,
+  "quests": {}
+ },
+ "Karamja Medium": {
+  "page": "Karamja Diary",
+  "rev": 15372025,
+  "quests": {
+   "Dragon Slayer I": "started",
+   "Jungle Potion": "finished",
+   "Shilo Village": "finished",
+   "Tai Bwo Wannai Trio": "started",
+   "The Grand Tree": "finished"
+  }
+ },
+ "Karamja Hard": {
+  "page": "Karamja Diary",
+  "rev": 15372025,
+  "quests": {
+   "Legends' Quest": "started",
+   "Shilo Village": "finished",
+   "Tai Bwo Wannai Trio": "finished"
+  }
+ },
+ "Karamja Elite": {
+  "page": "Karamja Diary",
+  "rev": 15372025,
+  "quests": {
+   "Druidic Ritual": "finished"
+  }
+ },
+ "Kourend & Kebos Easy": {
+  "page": "Kourend & Kebos Diary",
+  "rev": 15366020,
+  "quests": {
+   "Druidic Ritual": "finished"
+  }
+ },
+ "Kourend & Kebos Medium": {
+  "page": "Kourend & Kebos Diary",
+  "rev": 15366020,
+  "quests": {
+   "Eagles' Peak": "started",
+   "Fairytale II - Cure a Queen": "started",
+   "Tale of the Righteous": "finished",
+   "The Ascent of Arceuus": "finished",
+   "The Depths of Despair": "finished",
+   "The Forsaken Tower": "finished",
+   "The Queen of Thieves": "finished"
+  }
+ },
+ "Kourend & Kebos Hard": {
+  "page": "Kourend & Kebos Diary",
+  "rev": 15366020,
+  "quests": {
+   "Dream Mentor": "finished",
+   "The Forsaken Tower": "started"
+  }
+ },
+ "Kourend & Kebos Elite": {
+  "page": "Kourend & Kebos Diary",
+  "rev": 15366020,
+  "quests": {}
+ },
+ "Lumbridge & Draynor Easy": {
+  "page": "Lumbridge & Draynor Diary",
+  "rev": 15362921,
+  "quests": {
+   "Cook's Assistant": "finished",
+   "Rune Mysteries": "finished"
+  }
+ },
+ "Lumbridge & Draynor Medium": {
+  "page": "Lumbridge & Draynor Diary",
+  "rev": 15362921,
+  "quests": {
+   "Animal Magnetism": "finished",
+   "Fairytale II - Cure a Queen": "started",
+   "Lost City": "finished"
+  }
+ },
+ "Lumbridge & Draynor Hard": {
+  "page": "Lumbridge & Draynor Diary",
+  "rev": 15362921,
+  "quests": {
+   "Another Slice of H.A.M.": "finished",
+   "Lost City": "finished",
+   "Recipe for Disaster": "finished",
+   "Tears of Guthix": "finished"
+  }
+ },
+ "Lumbridge & Draynor Elite": {
+  "page": "Lumbridge & Draynor Diary",
+  "rev": 15362921,
+  "quests": {
+   "Death to the Dorgeshuun": "finished"
+  }
+ },
+ "Morytania Easy": {
+  "page": "Morytania Diary",
+  "rev": 15375886,
+  "quests": {
+   "Nature Spirit": "finished"
+  }
+ },
+ "Morytania Medium": {
+  "page": "Morytania Diary",
+  "rev": 15375886,
+  "quests": {
+   "Cabin Fever": "finished",
+   "Druidic Ritual": "finished",
+   "Dwarf Cannon": "finished",
+   "Ghosts Ahoy": "finished",
+   "In Aid of the Myreque": "started",
+   "Lair of Tarn Razorlor": "finished",
+   "Nature Spirit": "finished",
+   "Rum Deal": "finished"
+  }
+ },
+ "Morytania Hard": {
+  "page": "Morytania Diary",
+  "rev": 15375886,
+  "quests": {
+   "Cabin Fever": "finished",
+   "Desert Treasure I": "finished",
+   "Haunted Mine": "finished",
+   "In Aid of the Myreque": "finished",
+   "King's Ransom": "finished",
+   "Nature Spirit": "finished",
+   "The Great Brain Robbery": "started"
+  }
+ },
+ "Morytania Elite": {
+  "page": "Morytania Diary",
+  "rev": 15375886,
+  "quests": {
+   "In Aid of the Myreque": "started",
+   "Lunar Diplomacy": "finished",
+   "Shades of Mort'ton": "finished"
+  }
+ },
+ "Varrock Easy": {
+  "page": "Varrock Diary",
+  "rev": 15364291,
+  "quests": {
+   "Rune Mysteries": "finished"
+  }
+ },
+ "Varrock Medium": {
+  "page": "Varrock Diary",
+  "rev": 15364291,
+  "quests": {
+   "A Soul's Bane": "finished",
+   "Enlightened Journey": "finished",
+   "Garden of Tranquillity": "finished",
+   "Gertrude's Cat": "finished",
+   "The Dig Site": "finished",
+   "Tree Gnome Village": "finished"
+  }
+ },
+ "Varrock Hard": {
+  "page": "Varrock Diary",
+  "rev": 15364291,
+  "quests": {
+   "Desert Treasure I": "finished"
+  }
+ },
+ "Varrock Elite": {
+  "page": "Varrock Diary",
+  "rev": 15364291,
+  "quests": {
+   "Dream Mentor": "finished",
+   "Druidic Ritual": "finished",
+   "The Tourist Trap": "finished"
+  }
+ },
+ "Western Provinces Easy": {
+  "page": "Western Provinces Diary",
+  "rev": 15366405,
+  "quests": {
+   "Big Chompy Bird Hunting": "finished",
+   "Rune Mysteries": "finished"
+  }
+ },
+ "Western Provinces Medium": {
+  "page": "Western Provinces Diary",
+  "rev": 15366405,
+  "quests": {
+   "Big Chompy Bird Hunting": "finished",
+   "Eagles' Peak": "finished",
+   "Monkey Madness I": "started",
+   "One Small Favour": "started",
+   "The Eyes of Glouphrie": "finished",
+   "The Grand Tree": "finished",
+   "Tree Gnome Village": "finished"
+  }
+ },
+ "Western Provinces Hard": {
+  "page": "Western Provinces Diary",
+  "rev": 15366405,
+  "quests": {
+   "Big Chompy Bird Hunting": "finished",
+   "Monkey Madness I": "finished",
+   "Mourning's End Part I": "started",
+   "Recipe for Disaster - King Awowogei": "finished",
+   "Regicide": "finished",
+   "Roving Elves": "finished",
+   "Swan Song": "finished"
+  }
+ },
+ "Western Provinces Elite": {
+  "page": "Western Provinces Diary",
+  "rev": 15366405,
+  "quests": {
+   "Big Chompy Bird Hunting": "finished",
+   "Mourning's End Part I": "started",
+   "Regicide": "finished",
+   "Underground Pass": "finished"
+  }
+ },
+ "Wilderness Easy": {
+  "page": "Wilderness Diary",
+  "rev": 15374244,
+  "quests": {
+   "Enter the Abyss": "finished"
+  }
+ },
+ "Wilderness Medium": {
+  "page": "Wilderness Diary",
+  "rev": 15374244,
+  "quests": {
+   "Between a Rock...": "started"
+  }
+ },
+ "Wilderness Hard": {
+  "page": "Wilderness Diary",
+  "rev": 15374244,
+  "quests": {
+   "Druidic Ritual": "finished",
+   "Mage Arena I": "finished"
+  }
+ },
+ "Wilderness Elite": {
+  "page": "Wilderness Diary",
+  "rev": 15374244,
+  "quests": {
+   "Desert Treasure I": "finished"
+  }
+ }
+}

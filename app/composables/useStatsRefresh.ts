@@ -38,16 +38,16 @@ export function useStatsRefresh(): {
   }
 
   /**
-   * Asks the local add-on which quests and diaries the account has completed, and ticks them.
-   * Only called when there is such an add-on. Not hearing back is fine: the ticks stay as they
-   * were.
+   * Asks the local add-on which quests and diaries the account has completed, and which quests it
+   * has started, and ticks them. Only called when there is such an add-on. Not hearing back is
+   * fine: the ticks stay as they were.
    */
   async function takeInQuestProgress(name: string): Promise<void> {
     try {
       const progress = parseQuestProgress(
         await $fetch<unknown>('/api/quest-progress', { query: { name } }),
       )
-      if (progress) account.recordCompleted(progress.quests, progress.diaries)
+      if (progress) account.recordProgress(progress)
     } catch (error) {
       console.warn('Could not read quest progress from the local add-on.', error)
     }

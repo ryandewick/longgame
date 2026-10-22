@@ -180,6 +180,9 @@ components:
     size: "24px"
   checkbox-on:
     backgroundColor: "{colors.bone}"
+  checkbox-started:
+    backgroundColor: "{colors.stage}"
+    fill: "bottom half {colors.bone}"
   nav-tab:
     textColor: "{colors.ink-2}"
     padding: "11px 13px 8px"
@@ -314,7 +317,7 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 
 **The Capes Own Colour Rule.** Any colour that is not stat yellow, due green, bad red or brass comes from the `CAPE_COLOURS` table and is attached to its skill. There is no second accent, and no colour is ever assigned to a category, a mood or a view.
 
-**The Shape Not Colour Rule.** How much attention a method takes is shown by an 11px circle: hollow, half filled, or filled. Never a colour, because colour belongs to the capes. A chosen option is bone on ink, never yellow.
+**The Shape Not Colour Rule.** How much attention a method takes is shown by an 11px circle: hollow, half filled, or filled. How far a quest has got is shown the same way, by its tick box: empty, half filled from the bottom (started), or ticked. Never a colour, because colour belongs to the capes. A chosen option is bone on ink, never yellow.
 
 ## Typography
 
@@ -336,7 +339,7 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 - **Row title** (Figtree 700, 16px, 1.25, white): the name in a table row or slot.
 - **Control** (Figtree 700, 14px, 1.2; 13px small): buttons. Chips are 600 at 14px, tabs 600 at 15px, field labels 700 at 15px.
 - **Label** (Figtree 500 to 600, 13px, 1.2 to 1.45, ink 3): table heads, meta lines, help text. Sentence case, no tracking, never uppercase.
-- **Tag** (Figtree 700, 12px, 1): "Best now", "Run", "Tick-perfect", "Locked". The smallest text in the system.
+- **Tag** (Figtree 700, 12px, 1): "Best now", "Run", "Tick-perfect", "Locked", "Started". The smallest text in the system.
 - **Stat** (RS, 16px, line-height 1, 1px 1px 0 black shadow): levels, XP, clocks and rates inline.
 - **Stat large** (RSB, 48px, 3px 3px 0 black shadow): the capes count on the rack ("1/24").
 - **Stat extra large** (RS regular, 64px, 3px 3px 0 black shadow): the block clock and the level on a crest.
@@ -447,7 +450,7 @@ Option pickers and toggles. Slot surface with a 1px inset edge, ink 2 text at 60
 
 ### Inputs and Checkboxes
 - **Input:** stage well, 1px inset strong edge, white 16px text, 4px corners, up to 320px wide. Label above in white at 700, help below in 13px ink 3.
-- **Checkbox:** a 24px stage square with the strong edge, bone edge on hover; ticked is bone with an ink check.
+- **Checkbox:** a 24px stage square with the strong edge, bone edge on hover; ticked is bone with an ink check. A quest whose start matters has a third state between them: started, a bone edge with the bottom half filled bone, as a cape fills from its hem, and a "Started" tag after the name. One box goes round all three, a press at a time; there is no second control.
 
 ### Navigation
 Seven text tabs in the top bar, Figtree 600 at 15px, ink 2, white on hover. The active tab is white with a 3px stat yellow underline. On phones the tabs wrap under the brand.
