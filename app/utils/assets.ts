@@ -17,8 +17,11 @@ export function milestoneCapeUrl(cape: 'quest-point' | 'achievement-diary'): str
   return `${GAME_ASSETS}/capes-md/${cape === 'quest-point' ? 'quest_point' : 'achievement_diary'}.webp`
 }
 
+/** The two icons for what is neither a skill nor a wildcard: a quest, a diary tier. */
+export type ListIcon = 'quest' | 'diary'
+
 /** The game's quest icon and its achievement diary icon, at their own 21 pixels. */
-export function questListIconUrl(kind: 'quest' | 'diary'): string {
+export function questListIconUrl(kind: ListIcon): string {
   return `${GAME_ASSETS}/icons/${kind === 'quest' ? 'quest_point' : 'achievement_diaries'}.png`
 }
 

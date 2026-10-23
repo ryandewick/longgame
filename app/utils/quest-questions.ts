@@ -17,6 +17,7 @@ import type { QuestTickChange, QuestTicks } from '#shared/domain/quest-ticks'
 import { questFacts, questTotalXp } from '#shared/domain/quests'
 import { questReadiness } from '#shared/domain/readiness'
 import { rowReadiness, type RowReadiness } from './quest-readiness'
+import { hoursInWords, listInWords } from './quest-words'
 
 /*
  * What the Quests page and the prompt on Tonight say: the question card, the list of answers
@@ -141,30 +142,6 @@ export function smallerQuestionAdds(question: PlanQuestion): string {
       sentences.push(asOptions(names, skills))
   }
   return sentences.join(' ')
-}
-
-/** A length of time in a sentence: '45 minutes', '1 hour', '432 hours'. */
-export function hoursInWords(hours: number): string {
-  if (hours < 1) return `${Math.round(hours * 60)} minutes`
-  const whole = Math.round(hours)
-  return whole === 1 ? '1 hour' : `${formatNumber(whole)} hours`
-}
-
-/**
- * Names as a list in a sentence: 'A', 'A and B', 'A, B and C'. Past `most` names the rest are
- * counted: 'A, B, C and 4 more'. Where a name has a comma of its own ('Antifire, ranging, magic
- * potions') the names are set apart by semicolons instead, so the list still reads as one.
- */
-export function listInWords(names: readonly string[], most = 3): string {
-  const shown = names.slice(0, most)
-  const left = names.length - shown.length
-  const items = left > 0 ? [...shown, `${left} more`] : shown
-  const last = items.at(-1)
-  if (last === undefined) return ''
-  if (items.length === 1) return last
-  const hasComma = shown.some((name) => name.includes(','))
-  const head = items.slice(0, -1)
-  return hasComma ? `${head.join('; ')}; and ${last}` : `${head.join(', ')} and ${last}`
 }
 
 /**

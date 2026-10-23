@@ -202,6 +202,22 @@ describe('finishSession', () => {
       ],
     })
   })
+
+  it('remembers a quest or diary step by its name and what it was to do', () => {
+    const step: SessionBlock = {
+      kind: 'quest',
+      title: 'Fairytale II - Cure a Queen',
+      step: 'start',
+      minutes: 30,
+      reason: { kind: 'unlock', goal: 'Fairy rings', left: 1 },
+      ...timer,
+      done: true,
+    }
+    const finished = finishSession({ ...SESSION, blocks: [step] }, after, NOW)
+    expect(finished.entry.blocks).toEqual([
+      { kind: 'quest', step: 'start', title: 'Fairytale II - Cure a Queen', done: true },
+    ])
+  })
 })
 
 describe('addToHistory', () => {

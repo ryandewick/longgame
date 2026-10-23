@@ -428,14 +428,15 @@ The signature component. A full-width stage band with a heading row (the capes c
 
 ### Live Panel
 The block to do now. A panel (4px corners, 1px edge, minimum 226px tall) in three columns: a 176px swatch, the text, and the clock.
-- **Swatch:** the skill's cape colour as a flat field with its trim as a 10px band down the right edge and the cape render hanging in it. A wildcard block shows the fallback colour and a 64px "?" in stat type.
+- **Swatch:** the skill's cape colour as a flat field with its trim as a 10px band down the right edge and the cape render hanging in it. A wildcard block shows the fallback colour and a 64px "?" in stat type. A quest or diary step shows the fallback colour with the quest point cape hanging in it (the achievement diary cape for a tier), since no skill's cape is its own, and no cape comes forward on the rack.
 - **Text:** headline with the 32px skill icon, one fact line at weight 600, an optional note in ink 2, an XP bar to the next level with its readout in white stat type, then Start or Pause (primary), Done (default) and Swap (ghost).
 - **Clock:** right aligned, 64px stat type, with "of 32 min, running" in 13px Figtree and the block's XP target under it.
 - **Progress:** a 3px bone line along the bottom edge, as wide as the share of the block's time used.
+- **Quest step:** the quest or diary icon leads the headline, and the note says why it was dealt. Its Done stops the clock and turns the text into a question: the time logged as the fact line, the question in white at 600, what a yes moves on and what a no leaves in ink 2, then Yes, tick it (primary) and Not yet (default). The clock line drops "running" and "paused" while it asks.
 - **Deal and finish variants:** two columns, with three capes fanned 10 degrees apart in the swatch instead of one.
 
 ### Session Slots
-One slot per block, in running order. Slot surface, 4px corners, 12px padding: title in white at 700, the skill icon top right, a 13px sub line, a stat-type line ("32 min, +25k xp"), and small Start, Done and Swap. A finished slot dims its title and shows "Done" in green stat type. The live slot swaps its outline for 2px stat yellow and drops its buttons, because the live panel holds them.
+One slot per block, in running order. Slot surface, 4px corners, 12px padding: title in white at 700, the skill icon top right, a 13px sub line, a stat-type line ("32 min, +25k xp"), and small Start, Done and Swap. A finished slot dims its title and shows "Done" in green stat type. A quest step's slot has the quest or diary icon, its kind as the sub line ("Quest", "Diary tier") and no Swap. The live slot swaps its outline for 2px stat yellow and drops its buttons, because the live panel holds them.
 
 ### Buttons
 - **Shape:** 4px corners, no border, Figtree 700 at 14px, 10px by 20px padding. Small is 13px with 6px by 12px.

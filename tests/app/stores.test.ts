@@ -5,6 +5,7 @@ import type { XpSnapshot } from '#shared/types/snapshot'
 import { SKILL_KEYS } from '#shared/data/skills'
 import { hoursLeft, maxProgress } from '#shared/domain/estimates'
 import { fastestMethod, methodOptions } from '#shared/domain/methods'
+import { questStepFor } from '#shared/domain/quest-step'
 import { closeTicks } from '#shared/domain/quest-ticks'
 import {
   accountFromSave,
@@ -465,6 +466,77 @@ describe('the session store', () => {
     // a finished session cannot be finished twice
     expect(session.finish()).toBeNull()
     expect(history.entries).toHaveLength(sessionsBefore + 1)
+  })
+
+  it('ends the deal on the quest step it is given while quest steps are on, which brings no cape forward', () => {
+    const { account, session } = loadedStores()
+    const step = questStepFor(account.account, 120, 'balanced') ?? raise('nothing to deal')
+    account.setPreference('minutes', 120)
+    account.setPreference('includeResets', false)
+    session.deal(step)
+    const blocks = session.session?.blocks ?? []
+    expect(blocks.at(-1)).toMatchObject({ kind: 'quest', title: step.title, done: false })
+    expect(blocks.some((block) => block.kind === 'wildcard')).toBe(false)
+
+    // the step is live once every block before it is done: a quest has no skill cape to hang forward
+    blocks.slice(0, -1).forEach((_, index) => session.completeBlock(index))
+    expect(session.liveBlock?.kind).toBe('quest')
+    expect(session.liveSkill).toBeNull()
+
+    // switched off, the same step is not dealt
+    account.setPreference('includeQuestStep', false)
+    session.deal(step)
+    expect(session.session?.blocks.some((block) => block.kind === 'quest')).toBe(false)
+  })
+
+  /** A two-hour deal without resets that ends on the test account's quest step, and the step's place. */
+  function dealtWithStep() {
+    const stores = loadedStores()
+    const { account, session } = stores
+    account.setPreference('minutes', 120)
+    account.setPreference('includeResets', false)
+    session.deal(questStepFor(account.account, 120, 'balanced'))
+    const stepIndex = (session.session?.blocks.length ?? 0) - 1
+    return { ...stores, stepIndex }
+  }
+
+  it('asks whether a step was finished: its clock stops, and it is the live block until answered', () => {
+    const { session, stepIndex } = dealtWithStep()
+    session.toggleBlock(0)
+    vi.advanceTimersByTime(60_000)
+    session.toggleBlock(stepIndex)
+    vi.advanceTimersByTime(60_000)
+    session.askStep(stepIndex)
+    expect(session.askingIndex).toBe(stepIndex)
+    expect(session.liveBlockIndex).toBe(stepIndex)
+    expect(session.liveSkill).toBeNull()
+    expect(session.session?.blocks[stepIndex]).toMatchObject({
+      elapsed: 60_000,
+      runningSince: null,
+      done: false,
+    })
+
+    // a yes: the step is done, and comes back for the caller to tick
+    expect(session.answerStep(true)).toMatchObject({ kind: 'quest', title: "Twilight's Promise" })
+    expect(session.session?.blocks[stepIndex]?.done).toBe(true)
+    expect(session.askingIndex).toBeNull()
+    expect(session.liveBlockIndex).toBe(0)
+  })
+
+  it('leaves nothing to tick after a no, and puts the question off when another block starts', () => {
+    const { session, stepIndex } = dealtWithStep()
+    session.askStep(stepIndex)
+    session.toggleBlock(0)
+    expect(session.askingIndex).toBeNull()
+    expect(session.liveBlockIndex).toBe(0)
+
+    session.askStep(stepIndex)
+    expect(session.answerStep(false)).toBeNull()
+    expect(session.session?.blocks[stepIndex]?.done).toBe(true)
+    // a step already done, or a block that is not a step, does not ask
+    session.askStep(stepIndex)
+    session.askStep(0)
+    expect(session.askingIndex).toBeNull()
   })
 
   it('lists the skills that gained a level in the finished session', () => {

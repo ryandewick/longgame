@@ -20,6 +20,7 @@ import {
   swapBlock,
 } from '#shared/domain/planner'
 import type { DealRequest } from '#shared/domain/planner'
+import type { QuestStepPick } from '#shared/domain/quest-step'
 import { dueResets } from '#shared/domain/resets'
 import { accountWith, seededRandom } from './helpers'
 
@@ -36,6 +37,7 @@ function deal(overrides: Partial<DealRequest> = {}) {
     mood: 'balanced',
     includeResets: false,
     includeWildcard: false,
+    questStep: null,
     recentSkills: [],
     resetLog: {},
     now: NOW,
@@ -496,6 +498,49 @@ describe('dealSession: the wildcard', () => {
     )
     expect(dealt.size).toBeGreaterThan(1)
     for (const title of dealt) expect(open).toContain(title)
+  })
+})
+
+describe('dealSession: a quest step', () => {
+  const step: QuestStepPick = {
+    title: "Twilight's Promise",
+    step: 'finish',
+    minutes: 40,
+    reason: { kind: 'saves', quest: 'Perilous Moons', hours: 33, opens: [], between: 0 },
+  }
+  const minutesOf = (session: Session) =>
+    session.blocks.reduce((total, block) => total + block.minutes, 0)
+
+  it('ends the session in the wildcard’s place, with its clock not started', () => {
+    const { session } = deal({ includeWildcard: true, questStep: step })
+    expect(session.blocks.at(-1)).toEqual({
+      kind: 'quest',
+      ...step,
+      elapsed: 0,
+      runningSince: null,
+      done: false,
+    })
+    expect(session.blocks.filter((block) => block.kind === 'wildcard')).toEqual([])
+  })
+
+  it('leaves the skills a slot for every 40 minutes it does not take', () => {
+    // two hours: two skill blocks beside a 40 minute step, where three would have it to themselves
+    const { session } = deal({ minutes: 120, questStep: step })
+    expect(skillBlocks(session)).toHaveLength(2)
+    expect(minutesOf(session)).toBe(120)
+    expect(skillBlocks(deal({ minutes: 120 }).session)).toHaveLength(3)
+  })
+
+  it('draws nothing for itself, where a wildcard would have drawn first', () => {
+    const random = vi.fn(seededRandom(7))
+    deal({ includeWildcard: true, minutes: 120, questStep: step, random })
+    // the coin and one draw for each of the two skill blocks
+    expect(random).toHaveBeenCalledTimes(1 + 2)
+  })
+
+  it('leaves the wildcard to end the session when there is no step', () => {
+    const { session } = deal({ includeWildcard: true, minutes: 120, questStep: null })
+    expect(session.blocks.at(-1)).toMatchObject({ kind: 'wildcard' })
   })
 })
 

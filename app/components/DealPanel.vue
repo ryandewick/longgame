@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import type { Mood } from '#shared/types/session'
+import type { QuestStepPick } from '#shared/domain/quest-step'
 
 /**
  * Where a session starts: how long the player has and what they are up for, then the button
  * that deals. The two choices are the player's preferences, kept from one visit to the next, and
  * the line beside the button says what the deal will be made of.
  */
+const { questStep } = defineProps<{
+  /** The quest or diary step the deal will end on, which Tonight works out; null for none. */
+  questStep: QuestStepPick | null
+}>()
+
 const emit = defineEmits<{
   deal: []
 }>()
@@ -38,6 +44,8 @@ const summary = computed(() =>
     minutes: minutes.value,
     includeResets: account.preferences.includeResets,
     includeWildcard: account.preferences.includeWildcard,
+    includeQuestStep: account.preferences.includeQuestStep,
+    questStep,
   }),
 )
 </script>

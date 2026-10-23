@@ -8,6 +8,7 @@ import { isIronman } from '#shared/domain/account'
 import { formatClock, formatShortNumber, INTENSITY_LABELS } from '#shared/domain/format'
 import { blockElapsed } from '#shared/domain/session'
 import { levelForXp, MAX_LEVEL, xpForLevel, xpToNextLevel } from '#shared/domain/xp'
+import { questStepCaption, questStepFact, questStepNote } from './tonight-quest'
 
 /*
  * What Tonight says about a session: its blocks, its clock and its tally. Everything here turns
@@ -19,9 +20,9 @@ const MINUTE = 60_000
 /** A session planned this many minutes or more over what was asked for says so. */
 const OVERRUN_WORTH_SAYING = 5
 
-/** The skill a block trains: its own, or the one a reset feeds. A wildcard has none. */
+/** The skill a block trains: its own, or the one a reset feeds. A wildcard or a quest step has none. */
 export function blockSkill(block: SessionBlock): SkillKey | null {
-  return block.kind === 'wildcard' ? null : block.skill
+  return block.kind === 'skill' || block.kind === 'reset' ? block.skill : null
 }
 
 /**
@@ -84,6 +85,7 @@ export function blockFact(block: SessionBlock, account: Account): string {
   if (block.kind === 'wildcard') {
     return `Wildcard, ${block.minutes} minutes. Whatever your account allows.`
   }
+  if (block.kind === 'quest') return questStepFact(block)
   const stat = account.skills[block.skill]
   const sentences = [
     `${skillName(block.skill)} ${stat.level}, ${INTENSITY_LABELS[block.intensity]}.`,
@@ -95,6 +97,14 @@ export function blockFact(block: SessionBlock, account: Account): string {
     stat.level < MAX_LEVEL && block.xpPerHour > 0 && xpToNextLevel(stat) <= block.targetXp
   if (levelWithinReach) sentences.push(`Level ${stat.level + 1} this block.`)
   return sentences.join(' ')
+}
+
+/**
+ * The sentence under the fact line: the method's or the reset's own note, what a wildcard is, or
+ * why a quest step was dealt. Empty when there is nothing to add.
+ */
+export function blockNote(block: SessionBlock): string {
+  return block.kind === 'quest' ? questStepNote(block) : block.note
 }
 
 /** The XP a skill block should bring in: '+69k xp', 'est. +20k xp'. Null when the method has no rate. */
@@ -129,12 +139,18 @@ export function levelProgress(stat: SkillStat): LevelProgress | null {
   }
 }
 
-/** The quiet line under a slot's title: 'Magic, Active', 'Timed run', 'Your pick'. */
+/** The quiet line under a slot's title: 'Magic, Active', 'Timed run', 'Your pick', 'Quest'. */
 export function slotCaption(block: SessionBlock): string {
-  if (block.kind === 'skill') {
-    return `${skillName(block.skill)}, ${INTENSITY_LABELS[block.intensity]}`
+  switch (block.kind) {
+    case 'skill':
+      return `${skillName(block.skill)}, ${INTENSITY_LABELS[block.intensity]}`
+    case 'reset':
+      return 'Timed run'
+    case 'wildcard':
+      return 'Your pick'
+    case 'quest':
+      return questStepCaption(block)
   }
-  return block.kind === 'reset' ? 'Timed run' : 'Your pick'
 }
 
 /** What a slot has planned: '33 min, +69k xp', '20 min, no rate', '5 min'. */

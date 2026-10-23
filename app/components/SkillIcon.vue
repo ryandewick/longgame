@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import type { SkillKey } from '#shared/types/skill'
+import type { ListIcon } from '~/utils/assets'
 
 /**
- * A skill's icon from the game, at its own pixel size so the pixels stay square. A wildcard
- * shows the game's "?"; with neither it is an empty slot, so rows of icons stay aligned.
+ * A skill's icon from the game, at its own pixel size so the pixels stay square. A quest step
+ * shows the game's quest or diary icon and a wildcard its "?"; with none of them it is an empty
+ * slot, so rows of icons stay aligned.
  */
 const {
   skill = null,
+  listIcon = null,
   size = 'row',
   title = undefined,
 } = defineProps<{
   skill?: SkillKey | null
+  /** Show the game's quest or diary icon in place of a skill. */
+  listIcon?: ListIcon | null
   /** Show the wildcard's "?" in place of a skill. */
   wildcard?: boolean
   /** 25px in a row, 32px beside a headline, 18px inside a chip. */
@@ -27,19 +32,19 @@ const {
     :class="{
       'skill-icon--large': size === 'large',
       'skill-icon--chip': size === 'chip',
-      'skill-icon--wildcard': !skill && wildcard,
+      'skill-icon--wildcard': !skill && !listIcon && wildcard,
       'skill-icon--faded': faded,
     }"
     :title="title"
   >
     <img
-      v-if="skill"
+      v-if="skill || listIcon"
       class="skill-icon__image"
       :class="{
         'skill-icon__image--large': size === 'large',
         'skill-icon__image--chip': size === 'chip',
       }"
-      :src="skillIconUrl(skill)"
+      :src="skill ? skillIconUrl(skill) : questListIconUrl(listIcon ?? 'quest')"
       alt=""
     />
     <template v-else-if="wildcard">?</template>

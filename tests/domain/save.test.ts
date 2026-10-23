@@ -468,6 +468,48 @@ describe('readSave', () => {
     expect(readSave(JSON.parse(JSON.stringify(save)))).toEqual(save)
   })
 
+  it('reads a version 2 save written before quest steps as one with them on, as a new save has them', () => {
+    const blank = blankSave()
+    expect(blank.preferences.includeQuestStep).toBe(true)
+    const { includeQuestStep, ...olderPreferences } = blank.preferences
+    expect(includeQuestStep).toBe(true)
+    const older = { ...blank, name: 'Zezima', preferences: olderPreferences }
+    expect(readSave(JSON.parse(JSON.stringify(older)))).toEqual({ ...blank, name: 'Zezima' })
+  })
+
+  it('keeps quest steps switched off, and a session that ends on one', () => {
+    const save = {
+      ...blankSave(),
+      preferences: { ...blankSave().preferences, includeQuestStep: false },
+      session: {
+        startedAt: 1_800_000_000_000,
+        minutes: 120,
+        blocks: [
+          {
+            kind: 'quest' as const,
+            title: "Twilight's Promise",
+            step: 'finish' as const,
+            minutes: 40,
+            reason: {
+              kind: 'saves' as const,
+              quest: 'Perilous Moons',
+              hours: 33,
+              opens: ['Sulphur naguas'],
+              between: 0,
+            },
+            elapsed: 0,
+            runningSince: null,
+            done: false,
+          },
+        ],
+        startingXp: Object.fromEntries(SKILL_KEYS.map((skill) => [skill, 0])),
+        endedAt: null,
+        tally: null,
+      },
+    }
+    expect(readSave(JSON.parse(JSON.stringify(save)))).toEqual(save)
+  })
+
   it('declines nothing in a vanilla save, which never asked', () => {
     const save = readSave({ ...blankLegacySave(), manual: { quests: { 'Bone Voyage': true } } })
     expect(save).toMatchObject({

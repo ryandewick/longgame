@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { SkillKey } from '#shared/types/skill'
 import { capeColours } from '#shared/domain/capes'
+import type { ListIcon } from '~/utils/assets'
 
 /**
  * The panel at the top of Tonight: a swatch in a skill's cape colour with its trim down the
@@ -11,9 +12,15 @@ import { capeColours } from '#shared/domain/capes'
  * `actions` is the row of buttons, `aside` is a third column at the right (the clock) and
  * `progress` lies along the bottom edge.
  */
-const { skill, note = '' } = defineProps<{
+const {
+  skill,
+  listIcon = null,
+  note = '',
+} = defineProps<{
   /** The skill whose colours the swatch wears and whose icon leads the headline. Null is the plain cape with a brass trim. */
   skill: SkillKey | null
+  /** The quest or diary icon that leads the headline where there is no skill: a quest step's. */
+  listIcon?: ListIcon | null
   title: string
   /** One sentence under the headline. */
   note?: string
@@ -57,7 +64,7 @@ defineExpose({
     </div>
     <div ref="body" class="cape-panel__body">
       <h2 :id="titleId" class="cape-panel__title">
-        <SkillIcon v-if="skill" :skill="skill" size="large" />
+        <SkillIcon v-if="skill || listIcon" :skill="skill" :list-icon="listIcon" size="large" />
         {{ title }}
       </h2>
       <p v-if="note" class="cape-panel__note">{{ note }}</p>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { questStepFor } from '#shared/domain/quest-step'
+
 /**
  * Tonight: the session to play now (the deal, the live block, the tally) beside the resets that are due, the
  * capes closest to 99 and the distance to max.
@@ -14,6 +16,17 @@ const history = useHistoryStore()
 const toast = useToast()
 const { confirm } = useConfirm()
 const { isRefreshing, refresh } = useStatsRefresh()
+const { markQuest, markDiary } = useQuestToggle()
+
+/**
+ * The quest or diary step the next deal ends on, while the player has quest steps on
+ * (quest-step.ts). Worked out here rather than in the store, so the suggestion rules load with
+ * the pages that use them; it is only worked out when something reads it.
+ */
+const questStep = computed(() => {
+  const { includeQuestStep, minutes, mood } = account.preferences
+  return includeQuestStep ? questStepFor(account.account, minutes, mood) : null
+})
 
 /** True from the moment the player confirms the finish until the tally is in. */
 const isFinishing = shallowRef(false)
@@ -32,7 +45,7 @@ const questionsWaiting = computed(() =>
 function deal(): void {
   // read before dealing: this is the mood the deal was asked for
   const { mood } = account.preferences
-  const moodRelaxed = session.deal()
+  const moodRelaxed = session.deal(questStep.value)
   announceMoment({ name: 'deal' })
   // said outright: the first block of a fresh deal goes live even when the last deal's first
   // block was the live one too, and the place of the live block has not changed
@@ -60,6 +73,26 @@ function swap(blockIndex: number): void {
   announceMoment({ name: 'swap', blockIndex })
   // the live block is at the same place in the session as before, but it is a different block now
   if (blockIndex === session.liveBlockIndex) announceMoment({ name: 'live' })
+}
+
+/**
+ * A block's Done. A quest or diary step first stops its clock and asks whether the player
+ * finished it, so that a yes can tick it; any other block is simply done.
+ */
+function done(blockIndex: number): void {
+  if (session.session?.blocks[blockIndex]?.kind === 'quest') session.askStep(blockIndex)
+  else session.completeBlock(blockIndex)
+}
+
+/**
+ * The answer to a step's question. Either way the step is done for tonight; a yes also ticks
+ * its quest or tier (or marks the quest started) through the account store, and says so.
+ */
+function answer(finished: boolean): void {
+  const step = session.answerStep(finished)
+  if (!step) return
+  if (step.step === 'claim') markDiary(step.title)
+  else markQuest(step.title, step.step === 'start' ? 'started' : 'finished')
 }
 
 // A different place in the session has become the one to do now: the block before it was ticked
@@ -113,7 +146,7 @@ async function finish(): Promise<void> {
           :count="questionsWaiting"
           @dismiss="putOff"
         />
-        <DealPanel @deal="deal" />
+        <DealPanel :quest-step="questStep" @deal="deal" />
         <SessionTally v-if="session.session" :session="session.session" />
         <p v-if="!history.entries.length" class="note tonight-view__hint">
           <b class="note__strong">How it works.</b>
@@ -129,9 +162,11 @@ async function finish(): Promise<void> {
           v-if="session.liveBlock && session.liveBlockIndex !== null"
           :key="session.liveBlockIndex"
           :block="session.liveBlock"
+          :asking="session.askingIndex === session.liveBlockIndex"
           @toggle="session.toggleBlock(session.liveBlockIndex)"
-          @done="session.completeBlock(session.liveBlockIndex)"
+          @done="done(session.liveBlockIndex)"
           @swap="swap(session.liveBlockIndex)"
+          @answer="answer"
         />
         <FinishPanel
           v-else
@@ -145,7 +180,7 @@ async function finish(): Promise<void> {
           :live-block-index="session.liveBlockIndex"
           :finishing="isFinishing"
           @toggle="session.toggleBlock"
-          @done="session.completeBlock"
+          @done="done"
           @swap="swap"
           @finish="finish"
           @redeal="dealAgain"

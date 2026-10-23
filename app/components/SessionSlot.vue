@@ -22,6 +22,7 @@ const emit = defineEmits<{
 }>()
 
 const skill = computed(() => blockSkill(block))
+const listIcon = computed(() => blockListIcon(block))
 const hasTime = computed(() => block.elapsed > 0)
 </script>
 
@@ -34,7 +35,12 @@ const hasTime = computed(() => block.elapsed > 0)
     <span class="session-slot__title" :class="{ 'session-slot__title--done': block.done }">
       {{ block.title }}
     </span>
-    <SkillIcon class="session-slot__icon" :skill="skill" :wildcard="block.kind === 'wildcard'" />
+    <SkillIcon
+      class="session-slot__icon"
+      :skill="skill"
+      :list-icon="listIcon"
+      :wildcard="block.kind === 'wildcard'"
+    />
     <span class="session-slot__caption">{{ slotCaption(block) }}</span>
 
     <div class="session-slot__status">

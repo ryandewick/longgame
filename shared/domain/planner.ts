@@ -15,6 +15,7 @@ import {
   withinBudget,
 } from './methods'
 import type { MethodOption } from './methods'
+import type { QuestStepPick } from './quest-step'
 import { meetsRequirements } from './requirements'
 import { dueResets } from './resets'
 import type { ResetLog } from './resets'
@@ -292,6 +293,11 @@ export interface DealRequest {
   readonly includeResets: boolean
   /** End a long session on a wildcard. */
   readonly includeWildcard: boolean
+  /**
+   * The quest or diary step to end on, which takes the wildcard's place: what quest-step.ts chose
+   * for this account, length and mood. Null when the player has it off or nothing fits.
+   */
+  readonly questStep: QuestStepPick | null
   /** The skills dealt lately, oldest first: `Deal.recentSkills` from the deal before. */
   readonly recentSkills: readonly SkillKey[]
   readonly resetLog: ResetLog
@@ -312,15 +318,17 @@ export interface Deal {
 }
 
 /**
- * Deals a session: due resets first, then a skill block for about every 40 minutes, then a
- * wildcard if the session is long enough. Each slot's skill is drawn at random, weighted by
- * `skillWeight`, with one block per skill and one per activity so Nightmare Zone is not dealt
- * for three stats. When too few skills suit the mood the session gets fewer, longer blocks
- * rather than breaking the mood.
+ * Deals a session: due resets first, then a skill block for about every 40 minutes, then the
+ * quest step the request carries, or else a wildcard if the session is long enough. Each slot's
+ * skill is drawn at random, weighted by `skillWeight`, with one block per skill and one per
+ * activity so Nightmare Zone is not dealt for three stats. When too few skills suit the mood the
+ * session gets fewer, longer blocks rather than breaking the mood.
  */
 export function dealSession(request: DealRequest): Deal {
-  const { account, minutes, mood, random, now } = request
-  const slotCount = Math.max(1, Math.min(MOST_SLOTS, Math.round(minutes / MINUTES_PER_SLOT)))
+  const { account, minutes, mood, random, now, questStep } = request
+  // a quest step can take up to half the session, so the skills get a slot for every 40 minutes it leaves
+  const slotMinutes = minutes - (questStep?.minutes ?? 0)
+  const slotCount = Math.max(1, Math.min(MOST_SLOTS, Math.round(slotMinutes / MINUTES_PER_SLOT)))
   const blocks: SessionBlock[] = []
   let minutesLeft = minutes
 
@@ -340,9 +348,15 @@ export function dealSession(request: DealRequest): Deal {
     }
   }
 
-  // no wildcard is AFK, so an AFK night has none
+  // a quest step takes the wildcard's place; no wildcard is AFK, so an AFK night has none
   let wildcard: Wildcard | undefined
-  if (request.includeWildcard && minutes >= SHORTEST_SESSION_WITH_WILDCARD && mood !== 'afk') {
+  if (questStep) {
+    minutesLeft -= questStep.minutes
+  } else if (
+    request.includeWildcard &&
+    minutes >= SHORTEST_SESSION_WITH_WILDCARD &&
+    mood !== 'afk'
+  ) {
     const open = WILDCARDS.filter((candidate) => meetsRequirements(account, candidate.requirements))
     wildcard = open[Math.floor(random() * open.length)]
     minutesLeft -= WILDCARD_BLOCK_MINUTES
@@ -392,7 +406,9 @@ export function dealSession(request: DealRequest): Deal {
     blocks.push(skillBlock(pick, blockMinutes))
   })
 
-  if (wildcard) {
+  if (questStep) {
+    blocks.push({ kind: 'quest', ...questStep, ...freshTimer })
+  } else if (wildcard) {
     blocks.push({
       kind: 'wildcard',
       title: wildcard.name,

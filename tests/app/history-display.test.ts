@@ -129,6 +129,17 @@ describe('historyBlockSkill and describeHistoryBlock', () => {
     expect(historyBlockSkill(wildcardBlock)).toBeNull()
     expect(describeHistoryBlock(wildcardBlock)).toBe('Clue scroll')
   })
+
+  it('gives a quest or diary step no skill and its name alone', () => {
+    const step: HistoryBlock = {
+      kind: 'quest',
+      step: 'finish',
+      title: "Twilight's Promise",
+      done: true,
+    }
+    expect(historyBlockSkill(step)).toBeNull()
+    expect(describeHistoryBlock(step)).toBe("Twilight's Promise")
+  })
 })
 
 describe('describeLevelsGained', () => {

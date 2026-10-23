@@ -45,6 +45,11 @@ export interface SavedPreferences {
   readonly includeResets: boolean
   /** End long sessions on a wildcard. */
   readonly includeWildcard: boolean
+  /**
+   * End a session on a quest or diary step from the Quests page's Next, in the wildcard's place,
+   * when one fits. Added after version 2 was first written: a save without it reads as on.
+   */
+  readonly includeQuestStep: boolean
   readonly skillSort: SkillSort
 }
 
@@ -83,6 +88,15 @@ export interface SavedState {
 
 /** The fields a version 2 save may lack, because they were added after the first ones were written. */
 type AddedSinceVersionTwo = Pick<SavedState, 'declinedQuests' | 'declinedDiaries' | 'startedQuests'>
+/** The preferences a version 2 save may lack, for the same reason. */
+type PreferencesAddedSinceVersionTwo = Pick<SavedPreferences, 'includeQuestStep'>
+
+/** A version 2 save as it may have been written, before the fields added since. */
+type SavedSinceVersionTwo = Omit<SavedState, keyof AddedSinceVersionTwo | 'preferences'> &
+  Partial<AddedSinceVersionTwo> & {
+    readonly preferences: Omit<SavedPreferences, keyof PreferencesAddedSinceVersionTwo> &
+      Partial<PreferencesAddedSinceVersionTwo>
+  }
 
 /** A save for someone who has never used the app. */
 export function blankSave(): SavedState {
@@ -106,6 +120,7 @@ export function blankSave(): SavedState {
       excludedSkills: [],
       includeResets: true,
       includeWildcard: true,
+      includeQuestStep: true,
       skillSort: 'hours',
     },
     session: null,
@@ -430,6 +445,8 @@ export function migrateLegacySave(legacy: LegacySaveV1): SavedState {
       excludedSkills: tickedNames(preferences.exclude).filter(isSkillKey),
       includeResets: preferences.dailies ?? true,
       includeWildcard: preferences.wildcard ?? true,
+      // the vanilla app dealt no quest steps; a switch that is on by default starts on
+      includeQuestStep: blank.preferences.includeQuestStep,
       skillSort: isSkillSort(preferences.sort) ? preferences.sort : blank.preferences.skillSort,
     },
     session: legacy.session ? migrateSession(legacy.session, mood) : null,
@@ -461,13 +478,18 @@ export function readSave(value: unknown): SavedState | null {
     value.version === SAVE_VERSION
   if (!isCurrent) return null
   // the version tag is the format's promise; a file carrying it is taken at its word
-  const save = value as SavedState & Partial<AddedSinceVersionTwo>
+  const save = value as SavedSinceVersionTwo
   // Fields added since version 2 was first written take their blank value where a save lacks
   // them. That is all an older save needs, so adding them did not take a new version number.
+  const blank = blankSave()
   return {
     ...save,
     startedQuests: save.startedQuests ?? [],
     declinedQuests: save.declinedQuests ?? [],
     declinedDiaries: save.declinedDiaries ?? [],
+    preferences: {
+      ...save.preferences,
+      includeQuestStep: save.preferences.includeQuestStep ?? blank.preferences.includeQuestStep,
+    },
   }
 }

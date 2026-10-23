@@ -92,6 +92,8 @@ function historyBlock(block: SessionBlock): HistoryBlock {
       return { kind: 'reset', resetKey: block.resetKey, title: block.title, done: block.done }
     case 'wildcard':
       return { kind: 'wildcard', title: block.title, done: block.done }
+    case 'quest':
+      return { kind: 'quest', step: block.step, title: block.title, done: block.done }
   }
 }
 

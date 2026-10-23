@@ -9,6 +9,7 @@ import {
   skillsInPlay,
   skillsWithMethod,
 } from '#shared/domain/planner'
+import { SHORTEST_SESSION_WITH_QUEST_STEP, type QuestStepPick } from '#shared/domain/quest-step'
 
 /*
  * What the deal panel on Tonight says before a session is dealt, and what the app says when a
@@ -71,17 +72,41 @@ export interface DealOutlook {
   readonly minutes: number
   readonly includeResets: boolean
   readonly includeWildcard: boolean
+  readonly includeQuestStep: boolean
+  /** The quest or diary step the deal will end on (quest-step.ts), or null for none. */
+  readonly questStep: QuestStepPick | null
 }
 
-/** The line beside the deal button: '21 skills in play, resets included, one wildcard'. */
+/** The line beside the deal button: '21 skills in play, resets included, one quest step'. */
 export function dealSummary(outlook: DealOutlook): string {
-  const { skillCount, mood, minutes } = outlook
+  const { skillCount, mood } = outlook
   const skills =
     mood === 'balanced'
       ? `${skillCount} skills in play`
       : `${skillCount} skills with an ${STRICT_MOOD_WORDS[mood]} method`
   const resets = outlook.includeResets ? 'resets included' : 'resets off'
-  return `${skills}, ${resets}, ${wildcardOutlook(outlook.includeWildcard, mood, minutes)}`
+  return `${skills}, ${resets}, ${endOutlook(outlook)}`
+}
+
+/**
+ * What the deal will end on: a quest or diary step, else a wildcard, and when neither, why not.
+ * Follows the planner's own conditions (quest-step.ts, planner.ts).
+ */
+function endOutlook(outlook: DealOutlook): string {
+  const { questStep, includeQuestStep, includeWildcard, mood, minutes } = outlook
+  if (questStep) return questStep.step === 'claim' ? 'one diary step' : 'one quest step'
+  if (includeQuestStep) {
+    if (mood === 'afk') {
+      return includeWildcard
+        ? 'no quest step or wildcard on an AFK night'
+        : 'no quest step on an AFK night'
+    }
+    if (minutes < SHORTEST_SESSION_WITH_QUEST_STEP) {
+      return `quest step from ${SHORTEST_SESSION_WITH_QUEST_STEP} min up`
+    }
+    if (!includeWildcard) return 'no quest step fits'
+  }
+  return wildcardOutlook(includeWildcard, mood, minutes)
 }
 
 /** Whether the deal will end on a wildcard and, if not, why not. Follows the planner's own conditions. */

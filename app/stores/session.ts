@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import { computed, shallowRef } from 'vue'
-import type { HistoryEntry, Session, SessionBlock } from '#shared/types/session'
+import type { HistoryEntry, QuestBlock, Session, SessionBlock } from '#shared/types/session'
 import type { SkillKey } from '#shared/types/skill'
 import { SKILL_KEYS } from '#shared/data/skills'
 import { dealSession, swapBlock as swapBlockIn } from '#shared/domain/planner'
+import type { QuestStepPick } from '#shared/domain/quest-step'
 import type { SavedState } from '#shared/domain/save'
 import {
   completeBlock as completeBlockIn,
@@ -26,16 +27,23 @@ export const useSessionStore = defineStore('session', () => {
   const session = shallowRef<Session | null>(null)
   /** The skills dealt lately, oldest first, so the next deal can avoid them. */
   const recentSkills = shallowRef<readonly SkillKey[]>([])
+  /**
+   * The place of a quest or diary step whose Done is waiting on the player's answer: did they
+   * finish it? Not saved: after a reload its Done asks again.
+   */
+  const askingIndex = shallowRef<number | null>(null)
 
   /** The session has been tallied: its blocks are history and its gains are known. */
   const isFinished = computed(() => session.value !== null && session.value.endedAt !== null)
 
   /**
-   * The place of the block to do now: the one whose timer is running, else the first that is not
-   * done. Null when there is no session, it is finished, or every block is done.
+   * The place of the block to do now: a step waiting on an answer, else the one whose timer is
+   * running, else the first that is not done. Null when there is no session, it is finished, or
+   * every block is done.
    */
   const liveBlockIndex = computed<number | null>(() => {
     if (!session.value || isFinished.value) return null
+    if (askingIndex.value !== null) return askingIndex.value
     const { blocks } = session.value
     const running = blocks.findIndex((block) => block.runningSince !== null)
     const live = running >= 0 ? running : blocks.findIndex((block) => !block.done)
@@ -46,10 +54,10 @@ export const useSessionStore = defineStore('session', () => {
     liveBlockIndex.value === null ? null : (session.value?.blocks[liveBlockIndex.value] ?? null),
   )
 
-  /** The skill the live block trains: its own, or the one a reset feeds. A wildcard has none. */
+  /** The skill the live block trains: its own, or the one a reset feeds. A wildcard or a quest step has none. */
   const liveSkill = computed<SkillKey | null>(() => {
     const block = liveBlock.value
-    return block && block.kind !== 'wildcard' ? block.skill : null
+    return block?.kind === 'skill' || block?.kind === 'reset' ? block.skill : null
   })
 
   /** The skills that gained a level in the finished session, in hiscores order. */
@@ -68,6 +76,7 @@ export const useSessionStore = defineStore('session', () => {
   function restore(save: SavedSession): void {
     session.value = save.session
     recentSkills.value = save.recentSkills
+    askingIndex.value = null
   }
 
   /** Drops the session and forgets which skills were dealt lately. */
@@ -77,18 +86,21 @@ export const useSessionStore = defineStore('session', () => {
 
   /**
    * Deals tonight's session from the account and its preferences, replacing any session there
-   * is. Returns true when a strict mood found nothing to deal and the session was dealt balanced
-   * instead, which the player should be told.
+   * is. It ends on `questStep` while the player has quest steps on: Tonight chooses the step
+   * (quest-step.ts), so the rules behind it load with the pages that use them. Returns true when
+   * a strict mood found nothing to deal and the session was dealt balanced instead, which the
+   * player should be told.
    */
-  function deal(): boolean {
+  function deal(questStep: QuestStepPick | null = null): boolean {
     const account = useAccountStore()
-    const { minutes, mood, includeResets, includeWildcard } = account.preferences
+    const { minutes, mood, includeResets, includeWildcard, includeQuestStep } = account.preferences
     const dealt = dealSession({
       account: account.account,
       minutes,
       mood,
       includeResets,
       includeWildcard,
+      questStep: includeQuestStep ? questStep : null,
       recentSkills: recentSkills.value,
       resetLog: account.resetLog,
       now: Date.now(),
@@ -96,6 +108,7 @@ export const useSessionStore = defineStore('session', () => {
     })
     session.value = dealt.session
     recentSkills.value = dealt.recentSkills
+    askingIndex.value = null
     return dealt.moodRelaxed
   }
 
@@ -116,20 +129,50 @@ export const useSessionStore = defineStore('session', () => {
     return true
   }
 
-  /** Starts a block's timer, or pauses it if it is running. Starting one pauses any other. */
+  /**
+   * Starts a block's timer, or pauses it if it is running. Starting one pauses any other, and
+   * starting another block puts off a step's question: its Done asks again later.
+   */
   function toggleBlock(blockIndex: number): void {
     if (!session.value) return
+    if (askingIndex.value !== blockIndex) askingIndex.value = null
     session.value = toggleBlockIn(session.value, blockIndex, Date.now())
   }
 
   /** Marks a block done. A reset block also logs its reset, so it is not dealt again until due. */
   function completeBlock(blockIndex: number): void {
     if (!session.value) return
+    if (askingIndex.value === blockIndex) askingIndex.value = null
     const completion = completeBlockIn(session.value, blockIndex, Date.now())
     session.value = completion.session
     if (completion.completedResetKey) {
       useAccountStore().markResetDone(completion.completedResetKey)
     }
+  }
+
+  /**
+   * A quest or diary step's Done: its clock stops, and it is the live block while it asks whether
+   * the player finished it. Anything else, or a step already done, is left alone.
+   */
+  function askStep(blockIndex: number): void {
+    const block = session.value?.blocks[blockIndex]
+    if (!session.value || block?.kind !== 'quest' || block.done) return
+    if (block.runningSince !== null) {
+      session.value = toggleBlockIn(session.value, blockIndex, Date.now())
+    }
+    askingIndex.value = blockIndex
+  }
+
+  /**
+   * The answer to a step's question. Either way the step is done for tonight. Returns the step
+   * when the answer was yes, for the caller to tick it (or mark it started), or null.
+   */
+  function answerStep(finished: boolean): QuestBlock | null {
+    const blockIndex = askingIndex.value
+    const block = blockIndex === null ? undefined : session.value?.blocks[blockIndex]
+    if (blockIndex === null || block?.kind !== 'quest') return null
+    completeBlock(blockIndex)
+    return finished ? block : null
   }
 
   /**
@@ -148,6 +191,7 @@ export const useSessionStore = defineStore('session', () => {
    */
   function finish(): HistoryEntry | null {
     if (!session.value || isFinished.value) return null
+    askingIndex.value = null
     const finished = finishSession(session.value, useAccountStore().account.skills, Date.now())
     session.value = finished.session
     useHistoryStore().addEntry(finished.entry)
@@ -157,6 +201,7 @@ export const useSessionStore = defineStore('session', () => {
   return {
     session,
     recentSkills,
+    askingIndex,
     isFinished,
     liveBlockIndex,
     liveBlock,
@@ -169,6 +214,8 @@ export const useSessionStore = defineStore('session', () => {
     swapBlock,
     toggleBlock,
     completeBlock,
+    askStep,
+    answerStep,
     pauseAll,
     finish,
   }

@@ -49,7 +49,45 @@ export interface WildcardBlock extends BlockTimer {
   readonly minutes: number
 }
 
-export type SessionBlock = SkillBlock | ResetBlock | WildcardBlock
+/** Why a quest or diary step was dealt, as the session keeps it; Tonight says it in words. */
+export type QuestStepReason =
+  | {
+      /** It saves hours: a quest the account is ready for, or the first step towards one (Next's first list). */
+      readonly kind: 'saves'
+      /** The quest the hours come from: the step itself, or the quest it leads to. */
+      readonly quest: string
+      readonly hours: number
+      /** The methods and resets that quest opens. */
+      readonly opens: readonly string[]
+      /** The steps still to do between this one and that quest. */
+      readonly between: number
+    }
+  | {
+      /** The next quest towards a goal that saves no hours (decision 7). */
+      readonly kind: 'unlock'
+      readonly goal: string
+      /** The goal's quests still to do, this one included. */
+      readonly left: number
+    }
+  | {
+      /** A diary tier to claim (decision 6). */
+      readonly kind: 'tier'
+      /** The methods and resets its reward opens. */
+      readonly opens: readonly string[]
+    }
+
+/** A quest or diary step from the Quests page's Next, in the wildcard's place (approval 5). */
+export interface QuestBlock extends BlockTimer {
+  readonly kind: 'quest'
+  /** The quest's or the diary tier's name. */
+  readonly title: string
+  /** Finish a quest, only start one, or claim a diary tier's reward. */
+  readonly step: 'finish' | 'start' | 'claim'
+  readonly minutes: number
+  readonly reason: QuestStepReason
+}
+
+export type SessionBlock = SkillBlock | ResetBlock | WildcardBlock | QuestBlock
 
 /** What a finished session brought in, measured against the XP it started with. */
 export interface SessionTally {
@@ -86,6 +124,12 @@ export type HistoryBlock =
       readonly done: boolean
     }
   | { readonly kind: 'wildcard'; readonly title: string; readonly done: boolean }
+  | {
+      readonly kind: 'quest'
+      readonly step: QuestBlock['step']
+      readonly title: string
+      readonly done: boolean
+    }
 
 /** A finished session as the history keeps it. */
 export interface HistoryEntry extends SessionTally {

@@ -4,11 +4,15 @@ import { formatShortNumber } from '#shared/domain/format'
 
 /**
  * The block to do now, on its skill's cape: what it is and what it should bring in, the bar to
- * the skill's next level, the buttons that run it, and its clock. A block with no skill (a
- * wildcard) hangs a "?" where the cape would be.
+ * the skill's next level, the buttons that run it, and its clock. A quest or diary step hangs the
+ * quest point cape or the achievement diary cape and says why it was dealt; once its Done is
+ * pressed it asks whether the player finished it (`asking`). A wildcard hangs a "?" where the
+ * cape would be.
  */
-const { block } = defineProps<{
+const { block, asking = false } = defineProps<{
   block: SessionBlock
+  /** The step's Done has been pressed: its clock is stopped, and the panel asks whether it was finished. */
+  asking?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -17,14 +21,30 @@ const emit = defineEmits<{
   done: []
   /** Swap the block for another skill. Only a skill block offers it. */
   swap: []
+  /** The answer to a step's question: true when the player finished it. */
+  answer: [finished: boolean]
 }>()
 
 const account = useAccountStore()
 
 const skill = computed(() => blockSkill(block))
+const listIcon = computed(() => blockListIcon(block))
 const fact = computed(() => blockFact(block, account.account))
+const note = computed(() => blockNote(block))
 const target = computed(() => blockTarget(block))
 const isRunning = computed(() => block.runningSince !== null)
+
+/** The cape a quest or diary step hangs, since no skill's cape is its own. */
+const stepCape = computed(() =>
+  listIcon.value
+    ? milestoneCapeUrl(listIcon.value === 'diary' ? 'achievement-diary' : 'quest-point')
+    : null,
+)
+
+/** The question a step asks once its Done is pressed. Its clock is stopped, so its time is all banked. */
+const ask = computed(() =>
+  asking && block.kind === 'quest' ? questStepAsk(block, block.elapsed) : null,
+)
 
 /** The skill's way to its next level. Only a skill block shows it, and not once the skill is 99. */
 const level = computed(() => {
@@ -50,41 +70,60 @@ motion.onMoment('live', () => {
 </script>
 
 <template>
-  <CapePanel ref="panel" :skill="skill" :title="block.title">
+  <CapePanel ref="panel" :skill="skill" :list-icon="listIcon" :title="block.title">
     <template #swatch>
       <img v-if="skill" ref="cape" class="live-panel__cape" :src="capeImageUrl(skill)" alt="" />
+      <img v-else-if="stepCape" ref="cape" class="live-panel__cape" :src="stepCape" alt="" />
       <GameNumber v-else class="live-panel__wildcard" tone="white" size="clock">?</GameNumber>
     </template>
 
-    <p class="live-panel__fact">{{ fact }}</p>
-    <p v-if="block.note" class="live-panel__note">{{ block.note }}</p>
-    <div v-if="level" class="live-panel__level">
-      <XpBar class="live-panel__xp-bar" :skill="level.skill" :percent="level.percent" />
-      <GameNumber tone="white">
-        {{ formatShortNumber(level.xpToNextLevel) }} xp to level {{ level.nextLevel }}
-      </GameNumber>
-    </div>
+    <template v-if="ask">
+      <p class="live-panel__fact">{{ ask.fact }}</p>
+      <p class="live-panel__note live-panel__question">{{ ask.question }}</p>
+      <p class="live-panel__note">{{ ask.note }}</p>
+    </template>
+    <template v-else>
+      <p class="live-panel__fact">{{ fact }}</p>
+      <p v-if="note" class="live-panel__note">{{ note }}</p>
+      <div v-if="level" class="live-panel__level">
+        <XpBar class="live-panel__xp-bar" :skill="level.skill" :percent="level.percent" />
+        <GameNumber tone="white">
+          {{ formatShortNumber(level.xpToNextLevel) }} xp to level {{ level.nextLevel }}
+        </GameNumber>
+      </div>
+    </template>
 
     <template #actions>
-      <button type="button" class="button button--primary" @click="emit('toggle')">
-        {{ isRunning ? 'Pause' : 'Start' }}
-      </button>
-      <button type="button" class="button" @click="emit('done')">Done</button>
-      <button
-        v-if="block.kind === 'skill'"
-        type="button"
-        class="button button--ghost"
-        title="Swap this block for another skill"
-        @click="emit('swap')"
-      >
-        Swap
-      </button>
+      <template v-if="ask">
+        <button type="button" class="button button--primary" @click="emit('answer', true)">
+          {{ ask.yes }}
+        </button>
+        <button type="button" class="button" @click="emit('answer', false)">Not yet</button>
+      </template>
+      <template v-else>
+        <button type="button" class="button button--primary" @click="emit('toggle')">
+          {{ isRunning ? 'Pause' : 'Start' }}
+        </button>
+        <button type="button" class="button" @click="emit('done')">Done</button>
+        <button
+          v-if="block.kind === 'skill'"
+          type="button"
+          class="button button--ghost"
+          title="Swap this block for another skill"
+          @click="emit('swap')"
+        >
+          Swap
+        </button>
+      </template>
     </template>
 
     <template #aside>
       <SessionClock class="live-panel__clock" :timers="[block]" size="clock" />
-      <!-- a paused block's time is all banked, so this line never needs the ticking clock -->
-      <small class="live-panel__caption">{{ clockCaption(block, block.elapsed) }}</small>
+      <!-- a paused block's time is all banked, so this line never needs the ticking clock; a
+           step that is asking has stopped for good, so it does not say paused -->
+      <small class="live-panel__caption">
+        {{ ask ? `of ${block.minutes} min` : clockCaption(block, block.elapsed) }}
+      </small>
       <template v-if="target">
         <GameNumber class="live-panel__target" tone="white">{{ target }}</GameNumber>
         <small class="live-panel__caption live-panel__caption--target">this block</small>
@@ -126,6 +165,13 @@ motion.onMoment('live', () => {
     max-width: 54ch;
     margin-top: 4px;
     color: var(--color-text-muted);
+  }
+
+  // what a step's Done asks, a step up from the notes around it
+  &__question {
+    margin-top: 6px;
+    color: var(--color-text-strong);
+    font-weight: 600;
   }
 
   &__level {

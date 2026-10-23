@@ -28,10 +28,11 @@ const BUDGETS: readonly { readonly value: Budget; readonly label: string }[] = [
   { value: 'cheap', label: 'Cheap methods only' },
 ]
 
-/** The three switches for how sessions are dealt, each a preference that is on or off. */
+/** The switches for how sessions are dealt, each a preference that is on or off. */
 const SESSION_SWITCHES = [
   { preference: 'includeResets', label: 'Slot in due resets' },
   { preference: 'includeWildcard', label: 'One wildcard per session' },
+  { preference: 'includeQuestStep', label: 'One quest or diary step per session' },
   { preference: 'tickPerfect', label: 'Tick-perfect methods' },
 ] as const
 
@@ -180,10 +181,12 @@ async function forgetAccount(): Promise<void> {
           </ToggleChip>
         </div>
         <span class="field__help">
-          The wildcard only appears in sessions of 90 minutes or more. Tick-perfect methods (3-tick
-          fishing, 1-tick karambwans and the like) are left out of plans and estimates unless you
-          turn them on. They rely on tick manipulation, acting on exact game ticks so the skill
-          rolls more often, and their rates assume you have practised it. The wiki’s
+          The wildcard only appears in sessions of 90 minutes or more. A quest or diary step from
+          the Quests page’s Next takes its place when one fits in half the session, in sessions of
+          an hour or more, and never on an AFK night. Tick-perfect methods (3-tick fishing, 1-tick
+          karambwans and the like) are left out of plans and estimates unless you turn them on. They
+          rely on tick manipulation, acting on exact game ticks so the skill rolls more often, and
+          their rates assume you have practised it. The wiki’s
           <a :href="TICK_MANIPULATION_PAGE" rel="noopener">tick manipulation</a>
           page explains how it works.
         </span>

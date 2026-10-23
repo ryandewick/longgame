@@ -17,6 +17,7 @@ const rows = computed(() =>
     date: formatSessionDate(entry.endedAt),
     blocks: entry.blocks.map((block) => ({
       skill: historyBlockSkill(block),
+      listIcon: blockListIcon(block),
       isWildcard: block.kind === 'wildcard',
       description: describeHistoryBlock(block),
     })),
@@ -56,6 +57,7 @@ const rows = computed(() =>
                 v-for="(block, place) in row.blocks"
                 :key="place"
                 :skill="block.skill"
+                :list-icon="block.listIcon"
                 :wildcard="block.isWildcard"
                 :title="block.description"
               />

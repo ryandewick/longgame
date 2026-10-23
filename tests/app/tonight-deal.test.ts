@@ -98,6 +98,8 @@ describe('dealSummary', () => {
     minutes: 90,
     includeResets: true,
     includeWildcard: true,
+    includeQuestStep: false,
+    questStep: null,
   }
 
   it('counts the skills in play on a balanced night', () => {
@@ -125,6 +127,46 @@ describe('dealSummary', () => {
     // switched off beats every other reason
     expect(dealSummary({ ...outlook, includeWildcard: false, mood: 'afk', minutes: 30 })).toBe(
       '21 skills with an AFK method, resets included, no wildcard',
+    )
+  })
+
+  it('says when the deal ends on a quest or diary step, in the wildcard’s place', () => {
+    const step = {
+      title: "Twilight's Promise",
+      step: 'finish',
+      minutes: 40,
+      reason: { kind: 'saves', quest: 'Perilous Moons', hours: 33, opens: [], between: 0 },
+    } as const
+    const withSteps = { ...outlook, minutes: 120, includeQuestStep: true }
+    expect(dealSummary({ ...withSteps, questStep: step })).toBe(
+      '21 skills in play, resets included, one quest step',
+    )
+    expect(
+      dealSummary({
+        ...withSteps,
+        questStep: {
+          title: 'Wilderness Easy',
+          step: 'claim',
+          minutes: 25,
+          reason: { kind: 'tier', opens: [] },
+        },
+      }),
+    ).toContain(', one diary step')
+  })
+
+  it('says why there is no quest step, and falls back on the wildcard', () => {
+    const withSteps = { ...outlook, includeQuestStep: true }
+    expect(dealSummary({ ...withSteps, mood: 'afk' })).toContain(
+      ', no quest step or wildcard on an AFK night',
+    )
+    expect(dealSummary({ ...withSteps, mood: 'afk', includeWildcard: false })).toContain(
+      ', no quest step on an AFK night',
+    )
+    expect(dealSummary({ ...withSteps, minutes: 30 })).toContain(', quest step from 60 min up')
+    // nothing on Next fits: the wildcard ends the session, or nothing does
+    expect(dealSummary({ ...withSteps, minutes: 120 })).toContain(', one wildcard')
+    expect(dealSummary({ ...withSteps, minutes: 120, includeWildcard: false })).toContain(
+      ', no quest step fits',
     )
   })
 })

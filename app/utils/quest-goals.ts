@@ -5,7 +5,7 @@ import { skillName } from '#shared/data/skills'
 import { hasCompletedDiary, questPoints } from '#shared/domain/account'
 import type { GoalStanding } from '#shared/domain/goals'
 import { formatMinutes } from './format'
-import { listInWords } from './quest-questions'
+import { listInWords } from './quest-words'
 
 /*
  * What the Quests page's Goals part says: the two capes and how far along each the account is,

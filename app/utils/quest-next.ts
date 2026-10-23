@@ -2,7 +2,6 @@ import type { QuestState } from '#shared/types/quest'
 import type { SkillKey } from '#shared/types/skill'
 import { QUESTS } from '#shared/data/quests'
 import { skillName } from '#shared/data/skills'
-import { formatNumber } from '#shared/domain/format'
 import { describeQuestRewards } from '#shared/domain/quests'
 import type { BoostedLevel } from '#shared/domain/readiness'
 import type { PlacedXp } from '#shared/domain/reward-hours'
@@ -13,8 +12,9 @@ import {
   type UnlockSuggestion,
 } from '#shared/domain/suggestions'
 import { formatMinutes } from './format'
-import { listInWords, savingFigure, type SavingFigure } from './quest-questions'
+import { savingFigure, type SavingFigure } from './quest-questions'
 import { readinessLine } from './quest-readiness'
+import { goalStepWords, listInWords, longTaskWords, tierRewardWords } from './quest-words'
 
 /*
  * What the Quests page's Next part says: a row for each quest that saves hours, each unlock in
@@ -135,12 +135,7 @@ export interface OpensRow {
 /** The rows of "Opens the game", in the order given. */
 export function opensRows(unlocks: readonly UnlockSuggestion[]): OpensRow[] {
   return unlocks.map(({ goal, step, next, readiness, minutes, standing }) => {
-    const left = standing.steps.length
-    const more = left === 2 ? 'with 1 more after it' : `with ${left - 1} more after it`
-    const about =
-      next.state === 'started'
-        ? `${goal.name}: start it${left === 1 ? ' to get there' : `, ${more}`}.`
-        : `${goal.name}: ${left === 1 ? 'the last quest left' : `the next quest, ${more}`}.`
+    const about = goalStepWords(goal.name, standing.steps.length, next.state)
     const stepSkills = new Set(
       readiness.missing.flatMap((gap) => (gap.kind === 'skill' ? [gap.skill] : [])),
     )
@@ -180,18 +175,12 @@ export interface TierRow {
 
 /** The rows of "Diary tiers you can claim", in the order given. */
 export function tierRows(tiers: readonly TierSuggestion[]): TierRow[] {
-  return tiers.map(({ diary, opens, minutes, boosted }) => {
-    const things = listInWords([...diary.items, ...opens], 6)
-    const lamp = diary.lamp ? `a ${formatNumber(diary.lamp.xp)} xp lamp` : ''
-    const reward = things && lamp ? `${things}, with ${lamp}` : things || lamp
-    const tasks = diary.longTasks.map(({ text }) => text)
-    return {
-      name: diary.name,
-      reward: reward ? `${reward.charAt(0).toUpperCase()}${reward.slice(1)}.` : '',
-      longTask: tasks.length ? `Then, as a long task of its own: ${listInWords(tasks, 3)}.` : '',
-      boost: boostWords(boosted),
-      takes: formatMinutes(minutes),
-      action: action('Mark done', diary.name),
-    }
-  })
+  return tiers.map(({ diary, opens, minutes, boosted }) => ({
+    name: diary.name,
+    reward: tierRewardWords(diary, opens),
+    longTask: longTaskWords(diary),
+    boost: boostWords(boosted),
+    takes: formatMinutes(minutes),
+    action: action('Mark done', diary.name),
+  }))
 }
