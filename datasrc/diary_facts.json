@@ -11,7 +11,20 @@
   },
   "boostable": [
    "thieving"
-  ]
+  ],
+  "minutes": {
+   "low": 11,
+   "mid": 15,
+   "high": 23
+  },
+  "items": [
+   "Ardougne cloak 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  },
+  "recommended": true
  },
  "Ardougne Medium": {
   "page": "Ardougne Diary",
@@ -56,7 +69,20 @@
     "kind": "reset",
     "name": "Pure essence from Cromperty"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 20,
+   "mid": 26,
+   "high": 39
+  },
+  "items": [
+   "Ardougne cloak 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  },
+  "recommended": true
  },
  "Ardougne Hard": {
   "page": "Ardougne Diary",
@@ -97,7 +123,20 @@
     "kind": "method",
     "name": "Master Farmers"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 21,
+   "mid": 28,
+   "high": 43
+  },
+  "items": [
+   "Ardougne cloak 3"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  },
+  "recommended": true
  },
  "Ardougne Elite": {
   "page": "Ardougne Diary",
@@ -136,7 +175,19 @@
     "unit": "Nightmare Zone points",
     "text": "imbue a Salve amulet at Nightmare Zone: 800,000 points (400,000 with the hard Combat Achievements), unless an imbued one is already owned"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 16,
+   "mid": 21,
+   "high": 32
+  },
+  "items": [
+   "Ardougne cloak 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  }
  },
  "Desert Easy": {
   "page": "Desert Diary",
@@ -150,7 +201,19 @@
   },
   "boostable": [
    "hunter"
-  ]
+  ],
+  "minutes": {
+   "low": 14,
+   "mid": 19,
+   "high": 28
+  },
+  "items": [
+   "Desert amulet 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  }
  },
  "Desert Medium": {
   "page": "Desert Diary",
@@ -178,7 +241,19 @@
    "slayer",
    "thieving",
    "woodcutting"
-  ]
+  ],
+  "minutes": {
+   "low": 18,
+   "mid": 24,
+   "high": 35
+  },
+  "items": [
+   "Desert amulet 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  }
  },
  "Desert Hard": {
   "page": "Desert Diary",
@@ -224,7 +299,19 @@
     "kind": "method",
     "name": "Pollnivneach rooftop with hard diary"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 16,
+   "mid": 21,
+   "high": 32
+  },
+  "items": [
+   "Desert amulet 3"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  }
  },
  "Desert Elite": {
   "page": "Desert Diary",
@@ -248,7 +335,20 @@
    "cooking",
    "fletching",
    "magic"
-  ]
+  ],
+  "minutes": {
+   "low": 10,
+   "mid": 14,
+   "high": 21
+  },
+  "items": [
+   "Desert amulet 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  },
+  "recommended": true
  },
  "Falador Easy": {
   "page": "Falador Diary",
@@ -268,7 +368,19 @@
    "construction",
    "mining",
    "smithing"
-  ]
+  ],
+  "minutes": {
+   "low": 20,
+   "mid": 26,
+   "high": 39
+  },
+  "items": [
+   "Falador shield 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  }
  },
  "Falador Medium": {
   "page": "Falador Diary",
@@ -311,7 +423,19 @@
     "skill": "farming",
     "level": 30
    }
-  ]
+  ],
+  "minutes": {
+   "low": 25,
+   "mid": 33,
+   "high": 50
+  },
+  "items": [
+   "Falador shield 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  }
  },
  "Falador Hard": {
   "page": "Falador Diary",
@@ -370,7 +494,19 @@
   "also": [
    "Access to the Mind Altar (mind talisman/tiara, catalytic talisman/tiara, or the Abyss)",
    "130 combined Attack and Strength, or 99 in either, to enter the Warriors' Guild (not boostable)"
-  ]
+  ],
+  "minutes": {
+   "low": 21,
+   "mid": 28,
+   "high": 43
+  },
+  "items": [
+   "Falador shield 3"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  }
  },
  "Falador Elite": {
   "page": "Falador Diary",
@@ -423,7 +559,19 @@
     "unit": "Black Knight kill score",
     "text": "White Knight Master rank: a Black Knight kill score of 1,300 (the rank starts at 100)"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 16,
+   "mid": 21,
+   "high": 32
+  },
+  "items": [
+   "Falador shield 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  }
  },
  "Fremennik Easy": {
   "page": "Fremennik Diary",
@@ -488,7 +636,20 @@
     ],
     "note": "to reach the stronghold"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 21,
+   "mid": 28,
+   "high": 43
+  },
+  "items": [
+   "Fremennik sea boots 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  },
+  "recommended": true
  },
  "Fremennik Medium": {
   "page": "Fremennik Diary",
@@ -538,7 +699,19 @@
     ],
     "note": "page lists 45 Hunter and 35 Hunter with a net and jar"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 35,
+   "mid": 47,
+   "high": 71
+  },
+  "items": [
+   "Fremennik sea boots 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  }
  },
  "Fremennik Hard": {
   "page": "Fremennik Diary",
@@ -588,7 +761,19 @@
     "kind": "method",
     "name": "Rellekka rooftop with hard diary"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 22,
+   "mid": 30,
+   "high": 44
+  },
+  "items": [
+   "Fremennik sea boots 3"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  }
  },
  "Fremennik Elite": {
   "page": "Fremennik Diary",
@@ -645,7 +830,20 @@
     ],
     "note": "to reach the God Wars Dungeon"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 32,
+   "mid": 43,
+   "high": 64
+  },
+  "items": [
+   "Fremennik sea boots 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  },
+  "recommended": true
  },
  "Kandarin Easy": {
   "page": "Kandarin Diary",
@@ -668,7 +866,19 @@
     "kind": "reset",
     "name": "Flax for bow string"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 18,
+   "mid": 24,
+   "high": 35
+  },
+  "items": [
+   "Kandarin headgear 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  }
  },
  "Kandarin Medium": {
   "page": "Kandarin Diary",
@@ -709,7 +919,19 @@
   "also": [
    "Glarial's amulet, only if Waterfall Quest is not finished",
    "Completion of the Barbarian Assault tutorial to be able to play the minigame"
-  ]
+  ],
+  "minutes": {
+   "low": 23,
+   "mid": 31,
+   "high": 46
+  },
+  "items": [
+   "Kandarin headgear 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  }
  },
  "Kandarin Hard": {
   "page": "Kandarin Diary",
@@ -756,7 +978,19 @@
     "kind": "method",
     "name": "Seers' rooftop with Camelot teleport"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 20,
+   "mid": 26,
+   "high": 39
+  },
+  "items": [
+   "Kandarin headgear 3"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  }
  },
  "Kandarin Elite": {
   "page": "Kandarin Diary",
@@ -799,7 +1033,19 @@
    "Access to Barbarian Herblore",
    "Access to Barbarian Smithing",
    "Access to Barbarian Firemaking"
-  ]
+  ],
+  "minutes": {
+   "low": 14,
+   "mid": 19,
+   "high": 28
+  },
+  "items": [
+   "Kandarin headgear 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  }
  },
  "Karamja Easy": {
   "page": "Karamja Diary",
@@ -812,7 +1058,19 @@
   "boostable": [
    "agility",
    "mining"
-  ]
+  ],
+  "minutes": {
+   "low": 13,
+   "mid": 18,
+   "high": 26
+  },
+  "items": [
+   "Karamja gloves 1"
+  ],
+  "lamp": {
+   "xp": 1000,
+   "minLevel": 0
+  }
  },
  "Karamja Medium": {
   "page": "Karamja Diary",
@@ -910,7 +1168,20 @@
     "kind": "method",
     "name": "Gem rocks"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 26,
+   "mid": 34,
+   "high": 51
+  },
+  "items": [
+   "Karamja gloves 2"
+  ],
+  "lamp": {
+   "xp": 5000,
+   "minLevel": 30
+  },
+  "recommended": true
  },
  "Karamja Hard": {
   "page": "Karamja Diary",
@@ -985,7 +1256,19 @@
     "skill": "cooking",
     "level": 50
    }
-  ]
+  ],
+  "minutes": {
+   "low": 20,
+   "mid": 27,
+   "high": 41
+  },
+  "items": [
+   "Karamja gloves 3"
+  ],
+  "lamp": {
+   "xp": 10000,
+   "minLevel": 40
+  }
  },
  "Karamja Elite": {
   "page": "Karamja Diary",
@@ -1005,7 +1288,19 @@
   ],
   "also": [
    "Access to the Nature Altar (nature talisman/tiara, catalytic talisman/tiara, or the Abyss)"
-  ]
+  ],
+  "minutes": {
+   "low": 8,
+   "mid": 10,
+   "high": 15
+  },
+  "items": [
+   "Karamja gloves 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  }
  },
  "Kourend & Kebos Easy": {
   "page": "Kourend & Kebos Diary",
@@ -1025,7 +1320,19 @@
    "herblore",
    "mining",
    "thieving"
-  ]
+  ],
+  "minutes": {
+   "low": 17,
+   "mid": 22,
+   "high": 34
+  },
+  "items": [
+   "Rada's blessing 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  }
  },
  "Kourend & Kebos Medium": {
   "page": "Kourend & Kebos Diary",
@@ -1074,7 +1381,20 @@
     "kind": "reset",
     "name": "Dynamite from Thirus"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 17,
+   "mid": 22,
+   "high": 34
+  },
+  "items": [
+   "Rada's blessing 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  },
+  "recommended": true
  },
  "Kourend & Kebos Hard": {
   "page": "Kourend & Kebos Diary",
@@ -1099,7 +1419,21 @@
    "slayer",
    "smithing",
    "woodcutting"
-  ]
+  ],
+  "minutes": {
+   "low": 18,
+   "mid": 24,
+   "high": 35
+  },
+  "items": [
+   "Rada's blessing 3",
+   "Ash sanctifier, claimable from Tyss"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  },
+  "recommended": true
  },
  "Kourend & Kebos Elite": {
   "page": "Kourend & Kebos Diary",
@@ -1128,7 +1462,19 @@
    "runecraft",
    "slayer",
    "woodcutting"
-  ]
+  ],
+  "minutes": {
+   "low": 22,
+   "mid": 30,
+   "high": 44
+  },
+  "items": [
+   "Rada's blessing 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  }
  },
  "Lumbridge & Draynor Easy": {
   "page": "Lumbridge & Draynor Diary",
@@ -1155,7 +1501,19 @@
   ],
   "also": [
    "Access to the Water Altar (water talisman/tiara, elemental talisman/tiara, or the Abyss)"
-  ]
+  ],
+  "minutes": {
+   "low": 18,
+   "mid": 24,
+   "high": 35
+  },
+  "items": [
+   "Explorer's ring 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  }
  },
  "Lumbridge & Draynor Medium": {
   "page": "Lumbridge & Draynor Diary",
@@ -1191,7 +1549,19 @@
   "combat": 70,
   "also": [
    "Access to the Fire Altar (fire talisman/tiara, elemental talisman/tiara, or the Abyss)"
-  ]
+  ],
+  "minutes": {
+   "low": 17,
+   "mid": 22,
+   "high": 34
+  },
+  "items": [
+   "Explorer's ring 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  }
  },
  "Lumbridge & Draynor Hard": {
   "page": "Lumbridge & Draynor Diary",
@@ -1231,7 +1601,19 @@
     "unit": "tears in one visit",
     "text": "collect at least 100 Tears of Guthix in one visit; one visit a week, and each quest point adds a tick (150 quest points recommended)"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 25,
+   "mid": 33,
+   "high": 50
+  },
+  "items": [
+   "Explorer's ring 3"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  }
  },
  "Lumbridge & Draynor Elite": {
   "page": "Lumbridge & Draynor Diary",
@@ -1263,7 +1645,19 @@
   "also": [
    "Access to the Water Altar (water talisman/tiara, elemental talisman/tiara, or the Abyss)"
   ],
-  "allQuests": true
+  "allQuests": true,
+  "minutes": {
+   "low": 17,
+   "mid": 22,
+   "high": 34
+  },
+  "items": [
+   "Explorer's ring 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  }
  },
  "Morytania Easy": {
   "page": "Morytania Diary",
@@ -1306,7 +1700,19 @@
     "note": "to enter Port Phasmatys"
    }
   ],
-  "combat": 20
+  "combat": 20,
+  "minutes": {
+   "low": 19,
+   "mid": 25,
+   "high": 37
+  },
+  "items": [
+   "Morytania legs 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  }
  },
  "Morytania Medium": {
   "page": "Morytania Diary",
@@ -1342,7 +1748,20 @@
     "kind": "reset",
     "name": "Bonemeal from Robin"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 17,
+   "mid": 22,
+   "high": 34
+  },
+  "items": [
+   "Morytania legs 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  },
+  "recommended": true
  },
  "Morytania Hard": {
   "page": "Morytania Diary",
@@ -1380,7 +1799,21 @@
   ],
   "also": [
    "Knight Waves Training Ground completed (Piety)"
-  ]
+  ],
+  "minutes": {
+   "low": 24,
+   "mid": 32,
+   "high": 48
+  },
+  "items": [
+   "Morytania legs 3",
+   "Bonecrusher, claimable from a ghost disciple while wearing a ghostspeak amulet or Morytania legs 3+"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  },
+  "recommended": true
  },
  "Morytania Elite": {
   "page": "Morytania Diary",
@@ -1451,7 +1884,19 @@
   ],
   "also": [
    "Barbarian Fishing (Barbarian Training)"
-  ]
+  ],
+  "minutes": {
+   "low": 10,
+   "mid": 14,
+   "high": 21
+  },
+  "items": [
+   "Morytania legs 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  }
  },
  "Varrock Easy": {
   "page": "Varrock Diary",
@@ -1484,7 +1929,19 @@
     "kind": "reset",
     "name": "Battlestaves from Zaff"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 18,
+   "mid": 24,
+   "high": 35
+  },
+  "items": [
+   "Varrock armour 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  }
  },
  "Varrock Medium": {
   "page": "Varrock Diary",
@@ -1527,7 +1984,19 @@
    }
   ],
   "questPoints": 32,
-  "combat": 40
+  "combat": 40,
+  "minutes": {
+   "low": 23,
+   "mid": 31,
+   "high": 46
+  },
+  "items": [
+   "Varrock armour 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  }
  },
  "Varrock Hard": {
   "page": "Varrock Diary",
@@ -1558,7 +2027,19 @@
     "skill": "hunter",
     "level": 69
    }
-  ]
+  ],
+  "minutes": {
+   "low": 30,
+   "mid": 40,
+   "high": 60
+  },
+  "items": [
+   "Varrock armour 3"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  }
  },
  "Varrock Elite": {
   "page": "Varrock Diary",
@@ -1590,7 +2071,19 @@
   },
   "also": [
    "Access to the Earth Altar (earth talisman/tiara, elemental talisman/tiara, or the Abyss)"
-  ]
+  ],
+  "minutes": {
+   "low": 11,
+   "mid": 15,
+   "high": 23
+  },
+  "items": [
+   "Varrock armour 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  }
  },
  "Western Provinces Easy": {
   "page": "Western Provinces Diary",
@@ -1622,7 +2115,19 @@
     "kind": "reset",
     "name": "Ogre arrows from Rantz"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 14,
+   "mid": 19,
+   "high": 28
+  },
+  "items": [
+   "Western banner 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  }
  },
  "Western Provinces Medium": {
   "page": "Western Provinces Diary",
@@ -1670,7 +2175,19 @@
     "skill": "cooking",
     "level": 42
    }
-  ]
+  ],
+  "minutes": {
+   "low": 23,
+   "mid": 31,
+   "high": 46
+  },
+  "items": [
+   "Western banner 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  }
  },
  "Western Provinces Hard": {
   "page": "Western Provinces Diary",
@@ -1718,7 +2235,20 @@
     "unit": "chompy or jubbly bird kills",
     "text": "300 chompy or jubbly bird kills"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 19,
+   "mid": 25,
+   "high": 37
+  },
+  "items": [
+   "Western banner 3"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  },
+  "recommended": true
  },
  "Western Provinces Elite": {
   "page": "Western Provinces Diary",
@@ -1759,7 +2289,20 @@
     "unit": "chompy or jubbly bird kills",
     "text": "1,000 chompy or jubbly bird kills"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 10,
+   "mid": 14,
+   "high": 21
+  },
+  "items": [
+   "Western banner 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  },
+  "recommended": true
  },
  "Wilderness Easy": {
   "page": "Wilderness Diary",
@@ -1785,7 +2328,19 @@
     "kind": "reset",
     "name": "Runes from Lundail"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 18,
+   "mid": 24,
+   "high": 35
+  },
+  "items": [
+   "Wilderness sword 1"
+  ],
+  "lamp": {
+   "xp": 2500,
+   "minLevel": 30
+  }
  },
  "Wilderness Medium": {
   "page": "Wilderness Diary",
@@ -1843,7 +2398,19 @@
     ],
     "note": "Wilderness God Wars Dungeon entrance; the page overview says both are boostable"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 19,
+   "mid": 25,
+   "high": 37
+  },
+  "items": [
+   "Wilderness sword 2"
+  ],
+  "lamp": {
+   "xp": 7500,
+   "minLevel": 40
+  }
  },
  "Wilderness Hard": {
   "page": "Wilderness Diary",
@@ -1911,7 +2478,20 @@
     "unit": "god spell casts in the Mage Arena",
     "text": "god spells must first be cast 100 times inside the Mage Arena (the task can also be done there)"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 16,
+   "mid": 21,
+   "high": 32
+  },
+  "items": [
+   "Wilderness sword 3"
+  ],
+  "lamp": {
+   "xp": 15000,
+   "minLevel": 50
+  },
+  "recommended": true
  },
  "Wilderness Elite": {
   "page": "Wilderness Diary",
@@ -1959,6 +2539,19 @@
     ],
     "note": "Wilderness God Wars Dungeon entrance; the page overview says both are boostable"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 16,
+   "mid": 21,
+   "high": 32
+  },
+  "items": [
+   "Wilderness sword 4"
+  ],
+  "lamp": {
+   "xp": 50000,
+   "minLevel": 70
+  },
+  "recommended": true
  }
 }

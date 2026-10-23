@@ -7,16 +7,12 @@ import { RESETS } from '#shared/data/resets'
 import { SKILL_KEYS } from '#shared/data/skills'
 import { WILDCARDS } from '#shared/data/wildcards'
 import {
-  describeLevelsShort,
   describeQuestRewards,
   gatingDiaries,
   gatingQuests,
   knownQuests,
   levelsShort,
   questFacts,
-  questLevelsShort,
-  questOffers,
-  questRewardSkills,
   questTotalXp,
 } from '#shared/domain/quests'
 import { accountWith } from './helpers'
@@ -46,64 +42,6 @@ describe('questTotalXp', () => {
   })
 })
 
-describe('questRewardSkills', () => {
-  it('lists the skills in the order the data has them, not the hiscores order', () => {
-    expect(questRewardSkills(dragonSlayer)).toEqual(['agility', 'mining', 'smithing', 'thieving'])
-    expect(questRewardSkills(lampsOnly)).toEqual([])
-  })
-})
-
-describe('questLevelsShort', () => {
-  it('names the levels the account has not reached, in the data’s order', () => {
-    const account = accountWith({ everySkill: 50, levels: { smithing: 70 } })
-    expect(questLevelsShort(account, dragonSlayer)).toEqual([
-      { skill: 'mining', level: 68 },
-      { skill: 'magic', level: 75 },
-    ])
-  })
-
-  it('is empty once every level is met, a level reached exactly included', () => {
-    const account = accountWith({ levels: { mining: 68, smithing: 99, magic: 75 } })
-    expect(questLevelsShort(account, dragonSlayer)).toEqual([])
-  })
-})
-
-describe('questOffers', () => {
-  it('leaves out the quests the account has done and puts the biggest reward first', () => {
-    const account = accountWith({ quests: ['Dragon Slayer II'] })
-    const offers = questOffers(account, [small, dragonSlayer, lampsOnly])
-    expect(offers.map((offer) => offer.quest.name)).toEqual([
-      'The Blood Moon Rises',
-      "Cook's Assistant",
-    ])
-    expect(offers.map((offer) => offer.totalXp)).toEqual([180_000, 300])
-  })
-
-  it('carries the levels the account is short of', () => {
-    const [offer] = questOffers(accountWith({ everySkill: 70 }), [dragonSlayer])
-    expect(offer?.levelsShort).toEqual([{ skill: 'magic', level: 75 }])
-  })
-
-  it('keeps the given order among quests that pay the same', () => {
-    const first = questWith({ name: 'First', fixedXp: { agility: 1000 } })
-    const second = questWith({ name: 'Second', fixedXp: { mining: 1000 } })
-    const names = questOffers(accountWith(), [first, second]).map((offer) => offer.quest.name)
-    expect(names).toEqual(['First', 'Second'])
-  })
-
-  it('offers nothing to an account with the quest cape', () => {
-    expect(questOffers(accountWith({ allQuests: true }))).toEqual([])
-  })
-
-  it('offers a new account every quest in the data, each at most once', () => {
-    const offers = questOffers(accountWith())
-    expect(offers).toHaveLength(QUESTS.length)
-    for (let place = 1; place < offers.length; place++) {
-      expect(offers[place - 1]?.totalXp).toBeGreaterThanOrEqual(offers[place]?.totalXp ?? 0)
-    }
-  })
-})
-
 describe('describeQuestRewards', () => {
   it('lists the fixed XP, then the lamps as a sentence of their own', () => {
     expect(describeQuestRewards(dragonSlayer)).toBe(
@@ -117,18 +55,6 @@ describe('describeQuestRewards', () => {
 
   it('is the lamps alone for a quest that pays nothing else', () => {
     expect(describeQuestRewards(lampsOnly)).toBe('Six 30,000 xp lamps for any skill.')
-  })
-})
-
-describe('describeLevelsShort', () => {
-  it('writes each level before its skill', () => {
-    expect(
-      describeLevelsShort([
-        { skill: 'mining', level: 68 },
-        { skill: 'magic', level: 75 },
-      ]),
-    ).toBe('68 Mining, 75 Magic')
-    expect(describeLevelsShort([])).toBe('')
   })
 })
 

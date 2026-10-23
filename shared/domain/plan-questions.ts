@@ -220,12 +220,29 @@ function compareNames(first: string, second: string): number {
 }
 
 /**
+ * The account's hours left in each skill, each worked out once and kept: for a run over many
+ * requirements of one account.
+ */
+export function hoursLeftOf(account: Account): (skill: SkillKey) => number {
+  const known = new Map<SkillKey, number>()
+  return (skill) => {
+    let hours = known.get(skill)
+    if (hours === undefined) {
+      hours = hoursLeft(account, skill)
+      known.set(skill, hours)
+    }
+    return hours
+  }
+}
+
+/**
  * What would change if the account had this requirement done, everything else staying as it is?
  * Hours come from the estimates and block choices from the planner's own `methodForBlock`, so
  * this can never disagree with what the rest of the app shows. `hoursNow` is the account's
- * hours left in a skill: passed in so that a run over many requirements works each out once.
+ * hours left in a skill (`hoursLeftOf`): passed in so that a run over many requirements works
+ * each out once.
  */
-function requirementEffect(
+export function requirementEffect(
   account: Account,
   requirement: PlanRequirement,
   hoursNow: (skill: SkillKey) => number,
@@ -382,15 +399,7 @@ export function planQuestions(
         !ruledOut.has(name),
   )
 
-  const hoursKnown = new Map<SkillKey, number>()
-  const hoursNow = (skill: SkillKey): number => {
-    let hours = hoursKnown.get(skill)
-    if (hours === undefined) {
-      hours = hoursLeft(account, skill)
-      hoursKnown.set(skill, hours)
-    }
-    return hours
-  }
+  const hoursNow = hoursLeftOf(account)
 
   const questions: PlanQuestion[] = []
   for (const requirement of candidates) {

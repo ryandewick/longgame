@@ -66,28 +66,40 @@ const answer = (
   alsoTicked: string[] = [],
 ): GivenAnswer => ({ requirement, done, hoursSaved, alsoTicked })
 
-describe('the three parts of the Quests page', () => {
+describe('the four parts of the Quests page', () => {
   const asking = { asksQuestions: true, questionsWaiting: 3 }
 
-  it('have an address each', () => {
+  it('have an address each, in the order their tabs stand', () => {
     expect(QUESTS_TABS.map(({ tab }) => questsTabPath(tab))).toEqual([
       '/quests?tab=questions',
+      '/quests?tab=next',
+      '/quests?tab=goals',
       '/quests?tab=tick-list',
-      '/quests?tab=xp',
+    ])
+    expect(QUESTS_TABS.map(({ label }) => label)).toEqual([
+      'Questions',
+      'Next',
+      'Goals',
+      'Tick list',
     ])
   })
 
   it('open at the part the address names', () => {
     expect(questsTabFor('questions', asking)).toBe('questions')
+    expect(questsTabFor('next', asking)).toBe('next')
+    expect(questsTabFor('goals', asking)).toBe('goals')
     expect(questsTabFor('tick-list', asking)).toBe('tick-list')
-    expect(questsTabFor('xp', asking)).toBe('xp')
   })
 
-  it('open at the questions while there are any to ask, and at the tick list when there are none', () => {
+  it('open Next at the address the part it replaced had', () => {
+    expect(questsTabFor('xp', asking)).toBe('next')
+  })
+
+  it('open at the questions while there are any to ask, and at Next when there are none', () => {
     expect(questsTabFor(undefined, asking)).toBe('questions')
-    expect(questsTabFor(undefined, { asksQuestions: true, questionsWaiting: 0 })).toBe('tick-list')
+    expect(questsTabFor(undefined, { asksQuestions: true, questionsWaiting: 0 })).toBe('next')
     expect(questsTabFor('nonsense', asking)).toBe('questions')
-    expect(questsTabFor(['xp', 'questions'], asking)).toBe('questions')
+    expect(questsTabFor(['next', 'questions'], asking)).toBe('questions')
   })
 
   it('stay on the questions once named, so the last answer leaves its ending on show', () => {
@@ -98,9 +110,9 @@ describe('the three parts of the Quests page', () => {
 
   it('have no questions part where an add-on fills quests in, whatever the address says', () => {
     const filledIn = { asksQuestions: false, questionsWaiting: 3 }
-    expect(questsTabFor(undefined, filledIn)).toBe('tick-list')
-    expect(questsTabFor('questions', filledIn)).toBe('tick-list')
-    expect(questsTabFor('xp', filledIn)).toBe('xp')
+    expect(questsTabFor(undefined, filledIn)).toBe('next')
+    expect(questsTabFor('questions', filledIn)).toBe('next')
+    expect(questsTabFor('goals', filledIn)).toBe('goals')
   })
 })
 

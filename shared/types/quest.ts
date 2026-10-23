@@ -45,12 +45,51 @@ export interface QuestNeeds {
   readonly ironman: readonly IronmanNeed[]
 }
 
-/** What finishing a quest counts toward, besides XP. */
+/** XP the player puts in a skill of their choice: a lamp, or a reward with a choice of skills. */
+export interface XpChoice {
+  readonly count: number
+  /** The XP of each one. */
+  readonly xp: number
+  /** The skills it may go in; 'any' for a lamp that takes every skill. */
+  readonly skills: 'any' | readonly SkillKey[]
+  /** The level the chosen skill must be at; 0 when there is none. */
+  readonly minLevel: number
+}
+
+/** What finishing a quest counts toward. */
 export interface QuestGives {
   readonly questPoints: number
   readonly kudos: number
   /** Kudos it makes available afterwards: The Dig Site opens the cleaning of finds. */
   readonly kudosOpened: number
+  /** XP the player places (decision 3): lamps, and rewards with a choice of skills. */
+  readonly xpChoices: readonly XpChoice[]
+  /** XP it pays in a set skill during the quest or once after it, on top of its fixed XP. */
+  readonly xpDuring: Readonly<Partial<Record<SkillKey, number>>>
+}
+
+/** How long something takes at an ordinary pace, in minutes: 2 times speedrun pace for `mid` (decision 9). */
+export interface Minutes {
+  readonly low: number
+  readonly mid: number
+  readonly high: number
+}
+
+/** How long a quest takes. */
+export interface QuestTime {
+  /** Null for an entry the data does not time: Recipe for Disaster as a whole (its parts are timed), the activities. */
+  readonly minutes: Minutes | null
+  /** What an ironman spends on top, gathering what a main would buy. */
+  readonly ironmanMinutes: number
+  /** Time spent waiting (a plant growing, a brew fermenting); the ironman's own waits apart. */
+  readonly waitMinutes: number
+  readonly ironmanWaitMinutes: number
+}
+
+/** Where an Optimal quest guide does a quest: the step that finishes it, and an earlier one that starts it. */
+export interface GuidePlace {
+  readonly finish: number | null
+  readonly start: number | null
 }
 
 /** XP the player may put in a skill of their choice. */
@@ -98,6 +137,9 @@ export interface QuestFacts {
   readonly needs: QuestNeeds
   /** What finishing it counts toward. */
   readonly gives: QuestGives
+  readonly time: QuestTime
+  /** Where each Optimal quest guide does it; null for a guide that never does. */
+  readonly guide: { readonly main: GuidePlace | null; readonly ironman: GuidePlace | null }
 }
 
 /** A quest, miniquest or activity and the XP it pays. */

@@ -100,6 +100,17 @@ export interface QuestFactSource {
   givesQuestPoints?: number
   givesKudos?: number
   opensKudos?: number
+  /** Ordinary minutes (absent for an entry the data does not time), an ironman's extra and the waits. */
+  minutes?: { low: number; mid: number; high: number }
+  ironmanMinutes?: number
+  waitMinutes?: number
+  ironmanWaitMinutes?: number
+  /** XP the player chooses the skill of: 'any', or a list of skills. */
+  xpChoices?: { count: number; xp: number; skills: string | string[]; minLevel: number }[]
+  /** XP it pays in a set skill during the quest or once after it. */
+  xpDuring?: Record<string, number>
+  /** The steps of each guide that finish it, and an earlier one that starts it. */
+  guide?: Record<string, { finish?: number; start?: number }>
 }
 
 /** A skill at a level, as the facts files write it. */
@@ -152,6 +163,31 @@ export interface DiaryFactSource {
   longTasks?: { amount: number; unit: string; text: string }[]
   also?: string[]
   gates?: { kind: string; name: string }[]
+  minutes?: { low: number; mid: number; high: number }
+  items?: string[]
+  lamp?: { xp: number; minLevel: number }
+  recommended?: boolean
+}
+
+/**
+ * One goal of datasrc/quest_goals.json, keyed by its id: a milestone from the quest and diary
+ * research, never written by hand.
+ */
+export interface GoalSource {
+  name: string
+  /** What it gives, in the app's own words. */
+  gives: string
+  /** Its whole tree: quest name to 'finished' or 'started'. */
+  quests: Record<string, string>
+  diaries?: string[]
+  /** Levels it needs beyond its quests' own: 70 Prayer for Piety. */
+  levels?: LevelSource[]
+  allQuests?: boolean
+  allDiaries?: boolean
+  /** The step of each guide that reaches it. */
+  guide?: Record<string, number>
+  /** A milestone of the ironman guide alone. */
+  ironmanOnly?: boolean
 }
 
 /** Who may count a boost: 'always' (everyone), 'never' (nobody), or an account with this level. */

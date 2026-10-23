@@ -4,6 +4,7 @@ import type { QuestFacts } from '#shared/types/quest'
 import { buildBoosts } from '#shared/data/build-boosts'
 import { buildMethods } from '#shared/data/build-methods'
 import { buildDiaryFacts } from '#shared/data/build-diary-facts'
+import { buildGoals } from '#shared/data/build-goals'
 import { buildQuestFacts } from '#shared/data/build-quest-facts'
 import { buildQuests } from '#shared/data/build-quests'
 import { buildResets } from '#shared/data/build-resets'
@@ -12,6 +13,7 @@ import type {
   BoostSource,
   DiaryFactSource,
   FixedQuestXpSource,
+  GoalSource,
   LampSource,
   MethodSource,
   QuestFactSource,
@@ -540,7 +542,9 @@ describe('buildQuestFacts', () => {
         kudos: 0,
         ironman: [],
       },
-      gives: { questPoints: 0, kudos: 0, kudosOpened: 0 },
+      gives: { questPoints: 0, kudos: 0, kudosOpened: 0, xpChoices: [], xpDuring: {} },
+      time: { minutes: null, ironmanMinutes: 0, waitMinutes: 0, ironmanWaitMinutes: 0 },
+      guide: { main: null, ironman: null },
     })
     expect(built[0]?.requires).toEqual(['Plague City'])
   })
@@ -638,7 +642,45 @@ describe('buildQuestFacts', () => {
         },
       ],
     })
-    expect(quest?.gives).toEqual({ questPoints: 2, kudos: 5, kudosOpened: 50 })
+    expect(quest?.gives).toEqual({
+      questPoints: 2,
+      kudos: 5,
+      kudosOpened: 50,
+      xpChoices: [],
+      xpDuring: {},
+    })
+  })
+
+  it('reads what suggestions need: minutes, the XP a player places, XP during the quest, guide steps', () => {
+    const [quest] = buildQuestFacts({
+      Quest: entry({
+        minutes: { low: 32, mid: 43, high: 64 },
+        ironmanMinutes: 10,
+        waitMinutes: 15,
+        ironmanWaitMinutes: 300,
+        xpChoices: [
+          { count: 1, xp: 2500, skills: 'any', minLevel: 30 },
+          { count: 2, xp: 4650, skills: ['agility', 'thieving'], minLevel: 0 },
+        ],
+        xpDuring: { firemaking: 8000 },
+        guide: { main: { start: 62, finish: 249 }, ironman: { finish: 235 } },
+      }),
+    })
+    expect(quest?.time).toEqual({
+      minutes: { low: 32, mid: 43, high: 64 },
+      ironmanMinutes: 10,
+      waitMinutes: 15,
+      ironmanWaitMinutes: 300,
+    })
+    expect(quest?.gives.xpChoices).toEqual([
+      { count: 1, xp: 2500, skills: 'any', minLevel: 30 },
+      { count: 2, xp: 4650, skills: ['agility', 'thieving'], minLevel: 0 },
+    ])
+    expect(quest?.gives.xpDuring).toEqual({ firemaking: 8000 })
+    expect(quest?.guide).toEqual({
+      main: { start: 62, finish: 249 },
+      ironman: { start: null, finish: 235 },
+    })
   })
 
   it.each<[string, Record<string, QuestFactSource>, RegExp]>([
@@ -746,6 +788,31 @@ describe('buildQuestFacts', () => {
       { Quest: entry({ kind: 'miniquest', givesQuestPoints: 1 }) },
       /Quest: gives quest points, but is not a quest/,
     ],
+    [
+      'minutes out of order',
+      { Quest: entry({ minutes: { low: 50, mid: 43, high: 64 } }) },
+      /Quest: minutes 50, 43, 64/,
+    ],
+    [
+      'an xp choice in a skill it does not know',
+      { Quest: entry({ xpChoices: [{ count: 1, xp: 500, skills: ['dancing'], minLevel: 0 }] }) },
+      /Quest: an xp choice of 1 x 500 in dancing/,
+    ],
+    [
+      'xp during the quest that is not a whole number',
+      { Quest: entry({ xpDuring: { farming: 31.5 } }) },
+      /Quest: xp during of 31.5 in 'farming'/,
+    ],
+    [
+      'a guide that starts a quest after it finishes it',
+      { Quest: entry({ guide: { main: { start: 80, finish: 62 } } }) },
+      /Quest main guide: guide steps 80 to 62/,
+    ],
+    [
+      'a guide it does not know',
+      { Quest: entry({ guide: { f2p: { finish: 3 } } }) },
+      /Quest: a guide 'f2p'/,
+    ],
   ])('refuses %s', (_case, source, problem) => {
     expect(problemsOf(() => buildQuestFacts(source)).join('\n')).toMatch(problem)
   })
@@ -771,7 +838,13 @@ describe('buildDiaryFacts', () => {
           const name = `${region} ${tier}`
           return [
             name,
-            { page: `${region} Diary`, rev: 15_000_000, quests: {}, ...overrides[name] },
+            {
+              page: `${region} Diary`,
+              rev: 15_000_000,
+              quests: {},
+              minutes: { low: 10, mid: 15, high: 20 },
+              ...overrides[name],
+            },
           ]
         }),
       ),
@@ -814,6 +887,10 @@ describe('buildDiaryFacts', () => {
       longTasks: [],
       also: [],
       gates: [],
+      minutes: { low: 10, mid: 15, high: 20 },
+      items: [],
+      lamp: null,
+      recommended: false,
     })
   })
 
@@ -920,6 +997,16 @@ describe('buildDiaryFacts', () => {
       everyTier({ 'Varrock Hard': { ironman: [{ skill: 'dancing', level: 69 }] } }),
       /Varrock Hard ironman: unknown skill 'dancing'/,
     ],
+    [
+      'a tier with no minutes',
+      everyTier({ 'Desert Hard': { minutes: undefined } }),
+      /Desert Hard: no minutes/,
+    ],
+    [
+      'a lamp of no xp',
+      everyTier({ 'Desert Hard': { lamp: { xp: 0, minLevel: 50 } } }),
+      /Desert Hard: a lamp of 0 xp at level 50/,
+    ],
   ])('refuses %s', (_case, source, problem) => {
     expect(problemsOf(() => buildDiaryFacts(source, quests)).join('\n')).toMatch(problem)
   })
@@ -952,6 +1039,10 @@ describe('buildDiaryFacts', () => {
           longTasks: [{ amount: 1000, unit: 'chompy kills', text: '1,000 chompy kills' }],
           also: ['Access to the Earth Altar'],
           gates: [{ kind: 'reset', name: 'Battlestaves from Zaff' }],
+          minutes: { low: 16, mid: 21, high: 32 },
+          items: ['Varrock armour 4'],
+          lamp: { xp: 50_000, minLevel: 70 },
+          recommended: true,
         },
       }),
       quests,
@@ -989,6 +1080,10 @@ describe('buildDiaryFacts', () => {
       longTasks: [{ amount: 1000, unit: 'chompy kills', text: '1,000 chompy kills' }],
       also: ['Access to the Earth Altar'],
       gates: [{ kind: 'reset', name: 'Battlestaves from Zaff' }],
+      minutes: { low: 16, mid: 21, high: 32 },
+      items: ['Varrock armour 4'],
+      lamp: { xp: 50_000, minLevel: 70 },
+      recommended: true,
     })
   })
 })
@@ -1149,5 +1244,88 @@ describe('buildResets', () => {
     ['a requirement it cannot read', { req: 'd:Lumbridge Medium' }, /bad diary requirement/],
   ])('refuses %s', (_case, overrides, problem) => {
     expect(problemsOf(() => build(overrides)).join('\n')).toMatch(problem)
+  })
+})
+
+describe('buildGoals', () => {
+  const quests = buildQuestFacts({
+    'Fairytale I - Growing Pains': { kind: 'quest', page: 'Fairytale I', rev: 1 },
+    'Fairytale II - Cure a Queen': {
+      kind: 'quest',
+      page: 'Fairytale II',
+      rev: 1,
+      startedMatters: true,
+    },
+  })
+  const goal = (overrides: Partial<GoalSource> = {}): GoalSource => ({
+    name: 'Fairy rings',
+    gives: 'Travel by the fairy ring network.',
+    quests: { 'Fairytale I - Growing Pains': 'finished', 'Fairytale II - Cure a Queen': 'started' },
+    guide: { main: 62, ironman: 98 },
+    ...overrides,
+  })
+  const build = (source: Record<string, GoalSource>) =>
+    buildGoals(source, quests, ['Ardougne Easy', 'Ardougne Medium'])
+
+  it('turns each goal into the app’s: its tree, tiers, levels and the guides’ steps', () => {
+    expect(
+      build({
+        'fairy-rings': goal({
+          diaries: ['Ardougne Easy'],
+          levels: [{ skill: 'prayer', level: 70 }],
+        }),
+        'early-path': goal({ name: 'The early ironman path', ironmanOnly: true, guide: {} }),
+      }),
+    ).toEqual([
+      {
+        id: 'fairy-rings',
+        name: 'Fairy rings',
+        gives: 'Travel by the fairy ring network.',
+        quests: {
+          'Fairytale I - Growing Pains': 'finished',
+          'Fairytale II - Cure a Queen': 'started',
+        },
+        diaries: ['Ardougne Easy'],
+        levels: [{ skill: 'prayer', level: 70 }],
+        allQuests: false,
+        allDiaries: false,
+        guide: { main: 62, ironman: 98 },
+        ironmanOnly: false,
+      },
+      expect.objectContaining({
+        id: 'early-path',
+        guide: { main: null, ironman: null },
+        ironmanOnly: true,
+      }),
+    ])
+  })
+
+  it.each<[string, Record<string, GoalSource>, RegExp]>([
+    ['a goal with no words', { goal: goal({ gives: ' ' }) }, /goal goal: no name or words/],
+    [
+      'a quest that is not an entry',
+      { goal: goal({ quests: { 'Fairytale III': 'finished' } }) },
+      /goal goal: needs 'Fairytale III', not a quest entry/,
+    ],
+    [
+      'a state it does not know',
+      { goal: goal({ quests: { 'Fairytale I - Growing Pains': 'halfway' } }) },
+      /goal goal: needs 'Fairytale I - Growing Pains' halfway/,
+    ],
+    [
+      'a tier it does not know',
+      { goal: goal({ diaries: ['Ardougne Master'] }) },
+      /goal goal: needs tier 'Ardougne Master'/,
+    ],
+    ['a goal that needs nothing', { goal: goal({ quests: {} }) }, /goal goal: needs nothing/],
+    [
+      'a level past 99',
+      { goal: goal({ levels: [{ skill: 'prayer', level: 100 }] }) },
+      /goal goal: prayer 100/,
+    ],
+    ['a guide step of 0', { goal: goal({ guide: { main: 0 } }) }, /goal goal: guide step 0/],
+    ['a guide it does not know', { goal: goal({ guide: { f2p: 3 } }) }, /goal goal: a guide 'f2p'/],
+  ])('refuses %s', (_case, source, problem) => {
+    expect(problemsOf(() => build(source)).join('\n')).toMatch(problem)
   })
 })

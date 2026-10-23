@@ -6,14 +6,23 @@ import type { SkillKey } from '#shared/types/skill'
  * colour on top, with the coloured copy cut off above `fill`, so colour rises from the hem as
  * the skill climbs. It is as wide as whatever holds it.
  */
-const { skill, fill } = defineProps<{
+const {
+  skill,
+  fill,
+  trimmed = false,
+  src = undefined,
+} = defineProps<{
   /** The skill whose cape this is; null for the max cape. */
   skill: SkillKey | null
   /** How much of the cape is in colour, 0 to 100. */
   fill: number
   /** Draw the trimmed cape: the one worn at 99. */
   trimmed?: boolean
+  /** A cape that is no skill's: the quest point cape, the achievement diary cape. */
+  src?: string
 }>()
+
+const url = computed(() => src ?? capeImageUrl(skill, trimmed))
 
 const clampedFill = computed(() => Math.min(100, Math.max(0, fill)).toFixed(2))
 
@@ -53,16 +62,8 @@ defineExpose({ fillFrom })
 
 <template>
   <span ref="picture" class="cape-image" :style="{ '--cape-image-fill': `${clampedFill}%` }">
-    <img
-      class="cape-image__layer cape-image__layer--greyed"
-      :src="capeImageUrl(skill, trimmed)"
-      alt=""
-    />
-    <img
-      class="cape-image__layer cape-image__layer--coloured"
-      :src="capeImageUrl(skill, trimmed)"
-      alt=""
-    />
+    <img class="cape-image__layer cape-image__layer--greyed" :src="url" alt="" />
+    <img class="cape-image__layer cape-image__layer--coloured" :src="url" alt="" />
   </span>
 </template>
 

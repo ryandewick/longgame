@@ -78,7 +78,14 @@ export function questFactsWith(name: string, overrides: Partial<QuestFacts> = {}
       kudos: 0,
       ironman: [],
     },
-    gives: { questPoints: 0, kudos: 0, kudosOpened: 0 },
+    gives: { questPoints: 0, kudos: 0, kudosOpened: 0, xpChoices: [], xpDuring: {} },
+    time: {
+      minutes: { low: 10, mid: 15, high: 20 },
+      ironmanMinutes: 0,
+      waitMinutes: 0,
+      ironmanWaitMinutes: 0,
+    },
+    guide: { main: null, ironman: null },
     ...overrides,
   }
 }
@@ -106,6 +113,10 @@ export function diaryFactsWith(name: string, overrides: Partial<DiaryFacts> = {}
     longTasks: [],
     also: [],
     gates: [],
+    minutes: { low: 10, mid: 15, high: 20 },
+    items: [],
+    lamp: null,
+    recommended: false,
     ...overrides,
   }
 }

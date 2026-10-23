@@ -1,4 +1,4 @@
-import type { LevelNeed, QuestState } from './quest'
+import type { LevelNeed, Minutes, QuestState } from './quest'
 import type { SkillKey } from './skill'
 
 /** One thing an either-or choice of a tier can be met with. */
@@ -83,4 +83,12 @@ export interface DiaryFacts {
   readonly also: readonly string[]
   /** The methods and resets its reward opens up. */
   readonly gates: readonly DiaryGate[]
+  /** How long its tasks take, the counts to build up left out. */
+  readonly minutes: Minutes
+  /** The reward's items, by name: 'Wilderness sword 1'. */
+  readonly items: readonly string[]
+  /** The reward's lamp, or null. */
+  readonly lamp: { readonly xp: number; readonly minLevel: number } | null
+  /** A skill guide recommends it, which puts it first among the hard and elite tiers (decision 6). */
+  readonly recommended: boolean
 }

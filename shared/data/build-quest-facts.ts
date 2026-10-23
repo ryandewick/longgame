@@ -1,10 +1,65 @@
-import type { IronmanNeed, LampReward, QuestFacts, QuestKind } from '../types/quest'
+import type {
+  GuidePlace,
+  IronmanNeed,
+  LampReward,
+  QuestFacts,
+  QuestKind,
+  XpChoice,
+} from '../types/quest'
 import type { SkillKey } from '../types/skill'
 import { lampsInWords } from './build-quests'
-import { isLevel, readCount, readLevelNeed, readSkillList } from './read-needs'
+import { isLevel, readCount, readLevelNeed, readMinutes, readSkillList } from './read-needs'
 import { isSkillKey } from './skills'
 import { DataSourceError } from './sources'
 import type { QuestFactLampSource, QuestFactSource } from './sources'
+
+const GUIDES: readonly string[] = ['main', 'ironman']
+
+/** The XP a player chooses the skill of, without the choices that are not sound (each noted as a problem). */
+function xpChoices(problems: string[], name: string, entry: QuestFactSource): XpChoice[] {
+  return (entry.xpChoices ?? []).flatMap((choice) => {
+    const listed = Array.isArray(choice.skills) ? choice.skills : []
+    const skills =
+      choice.skills === 'any'
+        ? 'any'
+        : listed.length && listed.every(isSkillKey)
+          ? listed.filter(isSkillKey)
+          : null
+    const sound =
+      Number.isInteger(choice.count) &&
+      choice.count >= 1 &&
+      Number.isInteger(choice.xp) &&
+      choice.xp > 0 &&
+      (choice.minLevel === 0 || isLevel(choice.minLevel))
+    if (!skills || !sound) {
+      problems.push(
+        `${name}: an xp choice of ${choice.count} x ${choice.xp} in ${String(choice.skills)}`,
+      )
+      return []
+    }
+    return [{ count: choice.count, xp: choice.xp, skills, minLevel: choice.minLevel }]
+  })
+}
+
+/** Where a guide does a quest: a step that finishes it, and an earlier one that starts it. */
+function guidePlace(
+  problems: string[],
+  where: string,
+  place: { finish?: number; start?: number } | undefined,
+): GuidePlace | null {
+  if (!place) return null
+  const step = (value: number | undefined): number | null =>
+    value !== undefined && Number.isInteger(value) && value > 0 ? value : null
+  const finish = step(place.finish)
+  const start = step(place.start)
+  const bad =
+    (place.finish !== undefined && finish === null) ||
+    (place.start !== undefined && start === null) ||
+    (finish === null && start === null) ||
+    (finish !== null && start !== null && start >= finish)
+  if (bad) problems.push(`${where}: guide steps ${place.start} to ${place.finish}`)
+  return { finish, start }
+}
 
 const KINDS: readonly string[] = ['quest', 'subquest', 'miniquest', 'activity']
 
@@ -69,7 +124,9 @@ function lampProblems(name: string, lamp: QuestFactLampSource): string[] {
  * spaces). A quest's `requires` joins the quests its page names and the ones its levels prove.
  * What readiness reads is checked too: the boostable, finish-only and bypassable levels name
  * levels the quest needs, an ironman's options are real levels, the counts are whole numbers, and
- * only a quest or a part of Recipe for Disaster gives quest points.
+ * only a quest or a part of Recipe for Disaster gives quest points. What suggestions read is
+ * checked as well: minutes in order, XP choices and XP during a quest in real skills, and guide
+ * steps that start a quest before they finish it.
  *
  * Throws a DataSourceError listing everything wrong with the source.
  */
@@ -127,6 +184,16 @@ export function buildQuestFacts(source: Readonly<Record<string, QuestFactSource>
     if (entry.givesQuestPoints && entry.kind !== 'quest' && entry.kind !== 'subquest')
       problems.push(`${name}: gives quest points, but is not a quest`)
 
+    const xpDuring: Partial<Record<SkillKey, number>> = {}
+    for (const [skill, xp] of Object.entries(entry.xpDuring ?? {})) {
+      if (!isSkillKey(skill) || !(Number.isInteger(xp) && xp > 0))
+        problems.push(`${name}: xp during of ${xp} in '${skill}'`)
+      else xpDuring[skill] = xp
+    }
+    for (const route of Object.keys(entry.guide ?? {})) {
+      if (!GUIDES.includes(route)) problems.push(`${name}: a guide '${route}'`)
+    }
+
     facts.push({
       name,
       kind: isKind(entry.kind) ? entry.kind : 'quest',
@@ -152,6 +219,23 @@ export function buildQuestFacts(source: Readonly<Record<string, QuestFactSource>
         questPoints: readCount(problems, name, 'quest points given', entry.givesQuestPoints),
         kudos: readCount(problems, name, 'Kudos given', entry.givesKudos),
         kudosOpened: readCount(problems, name, 'Kudos opened', entry.opensKudos),
+        xpChoices: xpChoices(problems, name, entry),
+        xpDuring,
+      },
+      time: {
+        minutes: entry.minutes ? readMinutes(problems, name, entry.minutes) : null,
+        ironmanMinutes: readCount(problems, name, 'ironman minutes', entry.ironmanMinutes),
+        waitMinutes: readCount(problems, name, 'wait minutes', entry.waitMinutes),
+        ironmanWaitMinutes: readCount(
+          problems,
+          name,
+          'ironman wait minutes',
+          entry.ironmanWaitMinutes,
+        ),
+      },
+      guide: {
+        main: guidePlace(problems, `${name} main guide`, entry.guide?.main),
+        ironman: guidePlace(problems, `${name} ironman guide`, entry.guide?.ironman),
       },
     })
   }

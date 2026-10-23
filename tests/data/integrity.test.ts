@@ -10,6 +10,7 @@ import type { QuestFacts } from '#shared/types/quest'
 import type { Requirements } from '#shared/types/requirement'
 import { BOOSTS } from '#shared/data/boosts'
 import { DIARY_FACTS } from '#shared/data/diary-facts'
+import { GOALS } from '#shared/data/goals'
 import { METHODS } from '#shared/data/methods'
 import { QUEST_FACTS } from '#shared/data/quest-facts'
 import { QUESTS } from '#shared/data/quests'
@@ -525,6 +526,110 @@ describe('quest facts', () => {
       'Priest in Peril',
       'Shilo Village',
       'The Fremennik Trials',
+    ])
+  })
+})
+
+describe('quest facts for suggestions', () => {
+  it('times every quest, part and miniquest at an ordinary pace, and leaves Recipe for Disaster to its parts', () => {
+    expect(QUEST_FACTS.filter((quest) => !quest.time.minutes).map((quest) => quest.name)).toEqual([
+      'Knight Waves Training Grounds',
+      'Natural history quiz',
+      'Recipe for Disaster',
+    ])
+  })
+
+  it('places every guide step at most once a quest, and a start before its finish', () => {
+    for (const quest of QUEST_FACTS) {
+      for (const place of [quest.guide.main, quest.guide.ironman]) {
+        if (place?.start && place.finish) expect(place.start).toBeLessThan(place.finish)
+      }
+    }
+    const fairytale = QUEST_FACTS.find((quest) => quest.name === 'Fairytale II - Cure a Queen')
+    // the main guide starts it at step 62 for the fairy rings and finishes it at 249
+    expect(fairytale?.guide).toEqual({
+      main: { start: 62, finish: 249 },
+      ironman: { start: 98, finish: 235 },
+    })
+  })
+
+  it('lets The Tourist Trap’s two rewards go in Agility, Fletching, Smithing or Thieving', () => {
+    expect(QUEST_FACTS.find((quest) => quest.name === 'The Tourist Trap')?.gives.xpChoices).toEqual(
+      [
+        {
+          count: 2,
+          xp: 4650,
+          skills: ['agility', 'fletching', 'smithing', 'thieving'],
+          minLevel: 0,
+        },
+      ],
+    )
+  })
+})
+
+describe('goals', () => {
+  const goal = (id: string) => GOALS.find((each) => each.id === id)
+
+  it('holds the 30 milestones, each saying what it gives in a sentence', () => {
+    expect(GOALS).toHaveLength(30)
+    expect(GOALS.filter((each) => !/^[A-Z].*\.$/.test(each.gives))).toEqual([])
+  })
+
+  it('needs 49 entries for Barrows gloves, Legends’ Quest only started, which give 89 quest points (acceptance D1)', () => {
+    const tree = Object.entries(goal('barrows-gloves')?.quests ?? {})
+    expect(tree).toHaveLength(49)
+    expect(tree.filter(([, state]) => state === 'started').map(([name]) => name)).toEqual([
+      "Legends' Quest",
+    ])
+    const points = tree
+      .filter(([, state]) => state === 'finished')
+      .reduce(
+        (sum, [name]) =>
+          sum + (QUEST_FACTS.find((quest) => quest.name === name)?.gives.questPoints ?? 0),
+        0,
+      )
+    expect(points).toBe(89)
+  })
+
+  it('finishes Recipe for Disaster where each guide does, part by part (acceptance D2)', () => {
+    const parts = QUEST_FACTS.filter(({ name }) => name.startsWith('Recipe for Disaster - '))
+    const steps = (guide: 'main' | 'ironman'): number[] =>
+      parts.map((part) => part.guide[guide]?.finish ?? 0).sort((first, second) => first - second)
+    expect(steps('main')).toEqual([63, 64, 73, 139, 140, 188, 190, 221, 251, 252])
+    expect(steps('ironman')).toEqual([79, 83, 93, 100, 138, 162, 163, 222, 244, 262])
+    expect(goal('barrows-gloves')?.guide).toEqual({ main: 252, ironman: 262 })
+  })
+
+  it('reaches the milestones in the main guide in this order (acceptance A7)', () => {
+    const ordered = GOALS.filter((each) => each.guide.main !== null && !each.ironmanOnly)
+      .sort((first, second) => (first.guide.main ?? 0) - (second.guide.main ?? 0))
+      .map((each) => [each.name, each.guide.main])
+    expect(ordered.slice(0, 14)).toEqual([
+      ['Spirit trees', 17],
+      ['Gnome gliders', 41],
+      ['Morytania', 45],
+      ['Fairy rings', 62],
+      ['Fossil Island', 93],
+      ["Ava's device", 105],
+      ['Temple Trekking', 126],
+      ["Iban's staff", 133],
+      ['God Wars protection items', 145],
+      ['Black mask and Slayer helmet', 185],
+      ['Salve amulet', 196],
+      ['Dragon scimitar', 198],
+      ['Ancient Magicks', 208],
+      ['Barrows gloves', 252],
+    ])
+  })
+
+  it('keeps the ironman guide’s early path for ironmen, and needs Knight Waves for Piety', () => {
+    expect(GOALS.filter((each) => each.ironmanOnly).map((each) => each.name)).toEqual([
+      'The early ironman path',
+    ])
+    expect(goal('piety')?.quests).toMatchObject({ 'Knight Waves Training Grounds': 'finished' })
+    expect(goal('piety')?.levels).toEqual([
+      { skill: 'prayer', level: 70 },
+      { skill: 'defence', level: 70 },
     ])
   })
 })

@@ -1,4 +1,5 @@
-import { isDoneByEveryAccount } from '#shared/domain/account'
+import type { QuestState } from '#shared/types/quest'
+import { hasCompletedDiary, isDoneByEveryAccount } from '#shared/domain/account'
 
 /**
  * Pressing a quest's or a diary tier's tick box by hand, wherever on the Quests page that is done.
@@ -9,6 +10,8 @@ import { isDoneByEveryAccount } from '#shared/domain/account'
 export function useQuestToggle(): {
   toggleQuest: (questName: string) => void
   toggleDiary: (diary: string) => void
+  markQuest: (questName: string, state: QuestState) => void
+  markDiary: (diary: string) => void
 } {
   const account = useAccountStore()
   const toast = useToast()
@@ -35,5 +38,24 @@ export function useQuestToggle(): {
     if (news) toast.show(news.message, news.lead)
   }
 
-  return { toggleQuest, toggleDiary }
+  /**
+   * Marks a quest done or started from a suggestion, which only ever moves it on, and says so: a
+   * suggestion's row goes away when its quest is done, so the toast is how the player sees it took.
+   */
+  function markQuest(questName: string, state: QuestState): void {
+    const step = account.markQuest(questName, state)
+    if (step.to === step.from) return
+    const news = questStepNews(questName, step)
+    const lead = `${questName} ${step.to === 'done' ? 'ticked' : 'marked started'}.`
+    toast.show(news?.message ?? '', news?.lead ?? lead)
+  }
+
+  /** Marks a diary tier claimed from a suggestion, and says so. */
+  function markDiary(diary: string): void {
+    if (hasCompletedDiary(account.account, diary)) return
+    const news = diaryStepNews(diary, account.markDiary(diary))
+    toast.show(news?.message ?? '', news?.lead ?? `${diary} ticked.`)
+  }
+
+  return { toggleQuest, toggleDiary, markQuest, markDiary }
 }

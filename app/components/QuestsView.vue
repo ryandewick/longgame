@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import { DIARY_REGIONS, DIARY_TIERS } from '#shared/data/diaries'
 import { hasCompletedDiary, hasCompletedQuest } from '#shared/domain/account'
-import { knownQuests, questOffers } from '#shared/domain/quests'
+import { knownQuests } from '#shared/domain/quests'
 
 /**
  * Quests: where the account's quests and diaries are told to the planner, which the hiscores say
- * nothing about. The page has three parts, each behind a tab and each with an address of its own
- * (/quests?tab=tick-list):
+ * nothing about, and what to do with them next. The page has four parts, each behind a tab and
+ * each with an address of its own (/quests?tab=next):
  *
  * - Questions: a short run of yes or no questions about the quests that would change the plan;
- * - Tick list: every quest and diary tier, to tick by hand;
- * - Worth doing next for XP: the quests still to do, biggest reward first.
+ * - Next: what to do now and why: quests that save hours, unlocks, diary tiers to claim;
+ * - Goals: the milestones, with how far along each the account is;
+ * - Tick list: every quest and diary tier, to tick by hand.
  *
  * A local copy whose add-on reports quest progress asks nothing, so it has no Questions part.
  */
 const account = useAccountStore()
 const route = useRoute()
-const { toggleQuest } = useQuestToggle()
 const asksQuestions = !useQuestProgressProvider()
 
 // what the app knows by name is a fact of the data, the same for every account
@@ -61,8 +61,6 @@ const questsTicked = computed(
 const diariesTicked = computed(
   () => EVERY_DIARY.filter((diary) => hasCompletedDiary(account.account, diary)).length,
 )
-
-const offers = computed(() => questOffers(account.account))
 </script>
 
 <template>
@@ -113,15 +111,9 @@ const offers = computed(() => questOffers(account.account))
     </nav>
 
     <QuestQuestions v-if="tab === 'questions'" />
-    <QuestTickList v-else-if="tab === 'tick-list'" />
-    <section v-else>
-      <div class="section-heading section-heading--first">
-        <h2 class="section-heading__title">Worth doing next for XP</h2>
-        <span class="section-heading__aside">{{ offers.length }} left, biggest first</span>
-      </div>
-      <QuestXpTable v-if="offers.length" :offers="offers" @complete="toggleQuest" />
-      <p v-else class="note quests-view__empty">Every XP quest on the list is done.</p>
-    </section>
+    <QuestNext v-else-if="tab === 'next'" />
+    <QuestGoals v-else-if="tab === 'goals'" />
+    <QuestTickList v-else />
   </div>
 </template>
 
@@ -151,10 +143,6 @@ const offers = computed(() => questOffers(account.account))
 
   &__tabs {
     margin: 26px 0;
-  }
-
-  &__empty {
-    margin-top: 8px;
   }
 }
 </style>

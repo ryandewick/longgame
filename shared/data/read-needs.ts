@@ -1,4 +1,4 @@
-import type { LevelNeed } from '../types/quest'
+import type { LevelNeed, Minutes } from '../types/quest'
 import type { SkillKey } from '../types/skill'
 import { isSkillKey } from './skills'
 import type { LevelSource } from './sources'
@@ -41,6 +41,21 @@ export function readLevelNeed(
     return null
   }
   return { skill: source.skill, level: source.level }
+}
+
+/** Low, mid and high minutes: whole numbers above 0, in that order. Null (with the problem noted) otherwise. */
+export function readMinutes(
+  problems: string[],
+  where: string,
+  minutes: { low: number; mid: number; high: number },
+): Minutes | null {
+  const { low, mid, high } = minutes
+  const whole = [low, mid, high].every((value) => Number.isInteger(value) && value > 0)
+  if (!whole || low > mid || mid > high) {
+    problems.push(`${where}: minutes ${low}, ${mid}, ${high}`)
+    return null
+  }
+  return { low, mid, high }
 }
 
 /** Skills named in a list about the levels just read: each a real skill with a level there, once. */

@@ -5,7 +5,7 @@ import { METHODS } from '../data/methods'
 import { SKILL_KEYS, skillDefinition } from '../data/skills'
 import { bestRateAt, isUsableAt } from './methods'
 import { xpPerRunAt } from './rates'
-import { MAX_LEVEL, MAX_XP, stretchesToMax } from './xp'
+import { MAX_LEVEL, MAX_XP, stretchesToMax, xpForLevel } from './xp'
 
 const MINUTES_PER_DAY = 1440
 
@@ -30,6 +30,34 @@ export function hoursLeft(account: Account, skill: SkillKey): number {
     hours += xp / (bestRateAt(account, skill, level) || fallbackXpPerHour(skill, level))
   }
   return hours
+}
+
+/**
+ * How many hours of grinding the next `xp` of a skill would take from where the account is, each
+ * level at the best rate it could use there, as `hoursLeft` counts them. So it is both what XP
+ * from a quest takes off the time to max and what training to a level costs. 0 for a passive
+ * skill; XP past 99 takes no time off.
+ */
+export function hoursForXp(account: Account, skill: SkillKey, xp: number): number {
+  if (xp <= 0 || skillDefinition(skill).passive) return 0
+  let hours = 0
+  let left = xp
+  for (const { level, xp: stretch } of stretchesToMax(account.skills[skill])) {
+    const taken = Math.min(left, stretch)
+    hours += taken / (bestRateAt(account, skill, level) || fallbackXpPerHour(skill, level))
+    left -= taken
+    if (left <= 0) break
+  }
+  return hours
+}
+
+/** How many hours of grinding until the skill reaches this level: 0 once it has. */
+export function hoursToLevel(account: Account, skill: SkillKey, level: number): number {
+  return hoursForXp(
+    account,
+    skill,
+    xpForLevel(Math.min(level, MAX_LEVEL)) - account.skills[skill].xp,
+  )
 }
 
 /**

@@ -2,7 +2,7 @@ import type { ChoiceItem, DiaryFacts, DiaryGate, LongTask, NeedChoice } from '..
 import type { LevelNeed, QuestFacts, QuestState } from '../types/quest'
 import type { SkillKey } from '../types/skill'
 import { DIARY_REGIONS, DIARY_TIERS } from './diaries'
-import { isLevel, readCount, readLevelNeed, readSkillList } from './read-needs'
+import { isLevel, readCount, readLevelNeed, readMinutes, readSkillList } from './read-needs'
 import { isSkillKey } from './skills'
 import { DataSourceError } from './sources'
 import type { ChoiceItemSource, DiaryFactSource } from './sources'
@@ -69,7 +69,8 @@ function choiceItem(
  * the quests planned on finished among the ones read started. What readiness reads is checked too:
  * levels from 1 to 99 in skills the app knows (the boostable ones among them), a Raiments of the
  * Eye level below the tier's Runecraft, sound either-or choices, whole-number counts, the
- * ironman's levels, the counts to build up, and gates that are methods or resets.
+ * ironman's levels, the counts to build up, and gates that are methods or resets. So is what
+ * suggestions read: the minutes of its tasks, in order, and its reward's items and lamp.
  *
  * Throws a DataSourceError listing everything wrong with the source.
  */
@@ -151,6 +152,21 @@ export function buildDiaryFacts(
         return { amount: task.amount, unit: task.unit, text: task.text }
       })
 
+      const minutes = entry.minutes ? readMinutes(problems, name, entry.minutes) : null
+      if (!entry.minutes) problems.push(`${name}: no minutes`)
+      const lamp = entry.lamp ?? null
+      if (
+        lamp &&
+        !(
+          Number.isInteger(lamp.xp) &&
+          lamp.xp > 0 &&
+          (lamp.minLevel === 0 || isLevel(lamp.minLevel))
+        )
+      )
+        problems.push(`${name}: a lamp of ${lamp.xp} xp at level ${lamp.minLevel}`)
+      const items = entry.items ?? []
+      if (items.some((item) => !item.trim())) problems.push(`${name}: an item with no name`)
+
       const gates: DiaryGate[] = (entry.gates ?? []).flatMap((gate) => {
         if (gate.kind !== 'method' && gate.kind !== 'reset') {
           problems.push(`${name}: a gate of kind '${gate.kind}'`)
@@ -179,6 +195,10 @@ export function buildDiaryFacts(
         longTasks,
         also: [...(entry.also ?? [])],
         gates,
+        minutes: minutes ?? { low: 0, mid: 0, high: 0 },
+        items: [...items],
+        lamp: lamp && { xp: lamp.xp, minLevel: lamp.minLevel },
+        recommended: entry.recommended === true,
       })
     }
   }

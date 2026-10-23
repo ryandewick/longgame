@@ -12,6 +12,16 @@ export function capeImageUrl(skill: SkillKey | null, trimmed = false): string {
   return `${GAME_ASSETS}/capes-md/${skill}${trimmed ? '_t' : ''}.webp`
 }
 
+/** The two capes no skill has: the quest point cape and the achievement diary cape. */
+export function milestoneCapeUrl(cape: 'quest-point' | 'achievement-diary'): string {
+  return `${GAME_ASSETS}/capes-md/${cape === 'quest-point' ? 'quest_point' : 'achievement_diary'}.webp`
+}
+
+/** The game's quest icon and its achievement diary icon, at their own 21 pixels. */
+export function questListIconUrl(kind: 'quest' | 'diary'): string {
+  return `${GAME_ASSETS}/icons/${kind === 'quest' ? 'quest_point' : 'achievement_diaries'}.png`
+}
+
 /** A skill's icon as the game draws it in the skills tab. */
 export function skillIconUrl(skill: SkillKey): string {
   return `${GAME_ASSETS}/icons/${skill}.png`

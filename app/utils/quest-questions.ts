@@ -24,15 +24,19 @@ import { rowReadiness, type RowReadiness } from './quest-readiness'
  * (shared/domain/plan-questions.ts and quest-ticks.ts); these put them into words.
  */
 
-/** The three parts of the Quests page, as the address names them: /quests?tab=tick-list. */
-export type QuestsTab = 'questions' | 'tick-list' | 'xp'
+/** The four parts of the Quests page, as the address names them: /quests?tab=tick-list. */
+export type QuestsTab = 'questions' | 'next' | 'goals' | 'tick-list'
 
-/** The three parts in the order their tabs stand in, each with its tab's words. */
+/** The four parts in the order their tabs stand in, each with its tab's words. */
 export const QUESTS_TABS: readonly { readonly tab: QuestsTab; readonly label: string }[] = [
   { tab: 'questions', label: 'Questions' },
+  { tab: 'next', label: 'Next' },
+  { tab: 'goals', label: 'Goals' },
   { tab: 'tick-list', label: 'Tick list' },
-  { tab: 'xp', label: 'Worth doing next for XP' },
 ]
+
+/** The address the part Next replaced had, kept so an old link still lands on it. */
+const NEXT_WAS = 'xp'
 
 /** The address that opens the Quests page at one of its parts. */
 export function questsTabPath(tab: QuestsTab): string {
@@ -40,17 +44,19 @@ export function questsTabPath(tab: QuestsTab): string {
 }
 
 /**
- * Which part of the Quests page does this address open? The one its `tab` names. With none
- * named, or one this copy does not have, the questions while there are any to ask and the tick
- * list otherwise. A copy whose add-on fills quests in asks nothing, so it has no questions part.
+ * Which part of the Quests page does this address open? The one its `tab` names ('xp', the part
+ * Next replaced, opens Next). With none named, or one this copy does not have, the questions
+ * while there are any to ask and Next otherwise. A copy whose add-on fills quests in asks
+ * nothing, so it has no questions part.
  */
 export function questsTabFor(
   tabInAddress: unknown,
   page: { readonly asksQuestions: boolean; readonly questionsWaiting: number },
 ): QuestsTab {
+  if (tabInAddress === NEXT_WAS) return 'next'
   const named = QUESTS_TABS.find(({ tab }) => tab === tabInAddress)?.tab
   if (named && (named !== 'questions' || page.asksQuestions)) return named
-  return page.asksQuestions && page.questionsWaiting > 0 ? 'questions' : 'tick-list'
+  return page.asksQuestions && page.questionsWaiting > 0 ? 'questions' : 'next'
 }
 
 /** A requirement as a row names it: a quest by its name, a diary tier as 'Ardougne Medium diary'. */

@@ -6,7 +6,9 @@ import {
   dailyRunXpAt,
   daysLeft,
   fallbackXpPerHour,
+  hoursForXp,
   hoursLeft,
+  hoursToLevel,
   isRoughEstimate,
   maxProgress,
 } from '#shared/domain/estimates'
@@ -93,6 +95,41 @@ describe('hoursLeft', () => {
     // herb runs at 60k until tree runs open at 15 for 500k
     const expected = xpForLevel(15) / 60_000 + (MAX_XP - xpForLevel(15)) / 500_000
     expect(hoursLeft(accountWith(), 'farming')).toBeCloseTo(expected, 8)
+  })
+})
+
+describe('hoursForXp', () => {
+  it('takes the XP at the best rate usable at each level it crosses', () => {
+    // iron ore at 30k until Motherlode Mine opens at 30 for 35k
+    expect(hoursForXp(accountWith(), 'mining', 3_000)).toBeCloseTo(3_000 / 30_000, 10)
+    const across = xpForLevel(31)
+    const expected = xpForLevel(30) / 30_000 + (across - xpForLevel(30)) / 35_000
+    expect(hoursForXp(accountWith(), 'mining', across)).toBeCloseTo(expected, 10)
+  })
+
+  it('is what the XP takes off the hours left', () => {
+    const account = accountWith({ levels: { mining: 40 } })
+    const after = {
+      ...account,
+      skills: { ...account.skills, mining: { level: 41, xp: xpForLevel(41) } },
+    }
+    expect(hoursForXp(account, 'mining', xpForLevel(41) - xpForLevel(40))).toBeCloseTo(
+      hoursLeft(account, 'mining') - hoursLeft(after, 'mining'),
+      10,
+    )
+  })
+
+  it('takes nothing off for no XP, a passive skill, or XP past 99', () => {
+    expect(hoursForXp(accountWith(), 'mining', 0)).toBe(0)
+    expect(hoursForXp(accountWith(), 'hitpoints', 10_000)).toBe(0)
+    expect(hoursForXp(accountWith({ levels: { mining: 99 } }), 'mining', 10_000)).toBe(0)
+  })
+})
+
+describe('hoursToLevel', () => {
+  it('is the hours to grind from the XP the account has to the level', () => {
+    expect(hoursToLevel(accountWith(), 'mining', 30)).toBeCloseTo(xpForLevel(30) / 30_000, 10)
+    expect(hoursToLevel(accountWith({ levels: { mining: 30 } }), 'mining', 30)).toBe(0)
   })
 })
 

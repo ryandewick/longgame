@@ -52,8 +52,10 @@ export interface CheckedStep {
 export interface GuideWalk {
   readonly steps: number
   readonly checked: readonly CheckedStep[]
-  /** Quest points and combat level when the guide reaches these steps. */
+  /** Quest points and combat level once the guide has done this step. */
   readonly at: (n: number) => { readonly questPoints: number; readonly combat: number }
+  /** The account once the guide has done this step. */
+  readonly after: (n: number) => Account
 }
 
 const RECIPE_PARTS = QUEST_FACTS.filter((quest) => quest.kind === 'subquest').map((q) => q.name)
@@ -72,6 +74,7 @@ export function walkGuide(route: Route): GuideWalk {
   const diaries = new Set<string>()
   const checked: CheckedStep[] = []
   const milestones = new Map<number, { questPoints: number; combat: number }>()
+  const accounts = new Map<number, Account>()
 
   const account = (): Account => {
     const proven = provenProgress({
@@ -129,6 +132,7 @@ export function walkGuide(route: Route): GuideWalk {
     for (const quest of step.starts ?? []) started.add(quest)
     gain(step.extraXp)
     const now = account()
+    accounts.set(step.n, now)
     milestones.set(step.n, { questPoints: questPoints(now), combat: combatLevel(now) })
   }
 
@@ -137,6 +141,11 @@ export function walkGuide(route: Route): GuideWalk {
     checked,
     at: (n) => {
       const found = milestones.get(n)
+      if (!found) throw new Error(`no step ${n}`)
+      return found
+    },
+    after: (n) => {
+      const found = accounts.get(n)
       if (!found) throw new Error(`no step ${n}`)
       return found
     },

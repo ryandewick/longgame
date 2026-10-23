@@ -2,6 +2,7 @@ import type { Account } from '../types/account'
 import type { SkillKey } from '../types/skill'
 import { QUEST_FACTS } from '../data/quest-facts'
 import { forEverySkill } from '../data/skills'
+import { levelForXp } from './xp'
 
 /** The quests every account has done: Learning the Ropes, which every player finishes to reach the mainland. */
 const DONE_BY_EVERY_ACCOUNT: ReadonlySet<string> = new Set(
@@ -63,6 +64,14 @@ export function questPoints(account: Account): number {
         : sum,
     0,
   )
+}
+
+/** The account with this much more XP in a skill, its level moved on to match. */
+export function withXp(account: Account, skill: SkillKey, xp: number): Account {
+  if (xp <= 0) return account
+  const total = account.skills[skill].xp + xp
+  const level = Math.max(account.skills[skill].level, levelForXp(total))
+  return { ...account, skills: { ...account.skills, [skill]: { level, xp: total } } }
 }
 
 /** Has the account finished this diary tier ('Ardougne Medium')? */

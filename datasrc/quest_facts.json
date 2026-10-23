@@ -22,7 +22,28 @@
   ],
   "implies": [
    "Druidic Ritual"
-  ]
+  ],
+  "minutes": {
+   "low": 124,
+   "mid": 166,
+   "high": 249
+  },
+  "xpChoices": [
+   {
+    "count": 2,
+    "xp": 10000,
+    "skills": "any",
+    "minLevel": 40
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 237
+   },
+   "main": {
+    "finish": 224
+   }
+  }
  },
  "A Night at the Theatre": {
   "kind": "quest",
@@ -31,13 +52,54 @@
   "givesQuestPoints": 2,
   "requires": [
    "A Taste of Hope"
-  ]
+  ],
+  "minutes": {
+   "low": 34,
+   "mid": 45,
+   "high": 68
+  },
+  "xpChoices": [
+   {
+    "count": 4,
+    "xp": 20000,
+    "skills": [
+     "attack",
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints"
+    ],
+    "minLevel": 50
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 321
+   },
+   "main": {
+    "finish": 311
+   }
+  }
  },
  "A Porcine of Interest": {
   "kind": "quest",
   "page": "A Porcine of Interest",
   "rev": 15367468,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 9,
+   "mid": 12,
+   "high": 19
+  },
+  "guide": {
+   "ironman": {
+    "finish": 58
+   },
+   "main": {
+    "finish": 89
+   }
+  }
  },
  "A Ruff Situation": {
   "kind": "quest",
@@ -46,13 +108,39 @@
   "levels": {
    "crafting": 15
   },
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 12,
+   "mid": 16,
+   "high": 24
+  },
+  "guide": {
+   "ironman": {
+    "finish": 47
+   },
+   "main": {
+    "finish": 43
+   }
+  }
  },
  "A Soul's Bane": {
   "kind": "quest",
   "page": "A Soul's Bane",
   "rev": 15359515,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 27,
+   "mid": 36,
+   "high": 54
+  },
+  "guide": {
+   "ironman": {
+    "finish": 229
+   },
+   "main": {
+    "finish": 82
+   }
+  }
  },
  "A Tail of Two Cats": {
   "kind": "quest",
@@ -62,7 +150,28 @@
   "givesKudos": 5,
   "requires": [
    "Icthlarin's Little Helper"
-  ]
+  ],
+  "minutes": {
+   "low": 26,
+   "mid": 34,
+   "high": 52
+  },
+  "xpChoices": [
+   {
+    "count": 2,
+    "xp": 2500,
+    "skills": "any",
+    "minLevel": 30
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 134
+   },
+   "main": {
+    "finish": 215
+   }
+  }
  },
  "A Taste of Hope": {
   "kind": "quest",
@@ -81,12 +190,46 @@
   ],
   "implies": [
    "Druidic Ritual"
-  ]
+  ],
+  "minutes": {
+   "low": 66,
+   "mid": 88,
+   "high": 132
+  },
+  "xpChoices": [
+   {
+    "count": 3,
+    "xp": 2500,
+    "skills": "any",
+    "minLevel": 35
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 219
+   },
+   "main": {
+    "finish": 225
+   }
+  }
  },
  "Alfred Grimhand's Barcrawl": {
   "kind": "miniquest",
   "page": "Alfred Grimhand's Barcrawl",
-  "rev": 15366023
+  "rev": 15366023,
+  "minutes": {
+   "low": 6,
+   "mid": 8,
+   "high": 12
+  },
+  "guide": {
+   "ironman": {
+    "finish": 54
+   },
+   "main": {
+    "finish": 78
+   }
+  }
  },
  "Animal Magnetism": {
   "kind": "quest",
@@ -116,7 +259,21 @@
    "Ernest the Chicken",
    "Priest in Peril",
    "The Restless Ghost"
-  ]
+  ],
+  "minutes": {
+   "low": 15,
+   "mid": 20,
+   "high": 30
+  },
+  "ironmanMinutes": 5,
+  "guide": {
+   "ironman": {
+    "finish": 112
+   },
+   "main": {
+    "finish": 105
+   }
+  }
  },
  "Another Slice of H.A.M.": {
   "kind": "quest",
@@ -131,7 +288,20 @@
    "Death to the Dorgeshuun",
    "The Dig Site",
    "The Giant Dwarf"
-  ]
+  ],
+  "minutes": {
+   "low": 26,
+   "mid": 34,
+   "high": 52
+  },
+  "guide": {
+   "ironman": {
+    "finish": 116
+   },
+   "main": {
+    "finish": 98
+   }
+  }
  },
  "At First Light": {
   "kind": "quest",
@@ -149,7 +319,20 @@
   ],
   "implies": [
    "Druidic Ritual"
-  ]
+  ],
+  "minutes": {
+   "low": 12,
+   "mid": 17,
+   "high": 25
+  },
+  "guide": {
+   "ironman": {
+    "finish": 269
+   },
+   "main": {
+    "finish": 227
+   }
+  }
  },
  "Barbarian Training": {
   "kind": "miniquest",
@@ -182,20 +365,44 @@
    "Druidic Ritual",
    "Tai Bwo Wannai Trio"
   ],
+  "minutes": {
+   "low": 38,
+   "mid": 51,
+   "high": 76
+  },
   "startedMatters": true
  },
  "Bear Your Soul": {
   "kind": "miniquest",
   "page": "Bear Your Soul",
   "rev": 15311949,
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 8,
+   "mid": 11,
+   "high": 16
+  }
  },
  "Below Ice Mountain": {
   "kind": "quest",
   "page": "Below Ice Mountain",
   "rev": 15355831,
   "questPoints": 16,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 28,
+   "mid": 38,
+   "high": 57
+  },
+  "guide": {
+   "ironman": {
+    "finish": 44
+   },
+   "main": {
+    "start": 18,
+    "finish": 273
+   }
+  }
  },
  "Beneath Cursed Sands": {
   "kind": "quest",
@@ -209,7 +416,20 @@
   "givesQuestPoints": 2,
   "requires": [
    "Contact!"
-  ]
+  ],
+  "minutes": {
+   "low": 68,
+   "mid": 90,
+   "high": 135
+  },
+  "guide": {
+   "ironman": {
+    "finish": 307
+   },
+   "main": {
+    "finish": 295
+   }
+  }
  },
  "Between a Rock...": {
   "kind": "quest",
@@ -235,6 +455,19 @@
    "Dwarf Cannon",
    "Fishing Contest"
   ],
+  "minutes": {
+   "low": 41,
+   "mid": 55,
+   "high": 82
+  },
+  "guide": {
+   "ironman": {
+    "finish": 180
+   },
+   "main": {
+    "finish": 164
+   }
+  },
   "startedMatters": true
  },
  "Big Chompy Bird Hunting": {
@@ -255,7 +488,20 @@
    "fletching",
    "ranged"
   ],
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 19,
+   "mid": 25,
+   "high": 37
+  },
+  "guide": {
+   "ironman": {
+    "finish": 128
+   },
+   "main": {
+    "finish": 107
+   }
+  }
  },
  "Biohazard": {
   "kind": "quest",
@@ -264,14 +510,43 @@
   "givesQuestPoints": 3,
   "requires": [
    "Plague City"
-  ]
+  ],
+  "minutes": {
+   "low": 26,
+   "mid": 35,
+   "high": 52
+  },
+  "xpDuring": {
+   "attack": 300
+  },
+  "guide": {
+   "ironman": {
+    "finish": 25
+   },
+   "main": {
+    "finish": 33
+   }
+  }
  },
  "Black Knights' Fortress": {
   "kind": "quest",
   "page": "Black Knights' Fortress",
   "rev": 15367061,
   "questPoints": 12,
-  "givesQuestPoints": 3
+  "givesQuestPoints": 3,
+  "minutes": {
+   "low": 13,
+   "mid": 17,
+   "high": 26
+  },
+  "guide": {
+   "ironman": {
+    "finish": 45
+   },
+   "main": {
+    "finish": 23
+   }
+  }
  },
  "Bone Voyage": {
   "kind": "quest",
@@ -281,7 +556,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "The Dig Site"
-  ]
+  ],
+  "minutes": {
+   "low": 23,
+   "mid": 31,
+   "high": 47
+  },
+  "guide": {
+   "ironman": {
+    "finish": 108
+   },
+   "main": {
+    "finish": 93
+   }
+  }
  },
  "Cabin Fever": {
   "kind": "quest",
@@ -297,13 +585,39 @@
   "requires": [
    "Pirate's Treasure",
    "Rum Deal"
-  ]
+  ],
+  "minutes": {
+   "low": 30,
+   "mid": 39,
+   "high": 59
+  },
+  "guide": {
+   "ironman": {
+    "finish": 199
+   },
+   "main": {
+    "finish": 185
+   }
+  }
  },
  "Children of the Sun": {
   "kind": "quest",
   "page": "Children of the Sun",
   "rev": 15241067,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 13,
+   "mid": 18,
+   "high": 26
+  },
+  "guide": {
+   "ironman": {
+    "finish": 12
+   },
+   "main": {
+    "finish": 12
+   }
+  }
  },
  "Client of Kourend": {
   "kind": "quest",
@@ -312,13 +626,47 @@
   "givesQuestPoints": 1,
   "requires": [
    "X Marks the Spot"
-  ]
+  ],
+  "minutes": {
+   "low": 10,
+   "mid": 13,
+   "high": 19
+  },
+  "xpChoices": [
+   {
+    "count": 2,
+    "xp": 500,
+    "skills": "any",
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 8
+   },
+   "main": {
+    "finish": 86
+   }
+  }
  },
  "Clock Tower": {
   "kind": "quest",
   "page": "Clock Tower",
   "rev": 15166584,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 15,
+   "mid": 20,
+   "high": 30
+  },
+  "guide": {
+   "ironman": {
+    "finish": 22
+   },
+   "main": {
+    "finish": 345
+   }
+  }
  },
  "Cold War": {
   "kind": "quest",
@@ -331,7 +679,20 @@
    "hunter": 10,
    "thieving": 15
   },
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 55,
+   "mid": 73,
+   "high": 110
+  },
+  "guide": {
+   "ironman": {
+    "finish": 183
+   },
+   "main": {
+    "finish": 169
+   }
+  }
  },
  "Contact!": {
   "kind": "quest",
@@ -342,13 +703,54 @@
    "Icthlarin's Little Helper",
    "Prince Ali Rescue"
   ],
+  "minutes": {
+   "low": 42,
+   "mid": 56,
+   "high": 85
+  },
+  "xpChoices": [
+   {
+    "count": 2,
+    "xp": 7000,
+    "skills": [
+     "attack",
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 168
+   },
+   "main": {
+    "finish": 143
+   }
+  },
   "startedMatters": true
  },
  "Cook's Assistant": {
   "kind": "quest",
   "page": "Cook's Assistant",
   "rev": 15375073,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 5,
+   "mid": 7,
+   "high": 10
+  },
+  "guide": {
+   "ironman": {
+    "finish": 2
+   },
+   "main": {
+    "finish": 2
+   }
+  }
  },
  "Crab Quest": {
   "kind": "quest",
@@ -358,7 +760,20 @@
    "fishing": 30,
    "sailing": 40
   },
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 9,
+   "mid": 12,
+   "high": 18
+  },
+  "guide": {
+   "ironman": {
+    "finish": 194
+   },
+   "main": {
+    "finish": 179
+   }
+  }
  },
  "Creature of Fenkenstrain": {
   "kind": "quest",
@@ -396,6 +811,20 @@
   "requiresStarted": [
    "The Restless Ghost"
   ],
+  "minutes": {
+   "low": 21,
+   "mid": 27,
+   "high": 41
+  },
+  "ironmanMinutes": 3,
+  "guide": {
+   "ironman": {
+    "finish": 102
+   },
+   "main": {
+    "finish": 106
+   }
+  },
   "startedMatters": true
  },
  "Current Affairs": {
@@ -409,7 +838,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Pandemonium"
-  ]
+  ],
+  "minutes": {
+   "low": 11,
+   "mid": 15,
+   "high": 22
+  },
+  "guide": {
+   "ironman": {
+    "finish": 192
+   },
+   "main": {
+    "finish": 71
+   }
+  }
  },
  "Curse of the Empty Lord": {
   "kind": "miniquest",
@@ -425,13 +867,50 @@
   "requiresStarted": [
    "Desert Treasure I",
    "The Restless Ghost"
-  ]
+  ],
+  "minutes": {
+   "low": 8,
+   "mid": 11,
+   "high": 16
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 10000,
+    "skills": "any",
+    "minLevel": 50
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 223
+   },
+   "main": {
+    "finish": 242
+   }
+  }
  },
  "Daddy's Home": {
   "kind": "miniquest",
   "page": "Daddy's Home",
   "rev": 15337234,
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 6,
+   "mid": 8,
+   "high": 12
+  },
+  "xpDuring": {
+   "construction": 542
+  },
+  "guide": {
+   "ironman": {
+    "finish": 15
+   },
+   "main": {
+    "finish": 14
+   }
+  }
  },
  "Darkness of Hallowvale": {
   "kind": "quest",
@@ -454,13 +933,47 @@
   "givesQuestPoints": 2,
   "requires": [
    "In Aid of the Myreque"
-  ]
+  ],
+  "minutes": {
+   "low": 38,
+   "mid": 51,
+   "high": 77
+  },
+  "xpChoices": [
+   {
+    "count": 3,
+    "xp": 2000,
+    "skills": "any",
+    "minLevel": 30
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 133
+   },
+   "main": {
+    "finish": 131
+   }
+  }
  },
  "Death Plateau": {
   "kind": "quest",
   "page": "Death Plateau",
   "rev": 15368733,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 25,
+   "mid": 34,
+   "high": 51
+  },
+  "guide": {
+   "ironman": {
+    "finish": 62
+   },
+   "main": {
+    "finish": 37
+   }
+  }
  },
  "Death on the Isle": {
   "kind": "quest",
@@ -473,7 +986,20 @@
   "givesQuestPoints": 2,
   "requires": [
    "Children of the Sun"
-  ]
+  ],
+  "minutes": {
+   "low": 23,
+   "mid": 31,
+   "high": 47
+  },
+  "guide": {
+   "ironman": {
+    "finish": 78
+   },
+   "main": {
+    "finish": 77
+   }
+  }
  },
  "Death to the Dorgeshuun": {
   "kind": "quest",
@@ -494,7 +1020,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "The Lost Tribe"
-  ]
+  ],
+  "minutes": {
+   "low": 39,
+   "mid": 51,
+   "high": 77
+  },
+  "guide": {
+   "ironman": {
+    "finish": 82
+   },
+   "main": {
+    "finish": 52
+   }
+  }
  },
  "Defender of Varrock": {
   "kind": "quest",
@@ -523,14 +1062,48 @@
     "minLevel": 30,
     "from": "Historian Minas"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 31,
+   "mid": 41,
+   "high": 62
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 5000,
+    "skills": "any",
+    "minLevel": 30
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 274
+   },
+   "main": {
+    "finish": 274
+   }
+  }
  },
  "Demon Slayer": {
   "kind": "quest",
   "page": "Demon Slayer",
   "rev": 15369950,
   "givesQuestPoints": 3,
-  "givesKudos": 5
+  "givesKudos": 5,
+  "minutes": {
+   "low": 24,
+   "mid": 32,
+   "high": 48
+  },
+  "guide": {
+   "ironman": {
+    "finish": 17
+   },
+   "main": {
+    "finish": 101
+   }
+  }
  },
  "Desert Treasure I": {
   "kind": "quest",
@@ -562,6 +1135,19 @@
    "Troll Stronghold",
    "Waterfall Quest"
   ],
+  "minutes": {
+   "low": 146,
+   "mid": 194,
+   "high": 291
+  },
+  "guide": {
+   "ironman": {
+    "finish": 215
+   },
+   "main": {
+    "finish": 208
+   }
+  },
   "startedMatters": true
  },
  "Desert Treasure II - The Fallen Empire": {
@@ -585,7 +1171,39 @@
    "Secrets of the North",
    "Temple of the Eye",
    "The Garden of Death"
-  ]
+  ],
+  "minutes": {
+   "low": 392,
+   "mid": 523,
+   "high": 784
+  },
+  "xpChoices": [
+   {
+    "count": 3,
+    "xp": 100000,
+    "skills": [
+     "attack",
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints",
+     "prayer"
+    ],
+    "minLevel": 60
+   }
+  ],
+  "xpDuring": {
+   "smithing": 35000
+  },
+  "guide": {
+   "ironman": {
+    "finish": 337
+   },
+   "main": {
+    "finish": 332
+   }
+  }
  },
  "Devious Minds": {
   "kind": "quest",
@@ -609,13 +1227,39 @@
    "Enter the Abyss",
    "Troll Stronghold",
    "Wanted!"
-  ]
+  ],
+  "minutes": {
+   "low": 18,
+   "mid": 24,
+   "high": 35
+  },
+  "guide": {
+   "ironman": {
+    "finish": 282
+   },
+   "main": {
+    "finish": 277
+   }
+  }
  },
  "Doric's Quest": {
   "kind": "quest",
   "page": "Doric's Quest",
   "rev": 15367060,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 6,
+   "mid": 8,
+   "high": 13
+  },
+  "guide": {
+   "ironman": {
+    "finish": 37
+   },
+   "main": {
+    "finish": 18
+   }
+  }
  },
  "Dragon Slayer I": {
   "kind": "quest",
@@ -648,6 +1292,20 @@
    }
   ],
   "givesQuestPoints": 2,
+  "minutes": {
+   "low": 56,
+   "mid": 74,
+   "high": 111
+  },
+  "ironmanMinutes": 3,
+  "guide": {
+   "ironman": {
+    "finish": 120
+   },
+   "main": {
+    "finish": 135
+   }
+  },
   "startedMatters": true
  },
  "Dragon Slayer II": {
@@ -677,7 +1335,35 @@
   ],
   "requiresStarted": [
    "Barbarian Training"
-  ]
+  ],
+  "minutes": {
+   "low": 210,
+   "mid": 280,
+   "high": 420
+  },
+  "xpChoices": [
+   {
+    "count": 4,
+    "xp": 25000,
+    "skills": [
+     "attack",
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 325
+   },
+   "main": {
+    "finish": 315
+   }
+  }
  },
  "Dream Mentor": {
   "kind": "quest",
@@ -688,19 +1374,73 @@
   "requires": [
    "Eadgar's Ruse",
    "Lunar Diplomacy"
-  ]
+  ],
+  "minutes": {
+   "low": 32,
+   "mid": 43,
+   "high": 64
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 15000,
+    "skills": [
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 266
+   },
+   "main": {
+    "finish": 281
+   }
+  }
  },
  "Druidic Ritual": {
   "kind": "quest",
   "page": "Druidic Ritual",
   "rev": 15322674,
-  "givesQuestPoints": 4
+  "givesQuestPoints": 4,
+  "minutes": {
+   "low": 8,
+   "mid": 11,
+   "high": 17
+  },
+  "guide": {
+   "ironman": {
+    "finish": 38
+   },
+   "main": {
+    "finish": 24
+   }
+  }
  },
  "Dwarf Cannon": {
   "kind": "quest",
   "page": "Dwarf Cannon",
   "rev": 15313000,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 12,
+   "mid": 16,
+   "high": 24
+  },
+  "guide": {
+   "ironman": {
+    "start": 32,
+    "finish": 40
+   },
+   "main": {
+    "finish": 15
+   }
+  }
  },
  "Eadgar's Ruse": {
   "kind": "quest",
@@ -716,7 +1456,20 @@
   "requires": [
    "Druidic Ritual",
    "Troll Stronghold"
-  ]
+  ],
+  "minutes": {
+   "low": 50,
+   "mid": 67,
+   "high": 101
+  },
+  "guide": {
+   "ironman": {
+    "finish": 142
+   },
+   "main": {
+    "finish": 174
+   }
+  }
  },
  "Eagles' Peak": {
   "kind": "quest",
@@ -729,6 +1482,19 @@
    "hunter"
   ],
   "givesQuestPoints": 2,
+  "minutes": {
+   "low": 31,
+   "mid": 42,
+   "high": 62
+  },
+  "guide": {
+   "ironman": {
+    "finish": 267
+   },
+   "main": {
+    "finish": 214
+   }
+  },
   "startedMatters": true
  },
  "Elemental Workshop I": {
@@ -768,6 +1534,19 @@
    }
   ],
   "givesQuestPoints": 1,
+  "minutes": {
+   "low": 14,
+   "mid": 18,
+   "high": 27
+  },
+  "guide": {
+   "ironman": {
+    "finish": 151
+   },
+   "main": {
+    "finish": 53
+   }
+  },
   "startedMatters": true
  },
  "Elemental Workshop II": {
@@ -786,6 +1565,20 @@
   "requires": [
    "Elemental Workshop I"
   ],
+  "minutes": {
+   "low": 26,
+   "mid": 35,
+   "high": 52
+  },
+  "guide": {
+   "ironman": {
+    "finish": 152
+   },
+   "main": {
+    "start": 80,
+    "finish": 81
+   }
+  },
   "startedMatters": true
  },
  "Enakhra's Lament": {
@@ -821,7 +1614,21 @@
     ]
    }
   ],
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 60,
+   "mid": 81,
+   "high": 121
+  },
+  "ironmanMinutes": 10,
+  "guide": {
+   "ironman": {
+    "finish": 207
+   },
+   "main": {
+    "finish": 173
+   }
+  }
  },
  "Enlightened Journey": {
   "kind": "quest",
@@ -851,7 +1658,25 @@
     ]
    }
   ],
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 19,
+   "mid": 25,
+   "high": 38
+  },
+  "ironmanMinutes": 10,
+  "ironmanWaitMinutes": 300,
+  "xpDuring": {
+   "firemaking": 8000
+  },
+  "guide": {
+   "ironman": {
+    "finish": 123
+   },
+   "main": {
+    "finish": 116
+   }
+  }
  },
  "Enter the Abyss": {
   "kind": "miniquest",
@@ -859,13 +1684,40 @@
   "rev": 15292255,
   "requires": [
    "Rune Mysteries"
-  ]
+  ],
+  "minutes": {
+   "low": 6,
+   "mid": 7,
+   "high": 11
+  },
+  "guide": {
+   "ironman": {
+    "start": 19,
+    "finish": 26
+   },
+   "main": {
+    "finish": 83
+   }
+  }
  },
  "Ernest the Chicken": {
   "kind": "quest",
   "page": "Ernest the Chicken",
   "rev": 15367055,
-  "givesQuestPoints": 4
+  "givesQuestPoints": 4,
+  "minutes": {
+   "low": 9,
+   "mid": 12,
+   "high": 17
+  },
+  "guide": {
+   "ironman": {
+    "finish": 111
+   },
+   "main": {
+    "finish": 100
+   }
+  }
  },
  "Ethically Acquired Antiquities": {
   "kind": "quest",
@@ -878,7 +1730,20 @@
   "requires": [
    "Children of the Sun",
    "Shield of Arrav"
-  ]
+  ],
+  "minutes": {
+   "low": 19,
+   "mid": 25,
+   "high": 38
+  },
+  "guide": {
+   "ironman": {
+    "finish": 74
+   },
+   "main": {
+    "finish": 199
+   }
+  }
  },
  "Fairytale I - Growing Pains": {
   "kind": "quest",
@@ -888,7 +1753,20 @@
   "requires": [
    "Lost City",
    "Nature Spirit"
-  ]
+  ],
+  "minutes": {
+   "low": 21,
+   "mid": 29,
+   "high": 43
+  },
+  "guide": {
+   "ironman": {
+    "finish": 97
+   },
+   "main": {
+    "finish": 62
+   }
+  }
  },
  "Fairytale II - Cure a Queen": {
   "kind": "quest",
@@ -915,6 +1793,29 @@
   "implies": [
    "Druidic Ritual"
   ],
+  "minutes": {
+   "low": 32,
+   "mid": 43,
+   "high": 64
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 2500,
+    "skills": "any",
+    "minLevel": 30
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "start": 98,
+    "finish": 235
+   },
+   "main": {
+    "start": 62,
+    "finish": 249
+   }
+  },
   "startedMatters": true
  },
  "Fallen From Grace": {
@@ -930,7 +1831,20 @@
   "givesQuestPoints": 2,
   "requires": [
    "Pandemonium"
-  ]
+  ],
+  "minutes": {
+   "low": 33,
+   "mid": 44,
+   "high": 66
+  },
+  "guide": {
+   "ironman": {
+    "finish": 293
+   },
+   "main": {
+    "finish": 304
+   }
+  }
  },
  "Family Crest": {
   "kind": "quest",
@@ -954,7 +1868,20 @@
    "mining",
    "smithing"
   ],
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 31,
+   "mid": 41,
+   "high": 62
+  },
+  "guide": {
+   "ironman": {
+    "finish": 220
+   },
+   "main": {
+    "finish": 210
+   }
+  }
  },
  "Family Pest": {
   "kind": "miniquest",
@@ -963,13 +1890,31 @@
   "requires": [
    "Family Crest"
   ],
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 9,
+   "mid": 13,
+   "high": 19
+  }
  },
  "Fight Arena": {
   "kind": "quest",
   "page": "Fight Arena",
   "rev": 15367399,
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 14,
+   "mid": 18,
+   "high": 27
+  },
+  "guide": {
+   "ironman": {
+    "finish": 28
+   },
+   "main": {
+    "finish": 28
+   }
+  }
  },
  "Fishing Contest": {
   "kind": "quest",
@@ -978,7 +1923,20 @@
   "levels": {
    "fishing": 10
   },
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 10,
+   "mid": 14,
+   "high": 20
+  },
+  "guide": {
+   "ironman": {
+    "finish": 92
+   },
+   "main": {
+    "finish": 72
+   }
+  }
  },
  "Forgettable Tale...": {
   "kind": "quest",
@@ -1000,7 +1958,21 @@
   "requires": [
    "Fishing Contest",
    "The Giant Dwarf"
-  ]
+  ],
+  "minutes": {
+   "low": 50,
+   "mid": 66,
+   "high": 99
+  },
+  "waitMinutes": 20,
+  "guide": {
+   "ironman": {
+    "finish": 126
+   },
+   "main": {
+    "finish": 97
+   }
+  }
  },
  "Garden of Tranquillity": {
   "kind": "quest",
@@ -1012,13 +1984,40 @@
   "givesQuestPoints": 2,
   "requires": [
    "Creature of Fenkenstrain"
-  ]
+  ],
+  "minutes": {
+   "low": 59,
+   "mid": 79,
+   "high": 119
+  },
+  "waitMinutes": 15,
+  "guide": {
+   "ironman": {
+    "finish": 127
+   },
+   "main": {
+    "finish": 115
+   }
+  }
  },
  "Gertrude's Cat": {
   "kind": "quest",
   "page": "Gertrude's Cat",
   "rev": 15374007,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 7,
+   "mid": 9,
+   "high": 13
+  },
+  "guide": {
+   "ironman": {
+    "finish": 14
+   },
+   "main": {
+    "finish": 11
+   }
+  }
  },
  "Getting Ahead": {
   "kind": "quest",
@@ -1028,7 +2027,20 @@
    "construction": 26,
    "crafting": 30
   },
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 13,
+   "mid": 18,
+   "high": 27
+  },
+  "guide": {
+   "ironman": {
+    "finish": 160
+   },
+   "main": {
+    "finish": 166
+   }
+  }
  },
  "Ghosts Ahoy": {
   "kind": "quest",
@@ -1050,13 +2062,39 @@
   "requires": [
    "Priest in Peril",
    "The Restless Ghost"
-  ]
+  ],
+  "minutes": {
+   "low": 60,
+   "mid": 80,
+   "high": 119
+  },
+  "guide": {
+   "ironman": {
+    "finish": 101
+   },
+   "main": {
+    "finish": 48
+   }
+  }
  },
  "Goblin Diplomacy": {
   "kind": "quest",
   "page": "Goblin Diplomacy",
   "rev": 15367064,
-  "givesQuestPoints": 5
+  "givesQuestPoints": 5,
+  "minutes": {
+   "low": 11,
+   "mid": 15,
+   "high": 22
+  },
+  "guide": {
+   "ironman": {
+    "finish": 80
+   },
+   "main": {
+    "finish": 26
+   }
+  }
  },
  "Grim Tales": {
   "kind": "quest",
@@ -1089,7 +2127,20 @@
   ],
   "implies": [
    "Druidic Ritual"
-  ]
+  ],
+  "minutes": {
+   "low": 38,
+   "mid": 51,
+   "high": 76
+  },
+  "guide": {
+   "ironman": {
+    "finish": 265
+   },
+   "main": {
+    "finish": 280
+   }
+  }
  },
  "Haunted Mine": {
   "kind": "quest",
@@ -1107,14 +2158,40 @@
   "givesQuestPoints": 2,
   "requires": [
    "Priest in Peril"
-  ]
+  ],
+  "minutes": {
+   "low": 67,
+   "mid": 90,
+   "high": 135
+  },
+  "guide": {
+   "ironman": {
+    "finish": 164
+   },
+   "main": {
+    "finish": 196
+   }
+  }
  },
  "Hazeel Cult": {
   "kind": "quest",
   "page": "Hazeel Cult",
   "rev": 15328196,
   "givesQuestPoints": 1,
-  "givesKudos": 5
+  "givesKudos": 5,
+  "minutes": {
+   "low": 16,
+   "mid": 22,
+   "high": 33
+  },
+  "guide": {
+   "ironman": {
+    "finish": 21
+   },
+   "main": {
+    "finish": 31
+   }
+  }
  },
  "Heroes' Quest": {
   "kind": "quest",
@@ -1148,7 +2225,20 @@
   ],
   "implies": [
    "Druidic Ritual"
-  ]
+  ],
+  "minutes": {
+   "low": 67,
+   "mid": 90,
+   "high": 135
+  },
+  "guide": {
+   "ironman": {
+    "finish": 211
+   },
+   "main": {
+    "finish": 193
+   }
+  }
  },
  "His Faithful Servants": {
   "kind": "miniquest",
@@ -1156,7 +2246,20 @@
   "rev": 15167680,
   "requires": [
    "Priest in Peril"
-  ]
+  ],
+  "minutes": {
+   "low": 2,
+   "mid": 3,
+   "high": 4
+  },
+  "guide": {
+   "ironman": {
+    "finish": 200
+   },
+   "main": {
+    "finish": 245
+   }
+  }
  },
  "Holy Grail": {
   "kind": "quest",
@@ -1171,7 +2274,20 @@
   "givesQuestPoints": 2,
   "requires": [
    "Merlin's Crystal"
-  ]
+  ],
+  "minutes": {
+   "low": 24,
+   "mid": 33,
+   "high": 49
+  },
+  "guide": {
+   "ironman": {
+    "finish": 42
+   },
+   "main": {
+    "finish": 39
+   }
+  }
  },
  "Hopespear's Will": {
   "kind": "miniquest",
@@ -1188,7 +2304,17 @@
   "requiresStarted": [
    "The Restless Ghost"
   ],
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 14,
+   "mid": 19,
+   "high": 29
+  },
+  "guide": {
+   "main": {
+    "finish": 293
+   }
+  }
  },
  "Horror from the Deep": {
   "kind": "quest",
@@ -1206,7 +2332,20 @@
   "givesQuestPoints": 2,
   "requires": [
    "Alfred Grimhand's Barcrawl"
-  ]
+  ],
+  "minutes": {
+   "low": 23,
+   "mid": 31,
+   "high": 46
+  },
+  "guide": {
+   "ironman": {
+    "finish": 121
+   },
+   "main": {
+    "finish": 104
+   }
+  }
  },
  "Icthlarin's Little Helper": {
   "kind": "quest",
@@ -1216,13 +2355,39 @@
   "requires": [
    "Gertrude's Cat"
   ],
+  "minutes": {
+   "low": 54,
+   "mid": 72,
+   "high": 108
+  },
+  "guide": {
+   "ironman": {
+    "finish": 89
+   },
+   "main": {
+    "finish": 56
+   }
+  },
   "startedMatters": true
  },
  "Imp Catcher": {
   "kind": "quest",
   "page": "Imp Catcher",
   "rev": 15375330,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 6,
+   "mid": 8,
+   "high": 11
+  },
+  "guide": {
+   "ironman": {
+    "finish": 113
+   },
+   "main": {
+    "finish": 9
+   }
+  }
  },
  "In Aid of the Myreque": {
   "kind": "quest",
@@ -1243,13 +2408,45 @@
   "requires": [
    "In Search of the Myreque"
   ],
+  "minutes": {
+   "low": 48,
+   "mid": 64,
+   "high": 97
+  },
+  "guide": {
+   "ironman": {
+    "finish": 131
+   },
+   "main": {
+    "finish": 126
+   }
+  },
   "startedMatters": true
  },
  "In Search of Knowledge": {
   "kind": "miniquest",
   "page": "In Search of Knowledge",
   "rev": 15378368,
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 6,
+   "mid": 8,
+   "high": 12
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 10000,
+    "skills": "any",
+    "minLevel": 40
+   }
+  ],
+  "guide": {
+   "main": {
+    "start": 255,
+    "finish": 292
+   }
+  }
  },
  "In Search of the Myreque": {
   "kind": "quest",
@@ -1264,7 +2461,20 @@
   "givesQuestPoints": 2,
   "requires": [
    "Nature Spirit"
-  ]
+  ],
+  "minutes": {
+   "low": 23,
+   "mid": 31,
+   "high": 47
+  },
+  "guide": {
+   "ironman": {
+    "finish": 130
+   },
+   "main": {
+    "finish": 124
+   }
+  }
  },
  "Into the Tombs": {
   "kind": "miniquest",
@@ -1273,7 +2483,32 @@
   "requires": [
    "Beneath Cursed Sands"
   ],
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 5,
+   "mid": 6,
+   "high": 10
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 50000,
+    "skills": [
+     "attack",
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints"
+    ],
+    "minLevel": 60
+   }
+  ],
+  "guide": {
+   "main": {
+    "finish": 310
+   }
+  }
  },
  "Jungle Potion": {
   "kind": "quest",
@@ -1291,7 +2526,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Druidic Ritual"
-  ]
+  ],
+  "minutes": {
+   "low": 10,
+   "mid": 13,
+   "high": 20
+  },
+  "guide": {
+   "ironman": {
+    "finish": 57
+   },
+   "main": {
+    "finish": 108
+   }
+  }
  },
  "King's Ransom": {
   "kind": "quest",
@@ -1320,7 +2568,29 @@
    "Holy Grail",
    "Murder Mystery",
    "One Small Favour"
-  ]
+  ],
+  "minutes": {
+   "low": 45,
+   "mid": 60,
+   "high": 91
+  },
+  "ironmanMinutes": 10,
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 5000,
+    "skills": "any",
+    "minLevel": 50
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 257
+   },
+   "main": {
+    "finish": 266
+   }
+  }
  },
  "Knight Waves Training Grounds": {
   "kind": "activity",
@@ -1328,7 +2598,15 @@
   "rev": 15376218,
   "requires": [
    "King's Ransom"
-  ]
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 258
+   },
+   "main": {
+    "finish": 267
+   }
+  }
  },
  "Lair of Tarn Razorlor": {
   "kind": "miniquest",
@@ -1339,7 +2617,20 @@
   },
   "requires": [
    "Haunted Mine"
-  ]
+  ],
+  "minutes": {
+   "low": 30,
+   "mid": 39,
+   "high": 59
+  },
+  "guide": {
+   "ironman": {
+    "finish": 190
+   },
+   "main": {
+    "finish": 197
+   }
+  }
  },
  "Land of the Goblins": {
   "kind": "quest",
@@ -1355,14 +2646,40 @@
   "requires": [
    "Another Slice of H.A.M.",
    "Fishing Contest"
-  ]
+  ],
+  "minutes": {
+   "low": 53,
+   "mid": 71,
+   "high": 107
+  },
+  "guide": {
+   "ironman": {
+    "finish": 233
+   },
+   "main": {
+    "finish": 220
+   }
+  }
  },
  "Learning the Ropes": {
   "kind": "quest",
   "page": "Learning the Ropes",
   "rev": 15364218,
   "givesQuestPoints": 1,
-  "everyAccount": true
+  "everyAccount": true,
+  "minutes": {
+   "low": 27,
+   "mid": 36,
+   "high": 54
+  },
+  "guide": {
+   "ironman": {
+    "finish": 1
+   },
+   "main": {
+    "finish": 1
+   }
+  }
  },
  "Legends' Quest": {
   "kind": "quest",
@@ -1413,6 +2730,40 @@
    "Underground Pass",
    "Waterfall Quest"
   ],
+  "minutes": {
+   "low": 109,
+   "mid": 145,
+   "high": 218
+  },
+  "xpChoices": [
+   {
+    "count": 4,
+    "xp": 30000,
+    "skills": [
+     "attack",
+     "defence",
+     "strength",
+     "hitpoints",
+     "prayer",
+     "magic",
+     "woodcutting",
+     "crafting",
+     "smithing",
+     "herblore",
+     "agility",
+     "thieving"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 221
+   },
+   "main": {
+    "finish": 219
+   }
+  },
   "startedMatters": true
  },
  "Lost City": {
@@ -1431,7 +2782,20 @@
    "crafting",
    "woodcutting"
   ],
-  "givesQuestPoints": 3
+  "givesQuestPoints": 3,
+  "minutes": {
+   "low": 14,
+   "mid": 19,
+   "high": 29
+  },
+  "guide": {
+   "ironman": {
+    "finish": 96
+   },
+   "main": {
+    "finish": 61
+   }
+  }
  },
  "Lunar Diplomacy": {
   "kind": "quest",
@@ -1452,7 +2816,20 @@
    "Rune Mysteries",
    "Shilo Village",
    "The Fremennik Trials"
-  ]
+  ],
+  "minutes": {
+   "low": 72,
+   "mid": 96,
+   "high": 144
+  },
+  "guide": {
+   "ironman": {
+    "finish": 254
+   },
+   "main": {
+    "finish": 264
+   }
+  }
  },
  "Mage Arena I": {
   "kind": "miniquest",
@@ -1460,6 +2837,11 @@
   "rev": 15237146,
   "levels": {
    "magic": 60
+  },
+  "minutes": {
+   "low": 9,
+   "mid": 12,
+   "high": 18
   }
  },
  "Mage Arena II": {
@@ -1472,7 +2854,12 @@
   "requires": [
    "Mage Arena I"
   ],
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 37,
+   "mid": 50,
+   "high": 75
+  }
  },
  "Making Friends with My Arm": {
   "kind": "quest",
@@ -1499,7 +2886,20 @@
    "My Arm's Big Adventure",
    "Romeo & Juliet",
    "Swan Song"
-  ]
+  ],
+  "minutes": {
+   "low": 51,
+   "mid": 68,
+   "high": 102
+  },
+  "guide": {
+   "ironman": {
+    "finish": 315
+   },
+   "main": {
+    "finish": 318
+   }
+  }
  },
  "Making History": {
   "kind": "quest",
@@ -1532,7 +2932,28 @@
     "minLevel": 20,
     "from": "Historian Minas"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 15,
+   "mid": 20,
+   "high": 30
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 1000,
+    "skills": "any",
+    "minLevel": 20
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 104
+   },
+   "main": {
+    "finish": 49
+   }
+  }
  },
  "Meat and Greet": {
   "kind": "quest",
@@ -1541,7 +2962,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun"
-  ]
+  ],
+  "minutes": {
+   "low": 19,
+   "mid": 25,
+   "high": 38
+  },
+  "guide": {
+   "ironman": {
+    "finish": 125
+   },
+   "main": {
+    "finish": 186
+   }
+  }
  },
  "Merlin's Crystal": {
   "kind": "quest",
@@ -1556,19 +2990,67 @@
     "minLevel": 20,
     "from": "Historian Minas"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 23,
+   "mid": 30,
+   "high": 45
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 1000,
+    "skills": "any",
+    "minLevel": 20
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "start": 36,
+    "finish": 41
+   },
+   "main": {
+    "finish": 38
+   }
+  }
  },
  "Misthalin Mystery": {
   "kind": "quest",
   "page": "Misthalin Mystery",
   "rev": 15367068,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 19,
+   "mid": 25,
+   "high": 38
+  },
+  "guide": {
+   "ironman": {
+    "finish": 5
+   },
+   "main": {
+    "finish": 4
+   }
+  }
  },
  "Monk's Friend": {
   "kind": "quest",
   "page": "Monk's Friend",
   "rev": 15240952,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 8,
+   "mid": 10,
+   "high": 15
+  },
+  "guide": {
+   "ironman": {
+    "finish": 23
+   },
+   "main": {
+    "finish": 30
+   }
+  }
  },
  "Monkey Madness I": {
   "kind": "quest",
@@ -1579,6 +3061,32 @@
    "The Grand Tree",
    "Tree Gnome Village"
   ],
+  "minutes": {
+   "low": 102,
+   "mid": 136,
+   "high": 203
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 110000,
+    "skills": [
+     "attack",
+     "defence",
+     "strength",
+     "hitpoints"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 169
+   },
+   "main": {
+    "finish": 198
+   }
+  },
   "startedMatters": true
  },
  "Monkey Madness II": {
@@ -1600,7 +3108,35 @@
    "The Eyes of Glouphrie",
    "Troll Stronghold",
    "Watchtower"
-  ]
+  ],
+  "minutes": {
+   "low": 189,
+   "mid": 252,
+   "high": 378
+  },
+  "xpChoices": [
+   {
+    "count": 2,
+    "xp": 50000,
+    "skills": [
+     "attack",
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 319
+   },
+   "main": {
+    "finish": 309
+   }
+  }
  },
  "Mountain Daughter": {
   "kind": "quest",
@@ -1615,7 +3151,20 @@
   "finishOnly": [
    "agility"
   ],
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 37,
+   "mid": 49,
+   "high": 74
+  },
+  "guide": {
+   "ironman": {
+    "finish": 70
+   },
+   "main": {
+    "finish": 74
+   }
+  }
  },
  "Mourning's End Part I": {
   "kind": "quest",
@@ -1670,6 +3219,20 @@
    "Roving Elves",
    "Sheep Herder"
   ],
+  "minutes": {
+   "low": 38,
+   "mid": 51,
+   "high": 76
+  },
+  "ironmanMinutes": 20,
+  "guide": {
+   "ironman": {
+    "finish": 249
+   },
+   "main": {
+    "finish": 204
+   }
+  },
   "startedMatters": true
  },
  "Mourning's End Part II": {
@@ -1679,13 +3242,39 @@
   "givesQuestPoints": 2,
   "requires": [
    "Mourning's End Part I"
-  ]
+  ],
+  "minutes": {
+   "low": 21,
+   "mid": 28,
+   "high": 43
+  },
+  "guide": {
+   "ironman": {
+    "finish": 250
+   },
+   "main": {
+    "finish": 205
+   }
+  }
  },
  "Murder Mystery": {
   "kind": "quest",
   "page": "Murder Mystery",
   "rev": 15365419,
-  "givesQuestPoints": 3
+  "givesQuestPoints": 3,
+  "minutes": {
+   "low": 12,
+   "mid": 16,
+   "high": 24
+  },
+  "guide": {
+   "ironman": {
+    "finish": 35
+   },
+   "main": {
+    "finish": 40
+   }
+  }
  },
  "My Arm's Big Adventure": {
   "kind": "quest",
@@ -1703,13 +3292,37 @@
    "Eadgar's Ruse",
    "Jungle Potion",
    "The Feud"
-  ]
+  ],
+  "minutes": {
+   "low": 26,
+   "mid": 35,
+   "high": 52
+  },
+  "xpDuring": {
+   "farming": 315
+  },
+  "guide": {
+   "ironman": {
+    "finish": 143
+   },
+   "main": {
+    "finish": 175
+   }
+  }
  },
  "Natural history quiz": {
   "kind": "activity",
   "page": "Natural history quiz",
   "rev": 15376362,
-  "givesKudos": 28
+  "givesKudos": 28,
+  "guide": {
+   "ironman": {
+    "finish": 16
+   },
+   "main": {
+    "finish": 13
+   }
+  }
  },
  "Nature Spirit": {
   "kind": "quest",
@@ -1732,14 +3345,41 @@
   "requires": [
    "Priest in Peril",
    "The Restless Ghost"
-  ]
+  ],
+  "minutes": {
+   "low": 17,
+   "mid": 23,
+   "high": 35
+  },
+  "ironmanMinutes": 5,
+  "guide": {
+   "ironman": {
+    "finish": 52
+   },
+   "main": {
+    "finish": 46
+   }
+  }
  },
  "Observatory Quest": {
   "kind": "quest",
   "page": "Observatory Quest",
   "rev": 15326719,
   "givesQuestPoints": 2,
-  "givesKudos": 5
+  "givesKudos": 5,
+  "minutes": {
+   "low": 13,
+   "mid": 17,
+   "high": 25
+  },
+  "guide": {
+   "ironman": {
+    "finish": 49
+   },
+   "main": {
+    "finish": 112
+   }
+  }
  },
  "Olaf's Quest": {
   "kind": "quest",
@@ -1761,6 +3401,19 @@
   "requires": [
    "The Fremennik Trials"
   ],
+  "minutes": {
+   "low": 26,
+   "mid": 34,
+   "high": 51
+  },
+  "guide": {
+   "ironman": {
+    "finish": 172
+   },
+   "main": {
+    "finish": 222
+   }
+  },
   "startedMatters": true
  },
  "One Small Favour": {
@@ -1784,13 +3437,50 @@
    "Rune Mysteries",
    "Shilo Village"
   ],
+  "minutes": {
+   "low": 59,
+   "mid": 78,
+   "high": 117
+  },
+  "xpChoices": [
+   {
+    "count": 2,
+    "xp": 10000,
+    "skills": "any",
+    "minLevel": 30
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 176
+   },
+   "main": {
+    "finish": 149
+   }
+  },
   "startedMatters": true
  },
  "Pandemonium": {
   "kind": "quest",
   "page": "Pandemonium",
   "rev": 15373315,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 11,
+   "mid": 15,
+   "high": 23
+  },
+  "xpDuring": {
+   "sailing": 100
+  },
+  "guide": {
+   "ironman": {
+    "finish": 9
+   },
+   "main": {
+    "finish": 67
+   }
+  }
  },
  "Perilous Moons": {
   "kind": "quest",
@@ -1806,32 +3496,98 @@
   "givesQuestPoints": 2,
   "requires": [
    "Twilight's Promise"
-  ]
+  ],
+  "minutes": {
+   "low": 39,
+   "mid": 52,
+   "high": 77
+  },
+  "guide": {
+   "ironman": {
+    "finish": 242
+   },
+   "main": {
+    "finish": 255
+   }
+  }
  },
  "Pirate's Treasure": {
   "kind": "quest",
   "page": "Pirate's Treasure",
   "rev": 15367065,
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 12,
+   "mid": 16,
+   "high": 24
+  },
+  "guide": {
+   "ironman": {
+    "start": 10,
+    "finish": 46
+   },
+   "main": {
+    "finish": 85
+   }
+  }
  },
  "Plague City": {
   "kind": "quest",
   "page": "Plague City",
   "rev": 15343824,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 15,
+   "mid": 19,
+   "high": 29
+  },
+  "guide": {
+   "ironman": {
+    "finish": 24
+   },
+   "main": {
+    "finish": 29
+   }
+  }
  },
  "Priest in Peril": {
   "kind": "quest",
   "page": "Priest in Peril",
   "rev": 15360755,
   "givesQuestPoints": 1,
-  "givesKudos": 5
+  "givesKudos": 5,
+  "minutes": {
+   "low": 22,
+   "mid": 29,
+   "high": 44
+  },
+  "guide": {
+   "ironman": {
+    "finish": 50
+   },
+   "main": {
+    "finish": 45
+   }
+  }
  },
  "Prince Ali Rescue": {
   "kind": "quest",
   "page": "Prince Ali Rescue",
   "rev": 15375277,
-  "givesQuestPoints": 3
+  "givesQuestPoints": 3,
+  "minutes": {
+   "low": 26,
+   "mid": 34,
+   "high": 51
+  },
+  "guide": {
+   "ironman": {
+    "finish": 85
+   },
+   "main": {
+    "finish": 5
+   }
+  }
  },
  "Prying Times": {
   "kind": "quest",
@@ -1845,13 +3601,40 @@
   "requires": [
    "Pandemonium",
    "The Knight's Sword"
-  ]
+  ],
+  "minutes": {
+   "low": 8,
+   "mid": 10,
+   "high": 16
+  },
+  "guide": {
+   "ironman": {
+    "finish": 154
+   },
+   "main": {
+    "finish": 69
+   }
+  }
  },
  "Rag and Bone Man I": {
   "kind": "quest",
   "page": "Rag and Bone Man I",
   "rev": 15292348,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 10,
+   "mid": 13,
+   "high": 19
+  },
+  "guide": {
+   "ironman": {
+    "start": 51,
+    "finish": 59
+   },
+   "main": {
+    "finish": 44
+   }
+  }
  },
  "Rag and Bone Man II": {
   "kind": "quest",
@@ -1875,7 +3658,22 @@
   ],
   "requiresStarted": [
    "Creature of Fenkenstrain"
-  ]
+  ],
+  "minutes": {
+   "low": 74,
+   "mid": 98,
+   "high": 148
+  },
+  "guide": {
+   "ironman": {
+    "start": 60,
+    "finish": 189
+   },
+   "main": {
+    "start": 44,
+    "finish": 177
+   }
+  }
  },
  "Ratcatchers": {
   "kind": "quest",
@@ -1888,6 +3686,19 @@
   "requiresStarted": [
    "The Giant Dwarf"
   ],
+  "minutes": {
+   "low": 46,
+   "mid": 61,
+   "high": 92
+  },
+  "guide": {
+   "ironman": {
+    "finish": 99
+   },
+   "main": {
+    "finish": 75
+   }
+  },
   "startedMatters": true
  },
  "Recipe for Disaster": {
@@ -1933,6 +3744,14 @@
    "Recipe for Disaster - Sir Amik Varze",
    "Recipe for Disaster - Skrach Uglogwee",
    "Recipe for Disaster - Wartface & Bentnoze"
+  ],
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 20000,
+    "skills": "any",
+    "minLevel": 50
+   }
   ]
  },
  "Recipe for Disaster - Another Cook's Quest": {
@@ -1945,7 +3764,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Cook's Assistant"
-  ]
+  ],
+  "minutes": {
+   "low": 6,
+   "mid": 8,
+   "high": 12
+  },
+  "guide": {
+   "ironman": {
+    "finish": 79
+   },
+   "main": {
+    "finish": 63
+   }
+  }
  },
  "Recipe for Disaster - Culinaromancer": {
   "kind": "subquest",
@@ -1964,7 +3796,20 @@
    "Recipe for Disaster - Sir Amik Varze",
    "Recipe for Disaster - Skrach Uglogwee",
    "Recipe for Disaster - Wartface & Bentnoze"
-  ]
+  ],
+  "minutes": {
+   "low": 18,
+   "mid": 25,
+   "high": 37
+  },
+  "guide": {
+   "ironman": {
+    "finish": 262
+   },
+   "main": {
+    "finish": 252
+   }
+  }
  },
  "Recipe for Disaster - Evil Dave": {
   "kind": "subquest",
@@ -1975,7 +3820,20 @@
    "Gertrude's Cat",
    "Recipe for Disaster - Another Cook's Quest",
    "Shadow of the Storm"
-  ]
+  ],
+  "minutes": {
+   "low": 9,
+   "mid": 13,
+   "high": 19
+  },
+  "guide": {
+   "ironman": {
+    "finish": 100
+   },
+   "main": {
+    "finish": 139
+   }
+  }
  },
  "Recipe for Disaster - King Awowogei": {
   "kind": "subquest",
@@ -1996,7 +3854,20 @@
   "requires": [
    "Monkey Madness I",
    "Recipe for Disaster - Another Cook's Quest"
-  ]
+  ],
+  "minutes": {
+   "low": 35,
+   "mid": 47,
+   "high": 71
+  },
+  "guide": {
+   "ironman": {
+    "finish": 244
+   },
+   "main": {
+    "finish": 251
+   }
+  }
  },
  "Recipe for Disaster - Lumbridge Guide": {
   "kind": "subquest",
@@ -2017,7 +3888,20 @@
    "Nature Spirit",
    "Recipe for Disaster - Another Cook's Quest",
    "Witch's House"
-  ]
+  ],
+  "minutes": {
+   "low": 10,
+   "mid": 13,
+   "high": 20
+  },
+  "guide": {
+   "ironman": {
+    "finish": 162
+   },
+   "main": {
+    "finish": 188
+   }
+  }
  },
  "Recipe for Disaster - Mountain Dwarf": {
   "kind": "subquest",
@@ -2027,7 +3911,20 @@
   "requires": [
    "Fishing Contest",
    "Recipe for Disaster - Another Cook's Quest"
-  ]
+  ],
+  "minutes": {
+   "low": 10,
+   "mid": 13,
+   "high": 19
+  },
+  "guide": {
+   "ironman": {
+    "finish": 93
+   },
+   "main": {
+    "finish": 73
+   }
+  }
  },
  "Recipe for Disaster - Pirate Pete": {
   "kind": "subquest",
@@ -2055,7 +3952,21 @@
   "givesQuestPoints": 1,
   "requires": [
    "Recipe for Disaster - Another Cook's Quest"
-  ]
+  ],
+  "minutes": {
+   "low": 10,
+   "mid": 14,
+   "high": 21
+  },
+  "ironmanMinutes": 3,
+  "guide": {
+   "ironman": {
+    "finish": 138
+   },
+   "main": {
+    "finish": 140
+   }
+  }
  },
  "Recipe for Disaster - Sir Amik Varze": {
   "kind": "subquest",
@@ -2068,7 +3979,20 @@
   ],
   "requiresStarted": [
    "Legends' Quest"
-  ]
+  ],
+  "minutes": {
+   "low": 16,
+   "mid": 21,
+   "high": 32
+  },
+  "guide": {
+   "ironman": {
+    "finish": 222
+   },
+   "main": {
+    "finish": 221
+   }
+  }
  },
  "Recipe for Disaster - Skrach Uglogwee": {
   "kind": "subquest",
@@ -2104,7 +4028,20 @@
   "requires": [
    "Big Chompy Bird Hunting",
    "Recipe for Disaster - Another Cook's Quest"
-  ]
+  ],
+  "minutes": {
+   "low": 12,
+   "mid": 17,
+   "high": 25
+  },
+  "guide": {
+   "ironman": {
+    "finish": 163
+   },
+   "main": {
+    "finish": 190
+   }
+  }
  },
  "Recipe for Disaster - Wartface & Bentnoze": {
   "kind": "subquest",
@@ -2114,7 +4051,20 @@
   "requires": [
    "Goblin Diplomacy",
    "Recipe for Disaster - Another Cook's Quest"
-  ]
+  ],
+  "minutes": {
+   "low": 3,
+   "mid": 5,
+   "high": 7
+  },
+  "guide": {
+   "ironman": {
+    "finish": 83
+   },
+   "main": {
+    "finish": 64
+   }
+  }
  },
  "Recruitment Drive": {
   "kind": "quest",
@@ -2124,7 +4074,20 @@
   "requires": [
    "Black Knights' Fortress",
    "Druidic Ritual"
-  ]
+  ],
+  "minutes": {
+   "low": 28,
+   "mid": 37,
+   "high": 56
+  },
+  "guide": {
+   "ironman": {
+    "finish": 53
+   },
+   "main": {
+    "finish": 25
+   }
+  }
  },
  "Regicide": {
   "kind": "quest",
@@ -2143,13 +4106,39 @@
   "givesQuestPoints": 3,
   "requires": [
    "Underground Pass"
-  ]
+  ],
+  "minutes": {
+   "low": 59,
+   "mid": 79,
+   "high": 118
+  },
+  "guide": {
+   "ironman": {
+    "finish": 246
+   },
+   "main": {
+    "finish": 134
+   }
+  }
  },
  "Romeo & Juliet": {
   "kind": "quest",
   "page": "Romeo & Juliet",
   "rev": 15375169,
-  "givesQuestPoints": 5
+  "givesQuestPoints": 5,
+  "minutes": {
+   "low": 9,
+   "mid": 11,
+   "high": 17
+  },
+  "guide": {
+   "ironman": {
+    "finish": 13
+   },
+   "main": {
+    "finish": 121
+   }
+  }
  },
  "Roving Elves": {
   "kind": "quest",
@@ -2168,7 +4157,20 @@
   "requires": [
    "Regicide",
    "Waterfall Quest"
-  ]
+  ],
+  "minutes": {
+   "low": 17,
+   "mid": 23,
+   "high": 35
+  },
+  "guide": {
+   "ironman": {
+    "finish": 247
+   },
+   "main": {
+    "finish": 203
+   }
+  }
  },
  "Royal Trouble": {
   "kind": "quest",
@@ -2189,7 +4191,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Throne of Miscellania"
-  ]
+  ],
+  "minutes": {
+   "low": 32,
+   "mid": 43,
+   "high": 65
+  },
+  "guide": {
+   "ironman": {
+    "finish": 213
+   },
+   "main": {
+    "finish": 195
+   }
+  }
  },
  "Rum Deal": {
   "kind": "quest",
@@ -2221,14 +4236,40 @@
   "requires": [
    "Priest in Peril",
    "Zogre Flesh Eaters"
-  ]
+  ],
+  "minutes": {
+   "low": 25,
+   "mid": 34,
+   "high": 50
+  },
+  "guide": {
+   "ironman": {
+    "finish": 198
+   },
+   "main": {
+    "finish": 184
+   }
+  }
  },
  "Rune Mysteries": {
   "kind": "quest",
   "page": "Rune Mysteries",
   "rev": 15374658,
   "givesQuestPoints": 1,
-  "givesKudos": 5
+  "givesKudos": 5,
+  "minutes": {
+   "low": 4,
+   "mid": 5,
+   "high": 8
+  },
+  "guide": {
+   "ironman": {
+    "finish": 18
+   },
+   "main": {
+    "finish": 7
+   }
+  }
  },
  "Scorpion Catcher": {
   "kind": "quest",
@@ -2243,7 +4284,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Alfred Grimhand's Barcrawl"
-  ]
+  ],
+  "minutes": {
+   "low": 13,
+   "mid": 18,
+   "high": 27
+  },
+  "guide": {
+   "ironman": {
+    "finish": 56
+   },
+   "main": {
+    "finish": 79
+   }
+  }
  },
  "Scrambled!": {
   "kind": "quest",
@@ -2257,7 +4311,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun"
-  ]
+  ],
+  "minutes": {
+   "low": 24,
+   "mid": 31,
+   "high": 47
+  },
+  "guide": {
+   "ironman": {
+    "finish": 203
+   },
+   "main": {
+    "finish": 248
+   }
+  }
  },
  "Sea Slug": {
   "kind": "quest",
@@ -2273,6 +4340,19 @@
    "firemaking"
   ],
   "givesQuestPoints": 1,
+  "minutes": {
+   "low": 10,
+   "mid": 13,
+   "high": 20
+  },
+  "guide": {
+   "ironman": {
+    "finish": 91
+   },
+   "main": {
+    "finish": 66
+   }
+  },
   "startedMatters": true
  },
  "Secrets of the North": {
@@ -2290,7 +4370,20 @@
    "Hazeel Cult",
    "Making Friends with My Arm",
    "The General's Shadow"
-  ]
+  ],
+  "minutes": {
+   "low": 57,
+   "mid": 76,
+   "high": 115
+  },
+  "guide": {
+   "ironman": {
+    "finish": 326
+   },
+   "main": {
+    "finish": 320
+   }
+  }
  },
  "Shades of Mort'ton": {
   "kind": "quest",
@@ -2317,7 +4410,23 @@
   ],
   "implies": [
    "Druidic Ritual"
-  ]
+  ],
+  "minutes": {
+   "low": 18,
+   "mid": 24,
+   "high": 36
+  },
+  "xpDuring": {
+   "herblore": 335
+  },
+  "guide": {
+   "ironman": {
+    "finish": 103
+   },
+   "main": {
+    "finish": 125
+   }
+  }
  },
  "Shadow of the Storm": {
   "kind": "quest",
@@ -2336,7 +4445,35 @@
   "requires": [
    "Demon Slayer",
    "The Golem"
-  ]
+  ],
+  "minutes": {
+   "low": 32,
+   "mid": 43,
+   "high": 64
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 10000,
+    "skills": [
+     "attack",
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 90
+   },
+   "main": {
+    "finish": 102
+   }
+  }
  },
  "Shadows of Custodia": {
   "kind": "quest",
@@ -2351,19 +4488,61 @@
   "givesQuestPoints": 2,
   "requires": [
    "Children of the Sun"
-  ]
+  ],
+  "minutes": {
+   "low": 19,
+   "mid": 25,
+   "high": 37
+  },
+  "guide": {
+   "ironman": {
+    "finish": 295
+   },
+   "main": {
+    "finish": 297
+   }
+  }
  },
  "Sheep Herder": {
   "kind": "quest",
   "page": "Sheep Herder",
   "rev": 15282409,
-  "givesQuestPoints": 4
+  "givesQuestPoints": 4,
+  "minutes": {
+   "low": 12,
+   "mid": 16,
+   "high": 24
+  },
+  "guide": {
+   "ironman": {
+    "finish": 31
+   },
+   "main": {
+    "finish": 32
+   }
+  }
  },
  "Sheep Shearer": {
   "kind": "quest",
   "page": "Sheep Shearer",
   "rev": 15367050,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 9,
+   "mid": 11,
+   "high": 17
+  },
+  "xpDuring": {
+   "crafting": 50
+  },
+  "guide": {
+   "ironman": {
+    "finish": 3
+   },
+   "main": {
+    "finish": 3
+   }
+  }
  },
  "Shield of Arrav": {
   "kind": "quest",
@@ -2378,7 +4557,28 @@
     "minLevel": 20,
     "from": "Historian Minas"
    }
-  ]
+  ],
+  "minutes": {
+   "low": 9,
+   "mid": 12,
+   "high": 19
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 1000,
+    "skills": "any",
+    "minLevel": 20
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 71
+   },
+   "main": {
+    "finish": 91
+   }
+  }
  },
  "Shilo Village": {
   "kind": "quest",
@@ -2412,7 +4612,21 @@
   "givesQuestPoints": 2,
   "requires": [
    "Jungle Potion"
-  ]
+  ],
+  "minutes": {
+   "low": 37,
+   "mid": 49,
+   "high": 73
+  },
+  "ironmanMinutes": 3,
+  "guide": {
+   "ironman": {
+    "finish": 145
+   },
+   "main": {
+    "finish": 109
+   }
+  }
  },
  "Sins of the Father": {
   "kind": "quest",
@@ -2431,7 +4645,28 @@
   "requires": [
    "A Taste of Hope",
    "Vampyre Slayer"
-  ]
+  ],
+  "minutes": {
+   "low": 117,
+   "mid": 156,
+   "high": 234
+  },
+  "xpChoices": [
+   {
+    "count": 6,
+    "xp": 15000,
+    "skills": "any",
+    "minLevel": 60
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 304
+   },
+   "main": {
+    "finish": 289
+   }
+  }
  },
  "Skippy and the Mogres": {
   "kind": "miniquest",
@@ -2445,7 +4680,20 @@
   ],
   "finishOnly": [
    "cooking"
-  ]
+  ],
+  "minutes": {
+   "low": 6,
+   "mid": 8,
+   "high": 11
+  },
+  "guide": {
+   "ironman": {
+    "finish": 188
+   },
+   "main": {
+    "finish": 127
+   }
+  }
  },
  "Sleeping Giants": {
   "kind": "quest",
@@ -2454,7 +4702,20 @@
   "levels": {
    "smithing": 15
   },
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 14,
+   "mid": 18,
+   "high": 27
+  },
+  "guide": {
+   "ironman": {
+    "finish": 155
+   },
+   "main": {
+    "finish": 27
+   }
+  }
  },
  "Song of the Elves": {
   "kind": "quest",
@@ -2475,7 +4736,20 @@
    "Druidic Ritual",
    "Making History",
    "Mourning's End Part II"
-  ]
+  ],
+  "minutes": {
+   "low": 198,
+   "mid": 264,
+   "high": 396
+  },
+  "guide": {
+   "ironman": {
+    "finish": 334
+   },
+   "main": {
+    "finish": 338
+   }
+  }
  },
  "Spirits of the Elid": {
   "kind": "quest",
@@ -2499,7 +4773,20 @@
    "ranged",
    "thieving"
   ],
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 18,
+   "mid": 24,
+   "high": 37
+  },
+  "guide": {
+   "ironman": {
+    "finish": 118
+   },
+   "main": {
+    "finish": 114
+   }
+  }
  },
  "Swan Song": {
   "kind": "quest",
@@ -2534,7 +4821,20 @@
   "requires": [
    "Garden of Tranquillity",
    "One Small Favour"
-  ]
+  ],
+  "minutes": {
+   "low": 42,
+   "mid": 56,
+   "high": 84
+  },
+  "guide": {
+   "ironman": {
+    "finish": 261
+   },
+   "main": {
+    "finish": 270
+   }
+  }
  },
  "Tai Bwo Wannai Trio": {
   "kind": "quest",
@@ -2572,6 +4872,19 @@
   "requires": [
    "Jungle Potion"
   ],
+  "minutes": {
+   "low": 39,
+   "mid": 52,
+   "high": 77
+  },
+  "guide": {
+   "ironman": {
+    "finish": 140
+   },
+   "main": {
+    "finish": 141
+   }
+  },
   "startedMatters": true
  },
  "Tale of the Righteous": {
@@ -2585,7 +4898,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Client of Kourend"
-  ]
+  ],
+  "minutes": {
+   "low": 28,
+   "mid": 38,
+   "high": 57
+  },
+  "guide": {
+   "ironman": {
+    "finish": 67
+   },
+   "main": {
+    "finish": 152
+   }
+  }
  },
  "Tears of Guthix": {
   "kind": "quest",
@@ -2607,7 +4933,20 @@
    "mining"
   ],
   "questPoints": 43,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 16,
+   "mid": 21,
+   "high": 32
+  },
+  "guide": {
+   "ironman": {
+    "finish": 174
+   },
+   "main": {
+    "finish": 122
+   }
+  }
  },
  "Temple of Ikov": {
   "kind": "quest",
@@ -2623,7 +4962,20 @@
    "thieving"
   ],
   "givesQuestPoints": 1,
-  "givesKudos": 5
+  "givesKudos": 5,
+  "minutes": {
+   "low": 30,
+   "mid": 40,
+   "high": 59
+  },
+  "guide": {
+   "ironman": {
+    "finish": 106
+   },
+   "main": {
+    "finish": 145
+   }
+  }
  },
  "Temple of the Eye": {
   "kind": "quest",
@@ -2635,7 +4987,23 @@
   "givesQuestPoints": 1,
   "requires": [
    "Enter the Abyss"
-  ]
+  ],
+  "minutes": {
+   "low": 28,
+   "mid": 38,
+   "high": 57
+  },
+  "xpDuring": {
+   "runecraft": 4210
+  },
+  "guide": {
+   "ironman": {
+    "finish": 150
+   },
+   "main": {
+    "finish": 148
+   }
+  }
  },
  "The Ascent of Arceuus": {
   "kind": "quest",
@@ -2647,7 +5015,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Client of Kourend"
-  ]
+  ],
+  "minutes": {
+   "low": 22,
+   "mid": 29,
+   "high": 44
+  },
+  "guide": {
+   "ironman": {
+    "finish": 185
+   },
+   "main": {
+    "finish": 151
+   }
+  }
  },
  "The Blood Moon Rises": {
   "kind": "quest",
@@ -2669,13 +5050,47 @@
   "requires": [
    "A Night at the Theatre",
    "Sins of the Father"
-  ]
+  ],
+  "minutes": {
+   "low": 258,
+   "mid": 344,
+   "high": 516
+  },
+  "xpChoices": [
+   {
+    "count": 6,
+    "xp": 30000,
+    "skills": "any",
+    "minLevel": 70
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 343
+   },
+   "main": {
+    "finish": 344
+   }
+  }
  },
  "The Corsair Curse": {
   "kind": "quest",
   "page": "The Corsair Curse",
   "rev": 15373740,
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 28,
+   "mid": 38,
+   "high": 57
+  },
+  "guide": {
+   "ironman": {
+    "finish": 344
+   },
+   "main": {
+    "finish": 346
+   }
+  }
  },
  "The Curse of Arrav": {
   "kind": "quest",
@@ -2716,7 +5131,21 @@
   "requires": [
    "Defender of Varrock",
    "Troll Romance"
-  ]
+  ],
+  "minutes": {
+   "low": 51,
+   "mid": 68,
+   "high": 103
+  },
+  "ironmanMinutes": 30,
+  "guide": {
+   "ironman": {
+    "finish": 311
+   },
+   "main": {
+    "finish": 316
+   }
+  }
  },
  "The Depths of Despair": {
   "kind": "quest",
@@ -2728,7 +5157,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Client of Kourend"
-  ]
+  ],
+  "minutes": {
+   "low": 13,
+   "mid": 17,
+   "high": 26
+  },
+  "guide": {
+   "ironman": {
+    "finish": 66
+   },
+   "main": {
+    "finish": 88
+   }
+  }
  },
  "The Dig Site": {
   "kind": "quest",
@@ -2753,7 +5195,20 @@
   "opensKudos": 50,
   "implies": [
    "Druidic Ritual"
-  ]
+  ],
+  "minutes": {
+   "low": 29,
+   "mid": 39,
+   "high": 58
+  },
+  "guide": {
+   "ironman": {
+    "finish": 72
+   },
+   "main": {
+    "finish": 80
+   }
+  }
  },
  "The Enchanted Key": {
   "kind": "miniquest",
@@ -2762,7 +5217,12 @@
   "requires": [
    "Making History"
   ],
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 10,
+   "mid": 13,
+   "high": 19
+  }
  },
  "The Eyes of Glouphrie": {
   "kind": "quest",
@@ -2803,7 +5263,21 @@
   "givesQuestPoints": 2,
   "requires": [
    "The Grand Tree"
-  ]
+  ],
+  "minutes": {
+   "low": 31,
+   "mid": 41,
+   "high": 61
+  },
+  "ironmanMinutes": 10,
+  "guide": {
+   "ironman": {
+    "finish": 149
+   },
+   "main": {
+    "finish": 147
+   }
+  }
  },
  "The Feud": {
   "kind": "quest",
@@ -2813,6 +5287,19 @@
    "thieving": 30
   },
   "givesQuestPoints": 1,
+  "minutes": {
+   "low": 31,
+   "mid": 42,
+   "high": 63
+  },
+  "guide": {
+   "ironman": {
+    "finish": 86
+   },
+   "main": {
+    "finish": 76
+   }
+  },
   "startedMatters": true
  },
  "The Final Dawn": {
@@ -2828,7 +5315,36 @@
   "requires": [
    "Perilous Moons",
    "The Heart of Darkness"
-  ]
+  ],
+  "minutes": {
+   "low": 106,
+   "mid": 142,
+   "high": 213
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 55000,
+    "skills": [
+     "attack",
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints",
+     "prayer"
+    ],
+    "minLevel": 40
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 286
+   },
+   "main": {
+    "finish": 322
+   }
+  }
  },
  "The Forsaken Tower": {
   "kind": "quest",
@@ -2838,6 +5354,19 @@
   "requires": [
    "Client of Kourend"
   ],
+  "minutes": {
+   "low": 23,
+   "mid": 30,
+   "high": 46
+  },
+  "guide": {
+   "ironman": {
+    "finish": 64
+   },
+   "main": {
+    "finish": 153
+   }
+  },
   "startedMatters": true
  },
  "The Fractured Archive": {
@@ -2847,7 +5376,12 @@
   "requires": [
    "While Guthix Sleeps"
   ],
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 37,
+   "mid": 49,
+   "high": 74
+  }
  },
  "The Fremennik Exiles": {
   "kind": "quest",
@@ -2873,7 +5407,20 @@
    "Lunar Diplomacy",
    "Mountain Daughter",
    "The Fremennik Isles"
-  ]
+  ],
+  "minutes": {
+   "low": 59,
+   "mid": 78,
+   "high": 118
+  },
+  "guide": {
+   "ironman": {
+    "finish": 302
+   },
+   "main": {
+    "finish": 287
+   }
+  }
  },
  "The Fremennik Isles": {
   "kind": "quest",
@@ -2916,13 +5463,53 @@
   "requires": [
    "The Fremennik Trials"
   ],
+  "minutes": {
+   "low": 64,
+   "mid": 85,
+   "high": 128
+  },
+  "ironmanMinutes": 20,
+  "xpChoices": [
+   {
+    "count": 2,
+    "xp": 10000,
+    "skills": [
+     "strength",
+     "attack",
+     "defence",
+     "hitpoints"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 159
+   },
+   "main": {
+    "finish": 138
+   }
+  },
   "startedMatters": true
  },
  "The Fremennik Trials": {
   "kind": "quest",
   "page": "The Fremennik Trials",
   "rev": 15374585,
-  "givesQuestPoints": 3
+  "givesQuestPoints": 3,
+  "minutes": {
+   "low": 85,
+   "mid": 113,
+   "high": 170
+  },
+  "guide": {
+   "ironman": {
+    "finish": 144
+   },
+   "main": {
+    "finish": 136
+   }
+  }
  },
  "The Frozen Door": {
   "kind": "miniquest",
@@ -2946,7 +5533,12 @@
   "requires": [
    "Desert Treasure I"
   ],
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 4,
+   "mid": 6,
+   "high": 9
+  }
  },
  "The Garden of Death": {
   "kind": "quest",
@@ -2955,7 +5547,20 @@
   "levels": {
    "farming": 20
   },
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 24,
+   "mid": 32,
+   "high": 48
+  },
+  "guide": {
+   "ironman": {
+    "finish": 122
+   },
+   "main": {
+    "finish": 176
+   }
+  }
  },
  "The General's Shadow": {
   "kind": "miniquest",
@@ -2964,7 +5569,20 @@
   "requires": [
    "Curse of the Empty Lord",
    "Fight Arena"
-  ]
+  ],
+  "minutes": {
+   "low": 11,
+   "mid": 14,
+   "high": 21
+  },
+  "guide": {
+   "ironman": {
+    "finish": 224
+   },
+   "main": {
+    "finish": 243
+   }
+  }
  },
  "The Giant Dwarf": {
   "kind": "quest",
@@ -2989,6 +5607,20 @@
    "thieving"
   ],
   "givesQuestPoints": 2,
+  "minutes": {
+   "low": 31,
+   "mid": 41,
+   "high": 61
+  },
+  "guide": {
+   "ironman": {
+    "finish": 115
+   },
+   "main": {
+    "start": 74,
+    "finish": 96
+   }
+  },
   "startedMatters": true
  },
  "The Golem": {
@@ -3007,7 +5639,20 @@
    "crafting",
    "thieving"
   ],
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 16,
+   "mid": 21,
+   "high": 32
+  },
+  "guide": {
+   "ironman": {
+    "finish": 73
+   },
+   "main": {
+    "finish": 57
+   }
+  }
  },
  "The Grand Tree": {
   "kind": "quest",
@@ -3023,7 +5668,20 @@
    "agility"
   ],
   "givesQuestPoints": 5,
-  "givesKudos": 5
+  "givesKudos": 5,
+  "minutes": {
+   "low": 32,
+   "mid": 42,
+   "high": 63
+  },
+  "guide": {
+   "ironman": {
+    "finish": 69
+   },
+   "main": {
+    "finish": 41
+   }
+  }
  },
  "The Great Brain Robbery": {
   "kind": "quest",
@@ -3040,6 +5698,27 @@
    "Creature of Fenkenstrain",
    "Recipe for Disaster - Pirate Pete"
   ],
+  "minutes": {
+   "low": 32,
+   "mid": 43,
+   "high": 65
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 5000,
+    "skills": "any",
+    "minLevel": 30
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 201
+   },
+   "main": {
+    "finish": 247
+   }
+  },
   "startedMatters": true
  },
  "The Hand in the Sand": {
@@ -3050,7 +5729,20 @@
    "crafting": 49,
    "thieving": 17
   },
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 25,
+   "mid": 33,
+   "high": 49
+  },
+  "guide": {
+   "ironman": {
+    "finish": 205
+   },
+   "main": {
+    "finish": 171
+   }
+  }
  },
  "The Heart of Darkness": {
   "kind": "quest",
@@ -3065,13 +5757,55 @@
   "givesQuestPoints": 2,
   "requires": [
    "Twilight's Promise"
-  ]
+  ],
+  "minutes": {
+   "low": 61,
+   "mid": 81,
+   "high": 121
+  },
+  "guide": {
+   "ironman": {
+    "finish": 240
+   },
+   "main": {
+    "finish": 259
+   }
+  }
  },
  "The Ides of Milk": {
   "kind": "quest",
   "page": "The Ides of Milk",
   "rev": 15338668,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 14,
+   "mid": 19,
+   "high": 28
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 1000,
+    "skills": [
+     "attack",
+     "strength",
+     "defence",
+     "ranged",
+     "magic",
+     "hitpoints",
+     "prayer"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 48
+   },
+   "main": {
+    "finish": 50
+   }
+  }
  },
  "The Knight's Sword": {
   "kind": "quest",
@@ -3086,7 +5820,20 @@
   "finishOnly": [
    "mining"
   ],
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 13,
+   "mid": 17,
+   "high": 26
+  },
+  "guide": {
+   "ironman": {
+    "finish": 84
+   },
+   "main": {
+    "finish": 20
+   }
+  }
  },
  "The Lost Tribe": {
   "kind": "quest",
@@ -3106,7 +5853,20 @@
   "requires": [
    "Goblin Diplomacy",
    "Rune Mysteries"
-  ]
+  ],
+  "minutes": {
+   "low": 19,
+   "mid": 26,
+   "high": 38
+  },
+  "guide": {
+   "ironman": {
+    "finish": 81
+   },
+   "main": {
+    "finish": 51
+   }
+  }
  },
  "The Path of Glouphrie": {
   "kind": "quest",
@@ -3147,7 +5907,21 @@
    "The Eyes of Glouphrie",
    "Tree Gnome Village",
    "Waterfall Quest"
-  ]
+  ],
+  "minutes": {
+   "low": 49,
+   "mid": 65,
+   "high": 98
+  },
+  "ironmanMinutes": 30,
+  "guide": {
+   "ironman": {
+    "finish": 297
+   },
+   "main": {
+    "finish": 257
+   }
+  }
  },
  "The Queen of Thieves": {
   "kind": "quest",
@@ -3159,7 +5933,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Client of Kourend"
-  ]
+  ],
+  "minutes": {
+   "low": 17,
+   "mid": 23,
+   "high": 35
+  },
+  "guide": {
+   "ironman": {
+    "finish": 63
+   },
+   "main": {
+    "finish": 87
+   }
+  }
  },
  "The Red Reef": {
   "kind": "quest",
@@ -3172,13 +5959,39 @@
   "givesQuestPoints": 2,
   "requires": [
    "Troubled Tortugans"
-  ]
+  ],
+  "minutes": {
+   "low": 30,
+   "mid": 40,
+   "high": 60
+  },
+  "guide": {
+   "ironman": {
+    "finish": 291
+   },
+   "main": {
+    "finish": 302
+   }
+  }
  },
  "The Restless Ghost": {
   "kind": "quest",
   "page": "The Restless Ghost",
   "rev": 15367047,
   "givesQuestPoints": 1,
+  "minutes": {
+   "low": 6,
+   "mid": 8,
+   "high": 13
+  },
+  "guide": {
+   "ironman": {
+    "finish": 4
+   },
+   "main": {
+    "finish": 6
+   }
+  },
   "startedMatters": true
  },
  "The Ribbiting Tale of a Lily Pad Labour Dispute": {
@@ -3191,7 +6004,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun"
-  ]
+  ],
+  "minutes": {
+   "low": 12,
+   "mid": 16,
+   "high": 24
+  },
+  "guide": {
+   "ironman": {
+    "finish": 94
+   },
+   "main": {
+    "finish": 58
+   }
+  }
  },
  "The Slug Menace": {
   "kind": "quest",
@@ -3207,7 +6033,20 @@
   "requires": [
    "Sea Slug",
    "Wanted!"
-  ]
+  ],
+  "minutes": {
+   "low": 30,
+   "mid": 40,
+   "high": 60
+  },
+  "guide": {
+   "ironman": {
+    "finish": 179
+   },
+   "main": {
+    "finish": 165
+   }
+  }
  },
  "The Tourist Trap": {
   "kind": "quest",
@@ -3225,7 +6064,33 @@
    "fletching",
    "smithing"
   ],
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 37,
+   "mid": 50,
+   "high": 74
+  },
+  "xpChoices": [
+   {
+    "count": 2,
+    "xp": 4650,
+    "skills": [
+     "agility",
+     "fletching",
+     "smithing",
+     "thieving"
+    ],
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 109
+   },
+   "main": {
+    "finish": 22
+   }
+  }
  },
  "Throne of Miscellania": {
   "kind": "quest",
@@ -3236,6 +6101,19 @@
    "Heroes' Quest",
    "The Fremennik Trials"
   ],
+  "minutes": {
+   "low": 36,
+   "mid": 48,
+   "high": 72
+  },
+  "guide": {
+   "ironman": {
+    "finish": 212
+   },
+   "main": {
+    "finish": 194
+   }
+  },
   "startedMatters": true
  },
  "Tower of Life": {
@@ -3245,13 +6123,40 @@
   "levels": {
    "construction": 10
   },
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 35,
+   "mid": 46,
+   "high": 70
+  },
+  "guide": {
+   "ironman": {
+    "finish": 137
+   },
+   "main": {
+    "finish": 35
+   }
+  }
  },
  "Tree Gnome Village": {
   "kind": "quest",
   "page": "Tree Gnome Village",
   "rev": 15351851,
-  "givesQuestPoints": 2
+  "givesQuestPoints": 2,
+  "minutes": {
+   "low": 20,
+   "mid": 26,
+   "high": 39
+  },
+  "guide": {
+   "ironman": {
+    "finish": 20
+   },
+   "main": {
+    "start": 16,
+    "finish": 17
+   }
+  }
  },
  "Tribal Totem": {
   "kind": "quest",
@@ -3266,7 +6171,20 @@
   "finishOnly": [
    "thieving"
   ],
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 10,
+   "mid": 14,
+   "high": 21
+  },
+  "guide": {
+   "ironman": {
+    "finish": 30
+   },
+   "main": {
+    "finish": 36
+   }
+  }
  },
  "Troll Romance": {
   "kind": "quest",
@@ -3281,7 +6199,20 @@
   "givesQuestPoints": 2,
   "requires": [
    "Troll Stronghold"
-  ]
+  ],
+  "minutes": {
+   "low": 42,
+   "mid": 55,
+   "high": 83
+  },
+  "guide": {
+   "ironman": {
+    "finish": 147
+   },
+   "main": {
+    "finish": 129
+   }
+  }
  },
  "Troll Stronghold": {
   "kind": "quest",
@@ -3300,6 +6231,19 @@
   "requires": [
    "Death Plateau"
   ],
+  "minutes": {
+   "low": 15,
+   "mid": 20,
+   "high": 30
+  },
+  "guide": {
+   "ironman": {
+    "finish": 141
+   },
+   "main": {
+    "finish": 128
+   }
+  },
   "startedMatters": true
  },
  "Troubled Tortugans": {
@@ -3317,7 +6261,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Pandemonium"
-  ]
+  ],
+  "minutes": {
+   "low": 24,
+   "mid": 33,
+   "high": 49
+  },
+  "guide": {
+   "ironman": {
+    "finish": 289
+   },
+   "main": {
+    "finish": 300
+   }
+  }
  },
  "Twilight's Promise": {
   "kind": "quest",
@@ -3326,7 +6283,20 @@
   "givesQuestPoints": 1,
   "requires": [
    "Children of the Sun"
-  ]
+  ],
+  "minutes": {
+   "low": 30,
+   "mid": 40,
+   "high": 60
+  },
+  "guide": {
+   "ironman": {
+    "finish": 75
+   },
+   "main": {
+    "finish": 200
+   }
+  }
  },
  "Underground Pass": {
   "kind": "quest",
@@ -3341,7 +6311,20 @@
   "givesQuestPoints": 5,
   "requires": [
    "Biohazard"
-  ]
+  ],
+  "minutes": {
+   "low": 121,
+   "mid": 162,
+   "high": 243
+  },
+  "guide": {
+   "ironman": {
+    "finish": 186
+   },
+   "main": {
+    "finish": 133
+   }
+  }
  },
  "Vale Totems": {
   "kind": "miniquest",
@@ -3366,13 +6349,32 @@
   "requires": [
    "Children of the Sun"
   ],
-  "optional": true
+  "optional": true,
+  "minutes": {
+   "low": 4,
+   "mid": 6,
+   "high": 8
+  },
+  "ironmanMinutes": 3
  },
  "Vampyre Slayer": {
   "kind": "quest",
   "page": "Vampyre Slayer",
   "rev": 15367056,
-  "givesQuestPoints": 3
+  "givesQuestPoints": 3,
+  "minutes": {
+   "low": 9,
+   "mid": 12,
+   "high": 19
+  },
+  "guide": {
+   "ironman": {
+    "finish": 43
+   },
+   "main": {
+    "finish": 99
+   }
+  }
  },
  "Wanted!": {
   "kind": "quest",
@@ -3385,7 +6387,20 @@
    "Priest in Peril",
    "Recruitment Drive",
    "The Lost Tribe"
-  ]
+  ],
+  "minutes": {
+   "low": 36,
+   "mid": 48,
+   "high": 73
+  },
+  "guide": {
+   "ironman": {
+    "finish": 110
+   },
+   "main": {
+    "finish": 90
+   }
+  }
  },
  "Watchtower": {
   "kind": "quest",
@@ -3416,6 +6431,19 @@
   "implies": [
    "Druidic Ritual"
   ],
+  "minutes": {
+   "low": 66,
+   "mid": 88,
+   "high": 132
+  },
+  "guide": {
+   "ironman": {
+    "finish": 167
+   },
+   "main": {
+    "finish": 95
+   }
+  },
   "startedMatters": true
  },
  "Waterfall Quest": {
@@ -3423,6 +6451,19 @@
   "page": "Waterfall Quest",
   "rev": 15357907,
   "givesQuestPoints": 1,
+  "minutes": {
+   "low": 23,
+   "mid": 31,
+   "high": 46
+  },
+  "guide": {
+   "ironman": {
+    "finish": 34
+   },
+   "main": {
+    "finish": 16
+   }
+  },
   "startedMatters": true
  },
  "What Lies Below": {
@@ -3436,7 +6477,20 @@
   "givesKudos": 5,
   "requires": [
    "Rune Mysteries"
-  ]
+  ],
+  "minutes": {
+   "low": 22,
+   "mid": 29,
+   "high": 43
+  },
+  "guide": {
+   "ironman": {
+    "finish": 255
+   },
+   "main": {
+    "finish": 212
+   }
+  }
  },
  "While Guthix Sleeps": {
   "kind": "quest",
@@ -3464,25 +6518,85 @@
    "The Hand in the Sand",
    "The Path of Glouphrie",
    "Wanted!"
-  ]
+  ],
+  "minutes": {
+   "low": 163,
+   "mid": 217,
+   "high": 325
+  },
+  "guide": {
+   "ironman": {
+    "finish": 329
+   },
+   "main": {
+    "finish": 328
+   }
+  }
  },
  "Witch's House": {
   "kind": "quest",
   "page": "Witch's House",
   "rev": 15168391,
-  "givesQuestPoints": 4
+  "givesQuestPoints": 4,
+  "minutes": {
+   "low": 12,
+   "mid": 16,
+   "high": 24
+  },
+  "guide": {
+   "ironman": {
+    "finish": 39
+   },
+   "main": {
+    "finish": 19
+   }
+  }
  },
  "Witch's Potion": {
   "kind": "quest",
   "page": "Witch's Potion",
   "rev": 15367062,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 6,
+   "mid": 8,
+   "high": 12
+  },
+  "guide": {
+   "ironman": {
+    "finish": 7
+   },
+   "main": {
+    "finish": 10
+   }
+  }
  },
  "X Marks the Spot": {
   "kind": "quest",
   "page": "X Marks the Spot",
   "rev": 15367156,
-  "givesQuestPoints": 1
+  "givesQuestPoints": 1,
+  "minutes": {
+   "low": 5,
+   "mid": 6,
+   "high": 10
+  },
+  "xpChoices": [
+   {
+    "count": 1,
+    "xp": 300,
+    "skills": "any",
+    "minLevel": 0
+   }
+  ],
+  "guide": {
+   "ironman": {
+    "finish": 6
+   },
+   "main": {
+    "finish": 84
+   }
+  }
  },
  "Zogre Flesh Eaters": {
   "kind": "quest",
@@ -3501,6 +6615,19 @@
   "requires": [
    "Big Chompy Bird Hunting",
    "Jungle Potion"
-  ]
+  ],
+  "minutes": {
+   "low": 35,
+   "mid": 47,
+   "high": 71
+  },
+  "guide": {
+   "ironman": {
+    "finish": 129
+   },
+   "main": {
+    "finish": 111
+   }
+  }
  }
 }

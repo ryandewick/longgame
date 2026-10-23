@@ -24,7 +24,7 @@ import {
   tickQuest,
   type QuestTicks,
 } from '#shared/domain/quest-ticks'
-import { gatingDiaries, gatingQuests, questLevelsShort } from '#shared/domain/quests'
+import { gatingDiaries, gatingQuests, levelsShort as levelsShortOf } from '#shared/domain/quests'
 import { accountFromSave, migrateLegacySave, type LegacySaveV1 } from '#shared/domain/save'
 import { xpForLevel } from '#shared/domain/xp'
 
@@ -259,7 +259,7 @@ describe('planQuestions: what can be asked about', () => {
 
   const levelsShort = (account: Account, name: string) => {
     const known = QUESTS.find((candidate) => candidate.name === name)
-    return known ? questLevelsShort(account, known) : []
+    return known ? levelsShortOf(account, known.skillLevelsNeeded) : []
   }
 
   it('never asks about a quest the account’s levels say it cannot have finished', () => {

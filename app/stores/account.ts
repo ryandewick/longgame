@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, shallowRef } from 'vue'
 import type { Account, AccountType } from '#shared/types/account'
+import type { QuestState } from '#shared/types/quest'
 import type { SkillKey, SkillStat } from '#shared/types/skill'
 import { forEverySkill, SKILL_KEYS } from '#shared/data/skills'
 import { hasCompletedDiary, questProgress, type QuestProgressState } from '#shared/domain/account'
@@ -90,6 +91,14 @@ export interface QuestStep extends Omit<QuestTickChange, 'ticks'> {
 /** What a press of a diary tier's tick box did: whether it is ticked now, and what else moved. */
 export interface DiaryStep extends Omit<QuestTickChange, 'ticks'> {
   readonly ticked: boolean
+}
+
+/** A step that moved nothing else. */
+const MOVED_NOTHING: Omit<QuestTickChange, 'ticks'> = {
+  alsoChanged: [],
+  alsoStarted: [],
+  diariesChanged: [],
+  heldStartedBy: [],
 }
 
 /** What a tick change moved besides its own quest or tier: the change without its ticks. */
@@ -304,6 +313,29 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   /**
+   * Marks a quest done, or only started, from a suggestion: forward only, since a suggestion is
+   * for what is not done yet, so a quest already that far stays as it is. It brings its chain with
+   * it as a tick does. Returns where it went and what else moved.
+   */
+  function markQuest(quest: string, state: QuestState): QuestStep {
+    const from = questState(quest)
+    if (from === 'done' || (state === 'started' && from === 'started'))
+      return { from, to: from, ...MOVED_NOTHING }
+    const change =
+      state === 'finished' ? tickQuest(ticks.value, quest) : startQuest(ticks.value, quest)
+    setTicks(change.ticks)
+    return { from, to: questState(quest), ...movedBy(change) }
+  }
+
+  /** Marks a diary tier claimed from a suggestion: forward only, as `markQuest`. */
+  function markDiary(diary: string): DiaryStep {
+    if (hasCompletedDiary(account.value, diary)) return { ticked: true, ...MOVED_NOTHING }
+    const change = tickDiary(ticks.value, diary)
+    setTicks(change.ticks)
+    return { ticked: true, ...movedBy(change) }
+  }
+
+  /**
    * Ticks a diary tier ('Ardougne Medium') done, which ticks the tiers below it and what its
    * tasks need; or unticks it, which unticks the tiers above it. Returns which way it went and
    * what else moved.
@@ -406,6 +438,8 @@ export const useAccountStore = defineStore('account', () => {
     setAccountType,
     questState,
     stepQuest,
+    markQuest,
+    markDiary,
     toggleDiary,
     answerQuestion,
     recordProgress,
