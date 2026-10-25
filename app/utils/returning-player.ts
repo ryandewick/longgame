@@ -15,18 +15,25 @@
 /** The class on <html> that says: a saved account was found, so do not show the first-visit screen. */
 export const RETURNING_PLAYER_CLASS = 'returning-player'
 
-// The keys utils/save-storage.ts keeps the save under: this app's, then the vanilla app's, which
-// is migrated on load. tests/app/returning-player.test.ts checks that the two files agree.
-const SAVE_KEY = 'longgame.save'
+// The keys utils/save-storage.ts keeps saves under: every saved account, then the single save of
+// this app before it kept several and the vanilla app's, which are read while there are no saved
+// accounts and migrated on load. tests/app/returning-player.test.ts checks that the two files agree.
+const ACCOUNTS_KEY = 'longgame.accounts'
+const SINGLE_SAVE_KEY = 'longgame.save'
 const LEGACY_SAVE_KEY = 'longgame.state.v1'
 
 /**
- * The script. An account is a name with stats (`hiscores` in this app's save, `hs` in the
- * vanilla app's), the same test as the account store's `hasAccount`. Anything unexpected (no
- * storage, a save that will not parse) leaves the document unmarked, which is a first visit.
+ * The script. With saved accounts it looks at the open one; with none saved yet, at the single save
+ * an earlier version kept, in the order the storage reads them. A value that will not parse counts
+ * as not there, as it does for the storage. An account is a name with stats (`hiscores` in this
+ * app's save, `hs` in the vanilla app's), the same test as the account store's `hasAccount`.
+ * Anything else unexpected (no storage at all) leaves the document unmarked, which is a first visit.
  */
 export const RETURNING_PLAYER_SCRIPT =
   '(function(){try{' +
-  `var s=JSON.parse(localStorage.getItem('${SAVE_KEY}'))||JSON.parse(localStorage.getItem('${LEGACY_SAVE_KEY}'));` +
+  'var r=function(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},' +
+  `d=r('${ACCOUNTS_KEY}'),s=null;` +
+  'if(d&&d.accounts&&d.accounts.forEach)d.accounts.forEach(function(a){if(a&&a.name===d.open)s=a});' +
+  `else s=r('${SINGLE_SAVE_KEY}')||r('${LEGACY_SAVE_KEY}');` +
   `if(s&&s.name&&(s.hiscores||s.hs))document.documentElement.classList.add('${RETURNING_PLAYER_CLASS}')` +
   '}catch(e){}})()'

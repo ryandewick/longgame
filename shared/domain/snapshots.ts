@@ -55,6 +55,25 @@ export function appendSnapshot<Snapshot extends TimedXp>(
   return { snapshots: [...history, snapshot].slice(-limit), unchanged: false }
 }
 
+/**
+ * One history out of two of the same account's: every snapshot of either, oldest first, a moment
+ * both hold kept once (the first history's), and the newest `limit` kept. A snapshot is a reading
+ * of the account's XP at a moment, so the union of two histories is never wrong and nothing in
+ * either is lost. This is how a history follows an account to a new name, and how an imported one
+ * joins the one already kept.
+ */
+export function mergeSnapshots<Snapshot extends TimedXp>(
+  first: readonly Snapshot[],
+  second: readonly Snapshot[],
+  limit: number,
+): Snapshot[] {
+  const byMoment = new Map<number, Snapshot>()
+  for (const snapshot of [...first, ...second]) {
+    if (!byMoment.has(snapshot.takenAt)) byMoment.set(snapshot.takenAt, snapshot)
+  }
+  return [...byMoment.values()].sort((one, other) => one.takenAt - other.takenAt).slice(-limit)
+}
+
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 

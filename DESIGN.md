@@ -223,6 +223,17 @@ components:
     rounded: "{rounded.r}"
     padding: "26px 30px"
     width: "520px"
+  account-menu:
+    backgroundColor: "{colors.panel}"
+    rounded: "{rounded.r}"
+    padding: "8px"
+    width: "344px"
+  account-row-open:
+    backgroundColor: "{colors.row-selected}"
+  add-account-dialog:
+    backgroundColor: "{colors.panel}"
+    rounded: "{rounded.r}"
+    width: "664px"
   toast:
     backgroundColor: "{colors.parchment}"
     textColor: "{colors.ink}"
@@ -339,7 +350,7 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 - **Row title** (Figtree 700, 16px, 1.25, white): the name in a table row or slot.
 - **Control** (Figtree 700, 14px, 1.2; 13px small): buttons. Chips are 600 at 14px, tabs 600 at 15px, field labels 700 at 15px.
 - **Label** (Figtree 500 to 600, 13px, 1.2 to 1.45, ink 3): table heads, meta lines, help text. Sentence case, no tracking, never uppercase.
-- **Tag** (Figtree 700, 12px, 1): "Best now", "Run", "Tick-perfect", "Locked", "Started". The smallest text in the system.
+- **Tag** (Figtree 700, 12px, 1): "Best now", "Run", "Tick-perfect", "Locked", "Started", "Open". The smallest text in the system.
 - **Stat** (RS, 16px, line-height 1, 1px 1px 0 black shadow): levels, XP, clocks and rates inline.
 - **Stat large** (RSB, 48px, 3px 3px 0 black shadow): the capes count on the rack ("1/24").
 - **Stat extra large** (RS regular, 64px, 3px 3px 0 black shadow): the block clock and the level on a crest.
@@ -356,7 +367,7 @@ A 32px RSB step with a 2px shadow is defined in the stylesheet but nothing uses 
 
 ## Layout
 
-One centred column up to 1320px wide with 32px gutters (16px under 760px). The top bar is sticky at a minimum of 66px: icon and wordmark, the account behind a 1px divider, Refresh stats, and the seven tabs pushed right. The rack sits directly under it as a full-width band on Tonight and Skills only; the other five views start at the content.
+One centred column up to 1320px wide with 32px gutters (16px under 760px). The top bar is sticky at a minimum of 66px: icon and wordmark, the open account behind a 1px divider (its name opens the account menu), Refresh stats, and the seven tabs pushed right. The rack sits directly under it as a full-width band on Tonight and Skills only; the other five views start at the content.
 
 Tonight splits two thirds to one third (`2fr` and a column of at least 260px, 40px apart): live panel and session on the left, resets, next capes and distance to max on the right. Quests splits in half with a 48px gap. A skill's detail splits one third to two thirds with a 40px gap. Session slots flow in an auto-filling grid of 180px minimum columns with a 10px gap. Forms are a single column up to 780px with 30px between fields.
 
@@ -365,7 +376,7 @@ Spacing is set per relationship rather than from a strict scale. The recurring d
 Responsive behaviour:
 - **2000px and wider:** the whole page is zoomed 1.25 so a maximised window on a 1440p monitor is not a small sheet in the middle.
 - **1000px and narrower:** every split becomes one column and the "Best now" column of the skills table is dropped.
-- **760px and narrower:** the top bar stops sticking, the account line is hidden, the tabs wrap onto their own row, the rack becomes two rows of twelve, the live panel stacks with the trim band moving from the right edge to the bottom of the swatch, and the skills table drops "To 99" and "Time left". The layout holds to 390px.
+- **760px and narrower:** the top bar stops sticking, the account takes a row of its own under the brand and Refresh stats, the tabs wrap onto their own row, the rack becomes two rows of twelve, the live panel stacks with the trim band moving from the right edge to the bottom of the swatch, and the skills table drops "To 99" and "Time left". The layout holds to 390px.
 
 ## Elevation & Depth
 
@@ -381,6 +392,7 @@ Flat and tonal. Depth comes from six warm steps of surface (stage, ground, slot,
 - **Rail** (`box-shadow: 0 2px 0 rgba(0,0,0,.6)`): the brass rail's own shadow line.
 - **Cape on a swatch** (`filter: drop-shadow(0 8px 10px rgba(0,0,0,.45))`): the cape render on the live panel and the crest.
 - **Cape forward** (`filter: drop-shadow(0 10px 14px rgba(0,0,0,.7))`): the live cape on the rack.
+- **Cape in a list** (`filter: drop-shadow(0 3px 4px rgba(0,0,0,.5))`): an account's small capes in the account menu.
 - **Maxed cape** (`filter: drop-shadow(0 0 10px rgba(255,214,90,.6))`): a soft gold glow, for a 99 cape and the completed max cape only.
 - **Modal** (`box-shadow: 0 0 0 1px #57493c, 0 24px 60px rgba(0,0,0,.6)`) over a scrim of `rgba(10,8,6,.78)`.
 - **Toast** (`box-shadow: 0 12px 32px rgba(0,0,0,.5)`).
@@ -461,6 +473,15 @@ Option pickers and toggles. Slot surface with a 1px inset edge, ink 2 text at 60
 ### Navigation
 Seven text tabs in the top bar, Figtree 600 at 15px, ink 2, white on hover. The active tab is white with a 3px stat yellow underline. On phones the tabs wrap under the brand.
 
+### Account Menu
+The open account in the top bar is a button: its name in bone at 600 with a small ink 2 caret, how fresh its stats are under it in 13px ink 3, the way the bar has always shown the account. Hover and open put the lift surface behind it, and the caret turns up while the menu is open. On phones it is a row of its own under the brand and Refresh stats, the name and the status on one line.
+- **Menu:** an overlay below the button, 344px wide (as wide as the row on phones), on the panel surface with the modal's strong edge and deep shadow, 4px corners and 8px inside. A "Your accounts" label in 13px ink 3, then a row per saved account in the order they were added, a 1px edge rule, and "Add an account".
+- **Row:** each account is known by its three highest skills' capes, fanned 15 degrees apart from one hanger in a 52px column, 24px wide, the highest hung on top, a 99 in its trimmed render; then its name in white at 700 and its kind ("Ironman", "Main") in 13px ink 3; and at the right its total level in yellow stat type over "total level" in 12px ink 3. Hover is the lift surface. The open account's row is the selected-row surface with an "Open" tag after the name. While a lookup is under way the other rows are at 50%, since its answer is for the open account.
+- **Add an account:** bone at 600, after a plus in a 24px box the shape of an empty tick box, in the same 52px column as the capes.
+
+### Add an Account
+The setup screen's panel in the modal frame, so adding an account feels like the first visit: the plain swatch with its brass trim (10px down the right; 8px along the bottom on phones, where it sits above the words) and the three fanned capes; then the 24px title, a note in ink 2, the one field ("RuneScape name"), and Cancel then Add account (primary) at the right, up to 664px wide. A name that cannot be added is said under the field in bad red at 600. While the name is looked up the primary reads "Looking up…" and the dialog stays open.
+
 ### Tables
 One 1px rule under a 13px ink 3 head, then banded rows: even rows on the slot surface, with 4px corners on the outer cells. No grid lines. Numbers are right aligned at 600 with tabular lining figures; a level or XP figure in a cell is stat type. A locked row drops to ink 3 with its icon at 45%. A row title can carry tags. The skills table is clickable: hover is lift, selected is the selected-row surface.
 
@@ -487,7 +508,7 @@ A confirm sheet. Panel surface, strong 1px edge and a deep shadow over a warm da
 
 ### Motion
 GSAP, and only for the six moments below. The markup is final before any tween starts, so every screen is complete without it. A component announces a moment and the components that own the moving elements listen for it (`app/composables/useMotion.ts`).
-- **Load:** every cape fills from empty to its level (0.9s, 25ms apart).
+- **Load:** every cape fills from empty to its level (0.9s, 25ms apart). It plays on the first planner screen of a visit, and again when the planner is drawn for a different account: a switch, an account added or imported, or the open account forgotten with others left. Only a page with the rack moves, and nothing else moves with it: the account's live block is simply where it was left.
 - **Deal:** the session slots rise in (0.35s, 60ms apart), then the first block goes live.
 - **A block goes live:** its cape comes forward on the rail with a small overshoot (0.45s), the cape drops into the panel's swatch (0.5s) and the panel's text settles (0.3s).
 - **Swap:** the swapped slot flips down from its top edge (0.4s).

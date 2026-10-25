@@ -1,11 +1,18 @@
 import type { XpSnapshot } from '#shared/types/snapshot'
+import { nameKey } from '#shared/domain/player-names'
 import {
   migrateLegacySnapshots,
   readSave,
+  readSavedAccounts,
+  savedAccountsFrom,
   type LegacySnapshot,
-  type SavedState,
+  type SavedAccounts,
 } from '#shared/domain/save'
-import { appendSnapshot, parseSnapshots } from '#shared/domain/snapshots'
+import {
+  appendSnapshot,
+  mergeSnapshots as mergeHistories,
+  parseSnapshots,
+} from '#shared/domain/snapshots'
 import type { XpReading } from './hiscores'
 
 /*
@@ -14,40 +21,57 @@ import type { XpReading } from './hiscores'
  */
 
 export interface SaveStorage {
-  /** The save, brought up to the current format. Null when nothing has been saved yet. */
-  readSave(): Promise<SavedState | null>
-  writeSave(save: SavedState): Promise<void>
+  /**
+   * Every saved account, brought up to the current format: the saved accounts, or, while there
+   * are none yet, the single save an earlier version kept, as the first account. Null when
+   * nothing has been saved at all.
+   */
+  readAccounts(): Promise<SavedAccounts | null>
+  writeAccounts(saved: SavedAccounts): Promise<void>
   /** A player's XP history, oldest first. */
   readSnapshots(name: string): Promise<XpSnapshot[]>
   /** Adds a reading taken at `now` to a player's XP history and returns the whole history. */
   recordSnapshot(name: string, reading: XpReading, now: number): Promise<XpSnapshot[]>
   /**
-   * Replaces a player's XP history with the one given, oldest first, and returns what is now
-   * kept. This is for importing a file, which only the website offers: a local copy's history
-   * is carried over by copying its data folder, so its storage refuses.
+   * Merges a history into a player's (`mergeSnapshots` in shared/domain/snapshots.ts) and returns
+   * what is now kept. This is how a history follows an account to a new name and how an imported
+   * one joins the one already kept. Nothing already kept is ever lost.
    */
-  replaceSnapshots(name: string, snapshots: readonly XpSnapshot[]): Promise<XpSnapshot[]>
+  mergeSnapshots(name: string, snapshots: readonly XpSnapshot[]): Promise<XpSnapshot[]>
+  /**
+   * Calls `listener` with the saved accounts each time another tab of the site saves them. Only
+   * the browser can tell; a local copy is one tab and never calls. Returns what stops it.
+   */
+  watchOtherTabs(listener: (saved: SavedAccounts) => void): () => void
 }
 
 /** The most snapshots the browser keeps for one player: about two years of daily play. */
 export const BROWSER_SNAPSHOT_LIMIT = 600
 
-const SAVE_KEY = 'longgame.save'
+// Where the website keeps every saved account. The first-paint script (utils/returning-player.ts)
+// reads the same keys; tests/app/returning-player.test.ts checks that the two files agree.
+const ACCOUNTS_KEY = 'longgame.accounts'
 const SNAPSHOTS_KEY_PREFIX = 'longgame.snapshots.'
 
-// Where the vanilla app kept the same things. They are read once, when this app has nothing of
-// its own, and never written or removed: an old save is migrated, not thrown away.
+// Where earlier versions kept a single account's save: this app before it kept several, then
+// the vanilla app. Read only while there are no saved accounts, and never written or removed:
+// an old save is migrated, not thrown away, so it stays behind as a backup.
+const SINGLE_SAVE_KEY = 'longgame.save'
 const LEGACY_SAVE_KEY = 'longgame.state.v1'
 const LEGACY_SNAPSHOTS_KEY_PREFIX = 'longgame.snaps.'
 
 /** The part of the Web Storage API this needs, so a test can hand in a plain object. */
 export type KeyValueStorage = Pick<Storage, 'getItem' | 'setItem'>
 
-/** Names are not case sensitive and the game treats a space and an underscore alike. */
-const nameKey = (name: string): string => name.toLowerCase().replace(/[^a-z0-9]+/g, '_')
+/**
+ * How the browser says another tab changed its storage (the `storage` event): `listener` hears the
+ * key and its new value. Returns what stops listening. A test hands in its own.
+ */
+export type OtherTabChanges = (
+  listener: (key: string | null, value: string | null) => void,
+) => () => void
 
-function readJson(storage: KeyValueStorage, key: string): unknown {
-  const raw = storage.getItem(key)
+function parseJson(raw: string | null): unknown {
   if (raw === null) return null
   try {
     return JSON.parse(raw)
@@ -56,6 +80,8 @@ function readJson(storage: KeyValueStorage, key: string): unknown {
     return null
   }
 }
+
+const readJson = (storage: KeyValueStorage, key: string): unknown => parseJson(storage.getItem(key))
 
 /** Is this parsed JSON an XP snapshot as the vanilla app kept them? */
 export const isLegacySnapshot = (value: unknown): value is LegacySnapshot =>
@@ -68,7 +94,16 @@ export const isLegacySnapshot = (value: unknown): value is LegacySnapshot =>
   value.skills !== null
 
 /** The website's storage: the browser's own, which only this browser can read. */
-export function createBrowserSaveStorage(storage: KeyValueStorage): SaveStorage {
+export function createBrowserSaveStorage(
+  storage: KeyValueStorage,
+  otherTabChanges?: OtherTabChanges,
+): SaveStorage {
+  /**
+   * The saved accounts' text as this tab last wrote or heard it. The same text is not written
+   * again, so a tab that has just taken in another tab's save does not send it straight back.
+   */
+  let lastText: string | null = null
+
   function storedSnapshots(name: string): XpSnapshot[] {
     const current = readJson(storage, SNAPSHOTS_KEY_PREFIX + nameKey(name))
     if (current !== null) return parseSnapshots(current)
@@ -76,13 +111,24 @@ export function createBrowserSaveStorage(storage: KeyValueStorage): SaveStorage 
     return Array.isArray(legacy) ? migrateLegacySnapshots(legacy.filter(isLegacySnapshot)) : []
   }
 
+  function keepSnapshots(name: string, snapshots: readonly XpSnapshot[]): void {
+    storage.setItem(SNAPSHOTS_KEY_PREFIX + nameKey(name), JSON.stringify(snapshots))
+  }
+
   return {
-    async readSave() {
-      return readSave(readJson(storage, SAVE_KEY)) ?? readSave(readJson(storage, LEGACY_SAVE_KEY))
+    async readAccounts() {
+      const saved = readSavedAccounts(readJson(storage, ACCOUNTS_KEY))
+      if (saved) return saved
+      const single =
+        readSave(readJson(storage, SINGLE_SAVE_KEY)) ?? readSave(readJson(storage, LEGACY_SAVE_KEY))
+      return single && savedAccountsFrom(single)
     },
 
-    async writeSave(save) {
-      storage.setItem(SAVE_KEY, JSON.stringify(save))
+    async writeAccounts(saved) {
+      const text = JSON.stringify(saved)
+      if (text === lastText) return
+      storage.setItem(ACCOUNTS_KEY, text)
+      lastText = text
     },
 
     async readSnapshots(name) {
@@ -95,14 +141,25 @@ export function createBrowserSaveStorage(storage: KeyValueStorage): SaveStorage 
         { takenAt: now, skills: reading.skills, totalXp: reading.totalXp },
         BROWSER_SNAPSHOT_LIMIT,
       )
-      storage.setItem(SNAPSHOTS_KEY_PREFIX + nameKey(name), JSON.stringify(snapshots))
+      keepSnapshots(name, snapshots)
       return snapshots
     },
 
-    async replaceSnapshots(name, snapshots) {
-      const kept = snapshots.slice(-BROWSER_SNAPSHOT_LIMIT)
-      storage.setItem(SNAPSHOTS_KEY_PREFIX + nameKey(name), JSON.stringify(kept))
-      return kept
+    async mergeSnapshots(name, snapshots) {
+      const merged = mergeHistories(storedSnapshots(name), snapshots, BROWSER_SNAPSHOT_LIMIT)
+      keepSnapshots(name, merged)
+      return merged
+    },
+
+    watchOtherTabs(listener) {
+      if (!otherTabChanges) return () => undefined
+      return otherTabChanges((key, value) => {
+        // a removed key (site data cleared in the other tab) leaves this tab as it is
+        if (key !== ACCOUNTS_KEY || value === null) return
+        lastText = value
+        const saved = readSavedAccounts(parseJson(value))
+        if (saved) listener(saved)
+      })
     },
   }
 }
@@ -124,20 +181,26 @@ export type ApiRequest = (
   options?: { method?: 'GET' | 'PUT' | 'POST'; query?: Record<string, string>; body?: object },
 ) => Promise<unknown>
 
-/** A local copy's storage: files on the player's own disk, behind /api/state and /api/snapshots. */
+/**
+ * A local copy's storage: files on the player's own disk, behind /api/accounts and
+ * /api/snapshots. /api/state is the single save of earlier versions, only ever read.
+ */
 export function createServerSaveStorage(request: ApiRequest): SaveStorage {
   async function readSnapshots(name: string): Promise<XpSnapshot[]> {
     return parseSnapshots(await request('/api/snapshots', { query: { name } }))
   }
 
   return {
-    async readSave() {
-      // the route answers `{}` when nothing has been saved, which `readSave` reads as no save
-      return readSave(await request('/api/state'))
+    async readAccounts() {
+      // each route answers `{}` when it has nothing, which reads as no save
+      const saved = readSavedAccounts(await request('/api/accounts'))
+      if (saved) return saved
+      const single = readSave(await request('/api/state'))
+      return single && savedAccountsFrom(single)
     },
 
-    async writeSave(save) {
-      await request('/api/state', { method: 'PUT', body: save })
+    async writeAccounts(saved) {
+      await request('/api/accounts', { method: 'PUT', body: saved })
     },
 
     readSnapshots,
@@ -151,8 +214,14 @@ export function createServerSaveStorage(request: ApiRequest): SaveStorage {
       return readSnapshots(name)
     },
 
-    async replaceSnapshots() {
-      throw new Error('A local copy keeps its XP history on disk and does not import one.')
+    // the server merges by the same rule, so a history is never replaced from the browser
+    async mergeSnapshots(name, snapshots) {
+      await request('/api/snapshots/merge', { method: 'POST', body: { name, snapshots } })
+      return readSnapshots(name)
+    },
+
+    watchOtherTabs() {
+      return () => undefined
     },
   }
 }

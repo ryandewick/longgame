@@ -7,8 +7,14 @@
  * only reached in local mode. Leaving the mount to Nitro rather than declaring a driver for every build keeps Node's
  * file system code out of the Workers build.
  *
- * Files:  .data/kv/state.json              the saved state
+ * Files:  .data/kv/accounts.json           every saved account (version 3 of the save)
+ *         .data/kv/state.json              the single save of the versions that kept one account
  *         .data/kv/snapshots/<name>.json   one XP history per player
+ *
+ * Every account is written to accounts.json. state.json is the save of the versions before, which kept a single
+ * account. The app reads it only while there are no saved accounts, to carry it over as the first account, and never
+ * writes it: it stays behind as a backup, and a tab still open on an older build can only ever write to it, never
+ * over the accounts. Its route keeps the fallback below to the old app's folder.
  *
  * Carrying an old save over. The app this one replaced kept the same two things in data/ at the top of the project:
  * data/state.json and data/snapshots_<name>.json. A local build mounts that folder read-only as `legacy-saves`
@@ -26,6 +32,7 @@ import {
   type Snapshot,
 } from './snapshots'
 
+const ACCOUNTS_KEY = 'accounts.json'
 const STATE_KEY = 'state.json'
 const LEGACY_STATE_KEY = 'state.json'
 
@@ -43,7 +50,18 @@ function isMissing(stored: unknown): boolean {
   return stored === null || stored === undefined
 }
 
-/** The saved state, or an empty object when nothing has been saved yet. */
+/** Every saved account, or an empty object when none have been saved yet. */
+export async function readStoredAccounts(): Promise<JsonRecord> {
+  const stored: unknown = await saves().getItem(ACCOUNTS_KEY)
+  return isJsonRecord(stored) ? stored : {}
+}
+
+/** Replaces the saved accounts. As with the state, the app versions what is in them and the server only keeps it. */
+export async function writeStoredAccounts(accounts: JsonRecord): Promise<void> {
+  await saves().setItem(ACCOUNTS_KEY, accounts)
+}
+
+/** The single save of the versions that kept one account, or an empty object when there is none. */
 export async function readSavedState(): Promise<JsonRecord> {
   const stored: unknown = await saves().getItem(STATE_KEY)
   if (isJsonRecord(stored)) return stored
@@ -51,7 +69,10 @@ export async function readSavedState(): Promise<JsonRecord> {
   return isJsonRecord(legacy) ? legacy : {}
 }
 
-/** Replaces the saved state. Its contents belong to the app, which versions them; the server only keeps them. */
+/**
+ * Replaces the single save. Its contents belong to the app, which versions them; the server only keeps them. This
+ * app no longer writes it: only a tab still open on an older build does.
+ */
 export async function writeSavedState(state: JsonRecord): Promise<void> {
   await saves().setItem(STATE_KEY, state)
 }

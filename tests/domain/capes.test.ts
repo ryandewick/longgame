@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { SkillKey } from '#shared/types/skill'
 import { forEverySkill, SKILL_KEYS } from '#shared/data/skills'
 import {
+  accountCapes,
   CAPE_COLOURS,
   capeColours,
   capeFillPercent,
@@ -186,5 +187,23 @@ describe('rackOrder', () => {
     const before = [...SKILL_KEYS]
     rackOrder(skills)
     expect(SKILL_KEYS).toEqual(before)
+  })
+})
+
+describe('accountCapes', () => {
+  it("is an account's three highest skills, the highest last, so it hangs on top", () => {
+    const skills = forEverySkill((skill) => {
+      if (skill === 'thieving') return { level: 99, xp: 13_080_000 }
+      if (skill === 'fishing') return { level: 85, xp: 3_435_000 }
+      if (skill === 'firemaking') return { level: 85, xp: 3_390_000 }
+      if (skill === 'runecraft') return { level: 85, xp: 3_294_000 }
+      return { level: 60, xp: 273_742 }
+    })
+    expect(accountCapes(skills)).toEqual(['firemaking', 'fishing', 'thieving'])
+  })
+
+  it('takes the far end of the rack for a fresh account, where every skill is level with the others', () => {
+    const skills = forEverySkill(() => ({ level: 1, xp: 0 }))
+    expect(accountCapes(skills)).toEqual(rackOrder(skills).slice(-3))
   })
 })

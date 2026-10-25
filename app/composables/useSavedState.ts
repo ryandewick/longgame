@@ -5,10 +5,11 @@ import { useHistoryStore } from '../stores/history'
 import { useSessionStore } from '../stores/session'
 
 /**
- * The three stores as one save, and back. `savedState` is everything that is kept between
- * visits, in the versioned format of shared/domain/save.ts; `restore` puts a save into the
- * stores. XP snapshots are not part of the save: they are stored by player name (see
- * utils/save-storage.ts) and loaded into the history store separately.
+ * The open account's save, out of the three stores that hold it, and back. `savedState` is
+ * everything kept about the open account, a version 2 save (shared/domain/save.ts); `restore`
+ * puts an account's save into the stores. The account list store keeps it among the others
+ * (stores/account-list.ts). XP snapshots are not part of a save: they are stored by player name
+ * (see utils/save-storage.ts) and loaded into the history store separately.
  */
 export function useSavedState(): {
   savedState: ComputedRef<SavedState>

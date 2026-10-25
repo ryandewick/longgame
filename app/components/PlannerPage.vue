@@ -51,8 +51,9 @@ if (import.meta.client) {
 
   // An account loaded from the setup screen is a first load as well: the planner is drawn for
   // the first time, so its rack fills from empty. It is said here and not by the setup screen,
-  // because the rack is hung the moment the stats arrive, which is before the lookup has
-  // finished: said any later, the rack would show full for a moment and then empty itself.
+  // because the rack is hung the moment the account arrives with its stats, which is before the
+  // setup screen's button has finished: said any later, the rack would show full for a moment and
+  // then empty itself.
   watch(
     () => account.hasAccount,
     (hasAccount, hadAccount) => {

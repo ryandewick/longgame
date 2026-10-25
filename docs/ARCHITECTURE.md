@@ -16,14 +16,14 @@ app/
   assets/styles/     tokens.scss (custom properties), base.scss (reset, type), fonts.scss, view-transitions.scss,
                      and the shared BEM blocks in blocks/
   components/        one component per file, PascalCase, each owning one BEM block
-  composables/       useStatsRefresh, useSavedState, useSaveReady, useAppMode, useQuestProgressProvider, useToast,
-                     useConfirm, useMotion, useReveal, useNow, usePageSeo, useRouteSkill, useShareRack, useSuggestMethod,
-                     useQuestionRun, useQuestToggle
+  composables/       useHiscores, useStatsRefresh, useAccounts, useAddAccount, useSavedState, useSaveReady, useAppMode,
+                     useQuestProgressProvider, useToast, useConfirm, useMotion, useReveal, useNow, usePageSeo,
+                     useRouteSkill, useShareRack, useSuggestMethod, useQuestionRun, useQuestToggle
   layouts/           default.vue (planner), guide.vue (training guides and the error page)
   pages/             index (Tonight), skills/[[skill]], methods/[[skill]], quests, resets, history, settings,
                      guides/ (index, afk, [skill])
-  plugins/           persistence.client.ts: loads the save and writes changes back
-  stores/            Pinia: account, session, history
+  plugins/           persistence.client.ts: loads the saved accounts and writes changes back
+  stores/            Pinia: account, session, history (the open account), account-list (every saved account)
   utils/             what a screen says, built as plain text and numbers (see "Text builders"), and the save's storage
   error.vue          the "not found" page and the "did not load" page
 shared/
@@ -108,9 +108,10 @@ Modules, each with its own test file in `tests/domain`:
 | `pace.ts`           | XP per day from snapshots, daily gains, day streak                                                                                                        |
 | `planner.ts`        | dealing a session: mood rules, method choice, weights, block lengths, the wildcard or the quest step at the end, swapping a block                         |
 | `session.ts`        | a session in play: block timers, finishing a block, the tally of what was gained, the history of finished sessions                                        |
-| `snapshots.ts`      | the XP history: the rule for adding a snapshot, and reading a history that came from storage                                                              |
-| `save.ts`           | the saved format, its versions, and bringing an old save up to date                                                                                       |
-| `capes.ts`          | each skill's cape and trim colour, the readable colour for a thin line, how full a cape is, the order of the rack                                         |
+| `snapshots.ts`      | the XP history: the rule for adding a snapshot, merging two histories of one account, and reading a history that came from storage                        |
+| `save.ts`           | the saved format: one account's save (version 2), every account kept (version 3), and bringing an old save up to date                                     |
+| `player-names.ts`   | when two RuneScape names are the same account's: case aside, and a space and an underscore alike                                                          |
+| `capes.ts`          | each skill's cape and trim colour, the readable colour for a thin line, how full a cape is, the order of the rack, the capes an account is known by       |
 | `format.ts`         | numbers, durations and clocks as text                                                                                                                     |
 | `guides.ts`         | the training guides as text: a guide for each skill, the AFK guide, the index                                                                             |
 | `site.ts`           | what the site says about itself, the public pages, and the sitemap, robots.txt, llms files and method data built from them                                |
@@ -136,32 +137,51 @@ Names are full words: `hoursLeft`, `isIronman`, `skillStat`, never `hrs`, `iron`
 
 ## State (`app/stores`)
 
-| Store     | Holds                                                                                                                           | Persists |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `account` | name, stats, quests done and started, diaries done, the ones answered "not yet", preferences, when each reset was done          | yes      |
-| `session` | tonight's blocks, their timers, the last tally, the skills dealt lately; for the visit only, a quest step waiting on its answer | yes      |
-| `history` | finished sessions and XP snapshots                                                                                              | yes      |
+| Store          | Holds                                                                                                                                        | Persists |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `account`      | the open account's name, stats, quests done and started, diaries done, the ones answered "not yet", preferences, when each reset was done    | yes      |
+| `session`      | its session: tonight's blocks, their timers, the last tally, the skills dealt lately; for the visit only, a quest step waiting on its answer | yes      |
+| `history`      | its finished sessions and XP snapshots                                                                                                       | yes      |
+| `account-list` | every saved account's save in the order they were added, and which one is open                                                               | yes      |
 
-Stores expose derived values as getters that call the domain (for example `account.skillInsights`). `useSavedState` joins the three into one save and puts a save back into them.
+Stores expose derived values as getters that call the domain (for example `account.skillInsights`). The open account lives in the first three, which is where everything on screen reads it from. `useSavedState` joins them into the open account's save and puts a save back into them. The account list store keeps that save among the others: its `accounts` and `savedAccounts` are built with the open account's live save in its place, and opening another account first puts the live one back in the list, so an account is always left exactly as it was.
 
 ### Saving
 
-One plugin, `plugins/persistence.client.ts`, loads the save once the page has hydrated, sets `useSaveReady()` to true, and from then on writes any change back a moment later. Where the save lives is behind one interface, `SaveStorage` in `app/utils/save-storage.ts`: the browser's own storage on the website, the server's `/api/state` and `/api/snapshots` in a local copy. XP snapshots are not part of the save. They are kept by player name, so the same name picks its history up again.
+One plugin, `plugins/persistence.client.ts`, loads the saved accounts once the page has hydrated (the open one into the stores, with its XP history), sets `useSaveReady()` to true, and from then on writes any change back a moment later; `$flushSave` writes the accounts as they are at once, which switching, adding, renaming and forgetting do. On the website, when another tab of the site saves, the plugin takes that save in rather than keeping its own (the browser's `storage` event), so two tabs never write over each other's switch, and the same accounts are never written twice running. Where the save lives is behind one interface, `SaveStorage` in `app/utils/save-storage.ts`: the browser's own storage on the website, the server's `/api/accounts` and `/api/snapshots` in a local copy. XP snapshots are not part of the save. They are kept by player name, so the same name picks its history up again; merging a history into a name (`mergeSnapshots`) only ever adds to it.
+
+### Several accounts
+
+The player can keep any number of accounts and open one at a time from the top bar (`AccountSwitcher`). Each account keeps everything about it: its stats and type, its ticks and "not yet" answers, its session and finished sessions, the skills dealt lately, its reset log and all its preferences, mood and session length included. Only the list itself and which account is open are shared. The steps the stores cannot take themselves are `useAccounts`':
+
+- **Opening** an account puts the open one away and loads the other with its XP history, on the page the player is on. A session in progress waits on its account with its clock running, as it does when the tab is closed. Stats older than half an hour are fetched (`useStatsRefresh().refreshIfStale`), as when the app opens.
+- **Adding** looks the name up first (`useHiscores`) and only adds the account once its stats and type have arrived, so a name that does not load leaves nothing behind. A new account starts with nothing ticked and the default preferences; a name added before picks its XP history up again. A name already saved opens that account. The dialog (`AddAccountDialog`) is the setup screen's panel.
+- **Change name** in Settings is the same account under a new name, as after a name change in the game. The new name is looked up first, and nothing changes unless it is on the hiscores and no other saved account has it. Everything stays; the XP history is merged into the new name and the old copy is left where it is.
+- **Forget this account** removes the open account only and opens the next one (the one after it, or the one before when it was the last). Forgetting the last shows the setup screen. Its XP history stays in storage.
+- **Export** writes the open account in the export file's format, unchanged. **Import** adds the file's account, or puts it in the place of the saved account with the same name, after a confirm that says which; its XP history is merged with any already kept. Both the website and a local copy import.
+- Lookups run one at a time (`isRefreshing`), and another account cannot be opened while one is under way, since its answer is for the open account.
+
+Every one of these leaves the player on the page they are on; only forgetting the last account goes to the home page, as a first visit. When the planner is drawn for a different account, the visit's question run is forgotten (`useQuestionRun().reset`) and the rack, if the page has it, fills from empty for the new account: the Load moment, and nothing else moves with it (a moment announced in the same breath as a first load, such as the new account's live block, is not played: see `useMotion`). A page without the rack moves nothing, and the next one with it does not fill. A name change is the same account, so nothing fills. The setup screen's first account fills its rack the way any first load does (`PlannerPage`).
 
 ### The saved format
 
-The format is versioned, and an old save is never thrown away, only brought up to date (`readSave` in `shared/domain/save.ts`).
+The format is versioned, and an old save is never thrown away, only brought up to date (`readSavedAccounts` and `readSave` in `shared/domain/save.ts`).
 
-| Version | Marked by    | Written by                | Shape                                                              |
-| ------- | ------------ | ------------------------- | ------------------------------------------------------------------ |
-| 1       | `v: 1`       | the app this one replaced | `LegacySaveV1`: its own field names (`hs`, `prefs`, `manual`, ...) |
-| 2       | `version: 2` | this app                  | `SavedState`: plain JSON, lists rather than sets, full-word names  |
+| Version | Marked by    | Written by                          | Shape                                                                             |
+| ------- | ------------ | ----------------------------------- | --------------------------------------------------------------------------------- |
+| 1       | `v: 1`       | the app this one replaced           | `LegacySaveV1`: its own field names (`hs`, `prefs`, `manual`, ...)                |
+| 2       | `version: 2` | this app, while it kept one account | `SavedState`: one account, plain JSON, lists rather than sets, full-word names    |
+| 3       | `version: 3` | this app                            | `SavedAccounts`: `{ version: 3, open, accounts }`, every account a version 2 save |
+
+Version 3 is the list of accounts in the order they were added and the name of the open one. Each account in it is exactly a version 2 save, so a version 2 save becomes the first and only account as it is, and a version 1 save is brought up to version 2 first and then becomes the first account (`savedAccountsFrom`). A save that holds no account (the blank save) becomes no accounts. Two accounts never share a name (`isSameName`); reading a version 3 save leaves out an account that does not read and keeps the first of two with one name, which only a file edited by hand could hold, and an open name that is not in the list opens the first account.
+
+Version 3 is kept under a name of its own, so the save of an earlier version is never written over. The website keeps it in `longgame.accounts`; `longgame.save` (version 2) and `longgame.state.v1` (version 1) are read only while there is no `longgame.accounts`, and are never written or removed, so they stay behind as a backup. A local copy keeps it in `.data/kv/accounts.json` (`/api/accounts`); `/api/state` is read only while that file is not there. Forgetting the last account writes an empty list rather than removing anything, so an old save never comes back from behind it.
 
 A version 1 XP snapshot is `{ t, skills, total }`; this app's is `{ takenAt, skills, totalXp }`.
 
-A field added to version 2 after it was first written does not take a new version number as long as a save without it means the same as one with its blank value: `readSave` fills it in. `declinedQuests` and `declinedDiaries` (the "not yet" answers) and `startedQuests` (the quests started and not finished) were added that way, and so was the preference `includeQuestStep` (a quest step on Tonight, on unless the player switches it off). A session's blocks gained a kind, `quest`, which an older save never contains, so nothing had to be brought up to date. A version 1 save's quests WikiSync had read as started (state 1) become started quests, where the start matters.
+A field added to version 2 after it was first written does not take a new version number as long as a save without it means the same as one with its blank value: `readSave` fills it in, for an account inside version 3 as for a version 2 save. `declinedQuests` and `declinedDiaries` (the "not yet" answers) and `startedQuests` (the quests started and not finished) were added that way, and so was the preference `includeQuestStep` (a quest step on Tonight, on unless the player switches it off). A session's blocks gained a kind, `quest`, which an older save never contains, so nothing had to be brought up to date. A version 1 save's quests WikiSync had read as started (state 1) become started quests, where the start matters.
 
-The file that Settings exports is versioned separately (`app/utils/export-file.ts`): `{ longgame: 2, save, snapshots }`. The previous app's `{ longgame: 1, state, snaps }` is still read.
+The file that Settings exports is versioned separately (`app/utils/export-file.ts`): `{ longgame: 2, save, snapshots }`, one account's version 2 save and its XP history. The previous app's `{ longgame: 1, state, snaps }` is still read.
 
 ## Text builders (`app/utils`)
 
@@ -178,6 +198,7 @@ What a screen says is worked out in plain functions, not in templates: a compone
 | `quest-next.ts`, `quest-goals.ts`                                      | the Quests page's Next (a row for each suggestion and its button) and Goals (the two capes, each goal's row)                                                                              |
 | `quest-words.ts`                                                       | phrases the Quests page and Tonight share: lists and lengths of time in a sentence, a quest's place in a goal, a tier's reward. Light, because Tonight's words load on every planner page |
 | `methods-note.ts`                                                      | the note with a list of methods: it is not complete, and how a method gets added                                                                                                          |
+| `account-list.ts`                                                      | the account in the top bar and its menu: each saved account's row (its capes, type, total level and the row in words), the open account's status line and its button's label              |
 | `rack-picture.ts`                                                      | the layout and wording of the picture "Share my rack" draws (`draw-rack-picture.ts` paints it)                                                                                            |
 | `hiscores.ts`                                                          | Jagex's hiscores JSON into the shape the app saves, and what a refresh says                                                                                                               |
 | `quest-progress.ts`                                                    | checks what a quest-progress add-on reports                                                                                                                                               |
@@ -189,17 +210,19 @@ There is no clock composable. A component that shows time keeps it itself: `Sess
 
 ## Server (`server/`)
 
-| Route                              | Website                                                  | Local copy                        |
-| ---------------------------------- | -------------------------------------------------------- | --------------------------------- |
-| `GET /api/hiscores?name=`          | looks the player up on Jagex's hiscores, kept one minute | same                              |
-| `GET /api/account-type?name=`      | main or ironman                                          | same                              |
-| `POST /api/suggestions`            | files a method suggestion as a GitHub issue              | 404                               |
-| `GET /api/mode`                    | `{ mode: 'hosted' }`                                     | `{ mode: 'local' }`               |
-| `GET /api/state`, `PUT /api/state` | 404                                                      | the saved state, on disk          |
-| `GET /api/snapshots?name=`         | 404                                                      | a player's XP history             |
-| `POST /api/snapshots`              | 404                                                      | adds a reading to that history    |
-| `GET /api/quest-progress?name=`    | 404                                                      | 404, unless an add-on supplies it |
-| any other `/api/...`               | 404 as JSON (`server/api/[...].ts`)                      | same                              |
+| Route                                    | Website                                                  | Local copy                                                      |
+| ---------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------------- |
+| `GET /api/hiscores?name=`                | looks the player up on Jagex's hiscores, kept one minute | same                                                            |
+| `GET /api/account-type?name=`            | main or ironman                                          | same                                                            |
+| `POST /api/suggestions`                  | files a method suggestion as a GitHub issue              | 404                                                             |
+| `GET /api/mode`                          | `{ mode: 'hosted' }`                                     | `{ mode: 'local' }`                                             |
+| `GET /api/accounts`, `PUT /api/accounts` | 404                                                      | every saved account, on disk                                    |
+| `GET /api/state`, `PUT /api/state`       | 404                                                      | the single save of earlier versions, read once to carry it over |
+| `GET /api/snapshots?name=`               | 404                                                      | a player's XP history                                           |
+| `POST /api/snapshots`                    | 404                                                      | adds a reading to that history                                  |
+| `POST /api/snapshots/merge`              | 404                                                      | merges a history into a player's (a name change, an import)     |
+| `GET /api/quest-progress?name=`          | 404                                                      | 404, unless an add-on supplies it                               |
+| any other `/api/...`                     | 404 as JSON (`server/api/[...].ts`)                      | same                                                            |
 
 A route that belongs to the other mode answers 404 exactly as if it were not there (`requireMode`). The catch-all exists so that a wrong API address, or a real one asked with the wrong method, gets a JSON error and not a web page.
 
@@ -207,9 +230,9 @@ All input is validated at the edge. No route trusts the browser. Route handlers 
 
 **Reusing answers.** One hiscores lookup a minute per name is plenty. The route keeps answers in a `LookupCache` (`lookup-cache.ts`): on the website that is Cloudflare's cache (`caches.default`), which every isolate in a data centre shares; anywhere else it is the process's own memory. Cloudflare's cache does nothing on a `workers.dev` address, only on the site's own domain. The suggestion limiter (`rate-limiter.ts`) is held in memory per isolate and is a courtesy limit; a firm one is a rate limiting rule in the Cloudflare dashboard.
 
-**Local saves.** `local-saves.ts` keeps the state in `.data/kv/state.json` and each history in `.data/kv/snapshots/<name>.json`, through Nitro's `data` storage mount. No file system code is written here or bundled into the Worker.
+**Local saves.** `local-saves.ts` keeps every saved account in `.data/kv/accounts.json` and each history in `.data/kv/snapshots/<name>.json`, through Nitro's `data` storage mount. `.data/kv/state.json` is the single save of the versions that kept one account: the app reads it only while `accounts.json` is not there, and never writes it, so a tab still open on an older build can only ever write to it, never over the accounts. A history is only ever added to: `POST /api/snapshots` appends a reading and `POST /api/snapshots/merge` merges one in by the rule the browser uses (`mergeSnapshots`), so no request can take a history away. No file system code is written here or bundled into the Worker.
 
-**Carrying an old save over.** The previous app kept `data/state.json` and `data/snapshots_<name>.json` at the top of the project. A local build mounts that folder read-only as `legacy-saves`. While `.data` has no state, `GET /api/state` serves the old file as it is and the app brings it up to date (`readSave`). While `.data` has no history for a player, the old one is served in this app's shape and the next reading is added to it. The first write lands in `.data`, which is read from then on. The old files are never written to.
+**Carrying an old save over.** The previous app kept `data/state.json` and `data/snapshots_<name>.json` at the top of the project. A local build mounts that folder read-only as `legacy-saves`. While `.data` has no state, `GET /api/state` serves the old file as it is and the app brings it up to date (`readSavedAccounts`), as the first account. While `.data` has no history for a player, the old one is served in this app's shape and the next reading is added to it. The first write lands in `.data`, which is read from then on. The old files are never written to.
 
 ### Quests and diaries
 
@@ -235,7 +258,7 @@ The published app does not read quests or diaries from anywhere: it asks the pla
 
 - **The contract.** `GET /api/quest-progress?name=` answers `{ quests: string[], started?: string[], diaries: string[], fetched: number }` (`shared/types/quest-progress.ts`): quest names as the app's own data names them (requirement strings and `shared/data/quests.ts`), the quests started and not finished if the provider can tell (only those whose start matters are kept), diary tiers as a region and a tier (`'Kourend & Kebos Hard'`), and the time it was read.
 - **The switch.** `runtimeConfig.public.questProgressProvider`. It is false in the published code. `useQuestProgressProvider()` is true only when it is true and the app is in local mode.
-- **What the app does.** With a provider, `useStatsRefresh` asks the route after each successful hiscores refresh and the account store ticks whatever is reported, with what it proves (`recordProgress`). Ticks are only added, never taken away, and a failed request changes nothing. The Quests page says that progress is filled in by a local add-on, has no questions part, and Tonight shows no prompt. With no provider, no request is made.
+- **What the app does.** With a provider, the app asks the route each time a lookup brings the open account's stats (a refresh, an account just added, a new name: `useHiscores().takeIn`), and the account store ticks whatever is reported for that account, with what it proves (`recordProgress`). Ticks are only added, never taken away, and a failed request changes nothing. The Quests page says that progress is filled in by a local add-on, has no questions part, and Tonight shows no prompt. With no provider, no request is made.
 - **Where a provider comes from.** A Nuxt layer in `local/`, which is git-ignored. `nuxt.config.ts` extends it only when `local/nuxt.config.ts` exists and the build is a local copy, so the website is always built from the published code alone. The layer supplies the route and sets the switch. The launcher rebuilds when the folder is added or removed.
 
 ## The public pages and the first visit
@@ -253,7 +276,7 @@ What a planner page draws is decided in one place, `PlannerPage`:
 | Website    | the first-visit screen, as the server sent it | the first-visit screen | the planner |
 | Local copy | nothing                                       | the setup screen       | the planner |
 
-The first-visit screen is the setup screen and, on the home page, the landing content (`LandingSections`), which also sets the home page's title, description and structured data. It is in the HTML the server sends, so a new visitor and a search engine get a real page. A returning player is sent the same HTML, since their save is in their browser. A script in the head (`app/utils/returning-player.ts`, added in `nuxt.config.ts`) looks for a saved account before the first paint and puts the class `returning-player` on `<html>`; `PlannerPage` hides the first-visit screen under that class and takes the class off once the save has loaded. Whatever a page puts in `PlannerPage`'s default slot is only rendered in the browser, with the save loaded and an account in the stores.
+The first-visit screen is the setup screen and, on the home page, the landing content (`LandingSections`), which also sets the home page's title, description and structured data. It is in the HTML the server sends, so a new visitor and a search engine get a real page. A returning player is sent the same HTML, since their save is in their browser. A script in the head (`app/utils/returning-player.ts`, added in `nuxt.config.ts`) looks for a saved account before the first paint, in the order the storage reads them (the open account of `longgame.accounts`, else the single save an earlier version kept), and puts the class `returning-player` on `<html>`; `PlannerPage` hides the first-visit screen under that class and takes the class off once the save has loaded. Whatever a page puts in `PlannerPage`'s default slot is only rendered in the browser, with the save loaded and an account in the stores.
 
 ## Building and running
 

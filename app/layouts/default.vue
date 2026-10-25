@@ -1,21 +1,17 @@
 <script setup lang="ts">
 /**
- * The planner's frame: the top bar, the page, the footer, and the two things any page may call
- * up from anywhere, a toast and a confirm sheet.
+ * The planner's frame: the top bar, the page, the footer, and what any page may call up from
+ * anywhere: a toast, a confirm sheet, and the dialogs for suggesting a method, sharing the rack
+ * and adding an account.
  */
-const account = useAccountStore()
 const ready = useSaveReady()
-const { refresh } = useStatsRefresh()
-
-/** Stats older than this are fetched again when the app opens. */
-const STATS_GO_STALE_AFTER_MILLISECONDS = 30 * 60_000
+const { refreshIfStale } = useStatsRefresh()
 
 // The hiscores only move when the player logs out, so coming back to the app is the moment to look.
 watch(
   ready,
   (isReady) => {
-    if (!isReady || !account.hasAccount || !account.hiscores) return
-    if (Date.now() - account.hiscores.fetchedAt > STATS_GO_STALE_AFTER_MILLISECONDS) void refresh()
+    if (isReady) refreshIfStale()
   },
   { immediate: true },
 )
@@ -30,5 +26,6 @@ watch(
     <ConfirmDialog />
     <SuggestMethodDialog />
     <ShareRackDialog />
+    <AddAccountDialog />
   </div>
 </template>

@@ -16,6 +16,8 @@ export function useQuestionRun(): {
   /** True once the player has chosen to answer the smaller questions too. */
   isAnsweringSmaller: Readonly<Ref<boolean>>
   answerSmaller: () => void
+  /** Forgets all of it: for when another account is opened, whose questions are its own. */
+  reset: () => void
 } {
   const answers = useState<readonly GivenAnswer[]>('question-run-answers', () => [])
   const isPutOff = useState('question-run-put-off', () => false)
@@ -37,6 +39,12 @@ export function useQuestionRun(): {
     isAnsweringSmaller.value = true
   }
 
+  function reset(): void {
+    answers.value = []
+    isPutOff.value = false
+    isAnsweringSmaller.value = false
+  }
+
   return {
     answers: readonly(answers),
     recordAnswer,
@@ -44,5 +52,6 @@ export function useQuestionRun(): {
     putOff,
     isAnsweringSmaller: readonly(isAnsweringSmaller),
     answerSmaller,
+    reset,
   }
 }

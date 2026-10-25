@@ -79,11 +79,6 @@ export const useSessionStore = defineStore('session', () => {
     askingIndex.value = null
   }
 
-  /** Drops the session and forgets which skills were dealt lately. */
-  function clear(): void {
-    restore({ session: null, recentSkills: [] })
-  }
-
   /**
    * Deals tonight's session from the account and its preferences, replacing any session there
    * is. It ends on `questStep` while the player has quest steps on: Tonight chooses the step
@@ -209,7 +204,6 @@ export const useSessionStore = defineStore('session', () => {
     levelledSkills,
     saved,
     restore,
-    clear,
     deal,
     swapBlock,
     toggleBlock,

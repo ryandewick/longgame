@@ -148,3 +148,14 @@ export function rackOrder(skills: Readonly<Record<SkillKey, SkillStat>>): SkillK
       skills[first].level - skills[second].level || skills[first].xp - skills[second].xp,
   )
 }
+
+/** How many capes stand for an account in the list of accounts. */
+const ACCOUNT_CAPE_COUNT = 3
+
+/**
+ * The capes an account is known by in the list of accounts: its three highest skills, fanned
+ * with the highest last, so it hangs on top. The far end of its own rack.
+ */
+export function accountCapes(skills: Readonly<Record<SkillKey, SkillStat>>): SkillKey[] {
+  return rackOrder(skills).slice(-ACCOUNT_CAPE_COUNT)
+}

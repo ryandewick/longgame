@@ -12,16 +12,21 @@ import type { SkillKey, SkillStat } from '../types/skill'
 import type { XpSnapshot } from '../types/snapshot'
 import { forEverySkill, isSkillKey } from '../data/skills'
 import { blankAccount } from './account'
+import { isSameName } from './player-names'
 import { provenProgress, startedMatters } from './quest-proof'
 import type { ResetLog } from './resets'
 
 /*
  * What is kept between visits. The format is versioned: version 1 is the vanilla app's own
- * state object, version 2 is this app's. Old saves are never thrown away, only migrated.
+ * state object, version 2 is one account's save as this app writes it, and version 3 is every
+ * account the player keeps, each a version 2 save. Old saves are never thrown away, only migrated.
  */
 
-/** The version this app writes. */
+/** The version of one account's save, which is also how an account is exported. */
 export const SAVE_VERSION = 2
+
+/** The version of the save that keeps every account: what this app writes. */
+export const SAVED_ACCOUNTS_VERSION = 3
 
 /** How the Skills page is ordered. */
 export type SkillSort = 'hours' | 'level' | 'name'
@@ -53,7 +58,10 @@ export interface SavedPreferences {
   readonly skillSort: SkillSort
 }
 
-/** Version 2: everything the app keeps, as plain JSON (lists, not sets). */
+/**
+ * Version 2: everything kept about one account, as plain JSON (lists, not sets). It was the whole
+ * save while the app kept a single account; now each account in version 3 is one.
+ */
 export interface SavedState {
   readonly version: 2
   /** The player's name on the hiscores; empty until they give one. */
@@ -127,6 +135,118 @@ export function blankSave(): SavedState {
     resetLog: {},
     history: [],
     recentSkills: [],
+  }
+}
+
+/**
+ * A new account's save: the name it was added under, its stats and type as they were looked up,
+ * and nothing else yet, so it starts with nothing ticked and the default preferences.
+ */
+export function newAccountSave(
+  name: string,
+  hiscores: SavedHiscores,
+  accountType: AccountType | null,
+): SavedState {
+  return { ...blankSave(), name, hiscores, accountType }
+}
+
+/**
+ * Version 3: every account the player keeps, in the order they were added, and which one is
+ * open. Each account is a version 2 save exactly as the app wrote one when it kept a single
+ * account, so such a save becomes the first account as it is, and an account can be lifted out
+ * as it is, which is what Export does.
+ */
+export interface SavedAccounts {
+  readonly version: typeof SAVED_ACCOUNTS_VERSION
+  /** The open account's name, as its save spells it; null when there are no accounts. */
+  readonly open: string | null
+  /** Every account, in the order they were added. No two share a name (see `isSameName`). */
+  readonly accounts: readonly SavedState[]
+}
+
+/** The saved accounts of someone who has never used the app, or who has forgotten every account. */
+export function noSavedAccounts(): SavedAccounts {
+  return { version: SAVED_ACCOUNTS_VERSION, open: null, accounts: [] }
+}
+
+/**
+ * Does a save hold anything of an account? Only an account fills in a name, stats, ticks, a
+ * session, a history or a reset log. A save with none of them is the blank save (a first visit, or
+ * an account that was forgotten), whose preferences can only be the defaults, since nothing
+ * changes them without an account.
+ */
+function holdsAnAccount(save: SavedState): boolean {
+  return (
+    save.name !== '' ||
+    save.hiscores !== null ||
+    save.accountType !== null ||
+    save.completedQuests.length > 0 ||
+    save.startedQuests.length > 0 ||
+    save.completedDiaries.length > 0 ||
+    save.declinedQuests.length > 0 ||
+    save.declinedDiaries.length > 0 ||
+    save.allQuests ||
+    save.allDiaries ||
+    save.session !== null ||
+    save.history.length > 0 ||
+    save.recentSkills.length > 0 ||
+    Object.keys(save.resetLog).length > 0
+  )
+}
+
+/**
+ * What a save from a version that kept a single account becomes: that account as the first and
+ * only one, open, exactly as it was. A save that held no account becomes no accounts.
+ */
+export function savedAccountsFrom(save: SavedState): SavedAccounts {
+  if (!holdsAnAccount(save)) return noSavedAccounts()
+  return { version: SAVED_ACCOUNTS_VERSION, open: save.name, accounts: [save] }
+}
+
+/** The open account's save; null when there are no accounts. */
+export function openAccountSave(saved: SavedAccounts): SavedState | null {
+  return saved.accounts.find((save) => save.name === saved.open) ?? null
+}
+
+/** Is this parsed JSON shaped like a version 3 save? */
+function isSavedAccounts(
+  value: unknown,
+): value is { version: 3; open?: unknown; accounts: readonly unknown[] } {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'version' in value &&
+    value.version === SAVED_ACCOUNTS_VERSION &&
+    'accounts' in value &&
+    Array.isArray(value.accounts)
+  )
+}
+
+/**
+ * Reads whatever was saved, whichever version wrote it: a version 3 save, each of its accounts
+ * read as a version 2 save is (`readSave` fills in what one written before a field was added
+ * lacks), or the save of a version that kept a single account, as that account. Null when it is
+ * none of them, in which case the caller starts from `noSavedAccounts()`.
+ *
+ * Only a file edited by hand could hold an account that does not read, or two with the same name:
+ * the first is left out, and of the second only the first is kept. An open name that is not in the
+ * list opens the first account.
+ */
+export function readSavedAccounts(value: unknown): SavedAccounts | null {
+  if (!isSavedAccounts(value)) {
+    const single = readSave(value)
+    return single && savedAccountsFrom(single)
+  }
+  const accounts: SavedState[] = []
+  for (const entry of value.accounts) {
+    const save = readSave(entry)
+    if (save && !accounts.some((kept) => isSameName(kept.name, save.name))) accounts.push(save)
+  }
+  const named = accounts.find((save) => save.name === value.open)
+  return {
+    version: SAVED_ACCOUNTS_VERSION,
+    open: (named ?? accounts[0])?.name ?? null,
+    accounts,
   }
 }
 

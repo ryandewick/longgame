@@ -4,19 +4,17 @@ import type { SkillKey } from '#shared/types/skill'
 import { SKILLS } from '#shared/data/skills'
 
 /**
- * Settings: the account, how it likes to train, and exporting, importing or forgetting what is
- * saved.
+ * Settings: the open account, how it likes to train, and exporting, importing or forgetting it.
+ * Every field here is the open account's own: each account keeps its own settings.
  */
 const account = useAccountStore()
 const history = useHistoryStore()
+const list = useAccountListStore()
 const mode = useAppMode()
 const toast = useToast()
 const { confirm } = useConfirm()
-const { isRefreshing, loadAccount } = useStatsRefresh()
-const { savedState, restore } = useSavedState()
-// the storage comes from a plugin that only runs in the browser, so it is looked up when a file
-// is imported (always in the browser) rather than here
-const nuxtApp = useNuxtApp()
+const { isRefreshing, rename, forgetOpen, importAccount } = useAccounts()
+const { savedState } = useSavedState()
 
 const ACCOUNT_TYPES: readonly { readonly value: AccountType; readonly label: string }[] = [
   { value: 'main', label: 'Main' },
@@ -47,10 +45,17 @@ const skillsLabelId = useId()
 const fileInput = useTemplateRef('fileInput')
 
 const name = ref(account.name)
+// the field follows the open account: another can be opened from the top bar while this page is up
+watch(
+  () => account.name,
+  (current) => {
+    name.value = current
+  },
+)
 
-/** A different name is a different account: its stats are fetched and the planner starts over on Tonight. */
+/** The same account under a new name, as after a name change in the game: nothing else changes. */
 async function changeName(): Promise<void> {
-  if (await loadAccount(name.value)) await navigateTo('/')
+  await rename(name.value)
 }
 
 // until the lookup has said, an account is planned as a main
@@ -72,8 +77,8 @@ const isExcluded = (skill: SkillKey): boolean => account.preferences.excludedSki
 
 const dataHelp =
   mode === 'local'
-    ? 'Everything is saved to the .data folder inside the project. Copy that folder to back it up, or export a file you can load on the website.'
-    : 'Saved in this browser only. Clearing your site data removes it, so export a copy if it matters to you.'
+    ? 'Every account is saved to the .data folder inside the project. Copy that folder to back them all up, or export an account to load here or on the website.'
+    : 'Every account is saved in this browser only. Clearing your site data removes them all, so export any account that matters to you.'
 
 function exportData(): void {
   const file = buildExportFile(savedState.value, history.snapshots)
@@ -83,7 +88,10 @@ function exportData(): void {
   )
 }
 
-/** Loads a file made by Export, once the player agrees to it replacing what is saved here. */
+/**
+ * Loads an account from a file made by Export, once the player agrees: beside the others, or in
+ * the place of the saved account with the same name.
+ */
 async function importFile(): Promise<void> {
   const input = fileInput.value
   const file = input?.files?.[0]
@@ -95,39 +103,37 @@ async function importFile(): Promise<void> {
     toast.show('That file is not a Long Game export.')
     return
   }
-  const { save, snapshots } = backup
-  const agreed = await confirm({
-    title: 'Import this file',
-    body: `This replaces what is saved here with ${save.name} from the file.`,
-    confirmLabel: 'Import',
-  })
+  const imported = backup.save.name
+  const saved = list.savedName(imported)
+  const agreed = await confirm(
+    saved === null
+      ? {
+          title: `Import ${imported}`,
+          body: `This adds ${imported} from the file. Your other accounts stay as they are.`,
+          confirmLabel: 'Import',
+        }
+      : {
+          title: `Replace ${saved}`,
+          body: `This puts the file’s ${imported} in place of the one saved here: its stats, ticks, sessions and settings. Its XP history is merged with the file’s, so none of it is lost.`,
+          confirmLabel: 'Replace',
+        },
+  )
   if (!agreed) return
-
-  restore(save)
-  history.setSnapshots(snapshots)
-  try {
-    history.setSnapshots(await nuxtApp.$saveStorage.replaceSnapshots(save.name, snapshots))
-  } catch (error) {
-    // the stores hold the imported history for this visit; only keeping it failed (storage is full)
-    console.warn('Could not keep the imported XP history.', error)
-  }
-  // a different account's rack is about to be hung: it fills the way a rack does on the first load
-  expectFirstLoad()
-  await navigateTo('/')
-  toast.show(`Imported ${save.name}.`)
+  await importAccount(backup)
+  toast.show(`Imported ${imported}.`)
 }
 
 async function forgetAccount(): Promise<void> {
-  const kept =
-    mode === 'local' ? 'Snapshots on disk stay.' : 'Your XP history stays in this browser.'
+  const forgotten = account.name
+  const kept = mode === 'local' ? 'on disk' : 'in this browser'
   const agreed = await confirm({
-    title: 'Forget this account',
-    body: `Stats, sessions and manual ticks go. ${kept}`,
+    title: `Forget ${forgotten}`,
+    body: `Its stats, sessions, ticks and settings go. Its XP history stays ${kept}, so adding ${forgotten} again picks it up.`,
     confirmLabel: 'Forget',
   })
   if (!agreed) return
-  account.forget()
-  await navigateTo('/')
+  await forgetOpen()
+  toast.show(`Forgot ${forgotten}.`)
 }
 </script>
 
@@ -136,10 +142,13 @@ async function forgetAccount(): Promise<void> {
     <div class="section-heading section-heading--first">
       <h1 class="section-heading__title section-heading__title--page">Settings</h1>
     </div>
+    <p class="settings-view__lead">
+      These are {{ account.name }}’s settings. Each account keeps its own.
+    </p>
 
     <div class="settings-view__fields">
       <form class="field" @submit.prevent="changeName">
-        <label class="field__label" :for="nameFieldId">Account</label>
+        <label class="field__label" :for="nameFieldId">Name</label>
         <div class="field__row">
           <input
             :id="nameFieldId"
@@ -150,6 +159,10 @@ async function forgetAccount(): Promise<void> {
           />
           <button type="submit" class="button" :disabled="isRefreshing">Change name</button>
         </div>
+        <span class="field__help">
+          Changed your name in the game? Type the new one and this account keeps everything. To plan
+          for a different account, add it from the menu under your name.
+        </span>
       </form>
 
       <div class="field">
@@ -214,18 +227,17 @@ async function forgetAccount(): Promise<void> {
         <span class="field__label">Data</span>
         <span class="field__help">{{ dataHelp }}</span>
         <div class="field__row">
-          <button type="button" class="button" @click="exportData">Export my data</button>
-          <!-- a local copy is moved by copying its data folder, so only the website imports -->
-          <template v-if="mode === 'hosted'">
-            <button type="button" class="button" @click="fileInput?.click()">Import a file</button>
-            <input
-              ref="fileInput"
-              type="file"
-              accept="application/json,.json"
-              hidden
-              @change="importFile"
-            />
-          </template>
+          <button type="button" class="button" @click="exportData">Export this account</button>
+          <button type="button" class="button" @click="fileInput?.click()">
+            Import an account
+          </button>
+          <input
+            ref="fileInput"
+            type="file"
+            accept="application/json,.json"
+            hidden
+            @change="importFile"
+          />
           <button type="button" class="button button--danger" @click="forgetAccount">
             Forget this account
           </button>
@@ -237,6 +249,14 @@ async function forgetAccount(): Promise<void> {
 
 <style lang="scss">
 .settings-view {
+  // whose settings these are, between the heading and the first field
+  &__lead {
+    max-width: 72ch;
+    margin: -8px 0 26px;
+    color: var(--color-text-muted);
+    font-size: 13px;
+  }
+
   // one column of fields, no wider than its longest help text reads well
   &__fields {
     display: flex;

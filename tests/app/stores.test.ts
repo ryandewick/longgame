@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { createPinia, setActivePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { XpSnapshot } from '#shared/types/snapshot'
-import { SKILL_KEYS } from '#shared/data/skills'
+import { forEverySkill, SKILL_KEYS } from '#shared/data/skills'
 import { hoursLeft, maxProgress } from '#shared/domain/estimates'
 import { fastestMethod, methodOptions } from '#shared/domain/methods'
 import { questStepFor } from '#shared/domain/quest-step'
@@ -11,12 +11,18 @@ import {
   accountFromSave,
   blankSave,
   migrateLegacySnapshots,
+  newAccountSave,
+  noSavedAccounts,
   readSave,
+  readSavedAccounts,
+  SAVED_ACCOUNTS_VERSION,
   type LegacySnapshot,
   type SavedState,
 } from '#shared/domain/save'
+import { xpForLevel } from '#shared/domain/xp'
 import { useSavedState } from '~~/app/composables/useSavedState'
 import { useAccountStore } from '~~/app/stores/account'
+import { useAccountListStore } from '~~/app/stores/account-list'
 import { useHistoryStore } from '~~/app/stores/history'
 import { useSessionStore } from '~~/app/stores/session'
 
@@ -91,7 +97,8 @@ describe('the account store', () => {
   it('has no account until there is a name and stats', () => {
     const account = useAccountStore()
     expect(account.hasAccount).toBe(false)
-    account.setName('Zezima')
+    // a name that never loaded, as an older version could leave it
+    account.restore({ ...blankSave(), name: 'Zezima' })
     expect(account.hasAccount).toBe(false)
     account.applyHiscores(fixtureSave().hiscores ?? raise('the fixture has no hiscores'))
     expect(account.hasAccount).toBe(true)
@@ -341,39 +348,204 @@ describe('the account store', () => {
     expect(account.resetLog).toEqual({ herb: fixture.now })
   })
 
-  it('starts a new account when the name changes, keeping ticks and preferences', () => {
-    const { account, session, history } = loadedStores()
+  it('renames the account with its new stats, keeping everything else it has', () => {
+    const { account, session, history, savedState } = loadedStores()
     account.stepQuest('Dragon Slayer I')
     account.setPreference('mood', 'afk')
+    account.markResetDone('herb')
     session.deal()
-    const quests = account.completedQuests
+    const before = savedState.value
+    const stats = account.hiscores ?? raise('the fixture has no hiscores')
+    const fresh = { ...stats, fetchedAt: fixture.now }
 
-    expect(account.setName('  Someone Else ')).toBe(true)
+    account.rename('  Someone Else ', fresh)
 
-    expect(account.name).toBe('Someone Else')
-    expect(account.hiscores).toBeNull()
-    expect(account.accountType).toBeNull()
-    expect(session.session).toBeNull()
-    expect(session.recentSkills).toEqual([])
-    expect(history.entries).toEqual([])
-    expect(history.snapshots).toEqual([])
-    expect(account.completedQuests).toBe(quests)
-    expect(account.preferences.mood).toBe('afk')
-  })
-
-  it('changes nothing when the name is the one it has', () => {
-    const { account, history } = loadedStores()
-    expect(account.setName(` ${account.name} `)).toBe(false)
-    expect(account.hiscores).not.toBeNull()
+    // the same account: type, ticks, session, history, preferences and reset log all stay
+    expect(savedState.value).toEqual({ ...before, name: 'Someone Else', hiscores: fresh })
     expect(history.snapshots).toHaveLength(fixture.snapshots.length)
   })
+})
 
-  it('forgets everything', () => {
-    const { account, session, savedState } = loadedStores()
-    session.deal()
-    account.forget()
-    expect(savedState.value).toEqual(blankSave())
+describe('the account list store', () => {
+  const FIXTURE_NAME = 'Fixture'
+
+  /** A save for another account, as one is made when it is added: every skill at `level`. */
+  function otherAccount(name: string, level = 40): SavedState {
+    return newAccountSave(
+      name,
+      {
+        fetchedAt: fixture.now,
+        skills: forEverySkill(() => ({ level, xp: xpForLevel(level) })),
+        totalLevel: level * SKILL_KEYS.length,
+        totalXp: xpForLevel(level) * SKILL_KEYS.length,
+      },
+      'main',
+    )
+  }
+
+  /** The stores with two accounts saved, the fixture open with its XP history. */
+  function twoAccounts() {
+    const list = useAccountListStore()
+    const second = otherAccount('Lynx Titan', 99)
+    list.restore(
+      { version: SAVED_ACCOUNTS_VERSION, open: FIXTURE_NAME, accounts: [fixtureSave(), second] },
+      fixtureSnapshots(),
+    )
+    return { list, second, account: useAccountStore(), session: useSessionStore() }
+  }
+
+  const openSave = (): SavedState => useSavedState().savedState.value
+  const names = (saves: readonly SavedState[]): string[] => saves.map((save) => save.name)
+
+  it('is empty before anything is loaded, which saves as no accounts', () => {
+    const list = useAccountListStore()
+    expect(list.openIndex).toBeNull()
+    expect(list.savedAccounts).toEqual(noSavedAccounts())
+  })
+
+  it('takes in saved accounts: the open one into the stores, with its XP history', () => {
+    const { list, account, second } = twoAccounts()
+    expect(fixtureSave().name).toBe(FIXTURE_NAME)
+    expect(account.name).toBe(FIXTURE_NAME)
+    expect(account.hasAccount).toBe(true)
+    expect(useHistoryStore().snapshots).toEqual(fixtureSnapshots())
+    // the open account as the stores hold it, with what its ticks prove; the other as it was given
+    expect(list.savedAccounts).toEqual({
+      version: SAVED_ACCOUNTS_VERSION,
+      open: FIXTURE_NAME,
+      accounts: [closedFixtureSave(), second],
+    })
+  })
+
+  it('opens the account named, else the first, else none at all', () => {
+    const list = useAccountListStore()
+    const saves = [otherAccount('Zezima'), otherAccount('Lynx Titan', 99)]
+    list.restore({ version: SAVED_ACCOUNTS_VERSION, open: 'Lynx Titan', accounts: saves }, [])
+    expect(useAccountStore().name).toBe('Lynx Titan')
+    list.restore({ version: SAVED_ACCOUNTS_VERSION, open: 'Nobody', accounts: saves }, [])
+    expect(useAccountStore().name).toBe('Zezima')
+    list.restore(noSavedAccounts(), fixtureSnapshots())
+    expect(useAccountStore().hasAccount).toBe(false)
+    expect(openSave()).toEqual(blankSave())
     expect(useHistoryStore().snapshots).toEqual([])
+  })
+
+  it('switches without losing anything of either account', () => {
+    const { list, account, session, second } = twoAccounts()
+    // a night on the fixture: a quest ticked, the mood changed, a reset done, a session dealt
+    account.stepQuest('Dragon Slayer I')
+    account.setPreference('mood', 'afk')
+    account.markResetDone('herb')
+    session.deal()
+    const fixtureAsLeft = openSave()
+
+    expect(list.open('lynx titan', [])).toBe(true)
+    expect(account.name).toBe('Lynx Titan')
+    expect(openSave()).toEqual(second)
+    expect(session.session).toBeNull()
+    expect(useHistoryStore().snapshots).toEqual([])
+
+    // a night of its own on the other account
+    account.toggleDiary('Karamja Easy')
+    session.deal()
+    const secondAsLeft = openSave()
+
+    expect(list.open(FIXTURE_NAME, fixtureSnapshots())).toBe(true)
+    expect(openSave()).toEqual(fixtureAsLeft)
+    expect(useHistoryStore().entries).toHaveLength(fixtureSave().history.length)
+    expect(useHistoryStore().snapshots).toEqual(fixtureSnapshots())
+    expect(list.savedAccounts.accounts).toEqual([fixtureAsLeft, secondAsLeft])
+  })
+
+  it('opens nothing for the account already open, or for a name not saved', () => {
+    const { list } = twoAccounts()
+    expect(list.open(FIXTURE_NAME, [])).toBe(false)
+    expect(list.open('Nobody', [])).toBe(false)
+    expect(useHistoryStore().snapshots).toEqual(fixtureSnapshots())
+  })
+
+  it('saves the open account as the stores hold it now, under its present name', () => {
+    const { list, account } = twoAccounts()
+    account.setPreference('minutes', 30)
+    expect(list.savedAccounts.accounts[0]?.preferences.minutes).toBe(30)
+    account.rename('New Name', account.hiscores ?? raise('the fixture has no hiscores'))
+    expect(list.savedAccounts.open).toBe('New Name')
+    expect(names(list.savedAccounts.accounts)).toEqual(['New Name', 'Lynx Titan'])
+    // and the whole reads back from storage as it was written
+    const stored = readSavedAccounts(JSON.parse(JSON.stringify(list.savedAccounts)))
+    expect(stored).toEqual(list.savedAccounts)
+  })
+
+  it('adds an account at the end and opens it, with the history it brings', () => {
+    const { list, account } = twoAccounts()
+    account.setPreference('mood', 'active')
+    const snapshots = [{ takenAt: fixture.now, skills: { mining: 1 }, totalXp: 1 }]
+    expect(list.add(otherAccount('Zezima', 60), snapshots)).toBe(true)
+    expect(account.name).toBe('Zezima')
+    expect(useHistoryStore().snapshots).toEqual(snapshots)
+    expect(names(list.savedAccounts.accounts)).toEqual([FIXTURE_NAME, 'Lynx Titan', 'Zezima'])
+    // the fixture was put away as it was left
+    expect(list.savedAccounts.accounts[0]?.preferences.mood).toBe('active')
+  })
+
+  it('adds the first account to none', () => {
+    const list = useAccountListStore()
+    expect(list.add(otherAccount('Zezima'), [])).toBe(true)
+    expect(list.savedAccounts).toEqual({
+      version: SAVED_ACCOUNTS_VERSION,
+      open: 'Zezima',
+      accounts: [otherAccount('Zezima')],
+    })
+  })
+
+  it('refuses to add a name already saved, however it is spelt', () => {
+    const { list, account } = twoAccounts()
+    expect(list.has('LYNX_TITAN')).toBe(true)
+    expect(list.savedName('lynx_titan')).toBe('Lynx Titan')
+    expect(list.savedName('Nobody')).toBeNull()
+    expect(list.add(otherAccount('LYNX_TITAN'), [])).toBe(false)
+    expect(account.name).toBe(FIXTURE_NAME)
+    expect(list.accounts).toHaveLength(2)
+  })
+
+  it('replaces the account with the same name in its place, and opens it', () => {
+    const { list, account } = twoAccounts()
+    const backup = { ...otherAccount('Lynx Titan', 70), completedQuests: ["Cook's Assistant"] }
+    expect(list.replace(backup, [])).toBe(true)
+    expect(account.name).toBe('Lynx Titan')
+    expect(names(list.savedAccounts.accounts)).toEqual([FIXTURE_NAME, 'Lynx Titan'])
+    expect(list.savedAccounts.accounts[1]).toEqual(backup)
+    // the open account is replaced in its place as well
+    list.replace({ ...backup, completedQuests: [] }, [])
+    expect(account.completedQuests).toEqual([])
+    expect(list.replace(otherAccount('Nobody'), [])).toBe(false)
+  })
+
+  it('forgets the open account and opens the one after it, or the one before when it was last', () => {
+    const { list, account } = twoAccounts()
+    list.add(otherAccount('Zezima'), [])
+    expect(list.nextAfterForgetting).toBe('Lynx Titan')
+    list.forgetOpen([])
+    expect(account.name).toBe('Lynx Titan')
+    expect(names(list.accounts)).toEqual([FIXTURE_NAME, 'Lynx Titan'])
+
+    list.open(FIXTURE_NAME, fixtureSnapshots())
+    expect(list.nextAfterForgetting).toBe('Lynx Titan')
+    list.forgetOpen([])
+    expect(account.name).toBe('Lynx Titan')
+    expect(list.nextAfterForgetting).toBeNull()
+  })
+
+  it('goes back to a first visit when the last account is forgotten, saved as no accounts', () => {
+    const { list, account } = twoAccounts()
+    list.forgetOpen([])
+    list.forgetOpen([])
+    expect(account.hasAccount).toBe(false)
+    expect(openSave()).toEqual(blankSave())
+    expect(useHistoryStore().snapshots).toEqual([])
+    expect(list.savedAccounts).toEqual(noSavedAccounts())
+    list.forgetOpen([])
+    expect(list.savedAccounts).toEqual(noSavedAccounts())
   })
 })
 

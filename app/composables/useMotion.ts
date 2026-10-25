@@ -110,7 +110,11 @@ async function playCue(): Promise<void> {
   // yet, and once for the page to be drawn with it. Both are over before the browser paints.
   await nextTick()
   await nextTick()
-  const moments = [...cue.values()]
+  // A first load draws the planner for an account at rest, apart from the rack's fill. Anything
+  // announced with it (the live block of the account just opened, say) is part of what was drawn,
+  // not something the player did, so only the load plays.
+  const firstLoad = cue.get('first-load')
+  const moments = firstLoad ? [firstLoad] : [...cue.values()]
   cue.clear()
   if (prefersReducedMotion()) return
   for (const moment of moments) {
@@ -135,9 +139,9 @@ export function announceMoment(moment: Moment): void {
 }
 
 /**
- * Says that the planner is about to be drawn for a different account (a save has been imported,
- * or a new player's account has just loaded from the setup screen), so the next `first-load` to
- * be announced is heard again and the rack fills from empty.
+ * Says that the planner is about to be drawn for a different account (another account has been
+ * opened, added or imported, or a new player's account has just loaded from the setup screen),
+ * so the next `first-load` to be announced is heard again and the rack fills from empty.
  */
 export function expectFirstLoad(): void {
   firstLoadIsDue = true

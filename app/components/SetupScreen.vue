@@ -14,7 +14,7 @@ import type { RailCape } from './CapeRail.vue'
 const account = useAccountStore()
 const ready = useSaveReady()
 const mode = useAppMode()
-const { isRefreshing, loadAccount } = useStatsRefresh()
+const { isRefreshing, loadAccount } = useAccounts()
 
 /** The demonstration starts here and climbs evenly, so every cape is a little fuller than the last. */
 const LOWEST_SAMPLE_LEVEL = 30
@@ -62,8 +62,8 @@ onMounted(() => nameField.value?.focus({ preventScroll: true }))
 async function submit(): Promise<void> {
   // an account started before the save has loaded would be overwritten by the save when it arrives
   if (!ready.value) return
-  // The planner takes this screen's place the moment the stats arrive, and its rack fills from
-  // empty as on any first load: PlannerPage sees the account arrive and says so.
+  // The planner takes this screen's place the moment the account is added with its stats, and its
+  // rack fills from empty as on any first load: PlannerPage sees the account arrive and says so.
   if (await loadAccount(name.value)) await navigateTo('/')
 }
 </script>

@@ -1,5 +1,6 @@
 import {
   appendSnapshot as appendByRule,
+  mergeSnapshots as mergeByRule,
   type SnapshotAppend as SharedSnapshotAppend,
 } from '#shared/domain/snapshots'
 import { isJsonRecord, type JsonRecord } from './json'
@@ -72,6 +73,36 @@ export function appendSnapshot(
   limit: number = SNAPSHOT_LIMIT,
 ): SnapshotAppend {
   return appendByRule(history, snapshot, limit)
+}
+
+/** What the browser sends to merge a history into a player's: when a name changes, or a file is imported. */
+export interface SnapshotMerge {
+  name: string
+  snapshots: Snapshot[]
+}
+
+/**
+ * Checks the body of a request to merge a history into a player's. As when a history is read from disk, an entry
+ * that is not a snapshot is left out rather than trusted.
+ */
+export function parseSnapshotMerge(body: JsonRecord): Result<SnapshotMerge> {
+  const name = parsePlayerName(body.name)
+  if (!name.ok) return name
+  if (!Array.isArray(body.snapshots)) return failure(400, UNREADABLE)
+  return success({ name: name.value, snapshots: parseStoredSnapshots(body.snapshots) })
+}
+
+/**
+ * Merges a history into a player's, keeping the newest `limit`: every snapshot of both, a moment both hold kept once
+ * (the stored one). The rule is shared with the browser (shared/domain/snapshots.ts). A merge only adds, so no request
+ * can take a player's history away; past the limit the oldest go first, as they do with every reading.
+ */
+export function mergeSnapshots(
+  history: readonly Snapshot[],
+  incoming: readonly Snapshot[],
+  limit: number = SNAPSHOT_LIMIT,
+): Snapshot[] {
+  return mergeByRule(history, incoming, limit)
 }
 
 function isSnapshot(input: unknown): input is Snapshot {

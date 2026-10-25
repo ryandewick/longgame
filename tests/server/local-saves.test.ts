@@ -2,8 +2,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   readSavedState,
   readSnapshots,
+  readStoredAccounts,
   writeSavedState,
   writeSnapshots,
+  writeStoredAccounts,
 } from '~~/server/utils/local-saves'
 
 /** One of Nitro's storage mounts, kept in memory. `writes` counts what was written to it. */
@@ -68,6 +70,41 @@ describe('the saved state', () => {
   it('ignores an old file that is not a JSON object', async () => {
     mountStorage({ data, 'legacy-saves': memoryMount({ 'state.json': 'cut short {' }) })
     expect(await readSavedState()).toEqual({})
+  })
+})
+
+describe('the saved accounts', () => {
+  const SINGLE_SAVE = { version: 2, name: 'Old Timer' }
+  const ACCOUNTS = { version: 3, open: 'Old Timer', accounts: [SINGLE_SAVE] }
+  let data: ReturnType<typeof memoryMount>
+  let legacy: ReturnType<typeof memoryMount>
+
+  beforeEach(() => {
+    data = memoryMount({ 'state.json': SINGLE_SAVE })
+    legacy = memoryMount({ 'state.json': LEGACY_STATE })
+    mountStorage({ data, 'legacy-saves': legacy })
+  })
+
+  it('are empty until some have been written, whatever single save there is', async () => {
+    expect(await readStoredAccounts()).toEqual({})
+  })
+
+  it('are read back as they were written, in a file of their own', async () => {
+    await writeStoredAccounts(ACCOUNTS)
+    expect(await readStoredAccounts()).toEqual(ACCOUNTS)
+    expect(await data.getItem('accounts.json')).toEqual(ACCOUNTS)
+  })
+
+  it("leave the single save and the old app's save as they were", async () => {
+    await writeStoredAccounts(ACCOUNTS)
+    expect(await readSavedState()).toEqual(SINGLE_SAVE)
+    expect(await data.getItem('state.json')).toEqual(SINGLE_SAVE)
+    expect(legacy.writes).toBe(0)
+  })
+
+  it('ignore a file that is not a JSON object', async () => {
+    mountStorage({ data: memoryMount({ 'accounts.json': 'cut short {' }), 'legacy-saves': legacy })
+    expect(await readStoredAccounts()).toEqual({})
   })
 })
 

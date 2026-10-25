@@ -1,15 +1,21 @@
 import { describe, expect, it } from 'vitest'
-import { SKILL_KEYS } from '#shared/data/skills'
+import { forEverySkill, SKILL_KEYS } from '#shared/data/skills'
 import {
   SAVE_VERSION,
+  SAVED_ACCOUNTS_VERSION,
   accountFromSave,
   blankSave,
   isLegacySave,
   migrateLegacySave,
   migrateLegacySnapshots,
+  newAccountSave,
+  noSavedAccounts,
+  openAccountSave,
   readSave,
+  readSavedAccounts,
+  savedAccountsFrom,
 } from '#shared/domain/save'
-import type { LegacyBlock, LegacySaveV1 } from '#shared/domain/save'
+import type { LegacyBlock, LegacySaveV1, SavedHiscores, SavedState } from '#shared/domain/save'
 
 /** What the vanilla app's blank() returned. */
 const blankLegacySave = (): LegacySaveV1 => ({
@@ -527,5 +533,174 @@ describe('readSave', () => {
     ['an unknown old version', { v: 0 }],
   ])('does not accept %s', (_case, value) => {
     expect(readSave(value)).toBeNull()
+  })
+})
+
+/** Stats as a lookup gives them: every skill at one level. */
+function statsAt(level: number): SavedHiscores {
+  return {
+    fetchedAt: 1_800_000_000_000,
+    skills: forEverySkill(() => ({ level, xp: 0 })),
+    totalLevel: level * SKILL_KEYS.length,
+    totalXp: 0,
+  }
+}
+
+/** An account's save with a name, stats and a little of everything an account keeps. */
+function accountSave(name: string, level: number): SavedState {
+  return {
+    ...newAccountSave(name, statsAt(level), 'main'),
+    completedQuests: ['Bone Voyage'],
+    declinedQuests: ['Sins of the Father'],
+    preferences: { ...blankSave().preferences, mood: 'afk', minutes: 60 },
+    resetLog: { birdhouses: 1_800_000_000_000 },
+  }
+}
+
+describe('newAccountSave', () => {
+  it('is a blank save with the name, the stats and the type it was looked up with', () => {
+    const stats = statsAt(50)
+    expect(newAccountSave('Zezima', stats, 'iron')).toEqual({
+      ...blankSave(),
+      name: 'Zezima',
+      hiscores: stats,
+      accountType: 'iron',
+    })
+  })
+})
+
+describe('savedAccountsFrom: the save of a version that kept one account', () => {
+  it('makes it the first and only account, open, exactly as it was', () => {
+    const save = accountSave('Zezima', 70)
+    const saved = savedAccountsFrom(save)
+    expect(saved).toEqual({ version: SAVED_ACCOUNTS_VERSION, open: 'Zezima', accounts: [save] })
+    expect(saved.accounts[0]).toBe(save)
+  })
+
+  it('keeps a name that never loaded as the open account, with its ticks', () => {
+    const save = { ...blankSave(), name: 'Zezlma', completedQuests: ['Bone Voyage'] }
+    expect(savedAccountsFrom(save)).toEqual({
+      version: SAVED_ACCOUNTS_VERSION,
+      open: 'Zezlma',
+      accounts: [save],
+    })
+  })
+
+  it('keeps anything an account fills in, even without a name', () => {
+    const save = { ...blankSave(), completedDiaries: ['Ardougne Easy'] }
+    expect(savedAccountsFrom(save).accounts).toEqual([save])
+  })
+
+  it('makes a save that holds no account no accounts', () => {
+    expect(savedAccountsFrom(blankSave())).toEqual(noSavedAccounts())
+    // nothing changes preferences without an account, so preferences alone are not one
+    const preferencesOnly = {
+      ...blankSave(),
+      preferences: { ...blankSave().preferences, minutes: 30 },
+    }
+    expect(savedAccountsFrom(preferencesOnly)).toEqual(noSavedAccounts())
+  })
+})
+
+describe('readSavedAccounts', () => {
+  it('reads a version 3 save back as it was written', () => {
+    const saved = {
+      version: SAVED_ACCOUNTS_VERSION,
+      open: 'Lynx Titan',
+      accounts: [accountSave('Zezima', 70), accountSave('Lynx Titan', 99)],
+    }
+    expect(readSavedAccounts(JSON.parse(JSON.stringify(saved)))).toEqual(saved)
+  })
+
+  it('brings a version 2 save in as the first account, open', () => {
+    const save = accountSave('Zezima', 70)
+    expect(readSavedAccounts(JSON.parse(JSON.stringify(save)))).toEqual({
+      version: SAVED_ACCOUNTS_VERSION,
+      open: 'Zezima',
+      accounts: [save],
+    })
+  })
+
+  it('brings a version 1 save in as the first account, by way of version 2', () => {
+    const legacy: LegacySaveV1 = {
+      ...blankLegacySave(),
+      name: 'Zezima',
+      manual: { quests: { 'Bone Voyage': true } },
+    }
+    expect(readSavedAccounts(legacy)).toEqual({
+      version: SAVED_ACCOUNTS_VERSION,
+      open: 'Zezima',
+      accounts: [migrateLegacySave(legacy)],
+    })
+  })
+
+  it('reads a blank version 2 save, as a first visit leaves it, as no accounts', () => {
+    expect(readSavedAccounts(JSON.parse(JSON.stringify(blankSave())))).toEqual(noSavedAccounts())
+  })
+
+  it('keeps no accounts as no accounts, so a forgotten last account stays forgotten', () => {
+    expect(readSavedAccounts(JSON.parse(JSON.stringify(noSavedAccounts())))).toEqual(
+      noSavedAccounts(),
+    )
+  })
+
+  it('fills in what an account written before a field was added lacks', () => {
+    const { declinedQuests, declinedDiaries, startedQuests, ...older } = accountSave('Zezima', 70)
+    expect([declinedQuests, declinedDiaries, startedQuests]).toEqual([
+      ['Sins of the Father'],
+      [],
+      [],
+    ])
+    const saved = { version: SAVED_ACCOUNTS_VERSION, open: 'Zezima', accounts: [older] }
+    expect(readSavedAccounts(JSON.parse(JSON.stringify(saved)))?.accounts).toEqual([
+      { ...older, startedQuests: [], declinedQuests: [], declinedDiaries: [] },
+    ])
+  })
+
+  it('opens the first account when the open name is not in the list', () => {
+    const saved = {
+      version: SAVED_ACCOUNTS_VERSION,
+      open: 'Nobody',
+      accounts: [accountSave('Zezima', 70), accountSave('Lynx Titan', 99)],
+    }
+    expect(readSavedAccounts(saved)?.open).toBe('Zezima')
+    expect(readSavedAccounts({ ...saved, open: null })?.open).toBe('Zezima')
+    expect(readSavedAccounts({ ...saved, accounts: [] })?.open).toBeNull()
+  })
+
+  it('leaves out an account that does not read, and keeps the first of two with the same name', () => {
+    const zezima = accountSave('Zezima', 70)
+    const lynx = accountSave('Lynx Titan', 99)
+    const saved = {
+      version: SAVED_ACCOUNTS_VERSION,
+      open: 'Zezima',
+      accounts: [zezima, { version: 9 }, 'text', { ...accountSave('ZEZIMA', 20) }, lynx],
+    }
+    expect(readSavedAccounts(saved)?.accounts).toEqual([zezima, lynx])
+  })
+
+  it.each([
+    ['nothing', null],
+    ['text', 'longgame'],
+    ['an object with no version', { name: 'Zezima' }],
+    ['version 3 with no list of accounts', { version: SAVED_ACCOUNTS_VERSION }],
+    ['a version from the future', { version: SAVED_ACCOUNTS_VERSION + 1, accounts: [] }],
+  ])('does not accept %s', (_case, value) => {
+    expect(readSavedAccounts(value)).toBeNull()
+  })
+})
+
+describe('openAccountSave', () => {
+  it('is the save of the account named open, or null when there are none', () => {
+    const zezima = accountSave('Zezima', 70)
+    const lynx = accountSave('Lynx Titan', 99)
+    expect(
+      openAccountSave({
+        version: SAVED_ACCOUNTS_VERSION,
+        open: 'Lynx Titan',
+        accounts: [zezima, lynx],
+      }),
+    ).toBe(lynx)
+    expect(openAccountSave(noSavedAccounts())).toBeNull()
   })
 })

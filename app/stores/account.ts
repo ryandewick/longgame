@@ -42,8 +42,6 @@ import {
   type SavedPreferences,
   type SavedState,
 } from '#shared/domain/save'
-import { useHistoryStore } from './history'
-import { useSessionStore } from './session'
 
 /** The part of the save this store keeps. */
 export type SavedAccount = Pick<
@@ -254,19 +252,14 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   /**
-   * Sets the player's name. A different name is a different account, so its stats, its session
-   * and its history go; ticks, preferences and the reset log stay, as most players only ever
-   * correct a typo. Returns whether the name changed.
+   * The account goes by a new name, as after a name change in the game, with the stats just looked
+   * up under it. It is the same account, so everything else it has stays: its type, ticks, session,
+   * history, preferences and reset log. (Planning for a different account is adding one: see the
+   * account list store.)
    */
-  function setName(newName: string): boolean {
-    const trimmed = newName.trim()
-    if (trimmed === name.value) return false
-    name.value = trimmed
-    hiscores.value = null
-    accountType.value = null
-    useSessionStore().clear()
-    useHistoryStore().clear()
-    return true
+  function rename(newName: string, fresh: SavedHiscores): void {
+    name.value = newName.trim()
+    hiscores.value = fresh
   }
 
   /** Takes in freshly fetched hiscores. */
@@ -399,16 +392,6 @@ export const useAccountStore = defineStore('account', () => {
     resetLog.value = { ...resetLog.value, [resetKey]: Date.now() }
   }
 
-  /**
-   * Forgets the account: stats, sessions, ticks and preferences all go back to blank. The XP
-   * history in storage is left alone, so the same name can pick it up again later.
-   */
-  function forget(): void {
-    restore(blankSave())
-    useSessionStore().clear()
-    useHistoryStore().clear()
-  }
-
   return {
     name,
     accountType,
@@ -433,7 +416,7 @@ export const useAccountStore = defineStore('account', () => {
     rackOrder,
     saved,
     restore,
-    setName,
+    rename,
     applyHiscores,
     setAccountType,
     questState,
@@ -448,6 +431,5 @@ export const useAccountStore = defineStore('account', () => {
     setPreference,
     setSkillExcluded,
     markResetDone,
-    forget,
   }
 })

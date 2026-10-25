@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { XpSnapshot } from '#shared/types/snapshot'
-import { appendSnapshot, parseSnapshots } from '#shared/domain/snapshots'
+import { appendSnapshot, mergeSnapshots, parseSnapshots } from '#shared/domain/snapshots'
 
 const DAY = 86_400_000
 
@@ -66,6 +66,49 @@ describe('appendSnapshot', () => {
     appendSnapshot(history, snapshot(3, 100), 600)
     appendSnapshot(history, snapshot(3, 200), 600)
     expect(history).toEqual(copy)
+  })
+})
+
+describe('mergeSnapshots', () => {
+  it('keeps every snapshot of both histories, oldest first', () => {
+    const kept = [snapshot(1, 100), snapshot(4, 400)]
+    const other = [snapshot(2, 200), snapshot(3, 300), snapshot(5, 500)]
+    expect(mergeSnapshots(kept, other, 600)).toEqual([
+      snapshot(1, 100),
+      snapshot(2, 200),
+      snapshot(3, 300),
+      snapshot(4, 400),
+      snapshot(5, 500),
+    ])
+  })
+
+  it('keeps a moment both hold once, as the first history has it', () => {
+    const kept = [snapshot(1, 100), snapshot(2, 200)]
+    const other = [{ ...snapshot(2, 999) }, snapshot(3, 300)]
+    expect(mergeSnapshots(kept, other, 600)).toEqual([
+      snapshot(1, 100),
+      snapshot(2, 200),
+      snapshot(3, 300),
+    ])
+  })
+
+  it('keeps a history whole when the other is empty, from either side', () => {
+    const history = [snapshot(1, 100), snapshot(2, 200)]
+    expect(mergeSnapshots(history, [], 600)).toEqual(history)
+    expect(mergeSnapshots([], history, 600)).toEqual(history)
+  })
+
+  it('keeps only the newest snapshots up to the limit', () => {
+    const merged = mergeSnapshots([snapshot(1, 10), snapshot(3, 30)], [snapshot(2, 20)], 2)
+    expect(merged).toEqual([snapshot(2, 20), snapshot(3, 30)])
+  })
+
+  it('does not change either history it was given', () => {
+    const kept = [snapshot(3, 300)]
+    const other = [snapshot(1, 100)]
+    mergeSnapshots(kept, other, 600)
+    expect(kept).toEqual([snapshot(3, 300)])
+    expect(other).toEqual([snapshot(1, 100)])
   })
 })
 

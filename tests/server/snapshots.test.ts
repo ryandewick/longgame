@@ -2,7 +2,9 @@ import { describe, expect, it } from 'vitest'
 import {
   appendSnapshot,
   legacySnapshotStorageKey,
+  mergeSnapshots,
   parseLegacySnapshots,
+  parseSnapshotMerge,
   parseSnapshotReading,
   parseStoredSnapshots,
   SNAPSHOT_LIMIT,
@@ -143,6 +145,62 @@ function manySkills(count: number): Array<[string, number]> {
     1,
   ])
 }
+
+describe('parseSnapshotMerge', () => {
+  const merge = { name: ' Zezima ', snapshots: [snapshot(1, 100), snapshot(2, 200)] }
+
+  it('accepts a history and trims the name', () => {
+    expect(parseSnapshotMerge(merge)).toEqual({
+      ok: true,
+      value: { name: 'Zezima', snapshots: [snapshot(1, 100), snapshot(2, 200)] },
+    })
+  })
+
+  it('leaves out an entry that is not a snapshot, as a history read from disk does', () => {
+    const body = { ...merge, snapshots: [snapshot(1, 100), { takenAt: 'yesterday' }, null] }
+    expect(parseSnapshotMerge(body)).toEqual({
+      ok: true,
+      value: { name: 'Zezima', snapshots: [snapshot(1, 100)] },
+    })
+  })
+
+  it('refuses a name that is not a RuneScape name', () => {
+    expect(parseSnapshotMerge({ ...merge, name: '../state' })).toEqual({
+      ok: false,
+      failure: { statusCode: 400, message: 'That does not look like a RuneScape name.' },
+    })
+  })
+
+  it.each([
+    ['no history', { snapshots: undefined }],
+    ['a history that is not a list', { snapshots: { 0: snapshot(1, 100) } }],
+  ])('refuses %s', (_reason, changes) => {
+    expect(parseSnapshotMerge({ ...merge, ...changes })).toEqual({
+      ok: false,
+      failure: { statusCode: 400, message: 'Could not read that.' },
+    })
+  })
+})
+
+describe('mergeSnapshots', () => {
+  it('keeps every snapshot of both, oldest first, and the stored one where both hold a moment', () => {
+    const stored = [snapshot(1, 100), snapshot(3, 300)]
+    const incoming = [snapshot(2, 200), snapshot(3, 999)]
+    expect(mergeSnapshots(stored, incoming)).toEqual([
+      snapshot(1, 100),
+      snapshot(2, 200),
+      snapshot(3, 300),
+    ])
+  })
+
+  it(`keeps ${SNAPSHOT_LIMIT} snapshots unless told otherwise, dropping the oldest`, () => {
+    const stored = Array.from({ length: SNAPSHOT_LIMIT }, (_unused, day) => snapshot(day, day))
+    const merged = mergeSnapshots(stored, [snapshot(SNAPSHOT_LIMIT, 1)])
+    expect(merged).toHaveLength(SNAPSHOT_LIMIT)
+    expect(merged.at(0)).toEqual(snapshot(1, 1))
+    expect(merged.at(-1)).toEqual(snapshot(SNAPSHOT_LIMIT, 1))
+  })
+})
 
 describe('parseStoredSnapshots', () => {
   it('returns the snapshots in a stored history', () => {

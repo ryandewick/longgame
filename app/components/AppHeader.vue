@@ -1,24 +1,14 @@
 <script setup lang="ts">
-import { formatTimeAgo } from '#shared/domain/format'
-
 /**
  * The top bar. With an account: the brand as a link home, whose mark shows progress to max, then
- * the player's name and how fresh their stats are, the refresh button and the tabs. Without one
- * (a new visitor, or a page whose save has not loaded yet) it is the brand alone.
+ * the open account (its name opens the menu of saved accounts), the refresh button and the tabs.
+ * Without one (a new visitor, or a page whose save has not loaded yet) it is the brand alone.
  */
 const account = useAccountStore()
 const ready = useSaveReady()
 const { isRefreshing, refresh } = useStatsRefresh()
 
 const hasAccount = computed(() => ready.value && account.hasAccount)
-
-// "5 min ago" moves on by itself, a minute at most behind the clock
-const now = useNow(30_000)
-const status = computed(() => {
-  if (!account.hiscores) return ''
-  const fetched = `stats ${formatTimeAgo(account.hiscores.fetchedAt, now.value)}`
-  return account.isIronman ? `Ironman, ${fetched}` : fetched
-})
 </script>
 
 <template>
@@ -28,10 +18,7 @@ const status = computed(() => {
         <NuxtLink class="app-header__brand" to="/" aria-label="Long Game">
           <BrandMark :progress="account.maxProgress.percent / 100" />
         </NuxtLink>
-        <div class="app-header__account">
-          <b class="app-header__name">{{ account.name }}</b>
-          <span class="app-header__status">{{ status }}</span>
-        </div>
+        <AccountSwitcher class="app-header__account" />
         <button
           type="button"
           class="button button--small app-header__refresh"
@@ -74,38 +61,36 @@ const status = computed(() => {
   &__account {
     padding-left: 22px;
     border-left: 1px solid var(--color-edge);
-    line-height: 1.3;
-  }
-
-  &__name {
-    display: block;
-    color: var(--color-text);
-    font-weight: 600;
-  }
-
-  &__status {
-    display: block;
-    color: var(--color-text-faint);
-    font-size: 13px;
   }
 
   &__nav {
     margin-left: auto;
   }
 
-  // Phones: the bar scrolls away with the page, the account line goes, and the tabs take a row of their own.
+  // Phones: the bar scrolls away with the page, the account takes a row of its own under the
+  // brand and Refresh stats, and the tabs another. The bar keeps its place above the page, so the
+  // account's menu opens over the rack.
   @media (max-width: 760px) {
-    position: static;
+    position: relative;
 
-    &__account {
-      display: none;
+    &__bar {
+      row-gap: 4px;
     }
 
     &__refresh {
+      order: 1;
       margin-left: auto;
     }
 
+    &__account {
+      order: 2;
+      width: 100%;
+      padding-left: 0;
+      border-left: 0;
+    }
+
     &__nav {
+      order: 3;
       width: 100%;
       margin-left: 0;
     }

@@ -37,12 +37,6 @@ export const useHistoryStore = defineStore('history', () => {
     entries.value = save.history
   }
 
-  /** Forgets the sessions and the snapshots held here. Snapshots already in storage stay there. */
-  function clear(): void {
-    entries.value = []
-    snapshots.value = []
-  }
-
   /** Puts a finished session at the front of the history. */
   function addEntry(entry: HistoryEntry): void {
     entries.value = addToHistory(entries.value, entry)
@@ -73,7 +67,6 @@ export const useHistoryStore = defineStore('history', () => {
     snapshots,
     saved,
     restore,
-    clear,
     addEntry,
     setSnapshots,
     dailyGains,

@@ -17,6 +17,7 @@ I kept logging in to Old School RuneScape, standing at the bank, doing nothing, 
 - **Shows the whole grind at once.** Every skill is a cape that fills with colour as you level, with the levels and hours left to max.
 - **Deals you a session.** Say how long you have and how much attention you can spare, and it deals timed blocks from AFK, semi-AFK or active methods your account has actually unlocked, plus any farm or birdhouse runs that are due. It can end the session on the next quest or diary step worth doing.
 - **Plans for mains and ironmen separately.** It tells them apart from the hiscores. Ironmen get ironman routes, with no method that needs the Grand Exchange.
+- **Keeps every account you play.** Add your main, your ironman and any alts, and switch between them from your name at the top. Each keeps its own stats, ticks, sessions, history and settings.
 - **Asks only what it needs to.** The hiscores do not list quests or diaries, so it asks a few yes or no questions about the ones that would change your plan.
 - **Tracks what you gained.** Finish a session and it tallies the XP, keeps a 14-day history and counts your streak.
 - **Has a guide for every skill.** [Every training method](https://longgame.tools/guides/), with levels, XP rates and requirements.
@@ -26,7 +27,7 @@ I kept logging in to Old School RuneScape, standing at the bank, doing nothing, 
 Go to [longgame.tools](https://longgame.tools) and type your display name. There is nothing to install and no account to create.
 
 - **It only needs your name.** It looks you up on the public hiscores. It never asks for a password and cannot touch your account.
-- **Your data stays with you.** Sessions, ticks and XP history are kept in your own browser. You can export them from Settings. The website counts visits with Cloudflare Web Analytics, which sets no cookies and does not follow you to other sites.
+- **Your data stays with you.** Sessions, ticks and XP history are kept in your own browser, for every account you add. You can export an account from Settings and import it again on another browser. The website counts visits with Cloudflare Web Analytics, which sets no cookies and does not follow you to other sites.
 - **It is free.** No adverts, no donations, no paid features.
 
 If you would rather keep your saves on your own machine, you can [run a local copy](#run-a-local-copy).
@@ -46,7 +47,7 @@ Long Game is a [Nuxt 4](https://nuxt.com) app in strict TypeScript, tested with 
 ### How the code is put together
 
 - **The rules of the game are pure functions** in `shared/domain`. They are handed the account, the time and the random source, so they are unit tested without a browser.
-- **Three Pinia stores** (`account`, `session`, `history`) hold the state and ask the domain for everything derived from it.
+- **Four Pinia stores** hold the state and ask the domain for everything derived from it: `account`, `session` and `history` hold the open account, and `account-list` keeps every saved account.
 - **Components only draw.** Each owns one BEM block named after the component and takes its colours and spacing from the tokens in `app/assets/styles/tokens.scss`.
 - **Server routes are thin**, with their checks in `server/utils` as tested functions.
 - **One codebase runs two ways:** the public website on Cloudflare, and a local copy on Node that keeps saves on disk.
@@ -112,7 +113,7 @@ npm run build:local
 npm run start:local
 ```
 
-Saves are in the `.data` folder at the top of the project. To use another port, set `LONGGAME_PORT` first.
+Saves are in the `.data` folder at the top of the project: every account in `accounts.json`, each XP history in `snapshots/`. To move an account between the website and a local copy, export it from Settings on one and import it on the other. To use another port, set `LONGGAME_PORT` first.
 
 ### Adding or correcting a method
 
