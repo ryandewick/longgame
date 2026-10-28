@@ -32,10 +32,6 @@ export const RACK_PICTURE_PALETTE = {
   stageFalloff: '#1b1411',
   /** --color-stat */
   stat: '#ffff00',
-  /** --color-stat-unfilled */
-  statUnfilled: '#7d7a0a',
-  /** --color-ink */
-  ink: '#16120f',
   /** --color-text-strong */
   textStrong: '#fff',
   /** --color-text */
@@ -73,10 +69,7 @@ const FONTS = {
 const MARGIN = 48
 
 /** The wordmark is 40px Poppins: each 9 drops 0.215em to sit like a g, and letters close up 0.045em. */
-const WORDMARK = { x: 120, baseline: 82, nineDrop: 8.6, tracking: -1.8, wordGap: 11 } as const
-
-/** The brand tile, and the 64 unit mark drawn on it at 70% from this corner. */
-const MARK = { x: 48, y: 40, size: 56, cornerRadius: 12, inset: 5.6, scale: 0.7 } as const
+const WORDMARK = { x: 48, baseline: 82, nineDrop: 8.6, tracking: -1.8, wordGap: 11 } as const
 
 /** The top of the brass rail. The capes hang from a little above it. */
 const RAIL_TOP = 296
@@ -140,18 +133,6 @@ export interface RackPictureLayout {
   readonly height: number
   /** The light falling on the stage from above: a radial glow centred off the top edge. */
   readonly glow: { readonly centreX: number; readonly centreY: number; readonly radius: number }
-  /** The brand tile and the mark on it. `progress` (0 to 1) is how far round the ring is filled. */
-  readonly mark: {
-    readonly x: number
-    readonly y: number
-    readonly size: number
-    readonly cornerRadius: number
-    /** Where the mark's own 64 unit square starts, and how much it is scaled by. */
-    readonly markX: number
-    readonly markY: number
-    readonly markScale: number
-    readonly progress: number
-  }
   readonly rail: {
     readonly x: number
     readonly y: number
@@ -336,16 +317,6 @@ export function rackPictureLayout(subject: RackPictureSubject): RackPictureLayou
     width: RACK_PICTURE_WIDTH,
     height: RACK_PICTURE_HEIGHT,
     glow: { centreX: RACK_PICTURE_WIDTH / 2, centreY: -140, radius: 920 },
-    mark: {
-      x: MARK.x,
-      y: MARK.y,
-      size: MARK.size,
-      cornerRadius: MARK.cornerRadius,
-      markX: MARK.x + MARK.inset,
-      markY: MARK.y + MARK.inset,
-      markScale: MARK.scale,
-      progress,
-    },
     rail: {
       x: RAIL.x,
       y: RAIL_TOP,

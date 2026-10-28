@@ -1,10 +1,9 @@
 /*
- * Writes the site's icon files into public/: the mark at rest, as the files a search engine, a
+ * Writes the site's icon files into public/: the mark on its tile, as the files a search engine, a
  * bookmark bar and a phone's home screen ask for by address.
  *
- * The app draws each player's own icon as a data URL (app/utils/brand-mark.ts), which a browser
- * can use and a search engine cannot: it needs a file it can fetch. Run this by hand when the
- * mark changes:
+ * The mark itself is drawn in code (app/utils/brand-mark.ts); a search engine, a bookmark bar and
+ * a phone need it as files they can fetch. Run this by hand when the mark changes:
  *
  *   node tools/social/icons.mjs
  *
@@ -13,14 +12,10 @@
 import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
-import { BRAND_MARK_RESTING_PROGRESS, brandMarkFaviconUrl } from '../../app/utils/brand-mark.ts'
+import { brandMarkSvg } from '../../app/utils/brand-mark.ts'
 
 const publicFolder = fileURLToPath(new URL('../../public/', import.meta.url))
-const DATA_URL_PREFIX = 'data:image/svg+xml,'
-
-const svg = decodeURIComponent(
-  brandMarkFaviconUrl(BRAND_MARK_RESTING_PROGRESS).slice(DATA_URL_PREFIX.length),
-)
+const svg = brandMarkSvg()
 
 /** The mark as a PNG this many pixels square. */
 function png(size) {

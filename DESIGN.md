@@ -5,7 +5,6 @@ colors:
   stat: "#ffff00"
   stat-hover: "#ffff66"
   stat-deep: "#c2bd00"
-  mark-unfilled: "#7d7a0a"
   ink: "#16120f"
   bg: "#191411"
   stage: "#100d0b"
@@ -189,9 +188,10 @@ components:
   nav-tab-active:
     textColor: "{colors.white}"
   icon-tile:
-    backgroundColor: "{colors.stat}"
+    backgroundColor: "{colors.bg}"
+    textColor: "{colors.stat}"
     rounded: "{rounded.tile}"
-    size: "36px"
+    size: "64 units"
   live-panel:
     backgroundColor: "{colors.panel}"
     textColor: "{colors.bone}"
@@ -277,7 +277,6 @@ A warm near-black room lit only by the capes, with one loud yellow that is the g
 - **Stat Yellow** (`stat`): the yellow the game writes levels in, and the only colour the brand owns. Its roles are listed in full in the Stat Yellow Rule below.
 - **Stat Yellow Hover** (`stat-hover`): the primary button on hover. No other use.
 - **Stat Yellow Deep** (`stat-deep`): the 3px inset lip along the bottom of the primary button. No other use.
-- **Unfilled Ring** (`mark-unfilled`): the part of the icon's ring and tail that progress has not reached yet, drawn on the yellow tile.
 
 ### Secondary
 Colour outside the brand belongs to the skillcapes. Each skill has a cape colour and a trim colour, sampled from the game's cape art and held in the `CAPE_COLOURS` table in `shared/domain/capes.ts`. That table is the source of truth; the values are listed here for reference.
@@ -320,11 +319,11 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 - **Bone** (`bone`): body text, links, default button text, and the fill of a selected chip or ticked checkbox.
 - **Ink 2** (`ink-2`): supporting text, notes, inactive tabs.
 - **Ink 3** (`ink-3`): the quietest text: 13px meta, table heads, help, locked rows.
-- **Ink** (`ink`): text on yellow, bone and parchment, and the filled part of the icon's ring.
+- **Ink** (`ink`): text on yellow, bone and parchment.
 - **Parchment** (`parchment`, `parchment-border`, `parchment-outline`, `dialog-blue`): the game's dialog box, used only for the level-up banner and the toast.
 
 ### Named Rules
-**The Stat Yellow Rule.** Stat yellow appears in these places and nowhere else: the two 9s of the wordmark; the icon tile and favicon; the player's readouts set in the RuneScape font; the 3px underline of the active tab; the one primary button in a group; the 2px outline of the live session slot and the small pointer under the live cape on the rack; text selection, the focus ring and the text caret. If a new use is not on this list, it is not yellow.
+**The Stat Yellow Rule.** Stat yellow appears in these places and nowhere else: the two 9s of the wordmark; the 99 of the icon; the player's readouts set in the RuneScape font; the 3px underline of the active tab; the one primary button in a group; the 2px outline of the live session slot and the small pointer under the live cape on the rack; text selection, the focus ring and the text caret. If a new use is not on this list, it is not yellow.
 
 **The Capes Own Colour Rule.** Any colour that is not stat yellow, due green, bad red or brass comes from the `CAPE_COLOURS` table and is attached to its skill. There is no second accent, and no colour is ever assigned to a category, a mood or a view.
 
@@ -340,7 +339,7 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 **Character:** A plain, friendly grotesque does all the talking so that the pixel font can be loud. The RuneScape font is the player's own numbers looking exactly as they do in the game; it is the one place the interface is allowed to look like the game's.
 
 ### Hierarchy
-- **Wordmark** (Poppins 800, 27px, line-height 1, -0.045em): the top bar only.
+- **Wordmark** (Poppins 800, 27px, line-height 1, -0.045em): the top bar only (and the share picture, at 40px).
 - **Headline** (Figtree 800, 34px, 1.05, -0.02em, white; 26px on phones): the title of the live panel.
 - **Title** (Figtree 800, 30px, 1, -0.02em, white; 24px on phones for the rack): the rack's heading and a skill's name on its detail.
 - **Section** (Figtree 800, 24px, 1, -0.02em, white): view and section headings, the modal title.
@@ -359,7 +358,7 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 A 32px RSB step with a 2px shadow is defined in the stylesheet but nothing uses it.
 
 ### Named Rules
-**The Three Voices Rule.** Figtree sets words. Poppins 800 sets the wordmark and nothing else. The RuneScape font sets the player's readouts and nothing else. In the build a readout is a number with the unit or word welded to it ("32 min, +25k xp", "12k xp to level 60", "Max cape"), and the two status words the game itself would say, "Due" and "Done". Headings, labels, buttons and sentences are never set in it.
+**The Three Voices Rule.** Figtree sets words. Poppins 800 sets the wordmark and nothing else (the icon's 99 is the wordmark's own 9, outlined). The RuneScape font sets the player's readouts and nothing else. In the build a readout is a number with the unit or word welded to it ("32 min, +25k xp", "12k xp to level 60", "Max cape"), and the two status words the game itself would say, "Due" and "Done". Headings, labels, buttons and sentences are never set in it.
 
 **The Sixteen Rule.** The RuneScape font is a pixel font drawn at 16px. Use it only at 16, 48 or 64, with font smoothing off, line-height 1, and the hard black shadow at 1px for 16 and 3px for the large sizes. The shadow belongs to this font. No other text carries one.
 
@@ -367,7 +366,7 @@ A 32px RSB step with a 2px shadow is defined in the stylesheet but nothing uses 
 
 ## Layout
 
-One centred column up to 1320px wide with 32px gutters (16px under 760px). The top bar is sticky at a minimum of 66px: icon and wordmark, the open account behind a 1px divider (its name opens the account menu), Refresh stats, and the seven tabs pushed right. The rack sits directly under it as a full-width band on Tonight and Skills only; the other five views start at the content.
+One centred column up to 1320px wide with 32px gutters (16px under 760px). The top bar is sticky at a minimum of 66px: the wordmark on its own, the open account behind a 1px divider (its name opens the account menu), Refresh stats, and the seven tabs pushed right. The rack sits directly under it as a full-width band on Tonight and Skills only; the other five views start at the content.
 
 Tonight splits two thirds to one third (`2fr` and a column of at least 260px, 40px apart): live panel and session on the left, resets, next capes and distance to max on the right. Quests splits in half with a 48px gap. A skill's detail splits one third to two thirds with a 40px gap. Session slots flow in an auto-filling grid of 180px minimum columns with a 10px gap. Forms are a single column up to 780px with 30px between fields.
 
@@ -408,7 +407,7 @@ One corner: 4px. It is on buttons, chips, inputs, checkboxes, tags, session slot
 
 The build carries a short, fixed list of other shapes, each with a reason:
 - **Square (0):** the parchment dialogs (level-up banner and toast), which keep the game's 2px dark border and 1px outer line; the XP bar, which is the game's; the stage band; the bars of the history chart.
-- **Icon tile (22%):** the app-icon shape of the brand tile, matched by the favicon (a 14 unit corner on a 64 unit square).
+- **Icon tile (22%):** the app-icon shape the icon is drawn on (a 14 unit corner on a 64 unit square).
 - **Round:** the 11px pace circle and the 8px stops on a skill strip.
 - **Rail and strip ends (2 to 3px):** the ends of the brass rail, the skill strip's fill and its position marker.
 
@@ -422,8 +421,8 @@ Flat, plain and quick to read; the capes and the pixel numbers do the showing of
 
 ### Brand
 - **Wordmark:** "long game" in lowercase Poppins 800, 27px, bone, with both g's replaced by 9s in stat yellow: "lon9 9ame", the hidden 99. Poppins draws lining figures, so each 9 is dropped 0.215em to sit like a descending g, and the line carries 0.2em of bottom padding for it. The mark is hidden from assistive tech and its link is labelled "Long Game". It is live web-font text today, not outlined.
-- **Icon:** one ring and a tail, a 9 and a g at once, on a stat yellow tile (36px in the top bar, 22% corners, mark at 80%). On a 64 unit canvas the ring is centred at 32, 26 with radius 14 and a 9.5 stroke; the tail drops from the right of the ring and hooks left. Ring and tail start in the unfilled olive; an ink arc grows clockwise from twelve o'clock with the account's share of the XP to max, and the tail turns ink only at 100%. Every player's icon is their own.
-- **Favicon:** the same mark on a yellow rounded square, scaled to 80%, redrawn on every render with live progress. Outside the app and on the setup screen it sits at three quarters.
+- **Icon:** the 99 the wordmark hides, pulled out on its own: two of the wordmark's Poppins 800 9s in stat yellow, tracked in until their bowls meet (the second starts 0.8 of a 9's width along), with a 22 font-unit cut of the tile's colour round the second so the two read as one 99. On the ground-coloured tile with a 2 unit edge, 22% corners, 8 units clear round the 99 on a 64 unit square (`app/utils/brand-mark.ts`). It goes only where a square is needed: the favicon files, the home screen icon and the holding page. The top bar and the share picture show the wordmark alone, so two 99s never sit side by side. Chosen 2026-10-28, after a single ring-and-tail 9 (read as a 9, not a 99), a stroked double 9, a letter monogram (l9: still not a 99), a wax seal and a hung cape were all turned down.
+- **Favicon:** the icon as files (`public/favicon.svg`, a 96px PNG, an .ico and a 180px touch icon) written by `tools/social/icons.mjs`. It is the same for every player.
 
 ### The Rack
 The signature component. A full-width stage band with a heading row (the capes count in large stat type, "capes" in Figtree, one line of levels and hours left, and a level-up banner at the right when there is one), then the rail.

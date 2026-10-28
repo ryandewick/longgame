@@ -1,62 +1,70 @@
 /*
- * The mark: one ring and a tail, a 9 and a g at once, drawn on a 64 unit square. The ring fills
- * clockwise from the top with the account's progress to max, so every player's icon is their
- * own. The tail only fills when the account is maxed.
+ * The icon: the 99 the wordmark hides, pulled out on its own. Both 9s are the wordmark's Poppins
+ * 800 9, tracked in until their bowls meet, with a hairline of the tile's colour cut round the
+ * second so they read as one 99. Stat yellow on the dark tile, drawn on a 64 unit square that is
+ * the tile itself.
+ *
+ * It is only for places that need a square (the favicon files, the home screen icon, the holding
+ * page). The header and the share picture show the wordmark on its own, so two 99s never sit side
+ * by side.
  */
-
-/** The ring: its centre, radius and stroke on the 64 unit canvas. */
-export const BRAND_MARK_RING = { centreX: 32, centreY: 26, radius: 14, strokeWidth: 9.5 } as const
-
-/** The tail drops from the right of the ring and hooks left. */
-export const BRAND_MARK_TAIL = 'M46 26V37c0 9.5-6 15-15 15h-5'
-
-/** What the mark shows outside the app and before an account is loaded: three quarters. */
-export const BRAND_MARK_RESTING_PROGRESS = 0.75
-
-/** Below this share of a turn the filled arc would be a speck, so none is drawn. */
-const SMALLEST_ARC = 0.004
-
-/** A full circle cannot be drawn as one arc (its ends would meet), so the fill stops just short. */
-const FULLEST_ARC = 0.9999
-
-/** Has the account reached max, which is when the tail fills too? `progress` runs from 0 to 1. */
-export function isBrandMarkComplete(progress: number): boolean {
-  return progress >= 1
-}
 
 /**
- * The path of the filled part of the ring for this much progress (0 to 1), or null when there is
- * too little to draw.
+ * Poppins 800's 9 (SIL Open Font License), in font units: y runs up, and the outline spans
+ * 41 to 569 across and -5 to 747 up.
  */
-export function brandMarkFillPath(progress: number): string | null {
-  const share = Math.max(0, Math.min(FULLEST_ARC, progress))
-  if (share <= SMALLEST_ARC) return null
-  const { centreX, centreY, radius } = BRAND_MARK_RING
-  const angle = share * 2 * Math.PI
-  const endX = (centreX + radius * Math.sin(angle)).toFixed(2)
-  const endY = (centreY - radius * Math.cos(angle)).toFixed(2)
-  const largeArc = share > 0.5 ? 1 : 0
-  return `M${centreX} ${centreY - radius}A${radius} ${radius} 0 ${largeArc} 1 ${endX} ${endY}`
+export const BRAND_MARK_NINE =
+  'M316 153Q361 153 377.5 195.5Q394 238 394 332Q374 303 338.0 286.0Q302 269 257 269Q161 269 101.0 329.0' +
+  'Q41 389 41 502Q41 576 72.0 631.5Q103 687 160.5 717.0Q218 747 295 747Q448 747 508.5 654.5Q569 562 569 386' +
+  'Q569 189 510.5 92.0Q452 -5 310 -5Q233 -5 177.5 26.5Q122 58 92.5 109.5Q63 161 59 221H242Q254 153 316 153Z' +
+  'M379 497Q379 537 358.5 557.0Q338 577 302 577Q266 577 245.5 556.5Q225 536 225 498Q225 463 245.5 442.0' +
+  'Q266 421 304 421Q339 421 359.0 441.5Q379 462 379 497Z'
+
+const NINE_BOUNDS = { left: 41, bottom: -5, width: 528, height: 752 } as const
+
+/** The second 9 starts this share of a 9's width along from the first: close enough for the bowls to meet. */
+const STEP = 0.8
+
+/** The cut round the second 9, in font units. */
+const GAP = 22
+
+/** The clear space kept round the 99 on the tile, in the 64 unit square. */
+const MARGIN = 8
+
+// An icon file cannot read the page's custom properties: these repeat --color-bg, --color-edge
+// and --color-stat from tokens.scss.
+const TILE_COLOUR = '#191411'
+const EDGE_COLOUR = '#3b3129'
+const NINE_COLOUR = '#ffff00'
+
+/** Where the 99 sits on the tile: its scale from font units, and where its bottom left lands. */
+export function brandMarkPlacement(): { scale: number; x: number; y: number; step: number } {
+  const step = NINE_BOUNDS.width * STEP
+  const width = step + NINE_BOUNDS.width
+  const scale = Math.min((64 - 2 * MARGIN) / width, (64 - 2 * MARGIN) / NINE_BOUNDS.height)
+  return {
+    scale,
+    x: 32 - (width * scale) / 2,
+    y: 32 + (NINE_BOUNDS.height * scale) / 2,
+    step,
+  }
 }
 
-// A favicon is an image file, so it cannot read the page's custom properties: these three repeat
-// --color-stat, --color-stat-unfilled and --color-ink from tokens.scss.
-const TILE_COLOUR = '#ffff00'
-const UNFILLED_COLOUR = '#7d7a0a'
-const FILLED_COLOUR = '#16120f'
+const round = (value: number): number => Math.round(value * 10000) / 10000
 
-/** The favicon for this much progress to max (0 to 1): the mark at 80% on the yellow tile, as a data URL. */
-export function brandMarkFaviconUrl(progress: number): string {
-  const { centreX, centreY, radius, strokeWidth } = BRAND_MARK_RING
-  const fillPath = brandMarkFillPath(progress)
-  const tailColour = isBrandMarkComplete(progress) ? FILLED_COLOUR : UNFILLED_COLOUR
-  const svg =
+/** The icon on its tile as a standalone SVG, for the icon files (tools/social/icons.mjs). */
+export function brandMarkSvg(): string {
+  const { scale, x, y, step } = brandMarkPlacement()
+  const at = (dx: number): string =>
+    `translate(${round(dx - NINE_BOUNDS.left)} ${-NINE_BOUNDS.bottom})`
+  return (
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
-    `<rect width="64" height="64" rx="14" fill="${TILE_COLOUR}"/>` +
-    `<g transform="translate(6.4 6.4) scale(.8)" fill="none" stroke-width="${strokeWidth}">` +
-    `<circle cx="${centreX}" cy="${centreY}" r="${radius}" stroke="${UNFILLED_COLOUR}"/>` +
-    `<path d="${BRAND_MARK_TAIL}" stroke="${tailColour}"/>` +
-    (fillPath ? `<path d="${fillPath}" stroke="${FILLED_COLOUR}"/>` : '') +
+    `<rect x="1" y="1" width="62" height="62" rx="14" fill="${TILE_COLOUR}" stroke="${EDGE_COLOUR}" stroke-width="2"/>` +
+    `<g transform="translate(${round(x)} ${round(y)}) scale(${round(scale)} ${round(-scale)})">` +
+    `<path d="${BRAND_MARK_NINE}" transform="${at(0)}" fill="${NINE_COLOUR}"/>` +
+    `<path d="${BRAND_MARK_NINE}" transform="${at(step)}" fill="${TILE_COLOUR}" stroke="${TILE_COLOUR}" ` +
+    `stroke-width="${GAP * 2}" stroke-linejoin="round"/>` +
+    `<path d="${BRAND_MARK_NINE}" transform="${at(step)}" fill="${NINE_COLOUR}"/>` +
     '</g></svg>'
-  return 'data:image/svg+xml,' + encodeURIComponent(svg)
+  )
 }

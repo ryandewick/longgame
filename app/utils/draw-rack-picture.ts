@@ -1,11 +1,5 @@
 import { capeImageUrl } from './assets'
 import {
-  BRAND_MARK_RING,
-  BRAND_MARK_TAIL,
-  brandMarkFillPath,
-  isBrandMarkComplete,
-} from './brand-mark'
-import {
   RACK_PICTURE_PALETTE,
   rackPictureFonts,
   type PictureCape,
@@ -112,33 +106,6 @@ function drawGround(context: CanvasRenderingContext2D, layout: RackPictureLayout
   context.fillRect(0, 0, layout.width, layout.height)
 }
 
-/** The brand tile with the mark on it, its ring filled as far as the account's progress to max. */
-function drawMark(context: CanvasRenderingContext2D, mark: RackPictureLayout['mark']): void {
-  const { stat, statUnfilled, ink } = RACK_PICTURE_PALETTE
-  const { centreX, centreY, radius, strokeWidth } = BRAND_MARK_RING
-  context.fillStyle = stat
-  context.beginPath()
-  context.roundRect(mark.x, mark.y, mark.size, mark.size, mark.cornerRadius)
-  context.fill()
-
-  context.save()
-  context.translate(mark.markX, mark.markY)
-  context.scale(mark.markScale, mark.markScale)
-  context.lineWidth = strokeWidth
-  context.strokeStyle = statUnfilled
-  context.beginPath()
-  context.arc(centreX, centreY, radius, 0, Math.PI * 2)
-  context.stroke()
-  context.strokeStyle = isBrandMarkComplete(mark.progress) ? ink : statUnfilled
-  context.stroke(new Path2D(BRAND_MARK_TAIL))
-  const filled = brandMarkFillPath(mark.progress)
-  if (filled) {
-    context.strokeStyle = ink
-    context.stroke(new Path2D(filled))
-  }
-  context.restore()
-}
-
 function drawRail(context: CanvasRenderingContext2D, rail: RackPictureLayout['rail']): void {
   const { brassLight, brass, brassDark, railShadow } = RACK_PICTURE_PALETTE
   context.fillStyle = railShadow
@@ -183,7 +150,6 @@ export async function drawRackPicture(layout: RackPictureLayout): Promise<HTMLCa
   const canvas = createCanvas(layout.width, layout.height)
   const context = context2d(canvas)
   drawGround(context, layout)
-  drawMark(context, layout.mark)
   drawRail(context, layout.rail)
   for (const [place, cape] of layout.capes.entries()) {
     const image = images[place]

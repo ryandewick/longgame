@@ -1,8 +1,8 @@
 <script setup lang="ts">
 /**
- * The top bar. With an account: the brand as a link home, whose mark shows progress to max, then
- * the open account (its name opens the menu of saved accounts), the refresh button and the tabs.
- * Without one (a new visitor, or a page whose save has not loaded yet) it is the brand alone.
+ * The top bar. With an account: the wordmark as a link home, then the open account (its name
+ * opens the menu of saved accounts), the refresh button and the tabs. Without one (a new visitor,
+ * or a page whose save has not loaded yet) it is the wordmark alone.
  */
 const account = useAccountStore()
 const ready = useSaveReady()
@@ -16,7 +16,7 @@ const hasAccount = computed(() => ready.value && account.hasAccount)
     <div class="app-header__bar page-width">
       <template v-if="hasAccount">
         <NuxtLink class="app-header__brand" to="/" aria-label="Long Game">
-          <BrandMark :progress="account.maxProgress.percent / 100" />
+          <BrandMark />
         </NuxtLink>
         <AccountSwitcher class="app-header__account" />
         <button

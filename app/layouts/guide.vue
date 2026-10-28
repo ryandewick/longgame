@@ -8,14 +8,6 @@ import { GUIDES_PATH } from '#shared/domain/guides'
  */
 const route = useRoute()
 const error = useError()
-const account = useAccountStore()
-const ready = useSaveReady()
-
-// A returning player's mark shows their own progress here too, once their save has loaded.
-const progress = computed(() =>
-  ready.value && account.hasAccount ? account.maxProgress.percent / 100 : undefined,
-)
-
 /** Addresses are compared without the slash a static host adds to the end. */
 const withoutEndSlash = (path: string): string => path.replace(/\/+$/, '')
 
@@ -37,7 +29,7 @@ const guidesCurrent = computed(() => {
     <header class="guide-layout__header">
       <div class="guide-layout__bar page-width">
         <NuxtLink class="guide-layout__brand" to="/" aria-label="Long Game">
-          <BrandMark :progress="progress" />
+          <BrandMark />
         </NuxtLink>
         <nav class="guide-layout__nav" aria-label="Site">
           <NuxtLink class="guide-layout__link" to="/">Planner</NuxtLink>

@@ -67,8 +67,6 @@ describe('the palette', () => {
     expect(palette.stageGlow).toBe(token('color-stage-glow'))
     expect(palette.stageFalloff).toBe(token('color-stage-falloff'))
     expect(palette.stat).toBe(token('color-stat'))
-    expect(palette.statUnfilled).toBe(token('color-stat-unfilled'))
-    expect(palette.ink).toBe(token('color-ink'))
     expect(palette.textStrong).toBe(token('color-text-strong'))
     expect(palette.text).toBe(token('color-text'))
     expect(palette.textMuted).toBe(token('color-text-muted'))
@@ -181,19 +179,9 @@ describe('rackPictureLayout', () => {
     })
   })
 
-  it('fills the mark as far as the max cape, never past full or below empty', () => {
-    expect(layout.mark.progress).toBe(0.25)
+  it('fills the max cape as far as the account is to max, never past full', () => {
     const over = rackPictureLayout(subjectWith({}, { maxProgress: progress({ percent: 140 }) }))
-    expect(over.mark.progress).toBe(1)
     expect(over.capes.at(-1)?.fill).toBe(1)
-    const under = rackPictureLayout(subjectWith({}, { maxProgress: progress({ percent: -5 }) }))
-    expect(under.mark.progress).toBe(0)
-  })
-
-  it('puts the 64 unit mark at 70% in the middle of its tile', () => {
-    const { x, y, size, markX, markY, markScale } = layout.mark
-    expect(markX - x).toBeCloseTo((size - 64 * markScale) / 2)
-    expect(markY - y).toBeCloseTo((size - 64 * markScale) / 2)
   })
 
   it('writes each level centred under its cape, in the game’s yellow with its shadow', () => {
@@ -220,7 +208,7 @@ describe('rackPictureLayout', () => {
   it('spells the wordmark a letter at a time, with both 9s yellow and dropped', () => {
     const wordmark = layout.lines[0]
     expect(wordmark?.runs.map((run) => run.text).join('')).toBe('lon99ame')
-    expect(wordmark).toMatchObject({ x: 120, baseline: 82, align: 'left' })
+    expect(wordmark).toMatchObject({ x: 48, baseline: 82, align: 'left' })
     for (const run of wordmark?.runs ?? []) {
       const isNine = run.text === '9'
       expect(run.colour).toBe(isNine ? RACK_PICTURE_PALETTE.stat : RACK_PICTURE_PALETTE.text)
