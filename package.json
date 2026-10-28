@@ -11,7 +11,7 @@
     "dev": "nuxt dev",
     "build:site": "nuxt build --preset cloudflare-module",
     "preview:site": "wrangler dev",
-    "deploy": "npm run build:site && wrangler deploy",
+    "deploy": "node -e \"console.error('The planner is not deployed while Jagex does not permit it as a website (see README). npm run deploy:placeholder keeps the holding page up.'); process.exit(1)\"",
     "build:local": "node tools/local-copy/build.ts",
     "start:local": "node tools/local-copy/start.ts",
     "postinstall": "nuxt prepare",
@@ -20,7 +20,8 @@
     "format:check": "prettier --check .",
     "typecheck": "nuxt typecheck",
     "test": "vitest run",
-    "check": "npm run lint && npm run typecheck && npm run test"
+    "check": "npm run lint && npm run typecheck && npm run test",
+    "deploy:placeholder": "wrangler deploy --config placeholder/wrangler.jsonc"
   },
   "dependencies": {
     "@pinia/nuxt": "^1.0.2",

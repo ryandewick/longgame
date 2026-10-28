@@ -1,0 +1,12 @@
+// The holding page that takes the planner's place on longgame.tools while it is offline (see worker.js).
+// It deploys under the planner's own Worker name and domain, so deploying it replaces the planner, and
+// deploying the planner would replace it. The planner's deploy script refuses to run while this is the case.
+//
+//   npm run deploy:placeholder
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "longgame",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "routes": [{ "pattern": "longgame.tools", "custom_domain": true }],
+}

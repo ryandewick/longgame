@@ -2,7 +2,7 @@
 
 **A free maxing planner for Old School RuneScape.** Type your display name and see all 24 skillcapes on one rail, how far each is from 99, and a training session built for your account tonight.
 
-**[longgame.tools](https://longgame.tools)**
+**The website is offline.** Jagex's Fan Content Policy does not permit software or applications that use Jagex property, and Jagex confirmed in October 2026 that this includes Long Game, free and unofficial as it is. It now runs only as a [local copy](#run-a-local-copy) on your own machine.
 
 ![Every skillcape on one rail, filling toward 99](public/og.png)
 
@@ -20,11 +20,11 @@ I kept logging in to Old School RuneScape, standing at the bank, doing nothing, 
 - **Keeps every account you play.** Add your main, your ironman and any alts, and switch between them from your name at the top. Each keeps its own stats, ticks, sessions, history and settings.
 - **Asks only what it needs to.** The hiscores do not list quests or diaries, so it asks a few yes or no questions about the ones that would change your plan.
 - **Tracks what you gained.** Finish a session and it tallies the XP, keeps a 14-day history and counts your streak.
-- **Has a guide for every skill.** [Every training method](https://longgame.tools/guides/), with levels, XP rates and requirements.
+- **Has a guide for every skill.** Every training method, with levels, XP rates and requirements.
 
 ## Using it
 
-Go to [longgame.tools](https://longgame.tools) and type your display name. There is nothing to install and no account to create.
+Start a [local copy](#run-a-local-copy) and type your display name. There is no account to create.
 
 - **It only needs your name.** It looks you up on the public hiscores. It never asks for a password and cannot touch your account.
 - **Your data stays with you.** Sessions, ticks and XP history are kept in your own browser, for every account you add. You can export an account from Settings and import it again on another browser. The website counts visits with Cloudflare Web Analytics, which sets no cookies and does not follow you to other sites.
@@ -94,8 +94,10 @@ The website is one Cloudflare Worker. Cloudflare serves the prerendered pages an
 ```
 npm run build:site      build with Nitro's cloudflare-module preset
 npm run preview:site    run that build under Cloudflare's runtime on this machine (no login needed)
-npm run deploy          build, then publish with wrangler
+npm run deploy          refuses while the site is offline
 ```
+
+While the site is offline, `longgame.tools` serves a holding page instead (`placeholder/worker.js`, deployed with `npm run deploy:placeholder`). The holding page answers 410 Gone for every old address, so search engines drop them.
 
 The suggestion form needs one secret on the Worker, `NUXT_GITHUB_TOKEN`: a fine-grained GitHub token with Issues: write on the repository that receives suggestions. Store it with `npx wrangler secret put NUXT_GITHUB_TOKEN`. Until it is set, the form answers that suggestions are not switched on.
 
