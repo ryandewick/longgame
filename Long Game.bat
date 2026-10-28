@@ -30,6 +30,16 @@ if errorlevel 1 (
   goto failed
 )
 
+rem "Long Game.bat prepare" only installs and builds when that is needed, and starts nothing. The desktop shortcut
+rem (tools\local-copy\open-app.ps1) runs it so that the work, and any problem, shows in this window; it then opens
+rem Long Game in a window of its own.
+if /i "%~1"=="prepare" (
+  node tools\local-copy\launch.ts --prepare
+  if errorlevel 1 goto failed
+  endlocal
+  exit /b 0
+)
+
 rem Installs and builds when that is needed (the first run, or after the code changes), starts the server on
 rem http://localhost:8765/ and opens the browser. Saves are kept in the .data folder beside this file.
 rem To use another port, set LONGGAME_PORT before running this.

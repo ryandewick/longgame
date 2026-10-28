@@ -107,6 +107,14 @@ A local copy is the same app on your own machine, with your sessions and XP hist
 
 On Windows, double-click `Long Game.bat`. The first run installs what it needs and builds, which takes a few minutes. After that it starts straight away and rebuilds by itself when the code has changed. It opens http://localhost:8765/ in your browser.
 
+To have it open like a desktop app instead, in a window of its own with no tabs, no address bar and no console, make a shortcut that runs:
+
+```
+powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "<project>\tools\local-copy\open-app.ps1"
+```
+
+It opens Long Game in a Chrome app window (Edge when Chrome is not installed), and closing that window stops it. A console shows only while it installs or builds after the code has changed, and a problem is shown in a message box.
+
 On anything else:
 
 ```

@@ -1,7 +1,9 @@
 import { spawn, spawnSync } from 'node:child_process'
 import { existsSync, rmSync, writeFileSync } from 'node:fs'
 import { createServer } from 'node:net'
+import { tmpdir } from 'node:os'
 import { pathToFileURL } from 'node:url'
+import { appBrowserCandidates, appProfileDirectory, appWindowArguments } from './app-window.ts'
 import {
   isBuildStale,
   isInstallStale,
@@ -40,6 +42,9 @@ const START_TIMEOUT_MILLISECONDS = 30_000
 function hasAddOn(): boolean {
   return existsSync(projectPath(LOCAL_ADD_ON_CONFIG))
 }
+
+/** The address a local copy answers on: localhost, as it has always been opened. */
+const addressOf = (port: number): string => `http://localhost:${port}/`
 
 /** The port to serve on, from LONGGAME_PORT. */
 function configuredPort(): number {
@@ -135,13 +140,16 @@ function openInBrowser(address: string): void {
   browser.unref()
 }
 
+/** Whether a local copy started here, or one was already running on the port and is used instead. */
+export type StartOutcome = 'started' | 'already-running'
+
 /**
  * Starts the built server and keeps this process running as that server. When a local copy is already running on
  * the port, that one is used and this returns straight away.
  */
-export async function startLocalCopy(options: { openBrowser: boolean }): Promise<void> {
+export async function startLocalCopy(options: { openBrowser: boolean }): Promise<StartOutcome> {
   const port = configuredPort()
-  const address = `http://localhost:${port}/`
+  const address = addressOf(port)
 
   if (!(await isPortFree(port))) {
     if (!(await isLongGameAnswering(port))) {
@@ -151,7 +159,7 @@ export async function startLocalCopy(options: { openBrowser: boolean }): Promise
     }
     console.log(`Long Game is already running at ${address}`)
     if (options.openBrowser) openInBrowser(address)
-    return
+    return 'already-running'
   }
   if (!existsSync(projectPath(LOCAL_SERVER_ENTRY))) {
     throw new ReadableError('There is no local build yet. Run "npm run build:local" first.')
@@ -171,13 +179,18 @@ export async function startLocalCopy(options: { openBrowser: boolean }): Promise
   console.log(`Your saves are in ${projectPath('.data')}`)
   console.log('Leave this window open while you play. Close it to stop.')
   if (options.openBrowser) openInBrowser(address)
+  return 'started'
 }
 
-/**
- * Everything the launcher does: installs on a first run or after package-lock.json changes, builds on a first run
- * or after the sources change, then starts the server and opens the browser.
- */
-export async function launchLocalCopy(): Promise<void> {
+/** Whether Long Game can start straight away: installed and built, with nothing changed since. */
+export function isPrepared(): boolean {
+  if (isInstallStale(modifiedTime(INSTALL_RECORD), modifiedTime(LOCKFILE))) return false
+  const stamp = parseBuildStamp(readText(LOCAL_BUILD_STAMP))
+  return !isBuildStale(stamp, newestModifiedTime(LOCAL_BUILD_SOURCES), hasAddOn())
+}
+
+/** Installs on a first run or after package-lock.json changes, and builds on a first run or after the sources change. */
+export function prepareLocalCopy(): void {
   if (isInstallStale(modifiedTime(INSTALL_RECORD), modifiedTime(LOCKFILE))) {
     console.log('Installing what Long Game needs. The first time takes a few minutes.')
     installDependencies()
@@ -187,14 +200,86 @@ export async function launchLocalCopy(): Promise<void> {
     console.log('Building Long Game. This takes a minute.')
     buildLocalCopy()
   }
+}
+
+/**
+ * After the app window closes, the page's last change may still be on its way to the server: it is given this long
+ * to arrive before the server stops.
+ */
+const CLOSING_GRACE_MILLISECONDS = 1500
+
+/**
+ * What the desktop shortcut runs, through open-app.ps1, with no console window: starts the server and shows Long Game
+ * in an app window of Chrome or Edge (no tabs, no address bar, a profile of its own), then stops the server when that
+ * window closes. When a local copy is already running, a window opens on it and this ends at once.
+ */
+export async function runAsAppWindow(): Promise<void> {
+  const browser = appBrowserCandidates(process.env).find((candidate) => existsSync(candidate.path))
+  if (!browser) {
+    throw new ReadableError(
+      'Long Game opens in a window of Chrome or Edge, and neither is installed. Start it with Long Game.bat, which uses your usual browser.',
+    )
+  }
+  const outcome = await startLocalCopy({ openBrowser: false })
+  const profile = appProfileDirectory(browser.name, process.env.LOCALAPPDATA ?? tmpdir())
+  const window = spawn(browser.path, appWindowArguments(addressOf(configuredPort()), profile), {
+    stdio: 'ignore',
+    detached: true,
+  })
+  if (outcome === 'already-running') {
+    // the server belongs to the launcher that started it, which stops it when its own window closes
+    window.unref()
+    return
+  }
+  await new Promise<void>((resolve) => {
+    window.once('exit', () => resolve())
+    window.once('error', () => resolve())
+  })
+  await new Promise((resolve) => setTimeout(resolve, CLOSING_GRACE_MILLISECONDS))
+  process.exit(0)
+}
+
+/**
+ * Shows a failure in a message box, for when the launcher runs with no console window to print it in. Windows only;
+ * elsewhere nothing is shown beyond the printed message.
+ */
+function showErrorDialog(message: string): void {
+  if (process.platform !== 'win32') return
+  // the message goes in through the environment, so nothing in it can be read as PowerShell
+  spawnSync(
+    'powershell.exe',
+    [
+      '-NoProfile',
+      '-Command',
+      // Windows Forms' box, not WPF's: WPF's returns at once, unshown, from a process with no window of its own
+      "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show($env:LONGGAME_MESSAGE, 'Long Game', 'OK', 'Error') | Out-Null",
+    ],
+    { env: { ...process.env, LONGGAME_MESSAGE: message }, stdio: 'ignore' },
+  )
+}
+
+/**
+ * Everything the launcher does by default (Long Game.bat): installs and builds as needed, then starts the server and
+ * opens the player's usual browser.
+ */
+export async function launchLocalCopy(): Promise<void> {
+  prepareLocalCopy()
   await startLocalCopy({ openBrowser: true })
 }
 
-/** Runs one of the commands. When it cannot finish, the process ends with a message and a failing exit code. */
-export async function runCommand(command: () => void | Promise<void>): Promise<void> {
+/**
+ * Runs one of the commands. When it cannot finish, the process ends with a message and a failing exit code; with
+ * `errorsInDialog`, for a launcher that has no console window, the message is shown in a message box as well.
+ */
+export async function runCommand(
+  command: () => void | Promise<void>,
+  options: { errorsInDialog?: boolean } = {},
+): Promise<void> {
   try {
     await command()
   } catch (error) {
+    const message = error instanceof ReadableError ? error.message : String(error)
+    if (options.errorsInDialog) showErrorDialog(message)
     console.error('')
     console.error(error instanceof ReadableError ? error.message : error)
     process.exit(1)
