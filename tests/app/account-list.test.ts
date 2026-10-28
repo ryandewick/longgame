@@ -23,6 +23,7 @@ describe('accountRows', () => {
     const rows = accountRows(
       [newAccountSave('kodify', stats(), 'iron'), newAccountSave('Bankstander', stats(), 'main')],
       0,
+      NOW,
     )
     expect(rows.map((row) => [row.name, row.kind, row.isOpen])).toEqual([
       ['kodify', 'Ironman', true],
@@ -31,7 +32,7 @@ describe('accountRows', () => {
   })
 
   it("shows each account by its three highest capes, the highest last and a 99's trimmed", () => {
-    const [row] = accountRows([newAccountSave('kodify', stats(), 'iron')], 0)
+    const [row] = accountRows([newAccountSave('kodify', stats(), 'iron')], 0, NOW)
     expect(row?.capes).toEqual([
       { skill: 'firemaking', trimmed: false },
       { skill: 'fishing', trimmed: false },
@@ -43,6 +44,7 @@ describe('accountRows', () => {
     const [open, other] = accountRows(
       [newAccountSave('kodify', stats(), 'iron'), newAccountSave('Bankstander', stats(), null)],
       0,
+      NOW,
     )
     expect(open?.totalLevel).toBe('1,529')
     expect(open?.label).toBe('kodify, Ironman, total level 1,529, open now')
@@ -50,11 +52,25 @@ describe('accountRows', () => {
     expect(other?.label).toBe('Bankstander, Main, total level 1,529')
   })
 
+  it('says under each name its kind and how fresh its stats are', () => {
+    const [iron, main] = accountRows(
+      [
+        newAccountSave('kodify', stats(NOW - 5 * MINUTE), 'iron'),
+        newAccountSave('Bankstander', stats(NOW), 'main'),
+      ],
+      0,
+      NOW,
+    )
+    expect(iron?.detail).toBe('Ironman, stats 5 min ago')
+    expect(main?.detail).toBe('Main, stats just now')
+  })
+
   it('leaves out what an account that never loaded has not got', () => {
-    const [row] = accountRows([{ ...blankSave(), name: 'Zezlma' }], null)
+    const [row] = accountRows([{ ...blankSave(), name: 'Zezlma' }], null, NOW)
     expect(row).toEqual({
       name: 'Zezlma',
       kind: 'Main',
+      detail: 'Main',
       totalLevel: '',
       capes: [],
       isOpen: false,

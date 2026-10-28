@@ -84,6 +84,16 @@ function returnToTop(path: string): void {
     }
   }
 
+  // the top bar as one tight row: see AppHeader
+  @media (min-width: 761px) and (max-width: 1200px) {
+    gap: 0;
+
+    &__tab {
+      padding-inline: 9px;
+      font-size: 14px;
+    }
+  }
+
   @media (max-width: 760px) {
     flex-wrap: wrap;
     overflow: visible;

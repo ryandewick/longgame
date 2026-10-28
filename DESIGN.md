@@ -347,7 +347,7 @@ When a cape colour has to read as a thin line on the ground (XP bar fill, skill 
 - **Lede** (Figtree 600, 16px, 1.45, max 74ch): the one summary sentence at the top of History.
 - **Body** (Figtree 400, 15px, 1.5, bone): everything else. Notes cap at 48 to 72ch.
 - **Row title** (Figtree 700, 16px, 1.25, white): the name in a table row or slot.
-- **Control** (Figtree 700, 14px, 1.2; 13px small): buttons. Chips are 600 at 14px, tabs 600 at 15px, field labels 700 at 15px.
+- **Control** (Figtree 700, 14px, 1.2; 13px small): buttons. Chips are 600 at 14px, tabs 600 at 15px (14px where the top bar is one tight row), field labels 700 at 15px.
 - **Label** (Figtree 500 to 600, 13px, 1.2 to 1.45, ink 3): table heads, meta lines, help text. Sentence case, no tracking, never uppercase.
 - **Tag** (Figtree 700, 12px, 1): "Best now", "Run", "Tick-perfect", "Locked", "Started", "Open". The smallest text in the system.
 - **Stat** (RS, 16px, line-height 1, 1px 1px 0 black shadow): levels, XP, clocks and rates inline.
@@ -366,7 +366,7 @@ A 32px RSB step with a 2px shadow is defined in the stylesheet but nothing uses 
 
 ## Layout
 
-One centred column up to 1320px wide with 32px gutters (16px under 760px). The top bar is sticky at a minimum of 66px: the wordmark on its own, the open account behind a 1px divider (its name opens the account menu), Refresh stats, and the seven tabs pushed right. The rack sits directly under it as a full-width band on Tonight and Skills only; the other five views start at the content.
+One centred column up to 1320px wide with 32px gutters (16px under 760px). The top bar is sticky at a minimum of 66px: the wordmark on its own, the open account behind a 1px divider (its name opens the account menu), Refresh stats, and the seven tabs pushed right. Between 761px and 1200px, too narrow for that but wider than a phone (the desktop app beside the game), it stays one row: the account shows its name alone, Refresh stats becomes a 34px square button with a refresh icon, and the tabs close up. From 860px down the tabs take a row of their own, the first one's words under the wordmark. The rack sits directly under it as a full-width band on Tonight and Skills only; the other five views start at the content.
 
 Tonight splits two thirds to one third (`2fr` and a column of at least 260px, 40px apart): live panel and session on the left, resets, next capes and distance to max on the right. Quests splits in half with a 48px gap. A skill's detail splits one third to two thirds with a 40px gap. Session slots flow in an auto-filling grid of 180px minimum columns with a 10px gap. Forms are a single column up to 780px with 30px between fields.
 
@@ -374,6 +374,7 @@ Spacing is set per relationship rather than from a strict scale. The recurring d
 
 Responsive behaviour:
 - **2000px and wider:** the whole page is zoomed 1.25 so a maximised window on a 1440p monitor is not a small sheet in the middle.
+- **1200px and narrower:** the top bar's tight row (see above).
 - **1000px and narrower:** every split becomes one column and the "Best now" column of the skills table is dropped.
 - **760px and narrower:** the top bar stops sticking, the account takes a row of its own under the brand and Refresh stats, the tabs wrap onto their own row, the rack becomes two rows of twelve, the live panel stacks with the trim band moving from the right edge to the bottom of the swatch, and the skills table drops "To 99" and "Time left". The layout holds to 390px.
 
@@ -470,12 +471,12 @@ Option pickers and toggles. Slot surface with a 1px inset edge, ink 2 text at 60
 - **Goal row:** name in white at 700, its progress ("6/7") in stat type with the time left in white stat type beside it, what it gives in 13px ink 2, a 3px bone line on the edge colour as far as it is done, then what is left in bone and the levels short in warning red. Done goals are a banded list with "Done" in green stat type.
 
 ### Navigation
-Seven text tabs in the top bar, Figtree 600 at 15px, ink 2, white on hover. The active tab is white with a 3px stat yellow underline. On phones the tabs wrap under the brand.
+Seven text tabs in the top bar, Figtree 600 at 15px, ink 2, white on hover. The active tab is white with a 3px stat yellow underline. Where the bar is one tight row (761px to 1200px) they are 14px with 9px either side and no gap; from 860px down they take a row of their own. On phones the tabs wrap under the brand.
 
 ### Account Menu
-The open account in the top bar is a button: its name in bone at 600 with a small ink 2 caret, how fresh its stats are under it in 13px ink 3, the way the bar has always shown the account. Hover and open put the lift surface behind it, and the caret turns up while the menu is open. On phones it is a row of its own under the brand and Refresh stats, the name and the status on one line.
+The open account in the top bar is a button: its name in bone at 600 with a small ink 2 caret, how fresh its stats are under it in 13px ink 3, the way the bar has always shown the account. Where the bar is one tight row (761px to 1200px) the button is the name alone and the status is read in the menu. Hover and open put the lift surface behind it, and the caret turns up while the menu is open. On phones it is a row of its own under the brand and Refresh stats, the name and the status on one line.
 - **Menu:** an overlay below the button, 344px wide (as wide as the row on phones), on the panel surface with the modal's strong edge and deep shadow, 4px corners and 8px inside. A "Your accounts" label in 13px ink 3, then a row per saved account in the order they were added, a 1px edge rule, and "Add an account".
-- **Row:** each account is known by its three highest skills' capes, fanned 15 degrees apart from one hanger in a 52px column, 24px wide, the highest hung on top, a 99 in its trimmed render; then its name in white at 700 and its kind ("Ironman", "Main") in 13px ink 3; and at the right its total level in yellow stat type over "total level" in 12px ink 3. Hover is the lift surface. The open account's row is the selected-row surface with an "Open" tag after the name. While a lookup is under way the other rows are at 50%, since its answer is for the open account.
+- **Row:** each account is known by its three highest skills' capes, fanned 15 degrees apart from one hanger in a 52px column, 24px wide, the highest hung on top, a 99 in its trimmed render; then its name in white at 700 and its kind with how fresh its stats are ("Ironman, stats 5 min ago"; the kind alone before they have loaded) in 13px ink 3; and at the right its total level in yellow stat type over "total level" in 12px ink 3. Hover is the lift surface. The open account's row is the selected-row surface with an "Open" tag after the name. While a lookup is under way the other rows are at 50%, since its answer is for the open account.
 - **Add an account:** bone at 600, after a plus in a 24px box the shape of an empty tick box, in the same 52px column as the capes.
 
 ### Add an Account

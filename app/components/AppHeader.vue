@@ -9,6 +9,7 @@ const ready = useSaveReady()
 const { isRefreshing, refresh } = useStatsRefresh()
 
 const hasAccount = computed(() => ready.value && account.hasAccount)
+const refreshLabel = computed(() => (isRefreshing.value ? 'Fetching…' : 'Refresh stats'))
 </script>
 
 <template>
@@ -22,10 +23,15 @@ const hasAccount = computed(() => ready.value && account.hasAccount)
         <button
           type="button"
           class="button button--small app-header__refresh"
+          :title="refreshLabel"
           :disabled="isRefreshing"
           @click="refresh"
         >
-          {{ isRefreshing ? 'Fetching…' : 'Refresh stats' }}
+          <svg class="app-header__refresh-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9" />
+            <path d="M13.5 2.5v3h-3" />
+          </svg>
+          <span class="app-header__refresh-label">{{ refreshLabel }}</span>
         </button>
         <AppNav class="app-header__nav" />
       </template>
@@ -63,6 +69,77 @@ const hasAccount = computed(() => ready.value && account.hasAccount)
 
   &__nav {
     margin-left: auto;
+  }
+
+  // shown only when Refresh stats is an icon
+  &__refresh-icon {
+    display: none;
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  // Too narrow for the bar as above but wider than a phone, such as the desktop app beside the
+  // game: still one row. The account's status moves into its menu, Refresh stats becomes an icon
+  // (its words kept for screen readers and its tooltip) and the tabs close up.
+  @media (min-width: 761px) and (max-width: 1200px) {
+    &__bar {
+      flex-wrap: nowrap;
+      column-gap: 16px;
+    }
+
+    &__account {
+      padding-left: 16px;
+    }
+
+    &__refresh {
+      display: grid;
+      flex: none;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+    }
+
+    &__refresh-icon {
+      display: block;
+    }
+
+    &__refresh-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    &__nav {
+      flex: none;
+    }
+  }
+
+  // Narrower still, the row cannot hold a long name: the tabs take a row of their own, the first
+  // tab's words under the wordmark (the tabs' 9px of padding is pulled out on both sides).
+  @media (min-width: 761px) and (max-width: 860px) {
+    &__bar {
+      flex-wrap: wrap;
+      row-gap: 2px;
+    }
+
+    &__refresh {
+      margin-left: auto;
+    }
+
+    &__nav {
+      order: 1;
+      width: calc(100% + 18px);
+      margin-inline: -9px;
+    }
   }
 
   // Phones: the bar scrolls away with the page, the account takes a row of its own under the

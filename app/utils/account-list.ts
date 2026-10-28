@@ -20,6 +20,8 @@ export interface AccountRow {
   readonly name: string
   /** 'Ironman' or 'Main'. Until the lookup has said, an account is planned as a main. */
   readonly kind: string
+  /** The line under its name: its kind and how fresh its stats are ('Ironman, stats 2 days ago'). */
+  readonly detail: string
   /** Its total level as the game writes it ('1,647'); empty before its stats have ever loaded. */
   readonly totalLevel: string
   /** Its three highest skills' capes, the highest last, so it hangs on top of the fan. */
@@ -45,9 +47,13 @@ function capesOf(hiscores: SavedHiscores | null): AccountCape[] {
 export function accountRows(
   accounts: readonly SavedState[],
   openIndex: number | null,
+  now: number,
 ): AccountRow[] {
   return accounts.map((save, place) => {
     const kind = kindOf(save.accountType)
+    const detail = save.hiscores
+      ? `${kind}, stats ${formatTimeAgo(save.hiscores.fetchedAt, now)}`
+      : kind
     const totalLevel = save.hiscores ? formatNumber(save.hiscores.totalLevel) : ''
     const isOpen = place === openIndex
     const label = [
@@ -58,7 +64,15 @@ export function accountRows(
     ]
       .filter(Boolean)
       .join(', ')
-    return { name: save.name, kind, totalLevel, capes: capesOf(save.hiscores), isOpen, label }
+    return {
+      name: save.name,
+      kind,
+      detail,
+      totalLevel,
+      capes: capesOf(save.hiscores),
+      isOpen,
+      label,
+    }
   })
 }
 

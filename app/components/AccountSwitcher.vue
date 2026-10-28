@@ -4,8 +4,9 @@ import type { AccountRow } from '~/utils/account-list'
 /**
  * The account in the top bar, and the menu of saved accounts it opens. The button is the open
  * account's name with how fresh its stats are under it. The menu lists every saved account in the
- * order they were added, each known by its three highest capes, its type and its total level, the
- * open one marked, then "Add an account".
+ * order they were added, each known by its three highest capes, its type, how fresh its stats are
+ * and its total level, the open one marked, then "Add an account". Where the top bar is one tight
+ * row the button shows the name alone, and the menu is where the status is read.
  *
  * It is a disclosure: a button that shows and hides a panel of ordinary buttons, reached with Tab.
  * Escape, a click outside it, moving the focus out of it and a change of page close it. While a
@@ -21,7 +22,7 @@ const route = useRoute()
 const now = useNow(30_000)
 const status = computed(() => accountStatus(account.accountType, account.hiscores, now.value))
 const buttonLabel = computed(() => accountButtonLabel(account.name, status.value))
-const rows = computed(() => accountRows(list.accounts, list.openIndex))
+const rows = computed(() => accountRows(list.accounts, list.openIndex, now.value))
 
 const root = useTemplateRef('root')
 const trigger = useTemplateRef('trigger')
@@ -127,7 +128,7 @@ watch(
                 {{ row.name }}
                 <span v-if="row.isOpen" class="tag">Open</span>
               </span>
-              <span class="account-switcher__kind">{{ row.kind }}</span>
+              <span class="account-switcher__kind">{{ row.detail }}</span>
             </span>
             <span v-if="row.totalLevel" class="account-switcher__total">
               <GameNumber>{{ row.totalLevel }}</GameNumber>
@@ -364,6 +365,13 @@ watch(
 
     &::after {
       transform: rotate(90deg);
+    }
+  }
+
+  // the top bar as one tight row: see AppHeader
+  @media (min-width: 761px) and (max-width: 1200px) {
+    &__status {
+      display: none;
     }
   }
 
