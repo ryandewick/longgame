@@ -147,7 +147,9 @@ export function newAccountSave(
   hiscores: SavedHiscores,
   accountType: AccountType | null,
 ): SavedState {
-  return { ...blankSave(), name, hiscores, accountType }
+  // Not a spread of blankSave(): the server build folds the call into the object literal, which
+  // then holds these three keys twice, and the Worker's bundler warns about it on every deploy.
+  return Object.assign(blankSave(), { name, hiscores, accountType })
 }
 
 /**
