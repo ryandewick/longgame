@@ -100,13 +100,6 @@ useHead({
   &__content {
     padding-top: 24px;
     padding-bottom: 64px;
-    // crossfades and rises when the page changes (see view-transitions.scss)
-    view-transition-name: main;
-
-    // Where the browser cannot animate a change of page itself, the new page still rises in.
-    @supports not (view-transition-name: none) {
-      animation: planner-page-rise 0.22s ease-out both;
-    }
   }
 
   @media (max-width: 760px) {
@@ -127,12 +120,5 @@ useHead({
 
 .returning-player .planner-page__first-visit {
   display: none;
-}
-
-@keyframes planner-page-rise {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
 }
 </style>

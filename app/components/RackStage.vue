@@ -40,8 +40,6 @@ defineProps<{
     var(--color-stage-falloff) 45%,
     var(--color-stage) 80%
   );
-  // holds still while the page below it changes (see view-transitions.scss)
-  view-transition-name: stage;
 
   &__top {
     display: flex;

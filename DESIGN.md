@@ -265,7 +265,7 @@ Three looks were rejected before this one and the system is defined partly again
 - Three type voices with fixed jobs: Figtree for words, Poppins 800 for the wordmark only, the RuneScape font for the player's readouts only.
 - Flat, warm, tonal surfaces with 1px edges. Shadows appear only on overlays and on capes that come forward.
 - Game hints, not a game costume: icons, capes, the stat font, the parchment dialog. Nothing else is borrowed.
-- Motion marks six moments and a change of tab, and nothing else.
+- Motion marks six moments and nothing else. A change of tab is instant.
 
 **The Hints Not Costume Rule.** The game supplies icons, cape art, cape colours, the stat font and the parchment dialog. Panels, buttons, tabs, tables and inputs are never skinned as stone, scroll or the game's side panels.
 
@@ -514,9 +514,9 @@ GSAP, and only for the six moments below. The markup is final before any tween s
 - **Tally:** gains count up (0.9s), each trained cape fills to its new level (1.2s), a white "+12,400 xp" rises off the cape and fades the way the game's XP drops do, and the level-up banner drops in.
 - **The first-visit page:** each block below the fold eases in as it is scrolled to (0.5s), and a feature's cape fills as it arrives (1.1s). A block already in view on load is left alone.
 
-Outside GSAP: three small CSS transitions (buttons 120ms, the cape hover 160ms, the time-progress line 1s linear between clock ticks), and a change of tab, which uses the browser's View Transitions API: the header and the rack hold still, the page below crossfades and rises 8px, and the yellow line slides to the new tab (`app/assets/styles/view-transitions.scss`).
+Outside GSAP: three small CSS transitions (buttons 120ms, the cape hover 160ms, the time-progress line 1s linear between clock ticks). A change of tab is instant: the page and the yellow line simply change. A page-change animation (a crossfade with the page rising, the line sliding) was built and taken out on 28 October 2026: between pages of different heights the browser's morph read as zooming in and out.
 
-**The Six Moments Rule.** Nothing loops, and nothing in the planner animates on scroll. If a new animation is not one of the six moments, the tab change, or the answer to a press or hover, it does not ship. Under reduced motion every tween is skipped and all CSS transitions are off.
+**The Six Moments Rule.** Nothing loops, and nothing in the planner animates on scroll. If a new animation is not one of the six moments or the answer to a press or hover, it does not ship. Under reduced motion every tween is skipped and all CSS transitions are off.
 
 ## Do's and Don'ts
 
@@ -545,5 +545,5 @@ Outside GSAP: three small CSS transitions (buttons 120ms, the cape hover 160ms, 
 - **Don't** set headings, labels, buttons or sentences in the RuneScape font, and don't use Poppins for anything but the wordmark.
 - **Don't** put a hard shadow on Figtree text or a soft glow on anything but a maxed cape.
 - **Don't** add pills, larger radii, rounded translucent cards or tracked-out uppercase labels.
-- **Don't** add motion beyond the six moments and the tab change: no loops, and no scroll effects in the planner.
+- **Don't** add motion beyond the six moments: no loops, no animated change of page, and no scroll effects in the planner.
 - **Don't** smooth, tint, recolour or redraw the game's icons and cape renders.

@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 /*
  * Motion. GSAP animates a handful of moments and nothing else: the rack filling on the first
  * load, a deal, a block going live, a swap and the tally. (The landing content coming in as it is
- * scrolled to is `useReveal`; a change of page is the browser's own view transition.)
+ * scrolled to is `useReveal`; a change of page is instant.)
  *
  * Every screen is complete without any of it. A screen is drawn in its final state first, and a
  * tween only ever starts from somewhere else and comes back to that state, clearing the inline

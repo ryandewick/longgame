@@ -42,8 +42,6 @@ const hasAccount = computed(() => ready.value && account.hasAccount)
   top: 0;
   z-index: 20;
   background: var(--color-ground);
-  // holds still while the page below it changes (see view-transitions.scss)
-  view-transition-name: top;
 
   &__bar {
     display: flex;

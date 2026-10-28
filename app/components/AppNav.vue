@@ -1,8 +1,8 @@
 <script setup lang="ts">
 /**
  * The seven tabs of the planner, each a page of its own. The tab of the page being shown is
- * marked for screen readers and carries the yellow line, which slides from tab to tab when the
- * page changes (see view-transitions.scss).
+ * marked for screen readers and carries the yellow line. A change of page is instant: nothing
+ * slides or fades.
  */
 const TABS = [
   { label: 'Tonight', path: '/' },
@@ -71,8 +71,7 @@ function returnToTop(path: string): void {
     &--current {
       color: var(--color-text-strong);
 
-      // The line is its own box, drawn over the tab's transparent border, so the browser can
-      // slide that one box from the old tab to the new one.
+      // the line is its own box, drawn over the tab's transparent border
       &::after {
         content: '';
         position: absolute;
@@ -81,7 +80,6 @@ function returnToTop(path: string): void {
         left: 0;
         height: 3px;
         background: var(--color-stat);
-        view-transition-name: tab-line;
       }
     }
   }

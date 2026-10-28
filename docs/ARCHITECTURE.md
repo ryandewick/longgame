@@ -13,7 +13,7 @@ Long Game is a Nuxt 4 application written in TypeScript. This document is the co
 
 ```
 app/
-  assets/styles/     tokens.scss (custom properties), base.scss (reset, type), fonts.scss, view-transitions.scss,
+  assets/styles/     tokens.scss (custom properties), base.scss (reset, type), fonts.scss,
                      and the shared BEM blocks in blocks/
   components/        one component per file, PascalCase, each owning one BEM block
   composables/       useHiscores, useStatsRefresh, useAccounts, useAddAccount, useSavedState, useSaveReady, useAppMode,

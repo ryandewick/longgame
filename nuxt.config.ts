@@ -66,10 +66,6 @@ export default defineNuxtConfig({
     transpile: ['pinia'],
   },
   experimental: {
-    // A change of page is animated by the browser's View Transitions API: the yellow line slides between tabs and
-    // the page crossfades (app/assets/styles/view-transitions.scss). Nuxt skips it under reduced motion and where
-    // the browser has no such API.
-    viewTransition: true,
     // 404.html is the real "not found" page (app/error.vue), not an empty shell that draws it in the browser.
     prerenderErrorPages: true,
   },
