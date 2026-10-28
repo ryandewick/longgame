@@ -3,6 +3,7 @@ import { existsSync, rmSync, writeFileSync } from 'node:fs'
 import { createServer } from 'node:net'
 import { tmpdir } from 'node:os'
 import { pathToFileURL } from 'node:url'
+import { readWindowPlace, type WindowPlace } from '../../shared/domain/window-place.ts'
 import { appBrowserCandidates, appProfileDirectory, appWindowArguments } from './app-window.ts'
 import {
   isBuildStale,
@@ -19,6 +20,7 @@ import {
   LOCAL_SERVER_ENTRY,
   LOCKFILE,
   PROJECT_ROOT,
+  WINDOW_PLACE_FILE,
 } from './paths.ts'
 import { modifiedTime, newestModifiedTime, projectPath, readText } from './project-files.ts'
 
@@ -222,10 +224,14 @@ export async function runAsAppWindow(): Promise<void> {
   }
   const outcome = await startLocalCopy({ openBrowser: false })
   const profile = appProfileDirectory(browser.name, process.env.LOCALAPPDATA ?? tmpdir())
-  const window = spawn(browser.path, appWindowArguments(addressOf(configuredPort()), profile), {
-    stdio: 'ignore',
-    detached: true,
-  })
+  const window = spawn(
+    browser.path,
+    appWindowArguments(addressOf(configuredPort()), profile, lastWindowPlace()),
+    {
+      stdio: 'ignore',
+      detached: true,
+    },
+  )
   if (outcome === 'already-running') {
     // the server belongs to the launcher that started it, which stops it when its own window closes
     window.unref()
@@ -237,6 +243,17 @@ export async function runAsAppWindow(): Promise<void> {
   })
   await new Promise((resolve) => setTimeout(resolve, CLOSING_GRACE_MILLISECONDS))
   process.exit(0)
+}
+
+/** Where the app window was last left, as the server keeps it; null before it has ever been placed. */
+function lastWindowPlace(): WindowPlace | null {
+  const text = readText(WINDOW_PLACE_FILE)
+  if (text === null) return null
+  try {
+    return readWindowPlace(JSON.parse(text))
+  } catch {
+    return null
+  }
 }
 
 /**

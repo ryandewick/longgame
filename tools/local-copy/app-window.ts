@@ -1,4 +1,5 @@
 import { join } from 'node:path'
+import type { WindowPlace } from '../../shared/domain/window-place.ts'
 
 /*
  * The launcher's choices for showing Long Game in a window of its own, as plain functions: which way it was asked to
@@ -70,12 +71,30 @@ export function appProfileDirectory(browser: AppBrowser['name'], applicationData
   return join(applicationData, 'Long Game', `app-window-${browser}`)
 }
 
-/** What the browser is told: show this address as an app (no tabs, no address bar), from the app's own profile. */
-export function appWindowArguments(address: string, profileDirectory: string): string[] {
+/**
+ * The window's size until the player has placed it: narrow enough to sit beside the game client, as tall as a 1440p
+ * screen allows. Chrome's own first size for an app window is most of the screen.
+ */
+export const FIRST_WINDOW_SIZE = { width: 960, height: 1300 }
+
+/**
+ * What the browser is told: show this address as an app (no tabs, no address bar), from the app's own profile, where
+ * the window was last left. Chrome does not remember that for an app window, so the launcher does (see
+ * shared/domain/window-place.ts); with no place yet, the first size.
+ */
+export function appWindowArguments(
+  address: string,
+  profileDirectory: string,
+  place: WindowPlace | null,
+): string[] {
+  const placing = place
+    ? [`--window-position=${place.x},${place.y}`, `--window-size=${place.width},${place.height}`]
+    : [`--window-size=${FIRST_WINDOW_SIZE.width},${FIRST_WINDOW_SIZE.height}`]
   return [
     `--app=${address}`,
     `--user-data-dir=${profileDirectory}`,
     '--no-first-run',
     '--no-default-browser-check',
+    ...placing,
   ]
 }

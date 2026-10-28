@@ -10,6 +10,7 @@
  * Files:  .data/kv/accounts.json           every saved account (version 3 of the save)
  *         .data/kv/state.json              the single save of the versions that kept one account
  *         .data/kv/snapshots/<name>.json   one XP history per player
+ *         .data/kv/window-place.json       where the desktop app's window was last left
  *
  * Every account is written to accounts.json. state.json is the save of the versions before, which kept a single
  * account. The app reads it only while there are no saved accounts, to carry it over as the first account, and never
@@ -23,6 +24,7 @@
  * shared/domain/save.ts), and the history in this app's shape. The first write then lands in .data/kv, and from
  * then on that is what is read. The old files are never written to or removed, so they stay behind as a backup.
  */
+import type { WindowPlace } from '#shared/domain/window-place'
 import { isJsonRecord, type JsonRecord } from './json'
 import {
   legacySnapshotStorageKey,
@@ -33,6 +35,7 @@ import {
 } from './snapshots'
 
 const ACCOUNTS_KEY = 'accounts.json'
+const WINDOW_PLACE_KEY = 'window-place.json'
 const STATE_KEY = 'state.json'
 const LEGACY_STATE_KEY = 'state.json'
 
@@ -59,6 +62,14 @@ export async function readStoredAccounts(): Promise<JsonRecord> {
 /** Replaces the saved accounts. As with the state, the app versions what is in them and the server only keeps it. */
 export async function writeStoredAccounts(accounts: JsonRecord): Promise<void> {
   await saves().setItem(ACCOUNTS_KEY, accounts)
+}
+
+/**
+ * Where the desktop app's window was last left (shared/domain/window-place.ts). The launcher reads the same file,
+ * .data/kv/window-place.json, to open the next window there.
+ */
+export async function writeWindowPlace(place: WindowPlace): Promise<void> {
+  await saves().setItem(WINDOW_PLACE_KEY, place)
 }
 
 /** The single save of the versions that kept one account, or an empty object when there is none. */

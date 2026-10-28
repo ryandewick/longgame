@@ -40,3 +40,6 @@ export const LOCAL_BUILD_SOURCES: readonly string[] = [
 /** npm's own record of what is in node_modules, rewritten at the end of every install. */
 export const INSTALL_RECORD = 'node_modules/.package-lock.json'
 export const LOCKFILE = 'package-lock.json'
+
+/** Where the server keeps the place the desktop app's window was last left (shared/domain/window-place.ts). */
+export const WINDOW_PLACE_FILE = '.data/kv/window-place.json'

@@ -4,6 +4,7 @@ import {
   appBrowserCandidates,
   appProfileDirectory,
   appWindowArguments,
+  FIRST_WINDOW_SIZE,
   NEEDS_PREPARING_EXIT_CODE,
   parseLaunchMode,
 } from '~~/tools/local-copy/app-window'
@@ -84,12 +85,24 @@ describe('appProfileDirectory', () => {
 })
 
 describe('appWindowArguments', () => {
-  it('opens the address as an app, from its own profile, with no first-run screens', () => {
-    expect(appWindowArguments('http://localhost:8765/', 'C:\\Data\\profile')).toEqual([
+  it('opens the address as an app, from its own profile, at the first size before it has been placed', () => {
+    expect(appWindowArguments('http://localhost:8765/', 'C:/Data/profile', null)).toEqual([
       '--app=http://localhost:8765/',
-      '--user-data-dir=C:\\Data\\profile',
+      '--user-data-dir=C:/Data/profile',
       '--no-first-run',
       '--no-default-browser-check',
+      `--window-size=${FIRST_WINDOW_SIZE.width},${FIRST_WINDOW_SIZE.height}`,
     ])
+  })
+
+  it('opens it where it was last left, at that size', () => {
+    const place = { x: 1660, y: -8, width: 900, height: 1300 }
+    expect(
+      appWindowArguments('http://localhost:8765/', 'C:/Data/profile', place).slice(-2),
+    ).toEqual(['--window-position=1660,-8', '--window-size=900,1300'])
+  })
+
+  it('opens narrow enough to sit beside the game client', () => {
+    expect(FIRST_WINDOW_SIZE.width).toBeLessThanOrEqual(1000)
   })
 })
