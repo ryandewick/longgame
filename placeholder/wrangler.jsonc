@@ -9,4 +9,9 @@
   "main": "worker.js",
   "compatibility_date": "2026-10-01",
   "routes": [{ "pattern": "longgame.tools", "custom_domain": true }],
+  // index.html is imported as text, and the two fonts as bytes
+  "rules": [
+    { "type": "Text", "globs": ["**/*.html"], "fallthrough": true },
+    { "type": "Data", "globs": ["**/*.woff2"], "fallthrough": true },
+  ],
 }
