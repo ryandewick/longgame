@@ -105,4 +105,9 @@ describe('appWindowArguments', () => {
   it('opens narrow enough to sit beside the game client', () => {
     expect(FIRST_WINDOW_SIZE.width).toBeLessThanOrEqual(1000)
   })
+
+  it('opens short enough to leave room above and below it on a 1080p screen', () => {
+    // 1080 pixels less a 48 pixel taskbar, less room either side
+    expect(FIRST_WINDOW_SIZE.height).toBeLessThan(1032 - 100)
+  })
 })

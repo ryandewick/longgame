@@ -113,7 +113,7 @@ To have it open like a desktop app instead, in a window of its own with no tabs,
 powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "<project>\tools\local-copy\open-app.ps1"
 ```
 
-It opens Long Game in a Chrome app window (Edge when Chrome is not installed), and closing that window stops it. The window opens narrow, to sit beside the game client, and after that wherever you last left it, at that size. A console shows only while it installs or builds after the code has changed, and a problem is shown in a message box.
+It opens Long Game in a Chrome app window (Edge when Chrome is not installed), and closing that window stops it. The window opens small, to sit beside the game client, and after that wherever you last left it, at that size. A console shows only while it installs or builds after the code has changed, and a problem is shown in a message box.
 
 On anything else:
 

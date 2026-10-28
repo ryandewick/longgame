@@ -72,10 +72,11 @@ export function appProfileDirectory(browser: AppBrowser['name'], applicationData
 }
 
 /**
- * The window's size until the player has placed it: narrow enough to sit beside the game client, as tall as a 1440p
- * screen allows. Chrome's own first size for an app window is most of the screen.
+ * The window's size until the player has placed it: narrow enough to sit beside the game client, and short enough to
+ * leave room above and below it on a 1080p screen (whose taskbar leaves about 1030 pixels), so it never fills the
+ * screen's height. Chrome's own first size for an app window is most of the screen.
  */
-export const FIRST_WINDOW_SIZE = { width: 960, height: 1300 }
+export const FIRST_WINDOW_SIZE = { width: 960, height: 900 }
 
 /**
  * What the browser is told: show this address as an app (no tabs, no address bar), from the app's own profile, where
