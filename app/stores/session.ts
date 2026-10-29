@@ -10,6 +10,7 @@ import {
   completeBlock as completeBlockIn,
   finishSession,
   pauseAllBlocks,
+  settleSteps as settleStepsIn,
   toggleBlock as toggleBlockIn,
 } from '#shared/domain/session'
 import { useAccountStore } from './account'
@@ -171,6 +172,25 @@ export const useSessionStore = defineStore('session', () => {
   }
 
   /**
+   * Ticks off the quest or diary steps the account has done since the deal, for instance ones a
+   * local add-on has just reported, and returns them for the player to be told. A step waiting
+   * on its question stops asking.
+   */
+  function settleSteps(): readonly QuestBlock[] {
+    if (!session.value) return []
+    const { session: settledSession, settled } = settleStepsIn(
+      session.value,
+      useAccountStore().account,
+      Date.now(),
+    )
+    if (settled.length === 0) return settled
+    session.value = settledSession
+    const asking = askingIndex.value === null ? undefined : settledSession.blocks[askingIndex.value]
+    if (asking?.done) askingIndex.value = null
+    return settled
+  }
+
+  /**
    * Stops every timer. Called the moment the player asks to finish, so the minutes it takes to
    * fetch their stats do not count as play.
    */
@@ -210,6 +230,7 @@ export const useSessionStore = defineStore('session', () => {
     completeBlock,
     askStep,
     answerStep,
+    settleSteps,
     pauseAll,
     finish,
   }

@@ -28,10 +28,17 @@ export function useHiscores(): {
    * reports, when there is one, and an XP snapshot. Neither failing stops anything.
    */
   takeIn: (name: string, stats: SavedHiscores) => Promise<void>
+  /**
+   * Asks a local add-on, when there is one, for the open account's quests and diaries without
+   * fetching its stats, as a lookup (`isRefreshing` is on meanwhile). Does nothing without one.
+   */
+  takeInQuestProgressOnly: () => Promise<void>
 } {
   const isRefreshing = useState('stats-refreshing', () => false)
   const account = useAccountStore()
   const history = useHistoryStore()
+  const session = useSessionStore()
+  const toast = useToast()
   const hasQuestProgressProvider = useQuestProgressProvider()
   // the storage comes from a plugin that only runs in the browser, so it is looked up when a lookup
   // runs (always in the browser) rather than here, which the server reaches too
@@ -68,16 +75,28 @@ export function useHiscores(): {
     }
   }
 
-  /** Asks the local add-on what the account has completed and started, and ticks it. */
+  /**
+   * Asks the local add-on what the account has completed and started, and ticks it. A quest or
+   * diary step on tonight's session that this settles is ticked off, and the player is told.
+   */
   async function takeInQuestProgress(name: string): Promise<void> {
     try {
       const progress = parseQuestProgress(
         await $fetch<unknown>('/api/quest-progress', { query: { name } }),
       )
-      if (progress && account.name === name) account.recordProgress(progress)
+      if (!progress || account.name !== name) return
+      account.recordProgress(progress)
+      const message = settledStepsMessage(session.settleSteps())
+      if (message) toast.show(message)
     } catch (error) {
       console.warn('Could not read quest progress from the local add-on.', error)
     }
+  }
+
+  async function takeInQuestProgressOnly(): Promise<void> {
+    const { name } = account
+    if (!hasQuestProgressProvider || !name) return
+    await whileLookingUp(() => takeInQuestProgress(name))
   }
 
   async function takeIn(name: string, stats: SavedHiscores): Promise<void> {
@@ -101,5 +120,6 @@ export function useHiscores(): {
     lookUpStats,
     lookUpAccountType,
     takeIn,
+    takeInQuestProgressOnly,
   }
 }

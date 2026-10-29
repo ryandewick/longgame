@@ -7,6 +7,7 @@ import {
   questStepCaption,
   questStepFact,
   questStepNote,
+  settledStepsMessage,
 } from '../../app/utils/tonight-quest'
 import {
   blockFact,
@@ -204,5 +205,31 @@ describe('what a quest step’s Done asks', () => {
     expect(questStepAsk(twilight, 0).fact).toBe('Quest, no time logged.')
     expect(questStepAsk(twilight, 30_000).fact).toBe('Quest, under a minute logged.')
     expect(questStepAsk(twilight, MINUTE).fact).toBe('Quest, 1 minute logged.')
+  })
+})
+
+describe('what the player is told when steps turn out done already', () => {
+  it('names the step and says what settled it', () => {
+    expect(settledStepsMessage([{ title: "Twilight's Promise", step: 'finish' }])).toBe(
+      "Twilight's Promise is done, so it is ticked off tonight's session.",
+    )
+    expect(settledStepsMessage([{ title: 'Fairytale II - Cure a Queen', step: 'start' }])).toBe(
+      "Fairytale II - Cure a Queen is started, so it is ticked off tonight's session.",
+    )
+    expect(settledStepsMessage([{ title: 'Ardougne Medium', step: 'claim' }])).toBe(
+      "Ardougne Medium is claimed, so it is ticked off tonight's session.",
+    )
+  })
+
+  it('lists several, and says nothing when none were ticked off', () => {
+    expect(
+      settledStepsMessage([
+        { title: "Twilight's Promise", step: 'finish' },
+        { title: 'Ardougne Medium', step: 'claim' },
+      ]),
+    ).toBe(
+      "Twilight's Promise and Ardougne Medium are done, so they are ticked off tonight's session.",
+    )
+    expect(settledStepsMessage([])).toBeNull()
   })
 })

@@ -695,6 +695,19 @@ describe('the session store', () => {
     expect(session.liveBlockIndex).toBe(0)
   })
 
+  it('ticks off a step the account has done since the deal, even one asking its question', () => {
+    const { account, session, stepIndex } = dealtWithStep()
+    expect(session.settleSteps()).toEqual([])
+
+    session.askStep(stepIndex)
+    account.recordProgress({ quests: ["Twilight's Promise"], diaries: [] })
+    expect(session.settleSteps()).toMatchObject([{ kind: 'quest', title: "Twilight's Promise" }])
+    expect(session.session?.blocks[stepIndex]?.done).toBe(true)
+    expect(session.askingIndex).toBeNull()
+    // once ticked off, it is not reported again
+    expect(session.settleSteps()).toEqual([])
+  })
+
   it('leaves nothing to tick after a no, and puts the question off when another block starts', () => {
     const { session, stepIndex } = dealtWithStep()
     session.askStep(stepIndex)

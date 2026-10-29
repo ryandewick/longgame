@@ -58,7 +58,7 @@ export function useAccounts(): {
   const toast = useToast()
   const questionRun = useQuestionRun()
   const { isRefreshing, whileLookingUp, lookUpStats, lookUpAccountType, takeIn } = useHiscores()
-  const { refreshIfStale } = useStatsRefresh()
+  const { refreshOnOpen } = useStatsRefresh()
   // the storage and the save's writer come from a plugin that only runs in the browser, so they are
   // looked up when an action runs (always in the browser) rather than here
   const nuxtApp = useNuxtApp()
@@ -76,14 +76,14 @@ export function useAccounts(): {
   /**
    * The planner is now drawn for a different account. Call it in the same tick as the change, so
    * the Load moment is announced with it (see useMotion); the save is then written at once, and
-   * stats more than half an hour old are fetched.
+   * stats more than half an hour old are fetched (with a local add-on, its quests always are).
    */
   async function drawnForAnother(): Promise<void> {
     questionRun.reset()
     expectFirstLoad()
     announceMoment({ name: 'first-load' })
     await nuxtApp.$flushSave()
-    refreshIfStale()
+    refreshOnOpen()
   }
 
   async function open(name: string): Promise<void> {

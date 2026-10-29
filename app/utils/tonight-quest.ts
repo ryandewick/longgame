@@ -106,6 +106,24 @@ export interface QuestStepAsk {
   readonly yes: string
 }
 
+/**
+ * What the player is told when steps on tonight's session turn out done already, say because a
+ * local add-on reported them: "Twilight's Promise is done, so it is ticked off tonight's session."
+ * Null when nothing was ticked off.
+ */
+export function settledStepsMessage(
+  steps: readonly Pick<QuestBlock, 'title' | 'step'>[],
+): string | null {
+  if (steps.length === 0) return null
+  const names = listInWords(steps.map((step) => step.title))
+  const [only] = steps
+  if (steps.length === 1 && only) {
+    const state = only.step === 'claim' ? 'claimed' : only.step === 'start' ? 'started' : 'done'
+    return `${names} is ${state}, so it is ticked off tonight's session.`
+  }
+  return `${names} are done, so they are ticked off tonight's session.`
+}
+
 /** The time on a step's clock, in words: '41 minutes logged'. */
 function loggedWords(elapsed: number): string {
   const minutes = Math.floor(elapsed / MINUTE)

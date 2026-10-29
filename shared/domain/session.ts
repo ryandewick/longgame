@@ -1,7 +1,9 @@
+import type { Account } from '../types/account'
 import type {
   BlockTimer,
   HistoryBlock,
   HistoryEntry,
+  QuestBlock,
   Session,
   SessionBlock,
   SessionTally,
@@ -82,6 +84,43 @@ export function tallyGains(
     if (levelsGained > 0) levels[skill] = levelsGained
   }
   return { gains, totalXp, levels }
+}
+
+/**
+ * Whether the account has already done what a quest or diary step asks: finished the quest, or
+ * started it when starting is the step, or claimed the tier. A tick, an answer or a local add-on's
+ * report can settle a step after it was dealt.
+ */
+export function isStepSettled(
+  block: Pick<QuestBlock, 'title' | 'step'>,
+  account: Account,
+): boolean {
+  if (block.step === 'claim') return account.allDiaries || account.completedDiaries.has(block.title)
+  const finished = account.allQuests || account.completedQuests.has(block.title)
+  return finished || (block.step === 'start' && account.startedQuests.has(block.title))
+}
+
+/** A session with the steps the account has already done ticked off, and those steps. */
+export interface SettledSteps {
+  readonly session: Session
+  readonly settled: readonly QuestBlock[]
+}
+
+/**
+ * Ticks off every quest or diary step not yet done that the account has done anyway, stopping
+ * its clock, so the session does not send the player to do it again. A tallied session is left
+ * as it is.
+ */
+export function settleSteps(session: Session, account: Account, now: number): SettledSteps {
+  if (session.endedAt !== null) return { session, settled: [] }
+  const settled: QuestBlock[] = []
+  let settling = session
+  session.blocks.forEach((block, index) => {
+    if (block.kind !== 'quest' || block.done || !isStepSettled(block, account)) return
+    settled.push(block)
+    settling = completeBlock(settling, index, now).session
+  })
+  return { session: settling, settled }
 }
 
 function historyBlock(block: SessionBlock): HistoryBlock {

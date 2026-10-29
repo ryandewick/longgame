@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { HistoryEntry, Session, SessionBlock } from '#shared/types/session'
+import type { HistoryEntry, QuestBlock, Session, SessionBlock } from '#shared/types/session'
 import { forEverySkill } from '#shared/data/skills'
 import {
   HISTORY_LIMIT,
@@ -7,11 +7,14 @@ import {
   blockElapsed,
   completeBlock,
   finishSession,
+  isStepSettled,
   pauseAllBlocks,
+  settleSteps,
   tallyGains,
   toggleBlock,
 } from '#shared/domain/session'
 import { xpForLevel } from '#shared/domain/xp'
+import { accountWith } from './helpers'
 
 const NOW = 1_800_000_000_000
 const timer = { elapsed: 0, runningSince: null, done: false }
@@ -217,6 +220,76 @@ describe('finishSession', () => {
     expect(finished.entry.blocks).toEqual([
       { kind: 'quest', step: 'start', title: 'Fairytale II - Cure a Queen', done: true },
     ])
+  })
+})
+
+const questStep = (title: string, step: QuestBlock['step']): QuestBlock => ({
+  kind: 'quest',
+  title,
+  step,
+  minutes: 30,
+  reason: { kind: 'unlock', goal: 'Fairy rings', left: 1 },
+  ...timer,
+})
+
+describe('isStepSettled', () => {
+  it('settles a quest to finish only once it is finished', () => {
+    const step = questStep("Twilight's Promise", 'finish')
+    expect(isStepSettled(step, accountWith())).toBe(false)
+    expect(isStepSettled(step, accountWith({ started: ["Twilight's Promise"] }))).toBe(false)
+    expect(isStepSettled(step, accountWith({ quests: ["Twilight's Promise"] }))).toBe(true)
+    expect(isStepSettled(step, accountWith({ allQuests: true }))).toBe(true)
+  })
+
+  it('settles a quest to start once it is started or finished', () => {
+    const step = questStep('Fairytale II - Cure a Queen', 'start')
+    expect(isStepSettled(step, accountWith())).toBe(false)
+    expect(isStepSettled(step, accountWith({ started: ['Fairytale II - Cure a Queen'] }))).toBe(
+      true,
+    )
+    expect(isStepSettled(step, accountWith({ quests: ['Fairytale II - Cure a Queen'] }))).toBe(true)
+  })
+
+  it('settles a diary tier once it is claimed, and the quest cape does not', () => {
+    const step = questStep('Ardougne Medium', 'claim')
+    expect(isStepSettled(step, accountWith({ allQuests: true }))).toBe(false)
+    expect(isStepSettled(step, accountWith({ diaries: ['Ardougne Medium'] }))).toBe(true)
+    expect(isStepSettled(step, accountWith({ allDiaries: true }))).toBe(true)
+  })
+})
+
+describe('settleSteps', () => {
+  const running = { ...questStep("Twilight's Promise", 'finish'), runningSince: NOW - 60_000 }
+  const tier = questStep('Ardougne Medium', 'claim')
+  const withSteps: Session = { ...SESSION, blocks: [...BLOCKS, running, tier] }
+
+  it('ticks off the steps the account has done since the deal and stops their clocks', () => {
+    const { session, settled } = settleSteps(
+      withSteps,
+      accountWith({ quests: ["Twilight's Promise"] }),
+      NOW,
+    )
+    expect(settled.map((step) => step.title)).toEqual(["Twilight's Promise"])
+    expect(session.blocks[3]).toMatchObject({ done: true, runningSince: null, elapsed: 60_000 })
+    expect(session.blocks[4]).toEqual(tier)
+    // everything else is left as it was
+    expect(session.blocks.slice(0, 3)).toEqual(BLOCKS)
+  })
+
+  it('leaves the session alone when nothing is settled, a step is already done, or it is tallied', () => {
+    expect(settleSteps(withSteps, accountWith(), NOW)).toEqual({ session: withSteps, settled: [] })
+
+    const doneAlready: Session = {
+      ...SESSION,
+      blocks: [{ ...questStep("Twilight's Promise", 'finish'), done: true }],
+    }
+    expect(settleSteps(doneAlready, accountWith({ allQuests: true }), NOW).settled).toEqual([])
+
+    const tallied: Session = { ...withSteps, endedAt: NOW, tally: null }
+    expect(settleSteps(tallied, accountWith({ allQuests: true }), NOW)).toEqual({
+      session: tallied,
+      settled: [],
+    })
   })
 })
 

@@ -1,6 +1,8 @@
 /**
  * Stats older than this are fetched again when an account is opened. The hiscores only move when
- * the player logs out, so opening the app, or another account, is the moment to look.
+ * the player logs out, so opening the app, or another account, is the moment to look. Quests and
+ * diaries from a local add-on are asked for at every opening, whatever the stats' age: a quest can
+ * be finished without a single XP drop the hiscores would show.
  */
 const STATS_GO_STALE_AFTER_MILLISECONDS = 30 * 60_000
 
@@ -18,12 +20,23 @@ export function useStatsRefresh(): {
    * shown as a toast and the stats in the store are left as they were.
    */
   refresh: () => Promise<boolean>
-  /** Fetches the open account's stats when the ones it has are older than half an hour. */
-  refreshIfStale: () => void
+  /**
+   * What opening the app or an account fetches: the open account's stats when the ones it has are
+   * older than half an hour, and otherwise its quests and diaries alone when a local add-on
+   * reports them.
+   */
+  refreshOnOpen: () => void
 } {
   const account = useAccountStore()
   const toast = useToast()
-  const { isRefreshing, whileLookingUp, lookUpStats, lookUpAccountType, takeIn } = useHiscores()
+  const {
+    isRefreshing,
+    whileLookingUp,
+    lookUpStats,
+    lookUpAccountType,
+    takeIn,
+    takeInQuestProgressOnly,
+  } = useHiscores()
 
   async function refresh(): Promise<boolean> {
     const { name } = account
@@ -50,12 +63,12 @@ export function useStatsRefresh(): {
     return refreshed ?? false
   }
 
-  function refreshIfStale(): void {
+  function refreshOnOpen(): void {
     const fetchedAt = account.hiscores?.fetchedAt
-    if (fetchedAt !== undefined && Date.now() - fetchedAt > STATS_GO_STALE_AFTER_MILLISECONDS) {
-      void refresh()
-    }
+    if (fetchedAt === undefined) return
+    if (Date.now() - fetchedAt > STATS_GO_STALE_AFTER_MILLISECONDS) void refresh()
+    else void takeInQuestProgressOnly()
   }
 
-  return { isRefreshing, refresh, refreshIfStale }
+  return { isRefreshing, refresh, refreshOnOpen }
 }

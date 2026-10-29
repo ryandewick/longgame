@@ -5,13 +5,13 @@
  * and adding an account.
  */
 const ready = useSaveReady()
-const { refreshIfStale } = useStatsRefresh()
+const { refreshOnOpen } = useStatsRefresh()
 
 // The hiscores only move when the player logs out, so coming back to the app is the moment to look.
 watch(
   ready,
   (isReady) => {
-    if (isReady) refreshIfStale()
+    if (isReady) refreshOnOpen()
   },
   { immediate: true },
 )
