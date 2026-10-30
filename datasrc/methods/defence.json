@@ -17,6 +17,7 @@
   {
    "lv": 1,
    "name": "Gemstone Crab",
+   "over": ["Ammonite or sand crabs", "Nightmare Zone"],
    "who": "both",
    "int": "afk",
    "cost": "free",

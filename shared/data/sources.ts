@@ -35,6 +35,8 @@ export interface MethodSource {
   setup?: boolean
   /** It is done in the Wilderness, where other players can attack. */
   wild?: boolean
+  /** The activities of this skill an AFK block passes over while this method is on offer. */
+  over?: string[]
   per?: number
   every?: number
 }

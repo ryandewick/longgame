@@ -111,6 +111,7 @@ function buildMethod(skill: SkillKey, source: MethodSource, problems: string[]):
     // one band says nothing the flat rate does not
     ...(bands.length > 1 && { rateBands: bands }),
     ...(source.calc !== undefined && { computedRate: source.calc }),
+    ...(source.over && source.over.length > 0 && { preferredOver: source.over }),
   }
 }
 

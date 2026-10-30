@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
 import type { Account } from '#shared/types/account'
+import type { Method } from '#shared/types/method'
 import type { Mood, Session, SkillBlock } from '#shared/types/session'
 import type { SkillKey } from '#shared/types/skill'
 import { SKILL_KEYS } from '#shared/data/skills'
@@ -22,7 +23,7 @@ import {
 import type { DealRequest } from '#shared/domain/planner'
 import type { QuestStepPick } from '#shared/domain/quest-step'
 import { dueResets } from '#shared/domain/resets'
-import { accountWith, seededRandom } from './helpers'
+import { accountWith, methodWith, seededRandom } from './helpers'
 
 vi.mock('#shared/data/methods', () => import('./sample-methods'))
 
@@ -166,6 +167,53 @@ describe('methodForBlock', () => {
 
   it('is null when nothing fits', () => {
     expect(methodForBlock(accountWith(), 'agility', ['afk'])).toBeNull()
+  })
+
+  describe('a method preferred to other activities', () => {
+    const option = (
+      name: string,
+      xpPerHour: number,
+      extra: Partial<Method> = {},
+    ): MethodOption => ({
+      method: methodWith({ skill: 'magic', name, xpPerHour, intensity: 'afk', ...extra }),
+      xpPerHour,
+      xpPerRun: 0,
+      missing: [],
+      unlocked: true,
+    })
+    const gemstone = option('Gemstone Crab with combat spells', 20_000, {
+      preferredOver: ['Rock crabs', 'Frost crabs'],
+    })
+    const rock = option('Rock crabs with combat spells', 30_000)
+    const frost = option('Frost crabs with fire spells', 35_000)
+    const bandits = option('Blood bursting desert bandits', 120_000)
+    const pick = (options: MethodOption[], taken: string[] = [], intensities = ['afk' as const]) =>
+      methodForBlock(accountWith(), 'magic', intensities, new Set(taken), options)?.method.name
+
+    it('wins an AFK block over the activities it names, whatever their rates', () => {
+      expect(pick([rock, gemstone, frost])).toBe('Gemstone Crab with combat spells')
+    })
+
+    it('leaves other activities to compete on their rates', () => {
+      expect(pick([rock, gemstone, frost, bandits])).toBe('Blood bursting desert bandits')
+    })
+
+    it('lets the others back in while it is locked or already in the session', () => {
+      expect(pick([rock, { ...gemstone, unlocked: false }, frost])).toBe(
+        'Frost crabs with fire spells',
+      )
+      expect(pick([rock, gemstone, frost], ['Gemstone Crab'])).toBe('Frost crabs with fire spells')
+    })
+
+    it('changes nothing outside an AFK block', () => {
+      const semi = (chosen: MethodOption) => ({
+        ...chosen,
+        method: { ...chosen.method, intensity: 'semi' as const },
+      })
+      expect(pick([semi(rock), semi(gemstone), semi(frost)], [], ['semi'])).toBe(
+        'Frost crabs with fire spells',
+      )
+    })
   })
 })
 

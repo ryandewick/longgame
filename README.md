@@ -127,7 +127,7 @@ Saves are in the `.data` folder at the top of the project: every account in `acc
 
 ### Adding or correcting a method
 
-Methods live in `datasrc/methods/<skill>.json`. Each one needs a level, a name, an XP rate where the wiki gives one, how much attention it takes, what it requires, and the wiki page it comes from. `npm run test` validates them and lists everything wrong with a file. Suggestions sent from the site arrive as GitHub issues labelled `method suggestion`.
+Methods live in `datasrc/methods/<skill>.json`. Each one needs a level, a name, an XP rate where the wiki gives one, how much attention it takes, what it requires, and the wiki page it comes from. An AFK method can name, in `over`, other activities it should be dealt ahead of whatever their rates: the Gemstone Crab is dealt ahead of the other crabs and Nightmare Zone. `npm run test` validates them and lists everything wrong with a file. Suggestions sent from the site arrive as GitHub issues labelled `method suggestion`.
 
 ### Quests and diaries
 

@@ -57,4 +57,9 @@ export interface Method {
   readonly rateBands?: readonly RateBand[]
   /** The rate is an estimate worked out from the account's levels; `xpPerHour` is then 0. */
   readonly computedRate?: ComputedRateKind
+  /**
+   * Activities of the same skill ('Ammonite or sand crabs') an AFK block passes over while this
+   * method is on offer, whatever their rates: a nicer way to do the same thing.
+   */
+  readonly preferredOver?: readonly string[]
 }

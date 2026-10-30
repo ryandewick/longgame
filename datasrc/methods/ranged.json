@@ -30,6 +30,7 @@
   {
    "lv": 1,
    "name": "Gemstone Crab",
+   "over": ["Ammonite or sand crabs", "Nightmare Zone"],
    "who": "both",
    "int": "afk",
    "cost": "cheap",
@@ -159,6 +160,7 @@
   {
    "lv": 28,
    "name": "Gemstone Crab with Dorgeshuun crossbow",
+   "over": ["Ammonite or sand crabs", "Nightmare Zone"],
    "who": "iron",
    "int": "afk",
    "cost": "cheap",

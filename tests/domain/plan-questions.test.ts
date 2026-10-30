@@ -728,9 +728,11 @@ describe('planQuestions: a whole run of answers', () => {
     expect(maxProgress(account).hoursLeft).toBeCloseTo(maxProgress(truth).hoursLeft, 6)
   })
 
-  it('asks 25 questions if the player goes on through the second round: 10, then 15 smaller ones', () => {
+  it('asks 24 questions if the player goes on through the second round: 10, then 14 smaller ones', () => {
+    // The Heart of Darkness is not one: frost crabs were its only use to this account, and AFK
+    // Magic goes to the Gemstone Crab ahead of them
     const { asked, account } = answerTruthfully()
-    expect(asked).toHaveLength(25)
+    expect(asked).toHaveLength(24)
     expect(asked.filter(savesHours)).toHaveLength(10)
     // the first round is over before the second starts
     expect(asked.slice(0, 10).every(savesHours)).toBe(true)

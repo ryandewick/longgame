@@ -193,6 +193,7 @@
    "est": true,
    "lv": 1,
    "name": "Gemstone Crab with combat spells",
+   "over": ["Rock crabs", "Frost crabs"],
    "req": "q:Children of the Sun",
    "calc": "gem-magic",
    "src": "Gemstone Crab/Strategies",

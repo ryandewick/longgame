@@ -78,6 +78,7 @@ interface Method {                        // one way to train a skill
   inWilderness: boolean                   // tagged in the tables, said on the skill page and a dealt block
   rateBands?: Array<{ fromLevel: number; xpPerHour: number }>
   computedRate?: 'crab-melee' | 'crab-ranged' | 'rock-magic' | 'frost-magic' | 'gem-magic'
+  preferredOver?: string[]                // activities an AFK block passes over while this is on offer
 }
 ```
 
@@ -132,6 +133,8 @@ Names are full words: `hoursLeft`, `isIronman`, `skillStat`, never `hrs`, `iron`
 `quest_goals.json` (exported the same way) holds the 30 milestones: Barrows gloves, the fairy rings, Piety and the rest, each with what it gives in the app's words, its whole quest tree (each quest finished or only started; Knight Waves for Piety), the tiers and levels it needs beyond that, and the step of each guide that reaches it. The early ironman path is the ironman guide's own milestone and is offered to ironmen only.
 
 `boosts.json` (exported the same way) holds the boosts decision 1 counts toward a boostable quest or tier level: 35 in 20 skills, each with the wiki page and revision it was read from, the words a sentence names it by ('a super fishing potion'), its size (a flat number of levels, or a base and a share of the level) and who may count it, a main and an ironman apart: always, never, or with a level (an ironman makes its own pies and potions, so it counts one only at the level that makes it).
+
+A method entry's `over` lists activities of the same skill (a method's activity is its name before " with ") that an AFK block passes over while the method is on offer, whatever their rates (`preferredOver`, applied in `methodForBlock`). The Gemstone Crab has it, over the other crabs and Nightmare Zone, at Ryan's choice: two clicks every ten minutes, no food and no aggression to reset. Faster AFK methods of other kinds still win on rate, and when the Gemstone Crab is locked or already in the session the others are dealt as before. `integrity.test.ts` checks that every name in it is one of the skill's activities.
 
 `quests_set.json` holds the fixed XP of the wiki's XP table, and `quests_lamps.json` the skill-choice lamps of `Module:SkillChoice`; every quest in either must be an entry of the facts, which give it its kind and its levels.
 

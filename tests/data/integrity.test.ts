@@ -18,9 +18,11 @@ import { RESETS } from '#shared/data/resets'
 import { SKILL_KEYS, SKILLS, isSkillKey } from '#shared/data/skills'
 import type { LampSource, MethodSourceFile, ResetSource } from '#shared/data/sources'
 import { WILDCARDS } from '#shared/data/wildcards'
+import { activityOf, methodForBlock } from '#shared/domain/planner'
 import { questDependants, questPrerequisites } from '#shared/domain/quest-chains'
 import { gatingQuests, knownQuests } from '#shared/domain/quests'
 import { requirementProblems } from '#shared/domain/requirements'
+import { accountWith } from '../domain/helpers'
 
 const DATASRC = new URL('../../datasrc/', import.meta.url)
 
@@ -185,6 +187,41 @@ describe('datasrc/methods', () => {
         (method) => !method.computedRate || (method.xpPerHour === 0 && !method.rateBands),
       ),
     ).toEqual([])
+  })
+
+  it('prefers a method only to activities its skill has, and only in an AFK method', () => {
+    // `over` in a source entry: an AFK block passes those activities over while the method is on
+    // offer. Today that is the Gemstone Crab over the other crabs and Nightmare Zone, at Ryan's
+    // choice: two clicks every ten minutes, no food, no reset.
+    const preferring = allMethods.filter((method) => method.preferredOver)
+    expect(preferring.map(whereIs)).toEqual([
+      'attack / Gemstone Crab',
+      'defence / Gemstone Crab',
+      'strength / Gemstone Crab',
+      'ranged / Gemstone Crab',
+      'ranged / Gemstone Crab with Dorgeshuun crossbow',
+      'magic / Gemstone Crab with combat spells',
+    ])
+    for (const method of preferring) {
+      expect(method.intensity, whereIs(method)).toBe('afk')
+      const activities = new Set(METHODS[method.skill].map((other) => activityOf(other.name)))
+      for (const activity of method.preferredOver ?? []) {
+        expect(activities.has(activity), `${whereIs(method)} over ${activity}`).toBe(true)
+        expect(activity, whereIs(method)).not.toBe(activityOf(method.name))
+      }
+    }
+  })
+
+  it('deals the Gemstone Crab in every AFK combat block once Children of the Sun is done', () => {
+    // level 85 opens Nightmare Zone with a venator bow and every crab, and none of the quests the
+    // faster AFK methods need (Perilous Moons, Desert Treasure I) is done
+    for (const type of ['main', 'iron'] as const) {
+      const account = accountWith({ type, everySkill: 85, quests: ['Children of the Sun'] })
+      for (const skill of ['attack', 'strength', 'defence', 'ranged', 'magic'] as const) {
+        const picked = methodForBlock(account, skill, ['afk'])?.method.name ?? ''
+        expect(activityOf(picked), `${type} ${skill}`).toBe('Gemstone Crab')
+      }
+    }
   })
 
   it('marks the methods done in the Wilderness, so every place that names one can say so', () => {

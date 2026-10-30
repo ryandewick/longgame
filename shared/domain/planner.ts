@@ -81,8 +81,9 @@ export function fittingMethods(
 }
 
 /**
- * Which method would a block of these intensities get? The fastest that fits, with two
- * adjustments: supplies an ironman has to gather count against it, and an AFK block weighs
+ * Which method would a block of these intensities get? The fastest that fits, with three
+ * adjustments: supplies an ironman has to gather count against it, an AFK block passes over the
+ * activities a method on offer is preferred to (`preferredOver`), and an AFK block weighs
  * effort as well as XP, so a method with per-trip setup (Nightmare Zone's dream fee, potions
  * and quest list) counts for three quarters of its rate. Activities already in the session are
  * passed over. Null when nothing fits.
@@ -97,8 +98,16 @@ export function methodForBlock(
   const afkBlock = intensities.includes('afk')
   const worth = ({ method, xpPerHour }: MethodOption) =>
     supplyFactor(account, method) * (afkBlock && method.perTripSetup ? 0.75 : 1) * xpPerHour
-  const ranked = fittingMethods(account, skill, intensities, options)
-    .filter((option) => !takenActivities.has(activityOf(option.method.name)))
+  const free = fittingMethods(account, skill, intensities, options).filter(
+    (option) => !takenActivities.has(activityOf(option.method.name)),
+  )
+  // an AFK block passes over the activities a method on offer is preferred to (other crabs while
+  // the Gemstone Crab is free), whatever their rates
+  const passedOver = new Set(
+    afkBlock ? free.flatMap((option) => option.method.preferredOver ?? []) : [],
+  )
+  const ranked = free
+    .filter((option) => !passedOver.has(activityOf(option.method.name)))
     .sort((first, second) => worth(second) - worth(first))
   return ranked[0] ?? null
 }
